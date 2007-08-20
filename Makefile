@@ -63,7 +63,7 @@ rpm-fc7:
 	rpmbuild -ba -D "dist .fc7" yumex.spec	
 
 changelog:
-	@svn2cl -r HEAD:66 --group-by-day --strip-prefix=trunk/yumex --authors=authors.xml --break-before-msg -f ChangeLog
+
 	
 upload:
 	
