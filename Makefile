@@ -63,12 +63,12 @@ rpm-fc7:
 	rpmbuild -ba -D "dist .fc7" yumex.spec	
 
 changelog:
-
+	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
 	
 upload:
 	
 release:
-	@svn commit -m "bumped version to $(VERSION)"
+	@git commit -a -m "bumped version to $(VERSION)"
 	@$(MAKE) changelog
-	@svn commit -m "updated ChangeLog"
-	
+	@git commit -a -m "updated ChangeLog"
+	@git push
