@@ -34,7 +34,7 @@ from i18n import _
 
 class Preferences:
     def __init__( self):
-        self.xml = gtk.glade.XML( const.GLADE_FILE, "pref" )
+        self.xml = gtk.glade.XML( const.GLADE_FILE, root="pref",domain="yumex")
         self.conf = self.read_yumex_conf()
         self.setup_gui()
         gtk.main()
@@ -189,7 +189,7 @@ class Preferences:
 
 class ConfimationDialog:
     def __init__( self, parent, pkgs, size ):
-        self.xml = gtk.glade.XML( const.GLADE_FILE, 'confirmation' )
+        self.xml = gtk.glade.XML( const.GLADE_FILE, 'confirmation',domain="yumex" )
         self.dialog = self.xml.get_widget( "confirmation" )
         self.dialog.set_transient_for( parent )
         self.action = self.xml.get_widget( "confAction" )
@@ -244,7 +244,7 @@ class ConfimationDialog:
         
 class ErrorDialog:
     def __init__( self, parent, title, text, longtext, modal ):
-        self.xml = gtk.glade.XML( const.GLADE_FILE, "errDialog" )
+        self.xml = gtk.glade.XML( const.GLADE_FILE, "errDialog",domain="yumex" )
         self.dialog = self.xml.get_widget( "errDialog" )
         self.parent = parent
         if parent:
@@ -284,7 +284,7 @@ class ErrorDialog:
 
 class infoDialog:
     def __init__( self, parent, title, text ):
-        self.xml = gtk.glade.XML( const.GLADE_FILE, "msg" )
+        self.xml = gtk.glade.XML( const.GLADE_FILE, "msg",domain="yumex" )
         self.dialog = self.xml.get_widget( "msg" )
         self.parent = parent
         self.dialog.set_transient_for( parent )
@@ -307,7 +307,7 @@ class infoDialog:
 
 class EntryDialog:
     def __init__( self, parent, title, text ):
-        self.xml = gtk.glade.XML( const.GLADE_FILE, "EntryDialog" )
+        self.xml = gtk.glade.XML( const.GLADE_FILE, "EntryDialog",domain="yumex" )
         self.dialog = self.xml.get_widget( "EntryDialog" )
         self.parent = parent
         #self.dialog.set_transient_for( parent )
