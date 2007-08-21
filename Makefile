@@ -68,8 +68,7 @@ changelog:
 upload:
 	
 release:
-	@git commit -a  -m "bumped version to $(VERSION)"
+	@git commit -a -m "bumped version to $(VERSION)"
 	@$(MAKE) changelog
 	@git commit -a -m "updated ChangeLog"
 	@git push
-	
