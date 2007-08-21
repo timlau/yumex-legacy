@@ -578,7 +578,7 @@ class YumexOptions:
                    'fullobsoletion','autorefresh','conffile','downloadonly',
                    'filelist','changelog']
         for opt in options:
-            setattr( self.settings, opt, getattr( self.cmd_options, opt ) )
+            self._calcOption(opt)
             
         # Set package colors
         packages.color_normal = self.settings.color_normal
@@ -586,6 +586,21 @@ class YumexOptions:
         packages.color_install = self.settings.color_install
         packages.color_obsolete = self.settings.color_obsolete
         
+    def _calcOption(self,option):
+        '''
+        Check if a command line option has a diffent value, than
+        the default value for the setting.
+        if it is the set the setting value to the value from the 
+        commandline option.
+        '''
+        default = None
+        cmdopt = getattr( self.cmd_options, option )
+        if self.settings.isoption(option):
+            optobj = self.settings.optionobj(option)
+            default = optobj.default
+        if cmdopt != default:
+             setattr( self.settings, option,cmdopt)
+            
         
     def check_option( self, option ):
         """ Check options in settings or command line"""
