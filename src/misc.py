@@ -40,7 +40,7 @@ import packages
 
 class const:
     ''' This Class contains all the Constants in Yumex'''
-    __yumex_version__   = "2.0"
+    __yumex_version__   = "2.0.1"
     # Paths
     MAIN_PATH = os.path.abspath( os.path.dirname( sys.argv[0] ) );
     GLADE_FILE = MAIN_PATH+'/yumex.glade'  

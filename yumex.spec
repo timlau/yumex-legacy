@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  2.0.1
-Release:  0.1.pre%{?dist}
+Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -68,6 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Wed Aug 22 2007 Tim Lauridsen <tla@rasmil.dk> - 2.0.1-1
+- Release 2.0.1
 * Thu Aug 16 2007 Tim Lauridsen <tla@rasmil.dk> - 2.0-1
 - Release 2.0 GA
 - Updated license tag to apply to Fedora guidelines.
