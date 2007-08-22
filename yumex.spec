@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  2.0
-Release:  1%{?dist}
+Version:  2.0.1
+Release:  0.1.pre%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System

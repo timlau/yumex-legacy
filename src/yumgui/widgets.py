@@ -139,9 +139,9 @@ class UI(gtk.glade.XML):
         `gladeDir' is the name of the directory, relative to the Python
         path, in which to search for `filename'."""
         if domain:
-            gtk.glade.XML.__init__(self, filename,root=rootname,domain=domain)
+            gtk.glade.XML.__init__(self, filename, rootname, domain)
         else:
-            gtk.glade.XML.__init__(self, filename, root=rootname)
+            gtk.glade.XML.__init__(self, filename, rootname)
         self.filename = filename
         self.root = self.get_widget(rootname)
 
