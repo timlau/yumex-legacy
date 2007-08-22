@@ -40,15 +40,8 @@ install:
 
 
 archive:
-
-	rm -rf ${PKGNAME}-${VERSION}.tar.gz
-	rm -rf /tmp/${PKGNAME}-$(VERSION) /tmp/${PKGNAME}
-	@dir=$$PWD; cd /tmp; cp -a "$$dir" ${PKGNAME}
-	@rm -rf /tmp/${PKGNAME}/.[a-z]*
-	for d in $(ALLDIRS);do rm -rf /tmp/${PKGNAME}/$$d/.svn; done
-	@mv /tmp/${PKGNAME} /tmp/${PKGNAME}-$(VERSION)
-	@dir=$$PWD; cd /tmp; tar cvzf "$$dir/${PKGNAME}-$(VERSION).tar.gz" ${PKGNAME}-$(VERSION)
-	@rm -rf /tmp/${PKGNAME}-$(VERSION)	
+	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
+	@git-archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).tar.gz
 	@cp ${PKGNAME}-$(VERSION).tar.gz $(shell rpm -E '%_sourcedir')
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
 	@echo "The archive is in ${PKGNAME}-$(VERSION).tar.gz"
@@ -63,12 +56,17 @@ rpm-fc7:
 	rpmbuild -ba -D "dist .fc7" yumex.spec	
 
 changelog:
-	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
+	@git log --pretty --numstat --summary | tools/git2cl > ChangeLog.git
+	@cat ChangeLog.git ChangeLog.svn > ChangeLog
+	@rm ChangeLog.git
 	
 upload:
 	
 release:
+	@git fetch
+	@git rebase origin
 	@git commit -a -m "bumped version to $(VERSION)"
 	@$(MAKE) changelog
 	@git commit -a -m "updated ChangeLog"
-	@git push
+	@git push origin
+
