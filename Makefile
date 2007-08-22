@@ -60,7 +60,9 @@ changelog:
 	@cat ChangeLog.git ChangeLog.svn > ChangeLog
 	@rm ChangeLog.git
 	
-upload:
+upload: FORCE
+	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz yum-extender.org:public_html/dnl/yumex/source/.
+    
 	
 release:
 	@git fetch
@@ -71,3 +73,5 @@ release:
 	@git tag ${PKGNAME}-${VERSION} -m "Added ${PKGNAME}-${VERSION} release tag"
 	@git push --tags origin
 
+FORCE:
+    
