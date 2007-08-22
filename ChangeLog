@@ -1,3 +1,25 @@
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile, src/misc.py, yumex.spec: added git tag to Makefile
+
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	Merge branch 'master' of git+ssh://repo.or.cz/srv/git/yumex into
+	yumex-2.0  * 'master' of git+ssh://repo.or.cz/srv/git/yumex:   Fixed
+	Makefile to work with git   Make the config save work better on
+	older yum versions (EL5 & FC6)   Fixed Danish Translation, So it
+	don't look like crap   Set yumex transalation domain for dialogs, so
+	they will be translated.   Cleanup Makefile
+
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile: Fixed Makefile to work with git
+
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* ChangeLog, ChangeLog.svn, Makefile, authors.xml, tools/git2cl: 
+	Fixed Makefile to work with git
+
 2007-08-21  Tim Lauridsen <tla@rasmil.dk>
 
 	* src/misc.py: Make the config save work better on older yum
@@ -20,8 +42,55 @@
 
 2007-08-21  Tim Lauridsen <tla@rasmil.dk>
 
+	SUBDIRS = src po src/yumgui PYFILES = $(wildcard *.py) PKGNAME =
+	yumex VERSION=$(shell awk '/Version:/ { print $$2 }'
+	${PKGNAME}.spec) PYTHON=python SRCDIR=src MISCDIR=misc PIXDIR=gfx
+	ALLDIRS=src po src/yumgui gfx misc tools  all: subdirs  subdirs:
+	for d in $(SUBDIRS); do make -C $$d; [ $$? = 0 ] || exit 1 ; done
+	clean: 	@rm -fv *~ *.tar.gz *.list *.lang 	for d in $(SUBDIRS); do
+	make -C $$d clean ; done  install: 	mkdir -p
+	$(DESTDIR)/usr/share/yumex 	mkdir -p
+	$(DESTDIR)/usr/share/pixmaps/yumex 	mkdir -p
+	$(DESTDIR)/usr/share/applications 	mkdir -p $(DESTDIR)/usr/bin
+	mkdir -p $(DESTDIR)/etc 	mkdir -p $(DESTDIR)/etc/pam.d 	mkdir -p
+	$(DESTDIR)/etc/security/console.apps 	install -m644 COPYING
+	$(DESTDIR)/usr/share/yumex/. 	install -m755 $(MISCDIR)/yumex
+	$(DESTDIR)/usr/share/yumex/. 	install -m644 $(PIXDIR)/*.png
+	$(DESTDIR)/usr/share/pixmaps/yumex/. 	install -m644
+	$(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/. 	install -m644
+	$(MISCDIR)/yumex.pam $(DESTDIR)/etc/pam.d/yumex 	install -m600
+	$(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf 	install
+	-m644 $(MISCDIR)/yumex.pam $(DESTDIR)/etc/pam.d/yumex 	install -m644
+	$(MISCDIR)/yumex.console.app
+	$(DESTDIR)/etc/security/console.apps/yumex 	ln -s consolehelper
+	$(DESTDIR)/usr/bin/yumex 	chmod +x $(DESTDIR)/usr/share/yumex/yumex
+	install -m644 $(MISCDIR)/yumex.desktop
+	$(DESTDIR)/usr/share/applications/. 	for d in $(SUBDIRS); do make
+	DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1;
+	done  archive:  	rm -rf ${PKGNAME}-${VERSION}.tar.gz 	rm -rf
+	/tmp/${PKGNAME}-$(VERSION) /tmp/${PKGNAME} 	@dir=$$PWD; cd /tmp; cp
+	-a "$$dir" ${PKGNAME} 	@rm -rf /tmp/${PKGNAME}/.[a-z]* 	for d in
+	$(ALLDIRS);do rm -rf /tmp/${PKGNAME}/$$d/.svn; done 	@mv
+	/tmp/${PKGNAME} /tmp/${PKGNAME}-$(VERSION) 	@dir=$$PWD; cd /tmp; tar
+	cvzf "$$dir/${PKGNAME}-$(VERSION).tar.gz" ${PKGNAME}-$(VERSION) 	@rm
+	-rf /tmp/${PKGNAME}-$(VERSION) 	@cp ${PKGNAME}-$(VERSION).tar.gz
+	$(shell rpm -E '%_sourcedir') 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
+	@echo "The archive is in ${PKGNAME}-$(VERSION).tar.gz"  rpm-centos5:
+	rpmbuild -ba -D "dist .centos5" yumex.spec  rpm-fc6: 	rpmbuild -ba
+	-D "dist .fc6" yumex.spec  rpm-fc7: 	rpmbuild -ba -D "dist .fc7"
+	yumex.spec  changelog: 	@git log --pretty --numstat --summary |
+	./tools/git2cl > ChangeLog  upload:  release: 	@git commit -a -m
+	"bumped version to $(VERSION)" 	@$(MAKE) changelog 	@git commit -a
+	-m "updated ChangeLog" 	@git push
+
+2007-08-21  Tim Lauridsen <tla@rasmil.dk>
+
 	* src/misc.py: Dont make command line option overwrite yumex.conf
 	values, if they have a default value
+
+2007-08-20  Tim Lauridsen <tla@rasmil.dk>
+
+	* tools/README, tools/git2cl: Updated Makefile for git
 
 2007-08-20  Tim Lauridsen <tla@rasmil.dk>
 
@@ -30,6 +99,14 @@
 2007-08-20  Tim Lauridsen <tla@rasmil.dk>
 
 	* Makefile: Updated Makefile for git
+
+2007-08-20  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile: Updated Makefile for git
+
+2007-08-20  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile: Updated Makefile
 
 2007-08-20  Tim Lauridsen <tla@rasmil.dk>
 
