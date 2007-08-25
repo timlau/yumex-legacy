@@ -763,6 +763,8 @@ if __name__ == "__main__":
         msg = _('Yum is locked by another application')
         logger.error(msg)
         errorMessage(None, _( "Error" ),_("Error in Yumex"),msg)
+        gtkEventThread.doQuit()
+        sys.exit(1)
     except SystemExit, e:
         print "Quit by User"
         gtkEventThread.doQuit()
