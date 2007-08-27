@@ -768,7 +768,11 @@ if __name__ == "__main__":
     except SystemExit, e:
         print "Quit by User"
         gtkEventThread.doQuit()
-        sys.exit(1)
+        sys.exit(1)        
+    except yum.plugins.PluginYumExit,e:
+        errorMessage(None, _( "Error" ),_("Error in plugin, Yum Extender will exit"),str(e))
+        gtkEventThread.doQuit()
+        sys.exit(1)        
     except: # catch other exception and write it to the logger.
         logger = logging.getLogger('yumex.main')
         etype = sys.exc_info()[0]
