@@ -31,9 +31,9 @@ msgid "Cleanup"
 msgstr "Mažu předchozí verze balíčků"
 
 #: ../src/callbacks.py:188
-#, fuzzy, python-format
+#, python-format
 msgid "Erased: %s"
-msgstr "Vymazané"
+msgstr "Vymazané: %s"
 
 #: ../src/callbacks.py:209
 #, python-format
@@ -74,12 +74,11 @@ msgstr "--> Nevyřešené závislosti: %s"
 #: ../src/callbacks.py:272
 #, python-format
 msgid "--> Processing Conflict: %s conflicts %s"
-msgstr "-->Zpracovávám konflikt: %s koliduje s balíčkem%s"
+msgstr "-->Zpracovávám konflikt: %s koliduje s balíčkem %s"
 
 #: ../src/callbacks.py:275
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr ""
-"--> Instalace transakční sady s vybranými balíčky probíhá. Čekejte prosím."
+msgstr "--> Instalace transakční sady s vybranými balíčky probíhá. Čekejte prosím."
 
 #: ../src/callbacks.py:278
 #, python-format
@@ -87,9 +86,8 @@ msgid "---> Downloading header for %s to pack into transaction set."
 msgstr "---> Stahuji hlavičku balíčku %s pro transakční sestavení."
 
 #: ../src/dialogs.py:193
-#, fuzzy
 msgid "Packages to Process"
-msgstr "Zpracování balíčků"
+msgstr "Balíčky pro zpracování"
 
 #: ../src/dialogs.py:209 ../src/views.py:477
 msgid "Name"
@@ -114,14 +112,16 @@ msgstr "Velikost"
 
 #: ../src/dialogs.py:345 ../src/yumex.glade.h:30
 msgid "About Yum Extender"
-msgstr "O Yum Extender"
+msgstr "O aplikaci Yum Extender"
 
 #: ../src/gui.py:65
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Updating : %s\n"
 "\n"
-msgstr "Aktualizace balíčků"
+msgstr ""
+"Aktualizační balíček : %s\n"
+"\n"
 
 #: ../src/gui.py:72
 #, fuzzy, python-format
@@ -144,24 +144,20 @@ msgid "Can not read the %s attribute"
 msgstr "Nemohu přečíst atribut %s"
 
 #: ../src/gui.py:353
-#, fuzzy
 msgid "Show All Packages"
-msgstr "Nepovinné balíčky"
+msgstr "Zobrazit všechny balíčky"
 
 #: ../src/gui.py:354
-#, fuzzy
 msgid "Show Package Updates"
-msgstr "%d baliček(y) pro instalaci"
+msgstr "Zobrazit aktualizační balíčky"
 
 #: ../src/gui.py:355
-#, fuzzy
 msgid "Show available Packages"
-msgstr "_Odinstalovat označené balíčky"
+msgstr "Zobrazit balíčky pro odinstalování"
 
 #: ../src/gui.py:356
-#, fuzzy
 msgid "Show Installed Packages"
-msgstr "_Instalovat označené balíčky"
+msgstr "Zobrazit nainstalované balíčky"
 
 #. Setup Vertical Toolbar
 #: ../src/gui.py:365
@@ -245,45 +241,41 @@ msgid "Thank you:"
 msgstr ""
 
 #: ../src/misc.py:350
-#, fuzzy
 msgid "Package Queue:"
-msgstr "Název balíčku"
+msgstr "Balíčky ve frontě:"
 
 #: ../src/misc.py:355
-#, fuzzy, python-format
+#, python-format
 msgid " Packages to %s"
-msgstr "%d baliček(y) pro instalaci"
+msgstr " Baličky pro %s"
 
 #: ../src/misc.py:362
-#, fuzzy, python-format
+#, python-format
 msgid " Groups to %s"
-msgstr "RPM skupiny"
+msgstr " Skupiny pro %s"
 
 #: ../src/misc.py:426
 #, python-format
 msgid "Wrong file application (%s)"
-msgstr ""
+msgstr "Chybný soubor aplikace (%s)"
 
 #: ../src/misc.py:428
 #, python-format
 msgid "Wrong file type (%s)"
-msgstr ""
+msgstr "Chybný typ souboru (%s)"
 
 #: ../src/misc.py:430
-#, fuzzy, python-format
+#, python-format
 msgid "Wrong file version (%s)"
-msgstr ""
-"Nainstalovaná verze: %s (%s) \n"
-"\n"
+msgstr "Chybná verze souboru (%s)"
 
 #: ../src/misc.py:542
 msgid "Current Settings :"
 msgstr "Aktuální nastavení :"
 
 #: ../src/views.py:40 ../src/views.py:305
-#, fuzzy
 msgid "Categories"
-msgstr "Kate_gorie"
+msgstr "Kategorie"
 
 #: ../src/views.py:69 ../src/views.py:99
 msgid "Package"
@@ -299,7 +291,7 @@ msgstr "Repositář"
 
 #: ../src/views.py:100
 msgid "Arch."
-msgstr "Architektura"
+msgstr "Architektura."
 
 #: ../src/views.py:101
 msgid "Ver."
@@ -330,14 +322,12 @@ msgid "<b>Packages To Remove</b>"
 msgstr "<b>Balíčky pro odinstalování</b>"
 
 #: ../src/views.py:357
-#, fuzzy
 msgid "Groups"
-msgstr "_Skupiny"
+msgstr "Skupiny"
 
 #: ../src/views.py:441
-#, fuzzy
 msgid "Filename"
-msgstr "Cesta k konfiguračním souborům"
+msgstr "Jméno souboru"
 
 #: ../src/views.py:575
 msgid "Plugin"
@@ -353,9 +343,8 @@ msgstr "Startuji Yum : RPM Db."
 
 #. -> Repo Setup
 #: ../src/yumapi.py:73 ../src/yumapi.py:111
-#, fuzzy
 msgid "Setup Yum : Repositories."
-msgstr "Startuji Yum : Konfigurace"
+msgstr "Startuji Yum : Repositáře"
 
 #. -> Sack Setup
 #: ../src/yumapi.py:76 ../src/yumapi.py:114
@@ -366,16 +355,14 @@ msgstr "Nastavuji vyřazené balíčky"
 #. -> Updates Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:79 ../src/yumapi.py:117
-#, fuzzy
 msgid "Setup Yum : Updates"
-msgstr "Startuji Yum : Zásuvné moduly"
+msgstr "Startuji Yum : Aktualizace"
 
 #. -> Group Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:82 ../src/yumapi.py:120
-#, fuzzy
 msgid "Setup Yum : Groups"
-msgstr "Startuji Yum : Zásuvné moduly"
+msgstr "Startuji Yum : Skupiny"
 
 #: ../src/yumapi.py:84 ../src/yumapi.py:122
 msgid "Setup Yum : Base setup completed"
@@ -410,6 +397,8 @@ msgstr "---> Přidávám všechno zrušené do transakcí"
 
 #: ../src/yumapi.py:191 ../src/yumgui/callbacks.py:63
 #: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:66
+
+
 msgid "Installing"
 msgstr "Instaluji"
 
@@ -489,13 +478,12 @@ msgid "Needed by %s"
 msgstr ""
 
 #: ../src/yumex.py:62
-#, fuzzy
 msgid "Cant Quit while running RPM Transactions"
-msgstr "Spouštím transakce"
+msgstr "Nemohu se ukončit, probíhají právě RPM transakce"
 
 #: ../src/yumex.py:67
 msgid "Quiting, please wait !!!!!!"
-msgstr ""
+msgstr "Ukončuji se, čekejte prosím !!!!!!"
 
 #: ../src/yumex.py:155
 msgid "Yum has not been initialized yet"
@@ -503,9 +491,8 @@ msgstr ""
 
 #. Check there are any packages in the queue
 #: ../src/yumex.py:161
-#, fuzzy
 msgid "No packages in queue"
-msgstr "Zpracovávám balíčky z fronty"
+msgstr "Ve frontě není žádný balíček"
 
 #: ../src/yumex.py:238
 #, python-format
@@ -517,9 +504,8 @@ msgid "It will take some time\n"
 msgstr ""
 
 #: ../src/yumex.py:240 ../src/yumex.py:254
-#, fuzzy
 msgid "do you want to continue ?"
-msgstr "Chcete uložit provedené změny ?"
+msgstr "chcete pokračovat ?"
 
 #: ../src/yumex.py:252
 #, python-format
@@ -546,14 +532,13 @@ msgid "Create New Profile"
 msgstr "Vytvoření nového profilu"
 
 #: ../src/yumex.py:382
-#, fuzzy
 msgid "Name of new profile"
-msgstr "Vytvoření nového profilu"
+msgstr "Název nového profilu"
 
 #: ../src/yumex.py:386
-#, fuzzy, python-format
+#, python-format
 msgid "Profile : %s created ok"
-msgstr "Profil : %s byl vytvořen"
+msgstr "Profil : %s byl v pořádku vytvořen"
 
 #: ../src/yumex.py:389
 #, python-format
@@ -562,15 +547,15 @@ msgstr "Profil : %s vytvořen neúspěšně"
 
 #: ../src/yumex.py:393
 msgid "Cleaning up all yum metadata"
-msgstr ""
+msgstr "Čistím všechny yum metadata"
 
 #: ../src/yumex.py:420
 msgid "Yum Config Setup"
-msgstr ""
+msgstr "Nastavení konfigurace aplikace YUM"
 
 #: ../src/yumex.py:436
 msgid "GUI Setup Completed"
-msgstr ""
+msgstr "Nastavení grafického rozhraní ukončeno"
 
 #: ../src/yumex.py:476 ../src/yumex.py:620 ../src/yumex.py:674
 #: ../src/yumex.py:784 ../src/yumex.py:805 ../src/yumex.glade.h:43
@@ -578,46 +563,42 @@ msgid "Error"
 msgstr "Chyba"
 
 #: ../src/yumex.py:476
-#, fuzzy
 msgid "Error in Yum Setup"
-msgstr "Chyba v nastavení programu yum"
+msgstr "Chyba při startu programu yum"
 
 #. prepare package lists
 #. -> List setup
+
 #: ../src/yumex.py:481
-#, fuzzy
 msgid "Building Package Lists"
-msgstr "Sestavení seznamů balíčků bylo dokončeno"
+msgstr "Sestavuji seznam balíčků"
 
 #: ../src/yumex.py:483
-#, fuzzy
 msgid "Building Package Lists Completed"
-msgstr "Sestavení seznamů balíčků bylo dokončeno"
+msgstr "Sestavení seznamu balíčků bylo dokončeno"
 
 #: ../src/yumex.py:484
 msgid "Building Groups Lists"
-msgstr ""
+msgstr "Sestavuji seznam skupin"
 
 #: ../src/yumex.py:487
-#, fuzzy
 msgid "Building Group Lists Completed"
-msgstr "Sestavení seznamů balíčků bylo dokončeno"
+msgstr "Sestavení seznamu skupin bylo dokončeno"
 
 #: ../src/yumex.py:519
-#, fuzzy, python-format
+#, python-format
 msgid "Getting packages : %s"
-msgstr "Pravě aktualizuji balíčky"
+msgstr "Získávám balíčky : %s"
 
 #: ../src/yumex.py:523
 #, python-format
 msgid "Found %d %s packages"
-msgstr ""
+msgstr "Nalezeno %d %s balíčků"
 
 #. -> Sort Lists
 #: ../src/yumex.py:526
-#, fuzzy
 msgid "Sorting packages"
-msgstr "Odinstalovávám balíčky"
+msgstr "Třídím balíčky"
 
 #: ../src/yumex.py:528
 #, fuzzy
@@ -663,7 +644,7 @@ msgstr "Nebyly vybrány žádné balíčky"
 #: ../src/yumex.py:644
 #, fuzzy
 msgid "No packages in transaction"
-msgstr "Zpracovávám balíčky z fronty"
+msgstr "Není žádný balíček z fronty"
 
 #: ../src/yumex.py:654
 msgid "Processing packages (See output for details)"
@@ -684,7 +665,7 @@ msgstr "Chyba v transakci"
 #: ../src/yumex.py:679
 #, fuzzy, python-format
 msgid "Parsing packages to %s "
-msgstr "%d baliček(y) pro instalaci"
+msgstr "Analyzuji baličky pro instalaci"
 
 #: ../src/yumex.py:713
 #, python-format
@@ -696,9 +677,8 @@ msgid "Yum is locked by another application"
 msgstr "Aplikace Yum je uzamčena jinou aplikací"
 
 #: ../src/yumex.py:784 ../src/yumex.py:805
-#, fuzzy
 msgid "Error in Yumex"
-msgstr "Chyba v nastavení programu yum"
+msgstr "Chyba v programu Yumex"
 
 #: ../src/yumgui/callbacks.py:62
 msgid "Erasing"
@@ -720,7 +700,7 @@ msgstr "Vymazané"
 #: ../src/yumgui/callbacks.py:69 ../src/yumgui/callbacks.py:70
 #: ../src/yumgui/callbacks.py:72 ../src/yumex.glade.h:49
 msgid "Installed"
-msgstr "Nainstalováno"
+msgstr "Nainstalované"
 
 #: ../src/yumgui/callbacks.py:182
 msgid "No header - huh?"
@@ -803,9 +783,8 @@ msgid "<b>Behavior</b>"
 msgstr "<b>Chování</b>"
 
 #: ../src/yumex.glade.h:10
-#, fuzzy
 msgid "<b>Category</b>"
-msgstr "<b>Značky</b>"
+msgstr "<b>Kategorie</b>"
 
 #: ../src/yumex.glade.h:11
 msgid "<b>Flags</b>"
@@ -813,21 +792,19 @@ msgstr "<b>Značky</b>"
 
 #: ../src/yumex.glade.h:12
 msgid "<b>Fonts </b>"
-msgstr "<b>Písmo</b>"
+msgstr "<b>Písma</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>GPG Key</b>"
 msgstr "<b>GPG klíč</b>"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "<b>Packages</b>"
-msgstr "<b>Balíčky pro aktualizaci</b>"
+msgstr "<b>Balíčky</b>"
 
 #: ../src/yumex.glade.h:15
-#, fuzzy
 msgid "<b>Quick add to queue</b>"
-msgstr "%i balíčků bylo přidáno do fronty"
+msgstr "<b>Rychlé přidání balíčku do fronty</b>"
 
 #: ../src/yumex.glade.h:16
 msgid "<b>Repository  Exclude Filters</b>"
@@ -843,11 +820,12 @@ msgstr "<b>Výběr profilu</b>"
 
 #: ../src/yumex.glade.h:20
 msgid "<b>Total Download Size</b>"
-msgstr "<b>Celková velikost aktualizace</b>"
+msgstr "<b>Celková velikost</b>"
 
 #: ../src/yumex.glade.h:21
 msgid "<b>URL Type</b>"
-msgstr "<b>Typ URL</b>"
+msgstr "<b>Typ URL</b
+>"
 
 #: ../src/yumex.glade.h:22
 msgid "<b>URLs</b>"
@@ -879,11 +857,11 @@ msgstr "O aplikaci Yum Extender"
 
 #: ../src/yumex.glade.h:31
 msgid "All"
-msgstr ""
+msgstr "Všechny"
 
 #: ../src/yumex.glade.h:33
 msgid "Available"
-msgstr ""
+msgstr "Nenainstalované"
 
 #: ../src/yumex.glade.h:34
 msgid "C_hangelog"
@@ -935,7 +913,7 @@ msgstr "So_ubory"
 
 #: ../src/yumex.glade.h:47
 msgid "GUI"
-msgstr "GUI"
+msgstr "Grafické rozhraní (GUI)"
 
 #: ../src/yumex.glade.h:48
 msgid "I_nformation"
@@ -962,20 +940,18 @@ msgid "Process Queue Confirmation"
 msgstr "Potvrzení pro zpracování fronty"
 
 #: ../src/yumex.glade.h:55
-#, fuzzy
 msgid "Repos"
-msgstr "Re_positáře"
+msgstr "Repositář"
 
 #: ../src/yumex.glade.h:56
 msgid "Search Options"
-msgstr ""
+msgstr "Rozšířené vyhledávání"
 
 #: ../src/yumex.glade.h:57
 msgid "Update Only"
 msgstr "Pouze Aktualizace"
 
 #: ../src/yumex.glade.h:58
-#, fuzzy
 msgid "Updates"
 msgstr "Aktualizace"
 
@@ -984,7 +960,6 @@ msgid "Use _proxy"
 msgstr "Použít _proxy"
 
 #: ../src/yumex.glade.h:60
-#, fuzzy
 msgid "Yum Extender"
 msgstr "O Yum Extender"
 
@@ -998,7 +973,7 @@ msgstr "Předvolby pro aplikaci Yum Extender"
 
 #: ../src/yumex.glade.h:63
 msgid "_Add All"
-msgstr ""
+msgstr "Přid_at všechny"
 
 #: ../src/yumex.glade.h:64
 msgid "_Auto refresh on start"
@@ -1018,7 +993,7 @@ msgstr "_Odznačit všechny balíčky"
 
 #: ../src/yumex.glade.h:68
 msgid "_Edit"
-msgstr "_Úpravy"
+msgstr "Úprav_y"
 
 #: ../src/yumex.glade.h:69
 msgid "_Enabled"
@@ -1034,7 +1009,7 @@ msgstr "Ověření _GPG"
 
 #: ../src/yumex.glade.h:72
 msgid "_Help"
-msgstr "Náp_ověda"
+msgstr "Nápo_věda"
 
 #: ../src/yumex.glade.h:73
 msgid "_Mirror list"
@@ -1054,12 +1029,11 @@ msgstr "_Zpracovat frontu"
 
 #: ../src/yumex.glade.h:77
 msgid "_Profiles"
-msgstr "_Profily"
+msgstr "P_rofily"
 
 #: ../src/yumex.glade.h:78
-#, fuzzy
 msgid "_Remove All"
-msgstr "_Odinstalace"
+msgstr "O_dinstalovat vše"
 
 #: ../src/yumex.glade.h:79
 msgid "_Skip"
@@ -1071,11 +1045,11 @@ msgstr "_Zobrazovaný název:"
 
 #: ../src/yumex.glade.h:81
 msgid "_Tools"
-msgstr "_Nástroje"
+msgstr "Nástro_je"
 
 #: ../src/yumex.glade.h:82
 msgid "_Yum Clean All"
-msgstr ""
+msgstr "Vyč_istit YUM metadata"
 
 #: ../src/yumex.glade.h:83
 msgid "_Yum excludes:"
@@ -1294,7 +1268,8 @@ msgstr "xxxx"
 #~ msgid "Building Package Lists : Installed"
 #~ msgstr "Sestavuji seznam balíčků : Nainstalované"
 
-#~ msgid "Building Package Lists : %i Installed packages found"
+#~ msgid "Building Package Lists : %i Installed packag
+es found"
 #~ msgstr "Sestavuji seznam balíčků : Nalezeno %i nainstalovaných balíčků"
 
 #~ msgid "Building Package Lists : Available"
@@ -1558,3 +1533,4 @@ msgstr "xxxx"
 
 #~ msgid "_Update Packages"
 #~ msgstr "_Aktualizovat označené balíčky"
+
