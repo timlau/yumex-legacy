@@ -127,6 +127,7 @@ class const:
             "Danilo (Italian)",
             "Serta . YILDIZ (Turkish)",
             "Dawid Zamirski, Patryk Zawadzki (Polish)",
+            "Piotr Drag (Polish)",
             "Tero Hietanen (Finnish)",
             "Dieter Komendera (German)",
             "Maxim Dziumanenko (Ukrainian)",
@@ -138,7 +139,7 @@ class const:
             "Hao Song (Chinese(Simplified))")),
 
 
-           (_("Thank you:"),
+           (_("Special Thanks To:"),
            ("Seth Vidal and the other",
             "Yum developers","without yum there would","not be any Yum Extender",
             "All Yum Extender users"))
