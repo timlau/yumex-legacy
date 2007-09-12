@@ -119,6 +119,14 @@ class YumexController(Controller):
             rb.grab_add()                    
             self.packageInfo.clear()
             self.lastPkgPB = action
+            # Only show add/remove all when showing updates
+            if action == 'updates':
+                self.ui.pkgSelect.show()
+                self.ui.pkgDeSelect.show()
+            else:
+                self.ui.pkgSelect.hide()
+                self.ui.pkgDeSelect.hide()
+                
             if self.yumbase.currentCategory:
                 self.on_Category_changed(None)
             else:
