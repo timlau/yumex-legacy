@@ -590,6 +590,9 @@ class YumexOptions:
         parser.add_option( "", "--changelog", 
                         action="store_true", dest="changelog", default=False, 
                         help="Download and show changelogs for available packages" )
+        parser.add_option( "", "--nothreads", 
+                        action="store_true", dest="nothreads", default=False, 
+                        help="DEBUG: Option to disable threads in yumex" )
         self.parserInit = True
         
     def getCmdlineOptions( self ):
@@ -617,7 +620,7 @@ class YumexOptions:
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
         options = ['plugins', 'debug', 'usecache','yumdebuglevel',
                    'fullobsoletion','autorefresh','conffile','downloadonly',
-                   'filelist','changelog']
+                   'filelist','changelog','nothreads']
         for opt in options:
             self._calcOption(opt)
             

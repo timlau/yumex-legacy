@@ -305,7 +305,7 @@ class YumexGUI:
         self.setupPkgFilter()
         
     def setupLogging(self):
-        self.logHandler = TextViewLogHandler(self.output)
+        self.logHandler = TextViewLogHandler(self.output,self.settings.nothreads)
         formatter = logging.Formatter('%(asctime)s : %(message)s', "%H:%M:%S")
         self.logHandler.setFormatter(formatter)
         if self.settings.debug:

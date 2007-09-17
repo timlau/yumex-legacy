@@ -444,13 +444,15 @@ class YumexApplication(YumexController,YumexGUI):
         self.isWorking = True
         busyCursor(self.ui.main)        
         self.ui.progressVBox.grab_add()
-        gtkEventThread.startProcessing()        
+        if not self.settings.nothreads:
+            gtkEventThread.startProcessing()        
         
     def endWorking(self):
         self.isWorking = False
         self.ui.progressVBox.grab_remove()
         normalCursor(self.ui.main)
-        gtkEventThread.endProcessing()
+        if not self.settings.nothreads:
+            gtkEventThread.endProcessing()
             
     def setupYum(self):
         self.setPage('output')

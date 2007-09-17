@@ -35,9 +35,11 @@ from yum.packages import YumInstalledPackage
 
 class TextViewLogHandler(logging.Handler):
     ''' Python logging handler for writing in a TextViewConsole'''
-    def __init__(self,console):
+    def __init__(self,console,doGTK=False):
         logging.Handler.__init__(self)
         self.console = console
+        self.doGTK = doGTK
+        
         #TextViewConsole.__init__(self,textview)
         
     def emit(self,record):   
@@ -45,6 +47,8 @@ class TextViewLogHandler(logging.Handler):
            gtk.main_iteration()    
         msg = self.format(record)
         if self.console:
+            if self.doGTK:
+                doGtkEvents()
             if record.levelno < 40:
                 self.console.write_line("%s\n" % msg)
             else:
