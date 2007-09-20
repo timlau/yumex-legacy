@@ -132,6 +132,10 @@ class YumexController(Controller):
         self.repoList.clear() # Reset Repositories
         self.repoList.enableOnly(repos)        
         self.setupYum()
+
+    def on_repoDeSelect_clicked(self,widget):
+        self.repoView.deselect_all()
+
         
     def on_queueDel_clicked( self, widget ):
         """ Delete from Queue Button Handler """
