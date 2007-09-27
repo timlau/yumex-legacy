@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-27 12:10+0200\n"
-"PO-Revision-Date: 2007-09-22 18:50+0200\n"
+"PO-Revision-Date: 2007-09-27 12:24+0200\n"
 "Last-Translator: Piotr Drąg <raven@pmail.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,6 @@ msgstr "Architektura"
 msgid "Ver"
 msgstr "Wersja"
 
-#. Setup reponame & repofile column's
 #: ../src/dialogs.py:215 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
 msgstr "Repozytorium"
@@ -110,9 +109,9 @@ msgid "Size"
 msgstr "Rozmiar"
 
 #: ../src/dialogs.py:348
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
-msgstr "_Informacje o"
+msgstr "Informacje o %s"
 
 #: ../src/gui.py:66
 #, python-format
@@ -161,7 +160,6 @@ msgstr "Wyświetl dostępne pakiety"
 msgid "Show Installed Packages"
 msgstr "Wyświetl zainstalowane pakiety"
 
-#. Setup Vertical Toolbar
 #: ../src/gui.py:381
 msgid "Package View"
 msgstr "Widok pakietów"
@@ -182,9 +180,6 @@ msgstr "Widok wyboru repozytoriów"
 msgid "Output View"
 msgstr "Widok konsoli"
 
-#.
-#. [1]           [2]               [3]             [4]     [5]     [6]
-#. -------------------------------------------------------------------------
 #: ../src/misc.py:93
 msgid "RPM Groups"
 msgstr "Grupy RPM"
@@ -231,7 +226,7 @@ msgstr "Tłumaczenie:"
 
 #: ../src/misc.py:142
 msgid "Special Thanks To:"
-msgstr ""
+msgstr "Specjalne podziękowania:"
 
 #: ../src/misc.py:359
 msgid "Package Queue:"
@@ -330,24 +325,18 @@ msgstr "Ustawianie yuma: zestaw transakcji"
 msgid "Setup Yum : RPM Db."
 msgstr "Ustawianie yuma: baza RPM."
 
-#. -> Repo Setup
 #: ../src/yumapi.py:72 ../src/yumapi.py:119
 msgid "Setup Yum : Repositories."
 msgstr "Ustawianie yuma: Repozytoria."
 
-#. -> Sack Setup
 #: ../src/yumapi.py:75 ../src/yumapi.py:122
 msgid "Setup Yum : Package Sacks"
 msgstr "Ustawianie yuma: zestawy pakietów"
 
-#. -> Updates Setup
-#. -> Sack Setup
 #: ../src/yumapi.py:78 ../src/yumapi.py:125
 msgid "Setup Yum : Updates"
 msgstr "Ustawianie yuma: aktualizacje"
 
-#. -> Group Setup
-#. -> Sack Setup
 #: ../src/yumapi.py:82 ../src/yumapi.py:128
 msgid "Setup Yum : Groups"
 msgstr "Ustawianie yuma: grupy"
@@ -357,14 +346,14 @@ msgid "Setup Yum : Base setup completed"
 msgstr "Ustawianie yuma: podstawowa konfiguracja została zakończona"
 
 #: ../src/yumapi.py:138
-#, fuzzy, python-format
+#, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Wczytaj metadane yuma"
+msgstr "Wczytano metadane aktualizacji z %s "
 
 #: ../src/yumapi.py:140
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr ""
+msgstr "Nie znaleziono metadanych aktualizacji dla %s"
 
 #: ../src/yumapi.py:159 ../src/yumex.py:601
 msgid "Preparing for install/remove/update"
@@ -424,7 +413,6 @@ msgstr "Pobieranie pakietów:"
 msgid "Error Downloading Packages:\n"
 msgstr "Błąd podczas pobierania pakietów:\n"
 
-#. Check GPG signatures
 #: ../src/yumapi.py:306
 msgid "Checking GPG Signatures:"
 msgstr "Sprawdzanie podpisów GPG:"
@@ -457,7 +445,6 @@ msgstr "Test transakcji został zakończony pomyślnie"
 msgid "Running Transaction"
 msgstr "Uruchamianie transakcji"
 
-#. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
 #: ../src/yumapi.py:449
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
@@ -480,7 +467,6 @@ msgstr "Kończenie działania, proszę czekać!"
 msgid "Yum has not been initialized yet"
 msgstr "Yum nie został jeszcze zainicjowany"
 
-#. Check there are any packages in the queue
 #: ../src/yumex.py:164
 msgid "No packages in queue"
 msgstr "Brak pakietów w kolejce"
@@ -558,8 +544,6 @@ msgstr "Błąd"
 msgid "Error in Yum Setup"
 msgstr "Błąd w ustawieniach yuma"
 
-#. prepare package lists
-#. -> List setup
 #: ../src/yumex.py:487
 msgid "Building Package Lists"
 msgstr "Budowanie list pakietów"
@@ -586,7 +570,6 @@ msgstr "Pobieranie pakietów: %s"
 msgid "Found %d %s packages"
 msgstr "Znaleziono %d %s pakietów"
 
-#. -> Sort Lists
 #: ../src/yumex.py:532
 msgid "Sorting packages"
 msgstr "Sortowanie pakietów"
@@ -667,7 +650,7 @@ msgstr "Błąd w Yumex"
 
 #: ../src/yumex.py:787
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "Błąd we wtyczce, Yum Extender zakończy działanie"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
@@ -925,72 +908,3 @@ msgstr "Wtyczki y_uma:"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
-
-#~ msgid "About Yum Extender"
-#~ msgstr "O Yum Extender"
-
-#~ msgid "Thank you:"
-#~ msgstr "Podziękowania:"
-
-#~ msgid "Groups"
-#~ msgstr "Grupy"
-
-#~ msgid "<b>(C) 2005  - Tim Lauridsen</b>"
-#~ msgstr "<b>(C) 2005  - Tim Lauridsen</b>"
-
-#~ msgid "<b>Flags</b>"
-#~ msgstr "<b>Flagi</b>"
-
-#~ msgid "<b>GPG Key</b>"
-#~ msgstr "<b>Klucz GPG</b>"
-
-#~ msgid "<b>Select Profile</b>"
-#~ msgstr "<b>Wybierz profil</b>"
-
-#~ msgid "<b>URL Type</b>"
-#~ msgstr "<b>Typ URL</b>"
-
-#~ msgid "<b>URLs</b>"
-#~ msgstr "<b>URL</b>"
-
-#~ msgid "Credits"
-#~ msgstr "Podziękowania"
-
-#~ msgid "Debug mode"
-#~ msgstr "Tryb debugowania"
-
-#~ msgid "Disable 'Yum Extender Launcher'"
-#~ msgstr "Wyłącz \"aktywator Yum Extendera\""
-
-#~ msgid "Disable Plugins"
-#~ msgstr "Wyłącz wtyczki"
-
-#~ msgid "Edit Repository"
-#~ msgstr "Edytuj repozytorium"
-
-#~ msgid "Update Only"
-#~ msgstr "Tylko aktualizacje"
-
-#~ msgid "Yum Extender Launcher"
-#~ msgstr "Aktywator Yum Extendera"
-
-#~ msgid "_Base url "
-#~ msgstr "_Podstawowy URL "
-
-#~ msgid "_Enabled"
-#~ msgstr "_Włączony"
-
-#~ msgid "_GPG check"
-#~ msgstr "_Sprawdź GPG"
-
-#~ msgid "_Mirror list"
-#~ msgstr "_Lista serwerów lustrzanych"
-
-#~ msgid "_Name:"
-#~ msgstr "_Nazwa:"
-
-#~ msgid "_Tag:"
-#~ msgstr "_Etykieta:"
-
-#~ msgid "xxxx"
-#~ msgstr "xxxx"
