@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex-ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-17 14:02+0200\n"
+"POT-Creation-Date: 2007-05-29 11:31+0200\n"
 "PO-Revision-Date: 2007-05-25 11:46+0200\n"
 "Last-Translator:  Nik <niktr@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -547,7 +547,7 @@ msgid "GUI Setup Completed"
 msgstr "Настройка графического интерфейса закончена"
 
 #: ../src/yumex.py:476 ../src/yumex.py:620 ../src/yumex.py:674
-#: ../src/yumex.py:784 ../src/yumex.py:805 ../src/yumex.glade.h:42
+#: ../src/yumex.py:784 ../src/yumex.py:805 ../src/yumex.glade.h:43
 msgid "Error"
 msgstr "Ошибка"
 

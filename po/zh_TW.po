@@ -115,17 +115,29 @@ msgstr "關於 Yum 延伸程式"
 
 #: ../src/gui.py:65
 #, python-format
-msgid "Updating : %s\n\n"
-msgstr "更新中：%s\n\n"
+msgid ""
+"Updating : %s\n"
+"\n"
+msgstr ""
+"更新中：%s\n"
+"\n"
 
 #: ../src/gui.py:72
 #, python-format
-msgid "Obsoleting : %s\n\n"
-msgstr "淘汰中：%s\n\n"
+msgid ""
+"Obsoleting : %s\n"
+"\n"
+msgstr ""
+"淘汰中：%s\n"
+"\n"
 
 #: ../src/gui.py:87
-msgid "Requires:\n\n"
-msgstr "需求：\n\n"
+msgid ""
+"Requires:\n"
+"\n"
+msgstr ""
+"需求：\n"
+"\n"
 
 #: ../src/gui.py:102 ../src/gui.py:112
 #, python-format

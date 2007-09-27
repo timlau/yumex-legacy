@@ -127,7 +127,8 @@ msgstr ""
 msgid ""
 "Obsoleting : %s\n"
 "\n"
-msgstr "Vanhentuu: %s\n"
+msgstr ""
+"Vanhentuu: %s\n"
 "\n"
 
 #: ../src/gui.py:87

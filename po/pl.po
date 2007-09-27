@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-29 11:31+0200\n"
-"PO-Revision-Date: 2007-09-06 01:49+0200\n"
+"PO-Revision-Date: 2007-09-22 18:50+0200\n"
 "Last-Translator: Piotr Drąg <raven@pmail.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -358,7 +358,7 @@ msgstr "Ustawianie yuma: grupy"
 
 #: ../src/yumapi.py:84 ../src/yumapi.py:122
 msgid "Setup Yum : Base setup completed"
-msgstr "Ustawianie yuma: Podstawowa konfiguracja została zakończona"
+msgstr "Ustawianie yuma: podstawowa konfiguracja została zakończona"
 
 #: ../src/yumapi.py:151 ../src/yumex.py:605
 msgid "Preparing for install/remove/update"
@@ -686,6 +686,46 @@ msgstr "Zainstalowane"
 msgid "No header - huh?"
 msgstr "Brak nagłówka, co jest?"
 
+#. def main():
+#. """This is a unit test which confirms that all base classes are
+#. traversed when looking up attributes."""
+#.
+#. class BaseTest(Controller):
+#. def __init__(self, gladePath):
+#. ui = UI(gladePath, "app")
+#. Controller.__init__(self, ui)
+#.
+#. def on_exit1_activate(self, *args):
+#. gtk.mainquit()
+#.
+#. def on_new_file1_activate(self, *args):
+#. return
+#.
+#. class Test(BaseTest):
+#. def on_new_file1_activate(self, *args):
+#. return
+#.
+#. gladePath = "_test/data/ui.glade"
+#. c = Test(gladePath)
+#. print 72 * "_"
+#. print "Controller methods:"
+#. methods = c._getAllMethods()
+#. names = methods.keys()
+#. names.sort()
+#. for name in names:
+#. value = methods[name]
+#. print "  %-32.32s %s" % (name, value)
+#.
+#. print 72 * "_"
+#. print "Sample UI instance attributes:"
+#. names = ["root", "new_file1", "exit1"]
+#. names.sort()
+#. for name in names:
+#. value = getattr(c.ui, name)
+#. print "  %-32.32s %s" % (name, value)
+#.
+#. if __name__ == "__main__":
+#. main()
 #: ../src/yumex.glade.h:1
 msgid " "
 msgstr " "
@@ -896,7 +936,7 @@ msgstr "Aktualizacje"
 
 #: ../src/yumex.glade.h:59
 msgid "Use _proxy"
-msgstr "Użj p_ośrednika"
+msgstr "Użyj p_ośrednika"
 
 #: ../src/yumex.glade.h:60
 msgid "Yum Extender"
@@ -944,7 +984,7 @@ msgstr "_Plik"
 
 #: ../src/yumex.glade.h:71
 msgid "_GPG check"
-msgstr "_Sprawdz GPG"
+msgstr "_Sprawdź GPG"
 
 #: ../src/yumex.glade.h:72
 msgid "_Help"
@@ -952,7 +992,7 @@ msgstr "Pomo_c"
 
 #: ../src/yumex.glade.h:73
 msgid "_Mirror list"
-msgstr "Lista serwerów lustrzanych"
+msgstr "_Lista serwerów lustrzanych"
 
 #: ../src/yumex.glade.h:74
 msgid "_Name:"

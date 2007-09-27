@@ -2,9 +2,9 @@
 # Czech translation of Yumex.
 # Copyright (C) 2005 THE Yumex'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Yumex package.
-#
-#
-#
+# 
+# 
+# 
 # Lukáš Novotný <lenochod@tiscali.cz>, 2005, 2006.
 # Adam Přibyl <pribyl@lowlevel.cz>, 2007.
 msgid ""
@@ -81,7 +81,8 @@ msgstr "-->Zpracovávám konflikt: %s koliduje s balíčkem%s"
 
 #: ../src/callbacks.py:275
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr "--> Instalace transakční sady s vybranými balíčky probíhá. Čekejte prosím."
+msgstr ""
+"--> Instalace transakční sady s vybranými balíčky probíhá. Čekejte prosím."
 
 #: ../src/callbacks.py:278
 #, python-format
@@ -1211,7 +1212,7 @@ msgstr "xxxx"
 #~ msgid "--> Mirrors Detected (Top 3)"
 #~ msgstr "--> Zjištěné mirrory (Top 3)"
 
-#
+# 
 #~ msgid "Using default mirror detection"
 #~ msgstr "Používám výchozí detekci mirrorů"
 
@@ -1514,4 +1515,3 @@ msgstr "xxxx"
 
 #~ msgid "_Update Packages"
 #~ msgstr "_Aktualizovat označené balíčky"
-
