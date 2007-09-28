@@ -71,6 +71,8 @@ release:
 	@git push
 	@git tag ${PKGNAME}-${VERSION} -m "Added ${PKGNAME}-${VERSION} release tag"
 	@git push --tags origin
+	@$(MAKE) archive
+	@$(MAKE) upload
 
 FORCE:
     
