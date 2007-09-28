@@ -65,11 +65,10 @@ upload: FORCE
     
 	
 release:
-	@git fetch
-	@git rebase origin
 	@git commit -a -m "bumped version to $(VERSION)"
 	@$(MAKE) changelog
 	@git commit -a -m "updated ChangeLog"
+	@git push
 	@git tag ${PKGNAME}-${VERSION} -m "Added ${PKGNAME}-${VERSION} release tag"
 	@git push --tags origin
 

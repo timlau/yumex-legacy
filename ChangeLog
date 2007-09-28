@@ -1,3 +1,69 @@
+2007-09-27  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/pl.po: Added updated pl translation by Piotr Drąg
+
+2007-09-27  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/cs.po, po/da.po, po/de.po, po/es.po, po/fi.po, po/fr.po,
+	po/hu.po, po/it.po, po/ja.po, po/ko.po, po/pa.po, po/pl.po,
+	po/pt_BR.po, po/ru.po, po/tr.po, po/uk.po, po/yumex.pot,
+	po/zh_CN.po, po/zh_TW.po: Rebuild yumex.pot and refreshed po files
+
+2007-09-27  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/cs.po, po/fi.po, po/ja.po, po/pa.po, po/pl.po, po/ru.po,
+	po/zh_TW.po: Added updated pl translation by Piotr Drąg refreshed
+	po files
+
+2007-09-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/cs.po: Updated Czech translation by Adam Pribyl
+
+2007-09-12  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/yumex.py: Only show Add/remove all on update page
+
+2007-09-20  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/yumex.py: Fixed Deselect all not working on repo page
+
+2007-09-17  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/gui.py, src/misc.py, src/yumex.py, src/yumgui/__init__.py: 
+	Added a --nothreads debug option, two see if it is the threading
+	there sometimes hangs up yumex until mouse is moved
+
+2007-09-06  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/pl.po, src/misc.py: Updated polish translation by Piotr Drag
+
+2007-08-31  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/cs.po: Updated cs translation
+
+2007-08-27  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/views.py, src/yumex.py: Added support for handling
+	yum.plugins.PluginYumExit & fix Traceback in perferences fix a
+	plugin.conf is blank
+
+2007-08-25  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/yumex.py: fixed issue with yumex hang if yum is locked by
+	another application (rhbz #254013)
+
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile: Added upload tag to makefile
+
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile: fixed git tag in Makefile
+
+2007-08-22  Tim Lauridsen <tla@rasmil.dk>
+
+	* ChangeLog: Bumped release to 2.0.1 & Updated Changelog
+
 2007-08-22  Tim Lauridsen <tla@rasmil.dk>
 
 	* Makefile, src/misc.py, yumex.spec: added git tag to Makefile
