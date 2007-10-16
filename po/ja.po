@@ -6,15 +6,15 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex 2.0\n"
+"Project-Id-Version: yumex 2.0.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-27 12:10+0200\n"
-"PO-Revision-Date: 2007-08-21 16:34+0900\n"
+"PO-Revision-Date: 2007-10-16 19:01+0900\n"
 "Last-Translator: MATSUURA Takanori <t.matsuu@gmail.com>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -113,7 +113,7 @@ msgid "Size"
 msgstr "サイズ"
 
 #: ../src/dialogs.py:348
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
 msgstr "%sについて"
 
@@ -234,7 +234,7 @@ msgstr "翻訳:"
 
 #: ../src/misc.py:142
 msgid "Special Thanks To:"
-msgstr ""
+msgstr "謝辞:"
 
 #: ../src/misc.py:359
 msgid "Package Queue:"
@@ -360,9 +360,9 @@ msgid "Setup Yum : Base setup completed"
 msgstr "Yum準備: 基本設定完了"
 
 #: ../src/yumapi.py:138
-#, fuzzy, python-format
+#, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "%sの更新メタデータが見つかりませんでした"
+msgstr "%sから更新されたメタデータを読み込みました"
 
 #: ../src/yumapi.py:140
 #, python-format
@@ -670,7 +670,7 @@ msgstr "Yumexのエラー"
 
 #: ../src/yumex.py:787
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "プラグインでエラーが発生しました。Yum Extenderは終了します。"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
@@ -928,54 +928,3 @@ msgstr "Yumプラグイン(_Y):"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "ダイアログ1"
-
-#, fuzzy
-#~ msgid "About Yum Extender"
-#~ msgstr "Yum Extender"
-
-#~ msgid "Thank you:"
-#~ msgstr "謝辞:"
-
-#, fuzzy
-#~ msgid "Groups"
-#~ msgstr "RPMグループ"
-
-#, fuzzy
-#~ msgid "<b>Flags</b>"
-#~ msgstr "<b>パッケージ</b>"
-
-#, fuzzy
-#~ msgid "<b>GPG Key</b>"
-#~ msgstr "<b>カテゴリ</b>"
-
-#, fuzzy
-#~ msgid "<b>URLs</b>"
-#~ msgstr "<b>フォント</b>"
-
-#, fuzzy
-#~ msgid "Debug mode"
-#~ msgstr "デバッグモード(_M)"
-
-#, fuzzy
-#~ msgid "Disable Plugins"
-#~ msgstr "プラグイン"
-
-#, fuzzy
-#~ msgid "Edit Repository"
-#~ msgstr "リポジトリ"
-
-#, fuzzy
-#~ msgid "Load Yum Metadata"
-#~ msgstr "%sからメタデータを読み込みました"
-
-#, fuzzy
-#~ msgid "Update Only"
-#~ msgstr "更新"
-
-#, fuzzy
-#~ msgid "Yum Extender Launcher"
-#~ msgstr "Yum Extender"
-
-#, fuzzy
-#~ msgid "_Name:"
-#~ msgstr "名前"

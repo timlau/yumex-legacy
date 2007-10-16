@@ -8,13 +8,12 @@ msgstr ""
 "Project-Id-Version: yumex-ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-27 12:10+0200\n"
-"PO-Revision-Date: 2007-05-25 11:46+0200\n"
+"PO-Revision-Date: 2007-10-16 11:29+0400\n"
 "Last-Translator:  Nik <niktr@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -168,7 +167,7 @@ msgstr "Выбор пакетов"
 
 #: ../src/gui.py:382
 msgid "Group View"
-msgstr "Выбор группы"
+msgstr "Выбор групп"
 
 #: ../src/gui.py:383
 msgid "Package Queue View"
@@ -232,7 +231,7 @@ msgstr "Перевод:"
 
 #: ../src/misc.py:142
 msgid "Special Thanks To:"
-msgstr ""
+msgstr "Особо благодарим:"
 
 #: ../src/misc.py:359
 msgid "Package Queue:"
@@ -321,7 +320,7 @@ msgstr "Файл"
 
 #: ../src/views.py:571
 msgid "Plugin"
-msgstr "Плагин"
+msgstr "Дополнение"
 
 #: ../src/yumapi.py:67 ../src/yumapi.py:114
 msgid "Setup Yum : Transaction Set"
@@ -329,7 +328,7 @@ msgstr "Начальная установка Yum : Набор транзакц�
 
 #: ../src/yumapi.py:69 ../src/yumapi.py:116
 msgid "Setup Yum : RPM Db."
-msgstr "Начальная установка Yum: RPM Db."
+msgstr "Начальная установка Yum: БД RPM."
 
 #. -> Repo Setup
 #: ../src/yumapi.py:72 ../src/yumapi.py:119
@@ -358,14 +357,14 @@ msgid "Setup Yum : Base setup completed"
 msgstr "Начальная установка Yum: Базовая установка завершена"
 
 #: ../src/yumapi.py:138
-#, fuzzy, python-format
+#, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Загрузить метеданные Yum"
+msgstr "Загруженные обновления метаданных из %s"
 
 #: ../src/yumapi.py:140
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr ""
+msgstr "Обновлений метаданных для %s не найдено"
 
 #: ../src/yumapi.py:159 ../src/yumex.py:601
 msgid "Preparing for install/remove/update"
@@ -471,7 +470,7 @@ msgstr "Требуется для %s"
 
 #: ../src/yumex.py:63
 msgid "Cant Quit while running RPM Transactions"
-msgstr "Выполняется транзакция"
+msgstr "Во время транзакции RPM выход невозможен"
 
 #: ../src/yumex.py:68
 msgid "Quiting, please wait !!!!!!"
@@ -668,7 +667,7 @@ msgstr "Ошибка в Yumex"
 
 #: ../src/yumex.py:787
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "Ошибка в дополнении, Yum Extender завершится"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
@@ -825,7 +824,7 @@ msgstr "Описание пакета"
 
 #: ../src/yumex.glade.h:38
 msgid "Plugins"
-msgstr "Плагины"
+msgstr "Дополнения"
 
 #: ../src/yumex.glade.h:39
 msgid "Preferences"
@@ -921,77 +920,8 @@ msgstr "Список _исключений:"
 
 #: ../src/yumex.glade.h:62
 msgid "_Yum plugins:"
-msgstr "_Плагины:"
+msgstr "_Дополнения:"
 
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "диалог1"
-
-#~ msgid "About Yum Extender"
-#~ msgstr "О программе Yum Extender"
-
-#~ msgid "Thank you:"
-#~ msgstr "Благодарности:"
-
-#~ msgid "Groups"
-#~ msgstr "Группы"
-
-#~ msgid "<b>(C) 2005  - Tim Lauridsen</b>"
-#~ msgstr "<b>(C) 2005  - Tim Lauridsen</b>"
-
-#~ msgid "<b>Flags</b>"
-#~ msgstr "<b>Флаги</b>"
-
-#~ msgid "<b>GPG Key</b>"
-#~ msgstr "<b>Ключ GPG</b>"
-
-#~ msgid "<b>Select Profile</b>"
-#~ msgstr "<b>Выбор профиля</b>"
-
-#~ msgid "<b>URL Type</b>"
-#~ msgstr "<b>Тип URL</b>"
-
-#~ msgid "<b>URLs</b>"
-#~ msgstr "<b>URLы</b>"
-
-#~ msgid "Credits"
-#~ msgstr "Благодарности"
-
-#~ msgid "Debug mode"
-#~ msgstr "Режим отладки"
-
-#~ msgid "Disable 'Yum Extender Launcher'"
-#~ msgstr "Выключить 'Запуск Yum Extender'"
-
-#~ msgid "Disable Plugins"
-#~ msgstr "Выключить плагины"
-
-#~ msgid "Edit Repository"
-#~ msgstr "Изменить хранилище"
-
-#~ msgid "Update Only"
-#~ msgstr "Только обновить"
-
-#~ msgid "Yum Extender Launcher"
-#~ msgstr "Запуск Yum Extender"
-
-#~ msgid "_Base url "
-#~ msgstr "_Базовый URL "
-
-#~ msgid "_Enabled"
-#~ msgstr "_Включено"
-
-#~ msgid "_GPG check"
-#~ msgstr "Проверка _GPG"
-
-#~ msgid "_Mirror list"
-#~ msgstr "Список _зеркал"
-
-#~ msgid "_Name:"
-#~ msgstr "_Имя:"
-
-#~ msgid "_Tag:"
-#~ msgstr "_Тег:"
-
-#~ msgid "xxxx"
-#~ msgstr "xxxx"
