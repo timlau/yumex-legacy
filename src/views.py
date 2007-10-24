@@ -577,8 +577,8 @@ class YumexPluginView:
         self.model.clear()
         keys = self.plugins.keys()
         for key in keys:
+            conf = self.plugins[key]
             if conf.has_section('main'):
-                conf = self.plugins[key]
                 state = conf.get( 'main', 'enabled' ) == '1'
                 el = [state, key, conf]
                 self.model.append( el )
