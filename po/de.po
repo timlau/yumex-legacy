@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2005-11-14 15:52+0100\n"
 "Last-Translator: komi <komi@gmx.at>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -45,6 +45,25 @@ msgstr "Verarbeite Metadate von : %s"
 #, fuzzy
 msgid "Processing metadata"
 msgstr "Verarbeite Metadate von : %s"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Installieren"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Aktualisieren"
+
+#: ../src/callbacks.py:236
+msgid "obsoleted"
+msgstr ""
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "GelÃ¶scht: %s"
 
 #: ../src/callbacks.py:240
 #, python-format

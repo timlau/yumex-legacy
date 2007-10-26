@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 0.99.13\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2006-03-31 23:14+0900\n"
 "Last-Translator: Soohyung Cho <xfree@paran.com>\n"
 "Language-Team: Korean <translation-team-ko@lists.sourceforge.net>\n"
@@ -41,6 +41,26 @@ msgstr "%s의 메타데이타를 처리하고 있습니다"
 #, fuzzy
 msgid "Processing metadata"
 msgstr "%s의 메타데이타를 처리하고 있습니다"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "설치된"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "업데이트"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "오래된"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "삭제된"
 
 #: ../src/callbacks.py:240
 #, python-format

@@ -231,10 +231,10 @@ class YumexDepSolveProgressCallBack:
   
             
     def pkgAdded( self, pkgtup, mode ):
-        modedict = { 'i': 'installed', 
-                     'u': 'updated', 
-                     'o': 'obsoleted', 
-                     'e': 'erased'}
+        modedict = { 'i': _('installed'), 
+                     'u': _('updated'), 
+                     'o': _('obsoleted'), 
+                     'e': _('erased')}
         ( n, a, e, v, r ) = pkgtup
         modeterm = modedict[mode]
         msg = _( '---> Package %s.%s %s:%s-%s set to be %s' ) % ( n, a, e, v, r, modeterm )

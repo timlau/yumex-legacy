@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex-cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2007-09-22 00:32+0200\n"
 "Last-Translator: Adam Přibyl <pribyl@lowlevel.cz>\n"
 "Language-Team: Czech <fedora-cs-list@redhat.com>\n"
@@ -46,6 +46,26 @@ msgstr "Zpracovávám metadata z : %s"
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
 msgstr "Zpracovávám metadata"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Nainstalováno"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Zaktualizováno"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "Zastaralé"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "Vymazané"
 
 #: ../src/callbacks.py:240
 #, python-format

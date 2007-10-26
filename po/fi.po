@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 1.9.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2007-05-31 20:34+0300\n"
 "Last-Translator: Tero Hietanen <tero.hietanen@gmail.com>\n"
 "Language-Team: \n"
@@ -42,6 +42,26 @@ msgstr "Käsitellään metadataa: %s"
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
 msgstr "Käsitellään metadataa"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Asennettu"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Päivitetty"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "Vanhentunut"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "Poistettu"
 
 #: ../src/callbacks.py:240
 #, python-format

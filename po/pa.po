@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pa\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2007-05-30 16:37+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi <punjabi-l10n@lists.sf.net>\n"
@@ -45,6 +45,26 @@ msgstr "%s: ਦੇ ਮੈਟਾਡਾਟਾ ਉੱਤੇ ਕਾਰਵਾਈ ਜ�
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
 msgstr "ਮੈਟਾਡਾਟਾ ਉੱਤੇ ਕਾਰਵਾਈ ਜਾਰੀ"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "ਇੰਸਟਾਲ ਹੋਏ"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "ਅੱਪਡੇਟ ਕੀਤਾ"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "ਲੁਪਤ ਕੀਤਾ"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "ਸਾਫ਼ ਕੀਤੇ"
 
 #: ../src/callbacks.py:240
 #, python-format

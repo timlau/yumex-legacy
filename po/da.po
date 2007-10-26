@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2006-02-14 14:52+0100\n"
 "Last-Translator: tim <tla@ramil.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -42,6 +42,26 @@ msgstr "Behandler metadata fra : %s"
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
 msgstr "Behandler metadata"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Installeret"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Opdateret"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "Overflødig gjort"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "Slettet"
 
 #: ../src/callbacks.py:240
 #, python-format

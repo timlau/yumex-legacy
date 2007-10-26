@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2007-03-24 18:48+0800\n"
 "Last-Translator: 宋浩 <mousesh360@163.com>\n"
 "Language-Team: Chinese/Simplified <i18n-translation@lists.linux.net.cn>\n"
@@ -43,6 +43,26 @@ msgstr "正在处理来自如下来源的元数据：%s"
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
 msgstr "正在处理元数据"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "已安装"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "已被更新的"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "已过时的"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "已删除的"
 
 #: ../src/callbacks.py:240
 #, python-format

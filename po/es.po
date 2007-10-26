@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 0.44-04\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2006-03-02 11:15+0200\n"
 "Last-Translator: Diego Alonso González <diego.alonso.gonzalez@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -44,6 +44,26 @@ msgstr "Procesando metadatos desde : %s"
 #, fuzzy
 msgid "Processing metadata"
 msgstr "Procesando metadatos desde : %s"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Instalado(s)"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Actualizado(s)"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "Obsoleto(s)"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "Eliminado(s)"
 
 #: ../src/callbacks.py:240
 #, python-format

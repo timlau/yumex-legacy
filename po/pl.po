@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2007-09-27 12:24+0200\n"
 "Last-Translator: Piotr Drąg <raven@pmail.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -41,6 +41,26 @@ msgstr "Przetwarzanie metadanych z: %s"
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
 msgstr "Przetwarzanie metadanych"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Zainstalowane"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Zaktualizowane"
+
+#: ../src/callbacks.py:236
+#, fuzzy
+msgid "obsoleted"
+msgstr "Zastępowanie"
+
+#: ../src/callbacks.py:237
+#, fuzzy
+msgid "erased"
+msgstr "Usunięte"
 
 #: ../src/callbacks.py:240
 #, python-format
@@ -100,6 +120,7 @@ msgstr "Architektura"
 msgid "Ver"
 msgstr "Wersja"
 
+#. Setup reponame & repofile column's
 #: ../src/dialogs.py:215 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
 msgstr "Repozytorium"
@@ -160,6 +181,7 @@ msgstr "Wyświetl dostępne pakiety"
 msgid "Show Installed Packages"
 msgstr "Wyświetl zainstalowane pakiety"
 
+#. Setup Vertical Toolbar
 #: ../src/gui.py:381
 msgid "Package View"
 msgstr "Widok pakietów"
@@ -180,6 +202,9 @@ msgstr "Widok wyboru repozytoriów"
 msgid "Output View"
 msgstr "Widok konsoli"
 
+#.
+#. [1]           [2]               [3]             [4]     [5]     [6]
+#. -------------------------------------------------------------------------
 #: ../src/misc.py:93
 msgid "RPM Groups"
 msgstr "Grupy RPM"
@@ -325,18 +350,24 @@ msgstr "Ustawianie yuma: zestaw transakcji"
 msgid "Setup Yum : RPM Db."
 msgstr "Ustawianie yuma: baza RPM."
 
+#. -> Repo Setup
 #: ../src/yumapi.py:72 ../src/yumapi.py:119
 msgid "Setup Yum : Repositories."
 msgstr "Ustawianie yuma: Repozytoria."
 
+#. -> Sack Setup
 #: ../src/yumapi.py:75 ../src/yumapi.py:122
 msgid "Setup Yum : Package Sacks"
 msgstr "Ustawianie yuma: zestawy pakietów"
 
+#. -> Updates Setup
+#. -> Sack Setup
 #: ../src/yumapi.py:78 ../src/yumapi.py:125
 msgid "Setup Yum : Updates"
 msgstr "Ustawianie yuma: aktualizacje"
 
+#. -> Group Setup
+#. -> Sack Setup
 #: ../src/yumapi.py:82 ../src/yumapi.py:128
 msgid "Setup Yum : Groups"
 msgstr "Ustawianie yuma: grupy"
@@ -413,6 +444,7 @@ msgstr "Pobieranie pakietów:"
 msgid "Error Downloading Packages:\n"
 msgstr "Błąd podczas pobierania pakietów:\n"
 
+#. Check GPG signatures
 #: ../src/yumapi.py:306
 msgid "Checking GPG Signatures:"
 msgstr "Sprawdzanie podpisów GPG:"
@@ -445,6 +477,7 @@ msgstr "Test transakcji został zakończony pomyślnie"
 msgid "Running Transaction"
 msgstr "Uruchamianie transakcji"
 
+#. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
 #: ../src/yumapi.py:449
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
@@ -467,6 +500,7 @@ msgstr "Kończenie działania, proszę czekać!"
 msgid "Yum has not been initialized yet"
 msgstr "Yum nie został jeszcze zainicjowany"
 
+#. Check there are any packages in the queue
 #: ../src/yumex.py:164
 msgid "No packages in queue"
 msgstr "Brak pakietów w kolejce"
@@ -544,6 +578,8 @@ msgstr "Błąd"
 msgid "Error in Yum Setup"
 msgstr "Błąd w ustawieniach yuma"
 
+#. prepare package lists
+#. -> List setup
 #: ../src/yumex.py:487
 msgid "Building Package Lists"
 msgstr "Budowanie list pakietów"
@@ -570,6 +606,7 @@ msgstr "Pobieranie pakietów: %s"
 msgid "Found %d %s packages"
 msgstr "Znaleziono %d %s pakietów"
 
+#. -> Sort Lists
 #: ../src/yumex.py:532
 msgid "Sorting packages"
 msgstr "Sortowanie pakietów"

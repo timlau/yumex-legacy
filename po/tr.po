@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.43\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 12:10+0200\n"
+"POT-Creation-Date: 2007-10-26 11:23+0200\n"
 "PO-Revision-Date: 2005-11-24 11:34+0200\n"
 "Last-Translator: Sertaç Ö. Yıldız <sertacyildiz@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -41,6 +41,24 @@ msgstr "Üstveri ışleniyor : %s"
 #, fuzzy
 msgid "Processing metadata"
 msgstr "Üstveri ışleniyor : %s"
+
+#: ../src/callbacks.py:234
+#, fuzzy
+msgid "installed"
+msgstr "Kur"
+
+#: ../src/callbacks.py:235
+#, fuzzy
+msgid "updated"
+msgstr "Güncelle"
+
+#: ../src/callbacks.py:236
+msgid "obsoleted"
+msgstr ""
+
+#: ../src/callbacks.py:237
+msgid "erased"
+msgstr ""
 
 #: ../src/callbacks.py:240
 #, python-format
