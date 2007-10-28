@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-26 11:23+0200\n"
-"PO-Revision-Date: 2007-09-27 12:24+0200\n"
+"PO-Revision-Date: 2007-10-27 22:22+0200\n"
 "Last-Translator: Piotr Drąg <raven@pmail.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -43,24 +43,20 @@ msgid "Processing metadata"
 msgstr "Przetwarzanie metadanych"
 
 #: ../src/callbacks.py:234
-#, fuzzy
 msgid "installed"
-msgstr "Zainstalowane"
+msgstr "zainstalowane"
 
 #: ../src/callbacks.py:235
-#, fuzzy
 msgid "updated"
-msgstr "Zaktualizowane"
+msgstr "zaktualizowane"
 
 #: ../src/callbacks.py:236
-#, fuzzy
 msgid "obsoleted"
-msgstr "Zastępowanie"
+msgstr "zastępione"
 
 #: ../src/callbacks.py:237
-#, fuzzy
 msgid "erased"
-msgstr "Usunięte"
+msgstr "usunięte"
 
 #: ../src/callbacks.py:240
 #, python-format
