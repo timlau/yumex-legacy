@@ -413,9 +413,17 @@ class YumexYumHandler(yum.YumBase,YumexPackages):
     def doSackSetup(self):      
         yum.YumBase.doSackSetup(self)      
         if self.settings.filelist:
-            self.repos.populateSack(mdtype='filelists')      
+            # Make it work with yum 3.0
+            if yum.__version__ < '3.2':
+                self.repos.populateSack(with='filelists')      
+            else:
+                self.repos.populateSack(mdtype='filelists')      
         if self.settings.changelog:
-            self.repos.populateSack(mdtype='otherdata')
+            # Make it work with yum 3.0
+            if yum.__version__ < '3.2':
+                self.repos.populateSack(with='otherdata')
+            else:
+                self.repos.populateSack(mdtype='otherdata')
         
     
     def gpgsigcheck(self, pkgs):
