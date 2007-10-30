@@ -43,6 +43,9 @@ class Preferences:
         conf = YumexConf()
         parser = ConfigParser()    
         parser.read( configfile )
+        # Make it work if yumex.conf is blank
+        if not parser.has_section(sec):
+            parser.add_section(sec)
         conf.populate( parser, sec )
         return conf
     
