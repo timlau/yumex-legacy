@@ -166,15 +166,7 @@ class PackageWrapper:
         
     def get_filelist( self ):    
         """ Get filelist from package object"""
-        if self.available: # YumAvailablePackage
-            files = self.__pkg.returnFileEntries()
-        else:  # YumInstalledPackage, get files from rpm header.
-            files = []
-            fn = self.__pkg.hdr['basenames']
-            dn = self.__pkg.hdr['dirnames']
-            for d, n in zip( dn, fn ):
-                files.append( d+n )
-        return files    
+        return self.__pkg.returnFileEntries()
         
     def get_fullname( self ):
         """ return fullpackage name in format : <epoch>:<name>-<ver>.<arch>"""
