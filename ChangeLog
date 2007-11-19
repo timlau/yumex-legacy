@@ -1,3 +1,67 @@
+2007-11-19  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/misc.py: bumped version to 2.0.3
+
+2007-11-19  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/misc.py, yumex.spec: bumped version to 2.0.3
+
+2007-11-16  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumgui/packages.py: Fixed filelist for installed packages
+	(rhbz #387241)
+
+2007-11-08  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/fr.po: Updated fr.po by vin
+
+2007-10-30  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/dialogs.py: Make yumex more failsafe on bad config files
+	(blank config file)
+
+2007-10-30  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/yumapi.py: Make --changelog & --filelist work with yum 3.0.x
+	(OC2.1-RC1 / IIOSB #86363)
+
+2007-10-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/pl.po: updated pl translation
+
+2007-10-26  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/cs.po, po/da.po, po/de.po, po/es.po, po/fi.po, po/fr.po,
+	po/hu.po, po/it.po, po/ja.po, po/ko.po, po/pa.po, po/pl.po,
+	po/pt_BR.po, po/ru.po, po/tr.po, po/uk.po, po/yumex.pot,
+	po/zh_CN.po, po/zh_TW.po, src/callbacks.py: Make some strings
+	translable & rebuild yumex.pot and updated po files
+
+2007-10-24  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/views.py: Fixed Traceback in preferences/plugins
+
+2007-10-16  Tim Lauridsen <tim@localhost.localdomain>
+
+	* misc/yumex.desktop: add ru translation to yumex.desktop
+
+2007-10-16  Tim Lauridsen <tim@localhost.localdomain>
+
+	* misc/yumex.desktop, po/ja.po, po/ru.po: Update jp & ru translation
+	and add jp translation to yumex.desktop
+
+2007-10-05  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/pt_BR.po: updated brazilian translation by Rodrigo Padula
+
+2007-09-28  Tim Lauridsen <tla@rasmil.dk>
+
+	* Makefile: Make the Makefile release target a little better
+
+2007-09-28  Tim Lauridsen <tla@rasmil.dk>
+
+	* ChangeLog: updated ChangeLog
+
 2007-09-28  Tim Lauridsen <tla@rasmil.dk>
 
 	* ChangeLog, Makefile, src/misc.py, yumex.spec: bumped version to
