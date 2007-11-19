@@ -69,7 +69,7 @@ release:
 	@$(MAKE) changelog
 	@git commit -a -m "updated ChangeLog"
 	@git push
-	@git tag ${PKGNAME}-${VERSION} -m "Added ${PKGNAME}-${VERSION} release tag"
+	@git tag -m "Added ${PKGNAME}-${VERSION} release tag" ${PKGNAME}-${VERSION}
 	@git push --tags origin
 	@$(MAKE) archive
 	@$(MAKE) upload
