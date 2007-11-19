@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  2.0.3
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -68,6 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Mon Nov 19 2007 Tim Lauridsen <tla@rasmil.dk> - 2.0.3-2
+- fixed missing '\\n' in fr.po
 * Mon Nov 19 2007 Tim Lauridsen <tla@rasmil.dk> - 2.0.3-1
 - Release 2.0.3
 * Fri Sep 28 2007 Tim Lauridsen <tla@rasmil.dk> - 2.0.2-1
