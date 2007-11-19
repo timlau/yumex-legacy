@@ -1,5 +1,17 @@
 2007-11-19  Tim Lauridsen <tla@rasmil.dk>
 
+	* yumex.spec: bumped version to 2.0.3
+
+2007-11-19  Tim Lauridsen <tla@rasmil.dk>
+
+	* po/fr.po: Fixed missing \n in fr.po
+
+2007-11-19  Tim Lauridsen <tla@rasmil.dk>
+
+	* ChangeLog: updated ChangeLog
+
+2007-11-19  Tim Lauridsen <tla@rasmil.dk>
+
 	* Makefile: bumped version to 2.0.3
 
 2007-11-19  Tim Lauridsen <tla@rasmil.dk>
