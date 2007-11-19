@@ -550,7 +550,7 @@ msgstr "voulez-vous poursuivre ?"
 #: ../src/yumex.py:253
 #, python-format
 msgid "You are about to remove %s packages\n"
-msgstr "Vous êtes sur le point de supprimer %s paquets"
+msgstr "Vous êtes sur le point de supprimer %s paquets\n"
 
 #: ../src/yumex.py:359
 #, python-format
