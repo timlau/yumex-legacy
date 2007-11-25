@@ -406,7 +406,7 @@ class YumexApplication(YumexController,YumexGUI):
     def __init__(self):
         YumexController.__init__( self )
         self.yumexOptions = YumexOptions()
-        self.yumexOptions.parseCmdOptions()
+        self.yumexOptions.parseCmdOptions(first=True)
         self.settings = self.yumexOptions.settings
         YumexGUI.__init__(self)
         self.logger = logging.getLogger("yumex.main")

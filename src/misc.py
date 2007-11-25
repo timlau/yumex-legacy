@@ -535,9 +535,22 @@ class YumexOptions:
         self._optparser = OptionParser()
         self.setupParser()
         
-    def parseCmdOptions(self):
-        self.getCmdlineOptions()
+    def parseCmdOptions(self,first=False):
+        self.getCmdlineOptions(first=first)
         self.updateSettings()
+
+    def firstParse(self,args=sys.argv[1:]):
+        # Parse only command line options that affect basic yum setup
+        try:
+            args = _filtercmdline(
+                        ('--version','-d','--debug','--noplugins','-C','--nothreads'), 
+                        ('-c'), 
+                        args)
+        except ValueError:
+            self.base.usage()
+            sys.exit(1)
+        return self._optparser.parse_args(args=args)
+
 
     def getYumexConfig(self,configfile='/etc/yumex.conf', sec='yumex' ):
         conf = YumexConf()
@@ -595,10 +608,13 @@ class YumexOptions:
                         help="DEBUG: Option to disable threads in yumex" )
         self.parserInit = True
         
-    def getCmdlineOptions( self ):
+    def getCmdlineOptions( self, first = False ):
         """ Handle commmand line options """  
         parser = self._optparser
-        ( options, args ) = parser.parse_args()
+        if first:
+            ( options, args ) = self.firstParse()
+        else:
+            ( options, args ) = parser.parse_args()
         self.cmd_options = options
         self.cmd_args = args
         if options.version:
@@ -668,6 +684,53 @@ class YumexOptions:
             if self.settings.usecache or self.cmd_options.usecache:
                 rc = True        
         return rc       
+    
+def _filtercmdline(novalopts, valopts, args):
+    '''Keep only specific options from the command line argument list
+
+    This function allows us to peek at specific command line options when using
+    the optparse module. This is useful when some options affect what other
+    options should be available.
+
+    @param novalopts: A sequence of options to keep that don't take an argument.
+    @param valopts: A sequence of options to keep that take a single argument.
+    @param args: The command line arguments to parse (as per sys.argv[:1]
+    @return: A list of strings containing the filtered version of args.
+
+    Will raise ValueError if there was a problem parsing the command line.
+    '''
+    out = []
+    args = list(args)       # Make a copy because this func is destructive
+
+    while len(args) > 0:
+        a = args.pop(0)
+        if '=' in a:
+            opt, _ = a.split('=', 1)
+            if opt in valopts:
+                out.append(a)
+
+        elif a in novalopts:
+            out.append(a)
+
+        elif a in valopts:
+            if len(args) < 1:
+                raise ValueError
+            next = args.pop(0)
+            if next[0] == '-':
+                raise ValueError
+
+            out.extend([a, next])
+       
+        else:
+            # Check for single letter options that take a value, where the
+            # value is right up against the option
+            for opt in valopts:
+                if len(opt) == 2 and a.startswith(opt):
+                    out.append(a)
+
+    return out
+
+    
         
 def cleanMarkupSting(msg):
     msg = str(msg) # make sure it is a string
