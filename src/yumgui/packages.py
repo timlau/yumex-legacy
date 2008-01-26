@@ -53,6 +53,9 @@ class PackageWrapper:
 
     def getRepoId(self):
         return self.__pkg.repoid
+
+    def getRepo(self):
+        return self.__pkg.repo
         
     def getVer(self):
         return self.__pkg.printVer()
@@ -89,6 +92,7 @@ class PackageWrapper:
     pkg =  property(fget=getPkg)
     name =  property(fget=getName)
     repoid =  property(fget=getRepoId)
+    repo =  property(fget=getRepo)
     ver =  property(fget=getVer)
     version = property(fget=getVer)
     release = property(fget=getRel)

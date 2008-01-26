@@ -52,11 +52,11 @@ class YumexPackageInfo:
     def showInfo(self,pkg):
         self.clear()
         self.writePkg( self.pkgDesc, pkg, "%s", "description" )
-        if pkg.repoid == 'installed' or self.settings.filelist:
+        if pkg.repo.id == 'installed' or self.settings.filelist:
             files = pkg.get_filelist()
             for f in files:
                 self.pkgFiles.write_line( "%s\n" % f ) 
-        if pkg.repoid == 'installed' or self.settings.changelog:
+        if pkg.repo.id == 'installed' or self.settings.changelog:
             cl = pkg.get_changelog()
             for l in cl:
                 self.pkgChangeLog.write_line( "%s\n" % l ) 
