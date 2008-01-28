@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-26 11:23+0200\n"
+"POT-Creation-Date: 2008-01-28 02:26-0700\n"
 "PO-Revision-Date: 2006-02-14 14:52+0100\n"
 "Last-Translator: tim <tla@ramil.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -44,22 +44,18 @@ msgid "Processing metadata"
 msgstr "Behandler metadata"
 
 #: ../src/callbacks.py:234
-#, fuzzy
 msgid "installed"
 msgstr "Installeret"
 
 #: ../src/callbacks.py:235
-#, fuzzy
 msgid "updated"
 msgstr "Opdateret"
 
 #: ../src/callbacks.py:236
-#, fuzzy
 msgid "obsoleted"
 msgstr "Overflødig gjort"
 
 #: ../src/callbacks.py:237
-#, fuzzy
 msgid "erased"
 msgstr "Slettet"
 
@@ -104,35 +100,35 @@ msgstr "--> Fylder transaction sættet med valge pakkker. Vent Venligst."
 msgid "---> Downloading header for %s to pack into transaction set."
 msgstr "---> Henter header for %s til indsættelse i transaktions sættet"
 
-#: ../src/dialogs.py:196
+#: ../src/dialogs.py:199
 msgid "Packages to Process"
 msgstr "Pakker til behandling"
 
-#: ../src/dialogs.py:212 ../src/views.py:474
+#: ../src/dialogs.py:215 ../src/views.py:474
 msgid "Name"
 msgstr "Navn"
 
-#: ../src/dialogs.py:213 ../src/yumex.glade.h:24
+#: ../src/dialogs.py:216 ../src/yumex.glade.h:24
 msgid "Arch"
 msgstr "Arkitektur"
 
-#: ../src/dialogs.py:214 ../src/views.py:61
+#: ../src/dialogs.py:217 ../src/views.py:61
 msgid "Ver"
 msgstr "Version"
 
 #. Setup reponame & repofile column's
-#: ../src/dialogs.py:215 ../src/views.py:438 ../src/views.py:473
+#: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
 msgstr "Kilde"
 
-#: ../src/dialogs.py:216 ../src/views.py:61
+#: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../src/dialogs.py:348
-#, fuzzy, python-format
+#: ../src/dialogs.py:351
+#, python-format
 msgid "About %s"
-msgstr "Om"
+msgstr "Om %s"
 
 #: ../src/gui.py:66
 #, python-format
@@ -149,6 +145,8 @@ msgid ""
 "Obsoleting : %s\n"
 "\n"
 msgstr ""
+"Overføldig gør : %s\n"
+"\n"
 
 #: ../src/gui.py:88
 msgid ""
@@ -225,19 +223,19 @@ msgstr "Alder"
 
 #: ../src/misc.py:107
 msgid "Mandatory"
-msgstr ""
+msgstr "Tvungne"
 
 #: ../src/misc.py:108
 msgid "Default"
-msgstr ""
+msgstr "Standard"
 
 #: ../src/misc.py:109
 msgid "Optional"
-msgstr ""
+msgstr "Valgfri"
 
 #: ../src/misc.py:110
 msgid "Conditional"
-msgstr ""
+msgstr "Afhængige"
 
 #: ../src/misc.py:118
 msgid "Programming:"
@@ -280,7 +278,7 @@ msgstr "Forkert fil type (%s)"
 msgid "Wrong file version (%s)"
 msgstr "Forkert fil version (%s)"
 
-#: ../src/misc.py:610
+#: ../src/misc.py:626
 msgid "Current Settings :"
 msgstr "Aktuelle indstillinger :"
 
@@ -476,12 +474,12 @@ msgid "Running Transaction"
 msgstr "Kører Transaktion"
 
 #. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
-#: ../src/yumapi.py:449
+#: ../src/yumapi.py:457
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Ønsker du at importere GPG nøgle: %s \n"
 
-#: ../src/yumapi.py:451
+#: ../src/yumapi.py:459
 #, python-format
 msgid "Needed by %s"
 msgstr "behøvet af %s"
@@ -710,35 +708,35 @@ msgstr "Installeret"
 
 #: ../src/yumgui/callbacks.py:181
 msgid "No header - huh?"
-msgstr ""
+msgstr "Ingen header"
 
 #: ../src/yumex.glade.h:1
 msgid " "
-msgstr ""
+msgstr " "
 
 #: ../src/yumex.glade.h:2
 msgid "    "
-msgstr ""
+msgstr "    "
 
 #: ../src/yumex.glade.h:3
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #: ../src/yumex.glade.h:4
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../src/yumex.glade.h:5
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: ../src/yumex.glade.h:6
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: ../src/yumex.glade.h:7
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../src/yumex.glade.h:8
 msgid "<b>Behavior</b>"
@@ -766,7 +764,7 @@ msgstr "<b>Filkilde Ekskluderings Filter</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
-msgstr ""
+msgstr "<b>SUBACTION</b>\n"
 
 #: ../src/yumex.glade.h:16
 msgid "<b>Total Download Size</b>"
