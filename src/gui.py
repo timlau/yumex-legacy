@@ -314,9 +314,11 @@ class YumexGUI:
             loglvl = logging.INFO
         logger = self.loggerSetup( "yumex",loglvl )       
         logger.propagate = False
-        console_stdout = logging.StreamHandler(sys.stdout)
-        console_stdout.setFormatter(formatter)
-        logger.addHandler(console_stdout)
+        # only log to console if yumex is run from a console
+        if sys.stdout.isatty():
+            console_stdout = logging.StreamHandler(sys.stdout)
+            console_stdout.setFormatter(formatter)
+            logger.addHandler(console_stdout)
         self.loggerSetup( "yum")       
         self.loggerSetup( "yum.verbose")       
         
