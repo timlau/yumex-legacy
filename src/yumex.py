@@ -35,6 +35,7 @@ import yum
 import yum.Errors as Errors
 from yumgui.widgets import UI, Controller
 from yumgui import *
+from yum.misc import sortPkgObj
 
 # yumex imports
 import filters
@@ -44,6 +45,7 @@ from dialogs import *
 from misc import const,YumexOptions,YumexRepoList,YumexProfile
 from i18n import _
 from packages import RPMGroupTree
+
        
 class YumexController(Controller):
     ''' This class contains all glade signal callbacks '''
@@ -530,7 +532,7 @@ class YumexApplication(YumexController,YumexGUI):
             allpkgs.extend(pkgs)
         if self.doProgress: self.progress.total.next() # -> Sort Lists        
         self.progressLog(_('Sorting packages'))
-        allpkgs.sort()
+        allpkgs.sort(sortPkgObj)
         self.progressLog(_('Population view with packages'))
         self.ui.viewPkg.set_model(None)
         for po in allpkgs:
@@ -550,7 +552,7 @@ class YumexApplication(YumexController,YumexGUI):
         self.pkgView.store.clear()
         pkgs = self.yumbase.getPackagesByCategory(cat)
         if pkgs:
-            pkgs.sort()
+            pkgs.sort(sortPkgObj)
             self.ui.viewPkg.set_model(None)
             for po in pkgs:
                 self.pkgView.store.append([po,str(po)])
@@ -731,7 +733,7 @@ class YumexApplication(YumexController,YumexGUI):
         if grp.description:
             self.grpDesc.write_line(grp.description)
         pkgs = self.yumbase._getByGroup(grp,['m','d','o'])
-        pkgs.sort()
+        pkgs.sort(sortPkgObj)
         self.grpPackages.store.clear()
         self.ui.tvGrpPackages.set_model(None)
         for po in pkgs:
