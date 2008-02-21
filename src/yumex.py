@@ -742,9 +742,6 @@ if __name__ == "__main__":
         logger.error(msg)
         errorMessage(None, _( "Error" ),_("Error in Yumex"),msg)
         sys.exit(1)
-    except SystemExit, e:
-        print "Quit by User"
-        sys.exit(1)        
     except yum.plugins.PluginYumExit,e:
         errorMessage(None, _( "Error" ),_("Error in plugin, Yum Extender will exit"),str(e))
         sys.exit(1)        
