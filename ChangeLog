@@ -1,3 +1,85 @@
+2008-02-21  Tim Lauridsen <tim@naboo.local>
+
+	* src/misc.py, yumex.spec: bumped version to 2.0.4
+
+2008-02-21  Tim Lauridsen <tim@naboo.local>
+
+	* src/yumex.py: removed some no longer needed code
+
+2008-02-21  Tim Lauridsen <tim@naboo.local>
+
+	* src/gui.py, src/misc.py, src/yumex.py: removed gtk updating
+	thread, it gives to many weird issues
+
+2008-02-19  PabloMartin-Gomez <pablo.martin-gomez@laposte.net>
+
+	* po/fr.po: 2008-02-19  PabloMartin-Gomez
+	<pablo.martin-gomez@laposte.net> (via bouska@fedoraproject.org)    *
+	po/fr.po: Updated french translation
+
+2008-02-12  Diego Búrigo Zacarão <diegobz@gmail.com>
+
+	* po/pt_BR.po: 2008-02-12  Diego Búrigo Zacarão
+	<diegobz@gmail.com> (via diegobz@fedoraproject.org)    *
+	po/pt_BR.po: Updated pt_BR translation
+
+2008-02-12  Tim Lauridsen <tla@rasmil.dk>
+
+	* src/gui.py: fixed yumex log messages is written to
+	~/.xsession-errors (rhbz #432420)
+
+2008-02-12  Tim Lauridsen <tim@naboo.local>
+
+	* src/yumex.py: fixed sort problems in package list, caused by
+	changes in yum 3.2.11
+
+2008-01-30  Dominik Sandjaja <dominik@dadadom.de>
+
+	* po/de.po: 2008-01-30  Dominik Sandjaja <dominik@dadadom.de> (via
+	dominiksandjaja@fedoraproject.org)    * po/de.po: Updated German
+	translation
+
+2008-01-28  Tim Lauridsen <tim.lauridsen@googlemail.com>
+
+	* po/da.po: 2008-01-28  Tim Lauridsen <tim.lauridsen@googlemail.com>
+	(via timlau@fedoraproject.org)    * po/da.po: Testing Transiflex and
+	updating danish translation
+
+2008-01-27  Fabian Affolter <fabian@bernewireless.net>
+
+	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex
+
+2008-01-27  Fabian Affolter <fabian@bernewireless.net>
+
+	* po/de.po: 2008-01-27  Fabian Affolter <fabian@bernewireless.net>
+	(via fab@fedoraproject.org)    * po/de.po: Updated German
+	translation
+
+2008-01-27  Dimitris Glezos <dimitris@glezos.com>
+
+	* po/el.po: 2008-01-27  Dimitris Glezos <dimitris@glezos.com> (via
+	glezos@fedoraproject.org)    * po/el.po: Run Greek PO file through
+	translation database (also testing Transifex access)
+
+2008-01-26  Tim Lauridsen <tim@naboo.local>
+
+	* src/gui.py, src/yumgui/packages.py: use po.repo.id instead
+	po.repoid, because some changes in upstream yum for po.repoid for
+	installed packages
+
+2008-01-09  Tim Lauridsen <tim@naboo.local>
+
+	* po/ms.po: Added Malay translation by Sharuzzaman Ahmat Raslan
+
+2007-11-25  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/misc.py, src/yumex.py: fixed issues with using command line
+	options added by plugins Ex. --skip-broken (rhbz #396341)
+
+2007-11-19  Tim Lauridsen <tla@rasmil.dk>
+
+	* ChangeLog: updated ChangeLog
+
 2007-11-19  Tim Lauridsen <tla@rasmil.dk>
 
 	* Makefile: bumped version to 2.0.3
