@@ -543,7 +543,7 @@ class YumexOptions:
         # Parse only command line options that affect basic yum setup
         try:
             args = _filtercmdline(
-                        ('--version','-d','--debug','--noplugins','-C','--nothreads'), 
+                        ('--version','-d','--debug','--noplugins','-C'), 
                         ('-c'), 
                         args)
         except ValueError:
@@ -603,9 +603,6 @@ class YumexOptions:
         parser.add_option( "", "--changelog", 
                         action="store_true", dest="changelog", default=False, 
                         help="Download and show changelogs for available packages" )
-        parser.add_option( "", "--nothreads", 
-                        action="store_true", dest="nothreads", default=False, 
-                        help="DEBUG: Option to disable threads in yumex" )
         self.parserInit = True
         
     def getCmdlineOptions( self, first = False ):
@@ -636,7 +633,7 @@ class YumexOptions:
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
         options = ['plugins', 'debug', 'usecache','yumdebuglevel',
                    'fullobsoletion','autorefresh','conffile','downloadonly',
-                   'filelist','changelog','nothreads']
+                   'filelist','changelog']
         for opt in options:
             self._calcOption(opt)
             

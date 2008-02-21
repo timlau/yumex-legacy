@@ -64,13 +64,6 @@ class YumexController(Controller):
         if self.rpmTransactionIsRunning:
             self.logger.critical(_('Cant Quit while running RPM Transactions'))
             return True # Dont quit
-        gtkEventThread.doQuit()        
-        if self.isWorking:
-            self.quitNow = True
-            self.logger.critical(_('Quiting, please wait !!!!!!'))
-            time.sleep(3)
-            self.exitNow()               
-            return False
         else:
             self.exitNow()   
             return False
@@ -458,15 +451,11 @@ class YumexApplication(YumexController,YumexGUI):
         self.isWorking = True
         busyCursor(self.ui.main)        
         self.ui.progressVBox.grab_add()
-        if not self.settings.nothreads:
-            gtkEventThread.startProcessing()        
         
     def endWorking(self):
         self.isWorking = False
         self.ui.progressVBox.grab_remove()
         normalCursor(self.ui.main)
-        if not self.settings.nothreads:
-            gtkEventThread.endProcessing()
             
     def setupYum(self):
         self.setPage('output')
@@ -741,36 +730,9 @@ class YumexApplication(YumexController,YumexGUI):
         self.ui.tvGrpPackages.set_model(self.grpPackages.store)
        
 
-class ProcessGtkEventsThread(Thread):
-    def __init__(self):
-        Thread.__init__(self)
-        self.__quit = False
-        self.__active = Event()
-        self.__active.clear()
-        
-    def run(self):      
-        while self.__quit == False:
-            while not self.__active.isSet():
-                self.__active.wait()
-            time.sleep(0.1)
-            while gtk.events_pending():      # process gtk events
-                gtk.main_iteration()    
-            time.sleep(0.1)
-            
-    def doQuit(self):
-        self.__quit = True
-        self.__active.set()
-        
-    def startProcessing(self):
-        self.__active.set()
-
-    def endProcessing(self):
-        self.__active.clear()
             
 if __name__ == "__main__":
     try:
-        gtkEventThread = ProcessGtkEventsThread()
-        gtkEventThread.start()
         gtk.window_set_default_icon_from_file(const.PIXMAPS_PATH+"/yumex-icon.png")        
         mainApp = YumexApplication()
         gtk.main()
@@ -779,15 +741,12 @@ if __name__ == "__main__":
         msg = _('Yum is locked by another application')
         logger.error(msg)
         errorMessage(None, _( "Error" ),_("Error in Yumex"),msg)
-        gtkEventThread.doQuit()
         sys.exit(1)
     except SystemExit, e:
         print "Quit by User"
-        gtkEventThread.doQuit()
         sys.exit(1)        
     except yum.plugins.PluginYumExit,e:
         errorMessage(None, _( "Error" ),_("Error in plugin, Yum Extender will exit"),str(e))
-        gtkEventThread.doQuit()
         sys.exit(1)        
     except: # catch other exception and write it to the logger.
         logger = logging.getLogger('yumex.main')
@@ -806,6 +765,5 @@ if __name__ == "__main__":
             logger.error('    %s ' % c)
             errmsg += '    %s \n' % c
         errorMessage(None, _( "Error" ), _( "Error in Yumex" ), errmsg )  
-        gtkEventThread.doQuit()
         sys.exit(1)
         
