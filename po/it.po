@@ -1,6 +1,7 @@
 # translation of it.po to Italiano
 # This file is distributed under the same license as the Yumex package.
 #
+# Danilo Bodei <dbodei@lombardiacom.it><dbodei@katamail.com>, 2005, 2006.
 # Andrea Palaia <andrea.palaia@gmail.com>, 2008.
 # Francesco Tombolini <tombo@adamantio.net>, 2008.
 msgid ""
