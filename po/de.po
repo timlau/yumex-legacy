@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-30 17:57-0700\n"
-"PO-Revision-Date: 2008-01-31 11:34+0800\n"
-"Last-Translator: Dominik Sandjaja <dominik@dadadom.de>\n"
+"POT-Creation-Date: 2008-05-20 18:56+0000\n"
+"PO-Revision-Date: 2008-05-20 23:07+0100\n"
+"Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,40 +171,40 @@ msgstr ""
 msgid "Can not read the %s attribute"
 msgstr "Kann %s Attribut nicht lesen"
 
-#: ../src/gui.py:369
+#: ../src/gui.py:371
 msgid "Show All Packages"
 msgstr "Zeige alle Pakete"
 
-#: ../src/gui.py:370
+#: ../src/gui.py:372
 msgid "Show Package Updates"
 msgstr "Zeige alle Paket-Aktualisierungen"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:373
 msgid "Show available Packages"
 msgstr "Zeige verfügbare Pakete"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:374
 msgid "Show Installed Packages"
 msgstr "Zeige installierte Pakete"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:381
+#: ../src/gui.py:383
 msgid "Package View"
 msgstr "Paket-Ansicht"
 
-#: ../src/gui.py:382
+#: ../src/gui.py:384
 msgid "Group View"
 msgstr "Gruppen-Ansicht"
 
-#: ../src/gui.py:383
+#: ../src/gui.py:385
 msgid "Package Queue View"
 msgstr "Paket-Warteschlangen-Ansicht"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:387
 msgid "Repository Selection View"
 msgstr "Repository-Auswahl-Ansicht"
 
-#: ../src/gui.py:386
+#: ../src/gui.py:388
 msgid "Output View"
 msgstr "Ausgabe-Ansicht"
 
@@ -226,7 +226,7 @@ msgstr "Architektur"
 
 #: ../src/misc.py:96
 msgid "Sizes"
-msgstr "Größen"
+msgstr "Grössen"
 
 #: ../src/misc.py:97
 msgid "Age"
@@ -289,7 +289,7 @@ msgstr "Falscher Datei-Typ (%s)"
 msgid "Wrong file version (%s)"
 msgstr "Falsche Dateiversion (%s)"
 
-#: ../src/misc.py:626
+#: ../src/misc.py:623
 msgid "Current Settings :"
 msgstr "Aktuelle Einstellungen:"
 
@@ -404,7 +404,7 @@ msgid "No update Metadata found for %s "
 msgstr "Kein aktualisierten Metadaten gefunden für %s"
 
 #: ../src/yumapi.py:159
-#: ../src/yumex.py:601
+#: ../src/yumex.py:592
 msgid "Preparing for install/remove/update"
 msgstr "Vorbereitung für Installation/Entfernung/Aktualisierung"
 
@@ -510,211 +510,207 @@ msgstr "Möchten Sie die GPG-Schlüssel importieren? %s \n"
 msgid "Needed by %s"
 msgstr "Benötigt von %s"
 
-#: ../src/yumex.py:63
+#: ../src/yumex.py:65
 msgid "Cant Quit while running RPM Transactions"
 msgstr "Kann nicht beenden, während RPM-Verarbeitung läuft"
 
-#: ../src/yumex.py:68
-msgid "Quiting, please wait !!!!!!"
-msgstr "Beende, bitte warten!!!!!!"
-
-#: ../src/yumex.py:158
+#: ../src/yumex.py:153
 msgid "Yum has not been initialized yet"
 msgstr "Yum wurde noch nicht initialisiert"
 
 #. Check there are any packages in the queue
-#: ../src/yumex.py:164
+#: ../src/yumex.py:159
 msgid "No packages in queue"
 msgstr "Keine Pakete in der Warteschlange"
 
-#: ../src/yumex.py:241
+#: ../src/yumex.py:236
 #, python-format
 msgid "You are about to add %s packages\n"
 msgstr "Sie sind kurz davor, %s Pakete hinzuzufügen\n"
 
-#: ../src/yumex.py:242
-#: ../src/yumex.py:254
+#: ../src/yumex.py:237
+#: ../src/yumex.py:249
 msgid "It will take some time\n"
 msgstr "Es wird eine gewisse Zeit brauchen\n"
 
-#: ../src/yumex.py:243
-#: ../src/yumex.py:255
+#: ../src/yumex.py:238
+#: ../src/yumex.py:250
 msgid "do you want to continue ?"
 msgstr "Wollen Sie fortfahren?"
 
-#: ../src/yumex.py:253
+#: ../src/yumex.py:248
 #, python-format
 msgid "You are about to remove %s packages\n"
 msgstr "Sie sind kurz davor, %s Pakete zu entfernen\n"
 
-#: ../src/yumex.py:359
+#: ../src/yumex.py:354
 #, python-format
 msgid "Selected the %s profile"
 msgstr " %s Profil gewählt"
 
-#: ../src/yumex.py:379
+#: ../src/yumex.py:374
 #, python-format
 msgid "Profile : %s saved ok"
 msgstr "Profil: %s erfolgreich gespeichert"
 
-#: ../src/yumex.py:381
+#: ../src/yumex.py:376
 #, python-format
 msgid "Profile : %s save failed"
 msgstr "Profil: %s speichern fehlgeschlagen"
 
-#: ../src/yumex.py:386
+#: ../src/yumex.py:381
 msgid "Create New Profile"
 msgstr "Neues Profil erstellen"
 
-#: ../src/yumex.py:386
+#: ../src/yumex.py:381
 msgid "Name of new profile"
 msgstr "Name des neuen Profil"
 
-#: ../src/yumex.py:390
+#: ../src/yumex.py:385
 #, python-format
 msgid "Profile : %s created ok"
 msgstr "Profil: %s erstellt"
 
-#: ../src/yumex.py:393
+#: ../src/yumex.py:388
 #, python-format
 msgid "Profile : %s creation failed"
 msgstr "Profil: %s erstellen fehlgeschlagen"
 
-#: ../src/yumex.py:397
+#: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
 msgstr "Säubere alle Yum-Metadaten"
 
-#: ../src/yumex.py:424
+#: ../src/yumex.py:419
 msgid "Yum Config Setup"
 msgstr "Yum Config-Setup"
 
-#: ../src/yumex.py:440
+#: ../src/yumex.py:435
 msgid "GUI Setup Completed"
 msgstr "GUI-Setup komplett"
 
-#: ../src/yumex.py:482
-#: ../src/yumex.py:616
-#: ../src/yumex.py:671
-#: ../src/yumex.py:779
-#: ../src/yumex.py:787
-#: ../src/yumex.py:806
+#: ../src/yumex.py:473
+#: ../src/yumex.py:607
+#: ../src/yumex.py:662
+#: ../src/yumex.py:743
+#: ../src/yumex.py:746
+#: ../src/yumex.py:764
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "Fehler"
 
-#: ../src/yumex.py:482
+#: ../src/yumex.py:473
 msgid "Error in Yum Setup"
 msgstr "Fehler in Yum Setup"
 
 #. prepare package lists
 #. -> List setup
-#: ../src/yumex.py:487
+#: ../src/yumex.py:478
 msgid "Building Package Lists"
 msgstr "Erstellen der Paketlisten"
 
-#: ../src/yumex.py:489
+#: ../src/yumex.py:480
 msgid "Building Package Lists Completed"
 msgstr "Erstellen der Paketlisten abgeschlossen"
 
-#: ../src/yumex.py:490
+#: ../src/yumex.py:481
 msgid "Building Groups Lists"
 msgstr "Erstellen der Gruppenlisten"
 
-#: ../src/yumex.py:493
+#: ../src/yumex.py:484
 msgid "Building Group Lists Completed"
 msgstr "Erstellen der Gruppenlisten abgeschlossen"
 
-#: ../src/yumex.py:525
+#: ../src/yumex.py:516
 #, python-format
 msgid "Getting packages : %s"
 msgstr "Beziehe Pakete: %s"
 
-#: ../src/yumex.py:529
+#: ../src/yumex.py:520
 #, python-format
 msgid "Found %d %s packages"
 msgstr "Gefunden: %d %s Pakete"
 
 #. -> Sort Lists
-#: ../src/yumex.py:532
+#: ../src/yumex.py:523
 msgid "Sorting packages"
 msgstr "Sortiere Pakete"
 
-#: ../src/yumex.py:534
+#: ../src/yumex.py:525
 msgid "Population view with packages"
 msgstr "Erstelle Ansicht mit Paketen"
 
-#: ../src/yumex.py:540
+#: ../src/yumex.py:531
 msgid "Population Completed"
 msgstr "Erstellen komplett"
 
-#: ../src/yumex.py:547
+#: ../src/yumex.py:538
 msgid "Package View Population"
 msgstr "Paket-Ansicht"
 
-#: ../src/yumex.py:559
+#: ../src/yumex.py:550
 msgid "Package View Population Completed"
 msgstr "Erstellen der Paket-Ansicht abgeschlossen"
 
-#: ../src/yumex.py:565
+#: ../src/yumex.py:556
 msgid "Category View Population"
 msgstr "Kategorie-Ansicht Erstellung"
 
-#: ../src/yumex.py:584
+#: ../src/yumex.py:575
 msgid "Category View Population Completed"
 msgstr "Erstellen der Kategorie-Ansicht abgeschlossen"
 
-#: ../src/yumex.py:609
+#: ../src/yumex.py:600
 msgid "Processing Packages in queue"
 msgstr "Paketverarbeitung in Warteschlange"
 
-#: ../src/yumex.py:615
+#: ../src/yumex.py:606
 msgid "Error in Dependency Resolution"
 msgstr "Fehler bei der Abhängigkeitsauflösung"
 
-#: ../src/yumex.py:632
+#: ../src/yumex.py:623
 msgid "No packages selected"
 msgstr "Keine Pakete ausgewählt"
 
-#: ../src/yumex.py:639
+#: ../src/yumex.py:630
 msgid "No packages in transaction"
 msgstr "Keine Pakete in der Verarbeitung"
 
-#: ../src/yumex.py:649
+#: ../src/yumex.py:640
 msgid "Processing packages (See output for details)"
 msgstr "Verarbeite Pakete (siehe Ausgabe für Details)"
 
-#: ../src/yumex.py:667
+#: ../src/yumex.py:658
 msgid "Packages Processing"
 msgstr "Paketverarbeitung"
 
-#: ../src/yumex.py:667
+#: ../src/yumex.py:658
 msgid "Packages Processing completed ok"
 msgstr "Paketverarbeitungsprozess abgeschlossen"
 
-#: ../src/yumex.py:671
+#: ../src/yumex.py:662
 msgid "Error in Transaction"
 msgstr "Fehler bei der Verarbeitung"
 
-#: ../src/yumex.py:676
+#: ../src/yumex.py:667
 #, python-format
 msgid "Parsing packages to %s "
 msgstr "Parse Pakete zu %s"
 
-#: ../src/yumex.py:710
+#: ../src/yumex.py:701
 #, python-format
 msgid "found %d packages, matching : %s"
 msgstr "gefunden: %d Pakete, passend für: %s"
 
-#: ../src/yumex.py:777
+#: ../src/yumex.py:741
 msgid "Yum is locked by another application"
 msgstr "Yum ist durch eine andere Anwendung blockiert"
 
-#: ../src/yumex.py:779
-#: ../src/yumex.py:806
+#: ../src/yumex.py:743
+#: ../src/yumex.py:764
 msgid "Error in Yumex"
 msgstr "Fehler in Yumex"
 
-#: ../src/yumex.py:787
+#: ../src/yumex.py:746
 msgid "Error in plugin, Yum Extender will exit"
 msgstr "Fehler im Plugin, Yum Extender wird beendet"
 
@@ -978,6 +974,8 @@ msgstr "_Yum-Plugins:"
 msgid "dialog1"
 msgstr "dialog1"
 
+#~ msgid "Quiting, please wait !!!!!!"
+#~ msgstr "Beende, bitte warten!!!!!!"
 #~ msgid "About Yum Extender"
 #~ msgstr "Ãœber: Yum Extender"
 
