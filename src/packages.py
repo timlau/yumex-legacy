@@ -455,7 +455,7 @@ class RPMGroupElement:
                     newparent = key
                 child = self.children[key]
                 if child.getKeys():
-                    newnode = model.append(node,[key,''])
+                    newnode = model.append(node,[key,newparent])
                     child.addToModel(model,newnode,newparent)
                 else:
                     newnode = model.append(node,[key,newparent])

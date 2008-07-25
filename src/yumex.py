@@ -535,6 +535,7 @@ class YumexApplication(YumexController,YumexGUI):
         if self.doProgress: self.progress.hide() #Hide Progress        
 
     def addCategoryPackages(self,cat = None):
+        ''' Populate package view on category is selected '''
         msg = _('Package View Population')
         self.setStatus(msg)
         busyCursor(self.ui.main)
@@ -553,6 +554,7 @@ class YumexApplication(YumexController,YumexGUI):
               
 
     def addCategories(self, fn, para, sortkeys,splitkeys ):
+        ''' Populate the Category view with categories '''
         msg = _('Category View Population')
         self.setStatus(msg)
         busyCursor(self.ui.main)
