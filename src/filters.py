@@ -130,7 +130,7 @@ class KeywordFilter(YumexFilter):
     def setKeys(self,criteria):
         self.reList = []
         for string in criteria:
-            restring = yum.misc.refineSearchPattern(string)
+            restring = re.escape(string)
             try: 
                 crit_re = re.compile(restring, flags=re.I)
                 self.reList.append(crit_re)
