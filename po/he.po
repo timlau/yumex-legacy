@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the yumex package.
 # Oron Peled <oron@actcom.co.il>, 2008.
 # , fuzzy
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-29 18:30+0000\n"
+"POT-Creation-Date: 2008-07-25 12:41+0200\n"
 "PO-Revision-Date: 2008-03-30 00:27+0300\n"
 "Last-Translator: Oron Peled <oron@actcom.co.il>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -136,7 +136,8 @@ msgstr "אודות %s"
 msgid ""
 "Updating : %s\n"
 "\n"
-msgstr "מעדכן: %s\n"
+msgstr ""
+"מעדכן: %s\n"
 "\n"
 
 #: ../src/gui.py:73
@@ -245,36 +246,65 @@ msgstr "תרגום:"
 msgid "Special Thanks To:"
 msgstr "תודות מיוחדות ל:"
 
-#: ../src/misc.py:359
+#: ../src/misc.py:151
+msgid "Getting update packages"
+msgstr ""
+
+#: ../src/misc.py:152
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "הצג חבילות מותקנות"
+
+#: ../src/misc.py:153
+#, fuzzy
+msgid "Getting available packacages"
+msgstr "הצג חבילות זמינות"
+
+#: ../src/misc.py:157
+#, python-format
+msgid "Found %d update packages"
+msgstr ""
+
+#: ../src/misc.py:158
+#, fuzzy, python-format
+msgid "Found %d installed packages"
+msgstr "הצג חבילות מותקנות"
+
+#: ../src/misc.py:159
+#, fuzzy, python-format
+msgid "Found %d available packages"
+msgstr "הצג חבילות זמינות"
+
+#: ../src/misc.py:374
 msgid "Package Queue:"
 msgstr "תור חבילות:"
 
-#: ../src/misc.py:364
+#: ../src/misc.py:379
 #, python-format
 msgid " Packages to %s"
 msgstr ""
 
-#: ../src/misc.py:371
+#: ../src/misc.py:386
 #, python-format
 msgid " Groups to %s"
 msgstr ""
 
-#: ../src/misc.py:435
+#: ../src/misc.py:450
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr ""
 
-#: ../src/misc.py:437
+#: ../src/misc.py:452
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr ""
 
-#: ../src/misc.py:439
+#: ../src/misc.py:454
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr ""
 
-#: ../src/misc.py:623
+#: ../src/misc.py:638
 msgid "Current Settings :"
 msgstr ""
 
@@ -378,7 +408,7 @@ msgstr ""
 msgid "No update Metadata found for %s "
 msgstr ""
 
-#: ../src/yumapi.py:159 ../src/yumex.py:592
+#: ../src/yumapi.py:159 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr ""
 
@@ -556,8 +586,8 @@ msgstr ""
 msgid "GUI Setup Completed"
 msgstr ""
 
-#: ../src/yumex.py:473 ../src/yumex.py:607 ../src/yumex.py:662
-#: ../src/yumex.py:743 ../src/yumex.py:746 ../src/yumex.py:764
+#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
+#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr ""
@@ -584,16 +614,6 @@ msgstr ""
 msgid "Building Group Lists Completed"
 msgstr ""
 
-#: ../src/yumex.py:516
-#, python-format
-msgid "Getting packages : %s"
-msgstr ""
-
-#: ../src/yumex.py:520
-#, python-format
-msgid "Found %d %s packages"
-msgstr ""
-
 #. -> Sort Lists
 #: ../src/yumex.py:523
 msgid "Sorting packages"
@@ -607,73 +627,73 @@ msgstr ""
 msgid "Population Completed"
 msgstr ""
 
-#: ../src/yumex.py:538
+#: ../src/yumex.py:539
 msgid "Package View Population"
 msgstr ""
 
-#: ../src/yumex.py:550
+#: ../src/yumex.py:551
 msgid "Package View Population Completed"
 msgstr ""
 
-#: ../src/yumex.py:556
+#: ../src/yumex.py:558
 msgid "Category View Population"
 msgstr ""
 
-#: ../src/yumex.py:575
+#: ../src/yumex.py:577
 msgid "Category View Population Completed"
 msgstr ""
 
-#: ../src/yumex.py:600
+#: ../src/yumex.py:602
 msgid "Processing Packages in queue"
 msgstr ""
 
-#: ../src/yumex.py:606
+#: ../src/yumex.py:608
 msgid "Error in Dependency Resolution"
 msgstr ""
 
-#: ../src/yumex.py:623
+#: ../src/yumex.py:625
 msgid "No packages selected"
 msgstr ""
 
-#: ../src/yumex.py:630
+#: ../src/yumex.py:632
 msgid "No packages in transaction"
 msgstr ""
 
-#: ../src/yumex.py:640
+#: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
 msgstr ""
 
-#: ../src/yumex.py:658
+#: ../src/yumex.py:660
 msgid "Packages Processing"
 msgstr ""
 
-#: ../src/yumex.py:658
+#: ../src/yumex.py:660
 msgid "Packages Processing completed ok"
 msgstr ""
 
-#: ../src/yumex.py:662
+#: ../src/yumex.py:664
 msgid "Error in Transaction"
 msgstr ""
 
-#: ../src/yumex.py:667
+#: ../src/yumex.py:669
 #, python-format
 msgid "Parsing packages to %s "
 msgstr ""
 
-#: ../src/yumex.py:701
+#: ../src/yumex.py:703
 #, python-format
 msgid "found %d packages, matching : %s"
 msgstr ""
 
-#: ../src/yumex.py:741
+#: ../src/yumex.py:743
 msgid "Yum is locked by another application"
 msgstr ""
 
-#: ../src/yumex.py:743 ../src/yumex.py:764
+#: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr ""
 
-#: ../src/yumex.py:746
+#: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
 msgstr ""
 
@@ -933,4 +953,3 @@ msgstr ""
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr ""
-

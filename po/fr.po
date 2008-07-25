@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-18 05:21+0000\n"
+"POT-Creation-Date: 2008-07-25 12:41+0200\n"
 "PO-Revision-Date: 2008-02-18 19:33+0100\n"
 "Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
 "Language-Team: Français <fedora-trans-fr@redhat.com>\n"
@@ -104,7 +104,8 @@ msgstr ""
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr "---> Téléchargement des en-têtes de %s à ajouter au jeu de transactions."
+msgstr ""
+"---> Téléchargement des en-têtes de %s à ajouter au jeu de transactions."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
@@ -255,36 +256,66 @@ msgstr "Traduction :"
 msgid "Special Thanks To:"
 msgstr "Remerciements particuliers à :"
 
-#: ../src/misc.py:359
+#: ../src/misc.py:151
+#, fuzzy
+msgid "Getting update packages"
+msgstr "Téléchargement des paquets : %s"
+
+#: ../src/misc.py:152
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "Afficher les paquets installés"
+
+#: ../src/misc.py:153
+#, fuzzy
+msgid "Getting available packacages"
+msgstr "Afficher les paquets disponibles"
+
+#: ../src/misc.py:157
+#, fuzzy, python-format
+msgid "Found %d update packages"
+msgstr "%d paquets %s trouvés"
+
+#: ../src/misc.py:158
+#, fuzzy, python-format
+msgid "Found %d installed packages"
+msgstr "%d paquets %s trouvés"
+
+#: ../src/misc.py:159
+#, fuzzy, python-format
+msgid "Found %d available packages"
+msgstr "%d paquets %s trouvés"
+
+#: ../src/misc.py:374
 msgid "Package Queue:"
 msgstr "File d'attente des paquets"
 
-#: ../src/misc.py:364
+#: ../src/misc.py:379
 #, python-format
 msgid " Packages to %s"
 msgstr "Paquets à %s"
 
-#: ../src/misc.py:371
+#: ../src/misc.py:386
 #, python-format
 msgid " Groups to %s"
 msgstr "Groupes à %s"
 
-#: ../src/misc.py:435
+#: ../src/misc.py:450
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "Mauvais fichier d'application (%s)"
 
-#: ../src/misc.py:437
+#: ../src/misc.py:452
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "Mauvais type de fichiers (%s)"
 
-#: ../src/misc.py:439
+#: ../src/misc.py:454
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "Mauvaise version de fichier (%s)"
 
-#: ../src/misc.py:623
+#: ../src/misc.py:638
 msgid "Current Settings :"
 msgstr "Préférences actuelles :"
 
@@ -388,7 +419,7 @@ msgstr "Chargement de métadonnées à jour de %s"
 msgid "No update Metadata found for %s "
 msgstr "Aucune métadonnée à jour trouvée pour %s"
 
-#: ../src/yumapi.py:159 ../src/yumex.py:592
+#: ../src/yumapi.py:159 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Préparation pour installation/suppression/mise à jour"
 
@@ -566,8 +597,8 @@ msgstr "Paramétrage de Yum"
 msgid "GUI Setup Completed"
 msgstr "Initialisation de l'interface utilisateur terminée"
 
-#: ../src/yumex.py:473 ../src/yumex.py:607 ../src/yumex.py:662
-#: ../src/yumex.py:743 ../src/yumex.py:746 ../src/yumex.py:764
+#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
+#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "Erreur"
@@ -594,16 +625,6 @@ msgstr "Construction des listes de groupes"
 msgid "Building Group Lists Completed"
 msgstr "Construction des listes de groupes terminée"
 
-#: ../src/yumex.py:516
-#, python-format
-msgid "Getting packages : %s"
-msgstr "Téléchargement des paquets : %s"
-
-#: ../src/yumex.py:520
-#, python-format
-msgid "Found %d %s packages"
-msgstr "%d paquets %s trouvés"
-
 #. -> Sort Lists
 #: ../src/yumex.py:523
 msgid "Sorting packages"
@@ -617,73 +638,73 @@ msgstr "Génération de la vue avec les paquets"
 msgid "Population Completed"
 msgstr "Génération terminée"
 
-#: ../src/yumex.py:538
+#: ../src/yumex.py:539
 msgid "Package View Population"
 msgstr "Génération de la vue par paquets"
 
-#: ../src/yumex.py:550
+#: ../src/yumex.py:551
 msgid "Package View Population Completed"
 msgstr "Génération de la vue par paquets terminée"
 
-#: ../src/yumex.py:556
+#: ../src/yumex.py:558
 msgid "Category View Population"
 msgstr "Génération de la vue par catégories"
 
-#: ../src/yumex.py:575
+#: ../src/yumex.py:577
 msgid "Category View Population Completed"
 msgstr "Génération de la vue par catégories terminée"
 
-#: ../src/yumex.py:600
+#: ../src/yumex.py:602
 msgid "Processing Packages in queue"
 msgstr "Traitement des paquets de la file d'attente"
 
-#: ../src/yumex.py:606
+#: ../src/yumex.py:608
 msgid "Error in Dependency Resolution"
 msgstr "Erreur dans la résolution des dépendances"
 
-#: ../src/yumex.py:623
+#: ../src/yumex.py:625
 msgid "No packages selected"
 msgstr "Aucun paquet sélectionné"
 
-#: ../src/yumex.py:630
+#: ../src/yumex.py:632
 msgid "No packages in transaction"
 msgstr "Aucun paquet dans la transaction"
 
-#: ../src/yumex.py:640
+#: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
 msgstr "Traitement des paquets (Consultez la sortie pour plus de détails)"
 
-#: ../src/yumex.py:658
+#: ../src/yumex.py:660
 msgid "Packages Processing"
 msgstr "Traitement des paquets"
 
-#: ../src/yumex.py:658
+#: ../src/yumex.py:660
 msgid "Packages Processing completed ok"
 msgstr "Traitement des paquets terminé"
 
-#: ../src/yumex.py:662
+#: ../src/yumex.py:664
 msgid "Error in Transaction"
 msgstr "Erreur lors de la transaction"
 
-#: ../src/yumex.py:667
+#: ../src/yumex.py:669
 #, python-format
 msgid "Parsing packages to %s "
 msgstr "Analyse des paquets à %s "
 
-#: ../src/yumex.py:701
+#: ../src/yumex.py:703
 #, python-format
 msgid "found %d packages, matching : %s"
 msgstr "trouvé %d paquets, correspondant à : %s"
 
-#: ../src/yumex.py:741
+#: ../src/yumex.py:743
 msgid "Yum is locked by another application"
 msgstr "Yum est utilisé par une autre application"
 
-#: ../src/yumex.py:743 ../src/yumex.py:764
+#: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Erreur interne à Yumex"
 
-#: ../src/yumex.py:746
+#: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
 msgstr "Erreur interne à une extension, Yum Extender va se fermer"
 
@@ -786,7 +807,8 @@ msgstr "<span size=\"xx-large\" color=\"black\">Vue de la sortie</span>"
 
 #: ../src/yumex.glade.h:21
 msgid "<span size=\"xx-large\" color=\"black\">Package Queue</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">File d'attente des paquets</span>"
+msgstr ""
+"<span size=\"xx-large\" color=\"black\">File d'attente des paquets</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
@@ -943,4 +965,3 @@ msgstr "Extensions _Yum :"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
-

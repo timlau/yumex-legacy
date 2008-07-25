@@ -144,7 +144,22 @@ class const:
             "Yum developers","without yum there would","not be any Yum Extender",
             "All Yum Extender users"))
           )
-    
+
+    # Constant string directories, to make translation more sane          
+          
+    MASK_GETTING_PACKAGES = {
+    'updates' : _('Getting update packages'),
+    'installed' : _('Getting installed packages'),
+    'available' : _('Getting available packacages')
+    }
+
+    MASK_FOUND_PACKAGES = {
+    'updates' : _('Found %d update packages'),
+    'installed' : _('Found %d installed packages'),
+    'available' : _('Found %d available packages')
+    }
+
+
 class YumexRepoList:
 
     PRIMARY_REPOS = ['extras','updates','core']

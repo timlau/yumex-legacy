@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-28 01:40+0000\n"
+"POT-Creation-Date: 2008-07-25 12:41+0200\n"
 "PO-Revision-Date: 2008-03-28 15:27+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -253,36 +253,66 @@ msgstr "翻译："
 msgid "Special Thanks To:"
 msgstr "特别鸣谢："
 
-#: ../src/misc.py:359
+#: ../src/misc.py:151
+#, fuzzy
+msgid "Getting update packages"
+msgstr "正在获取软件包：%s"
+
+#: ../src/misc.py:152
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "显示已安装的软件包"
+
+#: ../src/misc.py:153
+#, fuzzy
+msgid "Getting available packacages"
+msgstr "显示可用的软件包"
+
+#: ../src/misc.py:157
+#, fuzzy, python-format
+msgid "Found %d update packages"
+msgstr "找到 %d 个 %s 软件包"
+
+#: ../src/misc.py:158
+#, fuzzy, python-format
+msgid "Found %d installed packages"
+msgstr "找到 %d 个 %s 软件包"
+
+#: ../src/misc.py:159
+#, fuzzy, python-format
+msgid "Found %d available packages"
+msgstr "找到 %d 个 %s 软件包"
+
+#: ../src/misc.py:374
 msgid "Package Queue:"
 msgstr "待处理软件包队列："
 
-#: ../src/misc.py:364
+#: ../src/misc.py:379
 #, python-format
 msgid " Packages to %s"
 msgstr " 加入 %s 中"
 
-#: ../src/misc.py:371
+#: ../src/misc.py:386
 #, python-format
 msgid " Groups to %s"
 msgstr " 编组到 %s"
 
-#: ../src/misc.py:435
+#: ../src/misc.py:450
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "错误文件应用程序（%s）"
 
-#: ../src/misc.py:437
+#: ../src/misc.py:452
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "错误文件类型（%s）"
 
-#: ../src/misc.py:439
+#: ../src/misc.py:454
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "错误的文件版本（%s）"
 
-#: ../src/misc.py:623
+#: ../src/misc.py:638
 msgid "Current Settings :"
 msgstr "当前设置："
 
@@ -386,7 +416,7 @@ msgstr "从 %s 载入更新元数据"
 msgid "No update Metadata found for %s "
 msgstr "没有 %s 的更新元数据"
 
-#: ../src/yumapi.py:159 ../src/yumex.py:592
+#: ../src/yumapi.py:159 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "正在准备进行安装/删除/更新"
 
@@ -564,8 +594,8 @@ msgstr "Yum配置设置"
 msgid "GUI Setup Completed"
 msgstr "图形用户界面设置完成"
 
-#: ../src/yumex.py:473 ../src/yumex.py:607 ../src/yumex.py:662
-#: ../src/yumex.py:743 ../src/yumex.py:746 ../src/yumex.py:764
+#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
+#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "错误"
@@ -592,16 +622,6 @@ msgstr "正在编制软件分组列表"
 msgid "Building Group Lists Completed"
 msgstr "软件分组列表编制完成"
 
-#: ../src/yumex.py:516
-#, python-format
-msgid "Getting packages : %s"
-msgstr "正在获取软件包：%s"
-
-#: ../src/yumex.py:520
-#, python-format
-msgid "Found %d %s packages"
-msgstr "找到 %d 个 %s 软件包"
-
 #. -> Sort Lists
 #: ../src/yumex.py:523
 msgid "Sorting packages"
@@ -615,73 +635,73 @@ msgstr "将软件包信息填入视图"
 msgid "Population Completed"
 msgstr "填充完成"
 
-#: ../src/yumex.py:538
+#: ../src/yumex.py:539
 msgid "Package View Population"
 msgstr "软件包视图填充"
 
-#: ../src/yumex.py:550
+#: ../src/yumex.py:551
 msgid "Package View Population Completed"
 msgstr "软件包视图填充完成"
 
-#: ../src/yumex.py:556
+#: ../src/yumex.py:558
 msgid "Category View Population"
 msgstr "分类视图填充"
 
-#: ../src/yumex.py:575
+#: ../src/yumex.py:577
 msgid "Category View Population Completed"
 msgstr "分类视图填充完成"
 
-#: ../src/yumex.py:600
+#: ../src/yumex.py:602
 msgid "Processing Packages in queue"
 msgstr "正在处理队列中的软件包"
 
-#: ../src/yumex.py:606
+#: ../src/yumex.py:608
 msgid "Error in Dependency Resolution"
 msgstr "在依赖关系分析中出现错误"
 
-#: ../src/yumex.py:623
+#: ../src/yumex.py:625
 msgid "No packages selected"
 msgstr "没有软件包被选中"
 
-#: ../src/yumex.py:630
+#: ../src/yumex.py:632
 msgid "No packages in transaction"
 msgstr "事务没有包含任何软件包"
 
-#: ../src/yumex.py:640
+#: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
 msgstr "正在进行软件包处理（细节请见控制台输出视图）"
 
-#: ../src/yumex.py:658
+#: ../src/yumex.py:660
 msgid "Packages Processing"
 msgstr "软件包处理"
 
-#: ../src/yumex.py:658
+#: ../src/yumex.py:660
 msgid "Packages Processing completed ok"
 msgstr "软件包处理正确完成"
 
-#: ../src/yumex.py:662
+#: ../src/yumex.py:664
 msgid "Error in Transaction"
 msgstr "事务执行中出现错误"
 
-#: ../src/yumex.py:667
+#: ../src/yumex.py:669
 #, python-format
 msgid "Parsing packages to %s "
 msgstr "正在对将要被%s的软件包进行分析"
 
-#: ../src/yumex.py:701
+#: ../src/yumex.py:703
 #, python-format
 msgid "found %d packages, matching : %s"
 msgstr "找到%d个软件包与“%s”匹配"
 
-#: ../src/yumex.py:741
+#: ../src/yumex.py:743
 msgid "Yum is locked by another application"
 msgstr "Yum被另一个程序锁定"
 
-#: ../src/yumex.py:743 ../src/yumex.py:764
+#: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Yumex遇到错误"
 
-#: ../src/yumex.py:746
+#: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
 msgstr "插件错误，Yum Extender 将退出"
 
@@ -941,4 +961,3 @@ msgstr "Yum插件（_Y）"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "对话 1"
-

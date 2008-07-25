@@ -513,11 +513,11 @@ class YumexApplication(YumexController,YumexGUI):
         allpkgs = []
         if self.doProgress: self.progress.total.next() # -> Get lists                
         for flt in masks:
-            msg = _('Getting packages : %s' ) % flt
+            msg = const.MASK_GETTING_PACKAGES[flt]
             self.progressLog(msg)
             self.setStatus(msg)
             pkgs = self.yumbase.getPackages(flt)
-            self.progressLog(_('Found %d %s packages') % (len(pkgs),flt))
+            self.progressLog(const.MASK_FOUND_PACKAGES[flt] % len(pkgs) )
             allpkgs.extend(pkgs)
         if self.doProgress: self.progress.total.next() # -> Sort Lists        
         self.progressLog(_('Sorting packages'))
