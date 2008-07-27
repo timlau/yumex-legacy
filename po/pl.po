@@ -1,15 +1,15 @@
 # translation of pl.po to Polish
 # Dawid Zamirski <dzrudy@gmail.com>, 2005.
 # Patryk Zawadzki <patrys@pld-linux.org>, 2007.
-# Piotr Drąg <raven@pmail.pl>, 2007.
+# Piotr Drąg <piotrdrag@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-25 12:41+0200\n"
-"PO-Revision-Date: 2007-10-27 22:22+0200\n"
-"Last-Translator: Piotr Drąg <raven@pmail.pl>\n"
+"PO-Revision-Date: 2008-07-27 23:08+0200\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: ../src/callbacks.py:69
 #, python-format
 msgid "Getting : %s"
-msgstr "Pobieranie: %s"
+msgstr "Uzyskiwanie: %s"
 
 #: ../src/callbacks.py:164 ../src/yumapi.py:204
 msgid "Removing"
@@ -52,7 +52,7 @@ msgstr "zaktualizowane"
 
 #: ../src/callbacks.py:236
 msgid "obsoleted"
-msgstr "zastępione"
+msgstr "zastąpione"
 
 #: ../src/callbacks.py:237
 msgid "erased"
@@ -250,34 +250,31 @@ msgid "Special Thanks To:"
 msgstr "Specjalne podziękowania:"
 
 #: ../src/misc.py:151
-#, fuzzy
 msgid "Getting update packages"
-msgstr "Pobieranie pakietów: %s"
+msgstr "Uzyskiwanie zaktualizowanych pakietów"
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Wyświetl zainstalowane pakiety"
+msgstr "Uzyskiwanie zainstalowanych pakietów"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "Wyświetl dostępne pakiety"
+msgstr "Uzyskiwanie dostępnych pakietów"
 
 #: ../src/misc.py:157
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "Znaleziono %d %s pakietów"
+msgstr "Znaleziono %d zaktualizowanych pakietów"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "Znaleziono %d %s pakietów"
+msgstr "Znaleziono %d zainstalowanych pakietów"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "Znaleziono %d %s pakietów"
+msgstr "Znaleziono %d dostępnych pakietów"
 
 #: ../src/misc.py:374
 msgid "Package Queue:"
@@ -374,7 +371,7 @@ msgstr "Ustawianie yuma: zestaw transakcji"
 
 #: ../src/yumapi.py:69 ../src/yumapi.py:116
 msgid "Setup Yum : RPM Db."
-msgstr "Ustawianie yuma: baza RPM."
+msgstr "Ustawianie yuma: baza danych RPM."
 
 #. -> Repo Setup
 #: ../src/yumapi.py:72 ../src/yumapi.py:119
@@ -460,7 +457,7 @@ msgstr "Usuwanie zależności"
 #: ../src/yumapi.py:253
 #, python-format
 msgid "Failure getting %s: "
-msgstr "Pobieranie %s nie powiodło się: "
+msgstr "Uzyskiwanie %s nie powiodło się: "
 
 #: ../src/yumapi.py:275
 msgid "Downloading Packages:"
@@ -780,7 +777,7 @@ msgstr "<b>Filtry wyjątków repozytoriów</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
-msgstr "<b>Podakcja</b>\n"
+msgstr "<b>PODDZIAŁANIE</b>\n"
 
 #: ../src/yumex.glade.h:16
 msgid "<b>Total Download Size</b>"
@@ -788,7 +785,7 @@ msgstr "<b>Całkowity rozmiar pobierania</b>"
 
 #: ../src/yumex.glade.h:17
 msgid "<span size=\"large\"><b>Action</b></span>\n"
-msgstr "<span size=\"large\"><b>Akcja</b></span>\n"
+msgstr "<span size=\"large\"><b>Działanie</b></span>\n"
 
 #: ../src/yumex.glade.h:19
 msgid "<span size=\"xx-large\" color=\"black\">Group View</span>"
@@ -816,7 +813,7 @@ msgstr "Dostępne"
 
 #: ../src/yumex.glade.h:26
 msgid "C_hangelog"
-msgstr "Lista _zmian"
+msgstr "Dziennik _zmian"
 
 #: ../src/yumex.glade.h:27
 msgid "Console"
@@ -956,7 +953,4 @@ msgstr "Wtyczki y_uma:"
 
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
-msgstr "dialog1"
-
-#~ msgid "Quiting, please wait !!!!!!"
-#~ msgstr "Kończenie działania, proszę czekać!"
+msgstr "okno dialogowe 1"
