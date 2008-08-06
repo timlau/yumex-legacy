@@ -57,6 +57,8 @@ class YumexYumHandler(yum.YumBase,YumexPackages):
         # Setup failure callback
         freport = ( self._failureReport, (), {} )
         self.repos.setFailureCallback( freport )       
+        # Setup signed metadata support
+        self._setupKeyImportCallbacks()
         self.updateMetadata = UpdateMetadata()        
         self.yumex_logger.info("Yum Version : %s" % yum.__version__)        
         self.isSetup = False
@@ -91,19 +93,24 @@ class YumexYumHandler(yum.YumBase,YumexPackages):
             self.repos = yum.repos.RepoStorage()   
             # load repos into storage
             self.getReposFromConfig()
+            if self.pkgSack:
+                self.pkgSack=None
+            
         # FIXME: this is some ugly shit    
         elif yum.__version__ < '3.2.1': 
             self.repos.repos =  {}
             del self.repos 
+            if self.pkgSack:
+                self.pkgSack=None
         else:
             self._repos = yum.repos.RepoStorage(self)   
+            # Setup signed metadata support
+            self._setupKeyImportCallbacks()
             self.getReposFromConfig()
-
-        # Kill the current pkgSack    
-        if self.pkgSack:
-            self.pkgSack=None
+            # Kill the current pkgSack    
+            if self._pkgSack:
+                self._pkgSack=None
             
-                
         self.closeRpmDB()
         self.isSetup = False
         
@@ -130,7 +137,24 @@ class YumexYumHandler(yum.YumBase,YumexPackages):
         self.progressLog( _( "Setup Yum : Base setup completed" ) )
         self.clearPackages()  # Force YumexPackages to repopulate
         self.isSetup = True
-
+        
+    def _setupKeyImportCallbacks(self):
+        """ 
+        Setup signed repomd.xml support if the current yum api
+        support it
+        """
+        if hasattr(self,'getKeyForRepo'):
+            self.yumex_logger.info(_('Setup signed metadata support'))
+            self.repos.confirm_func = self._repo_confirm
+            self.repos.gpg_import_func = self.getKeyForRepo       
+         
+    def _repo_confirm(self,keydict):
+        repo = keydict['repo']
+        need = _("Repository metadata (repomd.xml) for %s") % repo.id
+        userid = keydict['userid']
+        hexkeyid = keydict['hexkeyid']        
+        return self._askForGPGKeyImport(need,userid,hexkeyid)
+        
     def _setupUpdateMetadata(self):
         for repo in self.repos.listEnabled():
             try: # attempt to grab the updateinfo.xml.gz from the repodata
@@ -453,7 +477,6 @@ class YumexYumHandler(yum.YumBase,YumexPackages):
         
     def _askForGPGKeyImport(self, po, userid, hexkeyid):
         ''' ask callback for GPG Key import '''
-        #print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
         msg =  _('Do you want to import GPG Key : %s \n') % hexkeyid 
         msg += "  %s \n" % userid
         msg += _("Needed by %s") % str(po)
