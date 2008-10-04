@@ -1,0 +1,8 @@
+FIXME:
+* Show localized Categories and Group Names
+
+
+FUTURE STUFF:
+* Separate the GUI and the backend doing the package stuff
+  * make an abstract backend, to make the gui interfacing to the backend more common.
+  * make a forked yum backend to increase the responciveness of the GUI
