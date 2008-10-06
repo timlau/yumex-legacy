@@ -61,9 +61,9 @@ class YumexBackendYum(YumexBackendBase):
         pass
 
 
-class YumexFrontendBase:
+class YumexFrontendYum(YumexFrontendBase):
     '''
-    Yumex Front Base class
+    Yumex Front for yum class
 
     This is a frontend callback class used by the backend and
     transaction to notify the frontend about changes.
@@ -101,7 +101,7 @@ class YumexFrontendBase:
         pass
 
 
-class YumexPackageBase:
+class YumexPackageYum(YumexPackageBase):
     '''
     Yumex Package Base class
 
