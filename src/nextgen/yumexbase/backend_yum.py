@@ -19,11 +19,13 @@
 
 # Constants
 
+from yumexbase inport *
+from yum import YumBase
 
-class YumexBackendBase:
-    ''' Yumex Backend Base clasee
+class YumexBackendYum(YumexBackendBase):
+    ''' Yumex Backend Yume class
 
-    This is the base class to interact with the package system
+    This is the base class to interact with yum
     '''
 
     def __init__(self):
