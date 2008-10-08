@@ -61,45 +61,6 @@ class YumexBackendYum(YumexBackendBase):
         pass
 
 
-class YumexFrontendYum(YumexFrontendBase):
-    '''
-    Yumex Front for yum class
-
-    This is a frontend callback class used by the backend and
-    transaction to notify the frontend about changes.
-    '''
-
-    def __init__(self,backend,progress):
-        self._backend = backend
-        self._progress = progress
-
-    def set_state(self,state):
-        pass
-
-    def get_progress(self):
-        return self._progress
-
-    def progress(self):
-        pass
-
-    def confirm_transaction(self,transaction):
-        pass
-
-    def error(self,msg):
-        pass
-
-    def info(self,msg):
-        pass
-
-    def debug(self,msg):
-        pass
-
-    def warning(self,msg):
-        pass
-
-    def reset(self):
-        pass
-
 
 class YumexPackageYum(YumexPackageBase):
     '''

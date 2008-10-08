@@ -195,6 +195,9 @@ class YumexTransactionBase:
     def process_transaction(self):
         pass
 
+    def get_transaction_packages(self):
+        pass
+
 class YumexProgressElememt:
     '''
     '''
