@@ -1,27 +1,27 @@
-# translation of sr.po to Serbian
 # Serbian translations for yumex
 # Copyright (C) 2007 Tim Lauridsen
 # This file is distributed under the same license as the yumex package.
-#
 # Jovan Krunic <jovan.krunic@gmail.com>, 2008.
+# Miloš Komarčević <kmilos@gmail.com>, 2008.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-25 12:41+0200\n"
-"PO-Revision-Date: 2008-03-17 00:27+0100\n"
-"Last-Translator: Jovan Krunic <jovan.krunic@gmail.com>\n"
+"PO-Revision-Date: 2008-10-13 22:57+0100\n"
+"Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../src/callbacks.py:69
 #, python-format
 msgid "Getting : %s"
-msgstr "Узимам : %s"
+msgstr "Добављам : %s"
 
 #: ../src/callbacks.py:164 ../src/yumapi.py:204
 msgid "Removing"
@@ -68,7 +68,7 @@ msgstr "---> Пакет %s.%s %s:%s-%s подешен да буде %s"
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
-msgstr "--> Извршавам проверу преноса"
+msgstr "--> Извршавам проверу трансакције"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
@@ -76,7 +76,7 @@ msgstr "--> Поново покрећем разрешавање зависно�
 
 #: ../src/callbacks.py:255
 msgid "--> Finished Dependency Resolution"
-msgstr "--> Завршено разрешавање зависности"
+msgstr "--> Завршено је разрешавање зависности"
 
 #: ../src/callbacks.py:259
 #, python-format
@@ -86,7 +86,7 @@ msgstr "--> Обрађујем зависност: %s за пакет: %s"
 #: ../src/callbacks.py:264
 #, python-format
 msgid "--> Unresolved Dependency: %s"
-msgstr "--> неразрешена зависност: %s"
+msgstr "--> Неразрешена зависност: %s"
 
 #: ../src/callbacks.py:268
 #, python-format
@@ -101,7 +101,7 @@ msgstr ""
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr "---> Преузимам заглавље за %s да би се упаковало у скуп за пренос."
+msgstr "---> Преузимам заглавље за %s ради паковања у скуп трансакција."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
@@ -139,7 +139,7 @@ msgid ""
 "Updating : %s\n"
 "\n"
 msgstr ""
-"Ажурирам :%s\n"
+"Ажурирам : %s\n"
 "\n"
 
 #: ../src/gui.py:73
@@ -230,7 +230,7 @@ msgstr "Неопходно"
 
 #: ../src/misc.py:108
 msgid "Default"
-msgstr "Подразумевана вредност"
+msgstr "Подразумевано"
 
 #: ../src/misc.py:109
 msgid "Optional"
@@ -253,34 +253,31 @@ msgid "Special Thanks To:"
 msgstr "Посебне похвале:"
 
 #: ../src/misc.py:151
-#, fuzzy
 msgid "Getting update packages"
-msgstr "Узимам пакете : %s"
+msgstr "Добављам ажуриране пакете"
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Прикажи инсталиране пакете"
+msgstr "Добављам инсталиране пакете"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "Прикажи доступне пакете"
+msgstr "Добављам доступне пакете"
 
 #: ../src/misc.py:157
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "Пронађени %d %s пакети"
+msgstr "Пронађено %d ажурираних пакета"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "Пронађени %d %s пакети"
+msgstr "Пронађено %d инсталираних пакета"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "Пронађени %d %s пакети"
+msgstr "Пронађено %d доступних пакета"
 
 #: ../src/misc.py:374
 msgid "Package Queue:"
@@ -373,7 +370,7 @@ msgstr "Додатак"
 
 #: ../src/yumapi.py:67 ../src/yumapi.py:114
 msgid "Setup Yum : Transaction Set"
-msgstr "Подешавање Yum-а : скуп преноса"
+msgstr "Подешавање Yum-а : скуп трансакције"
 
 #: ../src/yumapi.py:69 ../src/yumapi.py:116
 msgid "Setup Yum : RPM Db."
@@ -403,21 +400,21 @@ msgstr "Подешавање Yum-а : групе"
 
 #: ../src/yumapi.py:84 ../src/yumapi.py:130
 msgid "Setup Yum : Base setup completed"
-msgstr "Подешавање Yum-а : завршено основно подешавање"
+msgstr "Подешавање Yum-а : завршено је основно подешавање"
 
 #: ../src/yumapi.py:138
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Учитани метаподаци за ажурирања из %s "
+msgstr "Учитани су метаподаци за ажурирања из %s "
 
 #: ../src/yumapi.py:140
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr "Нисам нашао метаподатке за %s "
+msgstr "Нису пронађени метаподаци за %s "
 
 #: ../src/yumapi.py:159 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
-msgstr "Припремање за инсталирање/уклањање/ажурирање"
+msgstr "Припремање за инсталацију/уклањање/ажурирање"
 
 #: ../src/yumapi.py:163
 msgid "--> Preparing for install"
@@ -437,7 +434,7 @@ msgstr "--> Припремање за делимично ажурирање"
 
 #: ../src/yumapi.py:180
 msgid "--> Adding all obsoletion to transaction"
-msgstr "--> Додавање свих превазиђених пакета у пренос"
+msgstr "--> Додавање свих превазиђених пакета у трансакцију"
 
 #: ../src/yumapi.py:202 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
@@ -463,7 +460,7 @@ msgstr "Уклањање за зависности"
 #: ../src/yumapi.py:253
 #, python-format
 msgid "Failure getting %s: "
-msgstr "Неуспешно узимање %s: "
+msgstr "Неуспешно добављање %s: "
 
 #: ../src/yumapi.py:275
 msgid "Downloading Packages:"
@@ -488,23 +485,23 @@ msgstr "Повратни траг при провери потписа паке�
 
 #: ../src/yumapi.py:324
 msgid "Running Transaction Test"
-msgstr "Извршавам тестирање преноса"
+msgstr "Извршавам тестирање транскације"
 
 #: ../src/yumapi.py:342
 msgid "Finished Transaction Test"
-msgstr "Завршено тестирање преноса"
+msgstr "Завршено је тестирање транцакције"
 
 #: ../src/yumapi.py:344
 msgid "Transaction Check Error: "
-msgstr "Грешка при провери преноса: "
+msgstr "Грешка при провери трансакције: "
 
 #: ../src/yumapi.py:349
 msgid "Transaction Test Succeeded"
-msgstr "Успешно тестирање преноса"
+msgstr "Успешно тестирање трансакције"
 
 #: ../src/yumapi.py:365
 msgid "Running Transaction"
-msgstr "Извршавам пренос"
+msgstr "Извршавам трансакцију"
 
 #. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
 #: ../src/yumapi.py:457
@@ -519,7 +516,7 @@ msgstr "Потребан за %s"
 
 #: ../src/yumex.py:65
 msgid "Cant Quit while running RPM Transactions"
-msgstr "Не могу да изађем док се извршава RPM пренос"
+msgstr "Не могу да изађем док се извршава RPM трансакција"
 
 #: ../src/yumex.py:153
 msgid "Yum has not been initialized yet"
@@ -664,7 +661,7 @@ msgstr "Нема изабраних пакета"
 
 #: ../src/yumex.py:632
 msgid "No packages in transaction"
-msgstr "Нема пакета у преносу"
+msgstr "Нема пакета у трансакцији"
 
 #: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
@@ -680,7 +677,7 @@ msgstr "Обрађивање пакета је добро завршено"
 
 #: ../src/yumex.py:664
 msgid "Error in Transaction"
-msgstr "Грешка при преносу"
+msgstr "Грешка при трансакцији"
 
 #: ../src/yumex.py:669
 #, python-format
