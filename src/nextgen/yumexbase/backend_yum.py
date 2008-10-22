@@ -19,7 +19,7 @@
 
 # Constants
 
-from yumexbase inport *
+from yumexbase import *
 from yum import YumBase
 
 class YumexBackendYum(YumexBackendBase):
@@ -39,25 +39,25 @@ class YumexBackendYum(YumexBackendBase):
         ''' Reset the backend, so it can be setup again'''
         pass
 
-    def get_packages(self,filter):
+    def get_packages(self, filter):
         pass
 
     def get_repositories(self):
         pass
 
-    def enable_repository(self,repoid,enabled=True):
+    def enable_repository(self, repoid, enabled=True):
         pass
 
     def get_categories(self):
         pass
 
-    def get_groups(self,cat_id = None):
+    def get_groups(self, cat_id=None):
         pass
 
-    def get_group_packages(self,filter):
+    def get_group_packages(self, filter):
         pass
 
-    def search(self,keys,filters):
+    def search(self, keys, filters):
         pass
 
 
@@ -69,7 +69,7 @@ class YumexPackageYum(YumexPackageBase):
     This is an abstract package object for a package in the package system
     '''
 
-    def __init__(self,pkg):
+    def __init__(self, pkg):
         self._pkg = pkg
         self.selected = False
 
@@ -107,11 +107,11 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def id(self):
-        return "%s-%s.%s.%s" % (self.name,self.version,self.release,self.arch)
+        return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
 
     @property
     def filename(self):
-        return "%s-%s.%s.%s.rpm" % (self.name,self.version,self.release,self.arch)
+        return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
 class YumexTransactionBase:
     '''
@@ -121,26 +121,26 @@ class YumexTransactionBase:
     to the system and to process the transaction on the system.
     '''
 
-    def __init__(self,backend,frontend):
+    def __init__(self, backend, frontend):
         self._backend = backend
         self._frontend = frontend
 
-    def add(self,po):
+    def add(self, po):
         pass
 
-    def remove(self,po):
+    def remove(self, po):
         pass
 
-    def has_item(self,po):
+    def has_item(self, po):
         pass
 
-    def add_group(self,grp):
+    def add_group(self, grp):
         pass
 
-    def remove_group(self,grp):
+    def remove_group(self, grp):
         pass
 
-    def has_group(self.grp):
+    def has_group(self, grp):
         pass
 
     def process_transaction(self):

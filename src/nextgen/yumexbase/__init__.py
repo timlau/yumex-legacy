@@ -22,15 +22,15 @@
 from enum import Enum
 
 # Package Types
-PKG_TYPE    = Enum('installed','available','update','obsolete')
+PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
 # Package list filters
-FILTER      = Enum('all','installed','available','updates','obsoletes')
+FILTER = Enum('all', 'installed', 'available', 'updates', 'obsoletes')
 # Search filters
-SEARCH      = Enum('name','summary','description','ver','arch','repoid')
+SEARCH = Enum('name', 'summary', 'description', 'ver', 'arch', 'repoid')
 # Group Package filters
-GROUP       = Enum('all','minimum')
+GROUP = Enum('all', 'minimum')
 # State
-STATE       = Enum('none','init','download-meta','download-pkg','update','install','remove','cleanup')
+STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
 
 class YumexBackendBase:
     ''' Yumex Backend Base clasee
@@ -49,25 +49,25 @@ class YumexBackendBase:
         ''' Reset the backend, so it can be setup again'''
         pass
 
-    def get_packages(self,filter):
+    def get_packages(self, filter):
         pass
 
     def get_repositories(self):
         pass
 
-    def enable_repository(self,repoid,enabled=True):
+    def enable_repository(self, repoid, enabled=True):
         pass
 
     def get_categories(self):
         pass
 
-    def get_groups(self,cat_id = None):
+    def get_groups(self, cat_id=None):
         pass
 
-    def get_group_packages(self,filter):
+    def get_group_packages(self, filter):
         pass
 
-    def search(self,keys,filters):
+    def search(self, keys, filters):
         pass
 
 
@@ -79,11 +79,11 @@ class YumexFrontendBase:
     transaction to notify the frontend about changes.
     '''
 
-    def __init__(self,backend,progress):
+    def __init__(self, backend, progress):
         self._backend = backend
         self._progress = progress
 
-    def set_state(self,state):
+    def set_state(self, state):
         pass
 
     def get_progress(self):
@@ -92,19 +92,19 @@ class YumexFrontendBase:
     def progress(self):
         pass
 
-    def confirm_transaction(self,transaction):
+    def confirm_transaction(self, transaction):
         pass
 
-    def error(self,msg):
+    def error(self, msg):
         pass
 
-    def info(self,msg):
+    def info(self, msg):
         pass
 
-    def debug(self,msg):
+    def debug(self, msg):
         pass
 
-    def warning(self,msg):
+    def warning(self, msg):
         pass
 
     def reset(self):
@@ -118,7 +118,7 @@ class YumexPackageBase:
     This is an abstract package object for a package in the package system
     '''
 
-    def __init__(self,pkg):
+    def __init__(self, pkg):
         self._pkg = pkg
         self.selected = False
 
@@ -156,11 +156,11 @@ class YumexPackageBase:
 
     @property
     def id(self):
-        return "%s-%s.%s.%s" % (self.name,self.version,self.release,self.arch)
+        return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
 
     @property
     def filename(self):
-        return "%s-%s.%s.%s.rpm" % (self.name,self.version,self.release,self.arch)
+        return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
 class YumexTransactionBase:
     '''
@@ -170,26 +170,26 @@ class YumexTransactionBase:
     to the system and to process the transaction on the system.
     '''
 
-    def __init__(self,backend,frontend):
+    def __init__(self, backend, frontend):
         self._backend = backend
         self._frontend = frontend
 
-    def add(self,po):
+    def add(self, po):
         pass
 
-    def remove(self,po):
+    def remove(self, po):
         pass
 
-    def has_item(self,po):
+    def has_item(self, po):
         pass
 
-    def add_group(self,grp):
+    def add_group(self, grp):
         pass
 
-    def remove_group(self,grp):
+    def remove_group(self, grp):
         pass
 
-    def has_group(self.grp):
+    def has_group(self, grp):
         pass
 
     def process_transaction(self):
@@ -202,7 +202,7 @@ class YumexProgressElememt:
     '''
     '''
 
-    def __init__(self,name,size):
+    def __init__(self, name, size):
         self.name = name
         self.size = size
         self.downloaded = 0L
@@ -214,7 +214,7 @@ class YumexProgressElememt:
         self.ETA = 0L
         self.speed = 0L
 
-    def set_progress(downloaded,eta,speed):
+    def set_progress(downloaded, eta, speed):
         self.downloaded = downloaded
         self.eta = eta
         self.speed = speed
@@ -230,13 +230,13 @@ class YumexProgressBase:
         self._names = {}
         self._current = None
 
-    def set_names(self,names):
+    def set_names(self, names):
         self._names = {}
         for pkg in names:
             self._names[pkg.name] = pkg
 
 
-    def set_current(self,current):
+    def set_current(self, current):
         self._current = current
 
     def get_current(self):
