@@ -23,6 +23,7 @@ import gtk
 import gtk.glade
 import pango
 import logging
+import types
 
 #
 # Classses
@@ -137,7 +138,7 @@ class TextViewLogHandler(logging.Handler):
         
     def emit(self, record):   
         while gtk.events_pending():      # process gtk events
-           gtk.main_iteration()    
+            gtk.main_iteration()    
         msg = self.format(record)
         if self.console:
             if self.doGTK:
@@ -177,7 +178,7 @@ class UI(gtk.glade.XML):
         result = self.get_widget(name)
         if result is None:
             raise AttributeError("Can't find widget %s in %s.\n" % 
-                                 (`name`, `self.filename`))
+                                 (name, self.filename))
         
         # Cache the widget to speed up future lookups.  If multiple
         # widgets in a hierarchy have the same name, the lookup

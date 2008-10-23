@@ -20,7 +20,8 @@
 # Constants
 
 from yumexbase import *
-from yum import YumBase
+
+
 
 class YumexBackendYum(YumexBackendBase):
     ''' Yumex Backend Yume class
@@ -29,8 +30,7 @@ class YumexBackendYum(YumexBackendBase):
     '''
 
     def __init__(self):
-        pass
-
+        YumexBackendBase.__init__(self)
     def setup(self):
         ''' Setup the backend'''
         pass
@@ -39,26 +39,52 @@ class YumexBackendYum(YumexBackendBase):
         ''' Reset the backend, so it can be setup again'''
         pass
 
-    def get_packages(self, filter):
+    def get_packages(self, pkg_filter):
+        ''' 
+        get packages based on filter 
+        @param pkg_filer: package list filter (Enum FILTER)
+        @return: a list of packages
+        '''
         pass
 
     def get_repositories(self):
+        ''' 
+        get repositories 
+        @return: a list of repositories
+        '''
         pass
 
     def enable_repository(self, repoid, enabled=True):
+        ''' 
+        set repository enable state
+        @param repoid: repo id to change
+        @param enabled: repo enable state
+        '''
         pass
 
-    def get_categories(self):
+    def get_groups(self):
+        ''' 
+        get groups 
+        @return: a list of groups
+        '''
         pass
 
-    def get_groups(self, cat_id=None):
+    def get_group_packages(self, group, grp_filter):
+        ''' 
+        get packages in a group 
+        @param group: group id to get packages from
+        @param grp_filter: group filters (Enum GROUP)
+        '''
         pass
 
-    def get_group_packages(self, filter):
+    def search(self, keys, sch_filters):
+        ''' 
+        get packages matching keys
+        @param keys: list of keys to seach for
+        @param sch_filters: list of search filter (Enum SEARCH)
+        '''
         pass
 
-    def search(self, keys, filters):
-        pass
 
 
 
@@ -70,8 +96,7 @@ class YumexPackageYum(YumexPackageBase):
     '''
 
     def __init__(self, pkg):
-        self._pkg = pkg
-        self.selected = False
+        YumexPackageBase.__init__(self, pkg)
 
     @property
     def name(self):
@@ -113,7 +138,7 @@ class YumexPackageYum(YumexPackageBase):
     def filename(self):
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
-class YumexTransactionBase:
+class YumexTransactionYum:
     '''
     Yumex Transaction Base class
 

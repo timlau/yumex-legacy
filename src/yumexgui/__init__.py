@@ -32,34 +32,44 @@ class YumexFrontend(YumexFrontendBase):
     '''
 
     def __init__(self, backend, progress):
+        ''' Setup the frontend callbacks '''
         self._backend = backend
         self._progress = progress
 
     def set_state(self, state):
+        ''' set the state of work '''
         pass
 
     def get_progress(self):
+        ''' Get the current progress object '''
         return self._progress
 
     def progress(self):
+        ''' trigger at progress update'''
         pass
 
     def confirm_transaction(self, transaction):
+        ''' confirm the current transaction'''
         pass
 
     def error(self, msg):
-        pass
-
-    def info(self, msg):
-        pass
-
-    def debug(self, msg):
+        ''' Write an error message to frontend '''
         pass
 
     def warning(self, msg):
+        ''' Write an warning message to frontend '''
+        pass
+
+    def info(self, msg):
+        ''' Write an info message to frontend '''
+        pass
+
+    def debug(self, msg):
+        ''' Write an debug message to frontend '''
         pass
 
     def reset(self):
+        ''' trigger a frontend reset '''
         pass
 
 
@@ -67,14 +77,14 @@ class YumexHandlers(Controller):
     ''' This class contains all glade signal callbacks '''
     
     
-    def __init__( self ):
-         # Create and ui object contains the widgets.
-         ui = UI( const.GLADE_FILE , 'main', 'yumex' )
-         # init the Controller Class to connect signals.
-         Controller.__init__( self, ui )
+    def __init__(self):
+        # Create and ui object contains the widgets.
+        ui = UI(const.GLADE_FILE , 'main', 'yumex')
+        # init the Controller Class to connect signals.
+        Controller.__init__(self, ui)
 
 
-class YumexApplication(YumexHandlers,YumexFrontend):
+class YumexApplication(YumexHandlers, YumexFrontend):
     """
     The Yum Extender main application class 
     """
@@ -84,7 +94,7 @@ class YumexApplication(YumexHandlers,YumexFrontend):
         self.progress = None
         self.setup_backend()
         YumexHandlers.__init__(self)
-        YumexFrontend(self,self.backend, self.progress)
+        YumexFrontend(self, self.backend, self.progress)
     
     def setup_backend(self):
         #TODO: Add some reel backend setup code
