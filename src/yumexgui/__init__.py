@@ -18,3 +18,76 @@
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # yum extender gui module
+
+from gui import UI, Controller
+from yumexbase import YumexFrontendBase
+from misc import const
+
+class YumexFrontend(YumexFrontendBase):
+    '''
+    Yumex Frontend  class
+
+    This is a frontend callback class used by the backend and
+    transaction to notify the frontend about changes.
+    '''
+
+    def __init__(self, backend, progress):
+        self._backend = backend
+        self._progress = progress
+
+    def set_state(self, state):
+        pass
+
+    def get_progress(self):
+        return self._progress
+
+    def progress(self):
+        pass
+
+    def confirm_transaction(self, transaction):
+        pass
+
+    def error(self, msg):
+        pass
+
+    def info(self, msg):
+        pass
+
+    def debug(self, msg):
+        pass
+
+    def warning(self, msg):
+        pass
+
+    def reset(self):
+        pass
+
+
+class YumexHandlers(Controller):
+    ''' This class contains all glade signal callbacks '''
+    
+    
+    def __init__( self ):
+         # Create and ui object contains the widgets.
+         ui = UI( const.GLADE_FILE , 'main', 'yumex' )
+         # init the Controller Class to connect signals.
+         Controller.__init__( self, ui )
+
+
+class YumexApplication(YumexHandlers,YumexFrontend):
+    """
+    The Yum Extender main application class 
+    """
+    
+    def __init__(self):
+        self.backend = None
+        self.progress = None
+        self.setup_backend()
+        YumexHandlers.__init__(self)
+        YumexFrontend(self,self.backend, self.progress)
+    
+    def setup_backend(self):
+        #TODO: Add some reel backend setup code
+        self.backend = None
+        self.progress = None
+        
