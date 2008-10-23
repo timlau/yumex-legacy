@@ -31,7 +31,8 @@ class YumexBackendDummy(YumexBackendBase):
     '''
 
     def __init__(self,frontend):
-        YumexBackendBase.__init__(self,frontend)
+        transaction = YumexTransactionDummy(self,frontend)
+        YumexBackendBase.__init__(self,frontend,transaction)
 
     def setup(self):
         ''' Setup the backend'''

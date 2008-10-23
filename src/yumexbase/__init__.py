@@ -37,12 +37,13 @@ class YumexBackendBase(object):
     Yumex Backend Base class
     This is the base class to interact with the package system    
     '''
-    def __init__(self,frontend):
+    def __init__(self,frontend,transaction):
         ''' 
         init the backend 
         @param frontend: the current frontend
         '''
         self.frontend = frontend
+        self.transaction = transaction
 
     def setup(self):
         ''' Setup the backend'''

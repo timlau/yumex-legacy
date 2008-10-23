@@ -30,7 +30,8 @@ class YumexBackendYum(YumexBackendBase):
     '''
 
     def __init__(self, frontend):
-        YumexBackendBase.__init__(self, frontend)
+        transaction = YumexTransactionYum(self,frontend)
+        YumexBackendBase.__init__(self, frontend,transaction)
 
     def setup(self):
         ''' Setup the backend'''
