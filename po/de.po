@@ -1,5 +1,5 @@
 # German translation of yumex.
-# Copyright (C) 2005 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2005 Yumex Team
 # This file is distributed under the same license as the yumex package.
 # komi <komi@gmx.at>, 2005.
 # Fabian Affolter <fab@fedoraproject.org>, 2008.
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-27 21:27+0000\n"
-"PO-Revision-Date: 2008-08-28 13:07+0100\n"
+"POT-Creation-Date: 2008-10-23 01:33+0000\n"
+"PO-Revision-Date: 2008-10-23 16:41+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "gelöscht"
 #: ../src/callbacks.py:240
 #, python-format
 msgid "---> Package %s.%s %s:%s-%s set to be %s"
-msgstr "---> Pakete %s.%s %s:%s-%s gesetzt, um zu sein %s"
+msgstr "---> Pakete %s.%s %s:%s-%s markiert, um %s zu werden"
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
@@ -354,7 +354,7 @@ msgstr "Repo."
 
 #: ../src/views.py:96
 msgid "Size."
-msgstr "Größe."
+msgstr "Grösse."
 
 #: ../src/views.py:213
 msgid "Packages"
@@ -383,43 +383,43 @@ msgstr "Plugin"
 #: ../src/yumapi.py:69
 #: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
-msgstr "Setup Yum: Transaktionsset"
+msgstr "Yum einrichten: Transaktionsset"
 
 #: ../src/yumapi.py:71
 #: ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
-msgstr "Setup Yum: RPM Db."
+msgstr "Yum einrichten: RPM Db."
 
 #. -> Repo Setup
 #: ../src/yumapi.py:74
 #: ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
-msgstr "Setup Yum: Repositories."
+msgstr "Yum einrichten: Repositories."
 
 #. -> Sack Setup
 #: ../src/yumapi.py:77
 #: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
-msgstr "Setup Yum: Pakete Sacks"
+msgstr "Yum einrichten: Pakete-Säcke"
 
 #. -> Updates Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:80
 #: ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
-msgstr "Setup Yum: Aktualisierungen"
+msgstr "Yum einrichten: Aktualisierungen"
 
 #. -> Group Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:84
 #: ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
-msgstr "Setup Yum: Gruppen"
+msgstr "Yum einrichten: Gruppen"
 
 #: ../src/yumapi.py:86
 #: ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
-msgstr "Setup Yum: Basis-Setup abgeschlossen"
+msgstr "Yum einrichten: Basis-Setup abgeschlossen"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
@@ -636,7 +636,7 @@ msgstr "Fehler"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr "Fehler in Yum Setup"
+msgstr "Fehler in Yum-Setup"
 
 #. prepare package lists
 #. -> List setup
@@ -663,19 +663,19 @@ msgstr "Sortiere Pakete"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
-msgstr "Erstelle Ansicht mit Paketen"
+msgstr "Bestand-Ansicht mit Paketen"
 
 #: ../src/yumex.py:531
 msgid "Population Completed"
-msgstr "Erstellen komplett"
+msgstr "Bestand komplett"
 
 #: ../src/yumex.py:539
 msgid "Package View Population"
-msgstr "Paket-Ansicht"
+msgstr "Paketbestand-Ansicht"
 
 #: ../src/yumex.py:551
 msgid "Package View Population Completed"
-msgstr "Erstellen der Paket-Ansicht abgeschlossen"
+msgstr "Erstellen der Paketbestand-Ansicht abgeschlossen"
 
 #: ../src/yumex.py:558
 msgid "Category View Population"
@@ -982,7 +982,7 @@ msgstr "_Überspringen"
 
 #: ../src/yumex.glade.h:59
 msgid "_Tools"
-msgstr "_Tools"
+msgstr "_Werkzeuge"
 
 #: ../src/yumex.glade.h:60
 msgid "_Yum Clean All"
@@ -990,7 +990,7 @@ msgstr "_Yum Säubere alles"
 
 #: ../src/yumex.glade.h:61
 msgid "_Yum excludes:"
-msgstr "_Yum-Excludes:"
+msgstr "_Yum-Ausnahmen:"
 
 #: ../src/yumex.glade.h:62
 msgid "_Yum plugins:"
