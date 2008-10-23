@@ -173,7 +173,7 @@ class YumexPackageDummy(YumexPackageBase):
     def filename(self):
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
-class YumexTransactionDummy:
+class YumexTransactionDummy(YumexTransactionBase):
     '''
     Yumex Transaction Base class
 
@@ -182,29 +182,64 @@ class YumexTransactionDummy:
     '''
 
     def __init__(self, backend, frontend):
-        self._backend = backend
-        self._frontend = frontend
+        '''
+        initialize the transaction queue
+        @param backend: The current YumexBackend
+        @param frontend: the current YumexFrontend
+        '''
+        YumexTransactionBase.__init__(self, backend, frontend)
 
     def add(self, po):
+        '''
+        add a package to the queue
+        @param po: package to add to the queue
+        '''
         pass
 
     def remove(self, po):
+        '''
+        remove a package from the queue
+        @param po: package to remove from the queue
+        '''
         pass
 
     def has_item(self, po):
+        '''
+        check if a package is already in the queue
+        @param po: package to check for
+        '''
         pass
 
     def add_group(self, grp):
+        '''
+        Add a group to the queue
+        @param grp: group to add to queue
+        '''
         pass
 
     def remove_group(self, grp):
+        '''
+        Remove a group from the queue
+        @param grp: group to add to queue
+        '''
         pass
 
     def has_group(self, grp):
+        '''
+        Check if a group is in the  queue
+        @param grp: group to check for
+        '''
         pass
-
+    
     def process_transaction(self):
-        pass
+        '''
+        Process the packages and groups in the queue
+        '''
+
+    def get_transaction_packages(self):
+        '''
+        Get the current packages in the transaction queue
+        '''
 
 
 def make_dummy_pkg(name,ver,rel,arch):
