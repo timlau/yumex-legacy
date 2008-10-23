@@ -20,25 +20,26 @@
 # Constants
 
 from yumexbase import *
-from yumexbase.i18n import _ #IGNORE:W0611 (unused import)
 
 
-class YumexBackendYum(YumexBackendBase):
-    ''' Yumex Backend Yume class
 
-    This is the base class to interact with yum
+class YumexBackendDummy(YumexBackendBase):
+    ''' 
+    Dummy class
+    
+    There returns constant data there can be used for testing
     '''
 
-    def __init__(self, frontend):
-        YumexBackendBase.__init__(self, frontend)
+    def __init__(self,frontend):
+        YumexBackendBase.__init__(self,frontend)
 
     def setup(self):
         ''' Setup the backend'''
-        self.frontend.debug('Setup yum backend')
+        self.frontend.debug('Setting up the dummy backend')
 
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
-        self.frontend.debug('Reset yum backend')
+        self.frontend.debug('Resetting the dummy backend')
 
     def get_packages(self, pkg_filter):
         ''' 
@@ -47,13 +48,40 @@ class YumexBackendYum(YumexBackendBase):
         @return: a list of packages
         '''
         self.frontend.debug('Get %s packages' % pkg_filter)
-
+        pkgs = []
+        if pkg_filter == FILTER.all:
+            pkgs.append(make_dummy_pkg('dummy-a', '1.0.0', '1', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-b', '1.1.1', '2', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-c', '1.2.0', '3', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-c', '1.2.1', '1', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-d', '1.4.0', '4', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-e', '1.5.0', '5', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-f', '1.6.0', '6', 'i386'))
+        elif pkg_filter == FILTER.installed:
+            pkgs.append(make_dummy_pkg('dummy-a', '1.0.0', '1', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-b', '1.1.1', '2', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-c', '1.2.0', '3', 'i386'))
+        elif pkg_filter == FILTER.available:
+            pkgs.append(make_dummy_pkg('dummy-d', '1.4.0', '4', 'i386'))
+            pkgs.append(make_dummy_pkg('dummy-e', '1.5.0', '5', 'i386'))
+        elif pkg_filter == FILTER.updates:
+            pkgs.append(make_dummy_pkg('dummy-c', '1.2.1', '1', 'i386'))
+        elif pkg_filter == FILTER.obsoletes:
+            pkgs.append(make_dummy_pkg('dummy-f', '1.6.0', '6', 'i386'))
+        return pkgs
+    
     def get_repositories(self):
         ''' 
         get repositories 
         @return: a list of repositories
         '''
         self.frontend.debug('Getting repository information')
+        repos = []
+        repos.append((True,"base","The base repo"))
+        repos.append((True,"updates","The updates repo"))
+        repos.append((False,"base-source","The base source repo"))
+        repos.append((False,"updates-source","The updates source repo"))
+        return repos
 
     def enable_repository(self, repoid, enabled=True):
         ''' 
@@ -87,13 +115,9 @@ class YumexBackendYum(YumexBackendBase):
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
 
 
-
-
-class YumexPackageYum(YumexPackageBase):
+class YumexPackageDummy(YumexPackageBase):
     '''
-    Yumex Package Base class
-
-    This is an abstract package object for a package in the package system
+    This is an dummy  package object 
     '''
 
     def __init__(self, pkg):
@@ -101,35 +125,44 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def name(self):
-        pass
+        return self._pkg['name']
 
     @property
     def version(self):
-        pass
+        return self._pkg['version']
 
     @property
     def release(self):
-        pass
+        return self._pkg['release']
 
     @property
     def arch(self):
-        pass
+        return self._pkg['arch']
 
     @property
     def summary(self):
-        pass
+        return 'this is an dummy package'
 
     @property
     def description(self):
-        pass
+        return 'This is an dummy package,\n so it has only this dummy description'
 
     @property
     def changelog(self):
-        pass
+        clog = []
+        clog.append(('Tue Dec 7 2004','Tim Lauridsen <tla@rasmil.dk>','bump version to 0.1.1'))
+        clog.append(('Fri Dec 8 2004','Tim Lauridsen <tla@rasmil.dk>','bump version to 0.1.2'))
+        clog.append(('Sat Dec 9 2004','Tim Lauridsen <tla@rasmil.dk>','bump version to 0.1.3'))
+        return clog    
 
     @property
     def filelist(self):
-        pass
+        flist = []
+        flist.append('/usr/share/dummy')
+        flist.append('/usr/share/dummy/dummy.png')
+        flist.append('/etc/dummy.conf')
+        flist.append('/usr/bin/dummy')
+        return flist
 
     @property
     def id(self):
@@ -139,7 +172,7 @@ class YumexPackageYum(YumexPackageBase):
     def filename(self):
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
-class YumexTransactionYum:
+class YumexTransactionDummy:
     '''
     Yumex Transaction Base class
 
@@ -171,3 +204,13 @@ class YumexTransactionYum:
 
     def process_transaction(self):
         pass
+
+
+def make_dummy_pkg(name,ver,rel,arch):
+    pkg = {}
+    pkg['name'] = name
+    pkg['version'] = ver    
+    pkg['release'] = rel
+    pkg['arch'] = arch
+    ypo = YumexPackageDummy(pkg)
+    return ypo               

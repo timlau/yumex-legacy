@@ -20,7 +20,7 @@
 # yum extender gui module
 
 from gui import UI, Controller
-from yumexbase import YumexFrontendBase
+from yumexbase import *
 from misc import const
 
 class YumexFrontend(YumexFrontendBase):
@@ -33,9 +33,8 @@ class YumexFrontend(YumexFrontendBase):
 
     def __init__(self, backend, progress):
         ''' Setup the frontend callbacks '''
-        self._backend = backend
-        self._progress = progress
-
+        YumexFrontendBase.__init__(self, backend, progress)
+        
     def set_state(self, state):
         ''' set the state of work '''
         pass
@@ -62,11 +61,11 @@ class YumexFrontend(YumexFrontendBase):
 
     def info(self, msg):
         ''' Write an info message to frontend '''
-        pass
+        print "INFO:",msg
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
-        pass
+        print "DEBUG:",msg
 
     def reset(self):
         ''' trigger a frontend reset '''
@@ -89,15 +88,41 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     The Yum Extender main application class 
     """
     
-    def __init__(self):
-        self.backend = None
+    def __init__(self,backend):
+        self.backend = backend(self)
         self.progress = None
         self.setup_backend()
         YumexHandlers.__init__(self)
-        YumexFrontend(self, self.backend, self.progress)
+        YumexFrontend.__init__(self, self.backend, self.progress)
     
     def setup_backend(self):
         #TODO: Add some reel backend setup code
-        self.backend = None
         self.progress = None
+        
+    def run_test(self):
+        def show(elems):
+            if elems:
+                for el in elems:
+                    print "  %s" % el.id
+        # setup
+        self.backend.setup()
+        # get_packages
+        print "-- All --"
+        pkgs = self.backend.get_packages(FILTER.all)
+        show(pkgs)
+        print "-- Updates --"
+        pkgs = self.backend.get_packages(FILTER.updates)
+        show(pkgs)
+        # get_groups
+        grps = self.backend.get_groups()
+        show(grps)
+        # get_repositories
+        repos = self.backend.get_repositories()
+        print repos
+        # enable_repository
+        self._backend.enable_repository('updates-source')
+        # search
+        self.backend.search(['dummy'],SEARCH.name)        
+        # reset        
+        self.backend.reset()
         

@@ -20,7 +20,14 @@
 # Yumex main 
 
 import sys
+import os
 from yumexgui import YumexApplication
 
-app = YumexApplication()
+if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy':
+    from yumexbase.backend_dummy import YumexBackendDummy as backend 
+else:
+    from yumexbase.backend_yum import YumexBackendYum as backend 
+    
+app = YumexApplication(backend)
+app.run_test()
 sys.exit(0)
