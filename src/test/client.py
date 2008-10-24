@@ -40,13 +40,12 @@ class Package:
     def getPara(self):        
         return '%s;%s;%s;%s;%s;%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
 
-class YumChild:
+class ClientYum:
     def __init__(self):
-        self.child = pexpect.spawn('./server.py')
+        self.child = pexpect.spawn('./yum_server.py')
         self.child.setecho(False)
         
     def _send_command(self,cmd):        
-        self.child.expect('>')
         self.child.sendline(cmd)
         
     def _get_list(self):
@@ -79,12 +78,12 @@ class YumChild:
         line = self.child.readline()
         return line.strip('\n')
         
-    
-yc = YumChild()
-pkgs = yc.getInstalled()
-for pkg in pkgs:
-    print pkg
-print yc.getAttribute(pkg, 'description')
-yc.close()    
+if __name__ == "__main__":    
+    yc = ClientYum()
+    pos = yc.getInstalled()
+    for po in pos:
+        print po
+        print yc.getAttribute(po, 'description')
+    yc.close()    
         
         

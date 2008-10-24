@@ -19,8 +19,31 @@
 
 # Constants
 
+import pexpect
 from yumexbase import *
-from yumexbase.i18n import _ #IGNORE:W0611 (unused import)
+from yumexbase.i18n import _ #IGNORE:W0611
+
+class YumPackage:
+    def __init__(self,base,pkgstr):
+        self.base = base
+        v = pkgstr.split('\t')
+        self.name   = v[0]
+        self.epoch  = v[1]
+        self.ver    = v[2]
+        self.rel    = v[3]
+        self.arch   = v[4]
+        self.repoid = v[5]
+        self.summary= v[6]
+        
+    def __str__(self):
+        if self.epoch == '0':
+            return '%s-%s-%s.%s' % (self.name,self.ver,self.rel,self.arch)
+        else:
+            return '%s:%s-%s-%s.%s' % (self.epoch,self.name,self.ver,self.rel,self.arch)
+
+    @property        
+    def id(self):        
+        return '%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch)
 
 
 class YumexBackendYum(YumexBackendBase):
@@ -32,14 +55,41 @@ class YumexBackendYum(YumexBackendBase):
     def __init__(self, frontend):
         transaction = YumexTransactionYum(self,frontend)
         YumexBackendBase.__init__(self, frontend,transaction)
+        
+    def _send_command(self,cmd,args):
+        line = "%s\t%s" % (cmd,"\t".join(args))        
+        self.child.sendline(cmd)
+        
+    def _get_list(self):
+        pkgs = []
+        while True:
+            line = self.child.readline()
+            if line.startswith(':end'):
+                break
+            else:
+                p = YumexPackageYum(YumPackage(self,line.strip('\n')))
+                pkgs.append(p)
+        return pkgs
+    
+    def _close(self):        
+        self.child.close(force=True)
+        
+    def _get_packages(self,pkg_filter):    
+        self._send_command('get-packages',[pkg_filter])
+        pkgs = self._get_list()
+        return pkgs
+        
 
     def setup(self):
         ''' Setup the backend'''
         self.frontend.debug('Setup yum backend')
+        self.child = pexpect.spawn('./yum_server.py')
+        self.child.setecho(False)
 
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
         self.frontend.debug('Reset yum backend')
+        self._close()
 
     def get_packages(self, pkg_filter):
         ''' 
@@ -48,6 +98,7 @@ class YumexBackendYum(YumexBackendBase):
         @return: a list of packages
         '''
         self.frontend.debug('Get %s packages' % pkg_filter)
+        return self._get_packages(self,pkg_filter)
 
     def get_repositories(self):
         ''' 
@@ -102,23 +153,23 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def name(self):
-        pass
+        return self._pkg.name
 
     @property
     def version(self):
-        pass
+        return self._pkg.ver
 
     @property
     def release(self):
-        pass
+        return self._pkg.rel
 
     @property
     def arch(self):
-        pass
+        return self._pkg.arch
 
     @property
     def summary(self):
-        pass
+        return self._pkg.summary
 
     @property
     def description(self):

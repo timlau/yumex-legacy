@@ -20,6 +20,7 @@
 
 from enum import Enum
 
+
 # Package Types
 PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
 # Package list filters
