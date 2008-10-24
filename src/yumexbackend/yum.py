@@ -20,6 +20,8 @@
 # Constants
 
 import sys
+import pickle
+import base64
 
 import pexpect
 from yumexbase import *
@@ -46,10 +48,9 @@ class YumPackage:
     def id(self):        
         return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
 
-    @property        
-    def description(self):
-        return self.base._get_attribute(self.id,"description")
-        
+    def get_attribute(self,attr):
+        return self.base._get_attribute(self.id,attr)
+           
 class YumexBackendYum(YumexBackendBase):
     ''' Yumex Backend Yume class
 
@@ -105,12 +106,6 @@ class YumexBackendYum(YumexBackendBase):
                     if cmd == ':pkg':
                         p = YumexPackageYum(YumPackage(self,args))
                         pkgs.append(p)
-            else:
-                if args:
-                    print args
-                else:
-                    cnt += 1
-                    sys.stdout.write("\rWait : %s" % cnt)
         return pkgs
 
     def _get_result(self,result_cmd):
@@ -124,12 +119,6 @@ class YumexBackendYum(YumexBackendBase):
                         return args
                     else:
                         self.frontend.warning("unexpected command : %s (%s)" % (cmd,args))
-            else:
-                if args:
-                    print args
-                else:
-                    cnt += 1
-                    sys.stdout.write("\rWait : %s" % cnt)
     
     def _close(self):        
         self.child.close(force=True)
@@ -143,7 +132,7 @@ class YumexBackendYum(YumexBackendBase):
         self._send_command('get-attribute',[id,attr])
         args = self._get_result(':attr')
         if args:
-            return args[0].replace(";","\n")
+            return pickle.loads(base64.b64decode(args[0]))
         else:
             return None
         
@@ -218,6 +207,9 @@ class YumexPackageYum(YumexPackageBase):
 
     def __init__(self, pkg):
         YumexPackageBase.__init__(self, pkg)
+        
+    def __str__(self):
+        return self.id
 
     @property
     def name(self):
@@ -230,6 +222,10 @@ class YumexPackageYum(YumexPackageBase):
     @property
     def release(self):
         return self._pkg.rel
+
+    @property
+    def epoch(self):
+        return self._pkg.epoch
 
     @property
     def arch(self):
@@ -245,15 +241,15 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def description(self):
-        return self._pkg.description
+        return self._pkg.get_attribute('description')
 
     @property
     def changelog(self):
-        pass
+        return self._pkg.get_attribute('changelog')
 
     @property
     def filelist(self):
-        pass
+        return self._pkg.get_attribute('filelist')
 
     @property
     def id(self):

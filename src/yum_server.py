@@ -21,6 +21,8 @@
 import sys
 import yum
 import traceback
+import pickle
+import base64
 
 def _to_unicode( txt, encoding='utf-8'):
     if isinstance(txt, basestring):
@@ -32,7 +34,7 @@ class ServerYumBase(yum.YumBase):
     
     def __init__(self):
         yum.YumBase.__init__(self)
-        self.doConfigSetup()
+        self.doConfigSetup(errorlevel=0,debuglevel=0)
 
     def write(self,msg):
         msg.replace("\n",";")
@@ -80,8 +82,8 @@ class ServerYumBase(yum.YumBase):
         if po:
             if hasattr(po, attr):
                 res = getattr(po, attr)
-                res = res.replace('\n',';')
-        self.write(':attr\t%s' % str(res))
+                res = base64.b64encode(pickle.dumps(res))
+        self.write(':attr\t%s' % res)
 
     def parse_command(self, cmd, args):
         if cmd == 'get-packages':

@@ -20,6 +20,7 @@
 # yum extender gui module
 
 import sys
+from datetime import date
 
 from gui import UI, Controller
 from yumexbase import *
@@ -122,6 +123,20 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         show(pkgs)
         pkgs = self.backend.get_packages(FILTER.updates)
         show(pkgs,True)
+        po = pkgs[-1]
+        print "Package : %s\n" % str(po)
+        print "\nFiles:"
+        for f in po.filelist:
+            print "  %s" % f.strip('\n')
+        num = 0    
+        print "\nChangelog"
+        for (d,a,msg) in po.changelog:
+            num += 1
+            print " %s %s" % (date.fromtimestamp(d).isoformat(),a)
+            for line in msg.split('\n'):
+                print "  %s" % line
+            if num == 3: break
+        print    
         # get_groups
         grps = self.backend.get_groups()
         show(grps)
