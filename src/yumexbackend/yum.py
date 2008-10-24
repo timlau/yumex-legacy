@@ -21,7 +21,7 @@
 
 import pexpect
 from yumexbase import *
-from yumexbase.i18n import _ #IGNORE:W0611
+from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 
 class YumPackage:
     def __init__(self,base,pkgstr):

@@ -1,4 +1,4 @@
-SUBDIRS = src po src/yumgui 
+SUBDIRS = src po src/yumexbase src/yumexgui src/yumexbackend
 PYFILES = $(wildcard *.py)
 PKGNAME = yumex
 VERSION=$(shell awk '/Version:/ { print $$2 }' ${PKGNAME}.spec)
