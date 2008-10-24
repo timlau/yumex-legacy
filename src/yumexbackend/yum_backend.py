@@ -17,41 +17,14 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# Constants
+# Imports
 
-import sys
-import pickle
-import base64
-
-import pexpect
 from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
+from yumexbackend.yum_clientserver import YumClient
 
-class YumPackage:
-    def __init__(self,base,args):
-        self.base = base
-        self.name   = args[0]
-        self.epoch  = args[1]
-        self.ver    = args[2]
-        self.rel    = args[3]
-        self.arch   = args[4]
-        self.repoid = args[5]
-        self.summary= args[6]
-        
-    def __str__(self):
-        if self.epoch == '0':
-            return '%s-%s-%s.%s' % (self.name,self.ver,self.rel,self.arch)
-        else:
-            return '%s:%s-%s-%s.%s' % (self.epoch,self.name,self.ver,self.rel,self.arch)
-
-    @property        
-    def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
-
-    def get_attribute(self,attr):
-        return self.base._get_attribute(self.id,attr)
-           
-class YumexBackendYum(YumexBackendBase):
+               
+class YumexBackendYum(YumexBackendBase,YumClient):
     ''' Yumex Backend Yume class
 
     This is the base class to interact with yum
@@ -60,93 +33,39 @@ class YumexBackendYum(YumexBackendBase):
     def __init__(self, frontend):
         transaction = YumexTransactionYum(self,frontend)
         YumexBackendBase.__init__(self, frontend,transaction)
-        
-    def _send_command(self,cmd,args):
-        line = "%s\t%s" % (cmd,"\t".join(args))
-        self.child.expect(':ready')        
-        self.child.sendline(line)
+        YumClient.__init__(self)
 
-    def _parse_command(self,line):
-        if line.startswith(':'):
-            parts = line.split('\t')
-            cmd = parts[0]
-            if len(parts) > 1:
-                args = parts[1:]
-            else:
-                args = []
-            return cmd,args
-        else:
-            return None,line
+    # Overload the YumClient message methods
         
-    def _check_for_message(self,cmd,args):
-        if cmd == ':error':
-            self.frontend.error(args[0])    
-        elif cmd == ':info':
-            self.frontend.info(args[0])    
-        elif cmd == ':debug':
-            self.frontend.debug(args[0])    
-        elif cmd == ':warning':
-            self.frontend.warning(args[0])
-        elif cmd == ':exception':
-            self.frontend.exception(args[0])
-        else:
-            return False # not a message
-        return True    
-        
-    def _get_list(self):
-        pkgs = []
-        cnt = 0L
-        while True:
-            line = self.child.readline()
-            if line.startswith(':end'):
-                break
-            cmd,args = self._parse_command(line)
-            if cmd:
-                if not self._check_for_message(cmd, args):
-                    if cmd == ':pkg':
-                        p = YumexPackageYum(YumPackage(self,args))
-                        pkgs.append(p)
-        return pkgs
+    def error(self,msg):
+        """ error message """
+        self.frontend.error(msg)
 
-    def _get_result(self,result_cmd):
-        cnt = 0L
-        while True:
-            line = self.child.readline()
-            cmd,args = self._parse_command(line)
-            if cmd:
-                if not self._check_for_message(cmd, args):
-                    if cmd == result_cmd:
-                        return args
-                    else:
-                        self.frontend.warning("unexpected command : %s (%s)" % (cmd,args))
+    def warning(self,msg):
+        """ warning message """
+        self.frontend.warning(msg)
+
+    def info(self,msg):
+        """ info message """
+        self.frontend.info(msg)
     
-    def _close(self):        
-        self.child.close(force=True)
-        
-    def _get_packages(self,pkg_filter):    
-        self._send_command('get-packages',[str(pkg_filter)])
-        pkgs = self._get_list()
-        return pkgs
+    def debug(self,msg):
+        """ debug message """
+        self.frontend.debug(msg)
 
-    def _get_attribute(self,id,attr):    
-        self._send_command('get-attribute',[id,attr])
-        args = self._get_result(':attr')
-        if args:
-            return pickle.loads(base64.b64decode(args[0]))
-        else:
-            return None
-        
+    def exception(self,msg):
+        """ debug message """
+        self.frontend.exception(msg)
 
     def setup(self):
         ''' Setup the backend'''
         self.frontend.debug('Setup yum backend')
-        self.child = pexpect.spawn('./yum_server.py')
-        self.child.setecho(False)
-
+        YumClient.setup(self)
+        
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
         self.frontend.debug('Reset yum backend')
-        self._close()
+        YumClient.reset(self)
 
     def get_packages(self, pkg_filter):
         ''' 
@@ -155,7 +74,8 @@ class YumexBackendYum(YumexBackendBase):
         @return: a list of packages
         '''
         self.frontend.debug('Get %s packages' % pkg_filter)
-        return self._get_packages(pkg_filter)
+        pkgs = YumClient.get_packages(self,pkg_filter)
+        return [YumexPackageYum(p) for p in pkgs]
 
     def get_repositories(self):
         ''' 

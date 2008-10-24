@@ -24,9 +24,9 @@ import os
 from yumexgui import YumexApplication
 
 if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy':
-    from yumexbackend.dummy import YumexBackendDummy as backend 
+    from yumexbackend.dummy_backend import YumexBackendDummy as backend 
 else:
-    from yumexbackend.yum import YumexBackendYum as backend 
+    from yumexbackend.yum_backend import YumexBackendYum as backend 
     
 app = YumexApplication(backend)
 app.run_test()
