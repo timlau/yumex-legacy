@@ -5,8 +5,9 @@ all:
 
 clean:
 	rm -fv *.pyc *.pyo *~ *.bak *.gladep
-	rm -fv yumex/*.pyc yumex/*.pyo yumex/*~ 
-	rm -fv yumgui/*.pyc yumgui/*.pyo yumgui/*~ 
+	rm -fv yumexgui/*.pyc yumexgui/*.pyo yumexgui/*~ 
+	rm -fv yumexbase/*.pyc yumexbase/*.pyo yumexbase/*~ 
+	rm -fv yumexbackend/*.pyc yumexbackend/*.pyo yumexbackend/*~ 
 
 install:
 	mkdir -p $(DESTDIR)/usr/share/yumex

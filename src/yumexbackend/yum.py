@@ -19,21 +19,22 @@
 
 # Constants
 
+import sys
+
 import pexpect
 from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 
 class YumPackage:
-    def __init__(self,base,pkgstr):
+    def __init__(self,base,args):
         self.base = base
-        v = pkgstr.split('\t')
-        self.name   = v[0]
-        self.epoch  = v[1]
-        self.ver    = v[2]
-        self.rel    = v[3]
-        self.arch   = v[4]
-        self.repoid = v[5]
-        self.summary= v[6]
+        self.name   = args[0]
+        self.epoch  = args[1]
+        self.ver    = args[2]
+        self.rel    = args[3]
+        self.arch   = args[4]
+        self.repoid = args[5]
+        self.summary= args[6]
         
     def __str__(self):
         if self.epoch == '0':
@@ -43,9 +44,12 @@ class YumPackage:
 
     @property        
     def id(self):        
-        return '%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch)
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
 
-
+    @property        
+    def description(self):
+        return self.base._get_attribute(self.id,"description")
+        
 class YumexBackendYum(YumexBackendBase):
     ''' Yumex Backend Yume class
 
@@ -57,27 +61,91 @@ class YumexBackendYum(YumexBackendBase):
         YumexBackendBase.__init__(self, frontend,transaction)
         
     def _send_command(self,cmd,args):
-        line = "%s\t%s" % (cmd,"\t".join(args))        
-        self.child.sendline(cmd)
+        line = "%s\t%s" % (cmd,"\t".join(args))
+        self.child.expect(':ready')        
+        self.child.sendline(line)
+
+    def _parse_command(self,line):
+        if line.startswith(':'):
+            parts = line.split('\t')
+            cmd = parts[0]
+            if len(parts) > 1:
+                args = parts[1:]
+            else:
+                args = []
+            return cmd,args
+        else:
+            return None,line
+        
+    def _check_for_message(self,cmd,args):
+        if cmd == ':error':
+            self.frontend.error(args[0])    
+        elif cmd == ':info':
+            self.frontend.info(args[0])    
+        elif cmd == ':debug':
+            self.frontend.debug(args[0])    
+        elif cmd == ':warning':
+            self.frontend.warning(args[0])
+        elif cmd == ':exception':
+            self.frontend.exception(args[0])
+        else:
+            return False # not a message
+        return True    
         
     def _get_list(self):
         pkgs = []
+        cnt = 0L
         while True:
             line = self.child.readline()
             if line.startswith(':end'):
                 break
+            cmd,args = self._parse_command(line)
+            if cmd:
+                if not self._check_for_message(cmd, args):
+                    if cmd == ':pkg':
+                        p = YumexPackageYum(YumPackage(self,args))
+                        pkgs.append(p)
             else:
-                p = YumexPackageYum(YumPackage(self,line.strip('\n')))
-                pkgs.append(p)
+                if args:
+                    print args
+                else:
+                    cnt += 1
+                    sys.stdout.write("\rWait : %s" % cnt)
         return pkgs
+
+    def _get_result(self,result_cmd):
+        cnt = 0L
+        while True:
+            line = self.child.readline()
+            cmd,args = self._parse_command(line)
+            if cmd:
+                if not self._check_for_message(cmd, args):
+                    if cmd == result_cmd:
+                        return args
+                    else:
+                        self.frontend.warning("unexpected command : %s (%s)" % (cmd,args))
+            else:
+                if args:
+                    print args
+                else:
+                    cnt += 1
+                    sys.stdout.write("\rWait : %s" % cnt)
     
     def _close(self):        
         self.child.close(force=True)
         
     def _get_packages(self,pkg_filter):    
-        self._send_command('get-packages',[pkg_filter])
+        self._send_command('get-packages',[str(pkg_filter)])
         pkgs = self._get_list()
         return pkgs
+
+    def _get_attribute(self,id,attr):    
+        self._send_command('get-attribute',[id,attr])
+        args = self._get_result(':attr')
+        if args:
+            return args[0].replace(";","\n")
+        else:
+            return None
         
 
     def setup(self):
@@ -98,7 +166,7 @@ class YumexBackendYum(YumexBackendBase):
         @return: a list of packages
         '''
         self.frontend.debug('Get %s packages' % pkg_filter)
-        return self._get_packages(self,pkg_filter)
+        return self._get_packages(pkg_filter)
 
     def get_repositories(self):
         ''' 
@@ -168,12 +236,16 @@ class YumexPackageYum(YumexPackageBase):
         return self._pkg.arch
 
     @property
+    def repoid(self):
+        return self._pkg.repoid
+
+    @property
     def summary(self):
         return self._pkg.summary
 
     @property
     def description(self):
-        pass
+        return self._pkg.description
 
     @property
     def changelog(self):

@@ -19,6 +19,8 @@
 
 # yum extender gui module
 
+import sys
+
 from gui import UI, Controller
 from yumexbase import *
 from misc import const
@@ -53,11 +55,12 @@ class YumexFrontend(YumexFrontendBase):
 
     def error(self, msg):
         ''' Write an error message to frontend '''
-        pass
+        print "Error:",msg
+        sys.exit(1)
 
     def warning(self, msg):
         ''' Write an warning message to frontend '''
-        pass
+        print "Warning:",msg
 
     def info(self, msg):
         ''' Write an info message to frontend '''
@@ -66,6 +69,12 @@ class YumexFrontend(YumexFrontendBase):
     def debug(self, msg):
         ''' Write an debug message to frontend '''
         print "DEBUG:",msg
+
+    def exception(self, msg):
+        ''' handle an expection '''
+        msg = msg.replace(";","\n")
+        print "exception:",msg
+        sys.exit(1)
 
     def reset(self):
         ''' trigger a frontend reset '''
@@ -100,19 +109,19 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.progress = None
         
     def run_test(self):
-        def show(elems):
+        def show(elems,desc=False):
             if elems:
                 for el in elems:
                     print "  %s" % el.id
+                    if desc:
+                        print el.description
         # setup
         self.backend.setup()
         # get_packages
-        print "-- All --"
-        pkgs = self.backend.get_packages(FILTER.all)
+        pkgs = self.backend.get_packages(FILTER.available)
         show(pkgs)
-        print "-- Updates --"
         pkgs = self.backend.get_packages(FILTER.updates)
-        show(pkgs)
+        show(pkgs,True)
         # get_groups
         grps = self.backend.get_groups()
         show(grps)

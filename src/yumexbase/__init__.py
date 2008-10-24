@@ -78,6 +78,10 @@ class YumexFrontendBase:
         ''' write an warning message '''
         pass
 
+    def exception(self, msg):
+        ''' handle an expection '''
+        pass
+
     def reset(self):
         ''' reset the frontend '''
         pass
