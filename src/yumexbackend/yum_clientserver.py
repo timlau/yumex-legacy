@@ -73,6 +73,10 @@ class YumClient:
         """ debug message """
         print "Debug:", msg
 
+    def action(self,msg):
+        """ action message """
+        print "Action:", msg
+
     def exception(self,msg):
         """ debug message """
         print "Exception:", msg
@@ -141,6 +145,8 @@ class YumClient:
             self.debug(args[0])    
         elif cmd == ':warning':
             self.warning(args[0])
+        elif cmd == ':action':
+            self.action(args[0])
         elif cmd == ':exception':
             self.exception(args[0])
         else:
@@ -219,6 +225,7 @@ class YumServer(yum.YumBase):
     Results:(starts with and ':' and cmd and parameters are separated with '\t')
     
         :info <message>        : information message
+        :action <message>      : action message
         :error <message>       : error message
         :warning <message>     : warning message
         :debug <message>       : debug message
@@ -264,6 +271,10 @@ class YumServer(yum.YumBase):
     def warning(self,msg):
         ''' write an warning message '''
         self.write(":warning\t%s" % msg)
+
+    def action(self,msg):
+        ''' write an action message '''
+        self.write(":action\t%s" % msg)
 
     def get_packages(self,pkg_narrow):
         ''' get list of packages and send results '''
