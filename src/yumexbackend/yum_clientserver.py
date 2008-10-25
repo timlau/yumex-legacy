@@ -27,6 +27,7 @@ import base64
 import pexpect
 
 class YumPackage:
+    ''' Simple object to store yum package information '''
     def __init__(self,base,args):
         self.base = base
         self.name   = args[0]
@@ -86,19 +87,22 @@ class YumClient:
         print "TIMEOUT"
 
     def setup(self,timeout=.5):
-        ''' Setup the backend'''
+        ''' Setup the client and spawn the server'''
         self.child = pexpect.spawn('./yum_server.py',timeout=timeout)
         self.child.setecho(False)
 
     def reset(self):
+        """ reset the client"""
         self._close()
 
     def _send_command(self,cmd,args):
+        """ send a command to the spawned server """
         line = "%s\t%s" % (cmd,"\t".join(args))
         self.child.expect(':ready')        
         self.child.sendline(line)
 
     def _parse_command(self,line):
+        ''' split command and args for a command received from the server'''
         if line.startswith(':'):
             parts = line.split('\t')
             cmd = parts[0]
@@ -111,6 +115,7 @@ class YumClient:
             return None,line
     
     def _readline(self):
+        ''' read a line from the server'''
         line = None
         while True:
             try:
@@ -124,6 +129,10 @@ class YumClient:
         
         
     def _check_for_message(self,cmd,args):
+        ''' 
+        check if the command is a message and call the
+        message handler if it is
+         '''
         if cmd == ':error':
             self.error(args[0])    
         elif cmd == ':info':
@@ -139,6 +148,10 @@ class YumClient:
         return True    
         
     def _get_list(self):
+        ''' 
+        read a list of :pkg commands from the server, until and
+        :end command is received
+        '''
         pkgs = []
         cnt = 0L
         while True:
@@ -154,6 +167,9 @@ class YumClient:
         return pkgs
 
     def _get_result(self,result_cmd):
+        '''
+        read a given result command from the server.
+        '''
         cnt = 0L
         while True:
             line = self._readline()
@@ -166,14 +182,17 @@ class YumClient:
                         self.warning("unexpected command : %s (%s)" % (cmd,args))
     
     def _close(self):        
+        ''' terminate the child server process '''
         self.child.close(force=True)
         
     def get_packages(self,pkg_filter):    
+        ''' get a list of packages based on pkg_filter '''
         self._send_command('get-packages',[str(pkg_filter)])
         pkgs = self._get_list()
         return pkgs
 
     def get_attribute(self,id,attr):    
+        ''' get an attribute of an package '''
         self._send_command('get-attribute',[id,attr])
         args = self._get_result(':attr')
         if args:
@@ -183,31 +202,71 @@ class YumClient:
 
 
 class YumServer(yum.YumBase):
+    """ 
+    A yum server class to be used in a spawned process.
+    it receives commands from stdin and send results and info
+    to stdout.
+    
+    Commands: (commands and parameters are separated with '\t' )
+        get-packages <pkg-filter>            : get a list of packages based on a filter
+        get-attribute <pkg_id> <attribute>   : get an attribute of an package
+    
+        Parameters:
+        <pkg-filter> : all,installed,available,updates,obsoletes
+        <pkg_id>         : name epoch ver release arch repoid ('\t' separated)
+        <attribute>  : pkg attribute (ex. description, changelog)
+         
+    Results:(starts with and ':' and cmd and parameters are separated with '\t')
+    
+        :info <message>        : information message
+        :error <message>       : error message
+        :warning <message>     : warning message
+        :debug <message>       : debug message
+        :exception <message>   : exception message
+        :pkg <pkg>             : package
+        :end                   : end of package list command
+        :attr <object>         : package object attribute
+        
+        Parameters:
+        <message>  : a text message ('\n' is replaced with ';'
+        <pkg>      : name epoch ver release arch repoid summary ('\t' separated)
+        <object>   : an package attribute pickled and base64 encoded.
+      
+    
+    """
     
     def __init__(self):
+        '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         self.doConfigSetup(errorlevel=0,debuglevel=0)
 
     def write(self,msg):
+        ''' write an message to stdout, to be read by the client'''
         msg.replace("\n",";")
         sys.stdout.write("%s\n" % msg)    
     
     def _show_package(self,pkg):
+        ''' write package result'''
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,pkg.summary))
     
     def info(self,msg):
+        ''' write an info message '''
         self.write(":info\t%s" % msg)
 
     def error(self,msg):
+        ''' write an error message '''
         self.write(":error\t%s" % msg)
 
     def debug(self,msg):
+        ''' write an debug message '''
         self.write(":debug\t%s" % msg)
     
     def warning(self,msg):
+        ''' write an warning message '''
         self.write(":warning\t%s" % msg)
 
     def get_packages(self,pkg_narrow):
+        ''' get list of packages and send results '''
         if pkg_narrow:
             narrow = pkg_narrow[0]
             ygh = self.doPackageLists(pkgnarrow=narrow)
@@ -216,6 +275,7 @@ class YumServer(yum.YumBase):
         self.write(':end')
         
     def _getPackage(self,para):
+        ''' find the real package from an package id'''
         n,e,v,r,a,id = para
         if id == 'installed':
             pkgs = self.rpmdb.searchNevra(n,e,v,r,a)
@@ -227,6 +287,7 @@ class YumServer(yum.YumBase):
             return None
         
     def get_attribute(self,args):
+        ''' get a package attribute and send the result '''
         pkgstr = args[:-1]
         attr = args[-1]
         po = self._getPackage(pkgstr)
@@ -238,6 +299,7 @@ class YumServer(yum.YumBase):
         self.write(':attr\t%s' % res)
 
     def parse_command(self, cmd, args):
+        ''' parse the incomming commands and do the actions '''
         if cmd == 'get-packages':
             self.get_packages(args)
         elif cmd == 'get-attribute':
@@ -246,6 +308,7 @@ class YumServer(yum.YumBase):
             self.error('Unknown command : %s' % cmd)
 
     def dispatcher(self):
+        ''' receive commands and parameter from stdin (from the client) '''        
         try:
             while True:
                 self.write(':ready')
