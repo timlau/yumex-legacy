@@ -76,9 +76,18 @@ class YumClient:
         """ debug message """
         print "Exception:", msg
 
-    def setup(self):
+    def timeout(self):
+        """ 
+        timeout function call every time an timeout occours
+        An timeout occaurs if the server takes more then timeout
+        periode to respond to the current action.
+        the default timeout is .5 sec.
+        """
+        print "TIMEOUT"
+
+    def setup(self,timeout=.5):
         ''' Setup the backend'''
-        self.child = pexpect.spawn('./yum_server.py')
+        self.child = pexpect.spawn('./yum_server.py',timeout=timeout)
         self.child.setecho(False)
 
     def reset(self):
@@ -100,6 +109,19 @@ class YumClient:
             return cmd,args
         else:
             return None,line
+    
+    def _readline(self):
+        line = None
+        while True:
+            try:
+                line = self.child.readline()
+                break
+            except pexpect.TIMEOUT,e:
+                self.timeout()
+                continue
+        return line
+            
+        
         
     def _check_for_message(self,cmd,args):
         if cmd == ':error':
@@ -120,7 +142,7 @@ class YumClient:
         pkgs = []
         cnt = 0L
         while True:
-            line = self.child.readline()
+            line = self._readline()
             if line.startswith(':end'):
                 break
             cmd,args = self._parse_command(line)
@@ -134,14 +156,14 @@ class YumClient:
     def _get_result(self,result_cmd):
         cnt = 0L
         while True:
-            line = self.child.readline()
+            line = self._readline()
             cmd,args = self._parse_command(line)
             if cmd:
                 if not self._check_for_message(cmd, args):
                     if cmd == result_cmd:
                         return args
                     else:
-                        self.frontend.warning("unexpected command : %s (%s)" % (cmd,args))
+                        self.warning("unexpected command : %s (%s)" % (cmd,args))
     
     def _close(self):        
         self.child.close(force=True)
