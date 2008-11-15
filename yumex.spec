@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
-* Thu Feb 21 2008 Tim Lauridsen <tla@rasmil.dk> - 2.0.5-1
+* Sat Nov 15 2008 Tim Lauridsen <tla@rasmil.dk> - 2.0.5-1
 - Release 2.0.5
 * Thu Feb 21 2008 Tim Lauridsen <tla@rasmil.dk> - 2.0.4-1
 - Release 2.0.4
