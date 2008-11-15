@@ -162,6 +162,10 @@ class YumexYumHandler(yum.YumBase,YumexPackages):
                 self.yumex_logger.info(_("Loaded update Metadata from %s ") % repo.id)
             except yum.Errors.RepoMDError:
                 self.yumex_logger.debug(_("No update Metadata found for %s ") % repo.id)
+            except yum.update_md.UpdateNoticeException,e:
+                self.yumex_logger.info(_("Error loading update metadata from %s ") % repo.id)
+                self.yumex_logger.info(" --> %s " % str(e))
+                
 
     def _resetTs(self):
         '''Clear the current tsInfo Transaction Set'''
