@@ -1,4 +1,4 @@
-#!/usr/bin/python -tt
+ #!/usr/bin/python -tt
 # -*- coding: iso-8859-1 -*-
 #    Yum Exteder (yumex) - A GUI for yum
 #    Copyright (C) 2008 Tim Lauridsen < tim<AT>yum-extender<DOT>org >
@@ -205,7 +205,18 @@ class YumClient:
             return pickle.loads(base64.b64decode(args[0]))
         else:
             return None
+        
+    def add_transaction(self,id,action):
+        self._send_command('add-transaction',[id,action])
+        
+    def remove_transaction(self,id,action):
+        self._send_command('add-transaction',[id])
 
+    def list_transaction(self):        
+        self._send_command('get-transaction',[])
+
+    def run_transaction(self):        
+        self._send_command('run-transaction',[])
 
 class YumServer(yum.YumBase):
     """ 
@@ -216,11 +227,16 @@ class YumServer(yum.YumBase):
     Commands: (commands and parameters are separated with '\t' )
         get-packages <pkg-filter>            : get a list of packages based on a filter
         get-attribute <pkg_id> <attribute>   : get an attribute of an package
+        add-transaction <pkg_id> <action>    : add a po to the transaction
+        remove-transaction <pkg_id>          : add a po to the transaction
+        list-transaction                     : list po's in transaction
+        run-transaction                      : run the transaction
     
         Parameters:
         <pkg-filter> : all,installed,available,updates,obsoletes
-        <pkg_id>         : name epoch ver release arch repoid ('\t' separated)
+        <pkg_id>     : name epoch ver release arch repoid ('\t' separated)
         <attribute>  : pkg attribute (ex. description, changelog)
+        <action>     : 'install', 'update', 'remove' 
          
     Results:(starts with and ':' and cmd and parameters are separated with '\t')
     
@@ -308,6 +324,32 @@ class YumServer(yum.YumBase):
                 res = getattr(po, attr)
                 res = base64.b64encode(pickle.dumps(res))
         self.write(':attr\t%s' % res)
+        
+    def add_transaction(self,args):
+        pkgstr = args[:-1]
+        action = args[-1]
+        po = self._getPackage(pkgstr)
+        txmbrs = []
+        if action == "install":
+            txmbrs = self.install(po)
+        elif action == "update":
+            txmbrs = self.update(po)
+        elif action == "remove":
+            txmbrs = self.remove(po)
+        for txmbr in txmbrs:
+            self.debug(str(txmbr))            
+
+    def remove_transaction(self,args):
+        pkgstr = args
+        po = self._getPackage(pkgstr)
+        self.tsInfo.remove(po)
+
+    def list_transaction(self):
+        for txmbr in self.tsInfo:
+            self._show_package(txmbr.po)
+            
+    def run_transaction(self):
+        pass
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
@@ -315,6 +357,14 @@ class YumServer(yum.YumBase):
             self.get_packages(args)
         elif cmd == 'get-attribute':
             self.get_attribute(args)
+        elif cmd == 'add-transaction':
+            self.add_transaction(args)
+        elif cmd == 'remove-transaction':
+            self.remove_transaction(args)
+        elif cmd == 'list-transaction':
+            self.list_transaction()
+        elif cmd == 'run-transaction':
+            self.run_transaction(args)
         else:
             self.error('Unknown command : %s' % cmd)
 
