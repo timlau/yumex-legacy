@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-25 12:41+0200\n"
-"PO-Revision-Date: 2008-11-15 00:48-0300\n"
+"POT-Creation-Date: 2008-11-16 01:34+0000\n"
+"PO-Revision-Date: 2008-11-16 01:09-0300\n"
 "Last-Translator: Taylon <taylonsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "Getting : %s"
 msgstr "Recebendo : %s"
 
 #: ../src/callbacks.py:164
-#: ../src/yumapi.py:204
+#: ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Removendo"
 
@@ -381,160 +381,173 @@ msgstr "Nome do arquivo"
 msgid "Plugin"
 msgstr "Plugin"
 
-#: ../src/yumapi.py:67
-#: ../src/yumapi.py:114
+#: ../src/yumapi.py:69
+#: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Configuração do yum : Set de transação"
 
-#: ../src/yumapi.py:69
-#: ../src/yumapi.py:116
+#: ../src/yumapi.py:71
+#: ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Configuração do yum : RPM Bd."
 
 #. -> Repo Setup
-#: ../src/yumapi.py:72
-#: ../src/yumapi.py:119
+#: ../src/yumapi.py:74
+#: ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "Configuração do yum : Repositórios."
 
 #. -> Sack Setup
-#: ../src/yumapi.py:75
-#: ../src/yumapi.py:122
+#: ../src/yumapi.py:77
+#: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "Configuração do yum : Conjunto de pacotes"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:78
-#: ../src/yumapi.py:125
+#: ../src/yumapi.py:80
+#: ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "Configuração do yum : Atualizações"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:82
-#: ../src/yumapi.py:128
+#: ../src/yumapi.py:84
+#: ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "Configuração do yum : Grupos"
 
-#: ../src/yumapi.py:84
-#: ../src/yumapi.py:130
+#: ../src/yumapi.py:86
+#: ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Configuração do yum : Instalação básica concluída"
 
-#: ../src/yumapi.py:138
+#: ../src/yumapi.py:147
+msgid "Setup signed metadata support"
+msgstr "Configuração de metadados de suporte assinada"
+
+#: ../src/yumapi.py:153
+#, python-format
+msgid "Repository metadata (repomd.xml) for %s"
+msgstr "Repositório de metadados (repomd.xml) para %s"
+
+#: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
 msgstr "Atualização de metadados carreagada a partir de %s "
 
-#: ../src/yumapi.py:140
+#: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
 msgstr "Nenhuma atualização de metadados encontrada para %s "
 
-#: ../src/yumapi.py:159
+#: ../src/yumapi.py:166
+#, python-format
+msgid "Error loading update metadata from %s "
+msgstr "Erro ao carregar as atualizações de metadados a partir de %s "
+
+#: ../src/yumapi.py:187
 #: ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Preparando para instalar/remover/atualizar"
 
-#: ../src/yumapi.py:163
+#: ../src/yumapi.py:191
 msgid "--> Preparing for install"
 msgstr "--> Preparando para instalar"
 
-#: ../src/yumapi.py:168
+#: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
 msgstr "--> Preparando para remover"
 
-#: ../src/yumapi.py:175
+#: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
 msgstr "--> Preparando para uma atualização completa"
 
-#: ../src/yumapi.py:178
+#: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
 msgstr "--> Preparando para uma atualização parcial"
 
-#: ../src/yumapi.py:180
+#: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> Adicionando todas as transações obsoletas"
 
-#: ../src/yumapi.py:202
+#: ../src/yumapi.py:230
 #: ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63
 #: ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Instalando"
 
-#: ../src/yumapi.py:203
+#: ../src/yumapi.py:231
 #: ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Atualizando"
 
-#: ../src/yumapi.py:205
+#: ../src/yumapi.py:233
 msgid "Installing for dependencies"
 msgstr "Instalando para dependências"
 
-#: ../src/yumapi.py:206
+#: ../src/yumapi.py:234
 msgid "Updating for dependencies"
 msgstr "Atualizando para dependências"
 
-#: ../src/yumapi.py:207
+#: ../src/yumapi.py:235
 msgid "Removing for dependencies"
 msgstr "Removendo para dependências"
 
-#: ../src/yumapi.py:253
+#: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Falha ao receber %s: "
 
-#: ../src/yumapi.py:275
+#: ../src/yumapi.py:303
 msgid "Downloading Packages:"
 msgstr "Baixando pacotes:"
 
-#: ../src/yumapi.py:291
-#: ../src/yumapi.py:299
+#: ../src/yumapi.py:319
+#: ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Erro ao baixar os pacotes:\n"
 
 #. Check GPG signatures
-#: ../src/yumapi.py:306
+#: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
 msgstr "Verificando as chaves GPG:"
 
-#: ../src/yumapi.py:311
+#: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
 msgstr "Erro ao verificar as assinaturas do pacote:\n"
 
-#: ../src/yumapi.py:317
+#: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
 msgstr "Ocorreu um erro (traceback) ao verificar as assinaturas do pacote:\n"
 
-#: ../src/yumapi.py:324
+#: ../src/yumapi.py:352
 msgid "Running Transaction Test"
 msgstr "Executando teste de transação"
 
-#: ../src/yumapi.py:342
+#: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
 msgstr "Teste de transação concluído"
 
-#: ../src/yumapi.py:344
+#: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
 msgstr "Erro ao verificar a transação:"
 
-#: ../src/yumapi.py:349
+#: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
 msgstr "O teste da transação foi bem sucedido"
 
-#: ../src/yumapi.py:365
+#: ../src/yumapi.py:393
 msgid "Running Transaction"
 msgstr "Executando transação"
 
-#. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
-#: ../src/yumapi.py:457
+#: ../src/yumapi.py:484
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Você deseja impotar a chave GPG : %s \n"
 
-#: ../src/yumapi.py:459
+#: ../src/yumapi.py:486
 #, python-format
 msgid "Needed by %s"
 msgstr "Requerido por %s"
