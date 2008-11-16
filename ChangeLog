@@ -2,6 +2,19 @@
 
 	* src/misc.py: bumped version to 2.0.5
 
+2008-11-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
+2008-11-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/misc.py: bumped version to 2.0.5
+
+2008-11-16  Taylon Silmer Lacerda Silva <taylonsilva@gmail.com>
+
+	* po/pt_BR.po: Updated Brazilian Portuguese translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
 2008-11-15  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* yumex.spec: updated timestamp in specfile
