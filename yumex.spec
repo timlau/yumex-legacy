@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  2.0.5
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -18,7 +18,7 @@ BuildRequires: gettext
 BuildRequires: intltool
 
 
-Requires: yum >= 3.0
+Requires: yum >= 3.2
 Requires: pygtk2
 Requires: usermode
 Requires: pygtk2-libglade
@@ -68,6 +68,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Tue Dec 9 2008 Tim Lauridsen <tla@rasmil.dk> - 2.0.5-2
+- Update Requires: yum to 3.2
 * Sat Nov 15 2008 Tim Lauridsen <tla@rasmil.dk> - 2.0.5-1
 - Release 2.0.5
 * Thu Feb 21 2008 Tim Lauridsen <tla@rasmil.dk> - 2.0.4-1
