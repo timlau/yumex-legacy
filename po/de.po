@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 01:33+0000\n"
-"PO-Revision-Date: 2008-10-23 16:41+0100\n"
-"Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
+"POT-Creation-Date: 2008-12-16 01:27+0000\n"
+"PO-Revision-Date: 2008-12-28 13:59+0100\n"
+"Last-Translator: Dominik Sandjaja <dominiksandjaja@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgid "Getting : %s"
 msgstr "Beziehe: %s"
 
 #: ../src/callbacks.py:164
-#: ../src/yumapi.py:228
+#: ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Entfernen"
 
@@ -66,7 +66,7 @@ msgstr "gelöscht"
 #: ../src/callbacks.py:240
 #, python-format
 msgid "---> Package %s.%s %s:%s-%s set to be %s"
-msgstr "---> Pakete %s.%s %s:%s-%s markiert, um %s zu werden"
+msgstr "---> Paket %s.%s %s:%s-%s markiert, um %s zu werden"
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
@@ -106,7 +106,7 @@ msgstr "---> Lade Header für %s herunter, um ihn in das Verarbeitungsset zu pac
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
-msgstr "Pakete zum Abarbeiten"
+msgstr "Pakete zum Verarbeiten"
 
 #: ../src/dialogs.py:215
 #: ../src/views.py:474
@@ -155,7 +155,7 @@ msgid ""
 "Obsoleting : %s\n"
 "\n"
 msgstr ""
-"Obsoleting: %s\n"
+"Veraltet: %s\n"
 "\n"
 
 #: ../src/gui.py:88
@@ -170,7 +170,7 @@ msgstr ""
 #: ../src/gui.py:113
 #, python-format
 msgid "Can not read the %s attribute"
-msgstr "Kann %s Attribut nicht lesen"
+msgstr "Kann Attribut %s nicht lesen"
 
 #: ../src/gui.py:371
 msgid "Show All Packages"
@@ -212,112 +212,112 @@ msgstr "Ausgabe-Ansicht"
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
-#: ../src/misc.py:93
+#: ../src/misc.py:94
 msgid "RPM Groups"
 msgstr "RPM-Gruppen"
 
-#: ../src/misc.py:94
+#: ../src/misc.py:95
 msgid "Repositories"
 msgstr "Repositories"
 
-#: ../src/misc.py:95
+#: ../src/misc.py:96
 #: ../src/views.py:61
 msgid "Architecture"
 msgstr "Architektur"
 
-#: ../src/misc.py:96
-msgid "Sizes"
-msgstr "Grössen"
-
 #: ../src/misc.py:97
+msgid "Sizes"
+msgstr "Größen"
+
+#: ../src/misc.py:98
 msgid "Age"
 msgstr "Alter"
 
-#: ../src/misc.py:107
+#: ../src/misc.py:108
 msgid "Mandatory"
 msgstr "Pflicht"
 
-#: ../src/misc.py:108
+#: ../src/misc.py:109
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/misc.py:109
+#: ../src/misc.py:110
 msgid "Optional"
 msgstr "Optional"
 
-#: ../src/misc.py:110
+#: ../src/misc.py:111
 msgid "Conditional"
 msgstr "Bedingt"
 
-#: ../src/misc.py:118
+#: ../src/misc.py:119
 msgid "Programming:"
 msgstr "Programmierung:"
 
-#: ../src/misc.py:121
+#: ../src/misc.py:122
 msgid "Translation:"
 msgstr "Übersetzung:"
 
-#: ../src/misc.py:142
+#: ../src/misc.py:143
 msgid "Special Thanks To:"
 msgstr "Speziellen Dank an:"
 
-#: ../src/misc.py:151
-msgid "Getting update packages"
-msgstr "Beziehe aktualisierte Pakete"
-
 #: ../src/misc.py:152
+msgid "Getting update packages"
+msgstr "Beziehe aktualisierbare Pakete"
+
+#: ../src/misc.py:153
 msgid "Getting installed packages"
 msgstr "Beziehe installierte Pakete"
 
-#: ../src/misc.py:153
+#: ../src/misc.py:154
 msgid "Getting available packacages"
 msgstr "Beziehe verfügbare Pakete"
 
-#: ../src/misc.py:157
+#: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
-msgstr "%d aktualisierte Pakete gefunden"
+msgstr "%d aktualisierbare Pakete gefunden"
 
-#: ../src/misc.py:158
+#: ../src/misc.py:159
 #, python-format
 msgid "Found %d installed packages"
 msgstr "%d installierte Pakete gefunden"
 
-#: ../src/misc.py:159
+#: ../src/misc.py:160
 #, python-format
 msgid "Found %d available packages"
 msgstr "%d verfügbare Pakete gefunden"
 
-#: ../src/misc.py:374
+#: ../src/misc.py:375
 msgid "Package Queue:"
 msgstr "Paket-Warteschlange:"
 
-#: ../src/misc.py:379
+#: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
 msgstr " Pakete zu %s"
 
-#: ../src/misc.py:386
+#: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
 msgstr "Gruppen zu %s"
 
-#: ../src/misc.py:450
+#: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "Falsche Datei-Anwendung (%s)"
 
-#: ../src/misc.py:452
+#: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "Falscher Datei-Typ (%s)"
 
-#: ../src/misc.py:454
+#: ../src/misc.py:455
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "Falsche Dateiversion (%s)"
 
-#: ../src/misc.py:638
+#: ../src/misc.py:639
 msgid "Current Settings :"
 msgstr "Aktuelle Einstellungen:"
 
@@ -354,7 +354,7 @@ msgstr "Repo."
 
 #: ../src/views.py:96
 msgid "Size."
-msgstr "Grösse."
+msgstr "Größe."
 
 #: ../src/views.py:213
 msgid "Packages"
@@ -374,7 +374,7 @@ msgstr "<b>Pakete zum Entfernen</b>"
 
 #: ../src/views.py:438
 msgid "Filename"
-msgstr "Dateinamen"
+msgstr "Dateiname"
 
 #: ../src/views.py:571
 msgid "Plugin"
@@ -383,7 +383,7 @@ msgstr "Plugin"
 #: ../src/yumapi.py:69
 #: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
-msgstr "Yum einrichten: Transaktionsset"
+msgstr "Yum einrichten: Verarbeitungssatz"
 
 #: ../src/yumapi.py:71
 #: ../src/yumapi.py:123
@@ -400,7 +400,7 @@ msgstr "Yum einrichten: Repositories."
 #: ../src/yumapi.py:77
 #: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
-msgstr "Yum einrichten: Pakete-Säcke"
+msgstr "Yum einrichten: Paket-Säcke"
 
 #. -> Updates Setup
 #. -> Sack Setup
@@ -423,7 +423,7 @@ msgstr "Yum einrichten: Basis-Setup abgeschlossen"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr "Richte Unterstützung für signierte Medadaten ein"
+msgstr "Richte Unterstützung für signierte Metadaten ein"
 
 #: ../src/yumapi.py:153
 #, python-format
@@ -433,115 +433,120 @@ msgstr "Repository-Metadaten (repomd.xml) für %s"
 #: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Aktualisierte Metadaten geladen von %s"
+msgstr "Aktualisierte Metadaten von %s geladen"
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr "Kein aktualisierten Metadaten gefunden für %s"
+msgstr "Keine aktualisierten Metadaten für %s gefunden"
 
-#: ../src/yumapi.py:183
+#: ../src/yumapi.py:166
+#, python-format
+msgid "Error loading update metadata from %s "
+msgstr "Fehler beim Laden der Aktualisieren-Metadaten von %s"
+
+#: ../src/yumapi.py:187
 #: ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Vorbereitung für Installation/Entfernung/Aktualisierung"
 
-#: ../src/yumapi.py:187
+#: ../src/yumapi.py:191
 msgid "--> Preparing for install"
 msgstr "--> Vorbereitung zur Installation"
 
-#: ../src/yumapi.py:192
+#: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
 msgstr "--> Vorbereitung zum Entfernen"
 
-#: ../src/yumapi.py:199
+#: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
 msgstr "--> Vorbereitung einer vollständigen Aktualisierung"
 
-#: ../src/yumapi.py:202
+#: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
 msgstr "--> Vorbereitung einer teilweisen Aktualisierung"
 
-#: ../src/yumapi.py:204
+#: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
-msgstr "--> Füge allte veralteten zur Verarbeitung hinzu"
+msgstr "--> Füge alle Veralteten zur Verarbeitung hinzu"
 
-#: ../src/yumapi.py:226
+#: ../src/yumapi.py:230
 #: ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63
 #: ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Installiere"
 
-#: ../src/yumapi.py:227
+#: ../src/yumapi.py:231
 #: ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Aktualisiere"
 
-#: ../src/yumapi.py:229
+#: ../src/yumapi.py:233
 msgid "Installing for dependencies"
 msgstr "Installiere für Abhängigkeiten"
 
-#: ../src/yumapi.py:230
+#: ../src/yumapi.py:234
 msgid "Updating for dependencies"
 msgstr "Aktualisiere für Abhängigkeiten"
 
-#: ../src/yumapi.py:231
+#: ../src/yumapi.py:235
 msgid "Removing for dependencies"
 msgstr "Entferne für Abhängigkeiten"
 
-#: ../src/yumapi.py:277
+#: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Fehler beim Beziehen von %s: "
 
-#: ../src/yumapi.py:299
+#: ../src/yumapi.py:303
 msgid "Downloading Packages:"
-msgstr "Lade Pakete herunter:"
+msgstr "Pakete herunterladen:"
 
-#: ../src/yumapi.py:315
-#: ../src/yumapi.py:323
+#: ../src/yumapi.py:319
+#: ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Fehler beim Herunterladen der Pakete:\n"
 
 #. Check GPG signatures
-#: ../src/yumapi.py:330
+#: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
 msgstr "Prüfe GPG-Signaturen"
 
-#: ../src/yumapi.py:335
+#: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
 msgstr "Fehler beim Prüfen der Paket-Signaturen:\n"
 
-#: ../src/yumapi.py:341
+#: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
 msgstr "Traceback beim Prüfen der Paket-Signaturen:\n"
 
-#: ../src/yumapi.py:348
+#: ../src/yumapi.py:352
 msgid "Running Transaction Test"
 msgstr "Führe Verarbeitungstest durch"
 
-#: ../src/yumapi.py:366
+#: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
 msgstr "Verarbeitungstest durchgeführt"
 
-#: ../src/yumapi.py:368
+#: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
 msgstr "Verarbeitungstest-Fehler: "
 
-#: ../src/yumapi.py:373
+#: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
 msgstr "Verarbeitungstest erfolgreich"
 
-#: ../src/yumapi.py:389
+#: ../src/yumapi.py:393
 msgid "Running Transaction"
 msgstr "Führe Verarbeitung durch"
 
-#: ../src/yumapi.py:480
+#: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Möchten Sie die GPG-Schlüssel importieren? %s \n"
 
-#: ../src/yumapi.py:482
+#: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
 msgstr "Benötigt von %s"
@@ -582,7 +587,7 @@ msgstr "Sie sind kurz davor, %s Pakete zu entfernen\n"
 #: ../src/yumex.py:354
 #, python-format
 msgid "Selected the %s profile"
-msgstr " %s Profil gewählt"
+msgstr "Profil %s gewählt"
 
 #: ../src/yumex.py:374
 #, python-format
@@ -592,7 +597,7 @@ msgstr "Profil: %s erfolgreich gespeichert"
 #: ../src/yumex.py:376
 #, python-format
 msgid "Profile : %s save failed"
-msgstr "Profil: %s speichern fehlgeschlagen"
+msgstr "Profil: %s Speichern fehlgeschlagen"
 
 #: ../src/yumex.py:381
 msgid "Create New Profile"
@@ -600,7 +605,7 @@ msgstr "Neues Profil erstellen"
 
 #: ../src/yumex.py:381
 msgid "Name of new profile"
-msgstr "Name des neuen Profil"
+msgstr "Name des neuen Profils"
 
 #: ../src/yumex.py:385
 #, python-format
@@ -610,7 +615,7 @@ msgstr "Profil: %s erstellt"
 #: ../src/yumex.py:388
 #, python-format
 msgid "Profile : %s creation failed"
-msgstr "Profil: %s erstellen fehlgeschlagen"
+msgstr "Profil: %s Erstellen fehlgeschlagen"
 
 #: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
@@ -618,11 +623,11 @@ msgstr "Säubere alle Yum-Metadaten"
 
 #: ../src/yumex.py:419
 msgid "Yum Config Setup"
-msgstr "Yum Config-Setup"
+msgstr "Yum Konfigurations-Setup"
 
 #: ../src/yumex.py:435
 msgid "GUI Setup Completed"
-msgstr "GUI-Setup komplett"
+msgstr "GUI-Setup vollständig"
 
 #: ../src/yumex.py:473
 #: ../src/yumex.py:609
@@ -636,7 +641,7 @@ msgstr "Fehler"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr "Fehler in Yum-Setup"
+msgstr "Fehler beim Yum-Setup"
 
 #. prepare package lists
 #. -> List setup
@@ -663,11 +668,11 @@ msgstr "Sortiere Pakete"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
-msgstr "Bestand-Ansicht mit Paketen"
+msgstr "Fülle Ansicht mit Paketen"
 
 #: ../src/yumex.py:531
 msgid "Population Completed"
-msgstr "Bestand komplett"
+msgstr "Füllen komplett"
 
 #: ../src/yumex.py:539
 msgid "Package View Population"
@@ -738,7 +743,7 @@ msgstr "Fehler in Yumex"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr "Fehler im Plugin, Yum Extender wird beendet"
+msgstr "Fehler in einem Plugin, Yum Extender wird beendet"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
