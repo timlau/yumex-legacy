@@ -178,20 +178,23 @@ class YumexPackages:
                     yp.action = 'i'
                     yield yp
         elif mask == 'updates':
-            obsoletes = self.up.getObsoletesTuples( newest=1 )
-            for ( obsoleting, installed ) in obsoletes:
-                obsoleting_pkg = self.getPackageObject( obsoleting )
-                installed_pkg =  self.rpmdb.searchPkgTuple( installed )[0]                           
-                yp = YumexPackage(obsoleting_pkg,self.recent,True)
-                yp.action = 'u'
-                yp.obsolete = True
-                yp.obsolete_tup = installed_pkg.pkgtup
-                yp.color = color_obsolete
-                yield yp
-            updates = self.up.getUpdatesList()
-            obsoletes = self.up.getObsoletesList()
-            for ( n, a, e, v, r ) in updates:
-                if ( n, a, e, v, r ) in obsoletes:
+            self.conf.obsoletes = 1
+            obsoletes = {}
+            for (pkgtup, instTup) in self.up.getObsoletesTuples():
+                (n,a,e,v,r) = pkgtup
+                pkgs = self.pkgSack.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)
+                instpo = self.rpmdb.searchPkgTuple(instTup)[0] # the first one
+                for po in pkgs:
+                    obsoletes[po.pkgtup] = 1
+                    yp = YumexPackage(po,self.recent,True)
+                    yp.action = 'u'
+                    yp.obsolete = True
+                    yp.obsolete_tup = instpo.pkgtup
+                    yp.color = color_obsolete
+                    yield yp
+
+            for (n,a,e,v,r) in self.up.getUpdatesList():
+                if ( n, a, e, v, r ) in obsoletes.keys():
                     continue
                 matches = self.pkgSack.searchNevra( name=n, arch=a, epoch=e, 
                                                ver=v, rel=r )

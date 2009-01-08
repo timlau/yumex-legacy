@@ -66,13 +66,9 @@ class YumexPackageInfo:
                 txt = _( "Updating : %s\n\n" ) % str(lst[0])
                 self.pkgInfo.write_line( txt ) 
             else:
-                obsoletes = self.yumbase.up.getObsoletesTuples( newest=1 )
-                for ( obsoleting, installed ) in obsoletes:
-                    if obsoleting[0] == pkg.name:
-                        po =  self.yumbase.rpmdb.searchPkgTuple( installed )[0]                           
-                        txt = _( "Obsoleting : %s\n\n" ) % str(po)
-                        self.pkgInfo.write_line( txt ) 
-                        break
+                po =  self.yumbase.rpmdb.searchPkgTuple( pkg.obsolete_tup )[0]                           
+                txt = _( "Obsoleting : %s\n\n" ) % str(po)
+                self.pkgInfo.write_line( txt ) 
 
         self.writePkg( self.pkgInfo, pkg, 'RPM Group    : %s\n', "group", True )
         self.writePkg( self.pkgInfo, pkg, 'Source       : %s\n', "sourcerpm" )
