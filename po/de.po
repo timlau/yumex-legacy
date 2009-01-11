@@ -2,7 +2,7 @@
 # Copyright (C) 2005 Yumex Team
 # This file is distributed under the same license as the yumex package.
 # komi <komi@gmx.at>, 2005.
-# Fabian Affolter <fab@fedoraproject.org>, 2008.
+# Fabian Affolter <fab@fedoraproject.org>, 2008,2009.
 #
 #
 msgid ""
@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-16 01:27+0000\n"
-"PO-Revision-Date: 2008-12-28 13:59+0100\n"
-"Last-Translator: Dominik Sandjaja <dominiksandjaja@fedoraproject.org>\n"
+"PO-Revision-Date: 2009-01-11 12:37+0100\n"
+"Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "gelöscht"
 #: ../src/callbacks.py:240
 #, python-format
 msgid "---> Package %s.%s %s:%s-%s set to be %s"
-msgstr "---> Paket %s.%s %s:%s-%s markiert, um %s zu werden"
+msgstr "---> Pakete %s.%s %s:%s-%s markiert, um %s zu werden"
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
@@ -106,7 +106,7 @@ msgstr "---> Lade Header für %s herunter, um ihn in das Verarbeitungsset zu pac
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
-msgstr "Pakete zum Verarbeiten"
+msgstr "Pakete zum Abarbeiten"
 
 #: ../src/dialogs.py:215
 #: ../src/views.py:474
@@ -170,7 +170,7 @@ msgstr ""
 #: ../src/gui.py:113
 #, python-format
 msgid "Can not read the %s attribute"
-msgstr "Kann Attribut %s nicht lesen"
+msgstr "Kann %s Attribut nicht lesen"
 
 #: ../src/gui.py:371
 msgid "Show All Packages"
@@ -227,7 +227,7 @@ msgstr "Architektur"
 
 #: ../src/misc.py:97
 msgid "Sizes"
-msgstr "Größen"
+msgstr "Grössen"
 
 #: ../src/misc.py:98
 msgid "Age"
@@ -263,7 +263,7 @@ msgstr "Speziellen Dank an:"
 
 #: ../src/misc.py:152
 msgid "Getting update packages"
-msgstr "Beziehe aktualisierbare Pakete"
+msgstr "Beziehe aktualisierte Pakete"
 
 #: ../src/misc.py:153
 msgid "Getting installed packages"
@@ -276,7 +276,7 @@ msgstr "Beziehe verfügbare Pakete"
 #: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
-msgstr "%d aktualisierbare Pakete gefunden"
+msgstr "%d aktualisierte Pakete gefunden"
 
 #: ../src/misc.py:159
 #, python-format
@@ -354,7 +354,7 @@ msgstr "Repo."
 
 #: ../src/views.py:96
 msgid "Size."
-msgstr "Größe."
+msgstr "Grösse."
 
 #: ../src/views.py:213
 msgid "Packages"
@@ -374,7 +374,7 @@ msgstr "<b>Pakete zum Entfernen</b>"
 
 #: ../src/views.py:438
 msgid "Filename"
-msgstr "Dateiname"
+msgstr "Dateinamen"
 
 #: ../src/views.py:571
 msgid "Plugin"
@@ -383,7 +383,7 @@ msgstr "Plugin"
 #: ../src/yumapi.py:69
 #: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
-msgstr "Yum einrichten: Verarbeitungssatz"
+msgstr "Yum einrichten: Transaktionsset"
 
 #: ../src/yumapi.py:71
 #: ../src/yumapi.py:123
@@ -400,7 +400,7 @@ msgstr "Yum einrichten: Repositories."
 #: ../src/yumapi.py:77
 #: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
-msgstr "Yum einrichten: Paket-Säcke"
+msgstr "Yum einrichten: Pakete-Säcke"
 
 #. -> Updates Setup
 #. -> Sack Setup
@@ -423,7 +423,7 @@ msgstr "Yum einrichten: Basis-Setup abgeschlossen"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr "Richte Unterstützung für signierte Metadaten ein"
+msgstr "Richte Unterstützung für signierte Medadaten ein"
 
 #: ../src/yumapi.py:153
 #, python-format
@@ -433,17 +433,17 @@ msgstr "Repository-Metadaten (repomd.xml) für %s"
 #: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Aktualisierte Metadaten von %s geladen"
+msgstr "Aktualisierte Metadaten geladen von %s"
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr "Keine aktualisierten Metadaten für %s gefunden"
+msgstr "Kein aktualisierten Metadaten gefunden für %s"
 
 #: ../src/yumapi.py:166
 #, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Fehler beim Laden der Aktualisieren-Metadaten von %s"
+msgstr "Aktualisierte Metadaten geladen von %s"
 
 #: ../src/yumapi.py:187
 #: ../src/yumex.py:594
@@ -468,7 +468,7 @@ msgstr "--> Vorbereitung einer teilweisen Aktualisierung"
 
 #: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
-msgstr "--> Füge alle Veralteten zur Verarbeitung hinzu"
+msgstr "--> Füge alle veralteten zur Verarbeitung hinzu"
 
 #: ../src/yumapi.py:230
 #: ../src/yumgui/callbacks.py:62
@@ -501,7 +501,7 @@ msgstr "Fehler beim Beziehen von %s: "
 
 #: ../src/yumapi.py:303
 msgid "Downloading Packages:"
-msgstr "Pakete herunterladen:"
+msgstr "Lade Pakete herunter:"
 
 #: ../src/yumapi.py:319
 #: ../src/yumapi.py:327
@@ -587,7 +587,7 @@ msgstr "Sie sind kurz davor, %s Pakete zu entfernen\n"
 #: ../src/yumex.py:354
 #, python-format
 msgid "Selected the %s profile"
-msgstr "Profil %s gewählt"
+msgstr " %s Profil gewählt"
 
 #: ../src/yumex.py:374
 #, python-format
@@ -597,7 +597,7 @@ msgstr "Profil: %s erfolgreich gespeichert"
 #: ../src/yumex.py:376
 #, python-format
 msgid "Profile : %s save failed"
-msgstr "Profil: %s Speichern fehlgeschlagen"
+msgstr "Profil: %s speichern fehlgeschlagen"
 
 #: ../src/yumex.py:381
 msgid "Create New Profile"
@@ -605,7 +605,7 @@ msgstr "Neues Profil erstellen"
 
 #: ../src/yumex.py:381
 msgid "Name of new profile"
-msgstr "Name des neuen Profils"
+msgstr "Name des neuen Profil"
 
 #: ../src/yumex.py:385
 #, python-format
@@ -615,7 +615,7 @@ msgstr "Profil: %s erstellt"
 #: ../src/yumex.py:388
 #, python-format
 msgid "Profile : %s creation failed"
-msgstr "Profil: %s Erstellen fehlgeschlagen"
+msgstr "Profil: %s erstellen fehlgeschlagen"
 
 #: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
@@ -623,11 +623,11 @@ msgstr "Säubere alle Yum-Metadaten"
 
 #: ../src/yumex.py:419
 msgid "Yum Config Setup"
-msgstr "Yum Konfigurations-Setup"
+msgstr "Yum Config-Setup"
 
 #: ../src/yumex.py:435
 msgid "GUI Setup Completed"
-msgstr "GUI-Setup vollständig"
+msgstr "GUI-Setup komplett"
 
 #: ../src/yumex.py:473
 #: ../src/yumex.py:609
@@ -641,7 +641,7 @@ msgstr "Fehler"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr "Fehler beim Yum-Setup"
+msgstr "Fehler in Yum-Setup"
 
 #. prepare package lists
 #. -> List setup
@@ -668,11 +668,11 @@ msgstr "Sortiere Pakete"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
-msgstr "Fülle Ansicht mit Paketen"
+msgstr "Bestand-Ansicht mit Paketen"
 
 #: ../src/yumex.py:531
 msgid "Population Completed"
-msgstr "Füllen komplett"
+msgstr "Bestand komplett"
 
 #: ../src/yumex.py:539
 msgid "Package View Population"
@@ -743,7 +743,7 @@ msgstr "Fehler in Yumex"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr "Fehler in einem Plugin, Yum Extender wird beendet"
+msgstr "Fehler im Plugin, Yum Extender wird beendet"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
