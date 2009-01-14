@@ -2,19 +2,19 @@
 # Copyright (C) 2008 THE yumex'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Yumex package.
 # Magnus Glantz <mg@hacka.net>, 2008.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 01:27+0000\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: 2009-01-05 17:58+0100\n"
 "Last-Translator: Magnus Glantz <mg@hacka.net>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -139,7 +139,7 @@ msgstr ""
 "Uppdaterar : %s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
@@ -148,7 +148,7 @@ msgstr ""
 "Fasar ut : %s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -156,45 +156,45 @@ msgstr ""
 "Kräver:\n"
 "\n"
 
-#: ../src/gui.py:103 ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Kan inte läsa %s attributen"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
 msgstr "Visa alla paket"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
 msgstr "Visa paketuppdateringar"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
 msgstr "Visa tillgängliga paket"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
 msgstr "Visa installerade paket"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
 msgstr "Paketvy"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr "Gruppvy"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 msgid "Package Queue View"
 msgstr "Vy för paketkö"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 msgid "Repository Selection View"
 msgstr "Urvalsvy för förråd"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 msgid "Output View"
 msgstr "Utdatavy"
 
@@ -967,4 +967,3 @@ msgstr "_Yum insticksprogram"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-25 12:41+0200\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: 2006-02-14 14:52+0100\n"
 "Last-Translator: tim <tla@ramil.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Getting : %s"
 msgstr "Henter : %s"
 
-#: ../src/callbacks.py:164 ../src/yumapi.py:204
+#: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Sletter"
 
@@ -139,7 +139,7 @@ msgstr ""
 "Opdaterer : %s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
@@ -148,7 +148,7 @@ msgstr ""
 "Overføldig gør : %s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -156,159 +156,159 @@ msgstr ""
 "Behøver:\n"
 "\n"
 
-#: ../src/gui.py:103 ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Kan ikke læse %s attributen"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
 msgstr "Vis Alle Pakker"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
 msgstr "Vis Pakker Opdateringer"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
 msgstr "Vis Tilgængelige Pakker"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
 msgstr "Vis Installerede Pakker"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
 msgstr "Pakker"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr "Grupper"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 msgid "Package Queue View"
 msgstr "Pakke Kø"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 msgid "Repository Selection View"
 msgstr "Filkilder"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 msgid "Output View"
 msgstr "Information"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
-#: ../src/misc.py:93
+#: ../src/misc.py:94
 msgid "RPM Groups"
 msgstr "RPM Grupper"
 
-#: ../src/misc.py:94
+#: ../src/misc.py:95
 msgid "Repositories"
 msgstr "Filkilder"
 
-#: ../src/misc.py:95 ../src/views.py:61
+#: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
 msgstr "Arkitektur"
 
-#: ../src/misc.py:96
+#: ../src/misc.py:97
 msgid "Sizes"
 msgstr "Størrelser"
 
-#: ../src/misc.py:97
+#: ../src/misc.py:98
 msgid "Age"
 msgstr "Alder"
 
-#: ../src/misc.py:107
+#: ../src/misc.py:108
 msgid "Mandatory"
 msgstr "Tvungne"
 
-#: ../src/misc.py:108
+#: ../src/misc.py:109
 msgid "Default"
 msgstr "Standard"
 
-#: ../src/misc.py:109
+#: ../src/misc.py:110
 msgid "Optional"
 msgstr "Valgfri"
 
-#: ../src/misc.py:110
+#: ../src/misc.py:111
 msgid "Conditional"
 msgstr "Afhængige"
 
-#: ../src/misc.py:118
+#: ../src/misc.py:119
 msgid "Programming:"
 msgstr "Programmering"
 
-#: ../src/misc.py:121
+#: ../src/misc.py:122
 msgid "Translation:"
 msgstr "Oversættelse"
 
-#: ../src/misc.py:142
+#: ../src/misc.py:143
 msgid "Special Thanks To:"
 msgstr ""
 
-#: ../src/misc.py:151
+#: ../src/misc.py:152
 #, fuzzy
 msgid "Getting update packages"
 msgstr "Henter Pakker : %s"
 
-#: ../src/misc.py:152
+#: ../src/misc.py:153
 #, fuzzy
 msgid "Getting installed packages"
 msgstr "Vis Installerede Pakker"
 
-#: ../src/misc.py:153
+#: ../src/misc.py:154
 #, fuzzy
 msgid "Getting available packacages"
 msgstr "Vis Tilgængelige Pakker"
 
-#: ../src/misc.py:157
+#: ../src/misc.py:158
 #, fuzzy, python-format
 msgid "Found %d update packages"
 msgstr "Fandt %d %s pakker"
 
-#: ../src/misc.py:158
+#: ../src/misc.py:159
 #, fuzzy, python-format
 msgid "Found %d installed packages"
 msgstr "Fandt %d %s pakker"
 
-#: ../src/misc.py:159
+#: ../src/misc.py:160
 #, fuzzy, python-format
 msgid "Found %d available packages"
 msgstr "Fandt %d %s pakker"
 
-#: ../src/misc.py:374
+#: ../src/misc.py:375
 msgid "Package Queue:"
 msgstr "Pakke Køen"
 
-#: ../src/misc.py:379
+#: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
 msgstr " Pakker til at %s"
 
-#: ../src/misc.py:386
+#: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
 msgstr " Grupper til at%s"
 
-#: ../src/misc.py:450
+#: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "Forkert fil applikation (%s)"
 
-#: ../src/misc.py:452
+#: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "Forkert fil type (%s)"
 
-#: ../src/misc.py:454
+#: ../src/misc.py:455
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "Forkert fil version (%s)"
 
-#: ../src/misc.py:638
+#: ../src/misc.py:639
 msgid "Current Settings :"
 msgstr "Aktuelle indstillinger :"
 
@@ -368,148 +368,161 @@ msgstr "Filnavn"
 msgid "Plugin"
 msgstr "Udvidelse"
 
-#: ../src/yumapi.py:67 ../src/yumapi.py:114
+#: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Yum Opsætning: Transaktion Sæt"
 
-#: ../src/yumapi.py:69 ../src/yumapi.py:116
+#: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Yum Opsætning: RPM Databasen"
 
 #. -> Repo Setup
-#: ../src/yumapi.py:72 ../src/yumapi.py:119
+#: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "Yum Opsætning: Filkilder"
 
 #. -> Sack Setup
-#: ../src/yumapi.py:75 ../src/yumapi.py:122
+#: ../src/yumapi.py:77 ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "Yum Opsætning: Pakke Containeren"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:78 ../src/yumapi.py:125
+#: ../src/yumapi.py:80 ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "Yum Opsætning: Opdateringer"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:82 ../src/yumapi.py:128
+#: ../src/yumapi.py:84 ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "Yum Opsætning: Grupper"
 
-#: ../src/yumapi.py:84 ../src/yumapi.py:130
+#: ../src/yumapi.py:86 ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Yum Opsætning: Opsætning afsluttet"
 
-#: ../src/yumapi.py:138
+#: ../src/yumapi.py:147
+msgid "Setup signed metadata support"
+msgstr ""
+
+#: ../src/yumapi.py:153
+#, python-format
+msgid "Repository metadata (repomd.xml) for %s"
+msgstr ""
+
+#: ../src/yumapi.py:162
 #, fuzzy, python-format
 msgid "Loaded update Metadata from %s "
 msgstr "Indlæs Yum Metadata"
 
-#: ../src/yumapi.py:140
+#: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
 msgstr ""
 
-#: ../src/yumapi.py:159 ../src/yumex.py:594
+#: ../src/yumapi.py:166
+#, fuzzy, python-format
+msgid "Error loading update metadata from %s "
+msgstr "Indlæs Yum Metadata"
+
+#: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Forbereder installation/sletning/opdatering"
 
-#: ../src/yumapi.py:163
+#: ../src/yumapi.py:191
 msgid "--> Preparing for install"
 msgstr "--> Forbereder installation"
 
-#: ../src/yumapi.py:168
+#: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
 msgstr "--> Forbereder sletninger"
 
-#: ../src/yumapi.py:175
+#: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
 msgstr "--> Forbereder en fuld opdatering"
 
-#: ../src/yumapi.py:178
+#: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
 msgstr "--> Forbereder en delvis opdatering"
 
-#: ../src/yumapi.py:180
+#: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> Tilføjer overflødig pakker til transacktion "
 
-#: ../src/yumapi.py:202 ../src/yumgui/callbacks.py:62
+#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Installerer"
 
-#: ../src/yumapi.py:203 ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Opdaterer"
 
-#: ../src/yumapi.py:205
+#: ../src/yumapi.py:233
 msgid "Installing for dependencies"
 msgstr "Installer som afhængighed"
 
-#: ../src/yumapi.py:206
+#: ../src/yumapi.py:234
 msgid "Updating for dependencies"
 msgstr "Opdater som afhængighed"
 
-#: ../src/yumapi.py:207
+#: ../src/yumapi.py:235
 msgid "Removing for dependencies"
 msgstr "Sletter som afhængighed"
 
-#: ../src/yumapi.py:253
+#: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Fejl ved henting af %s: "
 
-#: ../src/yumapi.py:275
+#: ../src/yumapi.py:303
 msgid "Downloading Packages:"
 msgstr "Henter Pakker:"
 
-#: ../src/yumapi.py:291 ../src/yumapi.py:299
+#: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Fejl i Hentning af pakker:\n"
 
 #. Check GPG signatures
-#: ../src/yumapi.py:306
+#: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
 msgstr "Tester GPG Signaturer"
 
-#: ../src/yumapi.py:311
+#: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
 msgstr "Fejl i test af pakke signaturer:\n"
 
-#: ../src/yumapi.py:317
+#: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
 msgstr "Programfejl i testning af pakke signaturer:\n"
 
-#: ../src/yumapi.py:324
+#: ../src/yumapi.py:352
 msgid "Running Transaction Test"
 msgstr "Udfører Transaktion Test"
 
-#: ../src/yumapi.py:342
+#: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
 msgstr "Afsluttet Transaktion Test"
 
-#: ../src/yumapi.py:344
+#: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
 msgstr "Fejl i Transaktions Test: "
 
-#: ../src/yumapi.py:349
+#: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
 msgstr "Transaktion Test Afsluttet ok."
 
-#: ../src/yumapi.py:365
+#: ../src/yumapi.py:393
 msgid "Running Transaction"
 msgstr "Kører Transaktion"
 
-#. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
-#: ../src/yumapi.py:457
+#: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Ønsker du at importere GPG nøgle: %s \n"
 
-#: ../src/yumapi.py:459
+#: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
 msgstr "behøvet af %s"

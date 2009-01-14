@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-16 01:34+0000\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: 2008-11-16 20:47+0800\n"
 "Last-Translator: Sun Junwen <sunjw8888@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -25,8 +25,7 @@ msgstr ""
 msgid "Getting : %s"
 msgstr "正在获取：%s"
 
-#: ../src/callbacks.py:164
-#: ../src/yumapi.py:232
+#: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
 msgstr "正在删除"
 
@@ -109,30 +108,24 @@ msgstr "---> 正在为 %s 下载数据头信息，以便将其加入事务集合
 msgid "Packages to Process"
 msgstr "将被处理的软件包"
 
-#: ../src/dialogs.py:215
-#: ../src/views.py:474
+#: ../src/dialogs.py:215 ../src/views.py:474
 msgid "Name"
 msgstr "名称"
 
-#: ../src/dialogs.py:216
-#: ../src/yumex.glade.h:24
+#: ../src/dialogs.py:216 ../src/yumex.glade.h:24
 msgid "Arch"
 msgstr "体系结构"
 
-#: ../src/dialogs.py:217
-#: ../src/views.py:61
+#: ../src/dialogs.py:217 ../src/views.py:61
 msgid "Ver"
 msgstr "版本"
 
 #. Setup reponame & repofile column's
-#: ../src/dialogs.py:218
-#: ../src/views.py:438
-#: ../src/views.py:473
+#: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
 msgstr "软件仓库"
 
-#: ../src/dialogs.py:219
-#: ../src/views.py:61
+#: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
 msgstr "大小"
 
@@ -150,7 +143,7 @@ msgstr ""
 "更新中：%s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
@@ -159,7 +152,7 @@ msgstr ""
 "失效：%s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -167,158 +160,156 @@ msgstr ""
 "需要：\n"
 "\n"
 
-#: ../src/gui.py:103
-#: ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "无法读取“%s”属性"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
 msgstr "显示所有软件包"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
 msgstr "显示软件包更新信息"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
 msgstr "显示可用的软件包"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
 msgstr "显示已安装的软件包"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
 msgstr "软件包视图"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr "组群视图"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 msgid "Package Queue View"
 msgstr "软件包队列视图"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 msgid "Repository Selection View"
 msgstr "软件仓库选择视图"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 msgid "Output View"
 msgstr "输出信息视图"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
-#: ../src/misc.py:93
+#: ../src/misc.py:94
 msgid "RPM Groups"
 msgstr "RPM软件包分组"
 
-#: ../src/misc.py:94
+#: ../src/misc.py:95
 msgid "Repositories"
 msgstr "软件仓库"
 
-#: ../src/misc.py:95
-#: ../src/views.py:61
+#: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
 msgstr "体系结构"
 
-#: ../src/misc.py:96
+#: ../src/misc.py:97
 msgid "Sizes"
 msgstr "大小"
 
-#: ../src/misc.py:97
+#: ../src/misc.py:98
 msgid "Age"
 msgstr "年龄"
 
-#: ../src/misc.py:107
+#: ../src/misc.py:108
 msgid "Mandatory"
 msgstr "必需"
 
-#: ../src/misc.py:108
+#: ../src/misc.py:109
 msgid "Default"
 msgstr "默认"
 
-#: ../src/misc.py:109
+#: ../src/misc.py:110
 msgid "Optional"
 msgstr "可选"
 
-#: ../src/misc.py:110
+#: ../src/misc.py:111
 msgid "Conditional"
 msgstr "前提条件"
 
-#: ../src/misc.py:118
+#: ../src/misc.py:119
 msgid "Programming:"
 msgstr "编程："
 
-#: ../src/misc.py:121
+#: ../src/misc.py:122
 msgid "Translation:"
 msgstr "翻译："
 
-#: ../src/misc.py:142
+#: ../src/misc.py:143
 msgid "Special Thanks To:"
 msgstr "特别鸣谢："
 
-#: ../src/misc.py:151
+#: ../src/misc.py:152
 msgid "Getting update packages"
 msgstr "正在获取升级软件包"
 
-#: ../src/misc.py:152
+#: ../src/misc.py:153
 msgid "Getting installed packages"
 msgstr "正在获取已安装的软件包"
 
-#: ../src/misc.py:153
+#: ../src/misc.py:154
 msgid "Getting available packacages"
 msgstr "正在获取可用的软件包"
 
-#: ../src/misc.py:157
+#: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
 msgstr "找到 %d 个升级软件包"
 
-#: ../src/misc.py:158
+#: ../src/misc.py:159
 #, python-format
 msgid "Found %d installed packages"
 msgstr "找到 %d 个已安装软件包"
 
-#: ../src/misc.py:159
+#: ../src/misc.py:160
 #, python-format
 msgid "Found %d available packages"
 msgstr "找到 %d 个可用软件包"
 
-#: ../src/misc.py:374
+#: ../src/misc.py:375
 msgid "Package Queue:"
 msgstr "待处理软件包队列："
 
-#: ../src/misc.py:379
+#: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
 msgstr " 加入 %s 中"
 
-#: ../src/misc.py:386
+#: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
 msgstr " 编组到 %s"
 
-#: ../src/misc.py:450
+#: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "错误文件应用程序（%s）"
 
-#: ../src/misc.py:452
+#: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "错误文件类型（%s）"
 
-#: ../src/misc.py:454
+#: ../src/misc.py:455
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "错误的文件版本（%s）"
 
-#: ../src/misc.py:638
+#: ../src/misc.py:639
 msgid "Current Settings :"
 msgstr "当前设置："
 
@@ -326,14 +317,11 @@ msgstr "当前设置："
 msgid "Categories"
 msgstr "类别"
 
-#: ../src/views.py:61
-#: ../src/views.py:91
+#: ../src/views.py:61 ../src/views.py:91
 msgid "Package"
 msgstr "软件包"
 
-#: ../src/views.py:61
-#: ../src/views.py:94
-#: ../src/views.py:218
+#: ../src/views.py:61 ../src/views.py:94 ../src/views.py:218
 msgid "Summary"
 msgstr "摘要"
 
@@ -381,44 +369,37 @@ msgstr "文件名"
 msgid "Plugin"
 msgstr "插件"
 
-#: ../src/yumapi.py:69
-#: ../src/yumapi.py:121
+#: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "设置Yum：事务集合"
 
-#: ../src/yumapi.py:71
-#: ../src/yumapi.py:123
+#: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "设置Yum：RPM数据库"
 
 #. -> Repo Setup
-#: ../src/yumapi.py:74
-#: ../src/yumapi.py:126
+#: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "设置Yum：软件仓库"
 
 #. -> Sack Setup
-#: ../src/yumapi.py:77
-#: ../src/yumapi.py:129
+#: ../src/yumapi.py:77 ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "设置 Yum：软件包集合"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:80
-#: ../src/yumapi.py:132
+#: ../src/yumapi.py:80 ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "设置 Yum：更新"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:84
-#: ../src/yumapi.py:135
+#: ../src/yumapi.py:84 ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "设置Yum：软件分组"
 
-#: ../src/yumapi.py:86
-#: ../src/yumapi.py:137
+#: ../src/yumapi.py:86 ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "设置Yum：基础设置完成"
 
@@ -446,8 +427,7 @@ msgstr "没有 %s 的更新元数据"
 msgid "Error loading update metadata from %s "
 msgstr "从 %s 载入更新元数据出错"
 
-#: ../src/yumapi.py:187
-#: ../src/yumex.py:594
+#: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "正在准备进行安装/删除/更新"
 
@@ -471,15 +451,12 @@ msgstr "--> 正在为部分软件更新作准备"
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> 正在将所有已过时的软件包加入事务"
 
-#: ../src/yumapi.py:230
-#: ../src/yumgui/callbacks.py:62
-#: ../src/yumgui/callbacks.py:63
-#: ../src/yumgui/callbacks.py:65
+#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
+#: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "安装中"
 
-#: ../src/yumapi.py:231
-#: ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "更新中"
 
@@ -504,8 +481,7 @@ msgstr "获取%s失败："
 msgid "Downloading Packages:"
 msgstr "正在下载软件包："
 
-#: ../src/yumapi.py:319
-#: ../src/yumapi.py:327
+#: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "下载软件包时出现错误：\n"
 
@@ -542,12 +518,12 @@ msgstr "事务检验成功"
 msgid "Running Transaction"
 msgstr "正在执行事务"
 
-#: ../src/yumapi.py:484
+#: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "你是否希望导入GPG密钥：%s \n"
 
-#: ../src/yumapi.py:486
+#: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
 msgstr "为软件包 %s 所需要"
@@ -570,13 +546,11 @@ msgstr "在待处理软件包队列中没有软件包"
 msgid "You are about to add %s packages\n"
 msgstr "您即将添加 %s 软件包\n"
 
-#: ../src/yumex.py:237
-#: ../src/yumex.py:249
+#: ../src/yumex.py:237 ../src/yumex.py:249
 msgid "It will take some time\n"
 msgstr "这可能需要一些时间。\n"
 
-#: ../src/yumex.py:238
-#: ../src/yumex.py:250
+#: ../src/yumex.py:238 ../src/yumex.py:250
 msgid "do you want to continue ?"
 msgstr "您希望继续吗？"
 
@@ -630,12 +604,8 @@ msgstr "Yum配置设置"
 msgid "GUI Setup Completed"
 msgstr "图形用户界面设置完成"
 
-#: ../src/yumex.py:473
-#: ../src/yumex.py:609
-#: ../src/yumex.py:664
-#: ../src/yumex.py:745
-#: ../src/yumex.py:748
-#: ../src/yumex.py:766
+#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
+#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "错误"
@@ -737,8 +707,7 @@ msgstr "找到%d个软件包与“%s”匹配"
 msgid "Yum is locked by another application"
 msgstr "Yum被另一个程序锁定"
 
-#: ../src/yumex.py:745
-#: ../src/yumex.py:766
+#: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Yumex遇到错误"
 
@@ -750,8 +719,7 @@ msgstr "插件错误，Yum Extender 将退出"
 msgid "Erasing"
 msgstr "清除"
 
-#: ../src/yumgui/callbacks.py:64
-#: ../src/yumgui/callbacks.py:70
+#: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
 msgstr "失效"
 
@@ -763,10 +731,8 @@ msgstr "更新"
 msgid "Erased"
 msgstr "清除"
 
-#: ../src/yumgui/callbacks.py:68
-#: ../src/yumgui/callbacks.py:69
-#: ../src/yumgui/callbacks.py:71
-#: ../src/yumex.glade.h:36
+#: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
+#: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
 msgid "Installed"
 msgstr "已安装"
 
@@ -1005,4 +971,3 @@ msgstr "Yum插件（_Y）"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "对话 1"
-

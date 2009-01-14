@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-27 21:27+0000\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: 2008-09-27 19:42+0100\n"
 "Last-Translator: Pere Argelich <bakidok@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Getting : %s"
 msgstr "S'està obtenint : %s"
 
-#: ../src/callbacks.py:164 ../src/yumapi.py:228
+#: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
 msgstr "S'està eliminant"
 
@@ -157,7 +157,7 @@ msgstr ""
 "S'està actualitzant : %s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
@@ -166,7 +166,7 @@ msgstr ""
 "En desús : %s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -174,156 +174,156 @@ msgstr ""
 "Requereix:\n"
 "\n"
 
-#: ../src/gui.py:103 ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "No s'ha pogut llegir l'atribut %s"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
 msgstr "Mostra tots els paquets"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
 msgstr "Mostra les actualitzacions dels paquets"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
 msgstr "Mostra els paquets disponibles"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
 msgstr "Mostra els paquets instal·lats"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
 msgstr "Visualitza els paquets"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr "Visualitza els grups"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 msgid "Package Queue View"
 msgstr "Visualitza la cua de paquets"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 msgid "Repository Selection View"
 msgstr "Visualitza la sel·lecció de dipòsits"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 msgid "Output View"
 msgstr "Visualitza la sortida"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
-#: ../src/misc.py:93
+#: ../src/misc.py:94
 msgid "RPM Groups"
 msgstr "Grups d'RPM"
 
-#: ../src/misc.py:94
+#: ../src/misc.py:95
 msgid "Repositories"
 msgstr "Dipòsits"
 
-#: ../src/misc.py:95 ../src/views.py:61
+#: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
 msgstr "Arquitectura"
 
-#: ../src/misc.py:96
+#: ../src/misc.py:97
 msgid "Sizes"
 msgstr "Mides"
 
-#: ../src/misc.py:97
+#: ../src/misc.py:98
 msgid "Age"
 msgstr "Edat"
 
-#: ../src/misc.py:107
+#: ../src/misc.py:108
 msgid "Mandatory"
 msgstr "Obligatori"
 
-#: ../src/misc.py:108
+#: ../src/misc.py:109
 msgid "Default"
 msgstr "Per defecte"
 
-#: ../src/misc.py:109
+#: ../src/misc.py:110
 msgid "Optional"
 msgstr "Opcional"
 
-#: ../src/misc.py:110
+#: ../src/misc.py:111
 msgid "Conditional"
 msgstr "Condicional"
 
-#: ../src/misc.py:118
+#: ../src/misc.py:119
 msgid "Programming:"
 msgstr "Programadors:"
 
-#: ../src/misc.py:121
+#: ../src/misc.py:122
 msgid "Translation:"
 msgstr "Traducció:"
 
-#: ../src/misc.py:142
+#: ../src/misc.py:143
 msgid "Special Thanks To:"
 msgstr "Agraïments especial a:"
 
-#: ../src/misc.py:151
+#: ../src/misc.py:152
 msgid "Getting update packages"
 msgstr "S'estan obtenint els paquets a actualitzar"
 
-#: ../src/misc.py:152
+#: ../src/misc.py:153
 msgid "Getting installed packages"
 msgstr "S'estan obtenint els paquets instal·lats"
 
-#: ../src/misc.py:153
+#: ../src/misc.py:154
 msgid "Getting available packacages"
 msgstr "S'està obtenint els paquets disponibles"
 
-#: ../src/misc.py:157
+#: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
 msgstr "S'han trobat %d paquets per actualitzar"
 
-#: ../src/misc.py:158
+#: ../src/misc.py:159
 #, python-format
 msgid "Found %d installed packages"
 msgstr "S'han trobat %d paquets instal·lats"
 
-#: ../src/misc.py:159
+#: ../src/misc.py:160
 #, python-format
 msgid "Found %d available packages"
 msgstr "S'han trobat %d paquets disponibles"
 
-#: ../src/misc.py:374
+#: ../src/misc.py:375
 msgid "Package Queue:"
 msgstr "Paquets a la cua:"
 
-#: ../src/misc.py:379
+#: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
 msgstr " Paquets a %s"
 
-#: ../src/misc.py:386
+#: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
 msgstr " Grups a %s"
 
-#: ../src/misc.py:450
+#: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "El fitxer de l'aplicació és incorrecte (%s)"
 
-#: ../src/misc.py:452
+#: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "El tipus de fitxer és incorrecte (%s)"
 
-#: ../src/misc.py:454
+#: ../src/misc.py:455
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "La versió del fitxer és incorrecta (%s)"
 
-#: ../src/misc.py:638
+#: ../src/misc.py:639
 msgid "Current Settings :"
 msgstr "Configuració actual:"
 
@@ -436,103 +436,108 @@ msgstr "Les metadades per actualitzar s'han carregat des de %s"
 msgid "No update Metadata found for %s "
 msgstr "No s'han trobat metadades per actualitzar per %s"
 
-#: ../src/yumapi.py:183 ../src/yumex.py:594
+#: ../src/yumapi.py:166
+#, fuzzy, python-format
+msgid "Error loading update metadata from %s "
+msgstr "Les metadades per actualitzar s'han carregat des de %s"
+
+#: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "S'està preparant per instal·lar/eliminar/actualitzar"
 
-#: ../src/yumapi.py:187
+#: ../src/yumapi.py:191
 msgid "--> Preparing for install"
 msgstr "--> S'està preparant per instal·lar"
 
-#: ../src/yumapi.py:192
+#: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
 msgstr "--> S'està preparant per eliminar"
 
-#: ../src/yumapi.py:199
+#: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
 msgstr "--> S'està preparant per a una actualització total"
 
-#: ../src/yumapi.py:202
+#: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
 msgstr "--> S'està preparant per a una actualització parcial"
 
-#: ../src/yumapi.py:204
+#: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> S'estan afegint tots els obsolets a la transacció"
 
-#: ../src/yumapi.py:226 ../src/yumgui/callbacks.py:62
+#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "S'està instal·lant"
 
-#: ../src/yumapi.py:227 ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "S'està actualitzant"
 
-#: ../src/yumapi.py:229
+#: ../src/yumapi.py:233
 msgid "Installing for dependencies"
 msgstr "S'està instal·lant per a satisfer les dependències"
 
-#: ../src/yumapi.py:230
+#: ../src/yumapi.py:234
 msgid "Updating for dependencies"
 msgstr "S'està actualitzant per a satisfer les dependències"
 
-#: ../src/yumapi.py:231
+#: ../src/yumapi.py:235
 msgid "Removing for dependencies"
 msgstr "S'està eliminant per a satisfer les dependències"
 
-#: ../src/yumapi.py:277
+#: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Ha fallat en obtenir %s:"
 
-#: ../src/yumapi.py:299
+#: ../src/yumapi.py:303
 msgid "Downloading Packages:"
 msgstr "S'estan descarregant els paquets:"
 
-#: ../src/yumapi.py:315 ../src/yumapi.py:323
+#: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "S'ha produït un error en obtenir els paquets:\n"
 
 #. Check GPG signatures
-#: ../src/yumapi.py:330
+#: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
 msgstr "Verificant les signatures GPG:"
 
-#: ../src/yumapi.py:335
+#: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
 msgstr "S'ha produït un error en verificar les signatures dels paquets:\n"
 
-#: ../src/yumapi.py:341
+#: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
 msgstr "S'està traçant les signatures dels paquets verificats:\n"
 
-#: ../src/yumapi.py:348
+#: ../src/yumapi.py:352
 msgid "Running Transaction Test"
 msgstr "S'està executant la verificació de la transacció"
 
-#: ../src/yumapi.py:366
+#: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
 msgstr "La verificació de la transacció ha finalitzat"
 
-#: ../src/yumapi.py:368
+#: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
 msgstr "S'ha produït un error en verificar la transacció:"
 
-#: ../src/yumapi.py:373
+#: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
 msgstr "La verificació de la transacció ha finalitzat correctament"
 
-#: ../src/yumapi.py:389
+#: ../src/yumapi.py:393
 msgid "Running Transaction"
 msgstr "S'està executant la transacció"
 
-#: ../src/yumapi.py:480
+#: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Voleu importar la clau GPG : %s \n"
 
-#: ../src/yumapi.py:482
+#: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
 msgstr "Necessitat per %s"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-16 01:34+0000\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: 2008-11-16 01:09-0300\n"
 "Last-Translator: Taylon <taylonsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <fedora-trans-pt_br@redhat.com>\n"
@@ -25,8 +25,7 @@ msgstr ""
 msgid "Getting : %s"
 msgstr "Recebendo : %s"
 
-#: ../src/callbacks.py:164
-#: ../src/yumapi.py:232
+#: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Removendo"
 
@@ -98,7 +97,8 @@ msgstr "--> Processando conflitos: %s conflitos %s"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr "--> Preenchendo a transação com os pacotes selecionados. Por favor espere."
+msgstr ""
+"--> Preenchendo a transação com os pacotes selecionados. Por favor espere."
 
 #: ../src/callbacks.py:274
 #, python-format
@@ -109,30 +109,24 @@ msgstr "---> Baixando cabeçalhos de %s para o pacote na transação."
 msgid "Packages to Process"
 msgstr "Pacotes a processar"
 
-#: ../src/dialogs.py:215
-#: ../src/views.py:474
+#: ../src/dialogs.py:215 ../src/views.py:474
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/dialogs.py:216
-#: ../src/yumex.glade.h:24
+#: ../src/dialogs.py:216 ../src/yumex.glade.h:24
 msgid "Arch"
 msgstr "Arq"
 
-#: ../src/dialogs.py:217
-#: ../src/views.py:61
+#: ../src/dialogs.py:217 ../src/views.py:61
 msgid "Ver"
 msgstr "Versão"
 
 #. Setup reponame & repofile column's
-#: ../src/dialogs.py:218
-#: ../src/views.py:438
-#: ../src/views.py:473
+#: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
 msgstr "Repositório"
 
-#: ../src/dialogs.py:219
-#: ../src/views.py:61
+#: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
 msgstr "Tamanho"
 
@@ -150,7 +144,7 @@ msgstr ""
 "Atualizando : %s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
@@ -159,7 +153,7 @@ msgstr ""
 "Obsolescendo : %s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -167,158 +161,156 @@ msgstr ""
 "Requer:\n"
 "\n"
 
-#: ../src/gui.py:103
-#: ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Não é possível ler o atributo %s"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
 msgstr "Mostrar todos os pacotes"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
 msgstr "Mostrar atualizações de pacotes"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
 msgstr "Mostrar pacotes disponíveis"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
 msgstr "Mostrar pacotes instalados"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
 msgstr "Visão de pacotes"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr "Visão de grupo"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 msgid "Package Queue View"
 msgstr "Visão de fila de pacotes"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 msgid "Repository Selection View"
 msgstr "Visão de seleção de repositórios"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 msgid "Output View"
 msgstr "Visão de saída"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
-#: ../src/misc.py:93
+#: ../src/misc.py:94
 msgid "RPM Groups"
 msgstr "Grupos de RPM"
 
-#: ../src/misc.py:94
+#: ../src/misc.py:95
 msgid "Repositories"
 msgstr "Repositórios"
 
-#: ../src/misc.py:95
-#: ../src/views.py:61
+#: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
 msgstr "Arquitetura"
 
-#: ../src/misc.py:96
+#: ../src/misc.py:97
 msgid "Sizes"
 msgstr "Tamanhos"
 
-#: ../src/misc.py:97
+#: ../src/misc.py:98
 msgid "Age"
 msgstr "Idade"
 
-#: ../src/misc.py:107
+#: ../src/misc.py:108
 msgid "Mandatory"
 msgstr "Obrigatório"
 
-#: ../src/misc.py:108
+#: ../src/misc.py:109
 msgid "Default"
 msgstr "Padrão"
 
-#: ../src/misc.py:109
+#: ../src/misc.py:110
 msgid "Optional"
 msgstr "Opcional"
 
-#: ../src/misc.py:110
+#: ../src/misc.py:111
 msgid "Conditional"
 msgstr "Condicional"
 
-#: ../src/misc.py:118
+#: ../src/misc.py:119
 msgid "Programming:"
 msgstr "Desenvolvedores:"
 
-#: ../src/misc.py:121
+#: ../src/misc.py:122
 msgid "Translation:"
 msgstr "Tradução:"
 
-#: ../src/misc.py:142
+#: ../src/misc.py:143
 msgid "Special Thanks To:"
 msgstr "Agradecimentos especiais para:"
 
-#: ../src/misc.py:151
+#: ../src/misc.py:152
 msgid "Getting update packages"
 msgstr "Recebendo pacotes atualizados"
 
-#: ../src/misc.py:152
+#: ../src/misc.py:153
 msgid "Getting installed packages"
 msgstr "Recebendo pacotes instalados"
 
-#: ../src/misc.py:153
+#: ../src/misc.py:154
 msgid "Getting available packacages"
 msgstr "Recebendo pacotes disponíveis"
 
-#: ../src/misc.py:157
+#: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
 msgstr "Foram encontradas %d atualizações de pacotes"
 
-#: ../src/misc.py:158
+#: ../src/misc.py:159
 #, python-format
 msgid "Found %d installed packages"
 msgstr "Foram encontrados %d pacotes instalados"
 
-#: ../src/misc.py:159
+#: ../src/misc.py:160
 #, python-format
 msgid "Found %d available packages"
 msgstr "Foram encontrados %d pacotes disponíveis"
 
-#: ../src/misc.py:374
+#: ../src/misc.py:375
 msgid "Package Queue:"
 msgstr "FIla de pacotes:"
 
-#: ../src/misc.py:379
+#: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
 msgstr "Pacote(s) a %s"
 
-#: ../src/misc.py:386
+#: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
 msgstr " Grupos a %s"
 
-#: ../src/misc.py:450
+#: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr "Aplicação de arquivo incorreta (%s)"
 
-#: ../src/misc.py:452
+#: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr "Tipo de arquivo incorreto (%s)"
 
-#: ../src/misc.py:454
+#: ../src/misc.py:455
 #, python-format
 msgid "Wrong file version (%s)"
 msgstr "Versão de arquivo incorreta (%s)"
 
-#: ../src/misc.py:638
+#: ../src/misc.py:639
 msgid "Current Settings :"
 msgstr "Configurações atuais :"
 
@@ -326,14 +318,11 @@ msgstr "Configurações atuais :"
 msgid "Categories"
 msgstr "Categorias"
 
-#: ../src/views.py:61
-#: ../src/views.py:91
+#: ../src/views.py:61 ../src/views.py:91
 msgid "Package"
 msgstr "Pacote"
 
-#: ../src/views.py:61
-#: ../src/views.py:94
-#: ../src/views.py:218
+#: ../src/views.py:61 ../src/views.py:94 ../src/views.py:218
 msgid "Summary"
 msgstr "Sumário"
 
@@ -381,44 +370,37 @@ msgstr "Nome do arquivo"
 msgid "Plugin"
 msgstr "Plugin"
 
-#: ../src/yumapi.py:69
-#: ../src/yumapi.py:121
+#: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Configuração do yum : Set de transação"
 
-#: ../src/yumapi.py:71
-#: ../src/yumapi.py:123
+#: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Configuração do yum : RPM Bd."
 
 #. -> Repo Setup
-#: ../src/yumapi.py:74
-#: ../src/yumapi.py:126
+#: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "Configuração do yum : Repositórios."
 
 #. -> Sack Setup
-#: ../src/yumapi.py:77
-#: ../src/yumapi.py:129
+#: ../src/yumapi.py:77 ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "Configuração do yum : Conjunto de pacotes"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:80
-#: ../src/yumapi.py:132
+#: ../src/yumapi.py:80 ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "Configuração do yum : Atualizações"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:84
-#: ../src/yumapi.py:135
+#: ../src/yumapi.py:84 ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "Configuração do yum : Grupos"
 
-#: ../src/yumapi.py:86
-#: ../src/yumapi.py:137
+#: ../src/yumapi.py:86 ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Configuração do yum : Instalação básica concluída"
 
@@ -446,8 +428,7 @@ msgstr "Nenhuma atualização de metadados encontrada para %s "
 msgid "Error loading update metadata from %s "
 msgstr "Erro ao carregar as atualizações de metadados a partir de %s "
 
-#: ../src/yumapi.py:187
-#: ../src/yumex.py:594
+#: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Preparando para instalar/remover/atualizar"
 
@@ -471,15 +452,12 @@ msgstr "--> Preparando para uma atualização parcial"
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> Adicionando todas as transações obsoletas"
 
-#: ../src/yumapi.py:230
-#: ../src/yumgui/callbacks.py:62
-#: ../src/yumgui/callbacks.py:63
-#: ../src/yumgui/callbacks.py:65
+#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
+#: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Instalando"
 
-#: ../src/yumapi.py:231
-#: ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Atualizando"
 
@@ -504,8 +482,7 @@ msgstr "Falha ao receber %s: "
 msgid "Downloading Packages:"
 msgstr "Baixando pacotes:"
 
-#: ../src/yumapi.py:319
-#: ../src/yumapi.py:327
+#: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Erro ao baixar os pacotes:\n"
 
@@ -542,12 +519,12 @@ msgstr "O teste da transação foi bem sucedido"
 msgid "Running Transaction"
 msgstr "Executando transação"
 
-#: ../src/yumapi.py:484
+#: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Você deseja impotar a chave GPG : %s \n"
 
-#: ../src/yumapi.py:486
+#: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
 msgstr "Requerido por %s"
@@ -570,13 +547,11 @@ msgstr "Nenhum pacote na fila"
 msgid "You are about to add %s packages\n"
 msgstr "Você está prestes a adicionar %s pacotes\n"
 
-#: ../src/yumex.py:237
-#: ../src/yumex.py:249
+#: ../src/yumex.py:237 ../src/yumex.py:249
 msgid "It will take some time\n"
 msgstr "Isso levará algum tempo\n"
 
-#: ../src/yumex.py:238
-#: ../src/yumex.py:250
+#: ../src/yumex.py:238 ../src/yumex.py:250
 msgid "do you want to continue ?"
 msgstr "você deseja continuar ?"
 
@@ -630,12 +605,8 @@ msgstr "Configuração do yum"
 msgid "GUI Setup Completed"
 msgstr "Instalação da GUI concluída"
 
-#: ../src/yumex.py:473
-#: ../src/yumex.py:609
-#: ../src/yumex.py:664
-#: ../src/yumex.py:745
-#: ../src/yumex.py:748
-#: ../src/yumex.py:766
+#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
+#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "Erro"
@@ -737,8 +708,7 @@ msgstr "encontrados %d pacotes, combinando : %s"
 msgid "Yum is locked by another application"
 msgstr "O yum está sendo utilizado por outra aplicação"
 
-#: ../src/yumex.py:745
-#: ../src/yumex.py:766
+#: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Erro no Yumex"
 
@@ -750,8 +720,7 @@ msgstr "Erro no plugin, o Yum Extender será encerrado"
 msgid "Erasing"
 msgstr "Apagando"
 
-#: ../src/yumgui/callbacks.py:64
-#: ../src/yumgui/callbacks.py:70
+#: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
 msgstr "Obsoleto"
 
@@ -763,10 +732,8 @@ msgstr "Atualizado"
 msgid "Erased"
 msgstr "Apagado"
 
-#: ../src/yumgui/callbacks.py:68
-#: ../src/yumgui/callbacks.py:69
-#: ../src/yumgui/callbacks.py:71
-#: ../src/yumex.glade.h:36
+#: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
+#: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
 msgid "Installed"
 msgstr "Instalado"
 
@@ -1005,4 +972,3 @@ msgstr "Plugins do _yum:"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
-

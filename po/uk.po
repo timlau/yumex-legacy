@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 0.34\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-25 12:41+0200\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: 2006-03-21 12:06+0200\n"
 "Last-Translator: Maxim Dziumanenko <mvd@mylinux.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Getting : %s"
 msgstr "Отримання : %s"
 
-#: ../src/callbacks.py:164 ../src/yumapi.py:204
+#: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Видалення"
 
@@ -141,14 +141,14 @@ msgid ""
 "\n"
 msgstr "Оновлення"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, fuzzy, python-format
 msgid ""
 "Obsoleting : %s\n"
 "\n"
 msgstr "Отримання : %s"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -156,52 +156,52 @@ msgstr ""
 "Вимагається:\n"
 "\n"
 
-#: ../src/gui.py:103 ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Не вдається прочитати атрибут %s"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 #, fuzzy
 msgid "Show All Packages"
 msgstr "Пакети"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 #, fuzzy
 msgid "Show Package Updates"
 msgstr "%d пакетів для встановлення"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 #, fuzzy
 msgid "Show available Packages"
 msgstr "Пакети"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 #, fuzzy
 msgid "Show Installed Packages"
 msgstr "Завантажуються пакети:"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 #, fuzzy
 msgid "Package View"
 msgstr "Пакет"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr ""
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 #, fuzzy
 msgid "Package Queue View"
 msgstr "Пакет"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 #, fuzzy
 msgid "Repository Selection View"
 msgstr "Помилка створення репозиторію"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 #, fuzzy
 msgid "Output View"
 msgstr "_Вивід"
@@ -209,122 +209,122 @@ msgstr "_Вивід"
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
-#: ../src/misc.py:93
+#: ../src/misc.py:94
 msgid "RPM Groups"
 msgstr "Групи RPM"
 
-#: ../src/misc.py:94
+#: ../src/misc.py:95
 msgid "Repositories"
 msgstr "Репозиторії"
 
-#: ../src/misc.py:95 ../src/views.py:61
+#: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
 msgstr "Архітектура"
 
-#: ../src/misc.py:96
+#: ../src/misc.py:97
 msgid "Sizes"
 msgstr "Розмір"
 
-#: ../src/misc.py:97
+#: ../src/misc.py:98
 msgid "Age"
 msgstr "Вік"
 
-#: ../src/misc.py:107
+#: ../src/misc.py:108
 #, fuzzy
 msgid "Mandatory"
 msgstr "Обов'_язкові"
 
-#: ../src/misc.py:108
+#: ../src/misc.py:109
 #, fuzzy
 msgid "Default"
 msgstr "_Типові"
 
-#: ../src/misc.py:109
+#: ../src/misc.py:110
 #, fuzzy
 msgid "Optional"
 msgstr "_Необов'язкові"
 
-#: ../src/misc.py:110
+#: ../src/misc.py:111
 #, fuzzy
 msgid "Conditional"
 msgstr "_Необов'язкові"
 
-#: ../src/misc.py:118
+#: ../src/misc.py:119
 msgid "Programming:"
 msgstr ""
 
-#: ../src/misc.py:121
+#: ../src/misc.py:122
 #, fuzzy
 msgid "Translation:"
 msgstr "встановлення"
 
-#: ../src/misc.py:142
+#: ../src/misc.py:143
 msgid "Special Thanks To:"
 msgstr ""
 
-#: ../src/misc.py:151
+#: ../src/misc.py:152
 #, fuzzy
 msgid "Getting update packages"
 msgstr "Встановлення стеку пакетів"
 
-#: ../src/misc.py:152
+#: ../src/misc.py:153
 #, fuzzy
 msgid "Getting installed packages"
 msgstr "Завантажуються пакети:"
 
-#: ../src/misc.py:153
+#: ../src/misc.py:154
 #, fuzzy
 msgid "Getting available packacages"
 msgstr "Пакети"
 
-#: ../src/misc.py:157
+#: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
 msgstr ""
 
-#: ../src/misc.py:158
+#: ../src/misc.py:159
 #, fuzzy, python-format
 msgid "Found %d installed packages"
 msgstr "Завантажуються пакети:"
 
-#: ../src/misc.py:159
+#: ../src/misc.py:160
 #, fuzzy, python-format
 msgid "Found %d available packages"
 msgstr "Пакети"
 
-#: ../src/misc.py:374
+#: ../src/misc.py:375
 #, fuzzy
 msgid "Package Queue:"
 msgstr "Пакет"
 
-#: ../src/misc.py:379
+#: ../src/misc.py:380
 #, fuzzy, python-format
 msgid " Packages to %s"
 msgstr "%d пакетів для встановлення"
 
-#: ../src/misc.py:386
+#: ../src/misc.py:387
 #, fuzzy, python-format
 msgid " Groups to %s"
 msgstr "Групи RPM"
 
-#: ../src/misc.py:450
+#: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
 msgstr ""
 
-#: ../src/misc.py:452
+#: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
 msgstr ""
 
-#: ../src/misc.py:454
+#: ../src/misc.py:455
 #, fuzzy, python-format
 msgid "Wrong file version (%s)"
 msgstr ""
 "Встановлена версія: %s (%s) \n"
 "\n"
 
-#: ../src/misc.py:638
+#: ../src/misc.py:639
 msgid "Current Settings :"
 msgstr "Поточні параметри:"
 
@@ -386,153 +386,166 @@ msgstr "Файл"
 msgid "Plugin"
 msgstr "Модуль"
 
-#: ../src/yumapi.py:67 ../src/yumapi.py:114
+#: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Налаштовування Yum: транзакція"
 
-#: ../src/yumapi.py:69 ../src/yumapi.py:116
+#: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Налаштовування Yum : база даних RPM"
 
 #. -> Repo Setup
-#: ../src/yumapi.py:72 ../src/yumapi.py:119
+#: ../src/yumapi.py:74 ../src/yumapi.py:126
 #, fuzzy
 msgid "Setup Yum : Repositories."
 msgstr "Налаштовування Yum : конфігурація"
 
 #. -> Sack Setup
-#: ../src/yumapi.py:75 ../src/yumapi.py:122
+#: ../src/yumapi.py:77 ../src/yumapi.py:129
 #, fuzzy
 msgid "Setup Yum : Package Sacks"
 msgstr "Встановлення стеку пакетів"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:78 ../src/yumapi.py:125
+#: ../src/yumapi.py:80 ../src/yumapi.py:132
 #, fuzzy
 msgid "Setup Yum : Updates"
 msgstr "Налаштовування Yum : модулі"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:82 ../src/yumapi.py:128
+#: ../src/yumapi.py:84 ../src/yumapi.py:135
 #, fuzzy
 msgid "Setup Yum : Groups"
 msgstr "Налаштовування Yum : модулі"
 
-#: ../src/yumapi.py:84 ../src/yumapi.py:130
+#: ../src/yumapi.py:86 ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Налаштовування Yum : базове налаштовування завершено"
 
-#: ../src/yumapi.py:138
+#: ../src/yumapi.py:147
+msgid "Setup signed metadata support"
+msgstr ""
+
+#: ../src/yumapi.py:153
+#, python-format
+msgid "Repository metadata (repomd.xml) for %s"
+msgstr ""
+
+#: ../src/yumapi.py:162
 #, fuzzy, python-format
 msgid "Loaded update Metadata from %s "
 msgstr "Завантажувати метадані yum"
 
-#: ../src/yumapi.py:140
+#: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
 msgstr ""
 
-#: ../src/yumapi.py:159 ../src/yumex.py:594
+#: ../src/yumapi.py:166
+#, fuzzy, python-format
+msgid "Error loading update metadata from %s "
+msgstr "Завантажувати метадані yum"
+
+#: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Підготовка до встановлення/видалення/оновлення"
 
-#: ../src/yumapi.py:163
+#: ../src/yumapi.py:191
 msgid "--> Preparing for install"
 msgstr "--> Підготовка до встановлення"
 
-#: ../src/yumapi.py:168
+#: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
 msgstr "--> Підготовка до видалення"
 
-#: ../src/yumapi.py:175
+#: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
 msgstr "--> Підготовка до повного оновлення"
 
-#: ../src/yumapi.py:178
+#: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
 msgstr "--> Підготовка до часткового оновлення"
 
-#: ../src/yumapi.py:180
+#: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> Додавання у транзакцію списку застарілих пакетів"
 
-#: ../src/yumapi.py:202 ../src/yumgui/callbacks.py:62
+#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Встановлення"
 
-#: ../src/yumapi.py:203 ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Оновлення"
 
-#: ../src/yumapi.py:205
+#: ../src/yumapi.py:233
 msgid "Installing for dependencies"
 msgstr "Встановлення для залежностей"
 
-#: ../src/yumapi.py:206
+#: ../src/yumapi.py:234
 msgid "Updating for dependencies"
 msgstr "Оновлення для залежностей"
 
-#: ../src/yumapi.py:207
+#: ../src/yumapi.py:235
 msgid "Removing for dependencies"
 msgstr "Видалення для залежностей"
 
-#: ../src/yumapi.py:253
+#: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Помилка отримання %s:"
 
-#: ../src/yumapi.py:275
+#: ../src/yumapi.py:303
 msgid "Downloading Packages:"
 msgstr "Завантажуються пакети:"
 
-#: ../src/yumapi.py:291 ../src/yumapi.py:299
+#: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Помилка завантаження пакетів:\n"
 
 #. Check GPG signatures
-#: ../src/yumapi.py:306
+#: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
 msgstr "Перевірка підписів GPG:"
 
-#: ../src/yumapi.py:311
+#: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
 msgstr "Помилка перевірки сигнатур пакетів:\n"
 
-#: ../src/yumapi.py:317
+#: ../src/yumapi.py:345
 #, fuzzy
 msgid "Traceback in checking package signatures:\n"
 msgstr "Помилка перевірки сигнатур пакетів:\n"
 
-#: ../src/yumapi.py:324
+#: ../src/yumapi.py:352
 msgid "Running Transaction Test"
 msgstr "Запускається перевірочна транзакція"
 
-#: ../src/yumapi.py:342
+#: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
 msgstr "Перевірочна транзакція завершена"
 
-#: ../src/yumapi.py:344
+#: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
 msgstr "Помилка у перевірочній транзакції"
 
-#: ../src/yumapi.py:349
+#: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
 msgstr "Перевірочна транзакція успішно завершена"
 
-#: ../src/yumapi.py:365
+#: ../src/yumapi.py:393
 msgid "Running Transaction"
 msgstr "Запуск транзакції"
 
-#. print "po: %s userid: %s hexkey: %s " % (str(po),userid,hexkeyid)
-#: ../src/yumapi.py:457
+#: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr ""
 
-#: ../src/yumapi.py:459
+#: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
 msgstr ""
