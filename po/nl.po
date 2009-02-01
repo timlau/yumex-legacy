@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: yumex.master-nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-12-16 01:27+0000\n"
-"PO-Revision-Date: 2009-01-31 02:16+0100\n"
+"PO-Revision-Date: 2009-02-01 19:37+0100\n"
 "Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
 "Language-Team: Dutch <nippur@fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Aan het ophalen: %s"
 
 #: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
-msgstr "Aan het verwijderen"
+msgstr "Verwijderen"
 
 #: ../src/callbacks.py:166
 msgid "Cleanup"
@@ -46,15 +46,15 @@ msgstr "Verwerken metadata"
 
 #: ../src/callbacks.py:234
 msgid "installed"
-msgstr "Geïnstalleerd"
+msgstr "geïnstalleerd"
 
 #: ../src/callbacks.py:235
 msgid "updated"
-msgstr "Vernieuwd"
+msgstr "vernieuwd"
 
 #: ../src/callbacks.py:236
 msgid "obsoleted"
-msgstr "Verouderd"
+msgstr "verouderd"
 
 #: ../src/callbacks.py:237
 msgid "erased"
@@ -63,47 +63,47 @@ msgstr "verwijderd"
 #: ../src/callbacks.py:240
 #, python-format
 msgid "---> Package %s.%s %s:%s-%s set to be %s"
-msgstr "---> Pakket %s.%s %s:%s-%s staat klaar om %s"
+msgstr "---> Pakket %s.%s %s:%s-%s staat klaar om %s te worden"
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
-msgstr "--> Bezig transactie te checken"
+msgstr "--> Bezig transactievoorwaarden te controleren"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
-msgstr "--> Herstarten Dependency Resolution met de nieuwe veranderingen."
+msgstr "--> Herstarten Oplossen Afhankelijkheid  met de nieuwe veranderingen."
 
 #: ../src/callbacks.py:255
 msgid "--> Finished Dependency Resolution"
-msgstr "--> Klaar met Dependency Resolution vaststellen"
+msgstr "--> Klaar met Oplossen Afhankelijkheid"
 
 #: ../src/callbacks.py:259
 #, python-format
 msgid "--> Processing Dependency: %s for package: %s"
-msgstr "--> Verwerken Dependency: %s voor pakket: %s"
+msgstr "--> Verwerken Afhankelijkheid: %s voor pakket: %s"
 
 #: ../src/callbacks.py:264
 #, python-format
 msgid "--> Unresolved Dependency: %s"
-msgstr "--> Onopgeloste Dependency: %s"
+msgstr "--> Onopgeloste Afhankelijkheid: %s"
 
 #: ../src/callbacks.py:268
 #, python-format
 msgid "--> Processing Conflict: %s conflicts %s"
-msgstr "--> Verwerken Conflict: %s conflict met %s"
+msgstr "--> Verwerken Conflict: %s gaat niet samen met %s"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr "--> Vullen van transactie setje met geselecteerde pakketten. Momentje aub."
+msgstr "--> Vullen van transactie set met geselecteerde pakketten. Momentje aub."
 
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr "---> Downloading header voor %s om bij transactie setje te voegen."
+msgstr "---> Downloading header voor %s om bij transactie set te voegen."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
-msgstr "Paketten om te verwerken"
+msgstr "Pakketten om te Verwerken"
 
 #: ../src/dialogs.py:215 ../src/views.py:474
 msgid "Name"
@@ -160,23 +160,23 @@ msgstr ""
 #: ../src/gui.py:103 ../src/gui.py:113
 #, python-format
 msgid "Can not read the %s attribute"
-msgstr "Kan de %s attribute niet lezen"
+msgstr "Kan het %s attribuut niet lezen"
 
 #: ../src/gui.py:371
 msgid "Show All Packages"
-msgstr "Toon alle Paketten"
+msgstr "Toon Alle Paketten"
 
 #: ../src/gui.py:372
 msgid "Show Package Updates"
-msgstr "Toon alle Pakket Updates"
+msgstr "Toon Alle Pakket Updates"
 
 #: ../src/gui.py:373
 msgid "Show available Packages"
-msgstr "Toon alle Beschikbare Paketten"
+msgstr "Toon Alle Beschikbare Paketten"
 
 #: ../src/gui.py:374
 msgid "Show Installed Packages"
-msgstr "Toon alle Geïnstalleerde Paketten"
+msgstr "Toon Alle Geïnstalleerde Paketten"
 
 #. Setup Vertical Toolbar
 #: ../src/gui.py:383
@@ -189,11 +189,11 @@ msgstr "Groep View"
 
 #: ../src/gui.py:385
 msgid "Package Queue View"
-msgstr "Pakket Wachtrij View"
+msgstr "Wachtrij View"
 
 #: ../src/gui.py:387
 msgid "Repository Selection View"
-msgstr "Repository Selectie View"
+msgstr "Repository View"
 
 #: ../src/gui.py:388
 msgid "Output View"
@@ -283,15 +283,13 @@ msgstr "Pakket Wachtrij:"
 
 #: ../src/misc.py:380
 #, python-format
-#, fuzzy
 msgid " Packages to %s"
-msgstr "Paketten om %s"
+msgstr "Paketten om te %s"
 
 #: ../src/misc.py:387
 #, python-format
-#, fuzzy
 msgid " Groups to %s"
-msgstr "Groepen omr %s"
+msgstr "Groepen om te %s"
 
 #: ../src/misc.py:451
 #, python-format
@@ -370,7 +368,7 @@ msgstr "Plugin"
 
 #: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
-msgstr "Setup Yum : Transactie Setje"
+msgstr "Setup Yum : Transactie Set"
 
 #: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
@@ -453,7 +451,7 @@ msgstr "--> Toevoegen van alle verouderde pakketten aan transactie"
 #: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
-msgstr "Bezig met installeren"
+msgstr "Bezig met Installeren"
 
 #: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
@@ -638,7 +636,7 @@ msgstr "Pakketten Sorteren"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
-msgstr "Zicht op samenstelling pakketten"
+msgstr "Bekijken samenstelling pakketten"
 
 #: ../src/yumex.py:531
 msgid "Population Completed"
@@ -646,19 +644,19 @@ msgstr "Samenstelling Voltooid"
 
 #: ../src/yumex.py:539
 msgid "Package View Population"
-msgstr "Package View Population"
+msgstr "Package View Populatie"
 
 #: ../src/yumex.py:551
 msgid "Package View Population Completed"
-msgstr "Package View Population Afgerond"
+msgstr "Package View Populatie Afgerond"
 
 #: ../src/yumex.py:558
 msgid "Category View Population"
-msgstr "Categorie View Population"
+msgstr "Categorie View Populatie"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr "Categorie View Population Afgerond"
+msgstr "Categorie View Populatie Afgerond"
 
 #: ../src/yumex.py:602
 msgid "Processing Packages in queue"
@@ -785,7 +783,7 @@ msgstr "<b>Pakketten</b>"
 
 #: ../src/yumex.glade.h:12
 msgid "<b>Quick add to queue</b>"
-msgstr "<b>Snelle toevoeging aan wachtrij</b>"
+msgstr "<b>Snel Toevoegen:</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>Repository  Exclude Filters</b>"
@@ -825,7 +823,7 @@ msgstr "Alle"
 
 #: ../src/yumex.glade.h:25
 msgid "Available"
-msgstr "Beschikbare"
+msgstr "Beschikbaar"
 
 #: ../src/yumex.glade.h:26
 msgid "C_hangelog"
@@ -845,7 +843,7 @@ msgstr "ETA"
 
 #: ../src/yumex.glade.h:31
 msgid "Excludes"
-msgstr "Uitgeslotenen"
+msgstr "Uitgesloten"
 
 #: ../src/yumex.glade.h:32
 msgid "Extra"
@@ -877,7 +875,7 @@ msgstr "Voorkeuren"
 
 #: ../src/yumex.glade.h:40
 msgid "Process Queue Confirmation"
-msgstr "Verwerk Wachtrij Bevestiging"
+msgstr "Bevestigen van Verwerken deze Wachtrij"
 
 #: ../src/yumex.glade.h:41
 msgid "Repos"
@@ -905,7 +903,7 @@ msgstr "Yum Extender Voorkeuren"
 
 #: ../src/yumex.glade.h:47
 msgid "_Add All"
-msgstr "Voeg _Allen toe"
+msgstr "Voeg _Alles Toe"
 
 #: ../src/yumex.glade.h:48
 msgid "_Auto refresh on start"
@@ -913,7 +911,7 @@ msgstr "_Auto ververs bij starten"
 
 #: ../src/yumex.glade.h:49
 msgid "_Description"
-msgstr "_De Beschrijving"
+msgstr "Be_schrijving"
 
 #: ../src/yumex.glade.h:50
 msgid "_Deselect All"
@@ -925,7 +923,7 @@ msgstr "B_ewerk"
 
 #: ../src/yumex.glade.h:52
 msgid "_File"
-msgstr "Bestand"
+msgstr "_Bestand"
 
 #: ../src/yumex.glade.h:53
 msgid "_Help"
@@ -933,11 +931,11 @@ msgstr "_Hulp"
 
 #: ../src/yumex.glade.h:54
 msgid "_Other"
-msgstr "Ander "
+msgstr "_Overig"
 
 #: ../src/yumex.glade.h:55
 msgid "_Process Queue"
-msgstr "Verwerk _Pakket Wachtrij "
+msgstr "Verwerk _Wachtrij "
 
 #: ../src/yumex.glade.h:56
 msgid "_Profiles"
@@ -957,11 +955,11 @@ msgstr "Ins_trumenten"
 
 #: ../src/yumex.glade.h:60
 msgid "_Yum Clean All"
-msgstr "_Yum Alles Schoon"
+msgstr "_Yum Schonen"
 
 #: ../src/yumex.glade.h:61
 msgid "_Yum excludes:"
-msgstr "_Yum uitgeslotenen:"
+msgstr "_door Yum uit te sluiten:"
 
 #: ../src/yumex.glade.h:62
 msgid "_Yum plugins:"
