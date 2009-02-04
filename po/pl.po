@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-07-27 23:08+0200\n"
+"PO-Revision-Date: 2009-02-04 20:44+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr "Rozmiar"
 #: ../src/dialogs.py:351
 #, python-format
 msgid "About %s"
-msgstr "Informacje o %s"
+msgstr "O programie %s"
 
 #: ../src/gui.py:66
 #, python-format
@@ -307,7 +307,7 @@ msgstr "Błędna wersja pliku (%s)"
 
 #: ../src/misc.py:639
 msgid "Current Settings :"
-msgstr "Aktualne ustawienia:"
+msgstr "Bieżące ustawienia:"
 
 #: ../src/views.py:40
 msgid "Categories"
@@ -319,7 +319,7 @@ msgstr "Pakiet"
 
 #: ../src/views.py:61 ../src/views.py:94 ../src/views.py:218
 msgid "Summary"
-msgstr "Opis"
+msgstr "Podsumowanie"
 
 #: ../src/views.py:61
 msgid "Repo"
@@ -401,12 +401,12 @@ msgstr "Ustawianie yuma: podstawowa konfiguracja została zakończona"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "Ustawianie obsługi podpisanych metadanych"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "Metadane repozytorium (repomd.xml) dla %s"
 
 #: ../src/yumapi.py:162
 #, python-format
@@ -419,9 +419,9 @@ msgid "No update Metadata found for %s "
 msgstr "Nie znaleziono metadanych aktualizacji dla %s"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Wczytano metadane aktualizacji z %s "
+msgstr "Błąd podczas wczytywania metadanych aktualizacji z %s "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -687,7 +687,7 @@ msgstr "Przetwarzanie pakietów zostało zakończone poprawnie"
 
 #: ../src/yumex.py:664
 msgid "Error in Transaction"
-msgstr "Błąd podczas transakcji"
+msgstr "Błąd transakcji"
 
 #: ../src/yumex.py:669
 #, python-format
@@ -914,7 +914,7 @@ msgstr "_Opis"
 
 #: ../src/yumex.glade.h:50
 msgid "_Deselect All"
-msgstr "_Odznacz wszystkie"
+msgstr "_Odznacz wszystko"
 
 #: ../src/yumex.glade.h:51
 msgid "_Edit"
