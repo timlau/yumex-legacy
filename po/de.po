@@ -2,15 +2,15 @@
 # Copyright (C) 2005 Yumex Team
 # This file is distributed under the same license as the yumex package.
 # komi <komi@gmx.at>, 2005.
-# Fabian Affolter <fab@fedoraproject.org>, 2008,2009.
+# Fabian Affolter <fab@fedoraproject.org>, 2008.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2009-01-11 12:37+0100\n"
+"POT-Creation-Date: 2008-12-16 01:27+0000\n"
+"PO-Revision-Date: 2009-02-05 11:21+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,8 @@ msgstr ""
 msgid "Getting : %s"
 msgstr "Beziehe: %s"
 
-#: ../src/callbacks.py:164 ../src/yumapi.py:232
+#: ../src/callbacks.py:164
+#: ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Entfernen"
 
@@ -101,31 +102,36 @@ msgstr "--> Fülle Transaktionsset mit gewählten Paketen. Bitte warten."
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr ""
-"---> Lade Header für %s herunter, um ihn in das Verarbeitungsset zu packen."
+msgstr "---> Lade Header für %s herunter, um ihn in das Verarbeitungsset zu packen."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
 msgstr "Pakete zum Abarbeiten"
 
-#: ../src/dialogs.py:215 ../src/views.py:474
+#: ../src/dialogs.py:215
+#: ../src/views.py:474
 msgid "Name"
 msgstr "Name"
 
-#: ../src/dialogs.py:216 ../src/yumex.glade.h:24
+#: ../src/dialogs.py:216
+#: ../src/yumex.glade.h:24
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/dialogs.py:217 ../src/views.py:61
+#: ../src/dialogs.py:217
+#: ../src/views.py:61
 msgid "Ver"
 msgstr "Version"
 
 #. Setup reponame & repofile column's
-#: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
+#: ../src/dialogs.py:218
+#: ../src/views.py:438
+#: ../src/views.py:473
 msgid "Repository"
 msgstr "Repository"
 
-#: ../src/dialogs.py:219 ../src/views.py:61
+#: ../src/dialogs.py:219
+#: ../src/views.py:61
 msgid "Size"
 msgstr "Größe"
 
@@ -143,16 +149,16 @@ msgstr ""
 "Aktualisiere: %s\n"
 "\n"
 
-#: ../src/gui.py:70
+#: ../src/gui.py:73
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
 "\n"
 msgstr ""
-"Veraltet: %s\n"
+"Obsoleting: %s\n"
 "\n"
 
-#: ../src/gui.py:84
+#: ../src/gui.py:88
 msgid ""
 "Requires:\n"
 "\n"
@@ -160,45 +166,46 @@ msgstr ""
 "Benötigt:\n"
 "\n"
 
-#: ../src/gui.py:99 ../src/gui.py:109
+#: ../src/gui.py:103
+#: ../src/gui.py:113
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Kann %s Attribut nicht lesen"
 
-#: ../src/gui.py:367
+#: ../src/gui.py:371
 msgid "Show All Packages"
 msgstr "Zeige alle Pakete"
 
-#: ../src/gui.py:368
+#: ../src/gui.py:372
 msgid "Show Package Updates"
 msgstr "Zeige alle Paket-Aktualisierungen"
 
-#: ../src/gui.py:369
+#: ../src/gui.py:373
 msgid "Show available Packages"
 msgstr "Zeige verfügbare Pakete"
 
-#: ../src/gui.py:370
+#: ../src/gui.py:374
 msgid "Show Installed Packages"
 msgstr "Zeige installierte Pakete"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:379
+#: ../src/gui.py:383
 msgid "Package View"
 msgstr "Paket-Ansicht"
 
-#: ../src/gui.py:380
+#: ../src/gui.py:384
 msgid "Group View"
 msgstr "Gruppen-Ansicht"
 
-#: ../src/gui.py:381
+#: ../src/gui.py:385
 msgid "Package Queue View"
 msgstr "Paket-Warteschlangen-Ansicht"
 
-#: ../src/gui.py:383
+#: ../src/gui.py:387
 msgid "Repository Selection View"
 msgstr "Repository-Auswahl-Ansicht"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:388
 msgid "Output View"
 msgstr "Ausgabe-Ansicht"
 
@@ -213,7 +220,8 @@ msgstr "RPM-Gruppen"
 msgid "Repositories"
 msgstr "Repositories"
 
-#: ../src/misc.py:96 ../src/views.py:61
+#: ../src/misc.py:96
+#: ../src/views.py:61
 msgid "Architecture"
 msgstr "Architektur"
 
@@ -317,11 +325,14 @@ msgstr "Aktuelle Einstellungen:"
 msgid "Categories"
 msgstr "Kategorien"
 
-#: ../src/views.py:61 ../src/views.py:91
+#: ../src/views.py:61
+#: ../src/views.py:91
 msgid "Package"
 msgstr "Paket"
 
-#: ../src/views.py:61 ../src/views.py:94 ../src/views.py:218
+#: ../src/views.py:61
+#: ../src/views.py:94
+#: ../src/views.py:218
 msgid "Summary"
 msgstr "Zusammenfassung"
 
@@ -369,37 +380,44 @@ msgstr "Dateinamen"
 msgid "Plugin"
 msgstr "Plugin"
 
-#: ../src/yumapi.py:69 ../src/yumapi.py:121
+#: ../src/yumapi.py:69
+#: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Yum einrichten: Transaktionsset"
 
-#: ../src/yumapi.py:71 ../src/yumapi.py:123
+#: ../src/yumapi.py:71
+#: ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Yum einrichten: RPM Db."
 
 #. -> Repo Setup
-#: ../src/yumapi.py:74 ../src/yumapi.py:126
+#: ../src/yumapi.py:74
+#: ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "Yum einrichten: Repositories."
 
 #. -> Sack Setup
-#: ../src/yumapi.py:77 ../src/yumapi.py:129
+#: ../src/yumapi.py:77
+#: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "Yum einrichten: Pakete-Säcke"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:80 ../src/yumapi.py:132
+#: ../src/yumapi.py:80
+#: ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "Yum einrichten: Aktualisierungen"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:84 ../src/yumapi.py:135
+#: ../src/yumapi.py:84
+#: ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "Yum einrichten: Gruppen"
 
-#: ../src/yumapi.py:86 ../src/yumapi.py:137
+#: ../src/yumapi.py:86
+#: ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Yum einrichten: Basis-Setup abgeschlossen"
 
@@ -425,9 +443,10 @@ msgstr "Kein aktualisierten Metadaten gefunden für %s"
 #: ../src/yumapi.py:166
 #, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Aktualisierte Metadaten geladen von %s"
+msgstr "Fehler beim Laden der Aktualisieren der Metadaten von %s"
 
-#: ../src/yumapi.py:187 ../src/yumex.py:594
+#: ../src/yumapi.py:187
+#: ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Vorbereitung für Installation/Entfernung/Aktualisierung"
 
@@ -449,14 +468,17 @@ msgstr "--> Vorbereitung einer teilweisen Aktualisierung"
 
 #: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
-msgstr "--> Füge alle veralteten zur Verarbeitung hinzu"
+msgstr "--> Füge allte veralteten zur Verarbeitung hinzu"
 
-#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
-#: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
+#: ../src/yumapi.py:230
+#: ../src/yumgui/callbacks.py:62
+#: ../src/yumgui/callbacks.py:63
+#: ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Installiere"
 
-#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231
+#: ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Aktualisiere"
 
@@ -481,7 +503,8 @@ msgstr "Fehler beim Beziehen von %s: "
 msgid "Downloading Packages:"
 msgstr "Lade Pakete herunter:"
 
-#: ../src/yumapi.py:319 ../src/yumapi.py:327
+#: ../src/yumapi.py:319
+#: ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Fehler beim Herunterladen der Pakete:\n"
 
@@ -546,11 +569,13 @@ msgstr "Keine Pakete in der Warteschlange"
 msgid "You are about to add %s packages\n"
 msgstr "Sie sind kurz davor, %s Pakete hinzuzufügen\n"
 
-#: ../src/yumex.py:237 ../src/yumex.py:249
+#: ../src/yumex.py:237
+#: ../src/yumex.py:249
 msgid "It will take some time\n"
 msgstr "Es wird eine gewisse Zeit brauchen\n"
 
-#: ../src/yumex.py:238 ../src/yumex.py:250
+#: ../src/yumex.py:238
+#: ../src/yumex.py:250
 msgid "do you want to continue ?"
 msgstr "Wollen Sie fortfahren?"
 
@@ -604,8 +629,12 @@ msgstr "Yum Config-Setup"
 msgid "GUI Setup Completed"
 msgstr "GUI-Setup komplett"
 
-#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
-#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
+#: ../src/yumex.py:473
+#: ../src/yumex.py:609
+#: ../src/yumex.py:664
+#: ../src/yumex.py:745
+#: ../src/yumex.py:748
+#: ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "Fehler"
@@ -707,7 +736,8 @@ msgstr "gefunden: %d Pakete, passend für: %s"
 msgid "Yum is locked by another application"
 msgstr "Yum ist durch eine andere Anwendung blockiert"
 
-#: ../src/yumex.py:745 ../src/yumex.py:766
+#: ../src/yumex.py:745
+#: ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Fehler in Yumex"
 
@@ -719,7 +749,8 @@ msgstr "Fehler im Plugin, Yum Extender wird beendet"
 msgid "Erasing"
 msgstr "Lösche"
 
-#: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
+#: ../src/yumgui/callbacks.py:64
+#: ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
 msgstr "Veraltet"
 
@@ -731,8 +762,10 @@ msgstr "Aktualisiert"
 msgid "Erased"
 msgstr "Gelöscht"
 
-#: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
-#: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
+#: ../src/yumgui/callbacks.py:68
+#: ../src/yumgui/callbacks.py:69
+#: ../src/yumgui/callbacks.py:71
+#: ../src/yumex.glade.h:36
 msgid "Installed"
 msgstr "Installiert"
 
@@ -974,37 +1007,30 @@ msgstr "dialog1"
 
 #~ msgid "Quiting, please wait !!!!!!"
 #~ msgstr "Beende, bitte warten!!!!!!"
-
 #~ msgid "About Yum Extender"
 #~ msgstr "Ãœber: Yum Extender"
 
 #, fuzzy
 #~ msgid "Groups"
 #~ msgstr "Gruppen"
-
 #~ msgid "<b>(C) 2005  - Tim Lauridsen</b>"
 #~ msgstr "<b>(C) 2005  - Tim Lauridsen</b>"
-
 #~ msgid "<b>Flags</b>"
 #~ msgstr "<b>Flags</b>"
-
 #~ msgid "<b>GPG Key</b>"
 #~ msgstr "<b>GPG SchlÃ¼ssel:</b>"
 
 #, fuzzy
 #~ msgid "<b>Select Profile</b>"
 #~ msgstr "<b>PaketabhÃ¤ngigkeiten</b>"
-
 #~ msgid "<b>URL Type</b>"
 #~ msgstr "<b>URL Typ</b>"
-
 #~ msgid "<b>URLs</b>"
 #~ msgstr "<b>URLs</b>"
 
 #, fuzzy
 #~ msgid "Debug mode"
 #~ msgstr "Debug _Modus"
-
 #~ msgid "Edit Repository"
 #~ msgstr "Repository bearbeiten"
 
@@ -1015,39 +1041,30 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "Yum Extender Launcher"
 #~ msgstr "Yum Extender Einstellungen"
-
 #~ msgid "_Base url "
 #~ msgstr "_Baseurl"
-
 #~ msgid "_Enabled"
 #~ msgstr "Aktivi_ert"
-
 #~ msgid "_GPG check"
 #~ msgstr "_GPG Check"
-
 #~ msgid "_Mirror list"
 #~ msgstr "_Mirrorliste"
-
 #~ msgid "_Name:"
 #~ msgstr "_Name:"
-
 #~ msgid "_Tag:"
 #~ msgstr "_Tag:"
 
 #, fuzzy
 #~ msgid "Save"
 #~ msgstr "_Speichern"
-
 #~ msgid "_About"
 #~ msgstr "_Info"
-
 #~ msgid "_New"
 #~ msgstr "_Neu"
 
 #, fuzzy
 #~ msgid "_Quit"
 #~ msgstr "_Bearbeiten"
-
 #~ msgid "_Save"
 #~ msgstr "_Speichern"
 
@@ -1062,7 +1079,6 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "Quiting"
 #~ msgstr "Aktualisieren"
-
 #~ msgid "_Reset Repository Cache"
 #~ msgstr "_Respository Cache zurÃ¼cksetzten"
 
@@ -1073,7 +1089,6 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "<b>Mirror Detection</b>"
 #~ msgstr "Aktion"
-
 #~ msgid "Install Repository"
 #~ msgstr "Repository installieren"
 
@@ -1088,7 +1103,6 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "_Fastest"
 #~ msgstr "Ergebnis"
-
 #~ msgid "_Show file lists & changelog (longer metadata load time)"
 #~ msgstr "_Zeige Dateilisten & Changelog (lÃ¤ngere Ladzeit der Metadaten)"
 
@@ -1103,46 +1117,36 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "_Select All"
 #~ msgstr "_Alle auswÃ¤hlen"
-
 #~ msgid "_Delete"
 #~ msgstr "_AbwÃ¤hlen"
-
 #~ msgid " Do you want to delete the <b>%s</b> repository?"
 #~ msgstr "Wollen Sie das Respository <b>%s</b> lÃ¶schen?"
-
 #~ msgid "Delete Repository"
 #~ msgstr "Respository lÃ¶schen"
 
 #, fuzzy
 #~ msgid "package %s was not found"
 #~ msgstr "Profil %s nicht gefunden"
-
 #~ msgid "Profile %s not found"
 #~ msgstr "Profil %s nicht gefunden"
-
 #~ msgid "No profile selected"
 #~ msgstr "Kein Profil gewÃ¤hlt"
-
 #~ msgid "_Profile name:"
 #~ msgstr "_Profil Name:"
 
 #, fuzzy
 #~ msgid "_Update"
 #~ msgstr "Aktualisieren"
-
 #~ msgid "_Install"
 #~ msgstr "_Installieren"
-
 #~ msgid "Updating %s view, populate view with data "
 #~ msgstr "Aktualisiere %s Ansicht, fÃ¼lle Anischt mit Daten"
 
 #, fuzzy
 #~ msgid "Using http_proxy=%s"
 #~ msgstr "http"
-
 #~ msgid "Initializing Repositories"
 #~ msgstr "Initialisiere Respository"
-
 #~ msgid "Repository initialization completed in %.2f seconds"
 #~ msgstr "Initialisierung der Respositories abgeschlossen in %.2f Sekunden"
 
@@ -1165,7 +1169,6 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "Setup Yum : Plugins are disabled"
 #~ msgstr "Setup Yum: Plugins"
-
 #~ msgid "Loading Repositories Data : Init. %s repository"
 #~ msgstr "Lade Respositories Daten : Init. %s Repository"
 
@@ -1176,7 +1179,6 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "--> Mirrors Detected (Top 3)"
 #~ msgstr "Aktion"
-
 #~ msgid "Loading Repositories Data"
 #~ msgstr "Lade Respositories Daten"
 
@@ -1187,10 +1189,8 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "Setting Up Package Sack : Changelogs"
 #~ msgstr "Starte Aktualisierungsprozess"
-
 #~ msgid "Loading Repository Group Data"
 #~ msgstr "Lade Respository Gruppen Daten"
-
 #~ msgid "Loading Repositories Data completed"
 #~ msgstr "Laden der Respositories Daten abgeschlossen"
 
@@ -1199,24 +1199,20 @@ msgstr "dialog1"
 #~ msgstr ""
 #~ "Aktivierte Repositories:\n"
 #~ "%s"
-
 #~ msgid "Enable/Disable Repositories"
 #~ msgstr "Aktivierte/Deaktiviere Repositories"
-
 #~ msgid "Building Package Lists : Updates"
 #~ msgstr "Erstelle Paketliste zum Aktualisieren"
 
 #, fuzzy
 #~ msgid "Building Package Lists : %i Updates found"
 #~ msgstr "Erstelle Paketliste zum Aktualisieren"
-
 #~ msgid "Building Package Lists : Installed"
 #~ msgstr "Erstelle Paketliste: Installierte"
 
 #, fuzzy
 #~ msgid "Building Package Lists : %i Installed packages found"
 #~ msgstr "Erstelle Paketliste: Installierte"
-
 #~ msgid "Building Package Lists : Available"
 #~ msgstr "Erstelle Paketliste: VerfÃ¼gbare"
 
@@ -1227,25 +1223,18 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "%s was not deleted"
 #~ msgstr "Profil %s gewÃ¤hlt"
-
 #~ msgid "Preparing for install Groups"
 #~ msgstr "Bereite Gruppen-Installation vor"
-
 #~ msgid "Installing Groups"
 #~ msgstr "Installiere Gruppen"
-
 #~ msgid "Install"
 #~ msgstr "Installieren"
-
 #~ msgid "Preparing for Removing Groups"
 #~ msgstr "Bereite Gruppen-Deinstallation vor"
-
 #~ msgid "Removeing Groups"
 #~ msgstr "Deinstalliere Gruppen"
-
 #~ msgid "Remove"
 #~ msgstr "Deinstallieren"
-
 #~ msgid ""
 #~ "Enabled Repositories:\n"
 #~ "%s"
@@ -1264,26 +1253,20 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "removal"
 #~ msgstr "Deinstallieren"
-
 #~ msgid "<span size=\"xx-large\" color=\"black\">Install Packages</span>"
 #~ msgstr "<span size=\"xx-large\" color=\"black\">Installiere Pakete</span>"
-
 #~ msgid "<span size=\"xx-large\" color=\"black\">Remove Packages</span>"
 #~ msgstr "<span size=\"xx-large\" color=\"black\">Deinstalliere Pakete</span>"
 
 #, fuzzy
 #~ msgid "<span size=\"xx-large\" color=\"black\">Packages by category</span>"
 #~ msgstr "<span size=\"xx-large\" color=\"black\">Pakete aktualisieren</span>"
-
 #~ msgid "<span size=\"xx-large\" color=\"black\">Update Packages</span>"
 #~ msgstr "<span size=\"xx-large\" color=\"black\">Pakete aktualisieren</span>"
-
 #~ msgid "New Repository"
 #~ msgstr "neues Repository"
-
 #~ msgid "_New repository tag name:"
 #~ msgstr "_Neuer Respository Tagname"
-
 #~ msgid "Save Changes"
 #~ msgstr "Ã„nderungen Speichern"
 
@@ -1298,20 +1281,16 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "Test"
 #~ msgstr "Ergebnis"
-
 #~ msgid "Loading Repositories Data : Populate Package Sack for %s"
 #~ msgstr "Laden der Respositories Daten : FÃ¼lle Packet Sack fÃ¼r %s"
-
 #~ msgid "Cannot make directory for logfile %s"
 #~ msgstr "Kann Verzeichnis fÃ¼r das Logfile %s nicht erstellen"
-
 #~ msgid "Cannot open logfile %s"
 #~ msgstr "Kann Logfile nicht Ã¶ffnen : %s"
 
 #, fuzzy
 #~ msgid "Cleanup Download Packages"
 #~ msgstr "Lade Pakete herunter:"
-
 #~ msgid "_Delete downloaded packages after install/update"
 #~ msgstr ""
 #~ "LÃ¶schen _der heruntergeladenen Pakete nach Installation/Aktualisierung"
@@ -1319,20 +1298,16 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "F_orce i386 architecture"
 #~ msgstr "Architektur"
-
 #~ msgid "Mandatory Packages"
 #~ msgstr "Erforderliche Pakete"
-
 #~ msgid "Default Packages"
 #~ msgstr "Standard Pakete"
 
 #, fuzzy
 #~ msgid "Group Information"
 #~ msgstr "BestÃ¤tigung"
-
 #~ msgid "<b>Preferences</b>"
 #~ msgstr "<b>Einstellungen</b>"
-
 #~ msgid ""
 #~ "\n"
 #~ "\n"
@@ -1341,55 +1316,42 @@ msgstr "dialog1"
 #~ "\n"
 #~ "\n"
 #~ "Dateien:\n"
-
 #~ msgid ""
 #~ "Do you want to add these repositories \n"
 #~ "\n"
 #~ msgstr ""
 #~ "Wollen Sie diese Respositories hinzufÃ¼gen \n"
 #~ "\n"
-
 #~ msgid "5"
 #~ msgstr "5"
-
 #~ msgid "Installed Groups"
 #~ msgstr "Installieren"
-
 #~ msgid "Setting up Install Process"
 #~ msgstr "Starte Installationsprozess"
-
 #~ msgid "Setting up Remove Process"
 #~ msgstr "Starte LÃ¶schenprozess"
-
 #~ msgid "Installing Packages"
 #~ msgstr "Installiere Pakete"
 
 #, fuzzy
 #~ msgid "Error in preparation for package installation"
 #~ msgstr "Bereite Installation vor"
-
 #~ msgid "%s completed ok"
 #~ msgstr "%s erfolgreich ausgefÃ¼hrt"
 
 #, fuzzy
 #~ msgid "Installed / Avaliable Groups"
 #~ msgstr "Installieren"
-
 #~ msgid "_Exclude List"
 #~ msgstr "_Ausnahmen Liste"
-
 #~ msgid "_Update Packages"
 #~ msgstr "_Pakete aktualisieren"
-
 #~ msgid "Loading Repositories Data : Init. %s repository (Cached)"
 #~ msgstr "Lade daten der Respositories : Init. %s Repository (im Cache)"
-
 #~ msgid "Default Metapkgs"
 #~ msgstr "Standard Matapakete"
-
 #~ msgid "Optional Metapkgs"
 #~ msgstr "Optionale Metapakete"
-
 #~ msgid ""
 #~ "\n"
 #~ "Check output page for more info."
@@ -1404,83 +1366,57 @@ msgstr "dialog1"
 #, fuzzy
 #~ msgid "_Install Repository"
 #~ msgstr "Repository installieren"
-
 #~ msgid "Progress"
 #~ msgstr "Fortschritt"
-
 #~ msgid "Repository Installer"
 #~ msgstr "Repository Installation"
-
 #~ msgid "Building Install list"
 #~ msgstr "Erstelle Liste zum Installieren"
-
 #~ msgid "Prepare for Updating"
 #~ msgstr "Vorbereiten fï¿½r Aktualisieren"
-
 #~ msgid "Yum Command Ended :\n"
 #~ msgstr "Yum Befehl beendet :\n"
-
 #~ msgid "Using Proxy: %s \n"
 #~ msgstr "Benutze Proxy: %s \n"
-
 #~ msgid "Running : [%s] \n"
 #~ msgstr "Verarbeite : [%s] \n"
-
 #~ msgid "Yum :  Init."
 #~ msgstr "Yum :  Initialisation"
-
 #~ msgid "Yum : parsing Command."
 #~ msgstr "Yum : parse Befehl."
-
 #~ msgid "Yum : Command complete."
 #~ msgstr "Yum : Befehl ausgefÃƒÂ¼hrt."
-
 #~ msgid "Run Yum Commands"
 #~ msgstr "FÃƒÂ¼hre Yum Befehle aus"
-
 #~ msgid "Run Cmd"
 #~ msgstr "Befehl ausfÃƒÂ¼hren"
-
 #~ msgid "See Output "
 #~ msgstr "Siehe Ausgabe "
-
 #~ msgid "Init. Yum"
 #~ msgstr "Initialisiere Yum"
-
 #~ msgid "Error in Repository initialisation:\n"
 #~ msgstr "Fehler beim initialisieren des Repository :\n"
-
 #~ msgid "Error : %s "
 #~ msgstr "Fehler : %s "
-
 #~ msgid "Download and Installing"
 #~ msgstr "Download und Installation"
-
 #~ msgid "Download and Updateing"
 #~ msgstr "Download and Aktualisierung"
-
 #~ msgid " Title"
 #~ msgstr "Titel"
-
 #~ msgid "<b>Addtional Parameters:</b>"
 #~ msgstr "<b>ZusÃƒÂ¤tzliche Parameter:</b>"
-
 #~ msgid "<b>Command  to Run: (F1 to update)</b>"
 #~ msgstr "<b>auszufÃƒÂ¼hrender Befehl : (F1 zum aktualisieren)</b>"
-
 #~ msgid "<b>Flags:</b>"
 #~ msgstr "<b>Flags:</b>"
-
 #~ msgid "<b>Yum Command:</b>"
 #~ msgstr "<b>Yum Befehl:</b>"
-
 #~ msgid "<span size=\"xx-large\" color=\"black\">Run Yum Commands</span>"
 #~ msgstr ""
 #~ "<span size=\"xx-large\" color=\"black\">FÃƒÂ¼hre Yum Befehle aus</span>"
-
 #~ msgid "Answer yes to all questions (-y)"
 #~ msgstr "Alle Fragen mit ja beantworten (-y)"
-
 #~ msgid ""
 #~ "Bla\n"
 #~ "Blu\n"
@@ -1489,15 +1425,12 @@ msgstr "dialog1"
 #~ "Bla\n"
 #~ "Blu\n"
 #~ "Bli"
-
 #~ msgid "Option 4"
 #~ msgstr "Option 4"
-
 #~ msgid "Option 5"
 #~ msgstr "Option 5"
-
 #~ msgid "Run from cache only (-C)"
 #~ msgstr "Nur mit dem Cache arbeiten (-C)"
-
 #~ msgid "kurt"
 #~ msgstr "kurt"
+
