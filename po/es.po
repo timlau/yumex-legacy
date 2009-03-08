@@ -9,23 +9,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-09-30 16:27+1000\n"
-"Last-Translator: Gladys Guerrero Lozano <gguerrer@redhat.com>\n"
+"POT-Creation-Date: 2009-03-08 21:42+0000\n"
+"PO-Revision-Date: 2009-03-08 21:27-0300\n"
+"Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
+"X-Poedit-Language: Spanish\n"
 
 #: ../src/callbacks.py:69
 #, python-format
 msgid "Getting : %s"
-msgstr "Detectar : %s"
+msgstr "Obteniendo : %s"
 
-#: ../src/callbacks.py:164 ../src/yumapi.py:232
+#: ../src/callbacks.py:164
+#: ../src/yumapi.py:232
 msgid "Removing"
-msgstr "Eliminar"
+msgstr "Eliminando"
 
 #: ../src/callbacks.py:166
 msgid "Cleanup"
@@ -95,38 +97,41 @@ msgstr "--> Procesando conflicto: %s entra en conflicto con %s"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr ""
-"--> Poblando la transacción con los paquetes seleccionados. Por favor, "
-"espere."
+msgstr "--> Poblando la transacción con los paquetes seleccionados. Por favor, espere."
 
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr ""
-"---> Descargando cabeceras para que %s las empaquete en la transacción."
+msgstr "---> Descargando cabeceras para que %s las empaquete en la transacción."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
 msgstr "Paquetes para procesar"
 
-#: ../src/dialogs.py:215 ../src/views.py:474
+#: ../src/dialogs.py:215
+#: ../src/views.py:474
 msgid "Name"
 msgstr "Nombre"
 
-#: ../src/dialogs.py:216 ../src/yumex.glade.h:24
+#: ../src/dialogs.py:216
+#: ../src/yumex.glade.h:24
 msgid "Arch"
 msgstr "Arquitectura"
 
-#: ../src/dialogs.py:217 ../src/views.py:61
+#: ../src/dialogs.py:217
+#: ../src/views.py:61
 msgid "Ver"
 msgstr "Versión"
 
 #. Setup reponame & repofile column's
-#: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
+#: ../src/dialogs.py:218
+#: ../src/views.py:438
+#: ../src/views.py:473
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/dialogs.py:219 ../src/views.py:61
+#: ../src/dialogs.py:219
+#: ../src/views.py:61
 msgid "Size"
 msgstr "Tamaño"
 
@@ -161,7 +166,8 @@ msgstr ""
 "Requiere:\n"
 "\n"
 
-#: ../src/gui.py:99 ../src/gui.py:109
+#: ../src/gui.py:99
+#: ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "No se puede leer el atributo %s"
@@ -214,7 +220,8 @@ msgstr "Grupos RPM"
 msgid "Repositories"
 msgstr "Repositorios"
 
-#: ../src/misc.py:96 ../src/views.py:61
+#: ../src/misc.py:96
+#: ../src/views.py:61
 msgid "Architecture"
 msgstr "Arquitectura"
 
@@ -318,11 +325,14 @@ msgstr "Configuración actual:"
 msgid "Categories"
 msgstr "Categorías"
 
-#: ../src/views.py:61 ../src/views.py:91
+#: ../src/views.py:61
+#: ../src/views.py:91
 msgid "Package"
 msgstr "Paquete"
 
-#: ../src/views.py:61 ../src/views.py:94 ../src/views.py:218
+#: ../src/views.py:61
+#: ../src/views.py:94
+#: ../src/views.py:218
 msgid "Summary"
 msgstr "Resumen"
 
@@ -370,37 +380,44 @@ msgstr "Nombre de Archivo"
 msgid "Plugin"
 msgstr "Componentes"
 
-#: ../src/yumapi.py:69 ../src/yumapi.py:121
+#: ../src/yumapi.py:69
+#: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Configuración de Yum : Transacción establecida"
 
-#: ../src/yumapi.py:71 ../src/yumapi.py:123
+#: ../src/yumapi.py:71
+#: ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Configuración de Yum : BD de RPM."
 
 #. -> Repo Setup
-#: ../src/yumapi.py:74 ../src/yumapi.py:126
+#: ../src/yumapi.py:74
+#: ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "Configuración de Yum : Repositorios."
 
 #. -> Sack Setup
-#: ../src/yumapi.py:77 ../src/yumapi.py:129
+#: ../src/yumapi.py:77
+#: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "Configuración de Yum : Sacos de paquetes"
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:80 ../src/yumapi.py:132
+#: ../src/yumapi.py:80
+#: ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "Configuración de Yum : Actualizaciones"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:84 ../src/yumapi.py:135
+#: ../src/yumapi.py:84
+#: ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "Configuración de Yum : Grupos"
 
-#: ../src/yumapi.py:86 ../src/yumapi.py:137
+#: ../src/yumapi.py:86
+#: ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Configuración de Yum : Configuración de base completa"
 
@@ -424,11 +441,12 @@ msgid "No update Metadata found for %s "
 msgstr "No se hallaron metadatos actualizados para %s "
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Actualización de metadatos desde %s"
+msgstr "Error al cargar metadatos de actualización desde %s"
 
-#: ../src/yumapi.py:187 ../src/yumex.py:594
+#: ../src/yumapi.py:187
+#: ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Preparando para instalar/eliminar/actualizar"
 
@@ -452,12 +470,15 @@ msgstr "--> Preparándose para una actualización parcial"
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> Añadiendo todo los obsoletos a la transacción"
 
-#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
-#: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
+#: ../src/yumapi.py:230
+#: ../src/yumgui/callbacks.py:62
+#: ../src/yumgui/callbacks.py:63
+#: ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Instalando"
 
-#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231
+#: ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Actualizando"
 
@@ -482,7 +503,8 @@ msgstr "Falla en la obtención de %s:"
 msgid "Downloading Packages:"
 msgstr "Descargando paquetes:"
 
-#: ../src/yumapi.py:319 ../src/yumapi.py:327
+#: ../src/yumapi.py:319
+#: ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Error descargando paquetes:\n"
 
@@ -547,11 +569,13 @@ msgstr "No hay paquetes en cola"
 msgid "You are about to add %s packages\n"
 msgstr "Está a punto de agregar %s paquetes\n"
 
-#: ../src/yumex.py:237 ../src/yumex.py:249
+#: ../src/yumex.py:237
+#: ../src/yumex.py:249
 msgid "It will take some time\n"
 msgstr "Tomará algún tiempo\n"
 
-#: ../src/yumex.py:238 ../src/yumex.py:250
+#: ../src/yumex.py:238
+#: ../src/yumex.py:250
 msgid "do you want to continue ?"
 msgstr "¿Quiere continuar?"
 
@@ -605,8 +629,12 @@ msgstr "Configuración de Yum"
 msgid "GUI Setup Completed"
 msgstr "Configuración de GUI completa"
 
-#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
-#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
+#: ../src/yumex.py:473
+#: ../src/yumex.py:609
+#: ../src/yumex.py:664
+#: ../src/yumex.py:745
+#: ../src/yumex.py:748
+#: ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "Error"
@@ -708,7 +736,8 @@ msgstr "%d paquetes hallados, coincidentes : %s"
 msgid "Yum is locked by another application"
 msgstr "Yum está bloqueado por otra aplicación"
 
-#: ../src/yumex.py:745 ../src/yumex.py:766
+#: ../src/yumex.py:745
+#: ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Error en Yumex"
 
@@ -720,7 +749,8 @@ msgstr "Error en componente, Yum Extender saldrá"
 msgid "Erasing"
 msgstr "Eliminando"
 
-#: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
+#: ../src/yumgui/callbacks.py:64
+#: ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
 msgstr "Obsoleto"
 
@@ -732,8 +762,10 @@ msgstr "Actualizado"
 msgid "Erased"
 msgstr "Eliminado"
 
-#: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
-#: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
+#: ../src/yumgui/callbacks.py:68
+#: ../src/yumgui/callbacks.py:69
+#: ../src/yumgui/callbacks.py:71
+#: ../src/yumex.glade.h:36
 msgid "Installed"
 msgstr "Instalado"
 
@@ -819,8 +851,7 @@ msgstr "<span size=\"xx-large\" color=\"black\">Cola de paquetes</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr ""
-"<span size=\"xx-large\" color=\"black\">Seleccionar repositorios</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">Seleccionar repositorios</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -973,3 +1004,4 @@ msgstr "Componentes de _Yum:"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "diálogo1"
+
