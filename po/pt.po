@@ -32,14 +32,13 @@ msgid "Erased: %s"
 msgstr "Removido: %s"
 
 #: ../src/callbacks.py:205
-#, fuzzy, python-format
+#, python-format
 msgid "Processing metadata from : %s"
-msgstr "Lendo metadados de %s ...\n"
+msgstr "A processar metadados de : %s"
 
 #: ../src/callbacks.py:207
-#, fuzzy
 msgid "Processing metadata"
-msgstr "Metadados Extendidos"
+msgstr "A processar metadados"
 
 #: ../src/callbacks.py:234
 msgid "installed"
@@ -151,6 +150,8 @@ msgid ""
 "Obsoleting : %s\n"
 "\n"
 msgstr ""
+"A tornar obsoleto : %s\n"
+"\n"
 
 #: ../src/gui.py:84
 msgid ""
@@ -239,9 +240,8 @@ msgid "Mandatory"
 msgstr "Obrigatório"
 
 #: ../src/misc.py:109
-#, fuzzy
 msgid "Default"
-msgstr "Omissão"
+msgstr "Predefinição"
 
 #: ../src/misc.py:110
 msgid "Optional"
@@ -252,18 +252,16 @@ msgid "Conditional"
 msgstr "Condicional"
 
 #: ../src/misc.py:119
-#, fuzzy
 msgid "Programming:"
-msgstr "Desenvolvimento"
+msgstr "Programação:"
 
 #: ../src/misc.py:122
 msgid "Translation:"
 msgstr "Tradução:"
 
 #: ../src/misc.py:143
-#, fuzzy
 msgid "Special Thanks To:"
-msgstr "Incapaz de renomear a pasta '%s' para '%s': Pasta especial"
+msgstr "Agradecimentos especiais:"
 
 #: ../src/misc.py:152
 msgid "Getting update packages"
@@ -343,7 +341,7 @@ msgstr "Resumo"
 
 #: ../src/views.py:61
 msgid "Repo"
-msgstr ""
+msgstr "Repositório"
 
 #: ../src/views.py:92
 msgid "Arch."
@@ -355,7 +353,7 @@ msgstr "Versão"
 
 #: ../src/views.py:95
 msgid "Repo."
-msgstr ""
+msgstr "Repositório"
 
 #: ../src/views.py:96
 msgid "Size."
@@ -394,7 +392,7 @@ msgstr "Um conjunto de ficheiros de instalação e configuração de sistema."
 #: ../src/yumapi.py:71
 #: ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
-msgstr ""
+msgstr "Configuração do Yum : RPM Db."
 
 #. -> Repo Setup
 #: ../src/yumapi.py:74
@@ -429,16 +427,16 @@ msgstr "Muitos grupos"
 #: ../src/yumapi.py:86
 #: ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
-msgstr ""
+msgstr "Configuração do Yum : Configuração base concluída"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "Configurar o suporte de metadados assinado"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "Repositório de metadados (repomd.xml) para %s"
 
 #: ../src/yumapi.py:162
 #, fuzzy, python-format
@@ -453,12 +451,12 @@ msgstr "Nenhum item encontrado para o URI '%s'"
 #: ../src/yumapi.py:166
 #, python-format
 msgid "Error loading update metadata from %s "
-msgstr ""
+msgstr "Erro a carregar actualização de metadados de %s "
 
 #: ../src/yumapi.py:187
 #: ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
-msgstr ""
+msgstr "A preparar para instalar/remover/actualizar"
 
 #: ../src/yumapi.py:191
 msgid "--> Preparing for install"
@@ -508,9 +506,9 @@ msgid "Removing for dependencies"
 msgstr "A remover a senha do utilizador %s.\n"
 
 #: ../src/yumapi.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Failure getting %s: "
-msgstr "Obtendo cookie"
+msgstr "Falha a obter %s:"
 
 #: ../src/yumapi.py:303
 #, fuzzy
@@ -579,7 +577,7 @@ msgstr ""
 
 #: ../src/yumex.py:153
 msgid "Yum has not been initialized yet"
-msgstr ""
+msgstr "O Yum ainda não fui inicializado"
 
 #. Check there are any packages in the queue
 #: ../src/yumex.py:159
@@ -642,12 +640,11 @@ msgstr "Perfil : %s criação falhou"
 
 #: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
-msgstr ""
+msgstr "A limpar todos os metadados do Yum"
 
 #: ../src/yumex.py:419
-#, fuzzy
 msgid "Yum Config Setup"
-msgstr "Configuração da Ligação Meanwhile"
+msgstr "Configuração do Yum"
 
 #: ../src/yumex.py:435
 msgid "GUI Setup Completed"
@@ -743,13 +740,12 @@ msgid "Processing packages (See output for details)"
 msgstr ""
 
 #: ../src/yumex.py:660
-#, fuzzy
 msgid "Packages Processing"
-msgstr "Processamento de Imagem"
+msgstr "Processamento de Pacotes"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing completed ok"
-msgstr ""
+msgstr "Processamento de pacotes concluído com sucesso"
 
 #: ../src/yumex.py:664
 #, fuzzy
@@ -768,17 +764,16 @@ msgstr "Não foi encontrado nenhum utilizador"
 
 #: ../src/yumex.py:743
 msgid "Yum is locked by another application"
-msgstr ""
+msgstr "O Yum está bloqueado por outra aplicação"
 
 #: ../src/yumex.py:745
 #: ../src/yumex.py:766
-#, fuzzy
 msgid "Error in Yumex"
-msgstr "Erro no chat %s"
+msgstr "Erro no Yumex"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "Erro no plugin, o Yum Extender vai fechar"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
@@ -867,9 +862,8 @@ msgid "<b>SUBACTION</b>\n"
 msgstr ""
 
 #: ../src/yumex.glade.h:16
-#, fuzzy
 msgid "<b>Total Download Size</b>"
-msgstr "Tamanho total do registo:"
+msgstr "<b>Tomanho Total da Tranferência</b>"
 
 #: ../src/yumex.glade.h:17
 msgid "<span size=\"large\"><b>Action</b></span>\n"
@@ -889,7 +883,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr ""
+msgstr "<span size=\"xx-large\" color=\"black\">Seleccione Repositórios</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -901,16 +895,15 @@ msgstr "Disponível"
 
 #: ../src/yumex.glade.h:26
 msgid "C_hangelog"
-msgstr ""
+msgstr "_Registo de Alterações"
 
 #: ../src/yumex.glade.h:27
 msgid "Console"
 msgstr "Consola"
 
 #: ../src/yumex.glade.h:28
-#, fuzzy
 msgid "Debug _mode"
-msgstr "Modo de _depuração"
+msgstr "_Modo de depuração"
 
 #: ../src/yumex.glade.h:29
 #, fuzzy
@@ -927,7 +920,6 @@ msgid "Extra"
 msgstr "Muito grande"
 
 #: ../src/yumex.glade.h:33
-#, fuzzy
 msgid "Fi_les"
 msgstr "Fic_heiros"
 
@@ -941,9 +933,8 @@ msgid "I_nformation"
 msgstr "I_nformação"
 
 #: ../src/yumex.glade.h:37
-#, fuzzy
 msgid "Package Descriptions"
-msgstr "Gestor de Pacotes"
+msgstr "Informações do Pacote"
 
 #: ../src/yumex.glade.h:38
 msgid "Plugins"
@@ -960,7 +951,7 @@ msgstr "Confirmação de conta recebida"
 
 #: ../src/yumex.glade.h:41
 msgid "Repos"
-msgstr ""
+msgstr "Repositórios"
 
 #: ../src/yumex.glade.h:42
 msgid "Search Options"
@@ -986,9 +977,8 @@ msgid "Yum Extender Preferences"
 msgstr "Preferências do Orca para %s"
 
 #: ../src/yumex.glade.h:47
-#, fuzzy
 msgid "_Add All"
-msgstr "Realizar _Locução Por:"
+msgstr "_Adicionar tudo"
 
 #: ../src/yumex.glade.h:48
 #, fuzzy
@@ -996,34 +986,28 @@ msgid "_Auto refresh on start"
 msgstr "Mostrar no arranque inicial"
 
 #: ../src/yumex.glade.h:49
-#, fuzzy
 msgid "_Description"
 msgstr "_Descrição"
 
 #: ../src/yumex.glade.h:50
-#, fuzzy
 msgid "_Deselect All"
-msgstr "_Remover Selecção de Todas"
+msgstr "_Deselecionar Tudo"
 
 #: ../src/yumex.glade.h:51
-#, fuzzy
 msgid "_Edit"
 msgstr "_Editar"
 
 #: ../src/yumex.glade.h:52
-#, fuzzy
 msgid "_File"
 msgstr "_Ficheiro"
 
 #: ../src/yumex.glade.h:53
-#, fuzzy
 msgid "_Help"
 msgstr "A_juda"
 
 #: ../src/yumex.glade.h:54
-#, fuzzy
 msgid "_Other"
-msgstr "<b>Outro</b>"
+msgstr "_Outro"
 
 #: ../src/yumex.glade.h:55
 #, fuzzy
@@ -1031,29 +1015,24 @@ msgid "_Process Queue"
 msgstr "Fila cheia"
 
 #: ../src/yumex.glade.h:56
-#, fuzzy
 msgid "_Profiles"
-msgstr "<b>Perfis</b>"
+msgstr "_Perfis"
 
 #: ../src/yumex.glade.h:57
-#, fuzzy
 msgid "_Remove All"
-msgstr "<- Remover Todos"
+msgstr "_Remove Tudo"
 
 #: ../src/yumex.glade.h:58
-#, fuzzy
 msgid "_Skip"
 msgstr "_Saltar"
 
 #: ../src/yumex.glade.h:59
-#, fuzzy
 msgid "_Tools"
-msgstr "Ferramen_tas"
+msgstr "_Ferramentas"
 
 #: ../src/yumex.glade.h:60
-#, fuzzy
 msgid "_Yum Clean All"
-msgstr "Todos os ca_nais"
+msgstr "_Yum Limpar Tudo"
 
 #: ../src/yumex.glade.h:61
 #, fuzzy
@@ -1061,9 +1040,8 @@ msgid "_Yum excludes:"
 msgstr "A iniciar o yum-updatesd: "
 
 #: ../src/yumex.glade.h:62
-#, fuzzy
 msgid "_Yum plugins:"
-msgstr "Descarregar Plugins"
+msgstr "_Yum Plugins:"
 
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
