@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-10-23 23:16-0000\n"
+"PO-Revision-Date: 2009-03-15 14:58+0100\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgstr "Верзија"
 #. Setup reponame & repofile column's
 #: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
-msgstr "Ризница"
+msgstr "Репозиторијум"
 
 #: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
@@ -195,7 +195,7 @@ msgstr "Приказ реда пакета"
 
 #: ../src/gui.py:383
 msgid "Repository Selection View"
-msgstr "Приказ за избор ризница"
+msgstr "Приказ за избор репозиторијума"
 
 #: ../src/gui.py:384
 msgid "Output View"
@@ -210,7 +210,7 @@ msgstr "RPM групе"
 
 #: ../src/misc.py:95
 msgid "Repositories"
-msgstr "Ризнице"
+msgstr "Репозиторијуми"
 
 #: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
@@ -338,7 +338,7 @@ msgstr "Верзија"
 
 #: ../src/views.py:95
 msgid "Repo."
-msgstr "Репозиторијум"
+msgstr "Репо."
 
 #: ../src/views.py:96
 msgid "Size."
@@ -370,46 +370,46 @@ msgstr "Додатак"
 
 #: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
-msgstr "Подешавање Yum-а : скуп трансакције"
+msgstr "Подешавање yum-а : скуп трансакције"
 
 #: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
-msgstr "Подешавање Yum-а : RPM база података"
+msgstr "Подешавање yum-а : RPM база података"
 
 #. -> Repo Setup
 #: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
-msgstr "Подешавање Yum-а : репозиторијуми."
+msgstr "Подешавање yum-а : репозиторијуми"
 
 #. -> Sack Setup
 #: ../src/yumapi.py:77 ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
-msgstr "Подешавање Yum-а : групе пакета"
+msgstr "Подешавање yum-а : групе пакета"
 
 #. -> Updates Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:80 ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
-msgstr "Подешавање Yum-а : ажурирања"
+msgstr "Подешавање yum-а : ажурирања"
 
 #. -> Group Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:84 ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
-msgstr "Подешавање Yum-а : групе"
+msgstr "Подешавање yum-а : групе"
 
 #: ../src/yumapi.py:86 ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
-msgstr "Подешавање Yum-а : завршено је основно подешавање"
+msgstr "Подешавање yum-а : завршено је основно подешавање"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "Подешавање подршке за потписане метаподатке"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "Метаподаци репозиторијума (repomd.xml) за %s"
 
 #: ../src/yumapi.py:162
 #, python-format
@@ -422,9 +422,9 @@ msgid "No update Metadata found for %s "
 msgstr "Нису пронађени метаподаци за %s "
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Учитани су метаподаци за ажурирања из %s "
+msgstr "Грешка при учитавању метаподатака за ажурирања из %s "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -593,11 +593,11 @@ msgstr "Профил : %s није направљен"
 
 #: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
-msgstr "Чистим све yum-ове метаподатке"
+msgstr "Чистим све yum метаподатке"
 
 #: ../src/yumex.py:419
 msgid "Yum Config Setup"
-msgstr "Yum постављање подешавања"
+msgstr "Постављање yum подешавања"
 
 #: ../src/yumex.py:435
 msgid "GUI Setup Completed"
@@ -611,7 +611,7 @@ msgstr "Грешка"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr "Грешка у Yum поставци"
+msgstr "Грешка у yum поставци"
 
 #. prepare package lists
 #. -> List setup
@@ -621,7 +621,7 @@ msgstr "Изграђујем спискове пакета"
 
 #: ../src/yumex.py:480
 msgid "Building Package Lists Completed"
-msgstr "Изграђивање спискова пакета завршено"
+msgstr "Изграђивање спискова пакета је завршено"
 
 #: ../src/yumex.py:481
 msgid "Building Groups Lists"
@@ -629,7 +629,7 @@ msgstr "Изграђујем спискове група"
 
 #: ../src/yumex.py:484
 msgid "Building Group Lists Completed"
-msgstr "Изграђивање спискова група је завршена"
+msgstr "Изграђивање спискова група је завршено"
 
 #. -> Sort Lists
 #: ../src/yumex.py:523
@@ -658,7 +658,7 @@ msgstr "Приказ категорија попуњавања"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr "Завршен приказ категорија попуњавања"
+msgstr "Приказ категорија попуњавања завршен"
 
 #: ../src/yumex.py:602
 msgid "Processing Packages in queue"
@@ -678,7 +678,7 @@ msgstr "Нема пакета у трансакцији"
 
 #: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
-msgstr "Обрађујем пакете (за детаље погледајте излаз)"
+msgstr "Обрађујем пакете (погледајте излаз за детаље)"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing"
@@ -785,11 +785,11 @@ msgstr "<b>пакети</b>"
 
 #: ../src/yumex.glade.h:12
 msgid "<b>Quick add to queue</b>"
-msgstr "<b>Брзо додајте у ред</b>"
+msgstr "<b>Брзо додавање у ред</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>Repository  Exclude Filters</b>"
-msgstr "<b>Филтери за одстрањивање ризница</b>"
+msgstr "<b>Филтери за изузеће репозиторијума</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
@@ -817,7 +817,8 @@ msgstr "<span size=\"xx-large\" color=\"black\">Ред пакета</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">Изаберите ризнице</span>"
+msgstr ""
+"<span size=\"xx-large\" color=\"black\">Изаберите репозиторијуме</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -845,7 +846,7 @@ msgstr "ETA"
 
 #: ../src/yumex.glade.h:31
 msgid "Excludes"
-msgstr "Одстрањени"
+msgstr "Изузети"
 
 #: ../src/yumex.glade.h:32
 msgid "Extra"
@@ -857,7 +858,7 @@ msgstr "Да_тотеке"
 
 #: ../src/yumex.glade.h:34
 msgid "GUI"
-msgstr "ГКИ"
+msgstr "GUI"
 
 #: ../src/yumex.glade.h:35
 msgid "I_nformation"
@@ -961,7 +962,7 @@ msgstr "_Yum очисти све"
 
 #: ../src/yumex.glade.h:61
 msgid "_Yum excludes:"
-msgstr "_Yum одстрањивања:"
+msgstr "_Yum изузећа:"
 
 #: ../src/yumex.glade.h:62
 msgid "_Yum plugins:"
