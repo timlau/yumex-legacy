@@ -10,16 +10,13 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-05-20 00:35+0100\n"
+"PO-Revision-Date: 2009-03-20 20:34+0100\n"
 "Last-Translator: Sulyok Péter <peti@fedoraproject.org>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n>1);\n"
-"X-Poedit-Language: Hungarian\n"
-"X-Poedit-Country: HUNGARY\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n>1);"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -258,34 +255,31 @@ msgid "Special Thanks To:"
 msgstr "Külön köszönet:"
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting update packages"
-msgstr "Csomag beszerzése : %s"
+msgstr "Frissítő csomagok beszerzése"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Telepített csomagok mutatása"
+msgstr "Telepített csomagok beszerzése"
 
 #: ../src/misc.py:154
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "Elérhető csomagok mutatása"
+msgstr "Elérhető csomagok beszerzése"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "Megtalálva %d %s csomag"
+msgstr "%d frissítő csomagot találtam"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "Megtalálva %d %s csomag"
+msgstr "%d telepített csomagot találtam"
 
 #: ../src/misc.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "Megtalálva %d %s csomag"
+msgstr "%d elérhető csomagot találtam"
 
 #: ../src/misc.py:375
 msgid "Package Queue:"
@@ -412,12 +406,12 @@ msgstr "Yum beállítása : Az alapvető beállítások készek"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "Aláírt leíró adat támogatás beállítása"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "%s tároló leíró adatai (repomd.xml)"
 
 #: ../src/yumapi.py:162
 #, python-format
@@ -430,9 +424,9 @@ msgid "No update Metadata found for %s "
 msgstr "Nincs frissítés Leíró adat %s helyről"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Betöltött frissítés Leíró adatok %s helyről"
+msgstr "Leíró adatfrissítés hiba betöltéskor %s helyről"
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -979,3 +973,4 @@ msgstr "_Yum pluginok:"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
+
