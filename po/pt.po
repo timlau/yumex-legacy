@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-10 09:38+0000\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sérgio Mesquita <sergiomesquita@cm-porto.pt>\n"
 "Language-Team: pt <fedora-trans-pt@redhat.com>\n"
@@ -185,19 +185,16 @@ msgstr "Mostrar os pacotes instalados"
 
 #. Setup Vertical Toolbar
 #: ../src/gui.py:379
-#, fuzzy
 msgid "Package View"
-msgstr "vista de calendário"
+msgstr "Vista de Pacote"
 
 #: ../src/gui.py:380
-#, fuzzy
 msgid "Group View"
 msgstr "Vista de Grupo"
 
 #: ../src/gui.py:381
-#, fuzzy
 msgid "Package Queue View"
-msgstr "Ver _Fila de Impressão"
+msgstr "Vista de Fila de Pacotes"
 
 #: ../src/gui.py:383
 #, fuzzy
@@ -205,15 +202,13 @@ msgid "Repository Selection View"
 msgstr "/Conversa/Ver Registo"
 
 #: ../src/gui.py:384
-#, fuzzy
 msgid "Output View"
-msgstr "vista de calendário"
+msgstr "Vista de Resultado"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
 #: ../src/misc.py:94
-#, fuzzy
 msgid "RPM Groups"
 msgstr "Grupos de Volumes"
 
@@ -291,9 +286,8 @@ msgid "Found %d available packages"
 msgstr "%d pacote(s) disponível(is) encontrado(s)"
 
 #: ../src/misc.py:375
-#, fuzzy
 msgid "Package Queue:"
-msgstr "Fila cheia"
+msgstr "Fila de Pacotes:"
 
 #: ../src/misc.py:380
 #, python-format
@@ -306,19 +300,19 @@ msgid " Groups to %s"
 msgstr " Grupos para %s"
 
 #: ../src/misc.py:451
-#, fuzzy, python-format
+#, python-format
 msgid "Wrong file application (%s)"
-msgstr "Tamanho de ficheiro incorrecto '%s'"
+msgstr "Ficheiro de aplicação inválido (%s)"
 
 #: ../src/misc.py:453
-#, fuzzy, python-format
+#, python-format
 msgid "Wrong file type (%s)"
-msgstr "_Tipo de sistema de ficheiros:"
+msgstr "Tipo de ficheiro inválido (%s)"
 
 #: ../src/misc.py:455
-#, fuzzy, python-format
+#, python-format
 msgid "Wrong file version (%s)"
-msgstr "%s: versão de ficheiro inválida %d\n"
+msgstr "Versão de ficheiro inválida (%s)"
 
 #: ../src/misc.py:639
 msgid "Current Settings :"
@@ -564,7 +558,7 @@ msgstr "Falha na transacção"
 #: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr ""
+msgstr "Quer importar a chave GPG : %s \n"
 
 #: ../src/yumapi.py:478
 #, fuzzy, python-format
@@ -581,9 +575,8 @@ msgstr "O Yum ainda não fui inicializado"
 
 #. Check there are any packages in the queue
 #: ../src/yumex.py:159
-#, fuzzy
 msgid "No packages in queue"
-msgstr "Nenhuma mensagem %s em %s"
+msgstr "Nenhum pacote na fila"
 
 #: ../src/yumex.py:236
 #, python-format
@@ -661,9 +654,8 @@ msgid "Error"
 msgstr "Erro"
 
 #: ../src/yumex.py:473
-#, fuzzy
 msgid "Error in Yum Setup"
-msgstr "ERROR: ConfiguraÃ§Ã£o de pÃ¡gina invÃ¡lida!\n"
+msgstr "Erro na Configuração do Yum"
 
 #. prepare package lists
 #. -> List setup
@@ -673,7 +665,7 @@ msgstr "A Criar Lista de Pacotes"
 
 #: ../src/yumex.py:480
 msgid "Building Package Lists Completed"
-msgstr ""
+msgstr "Construção das Listas de Pacotes Completa"
 
 #: ../src/yumex.py:481
 msgid "Building Groups Lists"
@@ -681,7 +673,7 @@ msgstr "A Criar Lista de Grupos"
 
 #: ../src/yumex.py:484
 msgid "Building Group Lists Completed"
-msgstr ""
+msgstr "Construção das Listas de Grupos Completa"
 
 #. -> Sort Lists
 #: ../src/yumex.py:523
@@ -689,9 +681,8 @@ msgid "Sorting packages"
 msgstr "A ordenar pacotes"
 
 #: ../src/yumex.py:525
-#, fuzzy
 msgid "Population view with packages"
-msgstr "A popular vista com pacotes"
+msgstr "A preencher vista com pacotes"
 
 #: ../src/yumex.py:531
 #, fuzzy
@@ -705,7 +696,7 @@ msgstr "/Conversa/Ver Registo"
 
 #: ../src/yumex.py:551
 msgid "Package View Population Completed"
-msgstr ""
+msgstr "Vista de Pacotes Preenchida"
 
 #: ../src/yumex.py:558
 #, fuzzy
@@ -714,7 +705,7 @@ msgstr "/Conversa/Ver Registo"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr ""
+msgstr "Vista de Categorias Preenchida"
 
 #: ../src/yumex.py:602
 #, fuzzy
@@ -737,7 +728,7 @@ msgstr "Nenhuma mensagem %s em %s"
 
 #: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
-msgstr ""
+msgstr "A processar pacotes (ver resultado para detalhes)"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing"
@@ -859,7 +850,7 @@ msgstr "Preferências do Filtro de Daltónicos"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
-msgstr ""
+msgstr "<b>SUB-ACÇÃO</b>\n"
 
 #: ../src/yumex.glade.h:16
 msgid "<b>Total Download Size</b>"
@@ -871,15 +862,15 @@ msgstr "<span size=\"large\"><b>Acção</b></span>\n"
 
 #: ../src/yumex.glade.h:19
 msgid "<span size=\"xx-large\" color=\"black\">Group View</span>"
-msgstr ""
+msgstr "<span size=\"xx-large\" color=\"black\">Vista de Grupo</span>"
 
 #: ../src/yumex.glade.h:20
 msgid "<span size=\"xx-large\" color=\"black\">Output View</span>"
-msgstr ""
+msgstr "<span size=\"xx-large\" color=\"black\">Vista de Resultado</span>"
 
 #: ../src/yumex.glade.h:21
 msgid "<span size=\"xx-large\" color=\"black\">Package Queue</span>"
-msgstr ""
+msgstr "<span size=\"xx-large\" color=\"black\">Fila de Pacotes</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
@@ -912,7 +903,7 @@ msgstr "  eta %s"
 
 #: ../src/yumex.glade.h:31
 msgid "Excludes"
-msgstr ""
+msgstr "Excluidos"
 
 #: ../src/yumex.glade.h:32
 #, fuzzy
@@ -962,9 +953,8 @@ msgid "Updates"
 msgstr "Actualizações"
 
 #: ../src/yumex.glade.h:44
-#, fuzzy
 msgid "Use _proxy"
-msgstr "Usar proxy"
+msgstr "Usar _proxy"
 
 #: ../src/yumex.glade.h:45
 #, fuzzy
@@ -1010,9 +1000,8 @@ msgid "_Other"
 msgstr "_Outro"
 
 #: ../src/yumex.glade.h:55
-#, fuzzy
 msgid "_Process Queue"
-msgstr "Fila cheia"
+msgstr "_Processar Fila"
 
 #: ../src/yumex.glade.h:56
 msgid "_Profiles"
