@@ -3,27 +3,28 @@
 #
 # Danilo Bodei <dbodei@lombardiacom.it><dbodei@katamail.com>, 2005, 2006.
 # Andrea Palaia <andrea.palaia@gmail.com>, 2008.
-# Francesco Tombolini <tombo@adamantio.net>, 2008.
+# Francesco Tombolini <tombo@adamantio.net>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master.it\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-11-13 06:58+0100\n"
+"PO-Revision-Date: 2009-03-23 06:26+0100\n"
 "Last-Translator: Francesco Tombolini <tombo@adamantio.net>\n"
 "Language-Team: Italiano <fedora-trans-it@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/callbacks.py:69
 #, python-format
 msgid "Getting : %s"
 msgstr "Recupero di : %s"
 
-#: ../src/callbacks.py:164 ../src/yumapi.py:232
+#: ../src/callbacks.py:164
+#: ../src/yumapi.py:232
 msgid "Removing"
 msgstr "Rimozione"
 
@@ -72,8 +73,7 @@ msgstr "--> Esecuzione del controllo di transazione"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
-msgstr ""
-"--> Riavvio della risoluzione delle dipendenze con i nuovi cambiamenti."
+msgstr "--> Riavvio della risoluzione delle dipendenze con i nuovi cambiamenti."
 
 #: ../src/callbacks.py:255
 msgid "--> Finished Dependency Resolution"
@@ -96,38 +96,41 @@ msgstr "--> Controllo conflitto: %s va in conflitto con %s"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr ""
-"--> Inizializzazione della transazione con i pacchetti selezionati. "
-"Attendere prego."
+msgstr "--> Inizializzazione della transazione con i pacchetti selezionati. Attendere prego."
 
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr ""
-"---> Download degli header per %s per l'integrazione nel set di transazione."
+msgstr "---> Download degli header per %s per l'integrazione nel set di transazione."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
 msgstr "Pacchetti da esaminare"
 
-#: ../src/dialogs.py:215 ../src/views.py:474
+#: ../src/dialogs.py:215
+#: ../src/views.py:474
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/dialogs.py:216 ../src/yumex.glade.h:24
+#: ../src/dialogs.py:216
+#: ../src/yumex.glade.h:24
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/dialogs.py:217 ../src/views.py:61
+#: ../src/dialogs.py:217
+#: ../src/views.py:61
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
+#: ../src/dialogs.py:218
+#: ../src/views.py:438
+#: ../src/views.py:473
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/dialogs.py:219 ../src/views.py:61
+#: ../src/dialogs.py:219
+#: ../src/views.py:61
 msgid "Size"
 msgstr "Dimensione"
 
@@ -162,7 +165,8 @@ msgstr ""
 "Richiede:\n"
 "\n"
 
-#: ../src/gui.py:99 ../src/gui.py:109
+#: ../src/gui.py:99
+#: ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Impossibile leggere l'attributo %s"
@@ -215,7 +219,8 @@ msgstr "Gruppi RPM"
 msgid "Repositories"
 msgstr "Repositori"
 
-#: ../src/misc.py:96 ../src/views.py:61
+#: ../src/misc.py:96
+#: ../src/views.py:61
 msgid "Architecture"
 msgstr "Architettura"
 
@@ -321,11 +326,14 @@ msgstr "Impostazioni correnti :"
 msgid "Categories"
 msgstr "Categorie"
 
-#: ../src/views.py:61 ../src/views.py:91
+#: ../src/views.py:61
+#: ../src/views.py:91
 msgid "Package"
 msgstr "Pacchetto"
 
-#: ../src/views.py:61 ../src/views.py:94 ../src/views.py:218
+#: ../src/views.py:61
+#: ../src/views.py:94
+#: ../src/views.py:218
 msgid "Summary"
 msgstr "Riepilogo"
 
@@ -373,37 +381,44 @@ msgstr "Nome del file"
 msgid "Plugin"
 msgstr "Plugin"
 
-#: ../src/yumapi.py:69 ../src/yumapi.py:121
+#: ../src/yumapi.py:69
+#: ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
 msgstr "Impostazione di Yum : Impostazione transazione."
 
-#: ../src/yumapi.py:71 ../src/yumapi.py:123
+#: ../src/yumapi.py:71
+#: ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
 msgstr "Impostazione di Yum : Database RPM."
 
 #. -> Repo Setup
-#: ../src/yumapi.py:74 ../src/yumapi.py:126
+#: ../src/yumapi.py:74
+#: ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
 msgstr "Impostazione di Yum : Repositori."
 
 #. -> Sack Setup
-#: ../src/yumapi.py:77 ../src/yumapi.py:129
+#: ../src/yumapi.py:77
+#: ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
 msgstr "Impostazione di Yum : Package Sacks."
 
 #. -> Updates Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:80 ../src/yumapi.py:132
+#: ../src/yumapi.py:80
+#: ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
 msgstr "Impostazione di Yum : Aggiornamenti"
 
 #. -> Group Setup
 #. -> Sack Setup
-#: ../src/yumapi.py:84 ../src/yumapi.py:135
+#: ../src/yumapi.py:84
+#: ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
 msgstr "Impostazione di Yum : Gruppi"
 
-#: ../src/yumapi.py:86 ../src/yumapi.py:137
+#: ../src/yumapi.py:86
+#: ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
 msgstr "Impostazione di Yum : Impostazione di base completata"
 
@@ -427,11 +442,12 @@ msgid "No update Metadata found for %s "
 msgstr "Metadata aggiornati non trovati per %s "
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Metadata aggiornati recuperati da %s "
+msgstr "Errore nel caricamento dei metadata aggiornati da %s "
 
-#: ../src/yumapi.py:187 ../src/yumex.py:594
+#: ../src/yumapi.py:187
+#: ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
 msgstr "Preparazione per l'instalazione/rimozione/aggiornamento"
 
@@ -455,12 +471,15 @@ msgstr "--> Preparazione per un aggiornamento parziale"
 msgid "--> Adding all obsoletion to transaction"
 msgstr "--> Aggiunta di tutta l'obsolescenza alla transazione"
 
-#: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
-#: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
+#: ../src/yumapi.py:230
+#: ../src/yumgui/callbacks.py:62
+#: ../src/yumgui/callbacks.py:63
+#: ../src/yumgui/callbacks.py:65
 msgid "Installing"
 msgstr "Installazione"
 
-#: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
+#: ../src/yumapi.py:231
+#: ../src/yumgui/callbacks.py:60
 msgid "Updating"
 msgstr "Aggiornamento"
 
@@ -485,7 +504,8 @@ msgstr "Errore nel recupero di %s: "
 msgid "Downloading Packages:"
 msgstr "Download dei pacchetti:"
 
-#: ../src/yumapi.py:319 ../src/yumapi.py:327
+#: ../src/yumapi.py:319
+#: ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
 msgstr "Errore nel download dei pacchetti:\n"
 
@@ -550,11 +570,13 @@ msgstr "Nessun pacchetto in coda"
 msgid "You are about to add %s packages\n"
 msgstr "Si stanno aggiungendo %s pacchetti\n"
 
-#: ../src/yumex.py:237 ../src/yumex.py:249
+#: ../src/yumex.py:237
+#: ../src/yumex.py:249
 msgid "It will take some time\n"
 msgstr "Sarà necessario un po di tempo\n"
 
-#: ../src/yumex.py:238 ../src/yumex.py:250
+#: ../src/yumex.py:238
+#: ../src/yumex.py:250
 msgid "do you want to continue ?"
 msgstr "si desidera continuare ?"
 
@@ -608,8 +630,12 @@ msgstr "Impostazione di configurazione di Yum"
 msgid "GUI Setup Completed"
 msgstr "Impostazione della GUI completata"
 
-#: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
-#: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
+#: ../src/yumex.py:473
+#: ../src/yumex.py:609
+#: ../src/yumex.py:664
+#: ../src/yumex.py:745
+#: ../src/yumex.py:748
+#: ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
 msgstr "Errore"
@@ -711,7 +737,8 @@ msgstr "trovati %d pacchetti, corrispondenti : %s"
 msgid "Yum is locked by another application"
 msgstr "Yum è occupato da un'altra applicazione"
 
-#: ../src/yumex.py:745 ../src/yumex.py:766
+#: ../src/yumex.py:745
+#: ../src/yumex.py:766
 msgid "Error in Yumex"
 msgstr "Errore in Yumex"
 
@@ -723,7 +750,8 @@ msgstr "Errore nel plugin, Yum Extender verrà chiuso"
 msgid "Erasing"
 msgstr "Eliminazione"
 
-#: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
+#: ../src/yumgui/callbacks.py:64
+#: ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
 msgstr "Obsoleto"
 
@@ -735,8 +763,10 @@ msgstr "Aggiornato"
 msgid "Erased"
 msgstr "Eliminato"
 
-#: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
-#: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
+#: ../src/yumgui/callbacks.py:68
+#: ../src/yumgui/callbacks.py:69
+#: ../src/yumgui/callbacks.py:71
+#: ../src/yumex.glade.h:36
 msgid "Installed"
 msgstr "Installato"
 
@@ -975,3 +1005,4 @@ msgstr "_Plugin di Yum:"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
+
