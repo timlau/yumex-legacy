@@ -62,9 +62,8 @@ msgid "---> Package %s.%s %s:%s-%s set to be %s"
 msgstr "---> Pacote %s.%s %s:%s-%s marcado para ser %s"
 
 #: ../src/callbacks.py:247
-#, fuzzy
 msgid "--> Running transaction check"
-msgstr "sinal de visto negrito"
+msgstr "--> A executar verificação da transacção"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
@@ -163,9 +162,9 @@ msgstr ""
 
 #: ../src/gui.py:99
 #: ../src/gui.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "Can not read the %s attribute"
-msgstr "Atributo '%s' do elemento '%s' não foi encontrado"
+msgstr "Atributo %s não pode ser lido"
 
 #: ../src/gui.py:367
 msgid "Show All Packages"
@@ -197,9 +196,8 @@ msgid "Package Queue View"
 msgstr "Vista de Fila de Pacotes"
 
 #: ../src/gui.py:383
-#, fuzzy
 msgid "Repository Selection View"
-msgstr "/Conversa/Ver Registo"
+msgstr "Vista de Selecção de Repositórios"
 
 #: ../src/gui.py:384
 msgid "Output View"
@@ -226,9 +224,8 @@ msgid "Sizes"
 msgstr "Tamanhos"
 
 #: ../src/misc.py:98
-#, fuzzy
 msgid "Age"
-msgstr "Idade"
+msgstr "Antiguidade"
 
 #: ../src/misc.py:108
 msgid "Mandatory"
@@ -379,9 +376,8 @@ msgstr "Plugin"
 
 #: ../src/yumapi.py:69
 #: ../src/yumapi.py:121
-#, fuzzy
 msgid "Setup Yum : Transaction Set"
-msgstr "Um conjunto de ficheiros de instalação e configuração de sistema."
+msgstr "Configuração do Yum: Conjunto de transacções"
 
 #: ../src/yumapi.py:71
 #: ../src/yumapi.py:123
@@ -391,32 +387,28 @@ msgstr "Configuração do Yum : RPM Db."
 #. -> Repo Setup
 #: ../src/yumapi.py:74
 #: ../src/yumapi.py:126
-#, fuzzy
 msgid "Setup Yum : Repositories."
-msgstr "Todos os repositórios registrados"
+msgstr "Configuração do Yum: Repositórios."
 
 #. -> Sack Setup
 #: ../src/yumapi.py:77
 #: ../src/yumapi.py:129
-#, fuzzy
 msgid "Setup Yum : Package Sacks"
-msgstr "Utilitários baseados em torno do gestor de pacotes Yum"
+msgstr "Configuração do Yum: Conjunto de Pacotes"
 
 #. -> Updates Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:80
 #: ../src/yumapi.py:132
-#, fuzzy
 msgid "Setup Yum : Updates"
-msgstr "Apresentar apenas actualizações"
+msgstr "Configuração do Yum: Actualizações"
 
 #. -> Group Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:84
 #: ../src/yumapi.py:135
-#, fuzzy
 msgid "Setup Yum : Groups"
-msgstr "Muitos grupos"
+msgstr "Configuração do Yum: Grupos"
 
 #: ../src/yumapi.py:86
 #: ../src/yumapi.py:137
@@ -505,55 +497,46 @@ msgid "Failure getting %s: "
 msgstr "Falha a obter %s:"
 
 #: ../src/yumapi.py:303
-#, fuzzy
 msgid "Downloading Packages:"
-msgstr "Pacotes de Temas"
+msgstr "A transferir pacotes:"
 
 #: ../src/yumapi.py:319
 #: ../src/yumapi.py:327
-#, fuzzy
 msgid "Error Downloading Packages:\n"
-msgstr "Erro ao obter o certificado da AC"
+msgstr "Erro a Transferir Pacotes:\n"
 
 #. Check GPG signatures
 #: ../src/yumapi.py:334
-#, fuzzy
 msgid "Checking GPG Signatures:"
-msgstr "        novas assinaturas: %lu\n"
+msgstr "A verificar assinatura GPG"
 
 #: ../src/yumapi.py:339
-#, fuzzy
 msgid "Error checking package signatures:\n"
-msgstr "Erro ao verificar erro; sem excepção"
+msgstr "Erro ao verificar assinaturas de pacote:\n"
 
 #: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
 msgstr ""
 
 #: ../src/yumapi.py:352
-#, fuzzy
 msgid "Running Transaction Test"
-msgstr "Teste de Sinais GTK"
+msgstr "Executando teste de transacção"
 
 #: ../src/yumapi.py:370
-#, fuzzy
 msgid "Finished Transaction Test"
-msgstr "Teste de Sinais GTK"
+msgstr "Teste de transacção finalizado"
 
 #: ../src/yumapi.py:372
-#, fuzzy
 msgid "Transaction Check Error: "
-msgstr "Erro ao ligar à base de dados"
+msgstr "Erro na vereficação da transacção:"
 
 #: ../src/yumapi.py:377
-#, fuzzy
 msgid "Transaction Test Succeeded"
-msgstr "Teste de Sinais GTK"
+msgstr "Teste de transacção com sucesso"
 
 #: ../src/yumapi.py:393
-#, fuzzy
 msgid "Running Transaction"
-msgstr "Falha na transacção"
+msgstr "Executando transacção"
 
 #: ../src/yumapi.py:476
 #, python-format
@@ -561,9 +544,9 @@ msgid "Do you want to import GPG Key : %s \n"
 msgstr "Quer importar a chave GPG : %s \n"
 
 #: ../src/yumapi.py:478
-#, fuzzy, python-format
+#, python-format
 msgid "Needed by %s"
-msgstr "dividido por"
+msgstr "Necessário por %s"
 
 #: ../src/yumex.py:65
 msgid "Cant Quit while running RPM Transactions"
@@ -685,32 +668,28 @@ msgid "Population view with packages"
 msgstr "A preencher vista com pacotes"
 
 #: ../src/yumex.py:531
-#, fuzzy
 msgid "Population Completed"
-msgstr "População terminada"
+msgstr "Preenchimento concluído"
 
 #: ../src/yumex.py:539
-#, fuzzy
 msgid "Package View Population"
-msgstr "/Conversa/Ver Registo"
+msgstr "Preenchimento da Vista de Pacotes"
 
 #: ../src/yumex.py:551
 msgid "Package View Population Completed"
 msgstr "Vista de Pacotes Preenchida"
 
 #: ../src/yumex.py:558
-#, fuzzy
 msgid "Category View Population"
-msgstr "/Conversa/Ver Registo"
+msgstr "Preenchimento da Vista de Categorias"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
 msgstr "Vista de Categorias Preenchida"
 
 #: ../src/yumex.py:602
-#, fuzzy
 msgid "Processing Packages in queue"
-msgstr "Processamento de pedido a decorrer"
+msgstr "A processar Pacotes na fila"
 
 #: ../src/yumex.py:608
 #, fuzzy
@@ -722,9 +701,8 @@ msgid "No packages selected"
 msgstr "Nenhum pacote seleccionado"
 
 #: ../src/yumex.py:632
-#, fuzzy
 msgid "No packages in transaction"
-msgstr "Nenhuma mensagem %s em %s"
+msgstr "Nenhum pacote na transacção"
 
 #: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
@@ -739,19 +717,18 @@ msgid "Packages Processing completed ok"
 msgstr "Processamento de pacotes concluído com sucesso"
 
 #: ../src/yumex.py:664
-#, fuzzy
 msgid "Error in Transaction"
-msgstr "Erro no chat %s"
+msgstr "Erro na transacção"
 
 #: ../src/yumex.py:669
-#, fuzzy, python-format
+#, python-format
 msgid "Parsing packages to %s "
-msgstr "Ir para o marcador."
+msgstr "A processar pacotes para %s "
 
 #: ../src/yumex.py:703
-#, fuzzy, python-format
+#, python-format
 msgid "found %d packages, matching : %s"
-msgstr "Não foi encontrado nenhum utilizador"
+msgstr "encontrado %d pacotes, correspondendo a : %s"
 
 #: ../src/yumex.py:743
 msgid "Yum is locked by another application"
@@ -897,9 +874,8 @@ msgid "Debug _mode"
 msgstr "_Modo de depuração"
 
 #: ../src/yumex.glade.h:29
-#, fuzzy
 msgid "ETA"
-msgstr "  eta %s"
+msgstr "ETA"
 
 #: ../src/yumex.glade.h:31
 msgid "Excludes"
@@ -915,7 +891,6 @@ msgid "Fi_les"
 msgstr "Fic_heiros"
 
 #: ../src/yumex.glade.h:34
-#, fuzzy
 msgid "GUI"
 msgstr "GUI"
 
@@ -957,14 +932,12 @@ msgid "Use _proxy"
 msgstr "Usar _proxy"
 
 #: ../src/yumex.glade.h:45
-#, fuzzy
 msgid "Yum Extender"
-msgstr "A iniciar o yum-updatesd: "
+msgstr "Yum Extender"
 
 #: ../src/yumex.glade.h:46
-#, fuzzy
 msgid "Yum Extender Preferences"
-msgstr "Preferências do Orca para %s"
+msgstr "Preferências do Yum Extender"
 
 #: ../src/yumex.glade.h:47
 msgid "_Add All"
