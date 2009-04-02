@@ -1,18 +1,19 @@
-# translation of pa.po to Punjabi
+# translation of yumex.master.pa.po to Punjabi
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
 # Amanpreet Singh Alam <apbrar@gmail.com>, 2006.
 # A S Alam <apbrar@gmail.com>, 2006.
 # A S Alam <aalam@users.sf.net>, 2007.
+# Jaswinder Singh <jsingh@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: pa\n"
+"Project-Id-Version: yumex.master.pa\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2007-05-30 16:37+0530\n"
-"Last-Translator: A S Alam <aalam@users.sf.net>\n"
-"Language-Team: Punjabi <punjabi-l10n@lists.sf.net>\n"
+"PO-Revision-Date: 2009-04-02 11:41+0530\n"
+"Last-Translator: Jaswinder Singh <jsingh@redhat.com>\n"
+"Language-Team: Punjabi <Punjabi-users@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,24 +48,20 @@ msgid "Processing metadata"
 msgstr "ਮੈਟਾਡਾਟਾ ਉੱਤੇ ਕਾਰਵਾਈ ਜਾਰੀ"
 
 #: ../src/callbacks.py:234
-#, fuzzy
 msgid "installed"
 msgstr "ਇੰਸਟਾਲ ਹੋਏ"
 
 #: ../src/callbacks.py:235
-#, fuzzy
 msgid "updated"
 msgstr "ਅੱਪਡੇਟ ਕੀਤਾ"
 
 #: ../src/callbacks.py:236
-#, fuzzy
 msgid "obsoleted"
 msgstr "ਲੁਪਤ ਕੀਤਾ"
 
 #: ../src/callbacks.py:237
-#, fuzzy
 msgid "erased"
-msgstr "ਸਾਫ਼ ਕੀਤੇ"
+msgstr "ਸਾਫ ਕੀਤੇ"
 
 #: ../src/callbacks.py:240
 #, python-format
@@ -133,9 +130,9 @@ msgid "Size"
 msgstr "ਅਕਾਰ"
 
 #: ../src/dialogs.py:351
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
-msgstr "ਇਸ ਬਾਰੇ"
+msgstr "%s ਬਾਰੇ"
 
 #: ../src/gui.py:66
 #, python-format
@@ -254,37 +251,34 @@ msgstr "ਅਨੁਵਾਦ:"
 
 #: ../src/misc.py:143
 msgid "Special Thanks To:"
-msgstr ""
+msgstr "ਖਾਸ ਧੰਨਵਾਦ:"
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting update packages"
-msgstr "ਪੈਕੇਜ ਲਏ ਜਾ ਰਹੇ ਹਨ: %s"
+msgstr "ਅੱਪਡੇਟ ਪੈਕੇਜ ਲੈ ਰਿਹਾ ਹੈ"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "ਇੰਸਟਾਲ ਪੈਕੇਜ ਵੇਖਾਓ"
+msgstr "ਇੰਸਟਾਲ ਕੀਤੇ ਪੈਕੇਜ ਲੈ ਰਿਹਾ ਹੈ"
 
 #: ../src/misc.py:154
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "ਉਪਲੱਬਧ ਪੈਕੇਜ ਵੇਖਾਓ"
+msgstr "ਉਪਲੱਬਧ ਪੈਕੇਜ ਲੈ ਰਿਹਾ ਹੈ"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "%d %s ਪੈਕੇਜ ਮਿਲੇ"
+msgstr "%d ਅੱਪਡੇਟ ਪੈਕੇਜ ਮਿਲੇ ਹਨ"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "%d %s ਪੈਕੇਜ ਮਿਲੇ"
+msgstr "%d ਇੰਸਟਾਲ ਕੀਤੇ ਪੈਕੇਜ ਮਿਲੇ ਹਨ"
 
 #: ../src/misc.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "%d %s ਪੈਕੇਜ ਮਿਲੇ"
+msgstr "%d ਉਪਲੱਬਧ ਪੈਕੇਜ ਮਿਲੇ ਹਨ"
 
 #: ../src/misc.py:375
 msgid "Package Queue:"
@@ -411,27 +405,27 @@ msgstr "ਯਮ ਸੈੱਟਅੱਪ : ਮੂਲ ਸੈੱਟਅੱਪ ਮੁਕ
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "ਸਾਈਨਡ ਮੈਟਾਡਾਟਾ ਸਪੋਰਟ ਸੈੱਟਅੱਪ ਕਰੋ"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "%s ਲਈ ਰਿਪੋਜ਼ਟਰੀ ਮੈਟਾਡਾਟਾ (repomd.xml)"
 
 #: ../src/yumapi.py:162
-#, fuzzy, python-format
+#, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "ਯੱਮ ਮੇਟਾਡਾਟਾ ਲੋਡ ਕਰੋ"
+msgstr "%s ਤੋਂ ਅੱਪਡੇਟ ਮੈਟਾਡਾਟਾ ਲੋਡ ਹੋ ਗਿਆ"
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr ""
+msgstr "%s ਲਈ ਕੋਈ ਅੱਪਡੇਟ ਮੈਟਾਡਾਟਾ ਨਹੀਂ ਲੱਭਿਆ"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "ਯੱਮ ਮੇਟਾਡਾਟਾ ਲੋਡ ਕਰੋ"
+msgstr "%s ਤੋਂ ਅੱਪਡੇਟ ਮੈਟਾਡਾਟਾ ਲੋਡ ਕਰਨ ਵਿੱਚ ਗਲਤੀ"
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -719,7 +713,7 @@ msgstr "ਯੱਮਕਸ 'ਚ ਗਲਤੀ"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "ਪਲੱਗਇਨ ਵਿੱਚ ਗਲਤੀ, ਯੱਮ ਐਕਸਟੈਂਡਰ ਬੰਦ ਹੋ ਜਾਵੇਗਾ"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
@@ -978,74 +972,3 @@ msgstr "ਯੱਮ ਪਲੱਗਇਨ(_Y):"
 msgid "dialog1"
 msgstr "dialog1"
 
-#~ msgid "Quiting, please wait !!!!!!"
-#~ msgstr "ਬੰਦ ਕਰ ਰਿਹਾ ਹੈ ਉਡੀਕੋ ਜੀ!!!!!"
-
-#~ msgid "About Yum Extender"
-#~ msgstr "ਯੱਮ ਐਕਸਟੈਂਡਰ ਬਾਰੇ"
-
-#~ msgid "Thank you:"
-#~ msgstr "ਧੰਨਵਾਦ ਹੈ:"
-
-#~ msgid "Groups"
-#~ msgstr "ਗਰੁੱਪ"
-
-#~ msgid "<b>(C) 2005  - Tim Lauridsen</b>"
-#~ msgstr "<b>(C) 2005  - ਟਿੰਮ ਲਉਰੀਡਸਿਨ</b>"
-
-#~ msgid "<b>Flags</b>"
-#~ msgstr "<b>ਨਿਸ਼ਾਨ</b>"
-
-#~ msgid "<b>GPG Key</b>"
-#~ msgstr "<b>GPG ਕੁੰਜੀ</b>"
-
-#~ msgid "<b>Select Profile</b>"
-#~ msgstr "<b>ਪ੍ਰੋਫਾਇਲ ਚੁਣੋ</b>"
-
-#~ msgid "<b>URL Type</b>"
-#~ msgstr "<b>URL ਕਿਸਮ</b>"
-
-#~ msgid "<b>URLs</b>"
-#~ msgstr "<b>URL</b>"
-
-#~ msgid "Credits"
-#~ msgstr "ਮਾਣ"
-
-#~ msgid "Debug mode"
-#~ msgstr "ਡੀਬੱਗ ਢੰਗ"
-
-#~ msgid "Disable 'Yum Extender Launcher'"
-#~ msgstr "'Yum Extender Launcher' ਬੰਦ ਰੱਖੋ"
-
-#~ msgid "Disable Plugins"
-#~ msgstr "ਪਲੱਗਇਨਾਂ ਬੰਦ"
-
-#~ msgid "Edit Repository"
-#~ msgstr "ਰਿਪੋਜ਼ਟਰੀ ਸੋਧ"
-
-#~ msgid "Update Only"
-#~ msgstr "ਸਿਰਫ਼ ਅੱਪਡੇਟ ਹੀ"
-
-#~ msgid "Yum Extender Launcher"
-#~ msgstr "ਯੱਮ ਐਕਸਟੈਂਡਰ ਲਾਂਚਰ"
-
-#~ msgid "_Base url "
-#~ msgstr "ਮੂਲ url (_B)"
-
-#~ msgid "_Enabled"
-#~ msgstr "ਯੋਗ(_E)"
-
-#~ msgid "_GPG check"
-#~ msgstr "_GPG ਜਾਂਚ"
-
-#~ msgid "_Mirror list"
-#~ msgstr "ਪ੍ਰਤੀਬਿੰਬ ਸੂਚੀ(_M)"
-
-#~ msgid "_Name:"
-#~ msgstr "ਨਾਂ(_N):"
-
-#~ msgid "_Tag:"
-#~ msgstr "ਟੈਗ(_T):"
-
-#~ msgid "xxxx"
-#~ msgstr "xxxx"
