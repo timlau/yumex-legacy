@@ -4,20 +4,20 @@
 #
 # Amanpreet Singh Alam <apbrar@gmail.com>, 2006.
 # A S Alam <apbrar@gmail.com>, 2006.
-# A S Alam <aalam@users.sf.net>, 2007.
+# A S Alam <aalam@users.sf.net>, 2007, 2009.
 # Jaswinder Singh <jsingh@redhat.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master.pa\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2009-04-02 11:41+0530\n"
-"Last-Translator: Jaswinder Singh <jsingh@redhat.com>\n"
-"Language-Team: Punjabi <Punjabi-users@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2009-04-06 09:32+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/callbacks.py:69
@@ -27,7 +27,7 @@ msgstr "ਲਏ ਜਾ ਰਹੇ ਹਨ: %s"
 
 #: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
-msgstr "ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ"
+msgstr "ਹਟਾਏ ਜਾ ਰਹੇ ਹਨ"
 
 #: ../src/callbacks.py:166
 msgid "Cleanup"
@@ -36,7 +36,7 @@ msgstr "ਸਫ਼ਾਈ"
 #: ../src/callbacks.py:184
 #, python-format
 msgid "Erased: %s"
-msgstr "ਸਾਫ਼ ਕੀਤਾ: %s"
+msgstr "ਮਿਟਾਏ: %s"
 
 #: ../src/callbacks.py:205
 #, python-format
@@ -57,11 +57,11 @@ msgstr "ਅੱਪਡੇਟ ਕੀਤਾ"
 
 #: ../src/callbacks.py:236
 msgid "obsoleted"
-msgstr "ਲੁਪਤ ਕੀਤਾ"
+msgstr "ਬਰਤਰਫ਼"
 
 #: ../src/callbacks.py:237
 msgid "erased"
-msgstr "ਸਾਫ ਕੀਤੇ"
+msgstr "ਸਾਫ਼ ਕੀਤੇ"
 
 #: ../src/callbacks.py:240
 #, python-format
@@ -70,7 +70,7 @@ msgstr "---> ਪੈਕੇਜ %s.%s %s:%s-%s ਨੂੰ %s ਸੈੱਟ ਕੀਤ�
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
-msgstr "--> ਸੰਚਾਰ ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+msgstr "--> ਟਰਾਂਸੈਕਸ਼ਨ ਚੈੱਕ ਜਾਰੀ"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
@@ -93,7 +93,7 @@ msgstr "--> ਨਾ-ਹੱਲ਼ ਹੋਈ ਨਿਰਭਰਤਾ: %s"
 #: ../src/callbacks.py:268
 #, python-format
 msgid "--> Processing Conflict: %s conflicts %s"
-msgstr "--> ਅਪਵਾਦ: %s ਉੱਤੇ ਕਾਰਵਾਈ %s ਅਪਵਾਦ"
+msgstr "--> ਅਪਵਾਦ: %s ਉੱਤੇ ਕਾਰਵਾਈ: %s ਅਪਵਾਦ"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
@@ -114,7 +114,7 @@ msgstr "ਨਾਂ"
 
 #: ../src/dialogs.py:216 ../src/yumex.glade.h:24
 msgid "Arch"
-msgstr "ਢਾਂਚਾ"
+msgstr "ਆਰਚੀ"
 
 #: ../src/dialogs.py:217 ../src/views.py:61
 msgid "Ver"
@@ -167,19 +167,19 @@ msgstr "%s ਗੁਣ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
 
 #: ../src/gui.py:367
 msgid "Show All Packages"
-msgstr "ਸਭ ਪੈਕੇਜ ਵੇਖਾਓ"
+msgstr "ਸਭ ਪੈਕੇਜ ਵੇਖੋ"
 
 #: ../src/gui.py:368
 msgid "Show Package Updates"
-msgstr "ਪੈਕੇਜ ਅੱਪਡੇਟ ਵੇਖਾਓ"
+msgstr "ਪੈਕੇਜ ਅੱਪਡੇਟ ਵੇਖੋ"
 
 #: ../src/gui.py:369
 msgid "Show available Packages"
-msgstr "ਉਪਲੱਬਧ ਪੈਕੇਜ ਵੇਖਾਓ"
+msgstr "ਉਪਲੱਬਧ ਪੈਕੇਜ ਵੇਖੋ"
 
 #: ../src/gui.py:370
 msgid "Show Installed Packages"
-msgstr "ਇੰਸਟਾਲ ਪੈਕੇਜ ਵੇਖਾਓ"
+msgstr "ਇੰਸਟਾਲ ਪੈਕੇਜ ਵੇਖੋ"
 
 #. Setup Vertical Toolbar
 #: ../src/gui.py:379
@@ -231,7 +231,7 @@ msgstr "ਲਾਜ਼ਮੀ"
 
 #: ../src/misc.py:109
 msgid "Default"
-msgstr "ਮੂਲ"
+msgstr "ਡਿਫਾਲਟ"
 
 #: ../src/misc.py:110
 msgid "Optional"
@@ -297,7 +297,7 @@ msgstr " %s ਲਈ ਗਰੁੱਪ"
 #: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
-msgstr "ਗਲਤ ਫਾਇਲ ਕਾਰਜ (%s)"
+msgstr "ਗਲਤ ਫਾਇਲ ਐਪਲੀਕੇਸ਼ਨ (%s)"
 
 #: ../src/misc.py:453
 #, python-format
@@ -315,7 +315,7 @@ msgstr "ਮੌਜੂਦਾ ਸੈਟਿੰਗ :"
 
 #: ../src/views.py:40
 msgid "Categories"
-msgstr "ਵਰਗ"
+msgstr "ਕੈਟਾਗਰੀਆਂ"
 
 #: ../src/views.py:61 ../src/views.py:91
 msgid "Package"
@@ -612,7 +612,7 @@ msgstr "ਗਲਤੀ"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr "ਯੱਮ(yum) ਸੈੱਟਅੱਪ ਵਿੱਚ ਗਲਤੀ"
+msgstr "ਯੱਮ ਸੈੱਟਅੱਪ ਵਿੱਚ ਗਲਤੀ"
 
 #. prepare package lists
 #. -> List setup
@@ -655,11 +655,11 @@ msgstr "ਪੈਕੇਜ ਝਲਕ ਤਿਆਰ ਕੀਤੀ"
 
 #: ../src/yumex.py:558
 msgid "Category View Population"
-msgstr "ਵਰਗ ਝਲਕ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
+msgstr "ਕੈਟਾਗਰੀ ਝਲਕ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr "ਵਰਗ ਝਲਕ ਤਿਆਰ ਹੋਈ"
+msgstr "ਕੈਟਾਗਰੀ ਝਲਕ ਤਿਆਰ ਹੋਈ"
 
 #: ../src/yumex.py:602
 msgid "Processing Packages in queue"
@@ -721,7 +721,7 @@ msgstr "ਸਾਫ਼ ਕੀਤਾ ਜਾਂਦਾ ਹੈ"
 
 #: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
-msgstr "ਲੁਪਤ ਕੀਤਾ"
+msgstr "ਬਰਤਰਫ਼ ਕੀਤਾ"
 
 #: ../src/yumgui/callbacks.py:66
 msgid "Updated"
@@ -738,7 +738,7 @@ msgstr "ਇੰਸਟਾਲ ਹੋਏ"
 
 #: ../src/yumgui/callbacks.py:181
 msgid "No header - huh?"
-msgstr "ਸਿਰਲੇਖ ਨਹੀਂ - ਕੀ?"
+msgstr "ਹੈੱਡਰ ਨਹੀਂ ਹੈ - ਹੈਂ?"
 
 #: ../src/yumex.glade.h:1
 msgid " "
@@ -774,7 +774,7 @@ msgstr "<b>ਰਵੱਈਆ</b>"
 
 #: ../src/yumex.glade.h:9
 msgid "<b>Category</b>"
-msgstr "<b>ਵਰਗ</b>"
+msgstr "<b>ਕੈਟਾਗਰੀਆਂ</b>"
 
 #: ../src/yumex.glade.h:10
 msgid "<b>Fonts </b>"
@@ -838,7 +838,7 @@ msgstr "ਕੰਨਸੋਲ"
 
 #: ../src/yumex.glade.h:28
 msgid "Debug _mode"
-msgstr "ਡੀਬੱਗ ਢੰਗ(_M)"
+msgstr "ਡੀਬੱਗ ਮੋਡ(_M)"
 
 #: ../src/yumex.glade.h:29
 msgid "ETA"
@@ -850,7 +850,7 @@ msgstr "ਨਾ-ਸ਼ਾਮਿਲ"
 
 #: ../src/yumex.glade.h:32
 msgid "Extra"
-msgstr "ਵਾਧੂ (Extra)"
+msgstr "ਐਕਸਟਰਾ"
 
 #: ../src/yumex.glade.h:33
 msgid "Fi_les"
@@ -930,7 +930,7 @@ msgstr "ਫਾਇਲ(_F)"
 
 #: ../src/yumex.glade.h:53
 msgid "_Help"
-msgstr "ਸਹਾਇਤਾ(_H)"
+msgstr "ਮੱਦਦ(_H)"
 
 #: ../src/yumex.glade.h:54
 msgid "_Other"
@@ -954,7 +954,7 @@ msgstr "ਵਿੱਚੇ ਛੱਡੋ(_S)"
 
 #: ../src/yumex.glade.h:59
 msgid "_Tools"
-msgstr "ਸੰਦ(_T)"
+msgstr "ਟੂਲ(_T)"
 
 #: ../src/yumex.glade.h:60
 msgid "_Yum Clean All"
