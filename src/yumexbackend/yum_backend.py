@@ -83,6 +83,8 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @return: a list of repositories
         '''
         self.frontend.debug('Getting repository information')
+        repos = YumClient.get_repos(self)
+        return repos
 
     def enable_repository(self, repoid, enabled=True):
         ''' 
@@ -91,6 +93,8 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @param enabled: repo enable state
         '''
         self.frontend.debug('Setting repository %s (Enabled = %s)' % (repoid, enabled))
+        repo = YumClient.enable_repo(self,repoid,enabled)
+        return repo
 
     def get_groups(self):
         ''' 
@@ -171,9 +175,9 @@ class YumexPackageYum(YumexPackageBase):
     def filelist(self):
         return self._pkg.get_attribute('filelist')
 
-    @property
-    def id(self):
-        return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
+    @property        
+    def id(self):        
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid)
 
     @property
     def filename(self):
@@ -195,19 +199,19 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         YumexTransactionBase.__init__(self, backend, frontend)
 
-    def add(self, po):
+    def add(self, po, action):
         '''
         add a package to the queue
         @param po: package to add to the queue
         '''
-        pass
+        self._backend.add_transaction(po.id, action)
 
     def remove(self, po):
         '''
         remove a package from the queue
         @param po: package to remove from the queue
         '''
-        pass
+        self._backend.remove_transaction(po.id)
 
     def has_item(self, po):
         '''
@@ -241,8 +245,11 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         Process the packages and groups in the queue
         '''
-
+        self._backend.run_transaction()
+        
     def get_transaction_packages(self):
         '''
         Get the current packages in the transaction queue
         '''
+        pkgs = self._backend.list_transaction()
+        return [YumexPackageYum(p) for p in pkgs]

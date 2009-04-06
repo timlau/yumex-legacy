@@ -102,11 +102,19 @@ class YumClient:
     def _send_command(self,cmd,args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd,"\t".join(args))
-        self.child.expect(':ready')        
+        while True:
+            try:
+                self.child.expect(':ready')
+                break
+            except pexpect.TIMEOUT,e:
+                self.timeout()
+                continue
+                    
         self.child.sendline(line)
 
     def _parse_command(self,line):
         ''' split command and args for a command received from the server'''
+        line = line.strip()
         if line.startswith(':'):
             parts = line.split('\t')
             cmd = parts[0]
@@ -153,12 +161,12 @@ class YumClient:
             return False # not a message
         return True    
         
-    def _get_list(self):
+    def _get_list(self,result_cmd=":pkg"):
         ''' 
         read a list of :pkg commands from the server, until and
         :end command is received
         '''
-        pkgs = []
+        data = []
         cnt = 0L
         while True:
             line = self._readline()
@@ -167,10 +175,14 @@ class YumClient:
             cmd,args = self._parse_command(line)
             if cmd:
                 if not self._check_for_message(cmd, args):
-                    if cmd == ':pkg':
+                    if not cmd == result_cmd: 
+                        self.warning("unexpected command : %s (%s)" % (cmd,args))
+                    elif cmd == ':pkg':
                         p = YumPackage(self,args)
-                        pkgs.append(p)
-        return pkgs
+                        data.append(p)
+                    else:
+                        data.append(args)
+        return data
 
     def _get_result(self,result_cmd):
         '''
@@ -186,6 +198,8 @@ class YumClient:
                         return args
                     else:
                         self.warning("unexpected command : %s (%s)" % (cmd,args))
+    
+            
     
     def _close(self):        
         ''' terminate the child server process '''
@@ -208,16 +222,35 @@ class YumClient:
         
     def add_transaction(self,id,action):
         self._send_command('add-transaction',[id,action])
+        pkgs = self._get_list()
+        return pkgs
         
     def remove_transaction(self,id,action):
-        self._send_command('add-transaction',[id])
+        self._send_command('remove-transaction',[id])
+        pkgs = self._get_list()
+        return pkgs
 
     def list_transaction(self):        
-        self._send_command('get-transaction',[])
+        self._send_command('list-transaction',[])
+        pkgs = self._get_list()
+        return pkgs
 
     def run_transaction(self):        
         self._send_command('run-transaction',[])
 
+    def get_groups(self):
+        self._send_command('get-groups',[])
+
+    def get_repos(self):
+        self._send_command('get-repos',[])
+        data = self._get_list(':repo')
+        return data
+        
+    def enable_repo(self,id,state):
+        self._send_command('enable-repo',[id,str(state)])
+        args = self._get_result(':repo')
+        return args
+        
 class YumServer(yum.YumBase):
     """ 
     A yum server class to be used in a spawned process.
@@ -231,6 +264,9 @@ class YumServer(yum.YumBase):
         remove-transaction <pkg_id>          : add a po to the transaction
         list-transaction                     : list po's in transaction
         run-transaction                      : run the transaction
+        get-groups                           : Get the groups
+        get-repos                            : Get the repositories
+        enable-repo                          : enable/disable a repository
     
         Parameters:
         <pkg-filter> : all,installed,available,updates,obsoletes
@@ -249,6 +285,8 @@ class YumServer(yum.YumBase):
         :pkg <pkg>             : package
         :end                   : end of package list command
         :attr <object>         : package object attribute
+        :group <grp>           : group
+        :repo <repo>           : repo
         
         Parameters:
         <message>  : a text message ('\n' is replaced with ';'
@@ -271,7 +309,13 @@ class YumServer(yum.YumBase):
     def _show_package(self,pkg):
         ''' write package result'''
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,pkg.summary))
-    
+        
+    def _show_group(self,grp):
+        self.write(":group\t%s\t%s\t%s" % (cat,id,name) )
+
+    def _show_repo(self,repo):
+        self.write(":repo\t%s\t%s\t%s\t%s" % (repo.id,repo.name,repo.enabled,repo.gpgcheck) )
+
     def info(self,msg):
         ''' write an info message '''
         self.write(":info\t%s" % msg)
@@ -337,8 +381,10 @@ class YumServer(yum.YumBase):
         elif action == "remove":
             txmbrs = self.remove(po)
         for txmbr in txmbrs:
+            self._show_package(txmbr.po)
             self.debug(str(txmbr))            
-
+        self.write(':end')
+            
     def remove_transaction(self,args):
         pkgstr = args
         po = self._getPackage(pkgstr)
@@ -347,9 +393,33 @@ class YumServer(yum.YumBase):
     def list_transaction(self):
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po)
+        self.write(':end')
             
     def run_transaction(self):
         pass
+    
+    def get_groups(self,args):
+        pass
+    
+    def get_repos(self,args):
+        for repo in self.repos.repos:
+            self._show_repo(self.repos.getRepo(repo))
+        self.write(':end')
+            
+    
+    def enable_repo(self,args):
+        id = args[0]
+        state = (args[1] == 'True')
+        self.debug("Repo : %s Enabled : %s" % (id,state))
+        repo = self.repos.getRepo(id)
+        if repo:
+            if state:
+                self.repos.enableRepo(id)
+            else:
+                self.repos.disableRepo(id)
+            self._show_repo(repo)
+        else:
+            self.error("Repo : %s not found" % id)
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
@@ -365,6 +435,12 @@ class YumServer(yum.YumBase):
             self.list_transaction()
         elif cmd == 'run-transaction':
             self.run_transaction(args)
+        elif cmd == 'get-groups':
+            self.get_groups(args)
+        elif cmd == 'get-repos':
+            self.get_repos(args)
+        elif cmd == 'enable-repo':
+            self.enable_repo(args)
         else:
             self.error('Unknown command : %s' % cmd)
 

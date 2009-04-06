@@ -119,11 +119,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup
         self.backend.setup()
         # get_packages
-        pkgs = self.backend.get_packages(FILTER.available)
-        show(pkgs)
         pkgs = self.backend.get_packages(FILTER.updates)
         show(pkgs,True)
-        po = pkgs[-1]
+        pkgs = self.backend.get_packages(FILTER.available)
+        #show(pkgs)
+        for po in pkgs:
+            if po.name == 'kdegames':
+                break
         print "Package : %s\n" % str(po)
         print "\nFiles:"
         for f in po.filelist:
@@ -137,14 +139,22 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 print "  %s" % line
             if num == 3: break
         print    
+        # Add to transaction for install
+        self.backend.transaction.add(po,'install')
+        tpkgs = self.backend.transaction.get_transaction_packages()
+        show(tpkgs)
         # get_groups
         grps = self.backend.get_groups()
         show(grps)
         # get_repositories
-        repos = self.backend.get_repositories()
-        print repos
-        # enable_repository
-        self._backend.enable_repository('updates-source')
+#        repos = self.backend.get_repositories()
+#        for repo in repos:
+#            id,name,enabled,gpgckeck = repo
+#            print "%-50s : %s" % (id,enabled)
+#        # enable_repository
+#        repo = self.backend.enable_repository('updates',False)
+#        id,name,enabled,gpgckeck = repo
+#        print "%-50s : %s" % (id,enabled)        
         # search
         self.backend.search(['dummy'],SEARCH.name)        
         # reset        
