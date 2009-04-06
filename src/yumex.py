@@ -52,11 +52,11 @@ class YumexController(Controller):
     
     
     def __init__( self ):
-         self.yumbase = None
-         # Create and ui object contains the widgets.
-         ui = UI( const.GLADE_FILE , 'main', 'yumex' )
-         # init the Controller Class to connect signals.
-         Controller.__init__( self, ui )
+        self.yumbase = None
+        # Create and ui object contains the widgets.
+        ui = UI(const.GLADE_FILE , 'main', 'yumex')
+        # init the Controller Class to connect signals.
+        Controller.__init__(self, ui)
 
          
     def quit(self, widget=None, event=None ):
