@@ -37,6 +37,7 @@ class YumPackage:
         self.arch   = args[4]
         self.repoid = args[5]
         self.summary= args[6]
+        self.action = args[7]
         
     def __str__(self):
         if self.epoch == '0':
@@ -46,7 +47,7 @@ class YumPackage:
 
     @property        
     def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
+        return '%s\t%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid,self.action)
 
     def get_attribute(self,attr):
         return self.base.get_attribute(self.id,attr)
@@ -306,9 +307,9 @@ class YumServer(yum.YumBase):
         msg.replace("\n",";")
         sys.stdout.write("%s\n" % msg)    
     
-    def _show_package(self,pkg):
+    def _show_package(self,pkg,action=None):
         ''' write package result'''
-        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,pkg.summary))
+        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,pkg.summary,action))
         
     def _show_group(self,grp):
         self.write(":group\t%s\t%s\t%s" % (cat,id,name) )
@@ -347,7 +348,8 @@ class YumServer(yum.YumBase):
         
     def _getPackage(self,para):
         ''' find the real package from an package id'''
-        n,e,v,r,a,id = para
+        self.debug(para)
+        n,e,v,r,a,id,action = para
         if id == 'installed':
             pkgs = self.rpmdb.searchNevra(n,e,v,r,a)
         else:
@@ -381,8 +383,8 @@ class YumServer(yum.YumBase):
         elif action == "remove":
             txmbrs = self.remove(po)
         for txmbr in txmbrs:
-            self._show_package(txmbr.po)
-            self.debug(str(txmbr))            
+            self._show_package(txmbr.po,txmbr.ts_state)
+            self.debug("Added : "+ str(txmbr))            
         self.write(':end')
             
     def remove_transaction(self,args):
@@ -392,7 +394,7 @@ class YumServer(yum.YumBase):
 
     def list_transaction(self):
         for txmbr in self.tsInfo:
-            self._show_package(txmbr.po)
+            self._show_package(txmbr.po,txmbr.ts_state)
         self.write(':end')
             
     def run_transaction(self):

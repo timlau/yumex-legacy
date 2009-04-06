@@ -113,7 +113,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         def show(elems,desc=False):
             if elems:
                 for el in elems:
-                    print "  %s" % el.id
+                    print "  %s" % str(el)
                     if desc:
                         print el.description
         # setup

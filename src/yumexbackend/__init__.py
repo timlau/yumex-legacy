@@ -76,6 +76,7 @@ class YumexPackageBase:
     def __init__(self, pkg):
         self._pkg = pkg
         self.selected = False
+        
 
     @property
     def name(self):
@@ -100,6 +101,11 @@ class YumexPackageBase:
     @property
     def repoid(self):
         ''' Package repoid '''
+        pass
+
+    @property
+    def action(self):
+        ''' Package tsInfo State '''
         pass
 
     @property

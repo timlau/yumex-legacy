@@ -133,7 +133,7 @@ class YumexPackageYum(YumexPackageBase):
         YumexPackageBase.__init__(self, pkg)
         
     def __str__(self):
-        return self.id
+        return str(self._pkg)
 
     @property
     def name(self):
@@ -156,8 +156,16 @@ class YumexPackageYum(YumexPackageBase):
         return self._pkg.arch
 
     @property
+    def action(self):
+        return self._pkg.action
+
+    @property
     def repoid(self):
         return self._pkg.repoid
+
+    @property
+    def action(self):
+        return self._pkg.action
 
     @property
     def summary(self):
@@ -177,7 +185,7 @@ class YumexPackageYum(YumexPackageBase):
 
     @property        
     def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid)
+        return '%s\t%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid,self.action)
 
     @property
     def filename(self):
