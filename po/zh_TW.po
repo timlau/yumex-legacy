@@ -1,20 +1,23 @@
+# translation of yumex.master.po to
 # Traditional Chinese Messages for yumex.
-# Copyright (C) 2006 Free Software Foundation, Inc.
+# Copyright (C) 2006, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yumex package.
-# Wei-Lun Chao <william.chao@ossii.com.tw>, 2006, 07.
 #
+# Wei-Lun Chao <william.chao@ossii.com.tw>, 2006, 07.
+# Terry Chuang <tchuang@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex 1.9.7\n"
+"Project-Id-Version: yumex.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2007-06-07 15:14+0800\n"
-"Last-Translator: Wei-Lun Chao <william.chao@ossii.com.tw>\n"
-"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
+"PO-Revision-Date: 2009-04-06 12:51+1000\n"
+"Last-Translator: Terry Chuang <tchuang@redhat.com>\n"
+"Language-Team:  <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -44,22 +47,18 @@ msgid "Processing metadata"
 msgstr "處理後設資料"
 
 #: ../src/callbacks.py:234
-#, fuzzy
 msgid "installed"
 msgstr "已安裝"
 
 #: ../src/callbacks.py:235
-#, fuzzy
 msgid "updated"
 msgstr "已更新"
 
 #: ../src/callbacks.py:236
-#, fuzzy
 msgid "obsoleted"
 msgstr "過時的"
 
 #: ../src/callbacks.py:237
-#, fuzzy
 msgid "erased"
 msgstr "已清除"
 
@@ -123,16 +122,16 @@ msgstr "版本"
 #. Setup reponame & repofile column's
 #: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
-msgstr "儲存庫"
+msgstr "軟體庫"
 
 #: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
 msgstr "大小"
 
 #: ../src/dialogs.py:351
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
-msgstr "關於"
+msgstr "關於 %s"
 
 #: ../src/gui.py:66
 #, python-format
@@ -196,7 +195,7 @@ msgstr "套件佇列檢視"
 
 #: ../src/gui.py:383
 msgid "Repository Selection View"
-msgstr "儲存庫選擇檢視"
+msgstr "軟體庫選擇檢視"
 
 #: ../src/gui.py:384
 msgid "Output View"
@@ -211,7 +210,7 @@ msgstr "RPM 群組"
 
 #: ../src/misc.py:95
 msgid "Repositories"
-msgstr "儲存庫"
+msgstr "軟體庫"
 
 #: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
@@ -251,37 +250,34 @@ msgstr "翻譯："
 
 #: ../src/misc.py:143
 msgid "Special Thanks To:"
-msgstr ""
+msgstr "特別感謝："
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting update packages"
-msgstr "取得套件：%s"
+msgstr "取得更新套件"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "顯示已安裝套件"
+msgstr "取得已安裝的套件"
 
 #: ../src/misc.py:154
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "顯示可用套件"
+msgstr "取得可使用的套件"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "找到 %d 個 %s 套件"
+msgstr "找到了 %d 個更新套件"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "找到 %d 個 %s 套件"
+msgstr "找到了 %d 個已安裝的套件"
 
 #: ../src/misc.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "找到 %d 個 %s 套件"
+msgstr "找到了 %d 個可用的套件"
 
 #: ../src/misc.py:375
 msgid "Package Queue:"
@@ -330,7 +326,7 @@ msgstr "概要"
 
 #: ../src/views.py:61
 msgid "Repo"
-msgstr "儲存庫"
+msgstr "軟體庫"
 
 #: ../src/views.py:92
 msgid "Arch."
@@ -342,7 +338,7 @@ msgstr "版本"
 
 #: ../src/views.py:95
 msgid "Repo."
-msgstr "儲存庫"
+msgstr "軟體庫"
 
 #: ../src/views.py:96
 msgid "Size."
@@ -383,7 +379,7 @@ msgstr "設定 Yum：RPM 資料庫"
 #. -> Repo Setup
 #: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
-msgstr "設定 Yum：儲存庫"
+msgstr "設定 Yum：軟體庫"
 
 #. -> Sack Setup
 #: ../src/yumapi.py:77 ../src/yumapi.py:129
@@ -408,27 +404,27 @@ msgstr "設定 Yum：基本設定完成"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "設定已簽署的 metadata 支援"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "%s 的軟體庫 metadata（repomd.xml）"
 
 #: ../src/yumapi.py:162
-#, fuzzy, python-format
+#, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "載入 Yum 後設資料"
+msgstr "已由 %s 載入更新的 Metadata"
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr ""
+msgstr "找不到 %s 的更新 Metadata"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "載入 Yum 後設資料"
+msgstr "由 %s 載入更新 metadata 時發生錯誤"
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -716,7 +712,7 @@ msgstr "Yumex 發生錯誤"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "插件中發生了錯誤，Yum Extender 即將退出"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
@@ -793,7 +789,7 @@ msgstr "<b>快速加入到佇列</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>Repository  Exclude Filters</b>"
-msgstr "<b>儲存庫排除篩選器</b>"
+msgstr "<b>軟體庫排除篩選器</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
@@ -821,7 +817,7 @@ msgstr "<span size=\"xx-large\" color=\"black\">套件佇列</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">選取儲存庫</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">選取軟體庫</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -885,7 +881,7 @@ msgstr "處理佇列確認"
 
 #: ../src/yumex.glade.h:41
 msgid "Repos"
-msgstr "儲存庫"
+msgstr "軟體庫"
 
 #: ../src/yumex.glade.h:42
 msgid "Search Options"
@@ -975,74 +971,3 @@ msgstr "_Yum 外掛程式："
 msgid "dialog1"
 msgstr "對話框1"
 
-#~ msgid "Quiting, please wait !!!!!!"
-#~ msgstr "離開中，請稍待 !!!!!!"
-
-#~ msgid "About Yum Extender"
-#~ msgstr "關於 Yum 延伸程式"
-
-#~ msgid "Thank you:"
-#~ msgstr "謝謝您："
-
-#~ msgid "Groups"
-#~ msgstr "群組"
-
-#~ msgid "<b>(C) 2005  - Tim Lauridsen</b>"
-#~ msgstr "<b>(C) 2005  - Tim Lauridsen</b>"
-
-#~ msgid "<b>Flags</b>"
-#~ msgstr "<b>旗標</b>"
-
-#~ msgid "<b>GPG Key</b>"
-#~ msgstr "<b>GPG 金鑰</b>"
-
-#~ msgid "<b>Select Profile</b>"
-#~ msgstr "<b>選取設定組合</b>"
-
-#~ msgid "<b>URL Type</b>"
-#~ msgstr "<b>URL 型態</b>"
-
-#~ msgid "<b>URLs</b>"
-#~ msgstr "<b>URLs</b>"
-
-#~ msgid "Credits"
-#~ msgstr "鳴謝"
-
-#~ msgid "Debug mode"
-#~ msgstr "除錯模式"
-
-#~ msgid "Disable 'Yum Extender Launcher'"
-#~ msgstr "停用「Yum 延伸執行程式」"
-
-#~ msgid "Disable Plugins"
-#~ msgstr "停用外掛程式"
-
-#~ msgid "Edit Repository"
-#~ msgstr "編輯儲存庫"
-
-#~ msgid "Update Only"
-#~ msgstr "只做更新"
-
-#~ msgid "Yum Extender Launcher"
-#~ msgstr "Yum 延伸執行程式"
-
-#~ msgid "_Base url "
-#~ msgstr "基準 URL(_B)"
-
-#~ msgid "_Enabled"
-#~ msgstr "已啟用(_E)"
-
-#~ msgid "_GPG check"
-#~ msgstr "_GPG 檢查"
-
-#~ msgid "_Mirror list"
-#~ msgstr "鏡像列表(_M)"
-
-#~ msgid "_Name:"
-#~ msgstr "名稱(_N)："
-
-#~ msgid "_Tag:"
-#~ msgstr "標記(_T)："
-
-#~ msgid "xxxx"
-#~ msgstr "xxxx"
