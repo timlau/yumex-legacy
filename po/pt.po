@@ -67,36 +67,35 @@ msgstr "--> A executar verificação da transacção"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
-msgstr ""
+msgstr "--> A Reiniciar Resolução de Dependências com as novas alterações."
 
 #: ../src/callbacks.py:255
-#, fuzzy
 msgid "--> Finished Dependency Resolution"
-msgstr "PNM: Resolução X inválida."
+msgstr "--> A Resolução de Dependências Terminou"
 
 #: ../src/callbacks.py:259
-#, fuzzy, python-format
+#, python-format
 msgid "--> Processing Dependency: %s for package: %s"
-msgstr "Pacote do ALUT para o Hugs98"
+msgstr "--> A Processar Dependência: %s para o pacote: %s"
 
 #: ../src/callbacks.py:264
-#, fuzzy, python-format
+#, python-format
 msgid "--> Unresolved Dependency: %s"
-msgstr "Dependência do DBCP para o Tomcat5"
+msgstr "--> Dependência Não Resolvida: %s"
 
 #: ../src/callbacks.py:268
-#, fuzzy, python-format
+#, python-format
 msgid "--> Processing Conflict: %s conflicts %s"
-msgstr "Detectado um conflito numa nota"
+msgstr "--> A Processar Conflito: %s está em conflito com %s"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr ""
+msgstr "--> A carregar a transacção com os pacotes seleccionados. Por favor aguarde."
 
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr ""
+msgstr "---> A transferir cabeçalho de %s para adicionar à transacção."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
@@ -425,14 +424,14 @@ msgid "Repository metadata (repomd.xml) for %s"
 msgstr "Repositório de metadados (repomd.xml) para %s"
 
 #: ../src/yumapi.py:162
-#, fuzzy, python-format
+#, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Actualizar a partir do ficheiro &POT..."
+msgstr "Foram carregados Metadados de actualização de %s "
 
 #: ../src/yumapi.py:164
-#, fuzzy, python-format
+#, python-format
 msgid "No update Metadata found for %s "
-msgstr "Nenhum item encontrado para o URI '%s'"
+msgstr "Não foram encontrados Metadados de actualização para %s "
 
 #: ../src/yumapi.py:166
 #, python-format
@@ -462,7 +461,7 @@ msgstr "--> A preparar para uma actualização parcial"
 
 #: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
-msgstr ""
+msgstr "--> A adicionar todos os obsoletos à transacção"
 
 #: ../src/yumapi.py:230
 #: ../src/yumgui/callbacks.py:62
@@ -477,19 +476,16 @@ msgid "Updating"
 msgstr "A actualizar"
 
 #: ../src/yumapi.py:233
-#, fuzzy
 msgid "Installing for dependencies"
-msgstr "Dependências de Add-in:"
+msgstr "Instalar dependências"
 
 #: ../src/yumapi.py:234
-#, fuzzy
 msgid "Updating for dependencies"
-msgstr "Botão giratório para actualização"
+msgstr "Actualizar dependências"
 
 #: ../src/yumapi.py:235
-#, fuzzy
 msgid "Removing for dependencies"
-msgstr "A remover a senha do utilizador %s.\n"
+msgstr "Remover dependências"
 
 #: ../src/yumapi.py:281
 #, python-format
@@ -516,7 +512,7 @@ msgstr "Erro ao verificar assinaturas de pacote:\n"
 
 #: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
-msgstr ""
+msgstr "A fazer traçagem na verificação das assinaturas dos pacotes:\n"
 
 #: ../src/yumapi.py:352
 msgid "Running Transaction Test"
@@ -550,7 +546,7 @@ msgstr "Necessário por %s"
 
 #: ../src/yumex.py:65
 msgid "Cant Quit while running RPM Transactions"
-msgstr ""
+msgstr "Não pode Sair enquanto estiver a correr uma transacção RPM"
 
 #: ../src/yumex.py:153
 msgid "Yum has not been initialized yet"
@@ -692,9 +688,8 @@ msgid "Processing Packages in queue"
 msgstr "A processar Pacotes na fila"
 
 #: ../src/yumex.py:608
-#, fuzzy
 msgid "Error in Dependency Resolution"
-msgstr "Erro desconhecido na presença"
+msgstr "Erro na resolução de dependências"
 
 #: ../src/yumex.py:625
 msgid "No packages selected"
@@ -816,14 +811,12 @@ msgid "<b>Packages</b>"
 msgstr "<b>Pacotes</b>"
 
 #: ../src/yumex.glade.h:12
-#, fuzzy
 msgid "<b>Quick add to queue</b>"
-msgstr "A_dicionar à Fila de Reprodução"
+msgstr "<b>Adicionar à fila</b>"
 
 #: ../src/yumex.glade.h:13
-#, fuzzy
 msgid "<b>Repository  Exclude Filters</b>"
-msgstr "Preferências do Filtro de Daltónicos"
+msgstr "<b>Filtros de Exclusão do Repositório</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
@@ -882,9 +875,8 @@ msgid "Excludes"
 msgstr "Excluidos"
 
 #: ../src/yumex.glade.h:32
-#, fuzzy
 msgid "Extra"
-msgstr "Muito grande"
+msgstr "Extra"
 
 #: ../src/yumex.glade.h:33
 msgid "Fi_les"
@@ -911,9 +903,8 @@ msgid "Preferences"
 msgstr "Preferências"
 
 #: ../src/yumex.glade.h:40
-#, fuzzy
 msgid "Process Queue Confirmation"
-msgstr "Confirmação de conta recebida"
+msgstr "Confirmar Processamento da Fila"
 
 #: ../src/yumex.glade.h:41
 msgid "Repos"
@@ -944,9 +935,8 @@ msgid "_Add All"
 msgstr "_Adicionar tudo"
 
 #: ../src/yumex.glade.h:48
-#, fuzzy
 msgid "_Auto refresh on start"
-msgstr "Mostrar no arranque inicial"
+msgstr "_Actualizar automáticamente ao iniciar"
 
 #: ../src/yumex.glade.h:49
 msgid "_Description"
@@ -997,9 +987,8 @@ msgid "_Yum Clean All"
 msgstr "_Yum Limpar Tudo"
 
 #: ../src/yumex.glade.h:61
-#, fuzzy
 msgid "_Yum excludes:"
-msgstr "A iniciar o yum-updatesd: "
+msgstr "Exclusões ao _Yum:"
 
 #: ../src/yumex.glade.h:62
 msgid "_Yum plugins:"
