@@ -55,6 +55,7 @@ rpm-fc6:
 rpm-fc7: 
 	rpmbuild -ba -D "dist .fc7" yumex.spec	
 
+# needs perl-TimeDate for git2cl
 changelog:
 	@git log --pretty --numstat --summary | tools/git2cl > ChangeLog.git
 	@cat ChangeLog.git ChangeLog.svn > ChangeLog
@@ -74,5 +75,9 @@ release:
 	@$(MAKE) archive
 	@$(MAKE) upload
 
+# Needs gtk2-devel for gtk-builder-convert
+builder-xml:
+	gtk-builder-convert src/yumex.glade src/yumex.xml
+		
 FORCE:
     

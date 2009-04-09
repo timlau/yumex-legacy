@@ -15,3 +15,4 @@ install:
 	install -m755 *.pyc $(DESTDIR)/$(PKGDIR)/.
 	install -m755 *.py $(DESTDIR)/$(PKGDIR)/.
 	install -m644 yumex.glade $(DESTDIR)/$(PKGDIR)/.
+
