@@ -29,5 +29,6 @@ else:
     from yumexbackend.yum_backend import YumexBackendYum as backend 
     
 app = YumexApplication(backend)
-app.run_test()
+#app.run_test()
+app.run()
 sys.exit(0)

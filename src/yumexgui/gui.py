@@ -150,49 +150,42 @@ class TextViewLogHandler(logging.Handler):
         #print msg
     
 
-#        
-# These classes come from the article
-# http://www.linuxjournal.com/article/4702
-#
-# They have been modified a little to support domain
-#       
-        
-class UI(gtk.glade.XML):
-    """Base class for UIs loaded from glade."""
+class UI(gtk.Builder):
+    """Base class for UIs loaded from a gtk.Builder xml file"""
     
-    def __init__(self, filename, rootname, domain=None):
+    def __init__(self, filename, rootname, domain = None):
         """Initialize a new instance.
-        `filename' is the name of the .glade file containing the UI hierarchy.
+        `filename' is the name of the gtk.Builder .xml file containing the UI hierarchy.
         `rootname' is the name of the topmost widget to be loaded.
-        `gladeDir' is the name of the directory, relative to the Python
-        path, in which to search for `filename'."""
-        if domain:
-            gtk.glade.XML.__init__(self, filename, rootname, domain)
-        else:
-            gtk.glade.XML.__init__(self, filename, rootname)
+        `domain' is a optional translation domain"""
+        
+        gtk.Builder.__init__(self)
         self.filename = filename
-        self.root = self.get_widget(rootname)
+        self.add_from_file(filename)
+        self.root = self.get_object(rootname)
+        if domain:
+            self.set_translation_domain(domain)
 
     def __getattr__(self, name):
         """Look up an as-yet undefined attribute, assuming it's a widget."""
-        result = self.get_widget(name)
+        result = self.get_object(name)
         if result is None:
-            raise AttributeError("Can't find widget %s in %s.\n" % 
-                                 (name, self.filename))
+            raise AttributeError("Can't find widget %s in %s.\n" %
+                                 (`name`, `self.filename`))
         
         # Cache the widget to speed up future lookups.  If multiple
         # widgets in a hierarchy have the same name, the lookup
-        # behavior is non-deterministic just as for libglade.
         setattr(self, name, result)
         return result
 
 class Controller:
-    """Base class for all controllers of glade-derived UIs."""
+    """Base class for all controllers of gtk.Builder UIs."""
+    
     def __init__(self, ui):
         """Initialize a new instance.
         `ui' is the user interface to be controlled."""
         self.ui = ui
-        self.ui.signal_autoconnect(self._getAllMethods())
+        self.ui.connect_signals(self._getAllMethods())
 
     def _getAllMethods(self):
         """Get a dictionary of all methods in self's class hierarchy."""
@@ -226,7 +219,6 @@ class Controller:
             result.extend(list(currClass.__bases__))
             i = i + 1
         return result
-
 
         
     
@@ -301,4 +293,133 @@ def format_number(number, SI=0, space=' '):
         format = '%.0f%s%s'
 
     return(format % (number, space, symbols[depth]))
+
+class PageHeader(gtk.HBox):
+    ''' Page header to show in top of Notebook Page'''
+    
+    def __init__(self,text,icon=None):
+        ''' 
+        setup the notebook page header
+        @param text: Page Title
+        @param icon: icon filename
+        '''
+        gtk.HBox.__init__(self)
+        # Setup Label
+        self.label = gtk.Label()
+        markup = '<span foreground="blue" size="xx-large">%s</span>' % text
+        self.label.set_markup(markup)
+        self.label.set_padding(10,0)
+        # Setup Icon
+        self.icon = gtk.Image()
+        if icon:
+            self.icon.set_from_file(icon)
+        else:
+            self.icon.set_from_icon_name('gtk-dialog-info',6)
+        self.pack_start(self.label,expand=False)
+        self.pack_end(self.icon,expand=False)
+        self.show_all()
+        
+class PageSelector:
+    ''' Button notebook selector '''
+    
+    def __init__(self,content,notebook):
+        ''' setup the selector '''
+        self.content = content
+        self.notebook = notebook
+        self._buttons = {}
+        self._first = None
+        self._selected = None
+        
+        
+    def add_button(self,key,icon=None,tooltip=None):
+        ''' Add a new selector button '''
+        if len(self._buttons) == 0:
+            button = gtk.RadioButton( None )
+            self._first = button
+        else:
+            button = gtk.RadioButton( self._first )
+        button.connect( "clicked", self.on_button_clicked, key )
+    
+        button.set_relief( gtk.RELIEF_NONE )
+        button.set_mode( False )
+    
+        if icon:
+            p = gtk.gdk.pixbuf_new_from_file( icon )
+            pix = gtk.Image()
+            pix.set_from_pixbuf( p )
+            pix.show()
+            button.add(pix)
+    
+        if tooltip:
+            self.tooltip.set_tip(button,text)
+        button.show()
+        self.content.pack_start( button, False )
+        self._buttons[key] = button
+
+    def set_active(self,key):
+        ''' set the active selector button '''
+        if key in self._buttons:
+            button = self._buttons[key]
+            button.set_active(True)
+            
+    def get_active(self):
+        ''' get the active selector button'''
+        return self._selected            
+            
+    def on_button_clicked(self, widget=None, key=None ):
+        ''' button clicked callback handler'''
+        if widget.get_active(): # only work on the active button
+            self.notebook._set_page(key) # set the new notebook page
+            self._selected = key
+            
+class Notebook:
+    ''' Notebook with button selector '''
+    
+    def __init__(self,notebook,selector):
+        ''' setup the notebook and the selector '''
+        self.notebook = notebook
+        self.selector = PageSelector(selector,self)
+        self._pages = {}
+
+    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True):
+        ''' 
+        Add a new page and selector button to notebook
+        @param key: the page key (name) used by reference the page
+        @param widget: the widget container to insert into the page
+        @param icon: an optional icon file for the selector button
+        @param tooltip: an optional tooltip for the selector button  
+        '''
+        num = len(self._pages)
+        container = gtk.VBox()
+        self._pages[key] = (num,container)
+        if header:
+            header = PageHeader(title,icon)
+            container.pack_start(header,expand=False,padding=5)
+            sep = gtk.HSeparator()
+            sep.show()
+            container.pack_start(sep,expand=False)
+        # get the content from the widget and reparent it and add it to page    
+        content = gtk.VBox()
+        widget.reparent(content)
+        container.pack_start(content,expand=True)
+        content.show()
+        container.show()
+        self.notebook.append_page(container)
+        # Add selector button
+        self.selector.add_button(key, icon, tooltip)
+        
+    def set_active(self,key):
+        '''
+        set the active page in notebook and selector
+        @param key: the page key (name) used by reference the page
+        '''
+        self.selector.set_active(key)
+        
+    def _set_page(self,key):
+        '''
+        set the current notebook page
+        '''
+        if key in self._pages:
+            num,widget = self._pages[key]
+            self.notebook.set_current_page(num)
     

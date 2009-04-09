@@ -27,7 +27,7 @@ class const:
     __yumex_version__   = "2.1.0" 
     # Paths
     MAIN_PATH = os.path.abspath( os.path.dirname( sys.argv[0] ) )
-    GLADE_FILE = MAIN_PATH+'/yumex.glade'  
+    BUILDER_FILE = MAIN_PATH+'/yumex.xml'  
     if MAIN_PATH == '/usr/share/yumex':    
         PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
     else:

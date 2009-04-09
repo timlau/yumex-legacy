@@ -20,9 +20,11 @@
 # yum extender gui module
 
 import sys
+import gtk
+
 from datetime import date
 
-from gui import UI, Controller
+from gui import UI, Controller, Notebook
 from yumexbase import *
 from misc import const
 
@@ -88,10 +90,84 @@ class YumexHandlers(Controller):
     
     def __init__(self):
         # Create and ui object contains the widgets.
-        ui = UI(const.GLADE_FILE , 'main', 'yumex')
+        ui = UI(const.BUILDER_FILE , 'main', 'yumex')
         # init the Controller Class to connect signals.
         Controller.__init__(self, ui)
+        self.setup_gui()
+        
+# helpers
+    def setup_gui(self):
+        self.window = self.ui.main
+        self.window.connect( "delete_event", self.quit )
+        self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
+        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=const.PIXMAPS_PATH+'/button-packages.png')
+        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=const.PIXMAPS_PATH+'/button-group.png')
+        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=const.PIXMAPS_PATH+'/button-repo.png')
+        self.notebook.add_page("queue","Action Queue",self.ui.queueMain, icon=const.PIXMAPS_PATH+'/button-queue.png')
+        self.notebook.add_page("output","Output",self.ui.outputMain, icon=const.PIXMAPS_PATH+'/button-output.png')
+        self.notebook.set_active("package")
+        self.window.show()
 
+# Signal handlers
+      
+    def quit(self, widget=None, event=None ):
+        ''' Main destroy Handler '''
+        gtk.main_quit()
+
+    # Menu
+        
+    def on_fileQuit_activate(self, widget=None, event=None ):
+        print "File -> Quit"
+        self.quit()
+
+    def on_editPref_activate(self, widget=None, event=None ):
+        print "Edit -> Preferences"
+
+    def on_proNew_activate(self, widget=None, event=None ):
+        print "Profiles -> New"
+
+    def on_proSave_activate(self, widget=None, event=None ):
+        print "Profiles -> Save"
+        
+    def on_helpAbout_activate(self, widget=None, event=None ):
+        print "Help -> About"
+
+    # Package Page    
+        
+    def on_packageSearch_activate(self, widget=None, event=None ):
+        print "Package Search : %s" % self.ui.packageSearch.get_text()
+
+    def on_packageClear_clicked(self, widget=None, event=None ):
+        print "Package Clear"
+        self.ui.packageSearch.set_text('')
+
+    def on_packageSelectAll_clicked(self, widget=None, event=None ):
+        print "Package Select All"
+
+    def on_packageRedo_clicked(self, widget=None, event=None ):
+        print "Package Redo"
+
+    # Repo Page    
+        
+    def on_repoOK_clicked(self, widget=None, event=None ):
+        print "Repo OK"
+        
+    def on_repoCancel_clicked(self, widget=None, event=None ):
+        print "Repo Cancel"
+
+    # Queue Page    
+
+    def on_queueOpen_clicked(self, widget=None, event=None ):
+        print "Queue Open"
+    
+    def on_queueSave_clicked(self, widget=None, event=None ):
+        print "Queue Save"
+    
+    def on_queueRemove_clicked(self, widget=None, event=None ):
+        print "Queue Remove"
+
+    def on_Execute_clicked(self, widget=None, event=None ):
+        print "Queue Execute "
 
 class YumexApplication(YumexHandlers, YumexFrontend):
     """
@@ -108,6 +184,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def setup_backend(self):
         #TODO: Add some reel backend setup code
         self.progress = None
+        
+    def run(self):
+        gtk.main()        
         
     def run_test(self):
         def show(elems,desc=False):
