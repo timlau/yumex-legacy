@@ -24,7 +24,7 @@ import gtk
 
 from datetime import date
 
-from gui import UI, Controller, Notebook
+from gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents
 from yumexbase import *
 from misc import const
 
@@ -64,14 +64,17 @@ class YumexFrontend(YumexFrontendBase):
     def warning(self, msg):
         ''' Write an warning message to frontend '''
         print "Warning:",msg
+        self.output.write('WARNING: %s' % msg)
 
     def info(self, msg):
         ''' Write an info message to frontend '''
         print "INFO:",msg
+        self.output.write('INFO: %s' % msg)
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
         print "DEBUG:",msg
+        self.output.write('DEBUG: %s' % msg)
 
     def exception(self, msg):
         ''' handle an expection '''
@@ -83,7 +86,10 @@ class YumexFrontend(YumexFrontendBase):
         ''' trigger a frontend reset '''
         pass
 
-
+    def timeout(self):
+        print "TIMEOUT"
+        doGtkEvents()
+        
 class YumexHandlers(Controller):
     ''' This class contains all glade signal callbacks '''
     
@@ -99,6 +105,7 @@ class YumexHandlers(Controller):
     def setup_gui(self):
         self.window = self.ui.main
         self.window.connect( "delete_event", self.quit )
+        self.output = TextViewConsole(self.ui.outputText)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=const.PIXMAPS_PATH+'/button-packages.png')
         self.notebook.add_page("group","Groups",self.ui.groupMain, icon=const.PIXMAPS_PATH+'/button-group.png')
@@ -168,6 +175,8 @@ class YumexHandlers(Controller):
 
     def on_Execute_clicked(self, widget=None, event=None ):
         print "Queue Execute "
+        self.notebook.set_active("output")
+        self.run_test()
 
 class YumexApplication(YumexHandlers, YumexFrontend):
     """
@@ -191,31 +200,38 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def run_test(self):
         def show(elems,desc=False):
             if elems:
+                i = 0
                 for el in elems:
-                    print "  %s" % str(el)
+                    i += 1
+                    self.output.write("  %s" % str(el))
                     if desc:
-                        print el.description
+                        self.output.write(el.description)
+                    if i == 20:
+                        break
         # setup
         self.backend.setup()
         # get_packages
         pkgs = self.backend.get_packages(FILTER.updates)
         show(pkgs,True)
         pkgs = self.backend.get_packages(FILTER.available)
-        #show(pkgs)
+        show(pkgs)
         for po in pkgs:
             if po.name == 'kdegames':
                 break
-        print "Package : %s\n" % str(po)
-        print "\nFiles:"
+        self.output.write("Package : %s\n" % str(po))
+        self.output.write("\nFiles:")
+        i = 0
         for f in po.filelist:
-            print "  %s" % f.strip('\n')
+            i += 1
+            self.output.write("  %s" % f.strip('\n'))
+            if i == 20: break
         num = 0    
-        print "\nChangelog"
+        self.output.write("\nChangelog")
         for (d,a,msg) in po.changelog:
             num += 1
-            print " %s %s" % (date.fromtimestamp(d).isoformat(),a)
+            self.output.write(" %s %s" % (date.fromtimestamp(d).isoformat(),a))
             for line in msg.split('\n'):
-                print "  %s" % line
+                self.output.write("  %s" % line)
             if num == 3: break
         print    
         # Add to transaction for install

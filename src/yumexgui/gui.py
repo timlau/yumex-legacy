@@ -94,19 +94,22 @@ class TextViewConsole:
             style.set_property("foreground", color)
             style.set_property("font", font)
     
-    def write_line(self, txt, style=None):
+    def write(self, txt, style=None):
         """ write a line to button of textview and scoll to end
         @param txt: Text to write to textview
         @param style: Predefinded pango style to use. 
         """
         #txt = gobject.markup_escape_text(txt)
         txt = self._toUTF(txt)
+        if txt[-1] != '\n':
+            txt += '\n'
         start, end = self.buffer.get_bounds()
         if style == None:
             self.buffer.insert_with_tags(end, txt, self.default_style)
         else:
             self.buffer.insert_with_tags(end, txt, style)
         self.textview.scroll_to_iter(self.buffer.get_end_iter(), 0.0)
+        doGtkEvents()
 
     def _toUTF(self, txt):
         rc = ""
@@ -144,9 +147,9 @@ class TextViewLogHandler(logging.Handler):
             if self.doGTK:
                 doGtkEvents()
             if record.levelno < 40:
-                self.console.write_line("%s\n" % msg)
+                self.console.write("%s\n" % msg)
             else:
-                self.console.write_line("%s\n" % msg, self.console.style_err)  
+                self.console.write("%s\n" % msg, self.console.style_err)  
         #print msg
     
 

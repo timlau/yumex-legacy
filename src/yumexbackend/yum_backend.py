@@ -53,6 +53,15 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         """ debug message """
         self.frontend.debug(msg)
 
+    def timeout(self):
+        """ 
+        timeout function call every time an timeout occours
+        An timeout occaurs if the server takes more then timeout
+        periode to respond to the current action.
+        the default timeout is .5 sec.
+        """
+        self.frontend.timeout()
+        
     def exception(self,msg):
         """ debug message """
         self.frontend.exception(msg)
