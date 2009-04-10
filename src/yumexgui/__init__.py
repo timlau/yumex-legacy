@@ -27,7 +27,6 @@ from datetime import date
 from yumexgui.gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents
 from yumexgui.progress import Progress
 from yumexbase import *
-from yumexgui.misc import const
 
 class YumexFrontend(YumexFrontendBase):
     '''
@@ -72,7 +71,7 @@ class YumexFrontend(YumexFrontendBase):
     def info(self, msg):
         ''' Write an info message to frontend '''
         print "INFO:",msg
-        self.output.write(msg)
+        self.output.write(msg,style=self.output.style_out)
         self.refresh()
 
     def debug(self, msg):
@@ -105,7 +104,7 @@ class YumexHandlers(Controller):
     
     def __init__(self):
         # Create and ui object contains the widgets.
-        ui = UI(const.BUILDER_FILE , 'main', 'yumex')
+        ui = UI(BUILDER_FILE , 'main', 'yumex')
         # init the Controller Class to connect signals.
         Controller.__init__(self, ui)
         self.setup_gui()
@@ -118,11 +117,11 @@ class YumexHandlers(Controller):
         self.output = TextViewConsole(self.ui.outputText)
         self.progress = Progress(self.ui,self.window)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
-        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=const.PIXMAPS_PATH+'/button-packages.png')
-        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=const.PIXMAPS_PATH+'/button-group.png')
-        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=const.PIXMAPS_PATH+'/button-repo.png')
-        self.notebook.add_page("queue","Action Queue",self.ui.queueMain, icon=const.PIXMAPS_PATH+'/button-queue.png')
-        self.notebook.add_page("output","Output",self.ui.outputMain, icon=const.PIXMAPS_PATH+'/button-output.png')
+        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=PIXMAPS_PATH+'/button-packages.png')
+        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=PIXMAPS_PATH+'/button-group.png')
+        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=PIXMAPS_PATH+'/button-repo.png')
+        self.notebook.add_page("queue","Action Queue",self.ui.queueMain, icon=PIXMAPS_PATH+'/button-queue.png')
+        self.notebook.add_page("output","Output",self.ui.outputMain, icon=PIXMAPS_PATH+'/button-output.png')
         self.notebook.set_active("package")
         self.window.show()
 
@@ -135,59 +134,63 @@ class YumexHandlers(Controller):
     # Menu
         
     def on_fileQuit_activate(self, widget=None, event=None ):
-        print "File -> Quit"
+        self.debug("File -> Quit")
         self.quit()
 
     def on_editPref_activate(self, widget=None, event=None ):
-        print "Edit -> Preferences"
+        self.debug("Edit -> Preferences")
 
     def on_proNew_activate(self, widget=None, event=None ):
-        print "Profiles -> New"
+        self.debug("Profiles -> New")
 
     def on_proSave_activate(self, widget=None, event=None ):
-        print "Profiles -> Save"
+        self.debug("Profiles -> Save")
         
     def on_helpAbout_activate(self, widget=None, event=None ):
-        print "Help -> About"
+        self.debug("Help -> About")
 
     # Package Page    
         
     def on_packageSearch_activate(self, widget=None, event=None ):
-        print "Package Search : %s" % self.ui.packageSearch.get_text()
+        self.debug("Package Search : %s" % self.ui.packageSearch.get_text())
 
     def on_packageClear_clicked(self, widget=None, event=None ):
-        print "Package Clear"
+        self.debug("Package Clear")
         self.ui.packageSearch.set_text('')
 
     def on_packageSelectAll_clicked(self, widget=None, event=None ):
-        print "Package Select All"
+        self.debug("Package Select All")
 
     def on_packageRedo_clicked(self, widget=None, event=None ):
-        print "Package Redo"
+        self.debug("Package Redo")
 
     # Repo Page    
         
     def on_repoOK_clicked(self, widget=None, event=None ):
-        print "Repo OK"
+        self.debug("Repo OK")
         
     def on_repoCancel_clicked(self, widget=None, event=None ):
-        print "Repo Cancel"
+        self.debug("Repo Cancel")
 
     # Queue Page    
 
     def on_queueOpen_clicked(self, widget=None, event=None ):
-        print "Queue Open"
+        self.debug("Queue Open")
     
     def on_queueSave_clicked(self, widget=None, event=None ):
-        print "Queue Save"
+        self.debug("Queue Save")
     
     def on_queueRemove_clicked(self, widget=None, event=None ):
-        print "Queue Remove"
+        self.debug("Queue Remove")
 
     def on_Execute_clicked(self, widget=None, event=None ):
-        print "Queue Execute "
+        self.debug("Queue Execute ")
         self.notebook.set_active("output")
         self.run_test()
+        
+    def on_progressCancel_clicked(self, widget=None, event=None ):
+        self.debug("Progress Cansel")
+                
 
 class YumexApplication(YumexHandlers, YumexFrontend):
     """
@@ -223,16 +226,17 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.backend.setup()
         # get_packages
         self.progress.show()
-        self.progress.set_header("Getting Package Updates")
+        self.progress.set_header("Testing Yum Backend")
+        self.progress.set_label("Getting Updated Packages")
         pkgs = self.backend.get_packages(FILTER.updates)
         show(pkgs,True)
-        self.progress.set_header("Getting Package Available")
+        self.progress.set_label("Getting Available Packages")
         pkgs = self.backend.get_packages(FILTER.available)
         show(pkgs)
         for po in pkgs:
             if po.name == 'kdegames':
                 break
-        self.progress.set_header("Showing Filelist")
+        self.progress.set_label("Showing Filelist")
         self.info("Package : %s\n" % str(po))
         self.info("\nFiles:")
         i = 0
@@ -241,7 +245,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.info("  %s" % f.strip('\n'))
             if i == 20: break
         num = 0    
-        self.progress.set_header("Showing Changelog")
+        self.progress.set_label("Showing Changelog")
         self.info("\nChangelog")
         for (d,a,msg) in po.changelog:
             num += 1
@@ -257,7 +261,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # get_groups
         grps = self.backend.get_groups()
         show(grps)
-        self.progress.set_header("Getting Repository information")
+        self.progress.set_label("Getting Repository information")
         # get_repositories
         repos = self.backend.get_repositories()
         for repo in repos:

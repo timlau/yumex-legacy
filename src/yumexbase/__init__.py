@@ -16,10 +16,13 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-# Constants
-
+import os
+import sys
 from enum import Enum
 
+# Constant
+
+__yumex_version__   = "2.1.0" 
 
 # Package Types
 PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
@@ -32,8 +35,15 @@ GROUP = Enum('all', 'minimum')
 # State
 STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
 
+# Paths
+MAIN_PATH = os.path.abspath( os.path.dirname( sys.argv[0] ) )
+BUILDER_FILE = MAIN_PATH+'/yumex.xml'  
+if MAIN_PATH == '/usr/share/yumex':    
+    PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
+else:
+    PIXMAPS_PATH = MAIN_PATH+'/../gfx'
 
-
+# interface base classes
 
 class YumexFrontendBase:
     '''
@@ -80,6 +90,10 @@ class YumexFrontendBase:
 
     def exception(self, msg):
         ''' handle an expection '''
+        pass
+
+    def timeout(self, msg):
+        ''' handle an timeout '''
         pass
 
     def reset(self):

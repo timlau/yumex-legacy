@@ -15,6 +15,9 @@
 #
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
+import gtk
+import pango
+
 from yumexgui.gui import busyCursor, normalCursor
 
 class Progress:
@@ -25,9 +28,15 @@ class Progress:
         self.dialog.set_title("Working....")
         self.parent = parent
         self.dialog.set_transient_for( parent )        
+        style = self.ui.packageView.get_style()
+        self.ui.progressEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
         self.progressbar = self.ui.progressBar
+        self.progressbar.modify_font(pango.FontDescription("sans 8"))
+        
         self.header = self.ui.progressHeader
+        self.header.modify_font(pango.FontDescription("sans 12"))
         self.label = self.ui.progressLabel
+        self.label.modify_font(pango.FontDescription("sans 8"))
         self.is_active = False
         
     def show(self):
@@ -42,8 +51,7 @@ class Progress:
         self.dialog.hide()
         
     def set_header(self,text):
-        msg = '<span size="large">%s</span>' % text
-        self.header.set_markup(msg)
+        self.header.set_text(text)
         
     def set_label(self,text):
         self.label.set_text(text)
@@ -58,6 +66,6 @@ class Progress:
         
     def reset(self):
         self.progressbar.set_fraction(0.0)
-        self.progressbar.set_text("")
+        self.progressbar.set_text("Working ...")
             
             
