@@ -24,9 +24,10 @@ import gtk
 
 from datetime import date
 
-from gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents
+from yumexgui.gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents
+from yumexgui.progress import Progress
 from yumexbase import *
-from misc import const
+from yumexgui.misc import const
 
 class YumexFrontend(YumexFrontendBase):
     '''
@@ -60,21 +61,25 @@ class YumexFrontend(YumexFrontendBase):
         ''' Write an error message to frontend '''
         print "Error:",msg
         sys.exit(1)
+        self.refresh()
 
     def warning(self, msg):
         ''' Write an warning message to frontend '''
         print "Warning:",msg
         self.output.write('WARNING: %s' % msg)
+        self.refresh()
 
     def info(self, msg):
         ''' Write an info message to frontend '''
         print "INFO:",msg
-        self.output.write('INFO: %s' % msg)
+        self.output.write(msg)
+        self.refresh()
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
         print "DEBUG:",msg
         self.output.write('DEBUG: %s' % msg)
+        self.refresh()
 
     def exception(self, msg):
         ''' handle an expection '''
@@ -87,7 +92,11 @@ class YumexFrontend(YumexFrontendBase):
         pass
 
     def timeout(self):
-        print "TIMEOUT"
+        self.refresh()
+        
+    def refresh(self):               
+        if self.progress.is_active:
+            self.progress.pulse()
         doGtkEvents()
         
 class YumexHandlers(Controller):
@@ -105,7 +114,9 @@ class YumexHandlers(Controller):
     def setup_gui(self):
         self.window = self.ui.main
         self.window.connect( "delete_event", self.quit )
+        self.window.set_title("Yum Extender NextGen")
         self.output = TextViewConsole(self.ui.outputText)
+        self.progress = Progress(self.ui,self.window)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=const.PIXMAPS_PATH+'/button-packages.png')
         self.notebook.add_page("group","Groups",self.ui.groupMain, icon=const.PIXMAPS_PATH+'/button-group.png')
@@ -203,35 +214,40 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 i = 0
                 for el in elems:
                     i += 1
-                    self.output.write("  %s" % str(el))
+                    self.info("  %s" % str(el))
                     if desc:
-                        self.output.write(el.description)
+                        self.info(el.description)
                     if i == 20:
                         break
         # setup
         self.backend.setup()
         # get_packages
+        self.progress.show()
+        self.progress.set_header("Getting Package Updates")
         pkgs = self.backend.get_packages(FILTER.updates)
         show(pkgs,True)
+        self.progress.set_header("Getting Package Available")
         pkgs = self.backend.get_packages(FILTER.available)
         show(pkgs)
         for po in pkgs:
             if po.name == 'kdegames':
                 break
-        self.output.write("Package : %s\n" % str(po))
-        self.output.write("\nFiles:")
+        self.progress.set_header("Showing Filelist")
+        self.info("Package : %s\n" % str(po))
+        self.info("\nFiles:")
         i = 0
         for f in po.filelist:
             i += 1
-            self.output.write("  %s" % f.strip('\n'))
+            self.info("  %s" % f.strip('\n'))
             if i == 20: break
         num = 0    
-        self.output.write("\nChangelog")
+        self.progress.set_header("Showing Changelog")
+        self.info("\nChangelog")
         for (d,a,msg) in po.changelog:
             num += 1
-            self.output.write(" %s %s" % (date.fromtimestamp(d).isoformat(),a))
+            self.info(" %s %s" % (date.fromtimestamp(d).isoformat(),a))
             for line in msg.split('\n'):
-                self.output.write("  %s" % line)
+                self.info("  %s" % line)
             if num == 3: break
         print    
         # Add to transaction for install
@@ -241,17 +257,19 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # get_groups
         grps = self.backend.get_groups()
         show(grps)
+        self.progress.set_header("Getting Repository information")
         # get_repositories
-#        repos = self.backend.get_repositories()
-#        for repo in repos:
-#            id,name,enabled,gpgckeck = repo
-#            print "%-50s : %s" % (id,enabled)
-#        # enable_repository
-#        repo = self.backend.enable_repository('updates',False)
-#        id,name,enabled,gpgckeck = repo
-#        print "%-50s : %s" % (id,enabled)        
+        repos = self.backend.get_repositories()
+        for repo in repos:
+            id,name,enabled,gpgckeck = repo
+            self.info("%-50s : %s" % (id,enabled))
+        # enable_repository
+        repo = self.backend.enable_repository('updates',False)
+        id,name,enabled,gpgckeck = repo
+        self.info("%-50s : %s" % (id,enabled))        
         # search
         self.backend.search(['dummy'],SEARCH.name)        
         # reset        
+        self.progress.hide()
         self.backend.reset()
         

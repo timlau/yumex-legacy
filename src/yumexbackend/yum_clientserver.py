@@ -91,7 +91,7 @@ class YumClient:
         """
         print "TIMEOUT"
 
-    def setup(self,timeout=.5):
+    def setup(self,timeout=.1):
         ''' Setup the client and spawn the server'''
         self.child = pexpect.spawn('./yum_server.py',timeout=timeout)
         self.child.setecho(False)
