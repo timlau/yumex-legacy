@@ -19,6 +19,7 @@ import gtk
 import pango
 
 from yumexgui.gui import busyCursor, normalCursor
+from yumexbase import *
 
 class Progress:
     
@@ -31,12 +32,12 @@ class Progress:
         style = self.ui.packageView.get_style()
         self.ui.progressEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
         self.progressbar = self.ui.progressBar
-        self.progressbar.modify_font(pango.FontDescription("sans 8"))
+        self.progressbar.modify_font(SMALL_FONT)
         
         self.header = self.ui.progressHeader
-        self.header.modify_font(pango.FontDescription("sans 12"))
+        self.header.modify_font(BIG_FONT)
         self.label = self.ui.progressLabel
-        self.label.modify_font(pango.FontDescription("sans 8"))
+        self.label.modify_font(SMALL_FONT)
         self.is_active = False
         
     def show(self):

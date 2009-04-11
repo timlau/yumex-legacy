@@ -24,11 +24,42 @@ import gtk.glade
 import pango
 import logging
 import types
+from yumexbase.i18n import _
+from yumexbase import *
+from yumexbackend.yum_backend import YumexPackageYum
+
 
 #
 # Classses
 #
         
+        
+class PackageCache:
+    def __init__(self,backend):
+        self._cache = {}
+        self.backend = backend
+        
+    def reset(self):
+        del self.cache
+        self._cache = {}
+
+    def get_packages(self,filter):
+        if not str(filter) in self._cache:
+            self._cache[str(filter)] = self.backend.get_packages(filter)
+        return self._cache[str(filter)]
+    
+    def find(self,po):
+        if po.action == 'u':
+            target = self._cache[str(FILTER.updates)]
+        elif po.action == 'i':
+            target = self._cache[str(FILTER.available)]
+        else:
+            target = self._cache[str(FILTER.installed)]
+        for pkg in target:
+            if str(po) == str(pkg):   
+                return pkg
+        return YumexPackageYum(po)
+    
 class TextViewConsole:
     '''  Encapsulate a gtk.TextView'''
     def __init__(self, textview, default_style=None, font=None, color=None):
@@ -256,46 +287,6 @@ def doGtkEvents():
     while gtk.events_pending():      # process gtk events
         gtk.main_iteration()
 
-# from output.py (yum)
-def format_number(number, SI=0, space=' '):
-    """Turn numbers into human-readable metric-like numbers"""
-    symbols = ['', # (none)
-                'k', # kilo
-                'M', # mega
-                'G', # giga
-                'T', # tera
-                'P', # peta
-                'E', # exa
-                'Z', # zetta
-                'Y'] # yotta
-
-    if SI: step = 1000.0
-    else: step = 1024.0
-
-    thresh = 999
-    depth = 0
-
-    # we want numbers between 
-    while number > thresh:
-        depth = depth + 1
-        number = number / step
-
-    # just in case someone needs more than 1000 yottabytes!
-    diff = depth - len(symbols) + 1
-    if diff > 0:
-        depth = depth - diff
-        number = number * thresh ** depth
-
-    if type(number) == type(1) or type(number) == type(1L):
-        format = '%i%s%s'
-    elif number < 9.95:
-        # must use 9.95 for proper sizing.  For example, 9.99 will be
-        # rounded to 10.0 with the .1f format string (which is too long)
-        format = '%.1f%s%s'
-    else:
-        format = '%.0f%s%s'
-
-    return(format % (number, space, symbols[depth]))
 
 class PageHeader(gtk.HBox):
     ''' Page header to show in top of Notebook Page'''
@@ -309,7 +300,7 @@ class PageHeader(gtk.HBox):
         gtk.HBox.__init__(self)
         # Setup Label
         self.label = gtk.Label()
-        markup = '<span foreground="blue" size="xx-large">%s</span>' % text
+        markup = '<span foreground="blue" size="x-large">%s</span>' % text
         self.label.set_markup(markup)
         self.label.set_padding(10,0)
         # Setup Icon

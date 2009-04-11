@@ -25,6 +25,18 @@ import traceback
 import pickle
 import base64
 import pexpect
+from yum.packages import YumAvailablePackage
+from yum.packageSack import packagesNewestByNameArch
+
+from yumexbase import *
+
+def pack(value):
+    return base64.b64encode(pickle.dumps(value))
+    
+def unpack(value):
+    return pickle.loads(base64.b64decode(value))
+
+
 
 class YumPackage:
     ''' Simple object to store yum package information '''
@@ -36,8 +48,10 @@ class YumPackage:
         self.rel    = args[3]
         self.arch   = args[4]
         self.repoid = args[5]
-        self.summary= args[6]
+        self.summary= unpack(args[6])
         self.action = args[7]
+        self.size = args[8]
+        self.recent = args[9]
         
     def __str__(self):
         if self.epoch == '0':
@@ -47,7 +61,7 @@ class YumPackage:
 
     @property        
     def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid,self.action)
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
 
     def get_attribute(self,attr):
         return self.base.get_attribute(self.id,attr)
@@ -56,6 +70,7 @@ class YumClient:
     """ Client part of a the yum client/server """
 
     def __init__(self):
+        self.child = None
         pass
 
     def error(self,msg):
@@ -93,13 +108,14 @@ class YumClient:
 
     def setup(self,timeout=.1):
         ''' Setup the client and spawn the server'''
-        self.child = pexpect.spawn('./yum_server.py',timeout=timeout)
-        self.child.setecho(False)
+        if not self.child:
+            self.child = pexpect.spawn('./yum_server.py',timeout=timeout)
+            self.child.setecho(False)
 
     def reset(self):
         """ reset the client"""
         self._close()
-
+        
     def _send_command(self,cmd,args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd,"\t".join(args))
@@ -204,7 +220,9 @@ class YumClient:
     
     def _close(self):        
         ''' terminate the child server process '''
-        self.child.close(force=True)
+        if self.child:
+            self.child.close(force=True)
+            self.child = None
         
     def get_packages(self,pkg_filter):    
         ''' get a list of packages based on pkg_filter '''
@@ -217,7 +235,7 @@ class YumClient:
         self._send_command('get-attribute',[id,attr])
         args = self._get_result(':attr')
         if args:
-            return pickle.loads(base64.b64decode(args[0]))
+            return unpack(args[0])
         else:
             return None
         
@@ -252,6 +270,15 @@ class YumClient:
         args = self._get_result(':repo')
         return args
         
+        
+    def search(self,keys,filters):
+        bKeys = pack(keys)
+        bFilters = pack(filters)
+        self._send_command('search',[bKeys,bFilters])
+        pkgs = self._get_list()
+        return pkgs
+        
+        
 class YumServer(yum.YumBase):
     """ 
     A yum server class to be used in a spawned process.
@@ -268,6 +295,7 @@ class YumServer(yum.YumBase):
         get-groups                           : Get the groups
         get-repos                            : Get the repositories
         enable-repo                          : enable/disable a repository
+        search                               : search
     
         Parameters:
         <pkg-filter> : all,installed,available,updates,obsoletes
@@ -306,10 +334,23 @@ class YumServer(yum.YumBase):
         ''' write an message to stdout, to be read by the client'''
         msg.replace("\n",";")
         sys.stdout.write("%s\n" % msg)    
+        
+    def _get_recent(self,po):
+        if po.repoid == 'installed':
+            ftime = int( po.returnSimple( 'installtime' ) )
+        else:
+            ftime = int( po.returnSimple( 'filetime' ) )
+        if ftime > RECENT_LIMIT:
+            return 1
+        else:
+            return 0
+                    
     
     def _show_package(self,pkg,action=None):
         ''' write package result'''
-        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,pkg.summary,action))
+        summary = pack(pkg.summary)
+        recent = self._get_recent(pkg)
+        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,summary,action,pkg.size,recent))
         
     def _show_group(self,grp):
         self.write(":group\t%s\t%s\t%s" % (cat,id,name) )
@@ -341,15 +382,15 @@ class YumServer(yum.YumBase):
         ''' get list of packages and send results '''
         if pkg_narrow:
             narrow = pkg_narrow[0]
+            action = FILTER_ACTIONS[narrow]
             ygh = self.doPackageLists(pkgnarrow=narrow)
             for pkg in getattr(ygh,narrow):
-                self._show_package(pkg)
+                self._show_package(pkg,action)
         self.write(':end')
         
     def _getPackage(self,para):
         ''' find the real package from an package id'''
-        self.debug(para)
-        n,e,v,r,a,id,action = para
+        n,e,v,r,a,id = para
         if id == 'installed':
             pkgs = self.rpmdb.searchNevra(n,e,v,r,a)
         else:
@@ -368,7 +409,7 @@ class YumServer(yum.YumBase):
         if po:
             if hasattr(po, attr):
                 res = getattr(po, attr)
-                res = base64.b64encode(pickle.dumps(res))
+                res = pack(res)
         self.write(':attr\t%s' % res)
         
     def add_transaction(self,args):
@@ -402,6 +443,36 @@ class YumServer(yum.YumBase):
     
     def get_groups(self,args):
         pass
+
+    def search(self,args):
+        keys = unpack(args[0])
+        filters = unpack(args[1])
+        ygh = self.doPackageLists(pkgnarrow='updates')
+        pkgs = {}
+        for found in self.searchGenerator(filters,keys,showdups=True, keys=True):
+            pkg = found[0]
+            fkeys = found[1]
+            if not len(fkeys) == len(keys): # skip the result if not all keys matches
+                continue
+            na = "%s.%s" % (pkg.name,pkg.arch)
+            if not na in pkgs:
+                pkgs[na] = [pkg]
+            else:
+                pkgs[na].append(pkg)
+        for na in pkgs:
+            best = packagesNewestByNameArch(pkgs[na])
+            for po in best:           
+                if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
+                    (n,a,e,v,r) = po.pkgtup
+                    po= self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
+                    action = 'r'
+                else:
+                    if po in ygh.updates:
+                        action = 'u'
+                    else:
+                        action = 'i'
+                self._show_package(po, action)    
+        self.write(':end')
     
     def get_repos(self,args):
         for repo in self.repos.repos:
@@ -443,6 +514,8 @@ class YumServer(yum.YumBase):
             self.get_repos(args)
         elif cmd == 'enable-repo':
             self.enable_repo(args)
+        elif cmd == 'search':
+            self.search(args)
         else:
             self.error('Unknown command : %s' % cmd)
 

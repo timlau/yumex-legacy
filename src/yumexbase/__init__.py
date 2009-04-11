@@ -18,7 +18,10 @@
 
 import os
 import sys
+import pango
+import time
 from enum import Enum
+from yumexbase.i18n import _
 
 # Constant
 
@@ -34,6 +37,9 @@ SEARCH = Enum('name', 'summary', 'description', 'ver', 'arch', 'repoid')
 GROUP = Enum('all', 'minimum')
 # State
 STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
+# Actions
+ACTIONS = {0 : 'u', 1: 'i', 2 : 'r'}
+FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r'}
 
 # Paths
 MAIN_PATH = os.path.abspath( os.path.dirname( sys.argv[0] ) )
@@ -42,6 +48,15 @@ if MAIN_PATH == '/usr/share/yumex':
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
 else:
     PIXMAPS_PATH = MAIN_PATH+'/../gfx'
+    
+#
+PKG_FILTERS_STRINGS = (_('updates'),_('available'),_('installed'))
+PKG_FILTERS_ENUMS = (FILTER.updates, FILTER.available, FILTER.installed)
+RECENT_LIMIT = time.time() - (3600 * 24 * 14)
+# Fonts
+XSMALL_FONT = pango.FontDescription("sans 6")    
+SMALL_FONT = pango.FontDescription("sans 8")    
+BIG_FONT = pango.FontDescription("sans 12")    
 
 # interface base classes
 

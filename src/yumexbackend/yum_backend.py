@@ -68,7 +68,6 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def setup(self):
         ''' Setup the backend'''
-        self.frontend.debug('Setup yum backend')
         YumClient.setup(self)
         
     def reset(self):
@@ -127,7 +126,8 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
-
+        pkgs = YumClient.search(self,keys, sch_filters)
+        return [self.frontend.package_cache.find(po) for po in pkgs]
 
 
 
@@ -140,6 +140,15 @@ class YumexPackageYum(YumexPackageBase):
 
     def __init__(self, pkg):
         YumexPackageBase.__init__(self, pkg)
+        self.queued = False
+        self.selected = False
+        self.visible = True
+
+    def set_select( self, state ):
+        self.selected = state
+
+    def set_visible( self, state ):
+        self.visible = state
         
     def __str__(self):
         return str(self._pkg)
@@ -169,6 +178,10 @@ class YumexPackageYum(YumexPackageBase):
         return self._pkg.action
 
     @property
+    def color(self):
+        return 'black'
+
+    @property
     def repoid(self):
         return self._pkg.repoid
 
@@ -181,6 +194,10 @@ class YumexPackageYum(YumexPackageBase):
         return self._pkg.summary
 
     @property
+    def size(self):
+        return format_number(long(self._pkg.size))
+
+    @property
     def description(self):
         return self._pkg.get_attribute('description')
 
@@ -190,11 +207,15 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def filelist(self):
-        return self._pkg.get_attribute('filelist')
+        return self._pkg.get_attribute('filelist') 
+
+    @property
+    def recent(self):
+        return self._pkg.recent == '1'
 
     @property        
     def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid,self.action)
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid)
 
     @property
     def filename(self):
@@ -270,3 +291,46 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         pkgs = self._backend.list_transaction()
         return [YumexPackageYum(p) for p in pkgs]
+    
+    
+# from output.py (yum)
+def format_number(number, SI=0, space=' '):
+    """Turn numbers into human-readable metric-like numbers"""
+    symbols = ['', # (none)
+                'k', # kilo
+                'M', # mega
+                'G', # giga
+                'T', # tera
+                'P', # peta
+                'E', # exa
+                'Z', # zetta
+                'Y'] # yotta
+
+    if SI: step = 1000.0
+    else: step = 1024.0
+
+    thresh = 999
+    depth = 0
+
+    # we want numbers between 
+    while number > thresh:
+        depth = depth + 1
+        number = number / step
+
+    # just in case someone needs more than 1000 yottabytes!
+    diff = depth - len(symbols) + 1
+    if diff > 0:
+        depth = depth - diff
+        number = number * thresh ** depth
+
+    if type(number) == type(1) or type(number) == type(1L):
+        format = '%i%s%s'
+    elif number < 9.95:
+        # must use 9.95 for proper sizing.  For example, 9.99 will be
+        # rounded to 10.0 with the .1f format string (which is too long)
+        format = '%.1f%s%s'
+    else:
+        format = '%.0f%s%s'
+
+    return(format % (number, space, symbols[depth]))
+    

@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
-<!--Generated with glade3 3.4.5 on Fri Apr 10 10:23:51 2009 -->
+<!--Generated with glade3 3.4.5 on Sat Apr 11 12:14:40 2009 -->
 <interface>
+  <object class="GtkListStore" id="model1">
+    <columns>
+      <column type="gchararray"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0">Installed</col>
+      </row>
+    </data>
+  </object>
   <object class="GtkUIManager" id="uimanager1">
     <child>
       <object class="GtkActionGroup" id="actiongroup1">
@@ -92,7 +102,7 @@
     </ui>
   </object>
   <object class="GtkWindow" id="main">
-    <property name="width_request">800</property>
+    <property name="width_request">1000</property>
     <property name="height_request">600</property>
     <child>
       <object class="GtkVBox" id="vbox3">
@@ -282,12 +292,50 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTreeView" id="packageView">
+              <object class="GtkScrolledWindow" id="scrolledwindow2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                <child>
+                  <object class="GtkTreeView" id="packageView">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkHBox" id="hbox1">
+                <property name="visible">True</property>
+                <child>
+                  <object class="GtkComboBox" id="packageFilter">
+                    <property name="width_request">150</property>
+                    <property name="visible">True</property>
+                    <signal handler="on_packageFilter_changed" name="changed"/>
+                    <property name="model">model1</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="renderer1"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -336,7 +384,7 @@
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="padding">6</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -363,7 +411,6 @@
             <property name="visible">True</property>
             <child>
               <object class="GtkEntry" id="QueueEntry">
-                <property name="visible">True</property>
                 <property name="can_focus">True</property>
               </object>
             </child>
@@ -376,9 +423,17 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTreeView" id="queueView">
+          <object class="GtkScrolledWindow" id="scrolledwindow3">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+            <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+            <child>
+              <object class="GtkTreeView" id="queueView">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="position">1</property>
@@ -391,7 +446,6 @@
             <property name="layout_style">GTK_BUTTONBOX_END</property>
             <child>
               <object class="GtkButton" id="queueOpen">
-                <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="label" translatable="yes">gtk-open</property>
@@ -401,7 +455,6 @@
             </child>
             <child>
               <object class="GtkButton" id="queueSave">
-                <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="label" translatable="yes">gtk-save</property>
@@ -458,6 +511,7 @@
   <object class="GtkDialog" id="Progress">
     <property name="width_request">500</property>
     <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="destroy_with_parent">True</property>
     <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">

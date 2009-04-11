@@ -21,12 +21,17 @@
 
 import sys
 import gtk
+import pango
+import logging
 
 from datetime import date
 
-from yumexgui.gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents
+from yumexgui.gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents, PackageCache,busyCursor,normalCursor
 from yumexgui.progress import Progress
+from yumexgui.views import YumexPackageView,YumexQueueView
 from yumexbase import *
+from yumexbase.i18n import _
+
 
 class YumexFrontend(YumexFrontendBase):
     '''
@@ -107,10 +112,13 @@ class YumexHandlers(Controller):
         ui = UI(BUILDER_FILE , 'main', 'yumex')
         # init the Controller Class to connect signals.
         Controller.__init__(self, ui)
+        self.package_cache = PackageCache(self.backend)
+        self._last_filter = None
         self.setup_gui()
         
 # helpers
     def setup_gui(self):
+        # setup
         self.window = self.ui.main
         self.window.connect( "delete_event", self.quit )
         self.window.set_title("Yum Extender NextGen")
@@ -120,15 +128,47 @@ class YumexHandlers(Controller):
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=PIXMAPS_PATH+'/button-packages.png')
         self.notebook.add_page("group","Groups",self.ui.groupMain, icon=PIXMAPS_PATH+'/button-group.png')
         self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=PIXMAPS_PATH+'/button-repo.png')
-        self.notebook.add_page("queue","Action Queue",self.ui.queueMain, icon=PIXMAPS_PATH+'/button-queue.png')
+        self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=PIXMAPS_PATH+'/button-queue.png')
         self.notebook.add_page("output","Output",self.ui.outputMain, icon=PIXMAPS_PATH+'/button-output.png')
         self.notebook.set_active("package")
+        self.queue = YumexQueueView(self.ui.queueView)
+        self.packages = YumexPackageView(self.ui.packageView,self.queue)
         self.window.show()
+        self.setup_filters()
+        self.populate_package_cache()
+        # setup default package filter (updates)
+        self.ui.packageFilter.set_active(0)
+
+    def setup_filters(self):
+        ''' Populate Package Filter Combobox'''
+        model = gtk.ListStore( str )
+        for flt in PKG_FILTERS_STRINGS:
+            print flt
+            model.append([flt])
+        self.ui.packageFilter.set_model( model )
+        label = self.ui.packageFilter.get_children()[0]
+        label.modify_font(XSMALL_FONT)
+
+    def populate_package_cache(self):
+        self.backend.setup()
+        self.progress.show()
+        self.progress.set_header("Getting Package Lists")
+        self.progress.set_label("Getting Updated Packages")
+        pkgs = self.package_cache.get_packages(FILTER.updates)
+        self.progress.set_label("Getting Available Packages")
+        pkgs = self.package_cache.get_packages(FILTER.available)
+        self.progress.set_label("Getting installed Packages")
+        pkgs = self.package_cache.get_packages(FILTER.installed)
+        self.progress.hide()
+
+        
+        
 
 # Signal handlers
       
     def quit(self, widget=None, event=None ):
         ''' Main destroy Handler '''
+        self.backend.reset()
         gtk.main_quit()
 
     # Menu
@@ -152,18 +192,43 @@ class YumexHandlers(Controller):
     # Package Page    
         
     def on_packageSearch_activate(self, widget=None, event=None ):
-        self.debug("Package Search : %s" % self.ui.packageSearch.get_text())
+        busyCursor(self.window)
+        active = self.ui.packageFilter.get_active()
+        if active != -1:
+            self._last_filter = active
+        filters = ['name','summary']
+        keys = self.ui.packageSearch.get_text().split(' ')
+        pkgs = self.backend.search(keys,filters)
+        self.ui.packageFilter.set_active(-1)            
+        self.packages.add_packages(pkgs)
+        normalCursor(self.window)
+        
 
     def on_packageClear_clicked(self, widget=None, event=None ):
         self.debug("Package Clear")
         self.ui.packageSearch.set_text('')
+        if self._last_filter != -1:
+            self.ui.packageFilter.set_active(self._last_filter)            
+            
 
     def on_packageSelectAll_clicked(self, widget=None, event=None ):
-        self.debug("Package Select All")
+        self.packages.selectAll()
 
     def on_packageRedo_clicked(self, widget=None, event=None ):
-        self.debug("Package Redo")
+        self.packages.deselectAll()
 
+    def on_packageFilter_changed(self, widget=None, event=None ):
+        active = self.ui.packageFilter.get_active()
+        if active == -1:
+            return
+        busyCursor(self.window)
+        self.ui.packageSearch.set_text('')        
+        self.backend.setup()
+        pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
+        action = ACTIONS[active]
+        self.packages.add_packages(pkgs,progress = self.progress)
+        normalCursor(self.window)
+            
     # Repo Page    
         
     def on_repoOK_clicked(self, widget=None, event=None ):
@@ -189,7 +254,7 @@ class YumexHandlers(Controller):
         self.run_test()
         
     def on_progressCancel_clicked(self, widget=None, event=None ):
-        self.debug("Progress Cansel")
+        self.debug("Progress Cancel : "+event)
                 
 
 class YumexApplication(YumexHandlers, YumexFrontend):
@@ -209,6 +274,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.progress = None
         
     def run(self):
+        # setup
+        self.backend.setup()
         gtk.main()        
         
     def run_test(self):
@@ -222,17 +289,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                         self.info(el.description)
                     if i == 20:
                         break
-        # setup
-        self.backend.setup()
         # get_packages
         self.progress.show()
         self.progress.set_header("Testing Yum Backend")
         self.progress.set_label("Getting Updated Packages")
         pkgs = self.backend.get_packages(FILTER.updates)
-        show(pkgs,True)
+        #show(pkgs,True)
         self.progress.set_label("Getting Available Packages")
         pkgs = self.backend.get_packages(FILTER.available)
-        show(pkgs)
+        #show(pkgs)
         for po in pkgs:
             if po.name == 'kdegames':
                 break
@@ -275,5 +340,5 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.backend.search(['dummy'],SEARCH.name)        
         # reset        
         self.progress.hide()
-        self.backend.reset()
+        #self.backend.reset()
         
