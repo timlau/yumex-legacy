@@ -123,11 +123,11 @@ class YumexHandlers(Controller):
         self.output = TextViewConsole(self.ui.outputText)
         self.progress = Progress(self.ui,self.window)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
-        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=PIXMAPS_PATH+'/button-packages.png')
-        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=PIXMAPS_PATH+'/button-group.png')
-        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=PIXMAPS_PATH+'/button-repo.png')
-        self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=PIXMAPS_PATH+'/button-queue.png')
-        self.notebook.add_page("output","Output",self.ui.outputMain, icon=PIXMAPS_PATH+'/button-output.png')
+        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
+        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
+        self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
+        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=ICON_REPOS)
+        self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
         self.notebook.set_active("package")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
@@ -234,8 +234,8 @@ class YumexHandlers(Controller):
             
     # Repo Page    
         
-    def on_repoOK_clicked(self, widget=None, event=None ):
-        self.debug("Repo OK")
+    def on_repoRefresh_clicked(self, widget=None, event=None ):
+        self.debug("Repo Refresh")
         
     def on_repoUndo_clicked(self, widget=None, event=None ):
         self.debug("Repo Undo")

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!--Generated with glade3 3.4.5 on Sat Apr 11 18:19:14 2009 -->
+<!--Generated with glade3 3.4.5 on Sun Apr 12 08:35:31 2009 -->
 <interface>
   <object class="GtkListStore" id="model1">
     <columns>
@@ -204,7 +204,7 @@
                     <property name="receives_default">True</property>
                     <property name="label" translatable="yes">gtk-refresh</property>
                     <property name="use_stock">True</property>
-                    <signal handler="on_repoOK_clicked" name="clicked"/>
+                    <signal handler="on_repoRefresh_clicked" name="clicked"/>
                   </object>
                 </child>
                 <child>

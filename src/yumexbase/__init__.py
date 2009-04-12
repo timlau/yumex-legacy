@@ -48,6 +48,14 @@ if MAIN_PATH == '/usr/share/yumex':
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
 else:
     PIXMAPS_PATH = MAIN_PATH+'/../gfx'
+
+# icons
+ICON_YUMEX      = PIXMAPS_PATH+"/yumex-icon.png"
+ICON_PACKAGES   = PIXMAPS_PATH+'/button-packages.png'
+ICON_GROUPS     = PIXMAPS_PATH+'/button-group.png'
+ICON_QUEUE      = PIXMAPS_PATH+'/button-queue.png'
+ICON_OUTPUT     = PIXMAPS_PATH+'/button-output.png'
+ICON_REPOS      = PIXMAPS_PATH+'/button-repo.png'
     
 #
 PKG_FILTERS_STRINGS = (_('updates'),_('available'),_('installed'))

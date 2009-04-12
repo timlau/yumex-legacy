@@ -24,12 +24,80 @@ from yumexbase import *
 from yumexbase.i18n import _
 from yum.misc import sortPkgObj
 
+class SelectionView:
+    def __init__(self,widget):
+        self.view = widget
+        self.store = None
 
-class YumexPackageView:
-    def __init__( self, treeview,qview ):
-        self.view = treeview
-        self.view.modify_font(SMALL_FONT)
+    def create_text_column_num( self, hdr,colno,resize = True):
+        cell = gtk.CellRendererText()    # Size Column
+        column = gtk.TreeViewColumn( hdr, cell, text=colno )
+        column.set_resizable(resize )
+        self.view.append_column( column )        
+
+    def create_text_column( self, hdr, property, size,sortcol = None):
+        """ 
+        Create a TreeViewColumn with text and set
+        the sorting properties and add it to the view
+        """
+        cell = gtk.CellRendererText()    # Size Column
+        column = gtk.TreeViewColumn( hdr, cell )
+        column.set_resizable( True )
+        column.set_cell_data_func( cell, self.get_data_text, property )
+        column.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
+        column.set_fixed_width( size )
+        column.set_sort_column_id( -1 )            
+        self.view.append_column( column )        
+        return column
+
+    def create_selection_colunm(self,attr ):
+        # Setup a selection column using a object attribute 
+        cell1 = gtk.CellRendererToggle()    # Selection
+        cell1.set_property( 'activatable', True )
+        column1 = gtk.TreeViewColumn( "", cell1 )
+        column1.set_cell_data_func( cell1, self.get_data_bool, attr )
+        column1.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
+        column1.set_fixed_width( 20 )
+        column1.set_sort_column_id( -1 )            
+        self.view.append_column( column1 )
+        cell1.connect( "toggled", self.on_toggled )            
+        column1.set_clickable( True )
+
+    def create_selection_column_num(self,num ):
+        # Setup a selection column using a column num
+        cell1 = gtk.CellRendererToggle()    # Selection
+        cell1.set_property( 'activatable', True )
+        column1 = gtk.TreeViewColumn( "    ", cell1 )
+        column1.add_attribute( cell1, "active", num )
+        column1.set_resizable( True )
+        column1.set_sort_column_id( -1 )            
+        self.view.append_column( column1 )
+        cell1.connect( "toggled", self.on_toggled )     
         
+    def get_data_text( self, column, cell, model, iter,property ):
+        obj = model.get_value( iter, 0 )
+        if obj:
+            cell.set_property( 'text', getattr( obj, property ) )
+            cell.set_property('foreground',obj.color)
+
+    def get_data_bool( self, column, cell, model, iter, property ):
+        obj = model.get_value( iter, 0 )
+        cell.set_property( "visible", True )
+        if obj:
+            cell.set_property( "active", getattr( obj, property ) )
+            
+
+    def on_toggled(self,widget,path):
+        ''' 
+        selection togged handler
+        overload in child class
+        '''
+        pass
+    
+class YumexPackageView(SelectionView):
+    def __init__( self, widget,qview ):
+        SelectionView.__init__(self, widget)
+        self.view.modify_font(SMALL_FONT)
         self.headers = [_( "Package" ), _( "Ver" ), _( "Summary" ), _( "Repo" ), _( "Architecture" ), _( "Size" )]
         self.store = self.setupView()
         self.queue = qview.queue
@@ -38,17 +106,7 @@ class YumexPackageView:
     def setupView( self ):
         store = gtk.ListStore( gobject.TYPE_PYOBJECT,str)
         self.view.set_model( store )
-        # Setup selection column
-        cell1 = gtk.CellRendererToggle()    # Selection
-        cell1.set_property( 'activatable', True )
-        column1 = gtk.TreeViewColumn( "", cell1 )
-        column1.set_cell_data_func( cell1, self.get_data_bool, 'selected' )
-        column1.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
-        column1.set_fixed_width( 20 )
-        column1.set_sort_column_id( -1 )            
-        self.view.append_column( column1 )
-        cell1.connect( "toggled", self.on_toggled )            
-        column1.set_clickable( True )
+        self.create_selection_colunm('selected')
         # Setup resent column
         cell2 = gtk.CellRendererPixbuf()    # new
         cell2.set_property( 'stock-id', gtk.STOCK_ADD )
@@ -72,32 +130,6 @@ class YumexPackageView:
         self.view.set_reorderable( False )
         return store
    
-    def create_text_column( self, hdr, property, size,sortcol = None):
-        """ 
-        Create a TreeViewColumn with text and set
-        the sorting properties and add it to the view
-        """
-        cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn( hdr, cell )
-        column.set_resizable( True )
-        column.set_cell_data_func( cell, self.get_data_text, property )
-        column.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
-        column.set_fixed_width( size )
-        column.set_sort_column_id( -1 )            
-        self.view.append_column( column )        
-        return column
-        
-    def get_data_text( self, column, cell, model, iter,property ):
-        obj = model.get_value( iter, 0 )
-        if obj:
-            cell.set_property( 'text', getattr( obj, property ) )
-            cell.set_property('foreground',obj.color)
-
-    def get_data_bool( self, column, cell, model, iter, property ):
-        obj = model.get_value( iter, 0 )
-        cell.set_property( "visible", True )
-        if obj:
-            cell.set_property( "active", getattr( obj, property ) )
     
     def on_toggled( self, widget, path ):
         """ Package selection handler """
@@ -346,12 +378,12 @@ class YumexQueueView:
         for pkg in list:
             self.model.append( parent, [str( pkg ), pkg.summary] )
 
-class YumexRepoView:
+class YumexRepoView(SelectionView):
     """ 
     This class controls the repo TreeView
     """
     def __init__( self, widget):
-        self.view = widget
+        SelectionView.__init__(self, widget)
         self.view.modify_font(SMALL_FONT)        
         self.headers = [_('Repository'),_('Filename')]
         self.store = self.setup_view()
@@ -368,14 +400,7 @@ class YumexRepoView:
         store = gtk.ListStore( 'gboolean', gobject.TYPE_STRING,gobject.TYPE_STRING,'gboolean')
         self.view.set_model( store )
         # Setup Selection Column
-        cell1 = gtk.CellRendererToggle()    # Selection
-        cell1.set_property( 'activatable', True )
-        column1 = gtk.TreeViewColumn( "    ", cell1 )
-        column1.add_attribute( cell1, "active", 0 )
-        column1.set_resizable( True )
-        column1.set_sort_column_id( -1 )            
-        self.view.append_column( column1 )
-        cell1.connect( "toggled", self.on_toggled )     
+        self.create_selection_column_num(0)
         # Setup resent column
         cell2 = gtk.CellRendererPixbuf()    # gpgcheck
         cell2.set_property( 'stock-id', gtk.STOCK_DIALOG_AUTHENTICATION )
@@ -388,18 +413,12 @@ class YumexRepoView:
         column2.set_clickable( True )
                
         # Setup reponame & repofile column's
-        self.create_text_column( _('Repository'),1 )
-        self.create_text_column( _('Name'),2 )
+        self.create_text_column_num( _('Repository'),1 )
+        self.create_text_column_num( _('Name'),2 )
         self.view.set_search_column( 1 )
         self.view.set_reorderable( False )
         return store
     
-    def create_text_column( self, hdr,colno):
-        cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn( hdr, cell, text=colno )
-        column.set_resizable( True )
-        self.view.append_column( column )        
-
     def populate( self, data, showAll=False ):
         """ Populate a repo liststore with data """
         self.store.clear()
