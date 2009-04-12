@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!--Generated with glade3 3.4.5 on Sun Apr 12 12:24:31 2009 -->
+<!--Generated with glade3 3.4.5 on Sun Apr 12 13:46:12 2009 -->
 <interface>
   <object class="GtkUIManager" id="uimanager1">
     <child>
@@ -301,6 +301,7 @@ words.
                     <property name="use_underline">True</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
+                    <accelerator key="U" modifiers="" signal="clicked"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -376,16 +377,34 @@ words.
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkScrolledWindow" id="scrolledwindow5">
+                  <object class="GtkHBox" id="hbox1">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                    <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
                     <child>
-                      <object class="GtkTextView" id="packageInfo">
+                      <object class="GtkScrolledWindow" id="scrolledwindow5">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                        <child>
+                          <object class="GtkTextView" id="packageInfo">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                          </object>
+                        </child>
                       </object>
+                    </child>
+                    <child>
+                      <object class="GtkVBox" id="packageInfoSelector">
+                        <property name="visible">True</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                   <packing>

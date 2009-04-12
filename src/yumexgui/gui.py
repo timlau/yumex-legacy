@@ -24,15 +24,58 @@ import gtk.glade
 import pango
 import logging
 import types
+from datetime import date
 from yumexbase.i18n import _
 from yumexbase import *
 from yumexbackend.yum_backend import YumexPackageYum
+from guihelpers import TextViewBase
 
 
 #
 # Classses
 #
+
+class PackageInfoTextView(TextViewBase):
+    
+    def __init__(self, textview, font_size=8):
+        '''
+        Setup the textview
+        @param textview: the gtk.TextView widget to use 
+        '''
+        TextViewBase.__init__(self,textview)        
+
+        # description style
+        tag = "description"
+        style = gtk.TextTag(tag)
+        style.set_property("foreground", "midnight blue")
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style(tag, style)
+        self.default_style = tag
+
+        # filelist style
+        tag = "filelist"
+        style = gtk.TextTag(tag)
+        style.set_property("foreground", "DarkOrchid4")
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style(tag, style)
+
+        # changelog style
+        tag = "changelog"
+        style = gtk.TextTag(tag)
+        style.set_property("foreground", "midnight blue")
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style(tag, style)
         
+        # changelog style
+        tag = "changelog-header"
+        style = gtk.TextTag(tag)
+        style.set_property("foreground", "dark red")
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style(tag, style)
         
 class PackageCache:
     def __init__(self,backend):
@@ -85,20 +128,20 @@ class PageHeader(gtk.HBox):
         self.pack_start(self.label,expand=False)
         self.pack_end(self.icon,expand=False)
         self.show_all()
-        
-class PageSelector:
-    ''' Button notebook selector '''
+
+class SelectorBase:
+    ''' Button selector '''
     
-    def __init__(self,content,notebook):
+    def __init__(self,content):
         ''' setup the selector '''
         self.content = content
-        self.notebook = notebook
         self._buttons = {}
         self._first = None
         self._selected = None
+        self.tooltip = gtk.Tooltips()
         
         
-    def add_button(self,key,icon=None,tooltip=None):
+    def add_button(self,key,icon=None,stock=None,tooltip=None):
         ''' Add a new selector button '''
         if len(self._buttons) == 0:
             button = gtk.RadioButton( None )
@@ -109,16 +152,17 @@ class PageSelector:
     
         button.set_relief( gtk.RELIEF_NONE )
         button.set_mode( False )
-    
-        if icon:
-            p = gtk.gdk.pixbuf_new_from_file( icon )
+        if stock:
+            pix = gtk.image_new_from_stock(stock,gtk.ICON_SIZE_MENU)
+        else: 
+            p = gtk.gdk.pixbuf_new_from_file( icon )            
             pix = gtk.Image()
             pix.set_from_pixbuf( p )
-            pix.show()
-            button.add(pix)
+        pix.show()
+        button.add(pix)
     
         if tooltip:
-            self.tooltip.set_tip(button,text)
+            self.tooltip.set_tip(button,tooltip)
         button.show()
         self.content.pack_start( button, False )
         self._buttons[key] = button
@@ -127,12 +171,83 @@ class PageSelector:
         ''' set the active selector button '''
         if key in self._buttons:
             button = self._buttons[key]
-            button.set_active(True)
+            button.clicked()
             
     def get_active(self):
         ''' get the active selector button'''
         return self._selected            
             
+    def on_button_clicked(self, widget=None, key=None ):
+        ''' button clicked callback handler'''
+        if widget.get_active(): # only work on the active button
+            self._selected = key
+
+class PackageInfo(SelectorBase):
+    def __init__(self,console,selector):
+        SelectorBase.__init__(self, selector)
+        self.console = PackageInfoTextView(console)
+        self.add_button('description', stock='gtk-about', tooltip='Package Description')
+        self.add_button('changelog', stock='gtk-edit', tooltip='Package Changelog')
+        self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
+        self.pkg = None
+        self._selected = 'description'
+
+    def update(self,pkg):
+        self.pkg = pkg
+        self.set_active(self._selected)
+        
+    def clear(self):        
+        self.console.clear()
+
+    def on_button_clicked(self, widget=None, key=None ):
+        ''' button clicked callback handler'''
+        if widget.get_active(): # only work on the active button
+            self._selected = key
+            self.update_console(key)
+    
+    def update_console(self,key):
+        if self.pkg:
+            self.console.clear()
+            if key == 'description':
+                self.show_description()
+            elif key == 'changelog':
+                self.show_changelog()
+            elif key == 'filelist':
+                self.show_filelist()
+            self.console.goTop()
+        
+    def show_description(self):
+        self.console.write(self.pkg.description)
+        
+    def show_changelog(self):
+        num = 0
+        for (d,a,msg) in self.pkg.changelog:
+            num += 1
+            self.console.write("* %s %s" % (date.fromtimestamp(d).isoformat(),a),"changelog-header")
+            for line in msg.split('\n'):
+                self.console.write("%s" % line,"changelog")
+            self.console.write('\n')              
+            if num == 3: break
+
+    def show_filelist(self):
+        i = 0
+        files = self.pkg.filelist
+        files.sort()
+        for f in files:
+            self.console.write(f,"filelist")
+        
+        
+        
+        
+        
+        
+class PageSelector(SelectorBase):
+    ''' Button notebook selector '''
+    
+    def __init__(self,content,notebook):
+        ''' setup the selector '''
+        SelectorBase.__init__(self, content)
+        self.notebook = notebook
     def on_button_clicked(self, widget=None, key=None ):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button

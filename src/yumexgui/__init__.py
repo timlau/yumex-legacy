@@ -26,7 +26,7 @@ import logging
 
 from datetime import date
 
-from yumexgui.gui import Notebook, PackageCache, Notebook
+from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.progress import Progress
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
@@ -131,7 +131,7 @@ class YumexHandlers(Controller):
         self.notebook.set_active("package")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
-        self.packageInfo = TextViewConsole(self.ui.packageInfo)
+        self.packageInfo = PackageInfo(self.ui.packageInfo,self.ui.packageInfoSelector)
         self.repos = YumexRepoView(self.ui.repoView)
         self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
         self.addLogger('yum')
@@ -204,6 +204,7 @@ class YumexHandlers(Controller):
     # Package Page    
         
     def on_packageSearch_activate(self, widget=None, event=None ):
+        ''' Enter pressed in search field '''
         busyCursor(self.window)
         self.packageInfo.clear()
         filters = ['name','summary']
@@ -215,16 +216,14 @@ class YumexHandlers(Controller):
         normalCursor(self.window)
         
     def on_packageView_cursor_changed(self,widget):    
+        '''  package selected in the view '''
         ( model, iterator ) = widget.get_selection().get_selected()
         if model != None and iterator != None:
             pkg = model.get_value( iterator, 0 )
             if pkg:
-                self.packageInfo.clear()
-                self.packageInfo.write(pkg.description)
-            
+                self.packageInfo.update(pkg)
 
     def on_packageClear_clicked(self, widget=None, event=None ):
-        self.debug("Package Clear")
         self.ui.packageSearch.set_text('')
         self.ui.packageFilterBox.show()
         if self._last_filter:
