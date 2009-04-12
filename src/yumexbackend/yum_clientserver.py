@@ -334,7 +334,7 @@ class YumServer(yum.YumBase):
     def __init__(self):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
-        self.doConfigSetup(errorlevel=0,debuglevel=0)
+        self.doConfigSetup(errorlevel=2,debuglevel=2)
 
     def write(self,msg):
         ''' write an message to stdout, to be read by the client'''

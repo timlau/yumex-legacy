@@ -27,6 +27,7 @@ from yumexbase.i18n import _
 
 __yumex_version__   = "2.1.0" 
 
+YUMEX_LOG = 'yumex.verbose'
 # Package Types
 PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
 # Package list filters

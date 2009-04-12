@@ -26,7 +26,8 @@ import logging
 
 from datetime import date
 
-from yumexgui.gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents, PackageCache,busyCursor,normalCursor
+from yumexgui.gui import Notebook, PackageCache, Notebook
+from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.progress import Progress
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
@@ -44,6 +45,7 @@ class YumexFrontend(YumexFrontendBase):
     def __init__(self, backend, progress):
         ''' Setup the frontend callbacks '''
         YumexFrontendBase.__init__(self, backend, progress)
+        self.logger = logging.getLogger(YUMEX_LOG)
         
     def set_state(self, state):
         ''' set the state of work '''
@@ -63,7 +65,7 @@ class YumexFrontend(YumexFrontendBase):
 
     def error(self, msg, exit=False):
         ''' Write an error message to frontend '''
-        self.output.write('ERROR: %s' % msg,'error')
+        self.logger.error('ERROR: %s' % msg)
         self.refresh()
         if exit:
             sys.exit(1)
@@ -71,20 +73,18 @@ class YumexFrontend(YumexFrontendBase):
 
     def warning(self, msg):
         ''' Write an warning message to frontend '''
-        print "Warning:",msg
-        self.output.write('WARNING: %s' % msg,'info')
+        self.logger.warning('WARNING: %s' % msg)
         self.refresh()
 
     def info(self, msg):
         ''' Write an info message to frontend '''
-        print "INFO:",msg
-        self.output.write(msg,'info')
+        self.logger.info(msg)
         self.refresh()
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
         print "DEBUG:",msg
-        self.output.write('DEBUG: %s' % msg,"debug")
+        self.logger.debug('DEBUG: %s' % msg)
         self.refresh()
 
     def exception(self, msg):
@@ -131,24 +131,34 @@ class YumexHandlers(Controller):
         self.notebook.set_active("package")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
+        self.packageInfo = TextViewConsole(self.ui.packageInfo)
         self.repos = YumexRepoView(self.ui.repoView)
+        self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
+        self.addLogger('yum')
+        self.addLogger('yum.verbose')
         self.window.show()
         self.setup_filters()
         self.populate_package_cache()
         self.setup_repositories()
         # setup default package filter (updates)
-        self.ui.packageFilter.set_active(0)
+        self.ui.packageRadioUpdates.clicked()
+
+    def addLogger(self,logroot,loglvl=None):
+        logger = logging.getLogger(logroot)
+        if loglvl:
+            logger.setLevel(loglvl)
+        logger.addHandler(self.log_handler)
+        return logger
 
     def setup_filters(self):
-        ''' Populate Package Filter Combobox'''
-        model = gtk.ListStore( str )
-        for flt in PKG_FILTERS_STRINGS:
-            print flt
-            model.append([flt])
-        self.ui.packageFilter.set_model( model )
-        label = self.ui.packageFilter.get_children()[0]
-        label.modify_font(XSMALL_FONT)
-
+        ''' Populate Package Filter radiobuttons'''
+        num = 0
+        for attr in ('Updates','Available','Installed'):
+            rb = getattr(self.ui,'packageRadio'+attr)
+            rb.connect('clicked',self.on_packageFilter_changed,num) 
+            num += 1
+            rb.child.modify_font(SMALL_FONT)
+            
     def setup_repositories(self):
         repos = self.backend.get_repositories()
         self.repos.populate(repos)
@@ -177,7 +187,6 @@ class YumexHandlers(Controller):
     # Menu
         
     def on_fileQuit_activate(self, widget=None, event=None ):
-        self.debug("File -> Quit")
         self.main_quit()
 
     def on_editPref_activate(self, widget=None, event=None ):
@@ -196,41 +205,49 @@ class YumexHandlers(Controller):
         
     def on_packageSearch_activate(self, widget=None, event=None ):
         busyCursor(self.window)
-        active = self.ui.packageFilter.get_active()
-        if active != -1:
-            self._last_filter = active
+        self.packageInfo.clear()
         filters = ['name','summary']
         keys = self.ui.packageSearch.get_text().split(' ')
         pkgs = self.backend.search(keys,filters)
-        self.ui.packageFilter.set_active(-1)            
+        self.ui.packageFilterBox.hide()
+        self._last_filter.set_active(True)            
         self.packages.add_packages(pkgs)
         normalCursor(self.window)
         
+    def on_packageView_cursor_changed(self,widget):    
+        ( model, iterator ) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            pkg = model.get_value( iterator, 0 )
+            if pkg:
+                self.packageInfo.clear()
+                self.packageInfo.write(pkg.description)
+            
 
     def on_packageClear_clicked(self, widget=None, event=None ):
         self.debug("Package Clear")
         self.ui.packageSearch.set_text('')
-        if self._last_filter != -1:
-            self.ui.packageFilter.set_active(self._last_filter)            
+        self.ui.packageFilterBox.show()
+        if self._last_filter:
+            self._last_filter.clicked()
             
 
     def on_packageSelectAll_clicked(self, widget=None, event=None ):
         self.packages.selectAll()
 
-    def on_packageRedo_clicked(self, widget=None, event=None ):
+    def on_packageUndo_clicked(self, widget=None, event=None ):
         self.packages.deselectAll()
 
-    def on_packageFilter_changed(self, widget=None, event=None ):
-        active = self.ui.packageFilter.get_active()
-        if active == -1:
-            return
-        busyCursor(self.window)
-        self.ui.packageSearch.set_text('')        
-        self.backend.setup()
-        pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
-        action = ACTIONS[active]
-        self.packages.add_packages(pkgs,progress = self.progress)
-        normalCursor(self.window)
+    def on_packageFilter_changed(self, widget, active ):
+        if widget.get_active():
+            self._last_filter = widget
+            self.packageInfo.clear()
+            busyCursor(self.window)
+            self.ui.packageSearch.set_text('')        
+            self.backend.setup()
+            pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
+            action = ACTIONS[active]
+            self.packages.add_packages(pkgs,progress = self.progress)
+            normalCursor(self.window)
             
     # Repo Page    
         
@@ -252,9 +269,8 @@ class YumexHandlers(Controller):
         self.debug("Queue Remove")
 
     def on_Execute_clicked(self, widget=None, event=None ):
-        self.debug("Queue Execute ")
+        self.debug("Queue Execute - Not implemented Yet :)")
         self.notebook.set_active("output")
-        self.run_test()
         
     def on_progressCancel_clicked(self, widget=None, event=None ):
         self.debug("Progress Cancel : "+event)
@@ -266,6 +282,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     """
     
     def __init__(self,backend):
+        self.logger = logging.getLogger(YUMEX_LOG)
         self.backend = backend(self)
         self.progress = None
         self.setup_backend()

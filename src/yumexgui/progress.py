@@ -18,7 +18,7 @@
 import gtk
 import pango
 
-from yumexgui.gui import busyCursor, normalCursor
+from guihelpers import busyCursor, normalCursor
 from yumexbase import *
 
 class Progress:

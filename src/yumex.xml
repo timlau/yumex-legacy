@@ -1,16 +1,6 @@
 <?xml version="1.0"?>
-<!--Generated with glade3 3.4.5 on Sun Apr 12 08:35:31 2009 -->
+<!--Generated with glade3 3.4.5 on Sun Apr 12 12:24:31 2009 -->
 <interface>
-  <object class="GtkListStore" id="model1">
-    <columns>
-      <column type="gchararray"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0">Installed</col>
-      </row>
-    </data>
-  </object>
   <object class="GtkUIManager" id="uimanager1">
     <child>
       <object class="GtkActionGroup" id="actiongroup1">
@@ -154,16 +144,6 @@
             <property name="position">1</property>
           </packing>
         </child>
-        <child>
-          <object class="GtkStatusbar" id="mainStatus">
-            <property name="visible">True</property>
-            <property name="spacing">2</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
       </object>
     </child>
   </object>
@@ -202,6 +182,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip-text" translatable="yes">Refresh packages with current selected
+repositories</property>
                     <property name="label" translatable="yes">gtk-refresh</property>
                     <property name="use_stock">True</property>
                     <signal handler="on_repoRefresh_clicked" name="clicked"/>
@@ -212,6 +194,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip-text" translatable="yes">Undo repository selection changes</property>
                     <property name="label" translatable="yes">gtk-undo</property>
                     <property name="use_stock">True</property>
                     <signal handler="on_repoUndo_clicked" name="clicked"/>
@@ -276,6 +259,7 @@
                     <child>
                       <object class="GtkImage" id="image2">
                         <property name="visible">True</property>
+                        <property name="tooltip-text" translatable="yes">Reset current search</property>
                         <property name="stock">gtk-clear</property>
                       </object>
                     </child>
@@ -288,6 +272,10 @@
                   <object class="GtkEntry" id="packageSearch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Type search words separated by spaces
+to find packages containing the search
+words.
+</property>
                     <signal handler="on_packageSearch_activate" name="activate"/>
                   </object>
                   <packing>
@@ -300,49 +288,113 @@
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow" id="scrolledwindow2">
+              <object class="GtkHButtonBox" id="packageFilterBox">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                <property name="spacing">5</property>
+                <property name="layout_style">GTK_BUTTONBOX_START</property>
                 <child>
-                  <object class="GtkTreeView" id="packageView">
+                  <object class="GtkRadioButton" id="packageRadioUpdates">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkHBox" id="hbox1">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkComboBox" id="packageFilter">
-                    <property name="width_request">150</property>
-                    <property name="visible">True</property>
-                    <signal handler="on_packageFilter_changed" name="changed"/>
-                    <property name="model">model1</property>
-                    <child>
-                      <object class="GtkCellRendererText" id="renderer1"/>
-                      <attributes>
-                        <attribute name="text">0</attribute>
-                      </attributes>
-                    </child>
+                    <property name="tooltip-text" translatable="yes">Show package updates</property>
+                    <property name="label" translatable="yes">_Updates</property>
+                    <property name="use_underline">True</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
+                    <property name="fill">False</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
+                  <object class="GtkRadioButton" id="packageRadioAvailable">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Show available packages</property>
+                    <property name="label" translatable="yes">_Available</property>
+                    <property name="use_underline">True</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">packageRadioUpdates</property>
+                    <accelerator key="A" modifiers="" signal="clicked"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkRadioButton" id="packageRadioInstalled">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Show installed packages</property>
+                    <property name="label" translatable="yes">_Installed</property>
+                    <property name="use_underline">True</property>
+                    <property name="active">True</property>
+                    <property name="draw_indicator">True</property>
+                    <property name="group">packageRadioUpdates</property>
+                    <accelerator key="I" modifiers="" signal="clicked"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
+                <property name="padding">2</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVPaned" id="packageSep">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="position">300</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                    <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                    <child>
+                      <object class="GtkTreeView" id="packageView">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <signal handler="on_packageView_cursor_changed" name="cursor_changed"/>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow" id="scrolledwindow5">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                    <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+                    <child>
+                      <object class="GtkTextView" id="packageInfo">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
                 <property name="position">2</property>
               </packing>
             </child>
@@ -356,19 +408,21 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip-text" translatable="yes">Select all packages in current view</property>
                     <property name="label" translatable="yes">gtk-select-all</property>
                     <property name="use_stock">True</property>
                     <signal handler="on_packageSelectAll_clicked" name="clicked"/>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkButton" id="packageRedo">
+                  <object class="GtkButton" id="packageUndo">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="label" translatable="yes">gtk-redo</property>
+                    <property name="tooltip-text" translatable="yes">Undo all package selection</property>
+                    <property name="label" translatable="yes">gtk-undo</property>
                     <property name="use_stock">True</property>
-                    <signal handler="on_packageRedo_clicked" name="clicked"/>
+                    <signal handler="on_packageUndo_clicked" name="clicked"/>
                   </object>
                   <packing>
                     <property name="position">1</property>
@@ -379,6 +433,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip-text" translatable="yes">Execute all pending actions in queue</property>
                     <property name="label" translatable="yes">gtk-execute</property>
                     <property name="use_stock">True</property>
                     <signal handler="on_Execute_clicked" name="clicked"/>
@@ -478,6 +533,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip-text" translatable="yes">Remove selected packages from queue</property>
                 <property name="label" translatable="yes">gtk-remove</property>
                 <property name="use_stock">True</property>
                 <signal handler="on_queueRemove_clicked" name="clicked"/>
@@ -491,6 +547,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip-text" translatable="yes">Execute all pending actions in queue</property>
                 <property name="label" translatable="yes">gtk-execute</property>
                 <property name="use_stock">True</property>
                 <signal handler="on_Execute_clicked" name="clicked"/>
