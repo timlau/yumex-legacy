@@ -263,7 +263,13 @@ class YumClient:
     def get_repos(self):
         self._send_command('get-repos',[])
         data = self._get_list(':repo')
-        return data
+        repos = []
+        for state,id,name,gpg in data:
+            gpg = gpg == 'True'
+            state = state == 'True'
+            elem = (state,id,name,gpg)
+            repos.append(elem)
+        return repos
         
     def enable_repo(self,id,state):
         self._send_command('enable-repo',[id,str(state)])
@@ -356,7 +362,7 @@ class YumServer(yum.YumBase):
         self.write(":group\t%s\t%s\t%s" % (cat,id,name) )
 
     def _show_repo(self,repo):
-        self.write(":repo\t%s\t%s\t%s\t%s" % (repo.id,repo.name,repo.enabled,repo.gpgcheck) )
+        self.write(":repo\t%s\t%s\t%s\t%s" % (repo.enabled,repo.id,repo.name,repo.gpgcheck) )
 
     def info(self,msg):
         ''' write an info message '''

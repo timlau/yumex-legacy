@@ -94,6 +94,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         repos = YumClient.get_repos(self)
         return repos
 
+
     def enable_repository(self, repoid, enabled=True):
         ''' 
         set repository enable state

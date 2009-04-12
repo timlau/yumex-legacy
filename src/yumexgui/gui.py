@@ -60,105 +60,85 @@ class PackageCache:
                 return pkg
         return YumexPackageYum(po)
     
-class TextViewConsole:
+class TextViewBase:
     '''  Encapsulate a gtk.TextView'''
-    def __init__(self, textview, default_style=None, font=None, color=None):
+    def __init__(self, textview,):
         self.textview = textview
         self.buffer = self.textview.get_buffer()
         self.endMark = self.buffer.create_mark("End", self.buffer.get_end_iter(), False)
         self.startMark = self.buffer.create_mark("Start", self.buffer.get_start_iter(), False)
-        #setup styles.
-        self.style_banner = gtk.TextTag("banner")
-        self.style_banner.set_property("foreground", "saddle brown")
-        self.style_banner.set_property("family", "Monospace")
-        self.style_banner.set_property("size_points", 8)
-        
+        self._styles = {}
+        self.default_style = None
             
-        self.style_ps1 = gtk.TextTag("ps1")
-        self.style_ps1.set_property("editable", False)
-        if color:
-            self.style_ps1.set_property("foreground", color)
+    def add_style(self,tag,style):
+        self._styles[tag] = style
+        self.buffer.get_tag_table().add(self._styles[tag])        
+                
+    def get_style(self,tag=None):
+        if not tag:
+            tag = self.default_style
+        if tag in self._styles:
+            return self._styles[tag]
         else:
-            self.style_ps1.set_property("foreground", "DarkOrchid4")
-        if font:
-            self.style_ps1.set_property("font", font)
-        else:
-            self.style_ps1.set_property("family", "Monospace")
-            self.style_ps1.set_property("size_points", 8)
-
-        self.style_ps2 = gtk.TextTag("ps2")
-        self.style_ps2.set_property("foreground", "DarkOliveGreen")
-        self.style_ps2.set_property("editable", False)
-        self.style_ps2.set_property("font", "courier")
-
-        self.style_out = gtk.TextTag("stdout")
-        self.style_out.set_property("foreground", "midnight blue")
-        self.style_out.set_property("family", "Monospace")
-        self.style_out.set_property("size_points", 8)
-
-
-        self.style_err = gtk.TextTag("stderr") 
-        self.style_err.set_property("style", pango.STYLE_ITALIC)
-        self.style_err.set_property("foreground", "red")
-        if font:
-            self.style_err.set_property("font", font)
-        else:
-            self.style_err.set_property("family", "Monospace")
-            self.style_err.set_property("size_points", 8)
-
-        self.buffer.get_tag_table().add(self.style_banner)
-        self.buffer.get_tag_table().add(self.style_ps1)
-        self.buffer.get_tag_table().add(self.style_ps2)
-        self.buffer.get_tag_table().add(self.style_out)
-        self.buffer.get_tag_table().add(self.style_err)
+            return None
         
-        if default_style:
-            self.default_style = default_style
-        else:
-            self.default_style = self.style_ps1
-    
-    def changeStyle(self, color, font, style=None):
-        if not style:
-            self.default_style.set_property("foreground", color)
-            self.default_style.set_property("font", font)
-        else:
+    def change_style(self,tag, color, font):
+        style = self.get_style(tag)
+        if style:    
             style.set_property("foreground", color)
             style.set_property("font", font)
     
-    def write(self, txt, style=None):
+    def write(self, txt, style=None, newline=True):
         """ write a line to button of textview and scoll to end
         @param txt: Text to write to textview
-        @param style: Predefinded pango style to use. 
+        @param style: name tag for the pango style to use. 
         """
-        #txt = gobject.markup_escape_text(txt)
-        txt = self._toUTF(txt)
-        if txt[-1] != '\n':
+        txt = toUTF(txt)
+        if newline and txt[-1] != '\n':
             txt += '\n'
         start, end = self.buffer.get_bounds()
-        if style == None:
-            self.buffer.insert_with_tags(end, txt, self.default_style)
-        else:
+        style = self.get_style(style)
+        if style:
             self.buffer.insert_with_tags(end, txt, style)
+        else:            
+            self.buffer.insert(end, txt)
         self.textview.scroll_to_iter(self.buffer.get_end_iter(), 0.0)
         doGtkEvents()
-
-    def _toUTF(self, txt):
-        rc = ""
-        if isinstance(txt, types.UnicodeType):
-            return txt
-        else:
-            try:
-                rc = unicode(txt, 'utf-8')
-            except UnicodeDecodeError, e:
-                rc = unicode(txt, 'iso-8859-1')
-            return rc
-            
 
     def clear(self):
         self.buffer.set_text('')
         
     def goTop(self):
         self.textview.scroll_to_iter(self.buffer.get_start_iter(), 0.0)
+    
+    
+class TextViewConsole(TextViewBase):
+    '''  Encapsulate a gtk.TextView'''
+    def __init__(self, textview,font_size=8):
+        TextViewBase.__init__(self,textview)
+        # info style
+        style = gtk.TextTag("info")
+        style.set_property("foreground", "midnight blue")
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style('info', style)
+        self.default_style = 'info'
+
+        # debug style
+        style = gtk.TextTag("debug")
+        style.set_property( "foreground", "DarkOrchid4" )
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style('debug', style)
+
+        # error style
+        style = gtk.TextTag("error")
+        style.set_property("foreground", "red")
+        style.set_property("family", "Monospace")
+        style.set_property("style", pango.STYLE_ITALIC)
+        style.set_property("size_points", font_size)
+        self.add_style('error', style)
+    
         
 
 class TextViewLogHandler(logging.Handler):
@@ -168,20 +148,18 @@ class TextViewLogHandler(logging.Handler):
         self.console = console
         self.doGTK = doGTK
         
-        #TextViewConsole.__init__(self,textview)
         
     def emit(self, record):   
-        while gtk.events_pending():      # process gtk events
-            gtk.main_iteration()    
         msg = self.format(record)
         if self.console:
             if self.doGTK:
                 doGtkEvents()
-            if record.levelno < 40:
-                self.console.write("%s\n" % msg)
+            if record.levelno < 20: 
+                self.console.write(msg, 'debug')
+            elif ecord.levelno <= 40:
+                self.console.write(msg, 'info')                
             else:
-                self.console.write("%s\n" % msg, self.console.style_err)  
-        #print msg
+                self.console.write(msg, 'error')  
     
 
 class UI(gtk.Builder):
@@ -215,11 +193,22 @@ class UI(gtk.Builder):
 class Controller:
     """Base class for all controllers of gtk.Builder UIs."""
     
-    def __init__(self, ui):
+    def __init__(self, filename, rootname, domain = None):
         """Initialize a new instance.
         `ui' is the user interface to be controlled."""
-        self.ui = ui
+        self.ui = UI(filename, rootname, domain)
         self.ui.connect_signals(self._getAllMethods())
+        self.window = getattr(self.ui,rootname)
+        self.window.connect( "delete_event", self.main_quit )
+
+    def main_quit(self, widget=None, event=None ):
+        ''' Main destroy Handler '''
+        self.quit
+        gtk.main_quit()
+        
+    def quit(self):
+        ''' Virtuel quit handler to be overloaded in child class'''
+        pass        
 
     def _getAllMethods(self):
         """Get a dictionary of all methods in self's class hierarchy."""
@@ -286,6 +275,18 @@ def normalCursor(mainwin):
 def doGtkEvents():
     while gtk.events_pending():      # process gtk events
         gtk.main_iteration()
+
+
+def toUTF(txt):
+    rc = ""
+    if isinstance(txt, types.UnicodeType):
+        return txt
+    else:
+        try:
+            rc = unicode(txt, 'utf-8')
+        except UnicodeDecodeError, e:
+            rc = unicode(txt, 'iso-8859-1')
+        return rc
 
 
 class PageHeader(gtk.HBox):

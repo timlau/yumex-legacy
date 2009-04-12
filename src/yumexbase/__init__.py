@@ -52,6 +52,9 @@ else:
 #
 PKG_FILTERS_STRINGS = (_('updates'),_('available'),_('installed'))
 PKG_FILTERS_ENUMS = (FILTER.updates, FILTER.available, FILTER.installed)
+
+REPO_HIDE = ['source','debuginfo']
+
 RECENT_LIMIT = time.time() - (3600 * 24 * 14)
 # Fonts
 XSMALL_FONT = pango.FontDescription("sans 6")    

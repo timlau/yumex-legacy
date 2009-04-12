@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Apr 11 12:14:40 2009 -->
+<!--Generated with glade3 3.4.5 on Sat Apr 11 18:19:14 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="main">
     <property name="width_request">1000</property>
@@ -178,9 +178,17 @@
       <widget class="GtkVBox" id="repoMain">
         <property name="visible">True</property>
         <child>
-          <widget class="GtkTreeView" id="repoView">
+          <widget class="GtkScrolledWindow" id="scrolledwindow4">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+            <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+            <child>
+              <widget class="GtkTreeView" id="repoView">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </widget>
+            </child>
           </widget>
         </child>
         <child>
@@ -196,25 +204,25 @@
                 <property name="homogeneous">True</property>
                 <property name="layout_style">GTK_BUTTONBOX_END</property>
                 <child>
-                  <widget class="GtkButton" id="repoOK">
+                  <widget class="GtkButton" id="repoRefresh">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="label" translatable="yes">gtk-ok</property>
+                    <property name="label" translatable="yes">gtk-refresh</property>
                     <property name="use_stock">True</property>
                     <property name="response_id">0</property>
                     <signal name="clicked" handler="on_repoOK_clicked"/>
                   </widget>
                 </child>
                 <child>
-                  <widget class="GtkButton" id="repoCancel">
+                  <widget class="GtkButton" id="repoUndo">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="label" translatable="yes">gtk-cancel</property>
+                    <property name="label" translatable="yes">gtk-undo</property>
                     <property name="use_stock">True</property>
                     <property name="response_id">0</property>
-                    <signal name="clicked" handler="on_repoCancel_clicked"/>
+                    <signal name="clicked" handler="on_repoUndo_clicked"/>
                   </widget>
                   <packing>
                     <property name="position">1</property>

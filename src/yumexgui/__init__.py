@@ -28,7 +28,7 @@ from datetime import date
 
 from yumexgui.gui import UI, Controller, Notebook, TextViewConsole, doGtkEvents, PackageCache,busyCursor,normalCursor
 from yumexgui.progress import Progress
-from yumexgui.views import YumexPackageView,YumexQueueView
+from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
 from yumexbase.i18n import _
 
@@ -61,28 +61,30 @@ class YumexFrontend(YumexFrontendBase):
         ''' confirm the current transaction'''
         pass
 
-    def error(self, msg):
+    def error(self, msg, exit=False):
         ''' Write an error message to frontend '''
-        print "Error:",msg
-        sys.exit(1)
+        self.output.write('ERROR: %s' % msg,'error')
         self.refresh()
+        if exit:
+            sys.exit(1)
+            
 
     def warning(self, msg):
         ''' Write an warning message to frontend '''
         print "Warning:",msg
-        self.output.write('WARNING: %s' % msg)
+        self.output.write('WARNING: %s' % msg,'info')
         self.refresh()
 
     def info(self, msg):
         ''' Write an info message to frontend '''
         print "INFO:",msg
-        self.output.write(msg,style=self.output.style_out)
+        self.output.write(msg,'info')
         self.refresh()
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
         print "DEBUG:",msg
-        self.output.write('DEBUG: %s' % msg)
+        self.output.write('DEBUG: %s' % msg,"debug")
         self.refresh()
 
     def exception(self, msg):
@@ -108,10 +110,8 @@ class YumexHandlers(Controller):
     
     
     def __init__(self):
-        # Create and ui object contains the widgets.
-        ui = UI(BUILDER_FILE , 'main', 'yumex')
-        # init the Controller Class to connect signals.
-        Controller.__init__(self, ui)
+        # init the Controller Class to connect signals etc.
+        Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
         self.package_cache = PackageCache(self.backend)
         self._last_filter = None
         self.setup_gui()
@@ -119,8 +119,6 @@ class YumexHandlers(Controller):
 # helpers
     def setup_gui(self):
         # setup
-        self.window = self.ui.main
-        self.window.connect( "delete_event", self.quit )
         self.window.set_title("Yum Extender NextGen")
         self.output = TextViewConsole(self.ui.outputText)
         self.progress = Progress(self.ui,self.window)
@@ -133,9 +131,11 @@ class YumexHandlers(Controller):
         self.notebook.set_active("package")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
+        self.repos = YumexRepoView(self.ui.repoView)
         self.window.show()
         self.setup_filters()
         self.populate_package_cache()
+        self.setup_repositories()
         # setup default package filter (updates)
         self.ui.packageFilter.set_active(0)
 
@@ -149,6 +149,10 @@ class YumexHandlers(Controller):
         label = self.ui.packageFilter.get_children()[0]
         label.modify_font(XSMALL_FONT)
 
+    def setup_repositories(self):
+        repos = self.backend.get_repositories()
+        self.repos.populate(repos)
+                
     def populate_package_cache(self):
         self.backend.setup()
         self.progress.show()
@@ -167,15 +171,14 @@ class YumexHandlers(Controller):
 # Signal handlers
       
     def quit(self, widget=None, event=None ):
-        ''' Main destroy Handler '''
+        ''' destroy Handler '''
         self.backend.reset()
-        gtk.main_quit()
 
     # Menu
         
     def on_fileQuit_activate(self, widget=None, event=None ):
         self.debug("File -> Quit")
-        self.quit()
+        self.main_quit()
 
     def on_editPref_activate(self, widget=None, event=None ):
         self.debug("Edit -> Preferences")
@@ -234,8 +237,8 @@ class YumexHandlers(Controller):
     def on_repoOK_clicked(self, widget=None, event=None ):
         self.debug("Repo OK")
         
-    def on_repoCancel_clicked(self, widget=None, event=None ):
-        self.debug("Repo Cancel")
+    def on_repoUndo_clicked(self, widget=None, event=None ):
+        self.debug("Repo Undo")
 
     # Queue Page    
 
@@ -336,9 +339,5 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         repo = self.backend.enable_repository('updates',False)
         id,name,enabled,gpgckeck = repo
         self.info("%-50s : %s" % (id,enabled))        
-        # search
-        self.backend.search(['dummy'],SEARCH.name)        
-        # reset        
         self.progress.hide()
-        #self.backend.reset()
         

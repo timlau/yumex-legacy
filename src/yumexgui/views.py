@@ -345,3 +345,120 @@ class YumexQueueView:
         parent = self.model.append( None, [label, ""] )
         for pkg in list:
             self.model.append( parent, [str( pkg ), pkg.summary] )
+
+class YumexRepoView:
+    """ 
+    This class controls the repo TreeView
+    """
+    def __init__( self, widget):
+        self.view = widget
+        self.view.modify_font(SMALL_FONT)        
+        self.headers = [_('Repository'),_('Filename')]
+        self.store = self.setup_view()
+    
+    
+    def on_toggled( self, widget, path):
+        """ Repo select/unselect handler """
+        iter = self.store.get_iter( path )
+        state = self.store.get_value(iter,0)
+        self.store.set_value(iter,0, not state)
+                     
+    def setup_view( self ):
+        """ Create models and columns for the Repo TextView  """
+        store = gtk.ListStore( 'gboolean', gobject.TYPE_STRING,gobject.TYPE_STRING,'gboolean')
+        self.view.set_model( store )
+        # Setup Selection Column
+        cell1 = gtk.CellRendererToggle()    # Selection
+        cell1.set_property( 'activatable', True )
+        column1 = gtk.TreeViewColumn( "    ", cell1 )
+        column1.add_attribute( cell1, "active", 0 )
+        column1.set_resizable( True )
+        column1.set_sort_column_id( -1 )            
+        self.view.append_column( column1 )
+        cell1.connect( "toggled", self.on_toggled )     
+        # Setup resent column
+        cell2 = gtk.CellRendererPixbuf()    # gpgcheck
+        cell2.set_property( 'stock-id', gtk.STOCK_DIALOG_AUTHENTICATION )
+        column2 = gtk.TreeViewColumn( "", cell2 )
+        column2.set_cell_data_func( cell2, self.new_pixbuf )
+        column2.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
+        column2.set_fixed_width( 20 )
+        column2.set_sort_column_id( -1 )            
+        self.view.append_column( column2 )
+        column2.set_clickable( True )
+               
+        # Setup reponame & repofile column's
+        self.create_text_column( _('Repository'),1 )
+        self.create_text_column( _('Name'),2 )
+        self.view.set_search_column( 1 )
+        self.view.set_reorderable( False )
+        return store
+    
+    def create_text_column( self, hdr,colno):
+        cell = gtk.CellRendererText()    # Size Column
+        column = gtk.TreeViewColumn( hdr, cell, text=colno )
+        column.set_resizable( True )
+        self.view.append_column( column )        
+
+    def populate( self, data, showAll=False ):
+        """ Populate a repo liststore with data """
+        self.store.clear()
+        for state,id,name,gpg in data:
+            if not self.isHidden(id) or showAll:
+                self.store.append([state,id,name,gpg])     
+            
+    def isHidden(self,id):
+        for hide in REPO_HIDE:
+            if hide in id:
+                return True
+        else:
+            return False                  
+
+    def new_pixbuf( self, column, cell, model, iter ):
+        gpg = model.get_value( iter, 3 )
+        if gpg:
+            cell.set_property( 'visible', True )
+        else:
+            cell.set_property( 'visible',False)
+            
+    def get_selected( self ):
+        selected = []
+        for elem in self.store:
+            state = elem[0]
+            name = elem[1]
+            if state:
+                selected.append( name )
+        return selected
+        
+    def get_notselected( self ):
+        notselected = []
+        for elem in self.store:
+            state = elem[0]
+            name = elem[1]
+            if not state:
+                notselected.append( name )
+        return notselected
+            
+    def deselect_all( self ):
+        iterator = self.store.get_iter_first()
+        while iterator != None:    
+            self.store.set_value( iterator, 0, False )
+            iterator = self.store.iter_next( iterator )
+
+    def select_all( self ):
+        iterator = self.store.get_iter_first()
+        while iterator != None:    
+            self.store.set_value( iterator, 0, True )
+            iterator = self.store.iter_next( iterator )
+            
+
+    def select_by_keys( self, keys):
+        self.store 
+        iterator = self.store.get_iter_first()
+        while iterator != None:    
+            repoid = self.store.get_value( iterator, 1 )
+            if repoid in keys:
+                self.store.set_value( iterator, 0, True )
+            else:
+                self.store.set_value( iterator, 0, False)
+            iterator = self.store.iter_next( iterator )
