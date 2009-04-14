@@ -24,11 +24,15 @@ import yum
 import traceback
 import pickle
 import base64
+import logging
+
 import pexpect
 from yum.packages import YumAvailablePackage
 from yum.packageSack import packagesNewestByNameArch
-
 from yumexbase import *
+import yum.logginglevels as logginglevels
+
+logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
 def pack(value):
     return base64.b64encode(pickle.dumps(value))
@@ -69,8 +73,10 @@ class YumPackage:
 class YumClient:
     """ Client part of a the yum client/server """
 
-    def __init__(self):
+    def __init__(self,timeout=.1):
         self.child = None
+        self._timeout_value = timeout
+        self._timeout_last = 0
         pass
 
     def error(self,msg):
@@ -97,6 +103,22 @@ class YumClient:
         """ debug message """
         print "Exception:", msg
 
+    def yum_logger(self,msg):
+        """ debug message """
+        print "YUM:", msg
+
+    def _timeout(self):
+        """ 
+        timeout function call every time an timeout occours
+        An timeout occaurs if the server takes more then timeout
+        periode to respond to the current action.
+        the default timeout is .5 sec.
+        """
+        now = time.time()
+        if now-self._timeout_last > self._timeout_value:
+            self.timeout()
+            self._timeout_last = now
+
     def timeout(self):
         """ 
         timeout function call every time an timeout occours
@@ -106,10 +128,10 @@ class YumClient:
         """
         print "TIMEOUT"
 
-    def setup(self,timeout=.1):
+    def setup(self,debuglevel=2):
         ''' Setup the client and spawn the server'''
         if not self.child:
-            self.child = pexpect.spawn('./yum_server.py',timeout=timeout)
+            self.child = pexpect.spawn('./yum_server.py %i' % debuglevel,timeout=self._timeout_value)
             self.child.setecho(False)
 
     def reset(self):
@@ -121,10 +143,11 @@ class YumClient:
         line = "%s\t%s" % (cmd,"\t".join(args))
         while True:
             try:
-                self.child.expect(':ready')
-                break
+                cmd,args = self._readline()
+                if cmd == ':ready':
+                    break
             except pexpect.TIMEOUT,e:
-                self.timeout()
+                self._timeout()
                 continue
                     
         self.child.sendline(line)
@@ -149,9 +172,15 @@ class YumClient:
         while True:
             try:
                 line = self.child.readline()
-                break
+                cmd,args = self._parse_command(line)
+                self._timeout()
+                if cmd:
+                    if self._check_for_message(cmd, args):
+                        continue
+                    else:
+                        return cmd,args
             except pexpect.TIMEOUT,e:
-                self.timeout()
+                self._timeout()
                 continue
         return line
             
@@ -174,6 +203,8 @@ class YumClient:
             self.action(args[0])
         elif cmd == ':exception':
             self.exception(args[0])
+        elif cmd == ':yum':
+            self.yum_logger(args[0])
         else:
             return False # not a message
         return True    
@@ -186,19 +217,16 @@ class YumClient:
         data = []
         cnt = 0L
         while True:
-            line = self._readline()
-            if line.startswith(':end'):
+            cmd,args = self._readline()
+            if cmd == ':end':
                 break
-            cmd,args = self._parse_command(line)
-            if cmd:
-                if not self._check_for_message(cmd, args):
-                    if not cmd == result_cmd: 
-                        self.warning("unexpected command : %s (%s)" % (cmd,args))
-                    elif cmd == ':pkg':
-                        p = YumPackage(self,args)
-                        data.append(p)
-                    else:
-                        data.append(args)
+            if not cmd == result_cmd: 
+                self.warning("unexpected command : %s (%s)" % (cmd,args))
+            elif cmd == ':pkg':
+                p = YumPackage(self,args)
+                data.append(p)
+            else:
+                data.append(args)
         return data
 
     def _get_result(self,result_cmd):
@@ -207,14 +235,12 @@ class YumClient:
         '''
         cnt = 0L
         while True:
-            line = self._readline()
-            cmd,args = self._parse_command(line)
-            if cmd:
-                if not self._check_for_message(cmd, args):
-                    if cmd == result_cmd:
-                        return args
-                    else:
-                        self.warning("unexpected command : %s (%s)" % (cmd,args))
+            cmd,args = self._readline()
+            if not self._check_for_message(cmd, args):
+                if cmd == result_cmd:
+                    return args
+                else:
+                    self.warning("unexpected command : %s (%s)" % (cmd,args))
     
             
     
@@ -317,6 +343,7 @@ class YumServer(yum.YumBase):
         :warning <message>     : warning message
         :debug <message>       : debug message
         :exception <message>   : exception message
+        :yum <message>         : yum logger message
         :pkg <pkg>             : package
         :end                   : end of package list command
         :attr <object>         : package object attribute
@@ -331,10 +358,18 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self):
+    def __init__(self,debuglevel=2):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
-        self.doConfigSetup(errorlevel=2,debuglevel=2)
+        plainformatter = logging.Formatter("%(message)s")    
+        self.handler = YumLogHandler(self)
+        self.handler.setFormatter(plainformatter)
+        self.yum_verbose = logging.getLogger("yum.verbose")
+        self.yum_verbose.propagate = False
+        self.yum_verbose.addHandler(self.handler)
+        self.yum_verbose.setLevel(logginglevels.DEBUG_3)
+        self.doConfigSetup(errorlevel=1,debuglevel=debuglevel)
+
 
     def write(self,msg):
         ''' write an message to stdout, to be read by the client'''
@@ -383,6 +418,10 @@ class YumServer(yum.YumBase):
     def action(self,msg):
         ''' write an action message '''
         self.write(":action\t%s" % msg)
+
+    def yum_logger(self,msg):
+        ''' write an yum logger message '''
+        self.write(":yum\t%s" % msg)
 
     def get_packages(self,pkg_narrow):
         ''' get list of packages and send results '''
@@ -549,6 +588,27 @@ class YumServer(yum.YumBase):
             self.write(':end')
         sys.exit(1)
 
+class YumLogHandler(logging.Handler):
+    ''' Python logging handler for writing in a TextViewConsole'''
+    def __init__(self, base):
+        logging.Handler.__init__(self)
+        self.base = base
+
+    def emit(self, record):   
+        msg = self.format(record)
+        if self.base:
+            self.base.yum_logger(msg)
+
+def setup_logging(base):
+    #logging.basicConfig()    
+    plainformatter = logging.Formatter("%(message)s")    
+    handler = YumLogHandler(base)
+    handler.setFormatter(plainformatter)
+    verbose = logging.getLogger("yum.verbose")
+    verbose.propagate = False
+    verbose.addHandler(handler)
+    verbose.setLevel(logginglevels.DEBUG_3)
+    #verbose.setLevel(logginglevels.INFO_2)
 if __name__ == "__main__":
     pass
 

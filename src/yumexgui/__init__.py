@@ -44,8 +44,8 @@ class YumexFrontend(YumexFrontendBase):
 
     def __init__(self, backend, progress):
         ''' Setup the frontend callbacks '''
-        YumexFrontendBase.__init__(self, backend, progress)
         self.logger = logging.getLogger(YUMEX_LOG)
+        YumexFrontendBase.__init__(self, backend, progress)
         
     def set_state(self, state):
         ''' set the state of work '''
@@ -78,6 +78,7 @@ class YumexFrontend(YumexFrontendBase):
 
     def info(self, msg):
         ''' Write an info message to frontend '''
+        print msg
         self.logger.info(msg)
         self.refresh()
 

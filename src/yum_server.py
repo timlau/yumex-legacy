@@ -21,10 +21,16 @@
 import sys
 import codecs
 import locale
+import os
+
 from yumexbackend.yum_clientserver import YumServer
 
 if __name__ == "__main__":
     sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
     sys.stdout.errors = 'replace'
-    my = YumServer()
+    debuglevel = 2
+    if len(sys.argv) > 1:
+        debuglevel =  int(sys.argv[1])
+        print ":debug\tUsing yum debuglevel = %i" % debuglevel
+    my = YumServer(debuglevel)
     my.dispatcher()

@@ -53,6 +53,10 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         """ debug message """
         self.frontend.debug(msg)
 
+    def yum_logger(self,msg):
+        """ yum logger message """
+        self.frontend.info("YUM: "+ msg)
+
     def timeout(self):
         """ 
         timeout function call every time an timeout occours
