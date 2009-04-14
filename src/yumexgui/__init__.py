@@ -132,24 +132,15 @@ class YumexHandlers(Controller):
         self.notebook.set_active("package")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
-        self.packageInfo = PackageInfo(self.ui.packageInfo,self.ui.packageInfoSelector)
+        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector)
         self.repos = YumexRepoView(self.ui.repoView)
         self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
-        self.addLogger('yum')
-        self.addLogger('yum.verbose')
         self.window.show()
         self.setup_filters()
         self.populate_package_cache()
         self.setup_repositories()
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
-
-    def addLogger(self,logroot,loglvl=None):
-        logger = logging.getLogger(logroot)
-        if loglvl:
-            logger.setLevel(loglvl)
-        logger.addHandler(self.log_handler)
-        return logger
 
     def setup_filters(self):
         ''' Populate Package Filter radiobuttons'''

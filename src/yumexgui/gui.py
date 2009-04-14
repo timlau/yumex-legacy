@@ -28,7 +28,7 @@ from datetime import date
 from yumexbase.i18n import _, P_
 from yumexbase import *
 from yumexbackend.yum_backend import YumexPackageYum
-from guihelpers import TextViewBase
+from guihelpers import TextViewBase,busyCursor,normalCursor
 
 
 #
@@ -183,9 +183,10 @@ class SelectorBase:
             self._selected = key
 
 class PackageInfo(SelectorBase):
-    def __init__(self,console,selector):
+    def __init__(self,main,console,selector):
         SelectorBase.__init__(self, selector)
         self.console = PackageInfoTextView(console)
+        self.main_window = main
         self.add_button('description', stock='gtk-about', tooltip='Package Description')
         self.add_button('changelog', stock='gtk-edit', tooltip='Package Changelog')
         self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
@@ -207,6 +208,7 @@ class PackageInfo(SelectorBase):
     
     def update_console(self,key):
         if self.pkg:
+            busyCursor(self.main_window)
             self.console.clear()
             if key == 'description':
                 self.show_description()
@@ -215,6 +217,7 @@ class PackageInfo(SelectorBase):
             elif key == 'filelist':
                 self.show_filelist()
             self.console.goTop()
+            normalCursor(self.main_window)
         
     def show_description(self):
         self.console.write(self.pkg.description)
