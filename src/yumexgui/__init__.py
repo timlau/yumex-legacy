@@ -31,7 +31,7 @@ from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, no
 from yumexgui.progress import Progress
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
-from yumexbase.i18n import _
+from yumexbase.i18n import _, P_
 
 
 class YumexFrontend(YumexFrontendBase):

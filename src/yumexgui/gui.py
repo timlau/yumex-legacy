@@ -25,7 +25,7 @@ import pango
 import logging
 import types
 from datetime import date
-from yumexbase.i18n import _
+from yumexbase.i18n import _, P_
 from yumexbase import *
 from yumexbackend.yum_backend import YumexPackageYum
 from guihelpers import TextViewBase
