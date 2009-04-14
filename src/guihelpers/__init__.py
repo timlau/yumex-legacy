@@ -152,7 +152,7 @@ class TextViewLogHandler(logging.Handler):
                 doGtkEvents()
             if record.levelno < 20: 
                 self.console.write(msg, 'debug')
-            elif ecord.levelno <= 40:
+            elif record.levelno <= 40:
                 self.console.write(msg, 'info')                
             else:
                 self.console.write(msg, 'error')  
