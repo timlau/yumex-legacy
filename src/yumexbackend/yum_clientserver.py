@@ -381,7 +381,7 @@ class YumServer(yum.YumBase):
             self.error(e.msg)
                 
     def quit(self):
-        self.debug("Closing Yum Backend")
+        self.debug("Closing rpm db and releasing yum lock  ")
         self.closeRpmDB()
         self.doUnlock()
         self.write(':end')
