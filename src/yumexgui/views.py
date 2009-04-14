@@ -20,8 +20,8 @@ import gobject
 import logging
 import pango
 
+from yumexbase.i18n import _, P_
 from yumexbase import *
-from yumexbase.i18n import _
 from yum.misc import sortPkgObj
 
 class SelectionView:
@@ -282,14 +282,14 @@ class YumexQueue:
             a = action[0]
             list = self.packages[a]
             if len(list) > 0:
-                self.logger.info(_(" Packages to %s" % action))
+                self.logger.info(" Package(s) to %s" % action)
                 for pkg in list:
                     self.logger.info(" ---> %s " % str(pkg))
         for action in ['install','remove']:
             a = action[0]
             list = self.groups[a]
             if len(list) > 0:
-                self.logger.info(_(" Groups to %s" % action))
+                self.logger.info(" Group(s) to %s" % action)
                 for grp in list:
                     self.logger.info(" ---> %s " % grp)
             
@@ -359,15 +359,15 @@ class YumexQueueView:
     def refresh ( self ):
         """ Populate view with data from queue """
         self.model.clear()
-        label = _( "<b>Packages To Update</b>" )
         list = self.queue.packages['u']
+        label = "<b>%s</b>" % P_("Package to update","Packages to update",len(list))
         if len( list ) > 0:
             self.populate_list( label, list )
-        label = _( "<b>Packages To Install</b>" )
+        label = "<b>%s</b>" % P_("Package to install","Packages to install",len(list))
         list = self.queue.packages['i']
         if len( list ) > 0:
             self.populate_list( label, list )
-        label = _( "<b>Packages To Remove</b>" )
+        label = "<b>%s</b>" % P_("Package to remove","Packages to remove",len(list))
         list = self.queue.packages['r']
         if len( list ) > 0:
             self.populate_list( label, list )
@@ -400,7 +400,7 @@ class YumexRepoView(SelectionView):
         store = gtk.ListStore( 'gboolean', gobject.TYPE_STRING,gobject.TYPE_STRING,'gboolean')
         self.view.set_model( store )
         # Setup Selection Column
-        self.create_selection_column_num(0)
+        self.create_selection_column_num(0) 
         # Setup resent column
         cell2 = gtk.CellRendererPixbuf()    # gpgcheck
         cell2.set_property( 'stock-id', gtk.STOCK_DIALOG_AUTHENTICATION )
