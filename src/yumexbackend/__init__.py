@@ -185,8 +185,8 @@ class YumexTransactionBase:
         @param backend: The current YumexBackend
         @param frontend: the current YumexFrontend
         '''
-        self._backend = backend
-        self._frontend = frontend
+        self.backend = backend
+        self.frontend = frontend
 
     def add(self, po):
         '''

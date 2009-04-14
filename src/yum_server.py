@@ -22,10 +22,18 @@ import sys
 import codecs
 import locale
 import os
-
+import signal
 from yumexbackend.yum_clientserver import YumServer
 
+my = None
+def sigquit(signum, frame):
+    if my:
+        my.quit()
+    sys.exit(1)
+
+
 if __name__ == "__main__":
+    signal.signal(signal.SIGQUIT, sigquit)
     sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
     sys.stdout.errors = 'replace'
     debuglevel = 2

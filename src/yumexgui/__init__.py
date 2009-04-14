@@ -174,6 +174,7 @@ class YumexHandlers(Controller):
       
     def quit(self, widget=None, event=None ):
         ''' destroy Handler '''
+        self.backend.debug("Quiting the program !!!")
         self.backend.reset()
 
     # Menu
@@ -260,8 +261,10 @@ class YumexHandlers(Controller):
         self.debug("Queue Remove")
 
     def on_Execute_clicked(self, widget=None, event=None ):
-        self.debug("Queue Execute - Not implemented Yet :)")
         self.notebook.set_active("output")
+        self.debug("Starting pending actions processing")
+        self.process_queue()
+        self.debug("Ended pending actions processing")
         
     def on_progressCancel_clicked(self, widget=None, event=None ):
         self.debug("Progress Cancel : "+event)
@@ -289,6 +292,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.backend.setup()
         gtk.main()        
         
+    def process_queue(self):
+        queue = self.queue.queue
+        for action in ('install','update','remove'):
+            pkgs = queue.get(action[0])
+            for po in pkgs:
+                self.backend.transaction.add(po,action)
+                
     def run_test(self):
         def show(elems,desc=False):
             if elems:

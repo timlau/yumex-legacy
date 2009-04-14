@@ -199,13 +199,13 @@ class Controller:
 
     def main_quit(self, widget=None, event=None ):
         ''' Main destroy Handler '''
-        self.quit
+        self.quit()
         gtk.main_quit()
         
     def quit(self):
         ''' Virtuel quit handler to be overloaded in child class'''
-        pass        
-
+        pass
+    
     def _getAllMethods(self):
         """Get a dictionary of all methods in self's class hierarchy."""
         result = {}

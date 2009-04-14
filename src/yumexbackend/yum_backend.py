@@ -76,7 +76,6 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
-        self.frontend.debug('Reset yum backend')
         YumClient.reset(self)
 
     def get_packages(self, pkg_filter):
@@ -247,14 +246,14 @@ class YumexTransactionYum(YumexTransactionBase):
         add a package to the queue
         @param po: package to add to the queue
         '''
-        self._backend.add_transaction(po.id, action)
+        self.backend.add_transaction(po.id, action)
 
     def remove(self, po):
         '''
         remove a package from the queue
         @param po: package to remove from the queue
         '''
-        self._backend.remove_transaction(po.id)
+        self.backend.remove_transaction(po.id)
 
     def has_item(self, po):
         '''
@@ -288,7 +287,7 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         Process the packages and groups in the queue
         '''
-        self._backend.run_transaction()
+        self.backend.run_transaction()
         
     def get_transaction_packages(self):
         '''

@@ -29,6 +29,7 @@ import logging
 import pexpect
 from yum.packages import YumAvailablePackage
 from yum.packageSack import packagesNewestByNameArch
+import yum.Errors as Errors
 from yumexbase import *
 import yum.logginglevels as logginglevels
 
@@ -136,7 +137,10 @@ class YumClient:
 
     def reset(self):
         """ reset the client"""
+        self._send_command('exit', [])
+        cmd,args = self._readline()
         self._close()
+
         
     def _send_command(self,cmd,args):
         """ send a command to the spawned server """
@@ -182,7 +186,6 @@ class YumClient:
             except pexpect.TIMEOUT,e:
                 self._timeout()
                 continue
-        return line
             
         
         
@@ -369,7 +372,20 @@ class YumServer(yum.YumBase):
         self.yum_verbose.addHandler(self.handler)
         self.yum_verbose.setLevel(logginglevels.DEBUG_3)
         self.doConfigSetup(errorlevel=1,debuglevel=debuglevel)
+        self.doLock()
 
+    def doLock(self):
+        try:
+            yum.YumBase.doLock(self)
+        except Errors.LockError, e:
+            self.error(e.msg)
+                
+    def quit(self):
+        self.debug("Closing Yum Backend")
+        self.closeRpmDB()
+        self.doUnlock()
+        self.write(':end')
+        sys.exit(1)
 
     def write(self,msg):
         ''' write an message to stdout, to be read by the client'''
@@ -570,7 +586,7 @@ class YumServer(yum.YumBase):
             while True:
                 self.write(':ready')
                 line = sys.stdin.readline().strip('\n')
-                if not line or line == 'exit':
+                if not line or line.startswith('exit'):
                     break
                 args = line.split('\t')
                 self.parse_command(args[0], args[1:])
@@ -586,7 +602,7 @@ class YumServer(yum.YumBase):
                 errmsg += '    %s ;' % c
             self.write(":exception\t%s" % errmsg)
             self.write(':end')
-        sys.exit(1)
+        self.quit()
 
 class YumLogHandler(logging.Handler):
     ''' Python logging handler for writing in a TextViewConsole'''
