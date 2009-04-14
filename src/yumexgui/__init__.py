@@ -25,6 +25,7 @@ import pango
 import logging
 
 from datetime import date
+from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
@@ -277,11 +278,20 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     
     def __init__(self,backend):
         self.logger = logging.getLogger(YUMEX_LOG)
+        (self.cmd_options, self.cmd_args) = self.setupOptions()
         self.backend = backend(self)
         self.progress = None
         self.setup_backend()
         YumexHandlers.__init__(self)
         YumexFrontend.__init__(self, self.backend, self.progress)
+
+
+    def setupOptions(self):
+        parser = OptionParser()
+        parser.add_option( "-d", "--debug", 
+                        action="store_true", dest="debug", default=False, 
+                        help="Debug mode" )
+        return parser.parse_args()
     
     def setup_backend(self):
         #TODO: Add some reel backend setup code
@@ -298,6 +308,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             pkgs = queue.get(action[0])
             for po in pkgs:
                 self.backend.transaction.add(po,action)
+        self.backend.transaction.process_transaction()              
+        tpkgs = self.backend.transaction.get_transaction_packages()
+        for pkg in tpkgs:
+            if pkg.action:
+                self.info("   Package: %s Action: %s" % (pkg,pkg.action))
                 
     def run_test(self):
         def show(elems,desc=False):

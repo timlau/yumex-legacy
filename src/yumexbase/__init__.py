@@ -128,6 +128,46 @@ class YumexFrontendBase:
         pass
 
 
+# from output.py (yum)
+def format_number(number, SI=0, space=' '):
+    """Turn numbers into human-readable metric-like numbers"""
+    symbols = ['', # (none)
+                'k', # kilo
+                'M', # mega
+                'G', # giga
+                'T', # tera
+                'P', # peta
+                'E', # exa
+                'Z', # zetta
+                'Y'] # yotta
+
+    if SI: step = 1000.0
+    else: step = 1024.0
+
+    thresh = 999
+    depth = 0
+
+    # we want numbers between 
+    while number > thresh:
+        depth = depth + 1
+        number = number / step
+
+    # just in case someone needs more than 1000 yottabytes!
+    diff = depth - len(symbols) + 1
+    if diff > 0:
+        depth = depth - diff
+        number = number * thresh ** depth
+
+    if type(number) == type(1) or type(number) == type(1L):
+        format = '%i%s%s'
+    elif number < 9.95:
+        # must use 9.95 for proper sizing.  For example, 9.99 will be
+        # rounded to 10.0 with the .1f format string (which is too long)
+        format = '%.1f%s%s'
+    else:
+        format = '%.0f%s%s'
+
+    return(format % (number, space, symbols[depth]))
 
 
 

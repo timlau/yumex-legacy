@@ -25,12 +25,15 @@ import traceback
 import pickle
 import base64
 import logging
+from optparse import OptionParser
 
 import pexpect
 from yum.packages import YumAvailablePackage
 from yum.packageSack import packagesNewestByNameArch
 import yum.Errors as Errors
 from yumexbase import *
+from yumexbase.i18n import _, P_
+
 import yum.logginglevels as logginglevels
 
 logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
@@ -54,7 +57,7 @@ class YumPackage:
         self.arch   = args[4]
         self.repoid = args[5]
         self.summary= unpack(args[6])
-        self.action = args[7]
+        self.action = unpack(args[7])
         self.size = args[8]
         self.recent = args[9]
         
@@ -245,6 +248,24 @@ class YumClient:
                 else:
                     self.warning("unexpected command : %s (%s)" % (cmd,args))
     
+    def _get_messages(self):
+        ''' 
+        read a list of :msg commands from the server, until and
+        :end command is received
+        '''
+        msgs = {}
+        while True:
+            cmd,args = self._readline()
+            if cmd == ':end':
+                break
+            elif cmd == ':msg':
+                msg_type = args[0]
+                value = unpack(args[1])
+                if msg_type in msgs:
+                    msgs[msg_type].append(value)
+                else:
+                    msgs[msg_type] = [value]
+        return msgs
             
     
     def _close(self):        
@@ -282,6 +303,11 @@ class YumClient:
         self._send_command('list-transaction',[])
         pkgs = self._get_list()
         return pkgs
+
+    def build_transaction(self):        
+        self._send_command('build-transaction',[])
+        msgs = self._get_messages()
+        return msgs['return_code'][0],msgs['messages'],unpack(msgs['transaction'][0])
 
     def run_transaction(self):        
         self._send_command('run-transaction',[])
@@ -326,6 +352,7 @@ class YumServer(yum.YumBase):
         add-transaction <pkg_id> <action>    : add a po to the transaction
         remove-transaction <pkg_id>          : add a po to the transaction
         list-transaction                     : list po's in transaction
+        build-transaction                    : build the transaction (resolve dependencies)
         run-transaction                      : run the transaction
         get-groups                           : Get the groups
         get-repos                            : Get the repositories
@@ -352,6 +379,7 @@ class YumServer(yum.YumBase):
         :attr <object>         : package object attribute
         :group <grp>           : group
         :repo <repo>           : repo
+        :msg <type> <value>
         
         Parameters:
         <message>  : a text message ('\n' is replaced with ';'
@@ -371,8 +399,13 @@ class YumServer(yum.YumBase):
         self.yum_verbose.propagate = False
         self.yum_verbose.addHandler(self.handler)
         self.yum_verbose.setLevel(logginglevels.DEBUG_3)
-        self.doConfigSetup(errorlevel=1,debuglevel=debuglevel)
+        self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ))
         self.doLock()
+        # make some dummy options,args for yum plugins
+        parser = OptionParser()
+        ( options, args ) = parser.parse_args()
+        self.plugins.setCmdLine(options,args)
+
 
     def doLock(self):
         try:
@@ -407,6 +440,7 @@ class YumServer(yum.YumBase):
         ''' write package result'''
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
+        action = pack(action)
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,summary,action,pkg.size,recent))
         
     def _show_group(self,grp):
@@ -435,6 +469,10 @@ class YumServer(yum.YumBase):
         ''' write an action message '''
         self.write(":action\t%s" % msg)
 
+    def message(self,msg_type,value):
+        value = pack(value)
+        self.write(":msg\t%s\t%s" % (msg_type,value))
+       
     def yum_logger(self,msg):
         ''' write an yum logger message '''
         self.write(":yum\t%s" % msg)
@@ -499,6 +537,44 @@ class YumServer(yum.YumBase):
             self._show_package(txmbr.po,txmbr.ts_state)
         self.write(':end')
             
+    def build_transaction(self):
+        rc, msgs = self.buildTransaction()
+        self.message('return_code', rc)
+        for msg in msgs:
+            self.message('messages', msg)
+        self.message('transaction', pack(self._get_transaction_list()))
+        self.write(':end')
+        
+    def _get_transaction_list( self ):
+        list = []
+        sublist = []
+        self.tsInfo.makelists()        
+        for ( action, pkglist ) in [( _( 'Installing' ), self.tsInfo.installed ), 
+                            ( _( 'Updating' ), self.tsInfo.updated ), 
+                            ( _( 'Removing' ), self.tsInfo.removed ), 
+                            ( _( 'Installing for dependencies' ), self.tsInfo.depinstalled ), 
+                            ( _( 'Updating for dependencies' ), self.tsInfo.depupdated ), 
+                            ( _( 'Removing for dependencies' ), self.tsInfo.depremoved )]:
+            for txmbr in pkglist:
+                ( n, a, e, v, r ) = txmbr.pkgtup
+                evr = txmbr.po.printVer()
+                repoid = txmbr.repoid
+                pkgsize = float( txmbr.po.size )
+                size = format_number( pkgsize )
+                alist=[]
+                for ( obspo, relationship ) in txmbr.relatedto:
+                    if relationship == 'obsoletes':
+                        appended = 'replacing  %s.%s %s' % ( obspo.name, 
+                            obspo.arch, obspo.printVer() )
+                        alist.append( appended )
+                el = ( n, a, evr, repoid, size, alist )
+                sublist.append( el )
+            if pkglist:
+                list.append( [action, sublist] )
+                sublist = []
+        return list        
+        
+                    
     def run_transaction(self):
         pass
     
@@ -568,7 +644,9 @@ class YumServer(yum.YumBase):
         elif cmd == 'list-transaction':
             self.list_transaction()
         elif cmd == 'run-transaction':
-            self.run_transaction(args)
+            self.run_transaction()
+        elif cmd == 'build-transaction':
+            self.build_transaction()
         elif cmd == 'get-groups':
             self.get_groups(args)
         elif cmd == 'get-repos':
