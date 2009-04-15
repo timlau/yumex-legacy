@@ -200,6 +200,8 @@ class YumClient:
     def _readline(self):
         ''' read a line from the server'''
         line = None
+        if self.waiting: # Somebody else is already waiting for something
+            return None,None
         while True:
             try:
                 self.waiting = True
