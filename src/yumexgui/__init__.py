@@ -103,7 +103,9 @@ class YumexFrontend(YumexFrontendBase):
         ''' trigger a frontend reset '''
         pass
 
-    def timeout(self):
+    def timeout(self,count):
+        if not self.backend.dont_abort and (count % 600 == 0):
+            self.warning('Something is rotten command has been running for %i min' % int(count/600))
         self.refresh()
         
     def refresh(self):               
@@ -142,9 +144,9 @@ class YumexHandlers(Controller):
         self.window.show()
         self.setup_filters()
         self.populate_package_cache()
+        self.notebook.set_active("package")
         self.setup_repositories()
         # setup default package filter (updates)
-        self.notebook.set_active("package")
         self.ui.packageRadioUpdates.clicked()
 
     def setup_filters(self):
@@ -296,6 +298,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         parser.add_option( "-d", "--debug", 
                         action="store_true", dest="debug", default=False, 
                         help="Debug mode" )
+        parser.add_option( "", "--noplugins", 
+                        action="store_false", dest="plugins", default=True, 
+                        help="Disable yum plugins" )
         return parser.parse_args()
     
     def setup_backend(self):

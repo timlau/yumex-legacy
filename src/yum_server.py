@@ -37,8 +37,9 @@ if __name__ == "__main__":
     sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
     sys.stdout.errors = 'replace'
     debuglevel = 2
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         debuglevel =  int(sys.argv[1])
+        plugins =  sys.argv[2] == 'True'
         print ":debug\tUsing yum debuglevel = %i" % debuglevel
-    my = YumServer(debuglevel)
+    my = YumServer(debuglevel,plugins)
     my.dispatcher()

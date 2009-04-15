@@ -30,6 +30,8 @@ from optparse import OptionParser
 import pexpect
 from yum.packages import YumAvailablePackage
 from yum.packageSack import packagesNewestByNameArch
+from urlgrabber.progress import BaseMeter
+
 import yum.Errors as Errors
 from yumexbase import *
 from yumexbase.i18n import _, P_
@@ -129,13 +131,14 @@ class YumClient:
         """
         now = time.time()
         if now-self._timeout_last > self._timeout_value:
-            self.timeout()
+            self.timeout(self._timeout_count)
             self._timeout_last = now
+            self._timeout_count += 1
             return True
         else:
             return False
 
-    def timeout(self):
+    def timeout(self,count):
         """ 
         timeout function call every time an timeout occours
         An timeout occaurs if the server takes more then timeout
@@ -144,10 +147,10 @@ class YumClient:
         """
         print "TIMEOUT"
 
-    def setup(self,debuglevel=2):
+    def setup(self,debuglevel=2,plugins=True):
         ''' Setup the client and spawn the server'''
         if not self.child:
-            self.child = pexpect.spawn('./yum_server.py %i' % debuglevel,timeout=self._timeout_value)
+            self.child = pexpect.spawn('./yum_server.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
             self.child.setecho(False)
             return self._wait_for_started()
 
@@ -448,7 +451,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self,debuglevel=2):
+    def __init__(self,debuglevel=2,plugins=True):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         plainformatter = logging.Formatter("%(message)s")    
@@ -458,8 +461,11 @@ class YumServer(yum.YumBase):
         self.yum_verbose.propagate = False
         self.yum_verbose.addHandler(self.handler)
         self.yum_verbose.setLevel(logginglevels.DEBUG_3)
-        self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ))
+        
+        self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ),init_plugins=plugins)
         self.doLock()
+        self.dnlCallback = DownloadCallback(self, showNames=True)
+        self.repos.setProgressBar(self.dnlCallback)
         # make some dummy options,args for yum plugins
         parser = OptionParser()
         ( options, args ) = parser.parse_args()
@@ -576,11 +582,12 @@ class YumServer(yum.YumBase):
         pkgstr = args[:-1]
         attr = args[-1]
         po = self._getPackage(pkgstr)
-        res = 'none'
+        self.debug("Getting attribute : %s from %s " % ( attr,str(po)))
+        res = pack(None)
         if po:
-            if hasattr(po, attr):
-                res = getattr(po, attr)
-                res = pack(res)
+            res = getattr(po, attr)
+            self.debug("Attribute : %s : len = %i " % ( attr,len(res)))
+            res = pack(res)
         self.write(':attr\t%s' % res)
         
     def add_transaction(self,args):
@@ -705,6 +712,7 @@ class YumServer(yum.YumBase):
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
+        self._timeout_count = 0
         if cmd == 'get-packages':
             self.get_packages(args)
         elif cmd == 'get-attribute':
@@ -753,6 +761,117 @@ class YumServer(yum.YumBase):
             self.write(":exception\t%s" % errmsg)
             self.write(':end')
         self.quit()
+
+MetaDataMap = {
+    'repomd'        : _('Downloading Repository information'),
+    'primary'       : _('Downloading Package information'),
+    'filelists'     : _('Downloading Filelist information'),
+    'other'         : _('Downloading Changelog information'),
+    'comps'         : _('Downloading Group information'),
+    'updateinfo'    : _('Downloading Updates information')
+}
+
+
+class DownloadCallback(BaseMeter):
+    """ Customized version of urlgrabber.progress.BaseMeter class """
+    def __init__(self, base, showNames = False):
+        BaseMeter.__init__(self)
+        self.base = base
+        self.percent_start = 0
+        self.saved_pkgs = None
+        self.number_packages = 0
+        self.download_package_number = 0
+
+    def setPackages(self, new_pkgs, percent_start, percent_length):
+        self.saved_pkgs = new_pkgs
+        self.number_packages = float(len(self.saved_pkgs))
+        self.percent_start = percent_start
+
+    def _getPackage(self, name):
+        if self.saved_pkgs:
+            for pkg in self.saved_pkgs:
+                if isinstance(pkg, YumLocalPackage):
+                    rpmfn = pkg.localPkg
+                else:
+                    rpmfn = os.path.basename(pkg.remote_path) # get the rpm filename of the package
+                if rpmfn == name:
+                    return pkg
+        return None
+
+    def update(self, amount_read, now=None):
+        BaseMeter.update(self, amount_read, now)
+
+    def _do_start(self, now=None):
+        name = self._getName()
+        self.updateProgress(name, 0.0, "", "")
+
+    def _do_update(self, amount_read, now=None):
+
+        fread = format_number(amount_read)
+        name = self._getName()
+        if self.size is None:
+            # Elapsed time
+            etime = self.re.elapsed_time()
+            frac = 0.0
+            self.updateProgress(name, frac, fread, '')
+        else:
+            # Remaining time
+            rtime = self.re.remaining_time()
+            frac = self.re.fraction_read()
+            self.updateProgress(name, frac, fread, '')
+
+    def _do_end(self, amount_read, now=None):
+
+        total_size = format_number(amount_read)
+        name = self._getName()
+        self.updateProgress(name, 1.0, total_size, '')
+
+    def _getName(self):
+        '''
+        Get the name of the package being downloaded
+        '''
+        return self.basename
+
+    def updateProgress(self, name, frac, fread, ftime):
+        '''
+         Update the progressbar (Overload in child class)
+        @param name: filename
+        @param frac: Progress fracment (0 -> 1)
+        @param fread: formated string containing BytesRead
+        @param ftime: formated string containing remaining or elapsed time
+        '''
+
+        val = int(frac*100)
+
+        # new package
+        if val == 0:
+            pkg = self._getPackage(name)
+            if pkg: # show package to download
+                self.base.debug("Downloading : %s" %str(pkg))
+            else:
+                for key in MetaDataMap.keys():
+                    if key in name:
+                        msg = MetaDataMap[key]
+                        self.base.debug(msg)
+                        break
+
+        # set sub-percentage
+        #self.base.sub_percentage(val)
+
+        # refine percentage with subpercentage
+        #pct_start = StatusPercentageMap[STATUS_DOWNLOAD]
+        #pct_end = StatusPercentageMap[STATUS_SIG_CHECK]
+
+        #if self.number_packages > 0:
+        #    div = (pct_end - pct_start) / self.number_packages
+        #    pct = pct_start + (div * self.download_package_number) + ((div / 100.0) * val)
+        #    self.base.percentage(pct)
+
+        # keep track of how many we downloaded
+        if val == 100:
+            self.download_package_number += 1
+
+
 
 class YumLogHandler(logging.Handler):
     ''' Python logging handler for writing in a TextViewConsole'''

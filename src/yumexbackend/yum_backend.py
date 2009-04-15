@@ -34,6 +34,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         transaction = YumexTransactionYum(self,frontend)
         YumexBackendBase.__init__(self, frontend,transaction)
         YumClient.__init__(self)
+        self.dont_abort = False
 
     # Overload the YumClient message methods
         
@@ -57,14 +58,14 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         """ yum logger message """
         self.frontend.info("YUM: "+ msg)
 
-    def timeout(self):
+    def timeout(self,count):
         """ 
         timeout function call every time an timeout occours
         An timeout occaurs if the server takes more then timeout
         periode to respond to the current action.
         the default timeout is .5 sec.
         """
-        self.frontend.timeout()
+        self.frontend.timeout(count)
         
     def exception(self,msg):
         """ debug message """
@@ -72,7 +73,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def setup(self):
         ''' Setup the backend'''
-        return YumClient.setup(self)
+        return YumClient.setup(self,plugins=False)
             
         
     def reset(self):
