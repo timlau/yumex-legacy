@@ -114,6 +114,12 @@ class YumClient:
         """ debug message """
         print "YUM:", msg
 
+    def fatal(self,args):
+        """ fatal backend error """
+        err = args[0]
+        msg = args[1]
+        raise YumexBackendFatalError(err,msg)
+
     def _timeout(self):
         """ 
         timeout function call every time an timeout occours
@@ -143,11 +149,17 @@ class YumClient:
         if not self.child:
             self.child = pexpect.spawn('./yum_server.py %i' % debuglevel,timeout=self._timeout_value)
             self.child.setecho(False)
+            return self._wait_for_started()
+
+        else:
+            return None
 
     def reset(self):
         """ reset the client"""
+        if not self.child or not self.child.isalive():
+            return True
         cnt = 0
-        while self.waiting and cnt < 10:
+        while self.waiting and cnt < 5:
             self.debug("Trying to close the yum backend")
             time.sleep(1)
             cnt += 1
@@ -243,9 +255,20 @@ class YumClient:
             self.exception(args[0])
         elif cmd == ':yum':
             self.yum_logger(args[0])
+        elif cmd == ':fatal':
+            self.fatal(args)
         else:
             return False # not a message
         return True    
+    
+    def _wait_for_started(self):
+        cnt = 0
+        while True:
+            cmd,args = self._readline()
+            cnt += 1
+            if cmd == ':started':
+                return True
+            
         
     def _get_list(self,result_cmd=":pkg"):
         ''' 
@@ -441,13 +464,21 @@ class YumServer(yum.YumBase):
         parser = OptionParser()
         ( options, args ) = parser.parse_args()
         self.plugins.setCmdLine(options,args)
+        self.write(':started')
+
 
 
     def doLock(self):
-        try:
-            yum.YumBase.doLock(self)
-        except Errors.LockError, e:
-            self.error(e.msg)
+        cnt = 0
+        while cnt < 5:
+            try:
+                yum.YumBase.doLock(self)
+                return True
+            except Errors.LockError, e:
+                self.error(e.msg)
+                cnt += 1
+                time.sleep(2)
+        self.fatal("lock-error", e.msg )        
                 
     def quit(self):
         self.debug("Closing rpm db and releasing yum lock  ")
@@ -504,6 +535,11 @@ class YumServer(yum.YumBase):
     def action(self,msg):
         ''' write an action message '''
         self.write(":action\t%s" % msg)
+
+    def fatal(self,err,msg):
+        ''' write an fatal message '''
+        self.write(":fatal\t%s\t%s" % (err,msg))
+        sys.exit(1)
 
     def message(self,msg_type,value):
         value = pack(value)

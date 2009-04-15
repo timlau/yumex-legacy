@@ -79,6 +79,8 @@ class TextViewBase:
         @param style: text tag to indentify the style to use
         @param newline: if True, then add newline to the text it not there already
         '''
+        if not txt: 
+            return
         txt = toUTF(txt) # Convert the text to UTF-8
         if newline and txt[-1] != '\n':
             txt += '\n'

@@ -72,7 +72,8 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def setup(self):
         ''' Setup the backend'''
-        YumClient.setup(self)
+        return YumClient.setup(self)
+            
         
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
@@ -290,13 +291,15 @@ class YumexTransactionYum(YumexTransactionBase):
         rc,msgs,trans = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Depsolve completed without error')
+            if self.frontend.confirm_transaction(trans):
+                return True
+            else:
+                return False
         else:
             self.debug('Depsolve completed with error')
-        for msg in msgs:
-            self.frontend.debug(msg)
-        
-        ok = self.frontend.confirm_transaction(trans)
-        print ok
+            for msg in msgs:
+                self.frontend.debug(msg)
+            return False
         
     def get_transaction_packages(self):
         '''

@@ -83,7 +83,7 @@ class PackageCache:
         self.backend = backend
         
     def reset(self):
-        del self.cache
+        del self._cache
         self._cache = {}
 
     def get_packages(self,filter):

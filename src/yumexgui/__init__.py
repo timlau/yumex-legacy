@@ -29,7 +29,7 @@ from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
-from yumexgui.dialogs import Progress, TransactionConfirmation
+from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
 from yumexbase.i18n import _, P_
@@ -120,7 +120,6 @@ class YumexHandlers(Controller):
         Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
         self.package_cache = PackageCache(self.backend)
         self._last_filter = None
-        self.setup_gui()
         
 # helpers
     def setup_gui(self):
@@ -134,7 +133,7 @@ class YumexHandlers(Controller):
         self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
         self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=ICON_REPOS)
         self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
-        self.notebook.set_active("package")
+        self.notebook.set_active("output")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
         self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector)
@@ -145,6 +144,7 @@ class YumexHandlers(Controller):
         self.populate_package_cache()
         self.setup_repositories()
         # setup default package filter (updates)
+        self.notebook.set_active("package")
         self.ui.packageRadioUpdates.clicked()
 
     def setup_filters(self):
@@ -304,8 +304,32 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         
     def run(self):
         # setup
-        self.backend.setup()
-        gtk.main()        
+        try:
+            self.setup_gui()
+            self.backend.setup()
+            gtk.main()
+        except YumexBackendFatalError,e:
+            self.handle_error(e.err, e.msg)
+            
+    def handle_error(self,err,msg):        
+        title =  _("Fatal Error")
+        if err == 'lock-error': # Cant get the yum lock
+            text = _("Can't start the yum backend")
+            longtext = _("Another program is locking yum")
+            longtext += '\n\n'            
+            longtext += _('Message from yum backend:')            
+            longtext += '\n\n'            
+            longtext += msg            
+        else:
+            text = _("Unknown Error : ") + msg
+            longtext = ""
+            
+        # Show error dialog    
+        dialog = ErrorDialog(self.ui,self.window, title, text, longtext, modal=True)
+        dialog.run()
+        dialog.destroy()
+        self.main_quit()
+                    
         
     def process_queue(self):
         queue = self.queue.queue
@@ -313,11 +337,24 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             pkgs = queue.get(action[0])
             for po in pkgs:
                 self.backend.transaction.add(po,action)
-        self.backend.transaction.process_transaction()              
         tpkgs = self.backend.transaction.get_transaction_packages()
         for pkg in tpkgs:
             if pkg.action:
                 self.info("   Package: %s Action: %s" % (pkg,pkg.action))
+        if self.backend.transaction.process_transaction():
+            self.debug("Transaction Completed OK")
+            self.reload()
+        else:
+            self.debug("Transaction Failed")
+
+    def reload(self):
+        ''' Reset current data and restart the backend '''
+        self.backend.reset()                    # close the backend
+        self.package_cache.reset()              # clear the package cache
+        self.queue.queue.clear()                # clear the pending action queue
+        self.populate_package_cache()           # repopulate the package cache
+        self.notebook.set_active("package")     # show the package page
+        self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
                 
     def run_test(self):
         def show(elems,desc=False):

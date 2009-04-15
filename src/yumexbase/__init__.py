@@ -127,6 +127,26 @@ class YumexFrontendBase:
         ''' reset the frontend '''
         pass
 
+class YumexBaseError(Exception):
+    """
+    Base Yumex Error. All other Errors thrown by yum should inherit from
+    this.
+    """
+    def __init__(self, value=None):
+        Exception.__init__(self)
+        self.value = value
+    
+    def __str__(self):
+        return "%s" %(self.value,)
+
+class YumexBackendFatalError(YumexBaseError):
+    def __init__(self, err, msg):
+        YumexBaseError.__init__(self)
+        self.err = err
+        self.msg = msg
+    
+
+
 
 # from output.py (yum)
 def format_number(number, SI=0, space=' '):
