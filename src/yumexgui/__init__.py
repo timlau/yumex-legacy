@@ -29,7 +29,7 @@ from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
-from yumexgui.progress import Progress
+from yumexgui.dialogs import Progress, TransactionConfirmation
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
 from yumexbase.i18n import _, P_
@@ -62,7 +62,11 @@ class YumexFrontend(YumexFrontendBase):
 
     def confirm_transaction(self, transaction):
         ''' confirm the current transaction'''
-        pass
+        dialog = TransactionConfirmation(self.ui,self.window)
+        dialog.populate(transaction)
+        ok = dialog.run()
+        dialog.destroy()
+        return ok
 
     def error(self, msg, exit=False):
         ''' Write an error message to frontend '''
@@ -177,6 +181,7 @@ class YumexHandlers(Controller):
         ''' destroy Handler '''
         self.backend.debug("Quiting the program !!!")
         self.backend.reset()
+        self.backend.debug("Backend reset completted")
 
     # Menu
         

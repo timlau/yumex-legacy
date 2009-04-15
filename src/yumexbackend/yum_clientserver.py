@@ -81,6 +81,9 @@ class YumClient:
         self.child = None
         self._timeout_value = timeout
         self._timeout_last = 0
+        self._timeout_count = 0
+        self.sending = False
+        self.waiting = False
         pass
 
     def error(self,msg):
@@ -116,12 +119,15 @@ class YumClient:
         timeout function call every time an timeout occours
         An timeout occaurs if the server takes more then timeout
         periode to respond to the current action.
-        the default timeout is .5 sec.
+        the default timeout is .1 sec.
         """
         now = time.time()
         if now-self._timeout_last > self._timeout_value:
             self.timeout()
             self._timeout_last = now
+            return True
+        else:
+            return False
 
     def timeout(self):
         """ 
@@ -140,24 +146,42 @@ class YumClient:
 
     def reset(self):
         """ reset the client"""
-        self._send_command('exit', [])
-        cmd,args = self._readline()
+        cnt = 0
+        while self.waiting and cnt < 10:
+            self.debug("Trying to close the yum backend")
+            time.sleep(1)
+            cnt += 1
+        if cnt < 10:
+            rc = self._send_command('exit', [])
+            if rc:
+                cmd,args = self._readline()
+                self._close()
+                return True
+        # The yum backend did not ended nicely               
+        self.error("Yum backend did not close nicely in time")
         self._close()
+        return False
 
         
     def _send_command(self,cmd,args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd,"\t".join(args))
+        timeouts = 0
+        self.sending = True
         while True:
             try:
                 cmd,args = self._readline()
                 if cmd == ':ready':
                     break
+                elif cmd == None:
+                    self.sending = False
+                    return False
             except pexpect.TIMEOUT,e:
                 self._timeout()
                 continue
-                    
         self.child.sendline(line)
+        self.sending = False
+        return True
 
     def _parse_command(self,line):
         ''' split command and args for a command received from the server'''
@@ -178,13 +202,19 @@ class YumClient:
         line = None
         while True:
             try:
-                line = self.child.readline()
+                self.waiting = True
+                if self.child:
+                    line = self.child.readline()
+                else: # We are closing
+                    self.waiting = False
+                    return None,None
                 cmd,args = self._parse_command(line)
                 self._timeout()
                 if cmd:
                     if self._check_for_message(cmd, args):
                         continue
                     else:
+                        self.waiting = False
                         return cmd,args
             except pexpect.TIMEOUT,e:
                 self._timeout()

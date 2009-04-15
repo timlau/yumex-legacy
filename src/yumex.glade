@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sun Apr 12 13:46:12 2009 -->
+<!--Generated with glade3 3.4.5 on Wed Apr 15 09:17:23 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="main">
     <property name="width_request">1000</property>
@@ -738,6 +738,112 @@ words.
                 <property name="response_id">0</property>
                 <signal name="clicked" handler="on_progressCancel_clicked"/>
               </widget>
+            </child>
+          </widget>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="pack_type">GTK_PACK_END</property>
+          </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="GtkDialog" id="Transaction">
+    <property name="width_request">500</property>
+    <property name="height_request">600</property>
+    <property name="window_position">GTK_WIN_POS_CENTER_ON_PARENT</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+    <child internal-child="vbox">
+      <widget class="GtkVBox" id="dialog-vbox3">
+        <property name="visible">True</property>
+        <property name="spacing">2</property>
+        <child>
+          <widget class="GtkVBox" id="transactionMain">
+            <property name="visible">True</property>
+            <child>
+              <widget class="GtkEventBox" id="transactionEvent">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkFixed" id="transactionFixed">
+                    <property name="height_request">70</property>
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImage" id="transactionImage">
+                        <property name="visible">True</property>
+                        <property name="xalign">0.25</property>
+                        <property name="yalign">0.25</property>
+                        <property name="stock">gtk-dialog-info</property>
+                        <property name="icon_size">6</property>
+                      </widget>
+                      <packing>
+                        <property name="y">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <widget class="GtkLabel" id="transactionHeader">
+                        <property name="width_request">350</property>
+                        <property name="height_request">40</property>
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="yalign">0</property>
+                        <property name="label" translatable="yes">&lt;span size="x-large"&gt;Transaction&lt;/span&gt;
+</property>
+                        <property name="use_markup">True</property>
+                      </widget>
+                      <packing>
+                        <property name="x">60</property>
+                        <property name="y">20</property>
+                      </packing>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+              <packing>
+                <property name="expand">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkTreeView" id="transactionView">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </widget>
+              <packing>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </widget>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <widget class="GtkHButtonBox" id="dialog-action_area3">
+            <property name="visible">True</property>
+            <property name="layout_style">GTK_BUTTONBOX_END</property>
+            <child>
+              <widget class="GtkButton" id="transactionOK">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="label" translatable="yes">gtk-ok</property>
+                <property name="use_stock">True</property>
+                <property name="response_id">0</property>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkButton" id="transactionCancel">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="use_stock">True</property>
+                <property name="response_id">0</property>
+              </widget>
+              <packing>
+                <property name="position">1</property>
+              </packing>
             </child>
           </widget>
           <packing>

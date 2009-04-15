@@ -23,6 +23,7 @@ import gtk.glade
 import pango
 import logging
 import types
+import sys
 
 class TextViewBase:
     '''  Encapsulate a gtk.TextView with support for adding and using pango styles'''
@@ -200,7 +201,11 @@ class Controller:
     def main_quit(self, widget=None, event=None ):
         ''' Main destroy Handler '''
         self.quit()
-        gtk.main_quit()
+        try:
+            gtk.main_quit()
+        except:
+            pass
+        sys.exit(0)
         
     def quit(self):
         ''' Virtuel quit handler to be overloaded in child class'''
