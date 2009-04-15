@@ -258,8 +258,10 @@ class YumClient:
             cmd,args = self._readline()
             if cmd == ':end':
                 break
-            if not cmd == result_cmd: 
-                self.warning("unexpected command : %s (%s)" % (cmd,args))
+            if cmd == None: # readline is locked:
+                break
+            elif not cmd == result_cmd: 
+                self.warning("_get_list unexpected command : %s (%s)" % (cmd,args))
             elif cmd == ':pkg':
                 p = YumPackage(self,args)
                 data.append(p)
@@ -277,8 +279,10 @@ class YumClient:
             if not self._check_for_message(cmd, args):
                 if cmd == result_cmd:
                     return args
+                elif cmd == None: # readline is locked
+                    break
                 else:
-                    self.warning("unexpected command : %s (%s)" % (cmd,args))
+                    self.warning("_get_result unexpected command : %s (%s)" % (cmd,args))
     
     def _get_messages(self):
         ''' 
