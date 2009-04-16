@@ -70,7 +70,67 @@ XSMALL_FONT = pango.FontDescription("sans 6")
 SMALL_FONT = pango.FontDescription("sans 8")    
 BIG_FONT = pango.FontDescription("sans 12")    
 
+# STRINGS
+
+REPO_INFO_MAP = {
+    'repomd'        : _("Downloading repository information"),
+    'primary'       : _("Downloading Package information for %s"),
+    'filelists'     : _("Downloading Filelist information for %s"),
+    'other'         : _("Downloading Changelog information for %s"),
+    'comps'         : _("Downloading Group information for %s"),
+    'updateinfo'    : _("Downloading Update information for %s")
+}
+
 # interface base classes
+
+class YumexProgressBase:
+    '''
+    A Virtual Progress class
+    '''
+    def __init__(self):
+        self._active = False
+        self._pulse = False
+    
+    def show(self):
+        ''' Show the progress '''
+        self._active = True
+    
+    def hide(self):
+        ''' Hide the progress '''
+        self._active = False
+    
+    def is_active(self):
+        return self._active
+    
+    def is_pulse(self):
+        return self._pulse
+    
+    def set_pulse(self,pulse):
+        self._pulse = pulse
+    
+    def set_title(self,title):
+        ''' set the progress dialog title '''
+        raise NotImplementedError()
+    
+    def set_fraction(self,frac,text=None):
+        ''' set the progress dialog title '''
+        raise NotImplementedError()
+
+    def set_header(self,text):
+        ''' set the progress header text '''
+        raise NotImplementedError()
+
+    def set_action(self,text):
+        ''' set the progress action text '''
+        raise NotImplementedError()
+    
+    def pulse(self):
+        ''' pulse the progress bar '''
+        raise NotImplementedError()
+
+    def reset(self):
+        ''' reset the progress bar '''
+        raise NotImplementedError()
 
 class YumexFrontendBase:
     '''

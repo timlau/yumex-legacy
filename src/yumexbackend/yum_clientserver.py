@@ -19,6 +19,7 @@
 
 # Constants
 
+import os.path
 import sys
 import yum
 import traceback
@@ -37,15 +38,21 @@ from yumexbase import *
 from yumexbase.i18n import _, P_
 
 import yum.logginglevels as logginglevels
+from yum.callbacks import *
+from yum.rpmtrans import RPMBaseCallback
+from yum.packages import YumLocalPackage
 
 logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
+# helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
+
 def pack(value):
+    '''  Pickle and base64 encode an python object'''
     return base64.b64encode(pickle.dumps(value))
     
 def unpack(value):
+    '''  base64 decode and unpickle an python object'''
     return pickle.loads(base64.b64decode(value))
-
 
 
 class YumPackage:
@@ -113,8 +120,31 @@ class YumClient:
         print "Exception:", msg
 
     def yum_logger(self,msg):
-        """ debug message """
+        """ yum logger message """
         print "YUM:", msg
+
+    def yum_state(self,state):
+        """ yum state message handler """
+        self.debug("YUM-STATE: %s" % state)
+
+    def _yum_rpm(self,value):
+        """ yum rpm action progress message """
+        (action, package, percent, ts_current, ts_total) = unpack(value)
+        self.yum_rpm_progress(action, package, percent, ts_current, ts_total)
+
+    def yum_rpm_progress(self, action, package, percent, ts_current, ts_total):   
+        """ yum rpm action progress handler (overload in child class)"""
+        msg = '%s: %s %s %% [%s/%s]' % (action, package, percent, ts_current, ts_total) 
+        self.debug("YUM-RPM-PROGRESS: %s" % msg)
+
+    def _yum_dnl(self,value):
+        """ yum download action progress message """
+        (ftype,name,percent) = unpack(value)
+        self.yum_dnl_progress(ftype,name,percent)
+
+    def yum_dnl_progress(self,ftype,name,percent):
+        """ yum download progress handler (overload in child class) """   
+        self.debug("YUM-DNL:%s : %s - %3i %%" % (ftype,name,percent))
 
     def fatal(self,args):
         """ fatal backend error """
@@ -260,6 +290,12 @@ class YumClient:
             self.yum_logger(args[0])
         elif cmd == ':fatal':
             self.fatal(args)
+        elif cmd == ':yum-rpm': # yum rpm action progress
+            self._yum_rpm(args[0])
+        elif cmd == ':yum-dnl': # yum dnl progress
+            self._yum_dnl(args[0])
+        elif cmd == ':yum-state':
+            self.yum_state(args[0])
         else:
             return False # not a message
         return True    
@@ -464,7 +500,7 @@ class YumServer(yum.YumBase):
         
         self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ),init_plugins=plugins)
         self.doLock()
-        self.dnlCallback = DownloadCallback(self, showNames=True)
+        self.dnlCallback = YumexDownloadCallback(self)
         self.repos.setProgressBar(self.dnlCallback)
         # make some dummy options,args for yum plugins
         parser = OptionParser()
@@ -550,6 +586,21 @@ class YumServer(yum.YumBase):
     def message(self,msg_type,value):
         value = pack(value)
         self.write(":msg\t%s\t%s" % (msg_type,value))
+
+    def yum_rpm(self, action, package, frac, ts_current, ts_total):
+        ''' write an yum rpm action progressmessage '''
+        value = (action, package, frac, ts_current, ts_total)
+        value = pack(value)
+        self.write(":yum-rpm\t%s" % value)
+        
+    def yum_dnl(self,ftype, name, percent):
+        value = (ftype,name,percent)
+        value = pack(value)
+        self.write(":yum-dnl\t%s" % value)
+        
+    def yum_state(self,state):
+        ''' write an yum transaction state message '''
+        self.write(":yum-state\t%s" % state)
        
     def yum_logger(self,msg):
         ''' write an yum logger message '''
@@ -655,7 +706,13 @@ class YumServer(yum.YumBase):
         
                     
     def run_transaction(self):
-        pass
+        try:
+            rpmDisplay = YumexRPMCallback(self)
+            callback = YumexTransCallback(self)
+            self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
+        except:
+            self.error("Exception in run_transaction")
+            
     
     def get_groups(self,args):
         pass
@@ -762,25 +819,63 @@ class YumServer(yum.YumBase):
             self.write(':end')
         self.quit()
 
-MetaDataMap = {
-    'repomd'        : _('Downloading Repository information'),
-    'primary'       : _('Downloading Package information'),
-    'filelists'     : _('Downloading Filelist information'),
-    'other'         : _('Downloading Changelog information'),
-    'comps'         : _('Downloading Group information'),
-    'updateinfo'    : _('Downloading Updates information')
-}
+class YumexTransCallback:
+    def __init__(self, base):
+        self.base = base
+
+    def event(self, state, data=None):
+
+        if state == PT_DOWNLOAD:        # Start Downloading
+            self.base.yum_state('download')
+        elif state == PT_DOWNLOAD_PKGS:   # Packages to download
+            self.base.dnlCallback.setPackages(data, 10, 30)
+        elif state == PT_GPGCHECK:
+            self.base.yum_state('gpg-check')
+        elif state == PT_TEST_TRANS:
+            self.base.yum_state('test-transaction')
+        elif state == PT_TRANSACTION:
+            self.base.yum_state('transaction')
 
 
-class DownloadCallback(BaseMeter):
-    """ Customized version of urlgrabber.progress.BaseMeter class """
-    def __init__(self, base, showNames = False):
-        BaseMeter.__init__(self)
+class YumexRPMCallback(RPMBaseCallback):
+    
+    def __init__(self,base):
+        RPMBaseCallback.__init__(self)
+        self.base = base
+        self._last_frac = 0.0
+        self._last_pkg = None
+
+    def event(self, package, action, te_current, te_total, ts_current, ts_total):
+        # Handle rpm transaction progress
+        try:
+            if self._last_pkg != package:
+                self._last_pkg = package
+                self._last_frac = 0.0
+            frac = float(te_current)/float(te_total)
+            if frac > self._last_frac + 0.005:
+                #self.base.debug(str([self.action[action], str(package), frac, ts_current, ts_total]))
+                self.base.yum_rpm(self.action[action], str(package), frac, ts_current, ts_total)
+                self._last_frac = frac
+        except:
+            self.base.debug('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
+        
+    def scriptout(self, package, msgs):
+        # Handle rpm scriptlet messages
+        if msgs:
+            for msg in msgs:
+                self.base.debug('RPM : %s' % msg)
+
+class YumexDownloadCallback(DownloadBaseCallback):
+    """ Download callback handler """
+    def __init__(self,base):
+        DownloadBaseCallback.__init__(self)
         self.base = base
         self.percent_start = 0
         self.saved_pkgs = None
         self.number_packages = 0
         self.download_package_number = 0
+        self.current_name = None
+        self.current_type = None
 
     def setPackages(self, new_pkgs, percent_start, percent_length):
         self.saved_pkgs = new_pkgs
@@ -797,41 +892,7 @@ class DownloadCallback(BaseMeter):
                 if rpmfn == name:
                     return pkg
         return None
-
-    def update(self, amount_read, now=None):
-        BaseMeter.update(self, amount_read, now)
-
-    def _do_start(self, now=None):
-        name = self._getName()
-        self.updateProgress(name, 0.0, "", "")
-
-    def _do_update(self, amount_read, now=None):
-
-        fread = format_number(amount_read)
-        name = self._getName()
-        if self.size is None:
-            # Elapsed time
-            etime = self.re.elapsed_time()
-            frac = 0.0
-            self.updateProgress(name, frac, fread, '')
-        else:
-            # Remaining time
-            rtime = self.re.remaining_time()
-            frac = self.re.fraction_read()
-            self.updateProgress(name, frac, fread, '')
-
-    def _do_end(self, amount_read, now=None):
-
-        total_size = format_number(amount_read)
-        name = self._getName()
-        self.updateProgress(name, 1.0, total_size, '')
-
-    def _getName(self):
-        '''
-        Get the name of the package being downloaded
-        '''
-        return self.basename
-
+        
     def updateProgress(self, name, frac, fread, ftime):
         '''
          Update the progressbar (Overload in child class)
@@ -845,31 +906,28 @@ class DownloadCallback(BaseMeter):
 
         # new package
         if val == 0:
+            if ':' in name:
+                c,n = name.split(':')
+                name = n.strip()
+                cur,tot = c[1:-1].split('/') 
             pkg = self._getPackage(name)
             if pkg: # show package to download
-                self.base.debug("Downloading : %s" %str(pkg))
+                self.current_name = str(pkg)
+                self.current_type = 'PKG'
+            elif not name.endswith('.rpm'):
+                self.current_name = name
+                self.current_type = 'REPO'
             else:
-                for key in MetaDataMap.keys():
-                    if key in name:
-                        msg = MetaDataMap[key]
-                        self.base.debug(msg)
-                        break
+                self.current_name = name
+                self.current_type = 'PKG'
+                
 
-        # set sub-percentage
-        #self.base.sub_percentage(val)
-
-        # refine percentage with subpercentage
-        #pct_start = StatusPercentageMap[STATUS_DOWNLOAD]
-        #pct_end = StatusPercentageMap[STATUS_SIG_CHECK]
-
-        #if self.number_packages > 0:
-        #    div = (pct_end - pct_start) / self.number_packages
-        #    pct = pct_start + (div * self.download_package_number) + ((div / 100.0) * val)
-        #    self.base.percentage(pct)
+        self.base.yum_dnl(self.current_type,self.current_name,val)
 
         # keep track of how many we downloaded
         if val == 100:
             self.download_package_number += 1
+            self.current_name = None
 
 
 
@@ -894,6 +952,7 @@ def setup_logging(base):
     verbose.addHandler(handler)
     verbose.setLevel(logginglevels.DEBUG_3)
     #verbose.setLevel(logginglevels.INFO_2)
+    
 if __name__ == "__main__":
     pass
 

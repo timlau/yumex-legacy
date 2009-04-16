@@ -56,9 +56,9 @@ class YumexFrontend(YumexFrontendBase):
         ''' Get the current progress object '''
         return self._progress
 
-    def progress(self):
+    def set_progress(self,progress):
         ''' trigger at progress update'''
-        pass
+        self._progress = progress
 
     def confirm_transaction(self, transaction):
         ''' confirm the current transaction'''
@@ -108,9 +108,11 @@ class YumexFrontend(YumexFrontendBase):
             self.warning('Something is rotten command has been running for %i min' % int(count/600))
         self.refresh()
         
-    def refresh(self):               
-        if self.progress.is_active:
-            self.progress.pulse()
+    def refresh(self):     
+        progress = self.get_progress()  
+        if progress:        
+            if progress.is_active() and progress.is_pulse():
+                progress.pulse()
         doGtkEvents()
         
 class YumexHandlers(Controller):
@@ -128,7 +130,6 @@ class YumexHandlers(Controller):
         # setup
         self.window.set_title("Yum Extender NextGen")
         self.output = TextViewConsole(self.ui.outputText)
-        self.progress = Progress(self.ui,self.window)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
         self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
@@ -164,15 +165,16 @@ class YumexHandlers(Controller):
                 
     def populate_package_cache(self):
         self.backend.setup()
-        self.progress.show()
-        self.progress.set_header("Getting Package Lists")
-        self.progress.set_label("Getting Updated Packages")
+        progress = self.get_progress()
+        progress.show()
+        progress.set_header("Getting Package Lists")
+        progress.set_action("Getting Updated Packages")
         pkgs = self.package_cache.get_packages(FILTER.updates)
-        self.progress.set_label("Getting Available Packages")
+        progress.set_action("Getting Available Packages")
         pkgs = self.package_cache.get_packages(FILTER.available)
-        self.progress.set_label("Getting installed Packages")
+        progress.set_action("Getting installed Packages")
         pkgs = self.package_cache.get_packages(FILTER.installed)
-        self.progress.hide()
+        progress.hide()
 
         
         
@@ -287,10 +289,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.logger = logging.getLogger(YUMEX_LOG)
         (self.cmd_options, self.cmd_args) = self.setupOptions()
         self.backend = backend(self)
-        self.progress = None
-        self.setup_backend()
         YumexHandlers.__init__(self)
-        YumexFrontend.__init__(self, self.backend, self.progress)
+        progress = Progress(self.ui,self.window)
+        self.setup_backend()
+        YumexFrontend.__init__(self, self.backend, progress)
 
 
     def setupOptions(self):

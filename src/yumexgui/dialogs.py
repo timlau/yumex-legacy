@@ -24,9 +24,10 @@ from yumexbase import *
 from yumexbase.i18n import _, P_
 
 
-class Progress:
+class Progress(YumexProgressBase):
     
     def __init__(self,ui,parent):
+        YumexProgressBase.__init__(self)
         self.ui = ui
         self.dialog = self.ui.Progress
         self.dialog.set_title("Working....")
@@ -36,32 +37,30 @@ class Progress:
         self.ui.progressEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
         self.progressbar = self.ui.progressBar
         self.progressbar.modify_font(SMALL_FONT)
-        
         self.header = self.ui.progressHeader
         self.header.modify_font(BIG_FONT)
         self.label = self.ui.progressLabel
         self.label.modify_font(SMALL_FONT)
-        self.is_active = False
         
     def show(self):
-        self.is_active = True
+        self._active = True
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show_all()
         
     def hide(self):
-        self.is_active = False
+        self._active = False
         normalCursor(self.parent)
         self.dialog.hide()
         
     def set_header(self,text):
         self.header.set_text(text)
         
-    def set_label(self,text):
+    def set_action(self,text):
         self.label.set_text(text)
         
-    def set_progress(self,fraction, text=None):
-        self.progressbar.set_fraction(fraction)
+    def set_fraction(self,frac,text=None):
+        self.progressbar.set_fraction(frac)
         if text:
             self.progressbar.set_text(text)
             

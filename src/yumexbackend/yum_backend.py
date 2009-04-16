@@ -58,6 +58,33 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         """ yum logger message """
         self.frontend.info("YUM: "+ msg)
 
+    def yum_rpm_progress(self,action, package, frac, ts_current, ts_total):   
+        """ yum rpm action progress handler """
+        msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
+        self.frontend.debug("YUM-RPM-PROGRESS: %s" % msg)
+
+    def yum_dnl_progress(self,ftype,name,percent):
+        """ yum download progress handler """
+        if ftype == "REPO":
+            if percent > 0: # only write at 0%
+                return
+            if '/' in name:
+                repo,mdtype = name.split('/')
+            else:
+                repo = None
+                mdtype = name
+            msg = "Unknown Repo Metadata type for %s"
+            for key in REPO_INFO_MAP:
+                if key in mdtype:
+                    msg = REPO_INFO_MAP[key]
+                    break
+            if repo:    
+                self.frontend.debug(msg % repo)
+            else:            
+                self.frontend.debug(msg)
+        else:
+            self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
+
     def timeout(self,count):
         """ 
         timeout function call every time an timeout occours
@@ -293,6 +320,7 @@ class YumexTransactionYum(YumexTransactionBase):
         if rc == 2:
             self.frontend.debug('Depsolve completed without error')
             if self.frontend.confirm_transaction(trans):
+                self.backend.run_transaction()
                 return True
             else:
                 return False
