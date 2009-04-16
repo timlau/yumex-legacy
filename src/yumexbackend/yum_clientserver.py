@@ -41,6 +41,7 @@ import yum.logginglevels as logginglevels
 from yum.callbacks import *
 from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
+from yum.constants import *
 
 logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
@@ -848,16 +849,22 @@ class YumexRPMCallback(RPMBaseCallback):
     def event(self, package, action, te_current, te_total, ts_current, ts_total):
         # Handle rpm transaction progress
         try:
-            if self._last_pkg != package:
-                self._last_pkg = package
-                self._last_frac = 0.0
-            frac = float(te_current)/float(te_total)
-            if frac > self._last_frac + 0.005:
-                #self.base.debug(str([self.action[action], str(package), frac, ts_current, ts_total]))
-                self.base.yum_rpm(self.action[action], str(package), frac, ts_current, ts_total)
-                self._last_frac = frac
+            if action != TS_UPDATED:
+                if self._last_pkg != package:
+                    self._last_pkg = package
+                    self._last_frac = 0.0
+                frac = float(te_current)/float(te_total)
+                if frac > self._last_frac + 0.005:
+                    #self.base.debug(str([self.action[action], str(package), frac, ts_current, ts_total]))
+                    self.base.yum_rpm(self.action[action], str(package), frac, ts_current, ts_total)
+                    self._last_frac = frac
+            else:
+                self.base.yum_rpm(self.action[action], str(package), 1.0, ts_current, ts_total)
+                
         except:
             self.base.debug('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
+            etype = sys.exc_info()[0]
+            self.base.debug(str(etype))
         
     def scriptout(self, package, msgs):
         # Handle rpm scriptlet messages

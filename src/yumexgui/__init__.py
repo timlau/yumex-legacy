@@ -166,6 +166,7 @@ class YumexHandlers(Controller):
     def populate_package_cache(self):
         self.backend.setup()
         progress = self.get_progress()
+        progress.set_pulse(True)
         progress.show()
         progress.set_header("Getting Package Lists")
         progress.set_action("Getting Updated Packages")
@@ -174,6 +175,7 @@ class YumexHandlers(Controller):
         pkgs = self.package_cache.get_packages(FILTER.available)
         progress.set_action("Getting installed Packages")
         pkgs = self.package_cache.get_packages(FILTER.installed)
+        progress.set_pulse(False)
         progress.hide()
 
         
@@ -339,6 +341,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     
         
     def process_queue(self):
+        progress = self.get_progress()
+        progress.set_pulse(True)        
+        progress.show()        
+        progress.set_title(_("Processing pending actions"))
+        progress.set_header(_("Preparing the transaction"))
         queue = self.queue.queue
         for action in ('install','update','remove'):
             pkgs = queue.get(action[0])
@@ -353,6 +360,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.reload()
         else:
             self.debug("Transaction Failed")
+        progress.hide()        
+        progress.set_pulse(False)        
 
     def reload(self):
         ''' Reset current data and restart the backend '''

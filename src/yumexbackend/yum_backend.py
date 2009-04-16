@@ -22,6 +22,8 @@
 from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_clientserver import YumClient
+from yumexbase.i18n import _, P_
+
 
                
 class YumexBackendYum(YumexBackendBase,YumClient):
@@ -60,11 +62,15 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def yum_rpm_progress(self,action, package, frac, ts_current, ts_total):   
         """ yum rpm action progress handler """
+        progress = self.frontend.get_progress()
+        progress.set_action("%s %s" % (action,package))
+        progress.set_fraction(frac,"%3i %%" % int(frac*100))
         msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
         self.frontend.debug("YUM-RPM-PROGRESS: %s" % msg)
 
     def yum_dnl_progress(self,ftype,name,percent):
         """ yum download progress handler """
+        progress = self.frontend.get_progress()
         if ftype == "REPO":
             if percent > 0: # only write at 0%
                 return
@@ -80,11 +86,32 @@ class YumexBackendYum(YumexBackendBase,YumClient):
                     break
             if repo:    
                 self.frontend.debug(msg % repo)
+                progress.set_action(msg % repo)
+                
             else:            
                 self.frontend.debug(msg)
+                progress.set_action(msg)
         else:
             self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
+            progress.set_action(name)
+            progress.set_fraction(float(percent)/100.0,"%3i %%" % percent)
+            
 
+    def yum_state(self,state):
+        progress = self.frontend.get_progress()
+        if state == 'download':
+            progress.set_header(_("Downloading Packages"))
+            progress.set_pulse(False)
+        elif state == 'gpg-check':
+            progress.set_pulse(True)
+            progress.set_header(_("Checking Package GPG Signatures"))
+        elif state == 'test-transaction':
+            progress.set_pulse(True)
+            progress.set_header(_("Running RPM Test Transaction"))
+        elif state == 'transaction':
+            progress.set_pulse(False)
+            progress.set_header(_("Running RPM Transaction"))
+                
     def timeout(self,count):
         """ 
         timeout function call every time an timeout occours
@@ -316,10 +343,14 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         Process the packages and groups in the queue
         '''
+        progress = self.frontend.get_progress()
+        progress.set_header("Resolving Dependencies")
         rc,msgs,trans = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Depsolve completed without error')
+            progress.hide()
             if self.frontend.confirm_transaction(trans):
+                progress.show()
                 self.backend.run_transaction()
                 return True
             else:

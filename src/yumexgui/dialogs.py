@@ -52,9 +52,13 @@ class Progress(YumexProgressBase):
         self._active = False
         normalCursor(self.parent)
         self.dialog.hide()
+
+    def set_title(self,text):
+        self.dialog.set_title(text)
         
     def set_header(self,text):
         self.header.set_text(text)
+        self.set_action("")
         
     def set_action(self,text):
         self.label.set_text(text)
