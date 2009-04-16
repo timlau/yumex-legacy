@@ -58,15 +58,16 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def yum_logger(self,msg):
         """ yum logger message """
-        self.frontend.info("YUM: "+ msg)
+        if len(msg.strip())> 0:
+            self.frontend.info("YUM: "+ msg)
 
     def yum_rpm_progress(self,action, package, frac, ts_current, ts_total):   
         """ yum rpm action progress handler """
         progress = self.frontend.get_progress()
         progress.set_action("%s %s" % (action,package))
         progress.set_fraction(frac,"%3i %%" % int(frac*100))
-        msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
-        self.frontend.debug("YUM-RPM-PROGRESS: %s" % msg)
+        #msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
+        #self.frontend.debug("YUM-RPM: %s" % msg)
 
     def yum_dnl_progress(self,ftype,name,percent):
         """ yum download progress handler """
@@ -92,7 +93,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
                 self.frontend.debug(msg)
                 progress.set_action(msg)
         else:
-            self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
+            #self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
             progress.set_action(name)
             progress.set_fraction(float(percent)/100.0,"%3i %%" % percent)
             

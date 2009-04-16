@@ -104,7 +104,7 @@ class YumexFrontend(YumexFrontendBase):
         pass
 
     def timeout(self,count):
-        if not self.backend.dont_abort and (count % 600 == 0):
+        if (count > 0 and count % 600 == 0):
             self.warning('Something is rotten command has been running for %i min' % int(count/600))
         self.refresh()
         
@@ -168,12 +168,12 @@ class YumexHandlers(Controller):
         progress = self.get_progress()
         progress.set_pulse(True)
         progress.show()
-        progress.set_header("Getting Package Lists")
-        progress.set_action("Getting Updated Packages")
+        progress.set_title(_("Getting Package Lists"))
+        progress.set_header("Getting Updated Packages")
         pkgs = self.package_cache.get_packages(FILTER.updates)
-        progress.set_action("Getting Available Packages")
+        progress.set_header("Getting Available Packages")
         pkgs = self.package_cache.get_packages(FILTER.available)
-        progress.set_action("Getting installed Packages")
+        progress.set_header("Getting installed Packages")
         pkgs = self.package_cache.get_packages(FILTER.installed)
         progress.set_pulse(False)
         progress.hide()

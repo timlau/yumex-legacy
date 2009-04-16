@@ -43,7 +43,7 @@ from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
 from yum.constants import *
 
-logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
+#logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
 # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
 
@@ -264,6 +264,8 @@ class YumClient:
                     else:
                         self.waiting = False
                         return cmd,args
+                else:
+                    self.yum_logger(line.strip('\n'))
             except pexpect.TIMEOUT,e:
                 self._timeout()
                 continue
@@ -491,15 +493,8 @@ class YumServer(yum.YumBase):
     def __init__(self,debuglevel=2,plugins=True):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
-        plainformatter = logging.Formatter("%(message)s")    
-        self.handler = YumLogHandler(self)
-        self.handler.setFormatter(plainformatter)
-        self.yum_verbose = logging.getLogger("yum.verbose")
-        self.yum_verbose.propagate = False
-        self.yum_verbose.addHandler(self.handler)
-        self.yum_verbose.setLevel(logginglevels.DEBUG_3)
-        
         self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ),init_plugins=plugins)
+        logginglevels.setLoggingApp('yumex')
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
         self.repos.setProgressBar(self.dnlCallback)
