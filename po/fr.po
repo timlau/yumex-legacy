@@ -5,17 +5,20 @@
 #
 # florian <le.pingouin.volant@gmail.com>, 2005.
 # Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>, 2008.
+# Charles-Antoine Couret <cacouret@wanadoo.fr>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-10-10 22:42+0200\n"
-"Last-Translator: Pablo Martin-Gomez <pablo.martin-gomez@laposte.net>\n"
+"PO-Revision-Date: 2009-04-15 23:07+0200\n"
+"Last-Translator: Charles-Antoine Couret <cacouret@wanadoo.fr>\n"
 "Language-Team: French <fedora-trans-fr@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.3\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -424,10 +427,9 @@ msgstr "Chargement de métadonnées à jour de %s"
 msgid "No update Metadata found for %s "
 msgstr "Aucune métadonnée à jour trouvée pour %s"
 
-#: ../src/yumapi.py:166
-#, fuzzy, python-format
+#: ../src/yumapi.py:166, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Chargement de métadonnées à jour de %s"
+msgstr "Erreur lors du chargement des métadonnées de mise à jour depuis %s"
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -974,3 +976,5 @@ msgstr "Extensions _Yum :"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
+
+
