@@ -1,16 +1,17 @@
 # German translation of yumex.
 # Copyright (C) 2005 Yumex Team
 # This file is distributed under the same license as the yumex package.
+#
 # komi <komi@gmx.at>, 2005.
-# Fabian Affolter <fab@fedoraproject.org>, 2008.
+# Fabian Affolter <fab@fedoraproject.org>, 2008-2009.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 01:27+0000\n"
-"PO-Revision-Date: 2009-02-05 11:21+0100\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
+"PO-Revision-Date: 2009-04-18 00:47+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: German <fedora-trans-de@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -146,19 +147,19 @@ msgid ""
 "Updating : %s\n"
 "\n"
 msgstr ""
-"Aktualisiere: %s\n"
+"Aktualisieren: %s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
 "\n"
 msgstr ""
-"Obsoleting: %s\n"
+"Veraltet: %s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -166,46 +167,46 @@ msgstr ""
 "Benötigt:\n"
 "\n"
 
-#: ../src/gui.py:103
-#: ../src/gui.py:113
+#: ../src/gui.py:99
+#: ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
-msgstr "Kann %s Attribut nicht lesen"
+msgstr "Kann %s-Attribut nicht lesen"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
 msgstr "Zeige alle Pakete"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
 msgstr "Zeige alle Paket-Aktualisierungen"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
 msgstr "Zeige verfügbare Pakete"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
 msgstr "Zeige installierte Pakete"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
 msgstr "Paket-Ansicht"
 
-#: ../src/gui.py:384
+#: ../src/gui.py:380
 msgid "Group View"
 msgstr "Gruppen-Ansicht"
 
-#: ../src/gui.py:385
+#: ../src/gui.py:381
 msgid "Package Queue View"
 msgstr "Paket-Warteschlangen-Ansicht"
 
-#: ../src/gui.py:387
+#: ../src/gui.py:383
 msgid "Repository Selection View"
 msgstr "Repository-Auswahl-Ansicht"
 
-#: ../src/gui.py:388
+#: ../src/gui.py:384
 msgid "Output View"
 msgstr "Ausgabe-Ansicht"
 
@@ -227,7 +228,7 @@ msgstr "Architektur"
 
 #: ../src/misc.py:97
 msgid "Sizes"
-msgstr "Grössen"
+msgstr "Größen"
 
 #: ../src/misc.py:98
 msgid "Age"
@@ -354,7 +355,7 @@ msgstr "Repo."
 
 #: ../src/views.py:96
 msgid "Size."
-msgstr "Grösse."
+msgstr "Größe."
 
 #: ../src/views.py:213
 msgid "Packages"
@@ -468,7 +469,7 @@ msgstr "--> Vorbereitung einer teilweisen Aktualisierung"
 
 #: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
-msgstr "--> Füge allte veralteten zur Verarbeitung hinzu"
+msgstr "--> Füge alte veralteten zur Verarbeitung hinzu"
 
 #: ../src/yumapi.py:230
 #: ../src/yumgui/callbacks.py:62
