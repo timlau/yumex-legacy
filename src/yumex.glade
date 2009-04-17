@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Apr 17 08:27:47 2009 -->
+<!--Generated with glade3 3.4.5 on Fri Apr 17 13:06:13 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="main">
     <property name="width_request">1000</property>
@@ -411,9 +411,15 @@ words.
                           <widget class="GtkTextView" id="packageInfo">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="editable">False</property>
+                            <property name="left_margin">5</property>
+                            <property name="cursor_visible">False</property>
                           </widget>
                         </child>
                       </widget>
+                      <packing>
+                        <property name="padding">5</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkVBox" id="packageInfoSelector">

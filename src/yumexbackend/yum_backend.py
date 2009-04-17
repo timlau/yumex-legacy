@@ -25,7 +25,7 @@ from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_clientserver import YumClient
 from yumexbase.i18n import _, P_
-
+from yumexgui.dialogs import okDialog
 
                
 class YumexBackendYum(YumexBackendBase,YumClient):
@@ -167,7 +167,6 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         get repositories 
         @return: a list of repositories
         '''
-        self.frontend.debug('Getting repository information')
         repos = YumClient.get_repos(self)
         return repos
 
@@ -324,7 +323,7 @@ class YumexTransactionYum(YumexTransactionBase):
         Process the packages and groups in the queue
         '''
         progress = self.frontend.get_progress()
-        progress.set_header("Resolving Dependencies")
+        progress.set_header(_("Resolving Dependencies"))
         rc,msgs,trans = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Depsolve completed without error')
@@ -336,7 +335,19 @@ class YumexTransactionYum(YumexTransactionBase):
             else:
                 return False
         else:
-            self.error('Depsolve completed with error')
+            title =  _("Dependency Resolution Failed")
+            text = _("Dependency Resolution Failed")
+            longtext = _("Dependency Resolution Errors:")
+            longtext += '\n\n'            
+            for msg in msgs:
+                self.frontend.error(msg)
+                longtext += msg            
+            # Show error dialog    
+            dialog = ErrorDialog(self.frontend.ui,self.frontend.window, title, text, longtext, modal=True)
+            dialog.run()
+            dialog.destroy()
+            # Write errors to output page
+            self.error(_('Depsolve completed with error'))
             for msg in msgs:
                 self.frontend.error(msg)
             return False

@@ -43,6 +43,8 @@ from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
 from yum.constants import *
 
+from yum.i18n import _ as yum_translated 
+
 #logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
 # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
@@ -151,7 +153,7 @@ class YumClient:
     def fatal(self,args):
         """ fatal backend error """
         err = args[0]
-        msg = args[1]
+        msg = unpack(args[1])
         raise YumexBackendFatalError(err,msg)
 
     def _timeout(self):
@@ -520,15 +522,46 @@ class YumServer(yum.YumBase):
 
     def doLock(self):
         cnt = 0
-        while cnt < 5:
+        nmsg = ""
+        while cnt < 6:
             try:
                 yum.YumBase.doLock(self)
                 return True
             except Errors.LockError, e:
-                self.error(e.msg)
+                self.warning(_("Yum is locked : ") + e.msg)
+                if hasattr(e,'pid'):
+                    ps = self.get_process_info(e.pid)
+                    if ps:
+                        if ps['name'] == 'yumBackend.py':
+                            nmsg = _("  The other application is: PackageKit")
+                        else:
+                            nmsg = _("  The other application is: %s") % ps['name']
+                        self.warning(nmsg)
+                self.warning(_("Waiting 10 seconds and tries again !!!"))
                 cnt += 1
-                time.sleep(2)
-        self.fatal("lock-error", e.msg )        
+                time.sleep(10)
+        msg = e.msg + "\n" + nmsg
+        self.fatal("lock-error", msg )        
+
+    def get_process_info(self,pid):
+        if not pid:
+            return None
+
+        # Maybe true if /proc isn't mounted, or not Linux ... or something.
+        if (not os.path.exists("/proc/%d/status" % pid) or
+            not os.path.exists("/proc/stat") or
+            not os.path.exists("/proc/%d/stat" % pid)):
+            return None
+
+        ps = {}
+        for line in open("/proc/%d/status" % pid):
+            if line[-1] != '\n':
+                continue
+            data = line[:-1].split(':\t', 1)
+            if data[1].endswith(' kB'):
+                data[1] = data[1][:-3]
+            ps[data[0].strip().lower()] = data[1].strip()
+        return ps
                 
     def quit(self):
         self.debug("Closing rpm db and releasing yum lock  ")
@@ -588,6 +621,7 @@ class YumServer(yum.YumBase):
 
     def fatal(self,err,msg):
         ''' write an fatal message '''
+        msg = pack(msg)
         self.write(":fatal\t%s\t%s" % (err,msg))
         sys.exit(1)
 
@@ -706,15 +740,20 @@ class YumServer(yum.YumBase):
         self.write(':end')
         
     def _get_transaction_list( self ):
+        ''' 
+        Generate a list of the current transaction to show in at TreeView
+        based on YumOutput.listTransaction.
+        used yum translation wrappers, so we can reuse the allready translated strings
+        '''
         list = []
         sublist = []
         self.tsInfo.makelists()        
-        for ( action, pkglist ) in [( _( 'Installing' ), self.tsInfo.installed ), 
-                            ( _( 'Updating' ), self.tsInfo.updated ), 
-                            ( _( 'Removing' ), self.tsInfo.removed ), 
-                            ( _( 'Installing for dependencies' ), self.tsInfo.depinstalled ), 
-                            ( _( 'Updating for dependencies' ), self.tsInfo.depupdated ), 
-                            ( _( 'Removing for dependencies' ), self.tsInfo.depremoved )]:
+        for ( action, pkglist ) in [( yum.i18n._( 'Installing' ), self.tsInfo.installed ), 
+                            ( yum_translated( 'Updating' ), self.tsInfo.updated ), 
+                            ( yum_translated( 'Removing' ), self.tsInfo.removed ), 
+                            ( yum_translated( 'Installing for dependencies' ), self.tsInfo.depinstalled ), 
+                            ( yum_translated( 'Updating for dependencies' ), self.tsInfo.depupdated ), 
+                            ( yum_translated( 'Removing for dependencies' ), self.tsInfo.depremoved )]:
             for txmbr in pkglist:
                 ( n, a, e, v, r ) = txmbr.pkgtup
                 evr = txmbr.po.printVer()
@@ -724,14 +763,30 @@ class YumServer(yum.YumBase):
                 alist=[]
                 for ( obspo, relationship ) in txmbr.relatedto:
                     if relationship == 'obsoletes':
-                        appended = 'replacing  %s.%s %s' % ( obspo.name, 
-                            obspo.arch, obspo.printVer() )
+                        appended = yum_translated('     replacing  %s%s%s.%s %s\n\n')
+                        appended %= ("", obspo.name, "",
+                                     obspo.arch, obspo.printVer())
                         alist.append( appended )
                 el = ( n, a, evr, repoid, size, alist )
                 sublist.append( el )
             if pkglist:
                 list.append( [action, sublist] )
                 sublist = []
+        for (action, pkglist) in [(yum_translated('Skipped (dependency problems)'),
+                                   self.skipped_packages),]:
+            lines = []
+            for po in pkglist:
+                ( n, a, e, v, r ) = po.pkgtup
+                evr = po.printVer()
+                repoid = po.repoid
+                pkgsize = float( po.size )
+                size = format_number( pkgsize )
+                el = ( n, a, evr, repoid, size, alist )
+                sublist.append( el )
+            if pkglist:
+                list.append( [action, sublist] )
+                sublist = []
+                
         return list        
         
                     

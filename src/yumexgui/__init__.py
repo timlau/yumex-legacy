@@ -29,7 +29,7 @@ from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
-from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog
+from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
 from yumexbase.i18n import _, P_
@@ -106,7 +106,7 @@ class YumexFrontend(YumexFrontendBase):
 
     def timeout(self,count):
         if (count > 0 and count % 600 == 0):
-            self.warning('Something is rotten command has been running for %i min' % int(count/600))
+            self.debug('Current backend action has been running for %i min' % int(count/600))
         self.refresh()
         
     def refresh(self):     
@@ -169,10 +169,10 @@ class YumexHandlers(Controller):
         self.backend.setup()
         progress = self.get_progress()
         progress.set_pulse(True)
-        progress.show()
         self.debug("Getting package lists - BEGIN")
         progress.set_title(_("Getting Package Lists"))
         progress.set_header("Getting Updated Packages")
+        progress.show()
         pkgs = self.package_cache.get_packages(FILTER.updates)
         progress.set_header("Getting Available Packages")
         pkgs = self.package_cache.get_packages(FILTER.available)
@@ -284,7 +284,7 @@ class YumexHandlers(Controller):
         self.debug("Ended pending actions processing")
         
     def on_progressCancel_clicked(self, widget=None, event=None ):
-        self.debug("Progress Cancel : "+event)
+        self.debug("Progress Cancel pressed")
                 
 
 class YumexApplication(YumexHandlers, YumexFrontend):
@@ -347,25 +347,24 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         try:
             progress = self.get_progress()
             progress.set_pulse(True)        
-            progress.show()        
             progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
+            progress.show()        
             queue = self.queue.queue
             for action in ('install','update','remove'):
                 pkgs = queue.get(action[0])
                 for po in pkgs:
                     self.backend.transaction.add(po,action)
-            tpkgs = self.backend.transaction.get_transaction_packages()
-            for pkg in tpkgs:
-                if pkg.action:
-                    self.info("   Package: %s Action: %s" % (pkg,pkg.action))
             if self.backend.transaction.process_transaction():
                 self.debug("Transaction Completed OK")
+                progress.hide()        
+                progress.set_pulse(False)        
+                okDialog(self.window,_("Transaction completed successfully"))
                 self.reload()
             else:
                 self.debug("Transaction Failed")
-            progress.hide()        
-            progress.set_pulse(False)        
+                progress.hide()        
+                progress.set_pulse(False)        
         except YumexBackendFatalError,e:
             self.handle_error(e.err, e.msg)
 
@@ -380,63 +379,3 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.ui.packageFilterBox.show()         # Show the filter selector
         self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
                 
-    def run_test(self):
-        def show(elems,desc=False):
-            if elems:
-                i = 0
-                for el in elems:
-                    i += 1
-                    self.info("  %s" % str(el))
-                    if desc:
-                        self.info(el.description)
-                    if i == 20:
-                        break
-        # get_packages
-        self.progress.show()
-        self.progress.set_header("Testing Yum Backend")
-        self.progress.set_label("Getting Updated Packages")
-        pkgs = self.backend.get_packages(FILTER.updates)
-        #show(pkgs,True)
-        self.progress.set_label("Getting Available Packages")
-        pkgs = self.backend.get_packages(FILTER.available)
-        #show(pkgs)
-        for po in pkgs:
-            if po.name == 'kdegames':
-                break
-        self.progress.set_label("Showing Filelist")
-        self.info("Package : %s\n" % str(po))
-        self.info("\nFiles:")
-        i = 0
-        for f in po.filelist:
-            i += 1
-            self.info("  %s" % f.strip('\n'))
-            if i == 20: break
-        num = 0    
-        self.progress.set_label("Showing Changelog")
-        self.info("\nChangelog")
-        for (d,a,msg) in po.changelog:
-            num += 1
-            self.info(" %s %s" % (date.fromtimestamp(d).isoformat(),a))
-            for line in msg.split('\n'):
-                self.info("  %s" % line)
-            if num == 3: break
-        print    
-        # Add to transaction for install
-        self.backend.transaction.add(po,'install')
-        tpkgs = self.backend.transaction.get_transaction_packages()
-        show(tpkgs)
-        # get_groups
-        grps = self.backend.get_groups()
-        show(grps)
-        self.progress.set_label("Getting Repository information")
-        # get_repositories
-        repos = self.backend.get_repositories()
-        for repo in repos:
-            id,name,enabled,gpgckeck = repo
-            self.info("%-50s : %s" % (id,enabled))
-        # enable_repository
-        repo = self.backend.enable_repository('updates',False)
-        id,name,enabled,gpgckeck = repo
-        self.info("%-50s : %s" % (id,enabled))        
-        self.progress.hide()
-        

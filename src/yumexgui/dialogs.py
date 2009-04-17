@@ -69,11 +69,12 @@ class Progress(YumexProgressBase):
             self.progressbar.set_text(text)
             
     def pulse(self):
+        self.progressbar.set_text(_("Waiting"))
         self.progressbar.pulse()
         
     def reset(self):
         self.progressbar.set_fraction(0.0)
-        self.progressbar.set_text("Working ...")
+        self.progressbar.set_text("")
             
 class TransactionConfirmation:
     
@@ -176,4 +177,11 @@ class ErrorDialog:
     def destroy( self ):
         self.dialog.hide()
 
+def okDialog(parent, msg):
+    dlg = gtk.MessageDialog(parent=parent,
+                            type=gtk.MESSAGE_INFO,
+                            buttons=gtk.BUTTONS_OK)
+    dlg.set_markup(msg)
+    rc = dlg.run()
+    dlg.destroy()
             
