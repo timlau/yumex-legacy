@@ -12,8 +12,8 @@ NLSPACKAGE = yumex
 CATALOGS = $(shell ls *.po)
 FMTCATALOGS = $(patsubst %.po,%.mo,$(CATALOGS))
 
-PYFILES  = $(wildcard ../src/*.py) $(wildcard ../src/yumex/*.py) $(wildcard ../src/yumgui/*.py)
-GLADEFILES = $(wildcard ../src/*.glade)
+PYFILES  = $(wildcard ../src/*.py) $(wildcard ../src/yumex*/*.py) 
+GLADEFILES = $(wildcard ../src/*.xml)
 POTFILES  = $(PYFILES) $(GLADEFILES)
 
 all: $(NLSPACKAGE).pot $(FMTCATALOGS)
