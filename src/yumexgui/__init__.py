@@ -89,8 +89,9 @@ class YumexFrontend(YumexFrontendBase):
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
-        print "DEBUG:",msg
-        self.logger.debug('DEBUG: %s' % msg)
+        if self.cmd_options.debug:
+            print "DEBUG:",msg
+            self.logger.debug('DEBUG: %s' % msg)
         self.refresh()
 
     def exception(self, msg):
@@ -292,13 +293,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     """
     
     def __init__(self,backend):
+        self.progress = None
         self.logger = logging.getLogger(YUMEX_LOG)
         self.debug_options = []        
         (self.cmd_options, self.cmd_args) = self.setupOptions()
         self.backend = backend(self)
         YumexHandlers.__init__(self)
         progress = Progress(self.ui,self.window)
-        self.setup_backend()
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
 
@@ -313,10 +314,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                         help="Disable yum plugins" )
         return parser.parse_args()
     
-    def setup_backend(self):
-        #TODO: Add some reel backend setup code
-        self.progress = None
-        
     def run(self):
         # setup
         try:

@@ -138,11 +138,16 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def setup(self):
         ''' Setup the backend'''
+        if self.child: # Check if backend is already running
+            return
+        plugins = self.frontend.cmd_options.plugins
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
-            filelog = True          
-        return YumClient.setup(self,filelog=filelog)
-            
+            filelog = True      
+        self.debug('Initialize yum backend - BEGIN')    
+        rc = YumClient.setup(self,plugins=plugins,filelog=filelog)
+        self.debug('Initialize yum backend - END')    
+        return rc    
         
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
