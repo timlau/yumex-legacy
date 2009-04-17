@@ -54,6 +54,7 @@ rpm-fc6:
 
 rpm-fc7: 
 	rpmbuild -ba -D "dist .fc7" yumex.spec	
+	
 
 # needs perl-TimeDate for git2cl
 changelog:

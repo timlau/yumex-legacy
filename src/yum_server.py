@@ -19,9 +19,6 @@
 #    Tim Lauridsen <timlau@fedoraproject.org>
 
 import sys
-import codecs
-import locale
-import os
 import signal
 from yumexbackend.yum_clientserver import YumServer
 import yum.misc
