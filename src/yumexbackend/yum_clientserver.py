@@ -426,6 +426,7 @@ class YumClient:
 
     def run_transaction(self):        
         self._send_command('run-transaction',[])
+        lst = self._get_list()
 
     def get_groups(self):
         self._send_command('get-groups',[])
@@ -795,6 +796,7 @@ class YumServer(yum.YumBase):
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
             self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
+            self.write(":end")
         except:
             self.error("Exception in run_transaction")
             
