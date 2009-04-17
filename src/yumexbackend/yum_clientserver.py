@@ -84,6 +84,9 @@ class YumPackage:
     def get_attribute(self,attr):
         return self.base.get_attribute(self.id,attr)
     
+    def get_changelog(self,num):
+        return self.base.get_changelog(self.id,num)
+    
 class YumClient:
     """ Client part of a the yum client/server """
 
@@ -94,39 +97,38 @@ class YumClient:
         self._timeout_count = 0
         self.sending = False
         self.waiting = False
-        pass
 
     def error(self,msg):
-        """ error message """
-        print "Error:", msg
+        """ error message (overload in child class)"""
+        raise NotImplementedError()
 
     def warning(self,msg):
-        """ warning message """
-        print "Warning:", msg
+        """ warning message (overload in child class)"""
+        raise NotImplementedError()
 
     def info(self,msg):
-        """ info message """
-        print "Info:", msg
+        """ info message (overload in child class)"""
+        raise NotImplementedError()
     
     def debug(self,msg):
-        """ debug message """
-        print "Debug:", msg
+        """ debug message (overload in child class)"""
+        raise NotImplementedError()
 
     def action(self,msg):
-        """ action message """
-        print "Action:", msg
+        """ action message (overload in child class)"""
+        raise NotImplementedError()
 
     def exception(self,msg):
-        """ debug message """
-        print "Exception:", msg
+        """ debug message (overload in child class)"""
+        raise NotImplementedError()
 
     def yum_logger(self,msg):
-        """ yum logger message """
-        print "YUM:", msg
+        """ yum logger message (overload in child class)"""
+        raise NotImplementedError()
 
     def yum_state(self,state):
-        """ yum state message handler """
-        self.debug("YUM-STATE: %s" % state)
+        """ yum state message handler (overload in child class)"""
+        raise NotImplementedError()
 
     def _yum_rpm(self,value):
         """ yum rpm action progress message """
@@ -135,8 +137,7 @@ class YumClient:
 
     def yum_rpm_progress(self, action, package, percent, ts_current, ts_total):   
         """ yum rpm action progress handler (overload in child class)"""
-        msg = '%s: %s %s %% [%s/%s]' % (action, package, percent, ts_current, ts_total) 
-        self.debug("YUM-RPM-PROGRESS: %s" % msg)
+        raise NotImplementedError()
 
     def _yum_dnl(self,value):
         """ yum download action progress message """
@@ -145,7 +146,7 @@ class YumClient:
 
     def yum_dnl_progress(self,ftype,name,percent):
         """ yum download progress handler (overload in child class) """   
-        self.debug("YUM-DNL:%s : %s - %3i %%" % (ftype,name,percent))
+        raise NotImplementedError()
 
     def fatal(self,args):
         """ fatal backend error """
@@ -171,18 +172,20 @@ class YumClient:
 
     def timeout(self,count):
         """ 
-        timeout function call every time an timeout occours
+        timeout child handler, called from the main timeout handler
         An timeout occaurs if the server takes more then timeout
         periode to respond to the current action.
-        the default timeout is .5 sec.
+        the default timeout is .1 sec.
         """
-        print "TIMEOUT"
+        raise NotImplementedError()
 
-    def setup(self,debuglevel=2,plugins=True):
+    def setup(self,debuglevel=2,plugins=True,filelog=False):
         ''' Setup the client and spawn the server'''
         if not self.child:
             self.child = pexpect.spawn('./yum_server.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
             self.child.setecho(False)
+            if filelog:
+                self.child.logfile_read = sys.stdout
             return self._wait_for_started()
 
         else:
@@ -384,6 +387,15 @@ class YumClient:
     def get_attribute(self,id,attr):    
         ''' get an attribute of an package '''
         self._send_command('get-attribute',[id,attr])
+        args = self._get_result(':attr')
+        if args:
+            return unpack(args[0])
+        else:
+            return None
+
+    def get_changelog(self,id,num):    
+        ''' get an attribute of an package '''
+        self._send_command('get-changelog',[id,str(num)])
         args = self._get_result(':attr')
         if args:
             return unpack(args[0])
@@ -618,7 +630,11 @@ class YumServer(yum.YumBase):
         if id == 'installed':
             pkgs = self.rpmdb.searchNevra(n,e,v,r,a)
         else:
-            pkgs = self.pkgSack.searchNevra(n,e,v,r,a)
+            repo = self.repos.getRepo(id) # Used the repo sack, it will be faster
+            if repo:
+                pkgs = repo.sack.searchNevra(n,e,v,r,a)
+            else: # fallback to the use the pkgSack, just in case
+                pkgs = self.pkgSack.searchNevra(n,e,v,r,a)
         if pkgs:
             return pkgs[0]
         else:
@@ -629,11 +645,29 @@ class YumServer(yum.YumBase):
         pkgstr = args[:-1]
         attr = args[-1]
         po = self._getPackage(pkgstr)
-        self.debug("Getting attribute : %s from %s " % ( attr,str(po)))
         res = pack(None)
         if po:
             res = getattr(po, attr)
-            self.debug("Attribute : %s : len = %i " % ( attr,len(res)))
+            res = pack(res)
+        self.write(':attr\t%s' % res)
+
+    def get_changelog(self,args):
+        ''' get a given number of changelog lines '''
+        pkgstr = args[:-1]
+        num = int(args[-1])
+        po = self._getPackage(pkgstr)
+        res = []
+        if po:
+            clog = getattr(po, 'changelog')
+            if num != 0:
+                i = 0
+                for (d,a,msg) in po.changelog:
+                    i += 1
+                    elem = (d,a,msg)
+                    res.append(elem)
+                    if i == num: break
+            else:
+                res = clog    
             res = pack(res)
         self.write(':attr\t%s' % res)
         
@@ -770,6 +804,8 @@ class YumServer(yum.YumBase):
             self.get_packages(args)
         elif cmd == 'get-attribute':
             self.get_attribute(args)
+        elif cmd == 'get-changelog':
+            self.get_changelog(args)
         elif cmd == 'add-transaction':
             self.add_transaction(args)
         elif cmd == 'remove-transaction':
@@ -864,8 +900,7 @@ class YumexRPMCallback(RPMBaseCallback):
     def scriptout(self, package, msgs):
         # Handle rpm scriptlet messages
         if msgs:
-            for msg in msgs:
-                self.base.debug('RPM : %s' % msg)
+            self.base.debug('RPM Scriptlet: %s' % msgs)
 
 class YumexDownloadCallback(DownloadBaseCallback):
     """ Download callback handler """

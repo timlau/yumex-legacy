@@ -16,11 +16,11 @@ class YumexBackendBase(object):
 
     def setup(self):
         ''' Setup the backend'''
-        pass
+        raise NotImplementedError()
 
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
-        pass
+        raise NotImplementedError()
 
     def get_packages(self, pkg_filter):
         ''' 
@@ -28,14 +28,14 @@ class YumexBackendBase(object):
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        pass
+        raise NotImplementedError()
 
     def get_repositories(self):
         ''' 
         get repositories 
         @return: a list of repositories
         '''
-        pass
+        raise NotImplementedError()
 
     def enable_repository(self, repoid, enabled=True):
         ''' 
@@ -43,14 +43,14 @@ class YumexBackendBase(object):
         @param repoid: repo id to change
         @param enabled: repo enable state
         '''
-        pass
+        raise NotImplementedError()
 
     def get_groups(self):
         ''' 
         get groups 
         @return: a list of groups
         '''
-        pass
+        raise NotImplementedError()
 
     def get_group_packages(self, group, grp_filter):
         ''' 
@@ -58,7 +58,7 @@ class YumexBackendBase(object):
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
-        pass
+        raise NotImplementedError()
 
     def search(self, keys, sch_filters):
         ''' 
@@ -66,7 +66,7 @@ class YumexBackendBase(object):
         @param keys: list of keys to seach for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
-        pass
+        raise NotImplementedError()
 
 class YumexPackageBase:
     '''
@@ -80,58 +80,55 @@ class YumexPackageBase:
 
     @property
     def name(self):
-        ''' Package name '''
-        pass
+        return self._pkg.name
 
     @property
     def version(self):
-        ''' Package version '''
-        pass
+        return self._pkg.ver
 
     @property
     def release(self):
-        ''' Package release '''
-        pass
+        return self._pkg.rel
+
+    @property
+    def epoch(self):
+        return self._pkg.epoch
 
     @property
     def arch(self):
-        ''' Package architecture '''
-        pass
+        return self._pkg.arch
 
     @property
     def repoid(self):
-        ''' Package repoid '''
-        pass
+        return self._pkg.repoid
 
     @property
     def action(self):
-        ''' Package tsInfo State '''
-        pass
+        return self._pkg.action
 
     @property
     def summary(self):
-        ''' Package summary '''
-        pass
+        return self._pkg.summary
 
     @property
     def description(self):
         ''' Package description '''
-        pass
+        raise NotImplementedError()
 
     @property
     def changelog(self):
         ''' Package changelog '''
-        pass
+        raise NotImplementedError()
 
     @property
     def filelist(self):
         ''' Package filelist '''        
-        pass
+        raise NotImplementedError()
 
-    @property
+    @property        
     def id(self):
-        ''' Package id (the full packagename) '''        
-        return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
+        ''' Return the package id '''        
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid)
 
     @property
     def filename(self):

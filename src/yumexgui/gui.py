@@ -183,10 +183,11 @@ class SelectorBase:
             self._selected = key
 
 class PackageInfo(SelectorBase):
-    def __init__(self,main,console,selector):
+    def __init__(self,main,console,selector,frontend):
         SelectorBase.__init__(self, selector)
         self.console = PackageInfoTextView(console)
         self.main_window = main
+        self.frontend = frontend
         self.add_button('description', stock='gtk-about', tooltip='Package Description')
         self.add_button('changelog', stock='gtk-edit', tooltip='Package Changelog')
         self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
@@ -223,18 +224,20 @@ class PackageInfo(SelectorBase):
         self.console.write(self.pkg.description)
         
     def show_changelog(self):
-        num = 0
-        for (d,a,msg) in self.pkg.changelog:
-            num += 1
+        changelog = self.pkg.changelog
+        progress = self.frontend.get_progress()
+        progress.hide()        
+        for (d,a,msg) in changelog:
             self.console.write("* %s %s" % (date.fromtimestamp(d).isoformat(),a),"changelog-header")
             for line in msg.split('\n'):
                 self.console.write("%s" % line,"changelog")
             self.console.write('\n')              
-            if num == 3: break
 
     def show_filelist(self):
         i = 0
         files = self.pkg.filelist
+        progress = self.frontend.get_progress()
+        progress.hide()        
         files.sort()
         for f in files:
             self.console.write(f,"filelist")

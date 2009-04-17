@@ -19,6 +19,8 @@
 
 # Imports
 
+import os
+
 from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_clientserver import YumClient
@@ -72,8 +74,17 @@ class YumexBackendYum(YumexBackendBase,YumClient):
     def yum_dnl_progress(self,ftype,name,percent):
         """ yum download progress handler """
         progress = self.frontend.get_progress()
-        if ftype == "REPO":
-            if percent > 0: # only write at 0%
+        if not progress.is_active(): # if the progress is hidden, then show it at set the labels.
+            progress.set_title(_('Getting Package Information'))
+            progress.set_header(_('Getting Package Information'))
+            progress.show()
+        if percent == 100:
+            progress.set_pulse(True)
+        else:
+            progress.set_pulse(False)
+        progress.set_fraction(float(percent)/100.0,"%3i %%" % percent)
+        if ftype == "REPO": # This is repo metadata being downloaded
+            if percent > 0: # only show update labels once.
                 return
             if '/' in name:
                 repo,mdtype = name.split('/')
@@ -92,10 +103,9 @@ class YumexBackendYum(YumexBackendBase,YumClient):
             else:            
                 self.frontend.debug(msg)
                 progress.set_action(msg)
-        else:
+        else: # this is a package being downloaded
             #self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
             progress.set_action(name)
-            progress.set_fraction(float(percent)/100.0,"%3i %%" % percent)
             
 
     def yum_state(self,state):
@@ -128,7 +138,10 @@ class YumexBackendYum(YumexBackendBase,YumClient):
 
     def setup(self):
         ''' Setup the backend'''
-        return YumClient.setup(self,plugins=False)
+        filelog = False
+        if 'show_backend' in self.frontend.debug_options:
+            filelog = True          
+        return YumClient.setup(self,filelog=filelog)
             
         
     def reset(self):
@@ -141,7 +154,6 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        self.frontend.debug('Get %s packages' % pkg_filter)
         pkgs = YumClient.get_packages(self,pkg_filter)
         return [YumexPackageYum(p) for p in pkgs]
 
@@ -215,46 +227,6 @@ class YumexPackageYum(YumexPackageBase):
         return str(self._pkg)
 
     @property
-    def name(self):
-        return self._pkg.name
-
-    @property
-    def version(self):
-        return self._pkg.ver
-
-    @property
-    def release(self):
-        return self._pkg.rel
-
-    @property
-    def epoch(self):
-        return self._pkg.epoch
-
-    @property
-    def arch(self):
-        return self._pkg.arch
-
-    @property
-    def action(self):
-        return self._pkg.action
-
-    @property
-    def color(self):
-        return 'black'
-
-    @property
-    def repoid(self):
-        return self._pkg.repoid
-
-    @property
-    def action(self):
-        return self._pkg.action
-
-    @property
-    def summary(self):
-        return self._pkg.summary
-
-    @property
     def size(self):
         return format_number(long(self._pkg.size))
 
@@ -264,7 +236,7 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def changelog(self):
-        return self._pkg.get_attribute('changelog')
+        return self._pkg.get_changelog(4)
 
     @property
     def filelist(self):
@@ -274,13 +246,9 @@ class YumexPackageYum(YumexPackageBase):
     def recent(self):
         return self._pkg.recent == '1'
 
-    @property        
-    def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid)
-
     @property
-    def filename(self):
-        return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
+    def color(self):
+        return 'black'
 
 class YumexTransactionYum(YumexTransactionBase):
     '''

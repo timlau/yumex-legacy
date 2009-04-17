@@ -27,8 +27,13 @@ if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy
     from yumexbackend.dummy_backend import YumexBackendDummy as backend 
 else:
     from yumexbackend.yum_backend import YumexBackendYum as backend 
-    
+
+debug = []
+if 'YUMEX_DBG' in os.environ:
+    debug = os.environ['YUMEX_DBG'].lower().split(',')
+    print debug
 app = YumexApplication(backend)
+app.debug_options = debug
 #app.run_test()
 app.run()
     

@@ -84,8 +84,9 @@ class TransactionConfirmation:
         self.parent = parent
         self.dialog.set_transient_for( parent )        
         self.view = self.ui.transactionView
+        self.view.modify_font(SMALL_FONT)        
         style = self.view.get_style()
-        self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
+        #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
         self.header = self.ui.transactionHeader
         self.header.modify_font(BIG_FONT)
         self.set_header(_("Transaction Result"))

@@ -74,11 +74,11 @@ BIG_FONT = pango.FontDescription("sans 12")
 
 REPO_INFO_MAP = {
     'repomd'        : _("Downloading repository information"),
-    'primary'       : _("Downloading Package information for %s"),
-    'filelists'     : _("Downloading Filelist information for %s"),
-    'other'         : _("Downloading Changelog information for %s"),
-    'comps'         : _("Downloading Group information for %s"),
-    'updateinfo'    : _("Downloading Update information for %s")
+    'primary'       : _("Downloading Package information for the %s repository"),
+    'filelists'     : _("Downloading Filelist information for the %s repository"),
+    'other'         : _("Downloading Changelog information for the %s repository"),
+    'comps'         : _("Downloading Group information for the %s repository"),
+    'updateinfo'    : _("Downloading Update information for the %s repository")
 }
 
 # interface base classes
@@ -145,47 +145,47 @@ class YumexFrontendBase:
 
     def set_state(self, state):
         ''' Set the current state of work'''
-        pass
+        raise NotImplementedError()
 
     def get_progress(self):
         ''' Get the current progress element '''
-        return self._progress
+        raise NotImplementedError()
 
-    def progress(self):
+    def set_progress(self):
         ''' The Progress is updated'''
-        pass
+        raise NotImplementedError()
 
     def confirm_transaction(self, transaction):
         ''' confirm the current transaction'''
-        pass
+        raise NotImplementedError()
 
     def error(self, msg):
         ''' write an error message '''
-        pass
+        raise NotImplementedError()
 
     def info(self, msg):
         ''' write an info message '''
-        pass
+        raise NotImplementedError()
 
     def debug(self, msg):
         ''' write an debug message '''
-        pass
+        raise NotImplementedError()
 
     def warning(self, msg):
         ''' write an warning message '''
-        pass
+        raise NotImplementedError()
 
     def exception(self, msg):
         ''' handle an expection '''
-        pass
+        raise NotImplementedError()
 
     def timeout(self, msg):
         ''' handle an timeout '''
-        pass
+        raise NotImplementedError()
 
     def reset(self):
         ''' reset the frontend '''
-        pass
+        raise NotImplementedError()
 
 class YumexBaseError(Exception):
     """

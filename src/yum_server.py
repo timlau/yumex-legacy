@@ -24,6 +24,7 @@ import locale
 import os
 import signal
 from yumexbackend.yum_clientserver import YumServer
+import yum.misc
 
 my = None
 def sigquit(signum, frame):
@@ -34,8 +35,7 @@ def sigquit(signum, frame):
 
 if __name__ == "__main__":
     signal.signal(signal.SIGQUIT, sigquit)
-    sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
-    sys.stdout.errors = 'replace'
+    yum.misc.setup_locale() # setup the locales
     debuglevel = 2
     if len(sys.argv) > 2:
         debuglevel =  int(sys.argv[1])

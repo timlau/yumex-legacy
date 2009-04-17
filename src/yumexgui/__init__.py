@@ -62,7 +62,7 @@ class YumexFrontend(YumexFrontendBase):
 
     def confirm_transaction(self, transaction):
         ''' confirm the current transaction'''
-        dialog = TransactionConfirmation(self.ui,self.window)
+        dialog = self.TransactionConfirm
         dialog.populate(transaction)
         ok = dialog.run()
         dialog.destroy()
@@ -139,8 +139,9 @@ class YumexHandlers(Controller):
         self.notebook.set_active("output")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
-        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector)
+        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector,self)
         self.repos = YumexRepoView(self.ui.repoView)
+        self.TransactionConfirm = TransactionConfirmation(self.ui,self.window)
         self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
         self.window.show()
         self.setup_filters()
@@ -168,6 +169,7 @@ class YumexHandlers(Controller):
         progress = self.get_progress()
         progress.set_pulse(True)
         progress.show()
+        self.debug("Getting package lists - BEGIN")
         progress.set_title(_("Getting Package Lists"))
         progress.set_header("Getting Updated Packages")
         pkgs = self.package_cache.get_packages(FILTER.updates)
@@ -175,6 +177,7 @@ class YumexHandlers(Controller):
         pkgs = self.package_cache.get_packages(FILTER.available)
         progress.set_header("Getting installed Packages")
         pkgs = self.package_cache.get_packages(FILTER.installed)
+        self.debug("Getting package lists - END")
         progress.set_pulse(False)
         progress.hide()
 
@@ -227,6 +230,7 @@ class YumexHandlers(Controller):
             pkg = model.get_value( iterator, 0 )
             if pkg:
                 self.packageInfo.update(pkg)
+                
 
     def on_packageClear_clicked(self, widget=None, event=None ):
         self.ui.packageSearch.set_text('')
@@ -289,12 +293,14 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     
     def __init__(self,backend):
         self.logger = logging.getLogger(YUMEX_LOG)
+        self.debug_options = []        
         (self.cmd_options, self.cmd_args) = self.setupOptions()
         self.backend = backend(self)
         YumexHandlers.__init__(self)
         progress = Progress(self.ui,self.window)
         self.setup_backend()
         YumexFrontend.__init__(self, self.backend, progress)
+        self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
 
 
     def setupOptions(self):
@@ -370,6 +376,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.queue.queue.clear()                # clear the pending action queue
         self.populate_package_cache()           # repopulate the package cache
         self.notebook.set_active("package")     # show the package page
+        self.ui.packageSearch.set_text('')      # Reset search entry
+        self.ui.packageFilterBox.show()         # Show the filter selector
         self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
                 
     def run_test(self):
