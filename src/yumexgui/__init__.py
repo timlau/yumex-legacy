@@ -344,27 +344,30 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     
         
     def process_queue(self):
-        progress = self.get_progress()
-        progress.set_pulse(True)        
-        progress.show()        
-        progress.set_title(_("Processing pending actions"))
-        progress.set_header(_("Preparing the transaction"))
-        queue = self.queue.queue
-        for action in ('install','update','remove'):
-            pkgs = queue.get(action[0])
-            for po in pkgs:
-                self.backend.transaction.add(po,action)
-        tpkgs = self.backend.transaction.get_transaction_packages()
-        for pkg in tpkgs:
-            if pkg.action:
-                self.info("   Package: %s Action: %s" % (pkg,pkg.action))
-        if self.backend.transaction.process_transaction():
-            self.debug("Transaction Completed OK")
-            self.reload()
-        else:
-            self.debug("Transaction Failed")
-        progress.hide()        
-        progress.set_pulse(False)        
+        try:
+            progress = self.get_progress()
+            progress.set_pulse(True)        
+            progress.show()        
+            progress.set_title(_("Processing pending actions"))
+            progress.set_header(_("Preparing the transaction"))
+            queue = self.queue.queue
+            for action in ('install','update','remove'):
+                pkgs = queue.get(action[0])
+                for po in pkgs:
+                    self.backend.transaction.add(po,action)
+            tpkgs = self.backend.transaction.get_transaction_packages()
+            for pkg in tpkgs:
+                if pkg.action:
+                    self.info("   Package: %s Action: %s" % (pkg,pkg.action))
+            if self.backend.transaction.process_transaction():
+                self.debug("Transaction Completed OK")
+                self.reload()
+            else:
+                self.debug("Transaction Failed")
+            progress.hide()        
+            progress.set_pulse(False)        
+        except YumexBackendFatalError,e:
+            self.handle_error(e.err, e.msg)
 
     def reload(self):
         ''' Reset current data and restart the backend '''

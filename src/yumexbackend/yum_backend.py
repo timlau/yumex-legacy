@@ -336,9 +336,9 @@ class YumexTransactionYum(YumexTransactionBase):
             else:
                 return False
         else:
-            self.debug('Depsolve completed with error')
+            self.error('Depsolve completed with error')
             for msg in msgs:
-                self.frontend.debug(msg)
+                self.frontend.error(msg)
             return False
         
     def get_transaction_packages(self):
