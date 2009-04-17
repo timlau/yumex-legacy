@@ -885,7 +885,9 @@ class YumexRPMCallback(RPMBaseCallback):
                     self._last_pkg = package
                     self._last_frac = 0.0
                 frac = float(te_current)/float(te_total)
-                if frac > self._last_frac + 0.005:
+                if frac > 0.994:
+                    frac = 1.0
+                if frac > self._last_frac + 0.005 or frac == 1.0:
                     #self.base.debug(str([self.action[action], str(package), frac, ts_current, ts_total]))
                     self.base.yum_rpm(self.action[action], str(package), frac, ts_current, ts_total)
                     self._last_frac = frac
@@ -893,14 +895,14 @@ class YumexRPMCallback(RPMBaseCallback):
                 self.base.yum_rpm(self.action[action], str(package), 1.0, ts_current, ts_total)
                 
         except:
-            self.base.debug('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
+            self.base.error('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
             etype = sys.exc_info()[0]
             self.base.debug(str(etype))
         
     def scriptout(self, package, msgs):
         # Handle rpm scriptlet messages
         if msgs:
-            self.base.debug('RPM Scriptlet: %s' % msgs)
+            self.base.yum_logger('RPM Scriptlet: %s' % msgs)
 
 class YumexDownloadCallback(DownloadBaseCallback):
     """ Download callback handler """
@@ -966,30 +968,6 @@ class YumexDownloadCallback(DownloadBaseCallback):
             self.download_package_number += 1
             self.current_name = None
 
-
-
-class YumLogHandler(logging.Handler):
-    ''' Python logging handler for writing in a TextViewConsole'''
-    def __init__(self, base):
-        logging.Handler.__init__(self)
-        self.base = base
-
-    def emit(self, record):   
-        msg = self.format(record)
-        if self.base:
-            self.base.yum_logger(msg)
-
-def setup_logging(base):
-    #logging.basicConfig()    
-    plainformatter = logging.Formatter("%(message)s")    
-    handler = YumLogHandler(base)
-    handler.setFormatter(plainformatter)
-    verbose = logging.getLogger("yum.verbose")
-    verbose.propagate = False
-    verbose.addHandler(handler)
-    verbose.setLevel(logginglevels.DEBUG_3)
-    #verbose.setLevel(logginglevels.INFO_2)
-    
 if __name__ == "__main__":
     pass
 
