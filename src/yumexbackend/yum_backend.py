@@ -248,7 +248,13 @@ class YumexPackageYum(YumexPackageBase):
 
     @property
     def color(self):
-        return 'black'
+        color = 'black'
+        if self.repoid == 'installed':
+            color = 'darkgreen'
+        elif self.action == 'u':
+            color = 'red'
+        return color    
+        
 
 class YumexTransactionYum(YumexTransactionBase):
     '''
