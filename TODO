@@ -3,12 +3,15 @@ TODO:
 	* Add Repo and Repo profile functionality
 	* Add Preferences dialog and functionality
   	* Add About dialog
+  	* Add Test cases (partly done)
+  	* Add a View menu, with Pages and keyboard shortcuts
+  	* Add an option file and code to handle it
   	* Documentation
-  	* pylint checking
   	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
   	
 DONE:
 	* Separate the GUI and the backend doing the package stuff
 	  * make an abstract backend, to make the gui interfacing to the backend more common.
 	  * make a forked yum backend to increase the responciveness of the GUI
+  	* pylint checking
 
