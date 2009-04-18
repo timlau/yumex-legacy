@@ -154,7 +154,8 @@ class YumexHandlers(Controller):
         self.setup_filters()
         self.populate_package_cache()
         self.notebook.set_active("package")
-        self.setup_repositories()
+        self.default_repos = self.backend.get_repositories()
+        self.repos.populate(self.default_repos)
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
 
@@ -169,13 +170,9 @@ class YumexHandlers(Controller):
             rb.connect('clicked',self.on_packageFilter_changed,num) 
             num += 1
             rb.child.modify_font(SMALL_FONT)
-            
-    def setup_repositories(self):
-        repos = self.backend.get_repositories()
-        self.repos.populate(repos)
                 
-    def populate_package_cache(self):
-        self.backend.setup()
+    def populate_package_cache(self,repos=[]):
+        self.backend.setup(repos)
         progress = self.get_progress()
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
@@ -285,10 +282,11 @@ class YumexHandlers(Controller):
     # Repo Page    
         
     def on_repoRefresh_clicked(self, widget=None, event=None ):
-        self.debug("Repo Refresh")
+        repos = self.repos.get_selected()
+        self.reload(repos)
         
     def on_repoUndo_clicked(self, widget=None, event=None ):
-        self.debug("Repo Undo")
+        self.repos.populate(self.default_repos)
 
     # Queue Page    
 
@@ -392,12 +390,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except YumexBackendFatalError,e:
             self.handle_error(e.err, e.msg)
 
-    def reload(self):
+    def reload(self,repos=[]):
         ''' Reset current data and restart the backend '''
         self.backend.reset()                    # close the backend
         self.package_cache.reset()              # clear the package cache
         self.queue.queue.clear()                # clear the pending action queue
-        self.populate_package_cache()           # repopulate the package cache
+        self.populate_package_cache(repos=repos)           # repopulate the package cache
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
         self.ui.packageFilterBox.show()         # Show the filter selector

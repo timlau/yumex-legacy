@@ -180,10 +180,14 @@ class YumClient:
         """
         raise NotImplementedError()
 
-    def setup(self,debuglevel=2,plugins=True,filelog=False):
+    def setup(self,debuglevel=2,plugins=True,filelog=False,repos=[]):
         ''' Setup the client and spawn the server'''
         if not self.child:
-            self.child = pexpect.spawn('./yum_server.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
+            if repos:
+                repo_str = ";".join(repos)
+                self.child = pexpect.spawn('./yum_server.py %i %s %s' % (debuglevel,plugins,repo_str), timeout=self._timeout_value)
+            else:    
+                self.child = pexpect.spawn('./yum_server.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
             self.child.setecho(False)
             if filelog:
                 self.child.logfile_read = sys.stdout
@@ -501,7 +505,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self,debuglevel=2,plugins=True):
+    def __init__(self,debuglevel=2,plugins=True,enabled_repos=[]):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ),init_plugins=plugins)
@@ -513,6 +517,13 @@ class YumServer(yum.YumBase):
         parser = OptionParser()
         ( options, args ) = parser.parse_args()
         self.plugins.setCmdLine(options,args)
+        if enabled_repos:
+            for repo in self.repos.repos.values():
+                if repo.id in enabled_repos:
+                    self.repos.enableRepo(repo.id)
+                else:
+                    self.repos.disableRepo(repo.id)
+                
         self.write(':started')
 
 

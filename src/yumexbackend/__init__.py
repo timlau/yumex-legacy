@@ -14,7 +14,7 @@ class YumexBackendBase(object):
         self.frontend = frontend
         self.transaction = transaction
 
-    def setup(self):
+    def setup(self, repos=[]):
         ''' Setup the backend'''
         raise NotImplementedError()
 

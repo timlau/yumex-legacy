@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Sat Apr 18 09:23:14 2009 -->
+<!--Generated with glade3 3.4.5 on Sat Apr 18 13:24:21 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="main">
     <property name="width_request">1000</property>
@@ -331,6 +331,7 @@ repositories</property>
                   <widget class="GtkTextView" id="outputText">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="wrap_mode">GTK_WRAP_WORD</property>
                   </widget>
                 </child>
               </widget>
