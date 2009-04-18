@@ -40,20 +40,16 @@ def to_unicode(obj, encoding='utf-8', errors='replace'):
 
     
 try: 
-    '''
-    Setup the yum translation domain and make _() and P_() translation wrappers
-    available.
-    using ugettext to make sure translated strings are in Unicode.
-    '''
+    # Setup the yum translation domain and make _() and P_() translation wrappers
+    # available.
+    # using ugettext to make sure translated strings are in Unicode.
     import gettext
     t = gettext.translation('yumex', fallback=True)
     _ = t.ugettext
     P_ = t.nugettext
 except:
-    '''
-    Something went wrong so we make a dummy _() wrapper there is just
-    returning the same text
-    '''
+    # Something went wrong so we make a dummy _() wrapper there is just
+    # returning the same text
     _ = dummy_wrapper
     P_ = dummyP_wrapper
 
