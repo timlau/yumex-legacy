@@ -34,7 +34,7 @@ class SelectionView:
         column.set_resizable(resize )
         self.view.append_column( column )        
 
-    def create_text_column( self, hdr, prob, size,sortcol = None):
+    def create_text_column( self, hdr, prop, size,sortcol = None):
         """ 
         Create a TreeViewColumn with text and set
         the sorting properties and add it to the view
@@ -42,7 +42,7 @@ class SelectionView:
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn( hdr, cell )
         column.set_resizable( True )
-        column.set_cell_data_func( cell, self.get_data_text, prob )
+        column.set_cell_data_func( cell, self.get_data_text, prop )
         column.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
         column.set_fixed_width( size )
         column.set_sort_column_id( -1 )            
@@ -73,17 +73,17 @@ class SelectionView:
         self.view.append_column( column1 )
         cell1.connect( "toggled", self.on_toggled )     
         
-    def get_data_text( self, column, cell, model, iterator,prob ):
+    def get_data_text( self, column, cell, model, iterator,prop ):
         obj = model.get_value( iterator, 0 )
         if obj:
-            cell.set_proberty( 'text', getattr( obj, prob ) )
+            cell.set_property( 'text', getattr( obj, prop ) )
             cell.set_property('foreground',obj.color)
 
-    def get_data_bool( self, column, cell, model, iterator, prob ):
+    def get_data_bool( self, column, cell, model, iterator, prop ):
         obj = model.get_value( iterator, 0 )
         cell.set_property( "visible", True )
         if obj:
-            cell.set_property( "active", getattr( obj, prob ) )
+            cell.set_property( "active", getattr( obj, prop ) )
             
 
     def on_toggled(self,widget,path):
