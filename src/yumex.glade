@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Apr 17 13:06:13 2009 -->
+<!--Generated with glade3 3.4.5 on Sat Apr 18 09:18:29 2009 -->
 <glade-interface>
   <widget class="GtkWindow" id="main">
     <property name="width_request">1000</property>
@@ -46,6 +46,88 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_editPref_activate"/>
+                      </widget>
+                    </child>
+                  </widget>
+                </child>
+              </widget>
+            </child>
+            <child>
+              <widget class="GtkMenuItem" id="viewMenu">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_View</property>
+                <property name="use_underline">True</property>
+                <child>
+                  <widget class="GtkMenu" id="menu1">
+                    <property name="visible">True</property>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="viewPackages">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Packages</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_viewPackages_activate"/>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image1">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-harddisk</property>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="viewGroup">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Groups</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_viewGroup_activate"/>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image2">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-orientation-portrait</property>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="viewQueue">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Queue</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_viewQueue_activate"/>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image3">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-color-picker</property>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="viewRepo">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">R_epositories</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_viewRepo_activate"/>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image4">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-network</property>
+                          </widget>
+                        </child>
+                      </widget>
+                    </child>
+                    <child>
+                      <widget class="GtkImageMenuItem" id="viewOutput">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">_Output</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_viewOutput_activate"/>
+                        <child internal-child="image">
+                          <widget class="GtkImage" id="menu-item-image5">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-dialog-info</property>
+                          </widget>
+                        </child>
                       </widget>
                     </child>
                   </widget>

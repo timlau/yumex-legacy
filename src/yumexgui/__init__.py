@@ -219,6 +219,21 @@ class YumexHandlers(Controller):
     def on_helpAbout_activate(self, widget=None, event=None ):
         self.debug("Help -> About")
 
+    def on_viewPackages_activate(self, widget=None, event=None ):
+        self.notebook.set_active("package")
+
+    def on_viewGroup_activate(self, widget=None, event=None ):
+        self.notebook.set_active("group")
+
+    def on_viewQueue_activate(self, widget=None, event=None ):
+        self.notebook.set_active("queue")
+
+    def on_viewRepo_activate(self, widget=None, event=None ):
+        self.notebook.set_active("repo")
+        
+    def on_viewOutput_activate(self, widget=None, event=None ):
+        self.notebook.set_active("output")
+        
     # Package Page    
         
     def on_packageSearch_activate(self, widget=None, event=None ):
