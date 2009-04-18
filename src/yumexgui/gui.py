@@ -258,7 +258,7 @@ class PageSelector(SelectorBase):
     def on_button_clicked(self, widget=None, key=None ):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
-            self.notebook._set_page(key) # set the new notebook page
+            self.notebook.set_page(key) # set the new notebook page
             self._selected = key
             
 class Notebook:
@@ -304,7 +304,7 @@ class Notebook:
         '''
         self.selector.set_active(key)
         
-    def _set_page(self,key):
+    def set_page(self,key):
         '''
         set the current notebook page
         '''

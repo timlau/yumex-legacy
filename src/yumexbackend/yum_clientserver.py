@@ -848,7 +848,6 @@ class YumServer(yum.YumBase):
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
-        self._timeout_count = 0
         if cmd == 'get-packages':
             self.get_packages(args)
         elif cmd == 'get-attribute':

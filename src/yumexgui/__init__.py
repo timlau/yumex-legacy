@@ -130,6 +130,9 @@ class YumexHandlers(Controller):
         self._last_filter = None
         
 # helpers
+# shut up pylint whinning about attributes declared outside __init__
+# pylint: disable-msg=W0201
+
     def setup_gui(self):
         # setup
         self.window.set_title("Yum Extender NextGen")
@@ -154,6 +157,9 @@ class YumexHandlers(Controller):
         self.setup_repositories()
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
+
+# pylint: enable-msg=W0201
+
 
     def setup_filters(self):
         ''' Populate Package Filter radiobuttons'''

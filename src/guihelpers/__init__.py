@@ -202,11 +202,15 @@ class Controller:
     def main_quit(self, widget=None, event=None ):
         ''' Main destroy Handler '''
         self.quit()
+        
+        # shut up pylint whinning about except doing nothing, if is ok here
+        # pylint: disable-msg=W0704
         try:
             gtk.main_quit()
         except:
             pass
         sys.exit(0)
+        # pylint: enable-msg=W0704
         
     def quit(self):
         ''' Virtuel quit handler to be overloaded in child class'''
@@ -258,7 +262,10 @@ def doLoggerSetup(console, logroot, logfmt='%(message)s', loglvl=logging.DEBUG):
     formatter = logging.Formatter(logfmt, "%H:%M:%S")
     handler = TextViewLogHandler(console)
     handler.setFormatter(formatter)
+    # shut up pylint whinning about attributes declared outside __init__ (false positive)
+    # pylint: disable-msg=W0201
     handler.propagate = False
+    # pylint: enable-msg=W0201    
     logger.addHandler(handler)
     return handler
     
