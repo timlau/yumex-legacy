@@ -1,0 +1,24 @@
+Test Cases:
+============
+Some testcases to test yumex functionality
+
+	* Check Package Filter
+		1. Press the 'updates','available' and 'installed' radio buttons 
+			[ ] Check that the view is populated
+	* Check Package Details
+		1. Select a package in the package view
+			[ ] Check the description is shown
+		2. Select the Changelog button
+			[ ] Check the changelog is shown
+		3. Select the filelist butgton
+			[ ] Check the file list is shown
+		4. run 'yum clean all' before starting yumex and repeat 1-3
+			[ ] Check that a dialog with metadata download are shown when selecting changelog and filelist
+	* Check Queue
+	* Check Install of a single package	
+	* Check update of a single package
+	* Check remove of a single package		
+	* Check Install of a multiple packages
+	* Check update of a multiple packages
+	* Check remove of a multiple packages
+	* Check a mixed transaction (update,install and remove) in same transaction		
