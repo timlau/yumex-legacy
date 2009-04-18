@@ -4,7 +4,6 @@ TODO:
 	* Add Preferences dialog and functionality
   	* Add About dialog
   	* Add Test cases (partly done)
-  	* Add a View menu, with Pages and keyboard shortcuts
   	* Add an option file and code to handle it
   	* Documentation
   	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
@@ -14,4 +13,5 @@ DONE:
 	  * make an abstract backend, to make the gui interfacing to the backend more common.
 	  * make a forked yum backend to increase the responciveness of the GUI
   	* pylint checking
+  	* Add a View menu, with Pages 
 
