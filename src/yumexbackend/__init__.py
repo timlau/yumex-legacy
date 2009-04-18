@@ -185,7 +185,7 @@ class YumexTransactionBase:
         self.backend = backend
         self.frontend = frontend
 
-    def add(self, po):
+    def add(self, po, action):
         '''
         add a package to the queue
         @param po: package to add to the queue

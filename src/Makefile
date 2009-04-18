@@ -17,4 +17,4 @@ install:
 	install -m644 yumex.glade $(DESTDIR)/$(PKGDIR)/.
 
 pylint:
-	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase
+	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers

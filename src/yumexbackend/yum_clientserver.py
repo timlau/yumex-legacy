@@ -25,17 +25,13 @@ import yum
 import traceback
 import pickle
 import base64
-import logging
 from optparse import OptionParser
 
 import pexpect
-from yum.packages import YumAvailablePackage
 from yum.packageSack import packagesNewestByNameArch
-from urlgrabber.progress import BaseMeter
 
 import yum.Errors as Errors
 from yumexbase import *
-from yumexbase.i18n import _, P_
 
 import yum.logginglevels as logginglevels
 from yum.callbacks import *
@@ -44,6 +40,13 @@ from yum.packages import YumLocalPackage
 from yum.constants import *
 
 from yum.i18n import _ as yum_translated 
+
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
+from yumexbase.i18n import _, P_
+# pylint: enable-msg=W0611
+
 
 #logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
@@ -114,10 +117,6 @@ class YumClient:
     
     def debug(self,msg):
         """ debug message (overload in child class)"""
-        raise NotImplementedError()
-
-    def action(self,msg):
-        """ action message (overload in child class)"""
         raise NotImplementedError()
 
     def exception(self,msg):
@@ -290,8 +289,6 @@ class YumClient:
             self.debug(args[0])    
         elif cmd == ':warning':
             self.warning(args[0])
-        elif cmd == ':action':
-            self.action(args[0])
         elif cmd == ':exception':
             self.exception(args[0])
         elif cmd == ':yum':
@@ -386,31 +383,31 @@ class YumClient:
         pkgs = self._get_list()
         return pkgs
 
-    def get_attribute(self,id,attr):    
+    def get_attribute(self,ident,attr):    
         ''' get an attribute of an package '''
-        self._send_command('get-attribute',[id,attr])
+        self._send_command('get-attribute',[ident,attr])
         args = self._get_result(':attr')
         if args:
             return unpack(args[0])
         else:
             return None
 
-    def get_changelog(self,id,num):    
+    def get_changelog(self,ident,num):    
         ''' get an attribute of an package '''
-        self._send_command('get-changelog',[id,str(num)])
+        self._send_command('get-changelog',[ident,str(num)])
         args = self._get_result(':attr')
         if args:
             return unpack(args[0])
         else:
             return None
         
-    def add_transaction(self,id,action):
-        self._send_command('add-transaction',[id,action])
+    def add_transaction(self,ident,action):
+        self._send_command('add-transaction',[ident,action])
         pkgs = self._get_list()
         return pkgs
         
-    def remove_transaction(self,id,action):
-        self._send_command('remove-transaction',[id])
+    def remove_transaction(self,ident,action):
+        self._send_command('remove-transaction',[ident])
         pkgs = self._get_list()
         return pkgs
 
@@ -435,15 +432,15 @@ class YumClient:
         self._send_command('get-repos',[])
         data = self._get_list(':repo')
         repos = []
-        for state,id,name,gpg in data:
+        for state,ident,name,gpg in data:
             gpg = gpg == 'True'
             state = state == 'True'
-            elem = (state,id,name,gpg)
+            elem = (state,ident,name,gpg)
             repos.append(elem)
         return repos
         
-    def enable_repo(self,id,state):
-        self._send_command('enable-repo',[id,str(state)])
+    def enable_repo(self,ident,state):
+        self._send_command('enable-repo',[ident,str(state)])
         args = self._get_result(':repo')
         return args
         
@@ -484,7 +481,6 @@ class YumServer(yum.YumBase):
     Results:(starts with and ':' and cmd and parameters are separated with '\t')
     
         :info <message>        : information message
-        :action <message>      : action message
         :error <message>       : error message
         :warning <message>     : warning message
         :debug <message>       : debug message
@@ -521,7 +517,7 @@ class YumServer(yum.YumBase):
 
 
 
-    def doLock(self):
+    def doLock(self, lockfile = YUM_PID_FILE):
         cnt = 0
         nmsg = ""
         while cnt < 6:
@@ -595,7 +591,7 @@ class YumServer(yum.YumBase):
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (pkg.name,pkg.epoch,pkg.ver,pkg.rel,pkg.arch,pkg.repoid,summary,action,pkg.size,recent))
         
     def _show_group(self,grp):
-        self.write(":group\t%s\t%s\t%s" % (cat,id,name) )
+        self.write(":group\t%s\t%s\t%s" % (grp.cat,grp.id,grp.name) )
 
     def _show_repo(self,repo):
         self.write(":repo\t%s\t%s\t%s\t%s" % (repo.enabled,repo.id,repo.name,repo.gpgcheck) )
@@ -615,10 +611,6 @@ class YumServer(yum.YumBase):
     def warning(self,msg):
         ''' write an warning message '''
         self.write(":warning\t%s" % msg)
-
-    def action(self,msg):
-        ''' write an action message '''
-        self.write(":action\t%s" % msg)
 
     def fatal(self,err,msg):
         ''' write an fatal message '''
@@ -661,11 +653,11 @@ class YumServer(yum.YumBase):
         
     def _getPackage(self,para):
         ''' find the real package from an package id'''
-        n,e,v,r,a,id = para
-        if id == 'installed':
+        n,e,v,r,a,ident = para
+        if ident == 'installed':
             pkgs = self.rpmdb.searchNevra(n,e,v,r,a)
         else:
-            repo = self.repos.getRepo(id) # Used the repo sack, it will be faster
+            repo = self.repos.getRepo(ident) # Used the repo sack, it will be faster
             if repo:
                 pkgs = repo.sack.searchNevra(n,e,v,r,a)
             else: # fallback to the use the pkgSack, just in case
@@ -746,7 +738,7 @@ class YumServer(yum.YumBase):
         based on YumOutput.listTransaction.
         used yum translation wrappers, so we can reuse the allready translated strings
         '''
-        list = []
+        out_list = []
         sublist = []
         self.tsInfo.makelists()        
         for ( action, pkglist ) in [( yum.i18n._( 'Installing' ), self.tsInfo.installed ), 
@@ -771,7 +763,7 @@ class YumServer(yum.YumBase):
                 el = ( n, a, evr, repoid, size, alist )
                 sublist.append( el )
             if pkglist:
-                list.append( [action, sublist] )
+                out_list.append( [action, sublist] )
                 sublist = []
         for (action, pkglist) in [(yum_translated('Skipped (dependency problems)'),
                                    self.skipped_packages),]:
@@ -785,10 +777,10 @@ class YumServer(yum.YumBase):
                 el = ( n, a, evr, repoid, size, alist )
                 sublist.append( el )
             if pkglist:
-                list.append( [action, sublist] )
+                out_list.append( [action, sublist] )
                 sublist = []
                 
-        return list        
+        return out_list        
         
                     
     def run_transaction(self):
@@ -841,18 +833,18 @@ class YumServer(yum.YumBase):
             
     
     def enable_repo(self,args):
-        id = args[0]
+        ident = args[0]
         state = (args[1] == 'True')
-        self.debug("Repo : %s Enabled : %s" % (id,state))
-        repo = self.repos.getRepo(id)
+        self.debug("Repo : %s Enabled : %s" % (ident,state))
+        repo = self.repos.getRepo(ident)
         if repo:
             if state:
-                self.repos.enableRepo(id)
+                self.repos.enableRepo(ident)
             else:
-                self.repos.disableRepo(id)
+                self.repos.disableRepo(ident)
             self._show_repo(repo)
         else:
-            self.error("Repo : %s not found" % id)
+            self.error("Repo : %s not found" % ident)
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''

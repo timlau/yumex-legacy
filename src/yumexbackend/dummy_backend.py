@@ -22,6 +22,11 @@
 from yumexbase import *
 from yumexbackend import * 
 
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
+from yumexbase.i18n import _, P_
+# pylint: enable-msg=W0611
 
 class YumexBackendDummy(YumexBackendBase):
     ''' 
@@ -189,7 +194,7 @@ class YumexTransactionDummy(YumexTransactionBase):
         '''
         YumexTransactionBase.__init__(self, backend, frontend)
 
-    def add(self, po):
+    def add(self, po, action):
         '''
         add a package to the queue
         @param po: package to add to the queue

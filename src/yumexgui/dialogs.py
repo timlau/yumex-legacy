@@ -21,7 +21,12 @@ import gobject
 
 from guihelpers import busyCursor, normalCursor
 from yumexbase import *
+
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
 from yumexbase.i18n import _, P_
+# pylint: enable-msg=W0611
 
 
 class Progress(YumexProgressBase):
@@ -117,12 +122,12 @@ class TransactionConfirmation:
         return model
 
     def create_text_column( self, hdr, view, colno, min_width=0 ):
-         cell = gtk.CellRendererText()    # Size Column
-         column = gtk.TreeViewColumn( hdr, cell, markup=colno )
-         column.set_resizable( True )
-         if not min_width == 0:
-             column.set_min_width( min_width )
-         view.append_column( column )        
+        cell = gtk.CellRendererText()    # Size Column
+        column = gtk.TreeViewColumn( hdr, cell, markup=colno )
+        column.set_resizable( True )
+        if not min_width == 0:
+            column.set_min_width( min_width )
+        view.append_column( column )        
              
              
     def populate( self, pkglist ):
@@ -166,9 +171,9 @@ class ErrorDialog:
         self.text.set_markup( text )
     
     def set_long_text( self, longtext ):
-        buffer = self.longtext.get_buffer()
-        start, end = buffer.get_bounds()
-        buffer.insert_with_tags( end, longtext, self.style_err )
+        buf = self.longtext.get_buffer()
+        start, end = buf.get_bounds()
+        buf.insert_with_tags( end, longtext, self.style_err )
         
     def run( self ):
         self.dialog.show_all()

@@ -21,15 +21,16 @@
 
 import gtk
 import gtk.glade
-import pango
-import logging
-import types
 from datetime import date
-from yumexbase.i18n import _, P_
 from yumexbase import *
 from yumexbackend.yum_backend import YumexPackageYum
 from guihelpers import TextViewBase,busyCursor,normalCursor
 
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
+from yumexbase.i18n import _, P_
+# pylint: enable-msg=W0611
 
 #
 # Classses
@@ -86,10 +87,10 @@ class PackageCache:
         del self._cache
         self._cache = {}
 
-    def get_packages(self,filter):
-        if not str(filter) in self._cache:
-            self._cache[str(filter)] = self.backend.get_packages(filter)
-        return self._cache[str(filter)]
+    def get_packages(self,pkg_filter):
+        if not str(pkg_filter) in self._cache:
+            self._cache[str(pkg_filter)] = self.backend.get_packages(pkg_filter)
+        return self._cache[str(pkg_filter)]
     
     def find(self,po):
         if po.action == 'u':

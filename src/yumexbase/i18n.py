@@ -15,11 +15,11 @@
 
 # This is a ripped from the yum.i18n and changed to use the yumex translation domain 
 
-def dummy_wrapper(str):
+def dummy_wrapper(txt):
     '''
     Dummy Translation wrapper, just returning the same string.
     '''
-    return to_unicode(str)
+    return to_unicode(txt)
 
 def dummyP_wrapper(str1, str2, n):
     '''

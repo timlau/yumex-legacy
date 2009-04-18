@@ -19,13 +19,17 @@
 
 # Imports
 
-import os
-
 from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_clientserver import YumClient
+from yumexgui.dialogs import ErrorDialog
+
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
 from yumexbase.i18n import _, P_
-from yumexgui.dialogs import okDialog
+# pylint: enable-msg=W0611
+
 
                
 class YumexBackendYum(YumexBackendBase,YumClient):

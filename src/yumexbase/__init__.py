@@ -21,7 +21,12 @@ import sys
 import pango
 import time
 from enum import Enum
-from yumexbase.i18n import _
+
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
+from yumexbase.i18n import _, P_
+# pylint: enable-msg=W0611
 
 # Constant
 
@@ -151,7 +156,7 @@ class YumexFrontendBase:
         ''' Get the current progress element '''
         raise NotImplementedError()
 
-    def set_progress(self):
+    def set_progress(self,progress):
         ''' The Progress is updated'''
         raise NotImplementedError()
 
@@ -159,7 +164,7 @@ class YumexFrontendBase:
         ''' confirm the current transaction'''
         raise NotImplementedError()
 
-    def error(self, msg):
+    def error(self, msg, exit_pgm):
         ''' write an error message '''
         raise NotImplementedError()
 

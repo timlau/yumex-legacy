@@ -22,7 +22,6 @@
 import sys
 import gtk
 import pango
-import logging
 
 from datetime import date
 from optparse import OptionParser
@@ -32,8 +31,12 @@ from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, no
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
 from yumexbase import *
-from yumexbase.i18n import _, P_
 
+# We want these lines, but don't want pylint to whine about the imports not being used
+# pylint: disable-msg=W0611
+import logging
+from yumexbase.i18n import _, P_
+# pylint: enable-msg=W0611
 
 class YumexFrontend(YumexFrontendBase):
     '''
@@ -68,11 +71,11 @@ class YumexFrontend(YumexFrontendBase):
         dialog.destroy()
         return ok
 
-    def error(self, msg, exit=False):
+    def error(self, msg, exit_pgm=False):
         ''' Write an error message to frontend '''
         self.logger.error('ERROR: %s' % msg)
         self.refresh()
-        if exit:
+        if exit_pgm:
             sys.exit(1)
             
 
@@ -187,7 +190,7 @@ class YumexHandlers(Controller):
 
 # Signal handlers
       
-    def quit(self, widget=None, event=None ):
+    def quit(self):
         ''' destroy Handler '''
         self.backend.debug("Quiting the program !!!")
         self.backend.reset()

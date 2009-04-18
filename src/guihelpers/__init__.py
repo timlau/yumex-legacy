@@ -181,8 +181,7 @@ class UI(gtk.Builder):
         """Look up an as-yet undefined attribute, assuming it's a widget."""
         result = self.get_object(name)
         if result is None:
-            raise AttributeError("Can't find widget %s in %s.\n" %
-                                 (`name`, `self.filename`))
+            raise AttributeError("Can't find widget %s in %s.\n" % (name, self.filename))
         
         # Cache the widget to speed up future lookups.  If multiple
         # widgets in a hierarchy have the same name, the lookup
