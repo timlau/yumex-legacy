@@ -131,72 +131,6 @@ class YumexHandlers(Controller):
         self.default_repos = []
         self.current_repos = []
         
-# helpers
-# shut up pylint whinning about attributes declared outside __init__
-# pylint: disable-msg=W0201
-
-    def setup_gui(self):
-        # setup
-        self.window.set_title("Yum Extender NextGen")
-        self.output = TextViewConsole(self.ui.outputText)
-        self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
-        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
-        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
-        self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
-        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=ICON_REPOS)
-        self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
-        self.notebook.set_active("output")
-        self.queue = YumexQueueView(self.ui.queueView)
-        self.packages = YumexPackageView(self.ui.packageView,self.queue)
-        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector,self)
-        self.repos = YumexRepoView(self.ui.repoView)
-        self.TransactionConfirm = TransactionConfirmation(self.ui,self.window)
-        self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
-        self.window.show()
-        self.setup_filters()
-        self.populate_package_cache()
-        self.notebook.set_active("package")
-        repos = self.backend.get_repositories()
-        self.repos.populate(repos)
-        active_repos = self.repos.get_selected()
-        self.default_repos = active_repos
-        self.current_repos = active_repos
-
-        # setup default package filter (updates)
-        self.ui.packageRadioUpdates.clicked()
-
-# pylint: enable-msg=W0201
-
-
-    def setup_filters(self):
-        ''' Populate Package Filter radiobuttons'''
-        num = 0
-        for attr in ('Updates','Available','Installed'):
-            rb = getattr(self.ui,'packageRadio'+attr)
-            rb.connect('clicked',self.on_packageFilter_changed,num) 
-            num += 1
-            rb.child.modify_font(SMALL_FONT)
-                
-    def populate_package_cache(self,repos=[]):
-        if not repos:
-            repos = self.current_repos
-        self.backend.setup(repos)
-        progress = self.get_progress()
-        progress.set_pulse(True)
-        self.debug("Getting package lists - BEGIN")
-        progress.set_title(_("Getting Package Lists"))
-        progress.set_header("Getting Updated Packages")
-        progress.show()
-        pkgs = self.package_cache.get_packages(FILTER.updates)
-        progress.set_header("Getting Available Packages")
-        pkgs = self.package_cache.get_packages(FILTER.available)
-        progress.set_header("Getting installed Packages")
-        pkgs = self.package_cache.get_packages(FILTER.installed)
-        self.debug("Getting package lists - END")
-        progress.set_pulse(False)
-        progress.hide()
-
-        
         
 
 # Signal handlers
@@ -373,6 +307,69 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         dialog.destroy()
         self.main_quit()
                     
+# shut up pylint whinning about attributes declared outside __init__
+# pylint: disable-msg=W0201
+
+    def setup_gui(self):
+        # setup
+        self.window.set_title("Yum Extender NextGen")
+        self.output = TextViewConsole(self.ui.outputText)
+        self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
+        self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
+        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
+        self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
+        self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=ICON_REPOS)
+        self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
+        self.notebook.set_active("output")
+        self.queue = YumexQueueView(self.ui.queueView)
+        self.packages = YumexPackageView(self.ui.packageView,self.queue)
+        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector,self)
+        self.repos = YumexRepoView(self.ui.repoView)
+        self.TransactionConfirm = TransactionConfirmation(self.ui,self.window)
+        self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
+        self.window.show()
+        self.setup_filters()
+        self.populate_package_cache()
+        self.notebook.set_active("package")
+        repos = self.backend.get_repositories()
+        self.repos.populate(repos)
+        active_repos = self.repos.get_selected()
+        self.default_repos = active_repos
+        self.current_repos = active_repos
+
+        # setup default package filter (updates)
+        self.ui.packageRadioUpdates.clicked()
+
+# pylint: enable-msg=W0201
+
+
+    def setup_filters(self):
+        ''' Populate Package Filter radiobuttons'''
+        num = 0
+        for attr in ('Updates','Available','Installed'):
+            rb = getattr(self.ui,'packageRadio'+attr)
+            rb.connect('clicked',self.on_packageFilter_changed,num) 
+            num += 1
+            rb.child.modify_font(SMALL_FONT)
+                
+    def populate_package_cache(self,repos=[]):
+        if not repos:
+            repos = self.current_repos
+        self.backend.setup(repos)
+        progress = self.get_progress()
+        progress.set_pulse(True)
+        self.debug("Getting package lists - BEGIN")
+        progress.set_title(_("Getting Package Lists"))
+        progress.set_header("Getting Updated Packages")
+        progress.show()
+        pkgs = self.package_cache.get_packages(FILTER.updates)
+        progress.set_header("Getting Available Packages")
+        pkgs = self.package_cache.get_packages(FILTER.available)
+        progress.set_header("Getting installed Packages")
+        pkgs = self.package_cache.get_packages(FILTER.installed)
+        self.debug("Getting package lists - END")
+        progress.set_pulse(False)
+        progress.hide()
         
     def process_queue(self):
         try:
