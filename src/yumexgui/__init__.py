@@ -155,9 +155,6 @@ class YumexHandlers(Controller):
     def on_viewPackages_activate(self, widget=None, event=None ):
         self.notebook.set_active("package")
 
-    def on_viewGroup_activate(self, widget=None, event=None ):
-        self.notebook.set_active("group")
-
     def on_viewQueue_activate(self, widget=None, event=None ):
         self.notebook.set_active("queue")
 
@@ -319,7 +316,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.output = TextViewConsole(self.ui.outputText)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
-        #self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
         self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
         self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=ICON_REPOS)
         self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
