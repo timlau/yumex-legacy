@@ -128,6 +128,8 @@ class YumexHandlers(Controller):
         Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
         self.package_cache = PackageCache(self.backend)
         self._last_filter = None
+        self.default_repos = []
+        self.current_repos = []
         
 # helpers
 # shut up pylint whinning about attributes declared outside __init__
@@ -154,8 +156,12 @@ class YumexHandlers(Controller):
         self.setup_filters()
         self.populate_package_cache()
         self.notebook.set_active("package")
-        self.default_repos = self.backend.get_repositories()
-        self.repos.populate(self.default_repos)
+        repos = self.backend.get_repositories()
+        self.repos.populate(repos)
+        active_repos = self.repos.get_selected()
+        self.default_repos = active_repos
+        self.current_repos = active_repos
+
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
 
@@ -172,6 +178,8 @@ class YumexHandlers(Controller):
             rb.child.modify_font(SMALL_FONT)
                 
     def populate_package_cache(self,repos=[]):
+        if not repos:
+            repos = self.current_repos
         self.backend.setup(repos)
         progress = self.get_progress()
         progress.set_pulse(True)
@@ -283,6 +291,7 @@ class YumexHandlers(Controller):
         
     def on_repoRefresh_clicked(self, widget=None, event=None ):
         repos = self.repos.get_selected()
+        self.current_repos = repos
         self.reload(repos)
         
     def on_repoUndo_clicked(self, widget=None, event=None ):
@@ -392,6 +401,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
     def reload(self,repos=[]):
         ''' Reset current data and restart the backend '''
+        if not repos:
+            repos = self.current_repos
         self.backend.reset()                    # close the backend
         self.package_cache.reset()              # clear the package cache
         self.queue.queue.clear()                # clear the pending action queue

@@ -186,7 +186,24 @@ def okDialog(parent, msg):
     dlg = gtk.MessageDialog(parent=parent,
                             type=gtk.MESSAGE_INFO,
                             buttons=gtk.BUTTONS_OK)
-    dlg.set_markup(msg)
+    dlg.set_markup(cleanMarkupSting(msg))
     rc = dlg.run()
     dlg.destroy()
+
+def questionDialog(parent, msg):
+    dlg = gtk.MessageDialog(parent=parent,
+                            type=gtk.MESSAGE_QUESTION,
+                            buttons=gtk.BUTTONS_YES_NO)
+    dlg.set_markup(cleanMarkupSting(msg))
+    rc = dlg.run()
+    dlg.destroy()
+    if rc == gtk.RESPONSE_YES:
+        return True
+    else:
+        return False
+    
+def cleanMarkupSting(msg):
+    msg = str(msg) # make sure it is a string
+    msg = gobject.markup_escape_text(msg)
+    return msg
             

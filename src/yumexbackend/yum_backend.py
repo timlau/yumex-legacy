@@ -22,7 +22,7 @@
 from yumexbase import *
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_clientserver import YumClient
-from yumexgui.dialogs import ErrorDialog
+from yumexgui.dialogs import ErrorDialog, questionDialog
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -109,7 +109,10 @@ class YumexBackendYum(YumexBackendBase,YumClient):
                 progress.set_action(msg)
         else: # this is a package being downloaded
             #self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
-            progress.set_action(name)
+            if name:
+                progress.set_action(name)
+            else:
+                self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
             
 
     def yum_state(self,state):
@@ -126,6 +129,13 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         elif state == 'transaction':
             progress.set_pulse(False)
             progress.set_header(_("Running RPM Transaction"))
+
+    def gpg_check(self,po,userid,hexkeyid):
+        """  Confirm GPG key (overload in child class) """
+        msg =  _('Do you want to import GPG Key : %s \n') % hexkeyid 
+        msg += "  %s \n" % userid
+        msg += _("Needed by %s") % str(po)
+        return questionDialog(self.frontend.window, msg)
                 
     def timeout(self,count):
         """ 
@@ -145,7 +155,8 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         if self.child: # Check if backend is already running
             return
         if repos:
-            self.frontend.info(_("Using the following repoistories :\n%s\n\n") % (','.join(repos)))
+            print repos
+            self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
         plugins = self.frontend.cmd_options.plugins
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
@@ -336,8 +347,8 @@ class YumexTransactionYum(YumexTransactionBase):
             progress.hide()
             if self.frontend.confirm_transaction(trans):
                 progress.show()
-                self.backend.run_transaction()
-                return True
+                rc = self.backend.run_transaction()
+                return rc
             else:
                 return False
         else:

@@ -22,3 +22,10 @@ Some testcases to test yumex functionality
 	* Check update of a multiple packages
 	* Check remove of a multiple packages
 	* Check a mixed transaction (update,install and remove) in same transaction		
+	* Check GPG Key import
+		1. remove the Fedora 10 updates-testing gpg key
+			sudo rpm -e gpg-pubkey-0b86274e-48b5dd6f
+		2. enable the 'updates-testing' repo on the repo page and press the refresh key
+		3. try to install something from this repo and se if you get and gpg key import dialog
+		4. press the 'Yes' button in the dialog and see that the transaction completes
+		5. retry 1-4 and press 'No' in the dialog

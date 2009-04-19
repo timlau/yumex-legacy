@@ -102,6 +102,7 @@ class YumClient:
         self._timeout_count = 0
         self.sending = False
         self.waiting = False
+        self.end_state = None
 
     def error(self,msg):
         """ error message (overload in child class)"""
@@ -149,6 +150,19 @@ class YumClient:
         """ yum download progress handler (overload in child class) """   
         raise NotImplementedError()
 
+    def _gpg_check(self,value):
+        """ yum download action progress message """
+        (po,userid,hexkeyid) = unpack(value)
+        ok = self.gpg_check(po,userid,hexkeyid)
+        if ok:
+            self.child.sendline(":true")
+        else:
+            self.child.sendline(":false")
+            
+    def gpg_check(self,po,userid,hexkeyid):
+        """  Confirm GPG key (overload in child class) """
+        return False
+    
     def fatal(self,args):
         """ fatal backend error """
         err = args[0]
@@ -220,8 +234,10 @@ class YumClient:
     def _send_command(self,cmd,args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd,"\t".join(args))
+        self.debug('Sending command: %s ' % cmd)
         timeouts = 0
         self.sending = True
+        self.end_state = None        
         while True:
             try:
                 cmd,args = self._readline()
@@ -299,6 +315,8 @@ class YumClient:
             self.yum_logger(args[0])
         elif cmd == ':fatal':
             self.fatal(args)
+        elif cmd == ':gpg-check':
+            self._gpg_check(args[0])
         elif cmd == ':yum-rpm': # yum rpm action progress
             self._yum_rpm(args[0])
         elif cmd == ':yum-dnl': # yum dnl progress
@@ -317,6 +335,16 @@ class YumClient:
             if cmd == ':started':
                 return True
             
+    def is_ended(self,cmd,args):
+        if cmd == ':end':
+            if args:
+                self.end_state = unpack(args[0])
+            else: # no parameter to :end
+                self.end_state = True
+            self.debug("end_state = %s" % str(self.end_state))   
+            return True
+        else:
+            return False
         
     def _get_list(self,result_cmd=":pkg"):
         ''' 
@@ -327,7 +355,7 @@ class YumClient:
         cnt = 0L
         while True:
             cmd,args = self._readline()
-            if cmd == ':end':
+            if self.is_ended(cmd,args):
                 break
             if cmd == None: # readline is locked:
                 break
@@ -363,7 +391,7 @@ class YumClient:
         msgs = {}
         while True:
             cmd,args = self._readline()
-            if cmd == ':end':
+            if self.is_ended(cmd,args):
                 break
             elif cmd == ':msg':
                 msg_type = args[0]
@@ -428,6 +456,7 @@ class YumClient:
     def run_transaction(self):        
         self._send_command('run-transaction',[])
         lst = self._get_list()
+        return self.end_state
 
     def get_groups(self):
         self._send_command('get-groups',[])
@@ -575,7 +604,7 @@ class YumServer(yum.YumBase):
         self.debug("Closing rpm db and releasing yum lock  ")
         self.closeRpmDB()
         self.doUnlock()
-        self.write(':end')
+        self.ended(True)
         sys.exit(1)
 
     def write(self,msg):
@@ -628,6 +657,12 @@ class YumServer(yum.YumBase):
         msg = pack(msg)
         self.write(":fatal\t%s\t%s" % (err,msg))
         sys.exit(1)
+        
+    def gpg_check(self,po, userid, hexkeyid):
+        ''' write an fatal message '''
+        value = (str(po),userid,hexkeyid)
+        value = pack(value)
+        self.write(":gpg-check\t%s" % (value))
 
     def message(self,msg_type,value):
         value = pack(value)
@@ -651,6 +686,11 @@ class YumServer(yum.YumBase):
     def yum_logger(self,msg):
         ''' write an yum logger message '''
         self.write(":yum\t%s" % msg)
+        
+    def ended(self,state):
+        state = pack(state)
+        self.write(":end\t%s" % state)
+        
 
     def get_packages(self,pkg_narrow):
         ''' get list of packages and send results '''
@@ -660,7 +700,7 @@ class YumServer(yum.YumBase):
             ygh = self.doPackageLists(pkgnarrow=narrow)
             for pkg in getattr(ygh,narrow):
                 self._show_package(pkg,action)
-        self.write(':end')
+        self.ended(True)
         
     def _getPackage(self,para):
         ''' find the real package from an package id'''
@@ -723,7 +763,7 @@ class YumServer(yum.YumBase):
         for txmbr in txmbrs:
             self._show_package(txmbr.po,txmbr.ts_state)
             self.debug("Added : "+ str(txmbr))            
-        self.write(':end')
+        self.ended(True)
             
     def remove_transaction(self,args):
         pkgstr = args
@@ -733,7 +773,7 @@ class YumServer(yum.YumBase):
     def list_transaction(self):
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po,txmbr.ts_state)
-        self.write(':end')
+        self.ended(True)
             
     def build_transaction(self):
         rc, msgs = self.buildTransaction()
@@ -741,7 +781,7 @@ class YumServer(yum.YumBase):
         for msg in msgs:
             self.message('messages', msg)
         self.message('transaction', pack(self._get_transaction_list()))
-        self.write(':end')
+        self.ended(True)
         
     def _get_transaction_list( self ):
         ''' 
@@ -799,9 +839,29 @@ class YumServer(yum.YumBase):
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
             self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
-            self.write(":end")
-        except:
+            self.ended(True)
+        except Errors.YumBaseError, e:
+            self.error(_('Error in yum Transaction : %s') % str(e))
+            self.ended(False)            
+        except:    
             self.error("Exception in run_transaction")
+            etype = sys.exc_info()[0]
+            evalue = sys.exc_info()[1]
+            self.debug(str(etype) + ' : ' +str(evalue))
+            self.ended(False)
+
+    def _askForGPGKeyImport(self, po, userid, hexkeyid):
+        ''' 
+        Ask for GPGKeyImport 
+        This need to be overloaded in a subclass to make GPG Key import work
+        '''
+        self.gpg_check(po, userid, hexkeyid)
+        line = sys.stdin.readline().strip('\n')
+        if line == ':true':
+            return True
+        else:
+            return False
+
             
     
     def get_groups(self,args):
@@ -835,12 +895,12 @@ class YumServer(yum.YumBase):
                     else:
                         action = 'i'
                 self._show_package(po, action)    
-        self.write(':end')
+        self.ended(True)
     
     def get_repos(self,args):
         for repo in self.repos.repos:
             self._show_repo(self.repos.getRepo(repo))
-        self.write(':end')
+        self.ended(True)
             
     
     def enable_repo(self,args):
@@ -907,7 +967,7 @@ class YumServer(yum.YumBase):
                 errmsg += '  File : %s , line %s, in %s;' % (f,str(l),m)
                 errmsg += '    %s ;' % c
             self.write(":exception\t%s" % errmsg)
-            self.write(':end')
+            self.ended(True)
         self.quit()
 
 class YumexTransCallback:
