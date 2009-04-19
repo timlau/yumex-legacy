@@ -200,6 +200,9 @@ class YumexPackageView(SelectionView):
                 if pkg.selected:
                     selected.append( pkg )
         return selected
+
+    def clear(self):
+        self.store.clear()
     
     def add_packages(self,pkgs,progress=None):
         self.store.clear()

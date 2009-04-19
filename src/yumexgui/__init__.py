@@ -126,12 +126,6 @@ class YumexHandlers(Controller):
     def __init__(self):
         # init the Controller Class to connect signals etc.
         Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
-        self.package_cache = PackageCache(self.backend)
-        self._last_filter = None
-        self.default_repos = []
-        self.current_repos = []
-        
-        
 
 # Signal handlers
       
@@ -213,13 +207,19 @@ class YumexHandlers(Controller):
         if widget.get_active():
             self._last_filter = widget
             self.packageInfo.clear()
-            busyCursor(self.window)
             self.ui.packageSearch.set_text('')        
-            self.backend.setup()
-            pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
-            action = ACTIONS[active]
-            self.packages.add_packages(pkgs,progress = self.progress)
-            normalCursor(self.window)
+            if active < 3: # Updates,Available,Installed
+                self.ui.groupView.hide()
+                busyCursor(self.window)
+                self.backend.setup()
+                pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
+                action = ACTIONS[active]
+                self.packages.add_packages(pkgs,progress = self.progress)
+                normalCursor(self.window)
+            else: # Groups
+                self.ui.groupView.show()
+                self.packages.clear()
+                
             
     # Repo Page    
         
@@ -267,7 +267,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress = Progress(self.ui,self.window)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
-
+        self.package_cache = PackageCache(self.backend)
+        self._last_filter = None
+        self.default_repos = []
+        self.current_repos = []
 
     def setupOptions(self):
         parser = OptionParser()
@@ -316,10 +319,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.output = TextViewConsole(self.ui.outputText)
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
-        self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
+        #self.notebook.add_page("group","Groups",self.ui.groupMain, icon=ICON_GROUPS)
         self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
         self.notebook.add_page("repo","Repositories",self.ui.repoMain, icon=ICON_REPOS)
         self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
+        self.ui.groupView.hide()
         self.notebook.set_active("output")
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
@@ -346,7 +350,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def setup_filters(self):
         ''' Populate Package Filter radiobuttons'''
         num = 0
-        for attr in ('Updates','Available','Installed'):
+        for attr in ('Updates','Available','Installed','Groups'):
             rb = getattr(self.ui,'packageRadio'+attr)
             rb.connect('clicked',self.on_packageFilter_changed,num) 
             num += 1
