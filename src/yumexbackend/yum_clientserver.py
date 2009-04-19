@@ -19,6 +19,7 @@
 
 # Constants
 
+import os
 import os.path
 import sys
 import yum
@@ -460,6 +461,19 @@ class YumClient:
 
     def get_groups(self):
         self._send_command('get-groups',[])
+        msgs = self._get_messages()
+        return unpack(msgs['groups'][0])
+
+    def get_group_packages(self, group, grp_filter=None):
+        ''' 
+        get packages in a group 
+        @param group: group id to get packages from
+        @param grp_filter: group filters (Enum GROUP)
+        '''
+        self._send_command('get-groups-packages',[group,str(grp_filter)])
+        msgs = self._get_messages()
+        return unpack(msgs['packages'][0])
+        
 
     def get_repos(self):
         self._send_command('get-repos',[])
@@ -865,7 +879,38 @@ class YumServer(yum.YumBase):
             
     
     def get_groups(self,args):
-        pass
+        '''
+        get category/group list
+        '''
+        all_groups=[]
+        cats = self.comps.get_categories()
+        for category in cats:
+            cat = (category.categoryid,category.ui_name,category.ui_description)
+            cat_grps = []
+            grps = [self.comps.return_group(g) for g in category.groups if self.comps.has_group(g)]
+            for grp in grps:
+                icon = None
+                fn = "/usr/share/pixmaps/comps/%s.png" % grp.groupid
+                if os.access(fn, os.R_OK):
+                    icon = fn
+                else:
+                    fn = "/usr/share/pixmaps/comps/%s.png" % category.categoryid
+                    if os.access(fn, os.R_OK):
+                        icon = fn
+
+                elem = (grp.groupid,grp.ui_name,grp.ui_description,grp.installed, icon)
+                cat_grps.append(elem)
+            all_groups.append( (cat,cat_grps) )
+        self.message('groups', pack(all_groups))
+        self.ended(True)
+
+    def get_group_packages(self,args):
+        grpid = args[0]
+        grp_flt = args[1]
+        grp = self.comps.return_group(grpid)
+        self.message("packages", pack(grp.packages))        
+        self.ended(True)
+            
 
     def search(self,args):
         keys = unpack(args[0])
@@ -937,6 +982,8 @@ class YumServer(yum.YumBase):
             self.build_transaction()
         elif cmd == 'get-groups':
             self.get_groups(args)
+        elif cmd == 'get-group-packages':
+            self.get_group_packages(args)
         elif cmd == 'get-repos':
             self.get_repos(args)
         elif cmd == 'enable-repo':

@@ -204,14 +204,17 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @return: a list of groups
         '''
         self.frontend.debug('Getting Group information')
+        grps = YumClient.get_groups(self)
+        return grps
 
-    def get_group_packages(self, group, grp_filter):
+    def get_group_packages(self, group, grp_filter=None):
         ''' 
         get packages in a group 
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
         self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
+        pkgs = YumClient.get_
 
     def search(self, keys, sch_filters):
         ''' 

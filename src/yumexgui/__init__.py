@@ -29,7 +29,7 @@ from optparse import OptionParser
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog
-from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView
+from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView, YumexGroupView
 from yumexbase import *
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -206,7 +206,11 @@ class YumexHandlers(Controller):
             self.packageInfo.clear()
             self.ui.packageSearch.set_text('')        
             if active < 3: # Updates,Available,Installed
-                self.ui.groupView.hide()
+                self.ui.groupVBox.hide()
+                if self._resized:
+                    w,h = self.window.get_size()
+                    self.window.resize(w-150,h)
+                    self._resized = False
                 busyCursor(self.window)
                 self.backend.setup()
                 pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
@@ -214,9 +218,25 @@ class YumexHandlers(Controller):
                 self.packages.add_packages(pkgs,progress = self.progress)
                 normalCursor(self.window)
             else: # Groups
-                self.ui.groupView.show()
+                if not self._resized:
+                    w,h = self.window.get_size()
+                    print w,h
+                    self.window.resize(w+150,h)
+                    self._resized = True
+                self.ui.groupVBox.show_all()
                 self.packages.clear()
                 
+    def on_groupView_cursor_changed(self,widget):
+        ( model, iterator ) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            desc = model.get_value( iterator, 5 )
+            self.groupInfo.clear()
+            self.groupInfo.write(desc)
+            self.groupInfo.goTop()
+            isCatagory = model.get_value( iterator, 4 )
+            if not isCategory:
+                grpid = model.get_value( iterator, 2 )
+                pkgs = self.backend.get_group_packages(grpid, grp_filter=None)
             
     # Repo Page    
         
@@ -268,6 +288,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._last_filter = None
         self.default_repos = []
         self.current_repos = []
+        self._resized = False
 
     def setupOptions(self):
         parser = OptionParser()
@@ -324,12 +345,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.queue = YumexQueueView(self.ui.queueView)
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
         self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector,self)
+        self.groups = YumexGroupView(self.ui.groupView,self.queue)
+        self.groupInfo = TextViewConsole(self.ui.groupDesc)
         self.repos = YumexRepoView(self.ui.repoView)
         self.TransactionConfirm = TransactionConfirmation(self.ui,self.window)
         self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
         self.window.show()
         self.setup_filters()
         self.populate_package_cache()
+        self.setup_groups()
         self.notebook.set_active("package")
         repos = self.backend.get_repositories()
         self.repos.populate(repos)
@@ -351,7 +375,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             rb.connect('clicked',self.on_packageFilter_changed,num) 
             num += 1
             rb.child.modify_font(SMALL_FONT)
-                
+            
+    def setup_groups(self):
+        groups = self.backend.get_groups()
+        self.groups.populate(groups)
+        
     def populate_package_cache(self,repos=[]):
         if not repos:
             repos = self.current_repos
