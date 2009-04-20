@@ -1,6 +1,5 @@
 TODO:
-	* Add Group/Category functionality
-	* Add Repo and Repo profile functionality
+	* Add Repo profile functionality
 	* Add Preferences dialog and functionality
   	* Add About dialog
   	* Add Test cases (partly done)
@@ -15,4 +14,7 @@ DONE:
   	* pylint checking
   	* Add a View menu, with Pages 
   	* GPG import confirmation dialog
+	* Add Group/Category functionality
+	* Add Repo selection and refresh functionality
+	* Dynamic font sizes calculated from default system font size.
 
