@@ -34,6 +34,8 @@ if __name__ == "__main__":
     signal.signal(signal.SIGQUIT, sigquit)
     yum.misc.setup_locale() # setup the locales
     debuglevel = 2
+    repos = []
+    plugins = True
     if len(sys.argv) > 2:
         debuglevel =  int(sys.argv[1])
         plugins =  sys.argv[2] == 'True'

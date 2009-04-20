@@ -18,9 +18,12 @@
 import gtk
 import gobject
 import logging
+import os
 
 from yumexbase.i18n import _, P_
-from yumexbase import *
+#from yumexbase.constants import *
+import yumexbase.constants as const
+
 from yum.misc import sortPkgObj
 
 class SelectionView:
@@ -96,7 +99,7 @@ class SelectionView:
 class YumexPackageView(SelectionView):
     def __init__( self, widget,qview ):
         SelectionView.__init__(self, widget)
-        self.view.modify_font(SMALL_FONT)
+        self.view.modify_font(const.SMALL_FONT)
         self.headers = [_( "Package" ), _( "Ver" ), _( "Summary" ), _( "Repo" ), _( "Architecture" ), _( "Size" )]
         self.store = self.setupView()
         self.queue = qview.queue
@@ -300,7 +303,7 @@ class YumexQueueView:
     """ Queue View Class"""
     def __init__( self, widget):
         self.view = widget
-        self.view.modify_font(SMALL_FONT)
+        self.view.modify_font(const.SMALL_FONT)
         self.model = self.setup_view()
         self.queue = YumexQueue()
 
@@ -377,7 +380,7 @@ class YumexRepoView(SelectionView):
     """
     def __init__( self, widget):
         SelectionView.__init__(self, widget)
-        self.view.modify_font(SMALL_FONT)        
+        self.view.modify_font(const.SMALL_FONT)        
         self.headers = [_('Repository'),_('Filename')]
         self.store = self.setup_view()
     
@@ -420,7 +423,7 @@ class YumexRepoView(SelectionView):
                 self.store.append([state,ident,name,gpg])     
             
     def isHidden(self,ident):
-        for hide in REPO_HIDE:
+        for hide in const.REPO_HIDE:
             if hide in ident:
                 return True
         else:
@@ -475,9 +478,10 @@ class YumexRepoView(SelectionView):
             iterator = self.store.iter_next( iterator )
 
 class YumexGroupView:
-    def __init__( self, treeview,qview):
+    def __init__( self, treeview,qview,base):
         self.view = treeview
-        self.view.modify_font(SMALL_FONT)        
+        self.base = base
+        self.view.modify_font(const.SMALL_FONT)        
         self.model = self.setup_view()
         self.queue = qview.queue
         self.queueView = qview
@@ -558,18 +562,17 @@ class YumexGroupView:
         self.model.set_value( iter, 0, not inst )
         
         
-    def _updatePackages(self,id,add,action):
-        grp = self.yumbase.comps.return_group(id)
-        pkgs = self.yumbase._getByGroup(grp,['m','d'])
+    def _updatePackages(self,grpid,add,action):
+        pkgs = self.base.backend.get_group_packages(grpid,GROUP.default)
         # Add group packages to queue
         if add: 
             for po in pkgs:
                 if not po.queued: 
-                    if action == 'i' and po.available : # Install
+                    if action == 'i' and po.repoid != "installed" : # Install
                             po.queued = po.action      
                             self.queue.add(po)
                             po.set_select( True )
-                    elif action == 'r' and not po.available: # Remove
+                    elif action == 'r' and po.repoid == "installed": # Remove
                             po.queued = po.action      
                             self.queue.add(po)
                             po.set_select( False )                        

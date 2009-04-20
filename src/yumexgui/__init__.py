@@ -30,7 +30,9 @@ from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog
 from yumexgui.views import YumexPackageView,YumexQueueView,YumexRepoView, YumexGroupView
-from yumexbase import *
+from yumexbase.constants import *
+from yumexbase import YumexFrontendBase,YumexBackendFatalError
+import yumexbase.constants as const
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -220,23 +222,24 @@ class YumexHandlers(Controller):
             else: # Groups
                 if not self._resized:
                     w,h = self.window.get_size()
-                    print w,h
                     self.window.resize(w+150,h)
                     self._resized = True
                 self.ui.groupVBox.show_all()
                 self.packages.clear()
                 
     def on_groupView_cursor_changed(self,widget):
+        ''' Group/Category selected in groupView '''
         ( model, iterator ) = widget.get_selection().get_selected()
         if model != None and iterator != None:
             desc = model.get_value( iterator, 5 )
             self.groupInfo.clear()
             self.groupInfo.write(desc)
             self.groupInfo.goTop()
-            isCatagory = model.get_value( iterator, 4 )
+            isCategory = model.get_value( iterator, 4 )
             if not isCategory:
                 grpid = model.get_value( iterator, 2 )
-                pkgs = self.backend.get_group_packages(grpid, grp_filter=None)
+                pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
+                self.packages.add_packages(pkgs)
             
     # Repo Page    
         
@@ -298,6 +301,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         parser.add_option( "", "--noplugins", 
                         action="store_false", dest="plugins", default=True, 
                         help="Disable yum plugins" )
+        parser.add_option( "-n", "--noauto", 
+                        action="store_false", dest="autorefresh", default=True, 
+                        help="No automatic refresh af program start" )
         return parser.parse_args()
     
     def run(self):
@@ -334,7 +340,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def setup_gui(self):
         # setup
         self.window.set_title("Yum Extender NextGen")
-        self.output = TextViewConsole(self.ui.outputText)
+        # Calc font constants based on default font 
+        const.DEFAULT_FONT = self.window.get_pango_context().get_font_description()
+        const.XSMALL_FONT.set_size(const.DEFAULT_FONT.get_size()-2*1024)
+        const.SMALL_FONT.set_size(const.DEFAULT_FONT.get_size()-1*1024)
+        const.BIG_FONT.set_size(const.DEFAULT_FONT.get_size()+4*1024)
+        font_size = const.SMALL_FONT.get_size()/1024
+        # Setup Output console
+        self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
+        # Setup main page notebook
         self.notebook = Notebook(self.ui.mainNotebook,self.ui.MainLeftContent)
         self.notebook.add_page("package","Packages",self.ui.packageMain, icon=ICON_PACKAGES)
         self.notebook.add_page("queue","Pending Action Queue",self.ui.queueMain, icon=ICON_QUEUE)
@@ -342,25 +356,36 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.notebook.add_page("output","Output",self.ui.outputMain, icon=ICON_OUTPUT)
         self.ui.groupView.hide()
         self.notebook.set_active("output")
+        # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
+        # setup package and package info view
         self.packages = YumexPackageView(self.ui.packageView,self.queue)
-        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector,self)
-        self.groups = YumexGroupView(self.ui.groupView,self.queue)
-        self.groupInfo = TextViewConsole(self.ui.groupDesc)
+        self.packageInfo = PackageInfo(self.window,self.ui.packageInfo,self.ui.packageInfoSelector,self,font_size=font_size)
+        # setup group and group description views
+        self.groups = YumexGroupView(self.ui.groupView,self.queue,self)
+        self.groupInfo = TextViewConsole(self.ui.groupDesc,font_size=font_size)
+        # setup repo view
         self.repos = YumexRepoView(self.ui.repoView)
+        # setup transaction confirmation dialog
         self.TransactionConfirm = TransactionConfirmation(self.ui,self.window)
+        # setup yumex log handler
         self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
         self.window.show()
+        # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
-        self.populate_package_cache()
-        self.setup_groups()
-        self.notebook.set_active("package")
+        # load packages and groups 
+        if self.cmd_options.autorefresh:
+            self.populate_package_cache()
+            self.setup_groups()
+            self.notebook.set_active("package")
+        else:
+            self.notebook.set_active("repo")
+        # setup repository view    
         repos = self.backend.get_repositories()
         self.repos.populate(repos)
         active_repos = self.repos.get_selected()
         self.default_repos = active_repos
         self.current_repos = active_repos
-
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
 
@@ -377,8 +402,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             rb.child.modify_font(SMALL_FONT)
             
     def setup_groups(self):
+        progress = self.get_progress()
         groups = self.backend.get_groups()
         self.groups.populate(groups)
+        progress.hide()
         
     def populate_package_cache(self,repos=[]):
         if not repos:

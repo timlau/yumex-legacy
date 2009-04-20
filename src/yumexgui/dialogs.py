@@ -20,7 +20,9 @@ import pango
 import gobject
 
 from guihelpers import busyCursor, normalCursor
-from yumexbase import *
+from yumexbase import YumexProgressBase
+from yumexbase.constants import *
+
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -66,7 +68,7 @@ class Progress(YumexProgressBase):
         self.set_action("")
         
     def set_action(self,text):
-        self.label.set_text(text)
+        self.label.set_markup(text)
         
     def set_fraction(self,frac,text=None):
         self.progressbar.set_fraction(frac)
@@ -74,7 +76,7 @@ class Progress(YumexProgressBase):
             self.progressbar.set_text(text)
             
     def pulse(self):
-        self.progressbar.set_text(_("Waiting"))
+        self.progressbar.set_text(_("Working !!!"))
         self.progressbar.pulse()
         
     def reset(self):

@@ -22,7 +22,7 @@
 import gtk
 import gtk.glade
 from datetime import date
-from yumexbase import *
+from yumexbase.constants import *
 from yumexbackend.yum_backend import YumexPackageYum
 from guihelpers import TextViewBase,busyCursor,normalCursor
 
@@ -89,8 +89,12 @@ class PackageCache:
 
     def get_packages(self,pkg_filter):
         if not str(pkg_filter) in self._cache:
-            self._cache[str(pkg_filter)] = self.backend.get_packages(pkg_filter)
-        return self._cache[str(pkg_filter)]
+            pkgs = self.backend.get_packages(pkg_filter)
+            pkgdict = {}
+            for pkg in pkgs:
+                pkgdict[str(pkg)] = pkg
+            self._cache[str(pkg_filter)] = pkgdict
+        return self._cache[str(pkg_filter)].values()
     
     def find(self,po):
         if po.action == 'u':
@@ -99,10 +103,10 @@ class PackageCache:
             target = self._cache[str(FILTER.available)]
         else:
             target = self._cache[str(FILTER.installed)]
-        for pkg in target:
-            if str(po) == str(pkg):   
-                return pkg
-        return YumexPackageYum(po)
+        if str(po) in target:
+            return(target[str(po)])
+        else:   
+            return YumexPackageYum(po)
     
 
 class PageHeader(gtk.HBox):
@@ -184,9 +188,9 @@ class SelectorBase:
             self._selected = key
 
 class PackageInfo(SelectorBase):
-    def __init__(self,main,console,selector,frontend):
+    def __init__(self,main,console,selector,frontend,font_size=8):
         SelectorBase.__init__(self, selector)
-        self.console = PackageInfoTextView(console)
+        self.console = PackageInfoTextView(console,font_size=font_size)
         self.main_window = main
         self.frontend = frontend
         self.add_button('description', stock='gtk-about', tooltip='Package Description')

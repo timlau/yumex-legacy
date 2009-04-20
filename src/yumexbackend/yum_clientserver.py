@@ -32,7 +32,8 @@ import pexpect
 from yum.packageSack import packagesNewestByNameArch
 
 import yum.Errors as Errors
-from yumexbase import *
+from yumexbase.constants import *
+from yumexbase import YumexBackendFatalError
 
 import yum.logginglevels as logginglevels
 from yum.callbacks import *
@@ -470,9 +471,9 @@ class YumClient:
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
-        self._send_command('get-groups-packages',[group,str(grp_filter)])
-        msgs = self._get_messages()
-        return unpack(msgs['packages'][0])
+        self._send_command('get-group-packages',[group,str(grp_filter)])
+        pkgs = self._get_list()
+        return pkgs
         
 
     def get_repos(self):
@@ -714,6 +715,7 @@ class YumServer(yum.YumBase):
             ygh = self.doPackageLists(pkgnarrow=narrow)
             for pkg in getattr(ygh,narrow):
                 self._show_package(pkg,action)
+            del ygh
         self.ended(True)
         
     def _getPackage(self,para):
@@ -908,8 +910,46 @@ class YumServer(yum.YumBase):
         grpid = args[0]
         grp_flt = args[1]
         grp = self.comps.return_group(grpid)
-        self.message("packages", pack(grp.packages))        
-        self.ended(True)
+        if grp:
+            if grp_flt == 'all':
+                best_pkgs=self._group_names2aipkgs(grp.packages)
+            else:
+                best_pkgs=self._group_names2aipkgs(grp.mandatory_packages.keys() + grp.default_packages.keys())
+            for key in best_pkgs:
+                (apkg,ipkg) = best_pkgs[key][0]
+                if ipkg:
+                    self._show_package(ipkg,'r')
+                else:
+                    self._show_package(apkg,'i')
+            self.ended(True)
+        else:
+            self.ended(False)
+
+    # Copied from yum (output.py), an ideal candidate to be implemented in yum base.
+    def _group_names2aipkgs(self, pkg_names):
+        """ Convert pkg_names to installed pkgs or available pkgs, return
+            value is a dict on pkg.name returning (apkg, ipkg). """
+        ipkgs = self.rpmdb.searchNames(pkg_names)
+        apkgs = self.pkgSack.searchNames(pkg_names)
+        apkgs = packagesNewestByNameArch(apkgs)
+
+        # This is somewhat similar to doPackageLists()
+        pkgs = {}
+        for pkg in ipkgs:
+            pkgs[(pkg.name, pkg.arch)] = (None, pkg)
+        for pkg in apkgs:
+            key = (pkg.name, pkg.arch)
+            if key not in pkgs:
+                pkgs[(pkg.name, pkg.arch)] = (pkg, None)
+            elif pkg.verGT(pkgs[key][1]):
+                pkgs[(pkg.name, pkg.arch)] = (pkg, pkgs[key][1])
+
+        # Convert (pkg.name, pkg.arch) to pkg.name dict
+        ret = {}
+        for (apkg, ipkg) in pkgs.itervalues():
+            pkg = apkg or ipkg
+            ret.setdefault(pkg.name, []).append((apkg, ipkg))
+        return ret
             
 
     def search(self,args):

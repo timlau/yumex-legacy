@@ -60,7 +60,7 @@ class TextViewBase:
         else:
             return None
         
-    def change_style(self,tag, color, font):
+    def change_style(self,tag, color=None, font=None):
         '''
         Change the font and color of a gtk.TextTag style
         @param tag: text tag to indentify the style
@@ -69,8 +69,10 @@ class TextViewBase:
         '''
         style = self.get_style(tag)
         if style:    
-            style.set_property("foreground", color)
-            style.set_property("font", font)
+            if color:
+                style.set_property("foreground", color)
+            if font:
+                style.set_property("font", font)
     
     def write(self, txt, style=None, newline=True):
         ''' 

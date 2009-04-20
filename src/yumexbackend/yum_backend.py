@@ -19,7 +19,9 @@
 
 # Imports
 
-from yumexbase import *
+from yumexbase.constants import *
+from yumexbase import format_number
+
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_clientserver import YumClient
 from yumexgui.dialogs import ErrorDialog, questionDialog
@@ -95,14 +97,15 @@ class YumexBackendYum(YumexBackendBase,YumClient):
             else:
                 repo = None
                 mdtype = name
-            msg = "Unknown Repo Metadata type for %s"
+            msg = _("Unknown Repo Metadata type (%s) for %s") % (mdtype,'%s')
             for key in REPO_INFO_MAP:
                 if key in mdtype:
                     msg = REPO_INFO_MAP[key]
                     break
             if repo:    
+                markup = "<b>%s</b>" % repo
                 self.frontend.debug(msg % repo)
-                progress.set_action(msg % repo)
+                progress.set_action(msg % markup)
                 
             else:            
                 self.frontend.debug(msg)
@@ -214,7 +217,8 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @param grp_filter: group filters (Enum GROUP)
         '''
         self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
-        pkgs = YumClient.get_
+        pkgs = YumClient.get_group_packages(self,group,grp_filter)
+        return [self.frontend.package_cache.find(po) for po in pkgs]
 
     def search(self, keys, sch_filters):
         ''' 
