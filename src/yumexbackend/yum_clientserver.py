@@ -236,7 +236,7 @@ class YumClient:
     def _send_command(self,cmd,args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd,"\t".join(args))
-        self.debug('Sending command: %s ' % cmd)
+        self.debug('Sending command: %s args: %s' % (cmd,str(args)))
         timeouts = 0
         self.sending = True
         self.end_state = None        
