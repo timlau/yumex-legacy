@@ -1,4 +1,4 @@
-SUBDIRS = src po src/yumexbase src/yumexgui src/yumexbackend
+SUBDIRS = src po src/yumexbase src/yumexgui src/yumexbackend src/guihelpers
 PYFILES = $(wildcard *.py)
 PKGNAME = yumex
 VERSION=$(shell awk '/Version:/ { print $$2 }' ${PKGNAME}.spec)
@@ -6,7 +6,7 @@ PYTHON=python
 SRCDIR=src
 MISCDIR=misc
 PIXDIR=gfx
-ALLDIRS=src po src/yumgui gfx misc tools
+ALLDIRS=$(SUBDIRS) gfx misc tools
 
 all: subdirs
 	
@@ -45,22 +45,10 @@ archive:
 	@cp ${PKGNAME}-$(VERSION).tar.gz $(shell rpm -E '%_sourcedir')
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
 	@echo "The archive is in ${PKGNAME}-$(VERSION).tar.gz"
-
-rpm-centos5: 
-	rpmbuild -ba -D "dist .centos5" yumex.spec	
-
-rpm-fc6: 
-	rpmbuild -ba -D "dist .fc6" yumex.spec	
-
-rpm-fc7: 
-	rpmbuild -ba -D "dist .fc7" yumex.spec	
 	
-
 # needs perl-TimeDate for git2cl
 changelog:
-	@git log --pretty --numstat --summary | tools/git2cl > ChangeLog.git
-	@cat ChangeLog.git ChangeLog.svn > ChangeLog
-	@rm ChangeLog.git
+	@git log --pretty --numstat --summary | tools/git2cl > ChangeLog
 	
 upload: FORCE
 	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz yum-extender.org:public_html/dnl/yumex/source/.
@@ -75,6 +63,29 @@ release:
 	@git push --tags origin
 	@$(MAKE) archive
 	@$(MAKE) upload
+
+test-release:
+	@git checkout -b release-test
+	# Add '.test' to Version in spec file
+	@cat yumex.spec | sed  's/^Version:.*/&.test/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
+	@git commit -a -m "bumped yumex version to $(VERSION).test"
+	# Make Changelog
+	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
+	@git commit -a -m "updated ChangeLog"
+    	# Make archive
+	@rm -rf ${PKGNAME}-${VERSION}.test.tar.gz
+	@git-archive --format=tar --prefix=$(PKGNAME)-$(VERSION).test/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).test.tar.gz
+	# Build RPMS
+	@rpmbuild -ta  ${PKGNAME}-${VERSION}.test.tar.gz
+	@$(MAKE) test-cleanup
+    
+
+test-cleanup:	
+	@rm -rf ${PKGNAME}-${VERSION}.test.tar.gz
+	@echo "Cleanup the git release-test local branch"
+	@git checkout -f
+	@git checkout future
+	@git branch -D release-test
 
 # Needs gtk2-devel for gtk-builder-convert
 builder-xml:
