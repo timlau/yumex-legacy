@@ -6,6 +6,10 @@ TODO:
   	* Add an option file and code to handle it
   	* Documentation
   	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
+  	* Ask for program exit, when the transaction is completted ok.
+  	
+BUGS:
+	* Undo in group unselect packages, but dont undo group selection changes  	
   	
 DONE:
 	* Separate the GUI and the backend doing the package stuff
@@ -17,4 +21,6 @@ DONE:
 	* Add Group/Category functionality
 	* Add Repo selection and refresh functionality
 	* Dynamic font sizes calculated from default system font size.
+  	* yum depsolve callback to show depsolve info
+  	* add timestamps to output page
 

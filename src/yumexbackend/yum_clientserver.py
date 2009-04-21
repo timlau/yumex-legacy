@@ -22,6 +22,8 @@
 import os
 import os.path
 import sys
+sys.path.insert(0,'/usr/share/yum-cli')
+
 import yum
 import traceback
 import pickle
@@ -31,15 +33,16 @@ from optparse import OptionParser
 import pexpect
 from yum.packageSack import packagesNewestByNameArch
 
-import yum.Errors as Errors
 from yumexbase.constants import *
 from yumexbase import YumexBackendFatalError
 
 import yum.logginglevels as logginglevels
-from yum.callbacks import *
+import yum.Errors as Errors
 from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
+from output import DepSolveProgressCallBack # yum cli output.py
 from yum.constants import *
+from yum.callbacks import *
 
 from yum.i18n import _ as yum_translated 
 
@@ -561,6 +564,8 @@ class YumServer(yum.YumBase):
         parser = OptionParser()
         ( options, args ) = parser.parse_args()
         self.plugins.setCmdLine(options,args)
+        dscb = DepSolveProgressCallBack()
+        self.dsCallback = dscb
         if enabled_repos:
             for repo in self.repos.repos.values():
                 if repo.id in enabled_repos:

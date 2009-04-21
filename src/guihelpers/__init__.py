@@ -132,6 +132,13 @@ class TextViewConsole(TextViewBase):
         style.set_property("size_points", font_size)
         self.add_style('debug', style)
 
+        # warning style
+        style = gtk.TextTag("warning")
+        style.set_property( "foreground", "darkgreen" )
+        style.set_property("family", "Monospace")
+        style.set_property("size_points", font_size)
+        self.add_style('warning', style)
+
         # error style
         style = gtk.TextTag("error")
         style.set_property("foreground", "red")
@@ -157,8 +164,10 @@ class TextViewLogHandler(logging.Handler):
                 doGtkEvents()
             if record.levelno < 20: 
                 self.console.write(msg, 'debug')
-            elif record.levelno <= 40:
+            elif record.levelno < 30:
                 self.console.write(msg, 'info')                
+            elif record.levelno < 40:
+                self.console.write(msg, 'warning')                
             else:
                 self.console.write(msg, 'error')  
     

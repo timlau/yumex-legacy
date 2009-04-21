@@ -563,7 +563,7 @@ class YumexGroupView:
         
         
     def _updatePackages(self,grpid,add,action):
-        pkgs = self.base.backend.get_group_packages(grpid,GROUP.default)
+        pkgs = self.base.backend.get_group_packages(grpid,const.GROUP.default)
         # Add group packages to queue
         if add: 
             for po in pkgs:

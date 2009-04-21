@@ -369,7 +369,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup transaction confirmation dialog
         self.TransactionConfirm = TransactionConfirmation(self.ui,self.window)
         # setup yumex log handler
-        self.log_handler = doLoggerSetup(self.output,YUMEX_LOG)
+        self.log_handler = doLoggerSetup(self.output,YUMEX_LOG,logfmt='%(asctime)s : %(message)s')
         self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
@@ -403,9 +403,16 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             
     def setup_groups(self):
         progress = self.get_progress()
+        self.debug("Getting Group information - BEGIN")
+        progress.set_title(_("Getting Group information"))
+        progress.set_header(_("Getting Group information"))
+        progress.set_pulse(True)
+        progress.show()
         groups = self.backend.get_groups()
         self.groups.populate(groups)
         progress.hide()
+        progress.set_pulse(False)
+        self.debug("Getting Group information - END")
         
     def populate_package_cache(self,repos=[]):
         if not repos:
@@ -438,16 +445,19 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 pkgs = queue.get(action[0])
                 for po in pkgs:
                     self.backend.transaction.add(po,action)
-            if self.backend.transaction.process_transaction():
+            rc = self.backend.transaction.process_transaction()                    
+            if rc:
                 self.debug("Transaction Completed OK")
                 progress.hide()        
-                progress.set_pulse(False)        
                 okDialog(self.window,_("Transaction completed successfully"))
                 self.reload()
-            else:
+            elif rc == None: # Aborted by user
+                self.warning(_("Transaction Aborted by User"))
+                self.notebook.set_active("package")     # show the package page
+            else: # Errors in transaction
                 self.debug("Transaction Failed")
-                progress.hide()        
-                progress.set_pulse(False)        
+            progress.hide()        
+            progress.set_pulse(False)        
         except YumexBackendFatalError,e:
             self.handle_error(e.err, e.msg)
 

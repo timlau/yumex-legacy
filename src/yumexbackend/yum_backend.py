@@ -350,14 +350,14 @@ class YumexTransactionYum(YumexTransactionBase):
         progress.set_header(_("Resolving Dependencies"))
         rc,msgs,trans = self.backend.build_transaction()
         if rc == 2:
-            self.frontend.debug('Depsolve completed without error')
+            self.frontend.debug('Dependency resolving completed without error')
             progress.hide()
-            if self.frontend.confirm_transaction(trans):
+            if self.frontend.confirm_transaction(trans): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()
                 return rc
-            else:
-                return False
+            else: # Aborted by User
+                return None
         else:
             title =  _("Dependency Resolution Failed")
             text = _("Dependency Resolution Failed")
@@ -371,9 +371,9 @@ class YumexTransactionYum(YumexTransactionBase):
             dialog.run()
             dialog.destroy()
             # Write errors to output page
-            self.error(_('Depsolve completed with error'))
+            self.error(_('Dependency resolving completed with error'))
             for msg in msgs:
-                self.frontend.error(msg)
+                self.frontend.error("  %s" % msg)
             return False
         
     def get_transaction_packages(self):
