@@ -41,7 +41,7 @@ install:
 
 archive:
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
-	@git-archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).tar.gz
 	@cp ${PKGNAME}-$(VERSION).tar.gz $(shell rpm -E '%_sourcedir')
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
 	@echo "The archive is in ${PKGNAME}-$(VERSION).tar.gz"
