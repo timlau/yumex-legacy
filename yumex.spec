@@ -56,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f  %{name}.lang
 %defattr(-, root, root, -)
-%doc COPYING ChangeLog
+%doc COPYING ChangeLog TODO
 %{_datadir}/pixmaps/yumex
 %{_datadir}/yumex
 %{_bindir}/yumex

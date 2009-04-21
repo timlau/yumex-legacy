@@ -14,7 +14,7 @@ subdirs:
 	for d in $(SUBDIRS); do make -C $$d; [ $$? = 0 ] || exit 1 ; done
 
 clean:
-	@rm -fv *~ *.tar.gz *.list *.lang
+	@rm -fv *~ *.tar.gz *.list *.lang 
 	for d in $(SUBDIRS); do make -C $$d clean ; done
 
 install:
@@ -48,7 +48,7 @@ archive:
 	
 # needs perl-TimeDate for git2cl
 changelog:
-	@git log --pretty --numstat --summary | tools/git2cl > ChangeLog
+	@git log --pretty --numstat --summary --after=2008-10-22 | tools/git2cl > ChangeLog
 	
 upload: FORCE
 	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz yum-extender.org:public_html/dnl/yumex/source/.
