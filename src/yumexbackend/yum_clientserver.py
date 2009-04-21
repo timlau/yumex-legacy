@@ -555,13 +555,13 @@ class YumServer(yum.YumBase):
     def __init__(self,debuglevel=2,plugins=True,enabled_repos=[]):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
-        self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ),init_plugins=plugins)
+        parser = OptionParser()
+        self.doConfigSetup(debuglevel=debuglevel, plugin_types=( yum.plugins.TYPE_CORE, ),init_plugins=plugins,optparser=parser)
         logginglevels.setLoggingApp('yumex')
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
         self.repos.setProgressBar(self.dnlCallback)
         # make some dummy options,args for yum plugins
-        parser = OptionParser()
         ( options, args ) = parser.parse_args()
         self.plugins.setCmdLine(options,args)
         dscb = DepSolveProgressCallBack()
@@ -868,7 +868,7 @@ class YumServer(yum.YumBase):
             self.error("Exception in run_transaction")
             etype = sys.exc_info()[0]
             evalue = sys.exc_info()[1]
-            self.debug(str(etype) + ' : ' +str(evalue))
+            self.error(str(etype) + ' : ' +str(evalue))
             self.ended(False)
 
     def _askForGPGKeyImport(self, po, userid, hexkeyid):
@@ -1164,6 +1164,10 @@ class YumexDownloadCallback(DownloadBaseCallback):
             if pkg: # show package to download
                 self.current_name = str(pkg)
                 self.current_type = 'PKG'
+            elif name.endswith('.drpm'): # Presto delta rpm
+                self.base.debug("Deltarpm: %s" % name)
+                self.current_name = name
+                self.current_type = 'PKG'                
             elif not name.endswith('.rpm'):
                 self.current_name = name
                 self.current_type = 'REPO'
