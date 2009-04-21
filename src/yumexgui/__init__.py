@@ -143,15 +143,19 @@ class YumexHandlers(Controller):
         self.main_quit()
 
     def on_editPref_activate(self, widget=None, event=None ):
+        okDialog(self.window,"This function has not been implemented yet")
         self.debug("Edit -> Preferences")
 
     def on_proNew_activate(self, widget=None, event=None ):
+        okDialog(self.window,"This function has not been implemented yet")
         self.debug("Profiles -> New")
 
     def on_proSave_activate(self, widget=None, event=None ):
+        okDialog(self.window,"This function has not been implemented yet")
         self.debug("Profiles -> Save")
         
     def on_helpAbout_activate(self, widget=None, event=None ):
+        okDialog(self.window,"This function has not been implemented yet")
         self.debug("Help -> About")
 
     def on_viewPackages_activate(self, widget=None, event=None ):
