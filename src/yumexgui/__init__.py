@@ -128,6 +128,10 @@ class YumexHandlers(Controller):
     def __init__(self):
         # init the Controller Class to connect signals etc.
         Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
+        self._last_filter = None
+        self.default_repos = []
+        self.current_repos = []
+        self._resized = False
 
 # Signal handlers
       
@@ -292,10 +296,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
         self.package_cache = PackageCache(self.backend)
-        self._last_filter = None
-        self.default_repos = []
-        self.current_repos = []
-        self._resized = False
 
     def setupOptions(self):
         parser = OptionParser()

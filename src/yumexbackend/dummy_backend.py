@@ -21,6 +21,7 @@
 
 from yumexbase import *
 from yumexbackend import * 
+import yumexbase.constants as const
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -39,7 +40,7 @@ class YumexBackendDummy(YumexBackendBase):
         transaction = YumexTransactionDummy(self,frontend)
         YumexBackendBase.__init__(self,frontend,transaction)
 
-    def setup(self):
+    def setup(self,repos=[]):
         ''' Setup the backend'''
         self.frontend.debug('Setting up the dummy backend')
 
@@ -55,7 +56,7 @@ class YumexBackendDummy(YumexBackendBase):
         '''
         self.frontend.debug('Get %s packages' % pkg_filter)
         pkgs = []
-        if pkg_filter == FILTER.all:
+        if pkg_filter == const.FILTER.all:
             pkgs.append(make_dummy_pkg('dummy-a', '1.0.0', '1', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-b', '1.1.1', '2', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-c', '1.2.0', '3', 'i386'))
@@ -63,16 +64,16 @@ class YumexBackendDummy(YumexBackendBase):
             pkgs.append(make_dummy_pkg('dummy-d', '1.4.0', '4', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-e', '1.5.0', '5', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-f', '1.6.0', '6', 'i386'))
-        elif pkg_filter == FILTER.installed:
+        elif pkg_filter == const.FILTER.installed:
             pkgs.append(make_dummy_pkg('dummy-a', '1.0.0', '1', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-b', '1.1.1', '2', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-c', '1.2.0', '3', 'i386'))
-        elif pkg_filter == FILTER.available:
+        elif pkg_filter == const.FILTER.available:
             pkgs.append(make_dummy_pkg('dummy-d', '1.4.0', '4', 'i386'))
             pkgs.append(make_dummy_pkg('dummy-e', '1.5.0', '5', 'i386'))
-        elif pkg_filter == FILTER.updates:
+        elif pkg_filter == const.FILTER.updates:
             pkgs.append(make_dummy_pkg('dummy-c', '1.2.1', '1', 'i386'))
-        elif pkg_filter == FILTER.obsoletes:
+        elif pkg_filter == const.FILTER.obsoletes:
             pkgs.append(make_dummy_pkg('dummy-f', '1.6.0', '6', 'i386'))
         return pkgs
     

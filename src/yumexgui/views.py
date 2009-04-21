@@ -532,9 +532,9 @@ class YumexGroupView:
         self.view.set_headers_visible(False)
         return model
     
-    def setCheckbox( self, column, cell, model, iter ):
-        isCategory = model.get_value( iter, 4 )
-        state = model.get_value( iter, 0 )
+    def setCheckbox( self, column, cell, model, iterator ):
+        isCategory = model.get_value( iterator, 4 )
+        state = model.get_value( iterator, 0 )
         if isCategory:
             cell.set_property( 'visible', False)
         else:
@@ -543,14 +543,14 @@ class YumexGroupView:
 
     def on_toggled( self, widget, path ):
         """ Group selection handler """
-        iter = self.model.get_iter( path )
-        grpid = self.model.get_value( iter, 2 )
-        inst = self.model.get_value( iter, 0 )
+        iterator = self.model.get_iter( path )
+        grpid = self.model.get_value( iterator, 2 )
+        inst = self.model.get_value( iterator, 0 )
         action = self.queue.hasGroup(grpid)
         if action:
             self.queue.removeGroup(grpid,action)
             self._updatePackages(grpid,False,None)
-            self.model.set_value( iter, 3,False )
+            self.model.set_value( iterator, 3,False )
         else:
             if inst:
                 self.queue.addGroup(grpid,'r') # Add for remove           
@@ -558,8 +558,8 @@ class YumexGroupView:
             else:
                 self.queue.addGroup(grpid,'i') # Add for install
                 self._updatePackages(grpid,True,'i')
-            self.model.set_value( iter, 3,True )
-        self.model.set_value( iter, 0, not inst )
+            self.model.set_value( iterator, 3,True )
+        self.model.set_value( iterator, 0, not inst )
         
         
     def _updatePackages(self,grpid,add,action):
@@ -569,13 +569,13 @@ class YumexGroupView:
             for po in pkgs:
                 if not po.queued: 
                     if action == 'i' and po.repoid != "installed" : # Install
-                            po.queued = po.action      
-                            self.queue.add(po)
-                            po.set_select( True )
+                        po.queued = po.action      
+                        self.queue.add(po)
+                        po.set_select( True )
                     elif action == 'r' and po.repoid == "installed": # Remove
-                            po.queued = po.action      
-                            self.queue.add(po)
-                            po.set_select( False )                        
+                        po.queued = po.action      
+                        self.queue.add(po)
+                        po.set_select( False )                        
         # Remove group packages from queue
         else:
             for po in pkgs:
@@ -596,13 +596,13 @@ class YumexGroupView:
                 self.model.append(node,[inst,grp_name,grpid,False,False,grp_desc])
                 
             
-    def queue_pixbuf( self, column, cell, model, iter ):
+    def queue_pixbuf( self, column, cell, model, iterator ):
         """ 
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
-        grpid = model.get_value( iter, 2 )
-        queued = model.get_value( iter, 3 )
+        grpid = model.get_value( iterator, 2 )
+        queued = model.get_value( iterator, 3 )
         action = self.queue.hasGroup(grpid)
         if action:            
             if action ==  'i':
@@ -613,12 +613,12 @@ class YumexGroupView:
             cell.set_property( 'icon-name', icon )
         cell.set_property( 'visible', queued )
 
-    def grp_pixbuf( self, column, cell, model, iter ):
+    def grp_pixbuf( self, column, cell, model, iterator ):
         """ 
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
-        grpid = model.get_value( iter, 2 )
+        grpid = model.get_value( iterator, 2 )
         pix = None
         fn = "/usr/share/pixmaps/comps/%s.png" % grpid
         if os.access(fn, os.R_OK):

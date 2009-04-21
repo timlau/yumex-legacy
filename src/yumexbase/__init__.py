@@ -174,15 +174,15 @@ def format_number(number, SI=0, space=' '):
         number = number * thresh ** depth
 
     if type(number) == type(1) or type(number) == type(1L):
-        format = '%i%s%s'
+        fmt = '%i%s%s'
     elif number < 9.95:
         # must use 9.95 for proper sizing.  For example, 9.99 will be
         # rounded to 10.0 with the .1f format string (which is too long)
-        format = '%.1f%s%s'
+        fmt = '%.1f%s%s'
     else:
-        format = '%.0f%s%s'
+        fmt = '%.0f%s%s'
 
-    return(format % (number, space, symbols[depth]))
+    return(fmt % (number, space, symbols[depth]))
 
 
 

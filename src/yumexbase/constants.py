@@ -22,7 +22,6 @@ import sys
 import pango
 import time
 from enum import Enum
-import gtk
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611

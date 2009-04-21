@@ -13,7 +13,7 @@
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-#init-hook=
+init-hook="sys.path.insert(0,'/usr/share/yum-cli')"
 
 # Profiled execution.
 profile=no
@@ -60,8 +60,10 @@ disable-msg-cat=C,R
 # W0401: *Wildcard import %s*
 # W0614: *Unused import %s from wildcard import*
 # W0702: *No exception type(s) specified*
+# W0102: *Dangerous default value %s as argument*
 
-disable-msg=E1101,W0612,W0613,W0511,W0401,W0614,W0702
+
+disable-msg=E1101,W0612,W0613,W0511,W0401,W0614,W0702,W0102
 
 
 [REPORTS]
@@ -128,7 +130,7 @@ ignore-mixin-members=yes
 
 # List of classes names for which member attributes should not be checked
 # (useful for classes with attributes dynamicaly set).
-ignored-classes=SQLObject,NullTranslations
+ignored-classes=SQLObject,NullTranslations,output
 
 # When zope mode is activated, consider the acquired-members option to ignore
 # access to some undefined attributes.
