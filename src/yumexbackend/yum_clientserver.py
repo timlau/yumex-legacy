@@ -204,9 +204,9 @@ class YumClient:
         if not self.child:
             if repos:
                 repo_str = ";".join(repos)
-                self.child = pexpect.spawn('./yum_server.py %i %s %s' % (debuglevel,plugins,repo_str), timeout=self._timeout_value)
+                self.child = pexpect.spawn(MAIN_PATH+'/yum_server.py %i %s %s' % (debuglevel,plugins,repo_str), timeout=self._timeout_value)
             else:    
-                self.child = pexpect.spawn('./yum_server.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
+                self.child = pexpect.spawn(MAIN_PATH+'/yum_server.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
             self.child.setecho(False)
             if filelog:
                 self.child.logfile_read = sys.stdout
