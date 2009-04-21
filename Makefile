@@ -53,7 +53,6 @@ changelog:
 upload: FORCE
 	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz yum-extender.org:public_html/dnl/yumex/source/.
     
-	
 release:
 	@git commit -a -m "bumped version to $(VERSION)"
 	@$(MAKE) changelog
@@ -86,6 +85,17 @@ test-cleanup:
 	@git checkout -f
 	@git checkout future
 	@git branch -D release-test
+
+rpm:
+	@$(MAKE) archive
+	@rpmbuild -ba yumex.spec
+	
+test-builds:
+	@$(MAKE) rpm
+	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/.
+	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${VERSION}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
+	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${VERSION}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
+	
 
 # Needs gtk2-devel for gtk-builder-convert
 builder-xml:

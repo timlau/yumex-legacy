@@ -260,8 +260,8 @@ class YumexHandlers(Controller):
         self.debug("Queue Save")
     
     def on_queueRemove_clicked(self, widget=None, event=None ):
-        self.debug("Queue Remove")
-
+        self.queue.deleteSelected()
+        
     def on_Execute_clicked(self, widget=None, event=None ):
         self.notebook.set_active("output")
         self.debug("Starting pending actions processing")
