@@ -161,11 +161,12 @@ class YumexBackendYum(YumexBackendBase,YumClient):
             print repos
             self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
         plugins = self.frontend.cmd_options.plugins
+        yumdebuglevel = self.frontend.cmd_options.yumdebuglevel
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      
         self.debug('Initialize yum backend - BEGIN')    
-        rc = YumClient.setup(self,plugins=plugins,filelog=filelog,repos=repos)
+        rc = YumClient.setup(self,debuglevel=yumdebuglevel,plugins=plugins,filelog=filelog,repos=repos)
         self.debug('Initialize yum backend - END')    
         return rc    
         

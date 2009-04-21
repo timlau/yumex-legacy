@@ -304,6 +304,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         parser.add_option( "-n", "--noauto", 
                         action="store_false", dest="autorefresh", default=True, 
                         help="No automatic refresh af program start" )
+        parser.add_option( "", "--debuglevel", dest="yumdebuglevel", action="store", 
+                default=2, help="yum debugging output level", type='int', 
+                metavar='[level]' )      
         return parser.parse_args()
     
     def run(self):
