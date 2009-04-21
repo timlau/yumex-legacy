@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  2.1.0
-Release:  0.1.pre%{?dist}
+Version:  2.1.0.test
+Release:  0.2.pre%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -18,10 +18,9 @@ BuildRequires: gettext
 BuildRequires: intltool
 
 
-Requires: yum >= 3.0
+Requires: yum >= 3.2.21
 Requires: pygtk2
 Requires: usermode
-Requires: pygtk2-libglade
 Requires: pexpect
 Requires: python-enum
 
@@ -64,6 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/yumexbackend/
 %{python_sitelib}/yumexbase/
 %{python_sitelib}/yumexgui/
+%{python_sitelib}/guihelpers/
 %config(noreplace)  %{_sysconfdir}/yumex.profiles.conf
 %config(noreplace)  %{_sysconfdir}/yumex.conf
 %config(noreplace) %{_sysconfdir}/pam.d/yumex
@@ -72,6 +72,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Tue Apr 21 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.1.0-0.2.pre
+- Added guihelpers to %%files
 * Fri Oct 24 2008 Tim Lauridsen <timlau@fedoraproject.org> - 2.1.0-0.1.pre
 - bumped version to 2.1.0-0.1.pre
 - added pexpect & python-enum requires.
