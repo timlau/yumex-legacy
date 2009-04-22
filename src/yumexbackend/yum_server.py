@@ -33,6 +33,7 @@ import yum.logginglevels as logginglevels
 import yum.Errors as Errors
 from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
+# Pylint in F10 cant handle the init_hook, so disable the cant find output error
 # pylint: disable-msg=F0401
 from output import DepSolveProgressCallBack # yum cli output.py
 # pylint: enable-msg=F0401
