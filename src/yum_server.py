@@ -20,7 +20,7 @@
 
 import sys
 import signal
-from yumexbackend.yum_clientserver import YumServer
+from yumexbackend.yum_server import YumServer
 import yum.misc
 
 my = None

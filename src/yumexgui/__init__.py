@@ -424,13 +424,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def populate_package_cache(self,repos=[]):
         if not repos:
             repos = self.current_repos
-        self.backend.setup(repos)
         progress = self.get_progress()
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
         progress.set_title(_("Getting Package Lists"))
         progress.set_header("Getting Updated Packages")
         progress.show()
+        self.backend.setup(repos)
         pkgs = self.package_cache.get_packages(FILTER.updates)
         progress.set_header("Getting Available Packages")
         pkgs = self.package_cache.get_packages(FILTER.available)

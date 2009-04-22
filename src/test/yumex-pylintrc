@@ -13,7 +13,7 @@
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-init-hook="sys.path.insert(0,'/usr/share/yum-cli')"
+#init-hook="sys.path.insert(0,'/usr/share/yum-cli')"
 
 # Profiled execution.
 profile=no

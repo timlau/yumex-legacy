@@ -23,7 +23,7 @@ from yumexbase.constants import *
 from yumexbase import format_number
 
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
-from yumexbackend.yum_clientserver import YumClient
+from yumexbackend.yum_client import YumClient
 from yumexgui.dialogs import ErrorDialog, questionDialog
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -158,7 +158,6 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         if self.child: # Check if backend is already running
             return
         if repos:
-            print repos
             self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
         plugins = self.frontend.cmd_options.plugins
         yumdebuglevel = self.frontend.cmd_options.yumdebuglevel
