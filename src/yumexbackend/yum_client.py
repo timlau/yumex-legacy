@@ -48,39 +48,39 @@ def unpack(value):
 
 class YumPackage:
     ''' Simple object to store yum package information '''
-    def __init__(self,base,args):
+    def __init__(self, base, args):
         self.base = base
-        self.name   = args[0]
-        self.epoch  = args[1]
-        self.ver    = args[2]
-        self.rel    = args[3]
-        self.arch   = args[4]
+        self.name = args[0]
+        self.epoch = args[1]
+        self.ver = args[2]
+        self.rel = args[3]
+        self.arch = args[4]
         self.repoid = args[5]
-        self.summary= unpack(args[6])
+        self.summary = unpack(args[6])
         self.action = unpack(args[7])
         self.size = args[8]
         self.recent = args[9]
         
     def __str__(self):
         if self.epoch == '0':
-            return '%s-%s-%s.%s' % (self.name,self.ver,self.rel,self.arch)
+            return '%s-%s-%s.%s' % (self.name, self.ver, self.rel, self.arch)
         else:
-            return '%s:%s-%s-%s.%s' % (self.epoch,self.name,self.ver,self.rel,self.arch)
+            return '%s:%s-%s-%s.%s' % (self.epoch, self.name, self.ver, self.rel, self.arch)
 
     @property        
     def id(self):        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.ver,self.rel,self.arch,self.repoid)
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.ver, self.rel, self.arch, self.repoid)
 
-    def get_attribute(self,attr):
-        return self.base.get_attribute(self.id,attr)
+    def get_attribute(self, attr):
+        return self.base.get_attribute(self.id, attr)
     
-    def get_changelog(self,num):
-        return self.base.get_changelog(self.id,num)
+    def get_changelog(self, num):
+        return self.base.get_changelog(self.id, num)
     
 class YumClient:
     """ Client part of a the yum client/server """
 
-    def __init__(self,timeout=.1):
+    def __init__(self, timeout = .1):
         self.child = None
         self._timeout_value = timeout
         self._timeout_last = 0
@@ -89,35 +89,35 @@ class YumClient:
         self.waiting = False
         self.end_state = None
 
-    def error(self,msg):
+    def error(self, msg):
         """ error message (overload in child class)"""
         raise NotImplementedError()
 
-    def warning(self,msg):
+    def warning(self, msg):
         """ warning message (overload in child class)"""
         raise NotImplementedError()
 
-    def info(self,msg):
+    def info(self, msg):
         """ info message (overload in child class)"""
         raise NotImplementedError()
     
-    def debug(self,msg):
+    def debug(self, msg):
         """ debug message (overload in child class)"""
         raise NotImplementedError()
 
-    def exception(self,msg):
+    def exception(self, msg):
         """ debug message (overload in child class)"""
         raise NotImplementedError()
 
-    def yum_logger(self,msg):
+    def yum_logger(self, msg):
         """ yum logger message (overload in child class)"""
         raise NotImplementedError()
 
-    def yum_state(self,state):
+    def yum_state(self, state):
         """ yum state message handler (overload in child class)"""
         raise NotImplementedError()
 
-    def _yum_rpm(self,value):
+    def _yum_rpm(self, value):
         """ yum rpm action progress message """
         (action, package, percent, ts_current, ts_total) = unpack(value)
         self.yum_rpm_progress(action, package, percent, ts_current, ts_total)
@@ -126,33 +126,33 @@ class YumClient:
         """ yum rpm action progress handler (overload in child class)"""
         raise NotImplementedError()
 
-    def _yum_dnl(self,value):
+    def _yum_dnl(self, value):
         """ yum download action progress message """
-        (ftype,name,percent) = unpack(value)
-        self.yum_dnl_progress(ftype,name,percent)
+        (ftype, name, percent) = unpack(value)
+        self.yum_dnl_progress(ftype, name, percent)
 
-    def yum_dnl_progress(self,ftype,name,percent):
+    def yum_dnl_progress(self, ftype, name, percent):
         """ yum download progress handler (overload in child class) """   
         raise NotImplementedError()
 
-    def _gpg_check(self,value):
+    def _gpg_check(self, value):
         """ yum download action progress message """
-        (po,userid,hexkeyid) = unpack(value)
-        ok = self.gpg_check(po,userid,hexkeyid)
+        (po, userid, hexkeyid) = unpack(value)
+        ok = self.gpg_check(po, userid, hexkeyid)
         if ok:
             self.child.sendline(":true")
         else:
             self.child.sendline(":false")
             
-    def gpg_check(self,po,userid,hexkeyid):
+    def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key (overload in child class) """
         return False
     
-    def fatal(self,args):
+    def fatal(self, args):
         """ fatal backend error """
         err = args[0]
         msg = unpack(args[1])
-        raise YumexBackendFatalError(err,msg)
+        raise YumexBackendFatalError(err, msg)
 
     def _timeout(self):
         """ 
@@ -162,7 +162,7 @@ class YumClient:
         the default timeout is .1 sec.
         """
         now = time.time()
-        if now-self._timeout_last > self._timeout_value:
+        if now - self._timeout_last > self._timeout_value:
             self.timeout(self._timeout_count)
             self._timeout_last = now
             self._timeout_count += 1
@@ -170,7 +170,7 @@ class YumClient:
         else:
             return False
 
-    def timeout(self,count):
+    def timeout(self, count):
         """ 
         timeout child handler, called from the main timeout handler
         An timeout occaurs if the server takes more then timeout
@@ -179,14 +179,16 @@ class YumClient:
         """
         raise NotImplementedError()
 
-    def setup(self,debuglevel=2,plugins=True,filelog=False,repos=[]):
+    def setup(self, debuglevel = 2, plugins = True, filelog = False, repos = []):
         ''' Setup the client and spawn the server'''
         if not self.child:
             if repos:
                 repo_str = ";".join(repos)
-                self.child = pexpect.spawn(MAIN_PATH+'/yum_childtask.py %i %s %s' % (debuglevel,plugins,repo_str), timeout=self._timeout_value)
+                self.child = pexpect.spawn(MAIN_PATH + '/yum_childtask.py %i %s %s' % 
+                                           (debuglevel, plugins, repo_str), timeout = self._timeout_value)
             else:    
-                self.child = pexpect.spawn(MAIN_PATH+'/yum_childtask.py %i %s' % (debuglevel,plugins),timeout=self._timeout_value)
+                self.child = pexpect.spawn(MAIN_PATH + '/yum_childtask.py %i %s' %  
+                                          (debuglevel, plugins), timeout = self._timeout_value)
             self.child.setecho(False)
             if filelog:
                 self.child.logfile_read = sys.stdout
@@ -207,7 +209,7 @@ class YumClient:
         if cnt < 10:
             rc = self._send_command('exit', [])
             if rc:
-                cmd,args = self._readline()
+                cmd, args = self._readline()
                 self._close()
                 return True
         # The yum backend did not ended nicely               
@@ -216,29 +218,29 @@ class YumClient:
         return False
 
         
-    def _send_command(self,cmd,args):
+    def _send_command(self, cmd, args):
         """ send a command to the spawned server """
-        line = "%s\t%s" % (cmd,"\t".join(args))
-        self.debug('Sending command: %s args: %s' % (cmd,str(args)))
+        line = "%s\t%s" % (cmd, "\t".join(args))
+        self.debug('Sending command: %s args: %s' % (cmd, str(args)))
         timeouts = 0
         self.sending = True
         self.end_state = None        
         while True:
             try:
-                cmd,args = self._readline()
+                cmd, args = self._readline()
                 if cmd == ':ready':
                     break
                 elif cmd == None:
                     self.sending = False
                     return False
-            except pexpect.TIMEOUT,e:
+            except pexpect.TIMEOUT, e:
                 self._timeout()
                 continue
         self.child.sendline(line)
         self.sending = False
         return True
 
-    def _parse_command(self,line):
+    def _parse_command(self, line):
         ''' split command and args for a command received from the server'''
         line = line.strip()
         if line.startswith(':'):
@@ -248,15 +250,15 @@ class YumClient:
                 args = parts[1:]
             else:
                 args = []
-            return cmd,args
+            return cmd, args
         else:
-            return None,line
+            return None, line
     
     def _readline(self):
         ''' read a line from the server'''
         line = None
         if self.waiting: # Somebody else is already waiting for something
-            return None,None
+            return None, None
         while True:
             try:
                 self.waiting = True
@@ -264,24 +266,24 @@ class YumClient:
                     line = self.child.readline()
                 else: # We are closing
                     self.waiting = False
-                    return None,None
-                cmd,args = self._parse_command(line)
+                    return None, None
+                cmd, args = self._parse_command(line)
                 self._timeout()
                 if cmd:
                     if self._check_for_message(cmd, args):
                         continue
                     else:
                         self.waiting = False
-                        return cmd,args
+                        return cmd, args
                 else:
                     self.yum_logger(line.strip('\n'))
-            except pexpect.TIMEOUT,e:
+            except pexpect.TIMEOUT, e:
                 self._timeout()
                 continue
             
         
         
-    def _check_for_message(self,cmd,args):
+    def _check_for_message(self, cmd, args):
         ''' 
         check if the command is a message and call the
         message handler if it is
@@ -315,12 +317,12 @@ class YumClient:
     def _wait_for_started(self):
         cnt = 0
         while True:
-            cmd,args = self._readline()
+            cmd, args = self._readline()
             cnt += 1
             if cmd == ':started':
                 return True
             
-    def is_ended(self,cmd,args):
+    def is_ended(self, cmd, args):
         if cmd == ':end':
             if args:
                 self.end_state = unpack(args[0])
@@ -331,7 +333,7 @@ class YumClient:
         else:
             return False
         
-    def _get_list(self,result_cmd=":pkg"):
+    def _get_list(self, result_cmd = ":pkg"):
         ''' 
         read a list of :pkg commands from the server, until and
         :end command is received
@@ -339,34 +341,34 @@ class YumClient:
         data = []
         cnt = 0L
         while True:
-            cmd,args = self._readline()
-            if self.is_ended(cmd,args):
+            cmd, args = self._readline()
+            if self.is_ended(cmd, args):
                 break
             if cmd == None: # readline is locked:
                 break
             elif not cmd == result_cmd: 
-                self.warning("_get_list unexpected command : %s (%s)" % (cmd,args))
+                self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
             elif cmd == ':pkg':
-                p = YumPackage(self,args)
-                data.append(p)
+                po = YumPackage(self, args)
+                data.append(po)
             else:
                 data.append(args)
         return data
 
-    def _get_result(self,result_cmd):
+    def _get_result(self, result_cmd):
         '''
         read a given result command from the server.
         '''
         cnt = 0L
         while True:
-            cmd,args = self._readline()
+            cmd, args = self._readline()
             if not self._check_for_message(cmd, args):
                 if cmd == result_cmd:
                     return args
                 elif cmd == None: # readline is locked
                     break
                 else:
-                    self.warning("_get_result unexpected command : %s (%s)" % (cmd,args))
+                    self.warning("_get_result unexpected command : %s (%s)" % (cmd, args))
     
     def _get_messages(self):
         ''' 
@@ -375,8 +377,8 @@ class YumClient:
         '''
         msgs = {}
         while True:
-            cmd,args = self._readline()
-            if self.is_ended(cmd,args):
+            cmd, args = self._readline()
+            if self.is_ended(cmd, args):
                 break
             elif cmd == ':msg':
                 msg_type = args[0]
@@ -391,95 +393,95 @@ class YumClient:
     def _close(self):        
         ''' terminate the child server process '''
         if self.child:
-            self.child.close(force=True)
+            self.child.close(force = True)
             self.child = None
         
-    def get_packages(self,pkg_filter):    
+    def get_packages(self, pkg_filter):    
         ''' get a list of packages based on pkg_filter '''
-        self._send_command('get-packages',[str(pkg_filter)])
+        self._send_command('get-packages', [str(pkg_filter)])
         pkgs = self._get_list()
         return pkgs
 
-    def get_attribute(self,ident,attr):    
+    def get_attribute(self, ident, attr):    
         ''' get an attribute of an package '''
-        self._send_command('get-attribute',[ident,attr])
+        self._send_command('get-attribute', [ident, attr])
         args = self._get_result(':attr')
         if args:
             return unpack(args[0])
         else:
             return None
 
-    def get_changelog(self,ident,num):    
+    def get_changelog(self, ident, num):    
         ''' get an attribute of an package '''
-        self._send_command('get-changelog',[ident,str(num)])
+        self._send_command('get-changelog', [ident, str(num)])
         args = self._get_result(':attr')
         if args:
             return unpack(args[0])
         else:
             return None
         
-    def add_transaction(self,ident,action):
-        self._send_command('add-transaction',[ident,action])
+    def add_transaction(self, ident, action):
+        self._send_command('add-transaction', [ident, action])
         pkgs = self._get_list()
         return pkgs
         
-    def remove_transaction(self,ident,action):
-        self._send_command('remove-transaction',[ident])
+    def remove_transaction(self, ident, action):
+        self._send_command('remove-transaction', [ident])
         pkgs = self._get_list()
         return pkgs
 
     def list_transaction(self):        
-        self._send_command('list-transaction',[])
+        self._send_command('list-transaction', [])
         pkgs = self._get_list()
         return pkgs
 
     def build_transaction(self):        
-        self._send_command('build-transaction',[])
+        self._send_command('build-transaction', [])
         msgs = self._get_messages()
-        return msgs['return_code'][0],msgs['messages'],unpack(msgs['transaction'][0])
+        return msgs['return_code'][0], msgs['messages'], unpack(msgs['transaction'][0])
 
     def run_transaction(self):        
-        self._send_command('run-transaction',[])
+        self._send_command('run-transaction', [])
         lst = self._get_list()
         return self.end_state
 
     def get_groups(self):
-        self._send_command('get-groups',[])
+        self._send_command('get-groups', [])
         msgs = self._get_messages()
         return unpack(msgs['groups'][0])
 
-    def get_group_packages(self, group, grp_filter=None):
+    def get_group_packages(self, group, grp_filter = None):
         ''' 
         get packages in a group 
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
-        self._send_command('get-group-packages',[group,str(grp_filter)])
+        self._send_command('get-group-packages', [group, str(grp_filter)])
         pkgs = self._get_list()
         return pkgs
         
 
     def get_repos(self):
-        self._send_command('get-repos',[])
+        self._send_command('get-repos', [])
         data = self._get_list(':repo')
         repos = []
-        for state,ident,name,gpg in data:
+        for state, ident, name, gpg in data:
             gpg = gpg == 'True'
             state = state == 'True'
-            elem = (state,ident,name,gpg)
+            elem = (state, ident, name, gpg)
             repos.append(elem)
         return repos
         
-    def enable_repo(self,ident,state):
-        self._send_command('enable-repo',[ident,str(state)])
+    def enable_repo(self, ident, state):
+        self._send_command('enable-repo', [ident, str(state)])
         args = self._get_result(':repo')
         return args
         
         
-    def search(self,keys,filters):
+    def search(self, keys, filters):
         bKeys = pack(keys)
         bFilters = pack(filters)
-        self._send_command('search',[bKeys,bFilters])
+        self._send_command('search', [bKeys, bFilters])
         pkgs = self._get_list()
         return pkgs
 

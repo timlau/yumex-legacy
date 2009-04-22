@@ -31,7 +31,7 @@ from yumexbase.i18n import _, P_
 
 # Constant
 
-__yumex_version__   = "2.1.0" 
+__yumex_version__ = "2.1.0" 
 
 YUMEX_LOG = 'yumex.verbose'
 # Package Types
@@ -49,26 +49,26 @@ ACTIONS = {0 : 'u', 1: 'i', 2 : 'r'}
 FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r'}
 
 # Paths
-MAIN_PATH = os.path.abspath( os.path.dirname( sys.argv[0] ) )
-BUILDER_FILE = MAIN_PATH+'/yumex.xml'  
+MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
+BUILDER_FILE = MAIN_PATH + '/yumex.xml'  
 if MAIN_PATH == '/usr/share/yumex':    
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
 else:
-    PIXMAPS_PATH = MAIN_PATH+'/../gfx'
+    PIXMAPS_PATH = MAIN_PATH + '/../gfx'
 
 # icons
-ICON_YUMEX      = PIXMAPS_PATH+"/yumex-icon.png"
-ICON_PACKAGES   = PIXMAPS_PATH+'/button-packages.png'
-ICON_GROUPS     = PIXMAPS_PATH+'/button-group.png'
-ICON_QUEUE      = PIXMAPS_PATH+'/button-queue.png'
-ICON_OUTPUT     = PIXMAPS_PATH+'/button-output.png'
-ICON_REPOS      = PIXMAPS_PATH+'/button-repo.png'
+ICON_YUMEX = PIXMAPS_PATH + "/yumex-icon.png"
+ICON_PACKAGES = PIXMAPS_PATH + '/button-packages.png'
+ICON_GROUPS = PIXMAPS_PATH + '/button-group.png'
+ICON_QUEUE = PIXMAPS_PATH + '/button-queue.png'
+ICON_OUTPUT = PIXMAPS_PATH + '/button-output.png'
+ICON_REPOS = PIXMAPS_PATH + '/button-repo.png'
     
 # NOTE: The package filter radio buttons in the top of the package page
-PKG_FILTERS_STRINGS = (_('updates'),_('available'),_('installed'))
+PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))
 PKG_FILTERS_ENUMS = (FILTER.updates, FILTER.available, FILTER.installed)
 
-REPO_HIDE = ['source','debuginfo']
+REPO_HIDE = ['source', 'debuginfo']
 
 RECENT_LIMIT = time.time() - (3600 * 24 * 14)
 # Max Window size

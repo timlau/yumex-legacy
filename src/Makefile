@@ -18,3 +18,8 @@ install:
 
 pylint:
 	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
+
+pylint-short:
+	@pylint -r n --enable-msg-cat=C --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
+	
+	 

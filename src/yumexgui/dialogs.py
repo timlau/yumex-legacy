@@ -33,15 +33,15 @@ from yumexbase.i18n import _, P_
 
 class Progress(YumexProgressBase):
     
-    def __init__(self,ui,parent):
+    def __init__(self, ui, parent):
         YumexProgressBase.__init__(self)
         self.ui = ui
         self.dialog = self.ui.Progress
         self.dialog.set_title("Working....")
         self.parent = parent
-        self.dialog.set_transient_for( parent )        
+        self.dialog.set_transient_for(parent)        
         style = self.ui.packageView.get_style()
-        self.ui.progressEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
+        self.ui.progressEvent.modify_bg(gtk.STATE_NORMAL, style.base[0])        
         self.progressbar = self.ui.progressBar
         self.progressbar.modify_font(SMALL_FONT)
         self.header = self.ui.progressHeader
@@ -60,17 +60,17 @@ class Progress(YumexProgressBase):
         normalCursor(self.parent)
         self.dialog.hide()
 
-    def set_title(self,text):
+    def set_title(self, text):
         self.dialog.set_title(text)
         
-    def set_header(self,text):
+    def set_header(self, text):
         self.header.set_text(text)
         self.set_action("")
         
-    def set_action(self,text):
+    def set_action(self, text):
         self.label.set_markup(text)
         
-    def set_fraction(self,frac,text=None):
+    def set_fraction(self, frac, text = None):
         self.progressbar.set_fraction(frac)
         if text:
             self.progressbar.set_text(text)
@@ -85,12 +85,12 @@ class Progress(YumexProgressBase):
             
 class TransactionConfirmation:
     
-    def __init__(self,ui,parent):
+    def __init__(self, ui, parent):
         self.ui = ui
         self.dialog = self.ui.Transaction
         self.dialog.set_title(_("Transaction Result"))
         self.parent = parent
-        self.dialog.set_transient_for( parent )        
+        self.dialog.set_transient_for(parent)        
         self.view = self.ui.transactionView
         self.view.modify_font(SMALL_FONT)        
         style = self.view.get_style()
@@ -100,102 +100,103 @@ class TransactionConfirmation:
         self.set_header(_("Transaction Result"))
         self.store = self.setup_view(self.view)
 
-    def run( self ):
+    def run(self):
         self.dialog.show_all()
         self.view.expand_all()
         rc = self.dialog.run()
         return rc == 1
 
-    def destroy( self ):
+    def destroy(self):
         self.dialog.hide()
 
         
-    def set_header(self,text):
+    def set_header(self, text):
         self.header.set_text(text)
         
-    def setup_view( self, view ):
-        model = gtk.TreeStore( gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING )
-        view.set_model( model )
-        self.create_text_column( _( "Name" ), view, 0 )
-        self.create_text_column( _( "Arch" ), view, 1 )
-        self.create_text_column( _( "Ver" ), view, 2 )
-        self.create_text_column( _( "Repository" ), view, 3 )
-        self.create_text_column( _( "Size" ), view, 4 )
+    def setup_view(self, view):
+        model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                              gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
+        view.set_model(model)
+        self.create_text_column(_("Name"), view, 0)
+        self.create_text_column(_("Arch"), view, 1)
+        self.create_text_column(_("Ver"), view, 2)
+        self.create_text_column(_("Repository"), view, 3)
+        self.create_text_column(_("Size"), view, 4)
         return model
 
-    def create_text_column( self, hdr, view, colno, min_width=0 ):
+    def create_text_column(self, hdr, view, colno, min_width = 0):
         cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn( hdr, cell, markup=colno )
-        column.set_resizable( True )
+        column = gtk.TreeViewColumn(hdr, cell, markup = colno)
+        column.set_resizable(True)
         if not min_width == 0:
-            column.set_min_width( min_width )
-        view.append_column( column )        
+            column.set_min_width(min_width)
+        view.append_column(column)        
              
              
-    def populate( self, pkglist ):
+    def populate(self, pkglist):
         model = self.store
         self.store.clear()       
         for sub, lvl1 in pkglist:
             label = "<b>%s</b>" % sub
-            level1 = model.append( None, [label, "", "", "", ""] )
+            level1 = model.append(None, [label, "", "", "", ""])
             for name, arch, ver, repo, size, replaces in lvl1:
-                level2 = model.append( level1, [name, arch, ver, repo, size] )
+                level2 = model.append(level1, [name, arch, ver, repo, size])
                 for r in replaces:
-                    level3 = model.append( level2, [ r, "", "", "", ""] )
+                    level3 = model.append(level2, [ r, "", "", "", ""])
 
 
 class ErrorDialog:
-    def __init__( self, ui, parent, title, text, longtext, modal ):
+    def __init__(self, ui, parent, title, text, longtext, modal):
         self.ui = ui
         self.dialog = ui.errDialog
         self.parent = parent
         if parent:
-            self.dialog.set_transient_for( parent )
-        self.dialog.set_icon_name( 'gtk-dialog-error' )
-        self.dialog.set_title( title )
+            self.dialog.set_transient_for(parent)
+        self.dialog.set_icon_name('gtk-dialog-error')
+        self.dialog.set_title(title)
         self.text = self.ui.errText
         self.longtext = self.ui.errTextView
-        self.style_err = gtk.TextTag( "error" ) 
-        self.style_err.set_property( "style", pango.STYLE_ITALIC )
-        self.style_err.set_property( "foreground", "red" )
-        self.style_err.set_property( "family", "Monospace" )
-        self.style_err.set_property( "size_points", 8 )
-        self.longtext.get_buffer().get_tag_table().add( self.style_err )
+        self.style_err = gtk.TextTag("error") 
+        self.style_err.set_property("style", pango.STYLE_ITALIC)
+        self.style_err.set_property("foreground", "red")
+        self.style_err.set_property("family", "Monospace")
+        self.style_err.set_property("size_points", 8)
+        self.longtext.get_buffer().get_tag_table().add(self.style_err)
         
         if modal:
-            self.dialog.set_modal( True )
+            self.dialog.set_modal(True)
         if text != "":
-            self.set_text( text )
+            self.set_text(text)
         if longtext != "" and longtext != None:
-            self.set_long_text( longtext )
+            self.set_long_text(longtext)
         
-    def set_text( self, text ):
-        self.text.set_markup( text )
+    def set_text(self, text):
+        self.text.set_markup(text)
     
-    def set_long_text( self, longtext ):
+    def set_long_text(self, longtext):
         buf = self.longtext.get_buffer()
         start, end = buf.get_bounds()
-        buf.insert_with_tags( end, longtext, self.style_err )
+        buf.insert_with_tags(end, longtext, self.style_err)
         
-    def run( self ):
+    def run(self):
         self.dialog.show_all()
         return self.dialog.run()
 
-    def destroy( self ):
+    def destroy(self):
         self.dialog.hide()
 
 def okDialog(parent, msg):
-    dlg = gtk.MessageDialog(parent=parent,
-                            type=gtk.MESSAGE_INFO,
-                            buttons=gtk.BUTTONS_OK)
+    dlg = gtk.MessageDialog(parent = parent,
+                            type = gtk.MESSAGE_INFO,
+                            buttons = gtk.BUTTONS_OK)
     dlg.set_markup(cleanMarkupSting(msg))
     rc = dlg.run()
     dlg.destroy()
 
 def questionDialog(parent, msg):
-    dlg = gtk.MessageDialog(parent=parent,
-                            type=gtk.MESSAGE_QUESTION,
-                            buttons=gtk.BUTTONS_YES_NO)
+    dlg = gtk.MessageDialog(parent = parent,
+                            type = gtk.MESSAGE_QUESTION,
+                            buttons = gtk.BUTTONS_YES_NO)
     dlg.set_markup(cleanMarkupSting(msg))
     rc = dlg.run()
     dlg.destroy()

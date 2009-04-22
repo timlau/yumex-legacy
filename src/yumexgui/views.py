@@ -27,69 +27,69 @@ import yumexbase.constants as const
 from yum.misc import sortPkgObj
 
 class SelectionView:
-    def __init__(self,widget):
+    def __init__(self, widget):
         self.view = widget
         self.store = None
 
-    def create_text_column_num( self, hdr,colno,resize = True):
+    def create_text_column_num(self, hdr, colno, resize = True):
         cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn( hdr, cell, text=colno )
-        column.set_resizable(resize )
-        self.view.append_column( column )        
+        column = gtk.TreeViewColumn(hdr, cell, text = colno)
+        column.set_resizable(resize)
+        self.view.append_column(column)        
 
-    def create_text_column( self, hdr, prop, size,sortcol = None):
+    def create_text_column(self, hdr, prop, size, sortcol = None):
         """ 
         Create a TreeViewColumn with text and set
         the sorting properties and add it to the view
         """
         cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn( hdr, cell )
-        column.set_resizable( True )
-        column.set_cell_data_func( cell, self.get_data_text, prop )
-        column.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
-        column.set_fixed_width( size )
-        column.set_sort_column_id( -1 )            
-        self.view.append_column( column )        
+        column = gtk.TreeViewColumn(hdr, cell)
+        column.set_resizable(True)
+        column.set_cell_data_func(cell, self.get_data_text, prop)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_fixed_width(size)
+        column.set_sort_column_id(-1)            
+        self.view.append_column(column)        
         return column
 
-    def create_selection_colunm(self,attr ):
+    def create_selection_colunm(self, attr):
         # Setup a selection column using a object attribute 
         cell1 = gtk.CellRendererToggle()    # Selection
-        cell1.set_property( 'activatable', True )
-        column1 = gtk.TreeViewColumn( "", cell1 )
-        column1.set_cell_data_func( cell1, self.get_data_bool, attr )
-        column1.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
-        column1.set_fixed_width( 20 )
-        column1.set_sort_column_id( -1 )            
-        self.view.append_column( column1 )
-        cell1.connect( "toggled", self.on_toggled )            
-        column1.set_clickable( True )
+        cell1.set_property('activatable', True)
+        column1 = gtk.TreeViewColumn("", cell1)
+        column1.set_cell_data_func(cell1, self.get_data_bool, attr)
+        column1.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column1.set_fixed_width(20)
+        column1.set_sort_column_id(-1)            
+        self.view.append_column(column1)
+        cell1.connect("toggled", self.on_toggled)            
+        column1.set_clickable(True)
 
-    def create_selection_column_num(self,num ):
+    def create_selection_column_num(self, num):
         # Setup a selection column using a column num
         cell1 = gtk.CellRendererToggle()    # Selection
-        cell1.set_property( 'activatable', True )
-        column1 = gtk.TreeViewColumn( "    ", cell1 )
-        column1.add_attribute( cell1, "active", num )
-        column1.set_resizable( True )
-        column1.set_sort_column_id( -1 )            
-        self.view.append_column( column1 )
-        cell1.connect( "toggled", self.on_toggled )     
+        cell1.set_property('activatable', True)
+        column1 = gtk.TreeViewColumn("    ", cell1)
+        column1.add_attribute(cell1, "active", num)
+        column1.set_resizable(True)
+        column1.set_sort_column_id(-1)            
+        self.view.append_column(column1)
+        cell1.connect("toggled", self.on_toggled)     
         
-    def get_data_text( self, column, cell, model, iterator,prop ):
-        obj = model.get_value( iterator, 0 )
+    def get_data_text(self, column, cell, model, iterator, prop):
+        obj = model.get_value(iterator, 0)
         if obj:
-            cell.set_property( 'text', getattr( obj, prop ) )
-            cell.set_property('foreground',obj.color)
+            cell.set_property('text', getattr(obj, prop))
+            cell.set_property('foreground', obj.color)
 
-    def get_data_bool( self, column, cell, model, iterator, prop ):
-        obj = model.get_value( iterator, 0 )
-        cell.set_property( "visible", True )
+    def get_data_bool(self, column, cell, model, iterator, prop):
+        obj = model.get_value(iterator, 0)
+        cell.set_property("visible", True)
         if obj:
-            cell.set_property( "active", getattr( obj, prop ) )
+            cell.set_property("active", getattr(obj, prop))
             
 
-    def on_toggled(self,widget,path):
+    def on_toggled(self, widget, path):
         ''' 
         selection togged handler
         overload in child class
@@ -97,58 +97,58 @@ class SelectionView:
         pass
     
 class YumexPackageView(SelectionView):
-    def __init__( self, widget,qview ):
+    def __init__(self, widget, qview):
         SelectionView.__init__(self, widget)
         self.view.modify_font(const.SMALL_FONT)
-        self.headers = [_( "Package" ), _( "Ver" ), _( "Summary" ), _( "Repo" ), _( "Architecture" ), _( "Size" )]
+        self.headers = [_("Package"), _("Ver"), _("Summary"), _("Repo"), _("Architecture"), _("Size")]
         self.store = self.setupView()
         self.queue = qview.queue
         self.queueView = qview
         
-    def setupView( self ):
-        store = gtk.ListStore( gobject.TYPE_PYOBJECT,str)
-        self.view.set_model( store )
+    def setupView(self):
+        store = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
+        self.view.set_model(store)
         self.create_selection_colunm('selected')
         # Setup resent column
         cell2 = gtk.CellRendererPixbuf()    # new
-        cell2.set_property( 'stock-id', gtk.STOCK_ADD )
-        column2 = gtk.TreeViewColumn( "", cell2 )
-        column2.set_cell_data_func( cell2, self.new_pixbuf )
-        column2.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
-        column2.set_fixed_width( 20 )
-        column2.set_sort_column_id( -1 )            
-        self.view.append_column( column2 )
-        column2.set_clickable( True )
+        cell2.set_property('stock-id', gtk.STOCK_ADD)
+        column2 = gtk.TreeViewColumn("", cell2)
+        column2.set_cell_data_func(cell2, self.new_pixbuf)
+        column2.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column2.set_fixed_width(20)
+        column2.set_sort_column_id(-1)            
+        self.view.append_column(column2)
+        column2.set_clickable(True)
 
-        self.create_text_column( _( "Package" ), 'name' , size=200)
-        self.create_text_column( _( "Ver." ), 'version', size = 80 )
-        self.create_text_column( _( "Arch." ), 'arch' , size = 60 )
-        self.create_text_column( _( "Summary" ), 'summary', size=400 )
-        self.create_text_column( _( "Repo." ), 'repoid' , size=90 )
-        self.create_text_column( _( "Size." ), 'size' , size=90)
-        self.view.set_search_column( 1 )
+        self.create_text_column(_("Package"), 'name' , size = 200)
+        self.create_text_column(_("Ver."), 'version', size = 80)
+        self.create_text_column(_("Arch."), 'arch' , size = 60)
+        self.create_text_column(_("Summary"), 'summary', size = 400)
+        self.create_text_column(_("Repo."), 'repoid' , size = 90)
+        self.create_text_column(_("Size."), 'size' , size = 90)
+        self.view.set_search_column(1)
         self.view.set_enable_search(True)
         #store.set_sort_column_id(1, gtk.SORT_ASCENDING)
-        self.view.set_reorderable( False )
+        self.view.set_reorderable(False)
         return store
    
     
-    def on_toggled( self, widget, path ):
+    def on_toggled(self, widget, path):
         """ Package selection handler """
-        iterator = self.store.get_iter( path )
-        obj = self.store.get_value( iterator, 0 )
+        iterator = self.store.get_iter(path)
+        obj = self.store.get_value(iterator, 0)
         self.togglePackage(obj)
         self.queueView.refresh()
         
-    def togglePackage(self,obj):
+    def togglePackage(self, obj):
         if obj.queued == obj.action:
             obj.queued = None
             self.queue.remove(obj)
         else:
             obj.queued = obj.action      
-            print "QUEUE: ", obj.name,obj.action
+            print "QUEUE: ", obj.name, obj.action
             self.queue.add(obj)
-        obj.set_select( not obj.selected )
+        obj.set_select(not obj.selected)
         
                 
     def selectAll(self):
@@ -157,7 +157,7 @@ class YumexPackageView(SelectionView):
             if not obj.queued == obj.action:
                 obj.queued = obj.action      
                 self.queue.add(obj)
-                obj.set_select( not obj.selected )
+                obj.set_select(not obj.selected)
         self.queueView.refresh()
         self.view.queue_draw() 
 
@@ -167,33 +167,33 @@ class YumexPackageView(SelectionView):
             if obj.queued == obj.action:
                 obj.queued = None
                 self.queue.remove(obj)
-                obj.set_select( not obj.selected )
+                obj.set_select(not obj.selected)
         self.queueView.refresh()
         self.view.queue_draw() 
 
-    def new_pixbuf( self, column, cell, model, iterator ):
+    def new_pixbuf(self, column, cell, model, iterator):
         """ 
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
-        pkg = model.get_value( iterator, 0 )
+        pkg = model.get_value(iterator, 0)
         if pkg:
             action = pkg.queued
             if action:            
-                if action in ( 'u', 'i' ):
+                if action in ('u', 'i'):
                     icon = 'network-server'
                 else:
                     icon = 'edit-delete'
-                cell.set_property( 'visible', True )
-                cell.set_property( 'icon-name', icon )
+                cell.set_property('visible', True)
+                cell.set_property('icon-name', icon)
             else:
-                cell.set_property( 'visible', pkg.recent )
-                cell.set_property( 'icon-name', 'document-new' )
+                cell.set_property('visible', pkg.recent)
+                cell.set_property('icon-name', 'document-new')
         else:
-            cell.set_property( 'visible', False )
+            cell.set_property('visible', False)
             
 
-    def get_selected( self, package=True ):
+    def get_selected(self, package = True):
         """ Get selected packages in current packageList """
         selected = []
         for row in self.store:
@@ -201,20 +201,20 @@ class YumexPackageView(SelectionView):
             if col:
                 pkg = row[0][0]
                 if pkg.selected:
-                    selected.append( pkg )
+                    selected.append(pkg)
         return selected
 
     def clear(self):
         self.store.clear()
     
-    def add_packages(self,pkgs,progress=None):
+    def add_packages(self, pkgs, progress = None):
         self.store.clear()
         queued = self.queue.get()
         if pkgs:
             pkgs.sort(sortPkgObj)
             self.view.set_model(None)
             for po in pkgs:
-                self.store.append([po,str(po)])
+                self.store.append([po, str(po)])
                 if po in queued[po.action]:
                     po.queued = po.action
                     po.set_select(True)
@@ -225,14 +225,14 @@ class YumexQueue:
     def __init__(self):
         self.logger = logging.getLogger('yumex.YumexQueue')
         self.packages = {}
-        self.packages['i']= []
+        self.packages['i'] = []
         self.packages['u'] = []
         self.packages['r'] = []
         self.groups = {}
         self.groups['i'] = []
         self.groups['r'] = []
 
-    def clear( self ):
+    def clear(self):
         del self.packages
         self.packages = {}
         self.packages['i'] = []
@@ -242,55 +242,55 @@ class YumexQueue:
         self.groups['i'] = []
         self.groups['r'] = []
         
-    def get( self, action = None ):        
+    def get(self, action = None):        
         if action == None:
             return self.packages
         else:
             return self.packages[action]
             
     def total(self):
-        return len(self.packages['i'])+len(self.packages['u'])+len(self.packages['r'])
+        return len(self.packages['i']) + len(self.packages['u']) + len(self.packages['r'])
         
-    def add( self, pkg):
+    def add(self, pkg):
         pkg_list = self.packages[pkg.action]
         if not pkg in pkg_list:
-            pkg_list.append( pkg )
+            pkg_list.append(pkg)
         self.packages[pkg.action] = pkg_list
 
-    def remove( self, pkg):
+    def remove(self, pkg):
         pkg_list = self.packages[pkg.action]
         if pkg in pkg_list:
-            pkg_list.remove( pkg )
+            pkg_list.remove(pkg)
         self.packages[pkg.action] = pkg_list
 
-    def addGroup( self, grp, action):
+    def addGroup(self, grp, action):
         pkg_list = self.groups[action]
         if not grp in pkg_list:
-            pkg_list.append( grp )
+            pkg_list.append(grp)
         self.groups[action] = pkg_list
 
-    def removeGroup( self, grp, action):
+    def removeGroup(self, grp, action):
         pkg_list = self.groups[action]
         if grp in pkg_list:
-            pkg_list.remove( grp )
+            pkg_list.remove(grp)
         self.groups[action] = pkg_list
 
-    def hasGroup(self,grp):
-        for action in ['i','r']:
+    def hasGroup(self, grp):
+        for action in ['i', 'r']:
             if grp in self.groups[action]:
                 return action
         return None
         
     def dump(self):
         self.logger.info(_("Package Queue:"))
-        for action in ['install','update','remove']:
+        for action in ['install', 'update', 'remove']:
             a = action[0]
             pkg_list = self.packages[a]
             if len(pkg_list) > 0:
                 self.logger.info(" Package(s) to %s" % action)
                 for pkg in pkg_list:
                     self.logger.info(" ---> %s " % str(pkg))
-        for action in ['install','remove']:
+        for action in ['install', 'remove']:
             a = action[0]
             pkg_list = self.groups[a]
             if len(pkg_list) > 0:
@@ -301,184 +301,181 @@ class YumexQueue:
         
 class YumexQueueView:
     """ Queue View Class"""
-    def __init__( self, widget):
+    def __init__(self, widget):
         self.view = widget
         self.view.modify_font(const.SMALL_FONT)
         self.model = self.setup_view()
         self.queue = YumexQueue()
 
-    def setup_view( self ):
+    def setup_view(self):
         """ Create Notebook list for single page  """
-        model = gtk.TreeStore( gobject.TYPE_STRING, gobject.TYPE_STRING )           
-        self.view.set_model( model )
+        model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)           
+        self.view.set_model(model)
         cell1 = gtk.CellRendererText()
-        column1= gtk.TreeViewColumn( _( "Packages" ), cell1, markup=0 )
-        column1.set_resizable( True )
-        self.view.append_column( column1 )
+        column1 = gtk.TreeViewColumn(_("Packages"), cell1, markup = 0)
+        column1.set_resizable(True)
+        self.view.append_column(column1)
 
         cell2 = gtk.CellRendererText()
-        column2= gtk.TreeViewColumn( _( "Summary" ), cell2, text=1 )
-        column2.set_resizable( True )
-        self.view.append_column( column2 )
-        model.set_sort_column_id( 0, gtk.SORT_ASCENDING )
-        self.view.get_selection().set_mode( gtk.SELECTION_MULTIPLE )
+        column2 = gtk.TreeViewColumn(_("Summary"), cell2, text = 1)
+        column2.set_resizable(True)
+        self.view.append_column(column2)
+        model.set_sort_column_id(0, gtk.SORT_ASCENDING)
+        self.view.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
         return model
     
-    def deleteSelected( self ):
+    def deleteSelected(self):
         rmvlist = []
         model, paths = self.view.get_selection().get_selected_rows()
-        for p in paths:
-            row = model[p]
+        for path in paths:
+            row = model[path]
             if row.parent != None:
-                rmvlist.append( row[0] )
-        for pkg in self.getPkgsFromList( rmvlist ):
+                rmvlist.append(row[0])
+        for pkg in self.getPkgsFromList(rmvlist):
             pkg.queued = None
-            pkg.set_select( not pkg.selected )
-        f = lambda x: str( x ) not in rmvlist
+            pkg.set_select(not pkg.selected)
         for action in ['u', 'i', 'r']:
             pkg_list = self.queue.get(action)
             if pkg_list:
-                #self.queue.packages[action] = filter( f, pkg_list )
                 self.queue.packages[action] = [x for x in pkg_list if str(x) not in rmvlist]
         self.refresh()
 
 
-    def getPkgsFromList( self, rlist ):
+    def getPkgsFromList(self, rlist):
         rclist = []
-        f = lambda x: str( x ) in rlist
         for action in ['u', 'i', 'r']:
             pkg_list = self.queue.packages[action]
             if pkg_list:
                 rclist.extend([x for x in pkg_list if str(x) in rlist])
         return rclist
         
-    def refresh ( self ):
+    def refresh (self):
         """ Populate view with data from queue """
         self.model.clear()
         pkg_list = self.queue.packages['u']
-        label = "<b>%s</b>" % P_("Package to update","Packages to update",len(pkg_list))
-        if len( pkg_list ) > 0:
-            self.populate_list( label, pkg_list )
-        label = "<b>%s</b>" % P_("Package to install","Packages to install",len(pkg_list))
+        label = "<b>%s</b>" % P_("Package to update", "Packages to update", len(pkg_list))
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
+        label = "<b>%s</b>" % P_("Package to install", "Packages to install", len(pkg_list))
         pkg_list = self.queue.packages['i']
-        if len( pkg_list ) > 0:
-            self.populate_list( label, pkg_list )
-        label = "<b>%s</b>" % P_("Package to remove","Packages to remove",len(pkg_list))
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
+        label = "<b>%s</b>" % P_("Package to remove", "Packages to remove", len(pkg_list))
         pkg_list = self.queue.packages['r']
-        if len( pkg_list ) > 0:
-            self.populate_list( label, pkg_list )
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
         self.view.expand_all()
             
-    def populate_list( self, label, pkg_list ):
-        parent = self.model.append( None, [label, ""] )
+    def populate_list(self, label, pkg_list):
+        parent = self.model.append(None, [label, ""])
         for pkg in pkg_list:
-            self.model.append( parent, [str( pkg ), pkg.summary] )
+            self.model.append(parent, [str(pkg), pkg.summary])
 
 class YumexRepoView(SelectionView):
     """ 
     This class controls the repo TreeView
     """
-    def __init__( self, widget):
+    def __init__(self, widget):
         SelectionView.__init__(self, widget)
         self.view.modify_font(const.SMALL_FONT)        
-        self.headers = [_('Repository'),_('Filename')]
+        self.headers = [_('Repository'), _('Filename')]
         self.store = self.setup_view()
     
     
-    def on_toggled( self, widget, path):
+    def on_toggled(self, widget, path):
         """ Repo select/unselect handler """
-        iterator = self.store.get_iter( path )
-        state = self.store.get_value(iterator,0)
-        self.store.set_value(iterator,0, not state)
+        iterator = self.store.get_iter(path)
+        state = self.store.get_value(iterator, 0)
+        self.store.set_value(iterator, 0, not state)
                      
-    def setup_view( self ):
+    def setup_view(self):
         """ Create models and columns for the Repo TextView  """
-        store = gtk.ListStore( 'gboolean', gobject.TYPE_STRING,gobject.TYPE_STRING,'gboolean')
-        self.view.set_model( store )
+        store = gtk.ListStore('gboolean', gobject.TYPE_STRING, gobject.TYPE_STRING, 'gboolean')
+        self.view.set_model(store)
         # Setup Selection Column
         self.create_selection_column_num(0) 
         # Setup resent column
         cell2 = gtk.CellRendererPixbuf()    # gpgcheck
-        cell2.set_property( 'stock-id', gtk.STOCK_DIALOG_AUTHENTICATION )
-        column2 = gtk.TreeViewColumn( "", cell2 )
-        column2.set_cell_data_func( cell2, self.new_pixbuf )
-        column2.set_sizing( gtk.TREE_VIEW_COLUMN_FIXED )
-        column2.set_fixed_width( 20 )
-        column2.set_sort_column_id( -1 )            
-        self.view.append_column( column2 )
-        column2.set_clickable( True )
+        cell2.set_property('stock-id', gtk.STOCK_DIALOG_AUTHENTICATION)
+        column2 = gtk.TreeViewColumn("", cell2)
+        column2.set_cell_data_func(cell2, self.new_pixbuf)
+        column2.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column2.set_fixed_width(20)
+        column2.set_sort_column_id(-1)            
+        self.view.append_column(column2)
+        column2.set_clickable(True)
                
         # Setup reponame & repofile column's
-        self.create_text_column_num( _('Repository'),1 )
-        self.create_text_column_num( _('Name'),2 )
-        self.view.set_search_column( 1 )
-        self.view.set_reorderable( False )
+        self.create_text_column_num(_('Repository'), 1)
+        self.create_text_column_num(_('Name'), 2)
+        self.view.set_search_column(1)
+        self.view.set_reorderable(False)
         return store
     
-    def populate( self, data, showAll=False ):
+    def populate(self, data, showAll = False):
         """ Populate a repo liststore with data """
         self.store.clear()
-        for state,ident,name,gpg in data:
+        for state, ident, name, gpg in data:
             if not self.isHidden(ident) or showAll:
-                self.store.append([state,ident,name,gpg])     
+                self.store.append([state, ident, name, gpg])     
             
-    def isHidden(self,ident):
+    def isHidden(self, ident):
         for hide in const.REPO_HIDE:
             if hide in ident:
                 return True
         else:
             return False                  
 
-    def new_pixbuf( self, column, cell, model, iterator ):
-        gpg = model.get_value( iterator, 3 )
+    def new_pixbuf(self, column, cell, model, iterator):
+        gpg = model.get_value(iterator, 3)
         if gpg:
-            cell.set_property( 'visible', True )
+            cell.set_property('visible', True)
         else:
-            cell.set_property( 'visible',False)
+            cell.set_property('visible', False)
             
-    def get_selected( self ):
+    def get_selected(self):
         selected = []
         for elem in self.store:
             state = elem[0]
             name = elem[1]
             if state:
-                selected.append( name )
+                selected.append(name)
         return selected
         
-    def get_notselected( self ):
+    def get_notselected(self):
         notselected = []
         for elem in self.store:
             state = elem[0]
             name = elem[1]
             if not state:
-                notselected.append( name )
+                notselected.append(name)
         return notselected
             
-    def deselect_all( self ):
+    def deselect_all(self):
         iterator = self.store.get_iter_first()
         while iterator != None:    
-            self.store.set_value( iterator, 0, False )
-            iterator = self.store.iter_next( iterator )
+            self.store.set_value(iterator, 0, False)
+            iterator = self.store.iter_next(iterator)
 
-    def select_all( self ):
+    def select_all(self):
         iterator = self.store.get_iter_first()
         while iterator != None:    
-            self.store.set_value( iterator, 0, True )
-            iterator = self.store.iter_next( iterator )
+            self.store.set_value(iterator, 0, True)
+            iterator = self.store.iter_next(iterator)
             
 
-    def select_by_keys( self, keys):
+    def select_by_keys(self, keys):
         iterator = self.store.get_iter_first()
         while iterator != None:    
-            repoid = self.store.get_value( iterator, 1 )
+            repoid = self.store.get_value(iterator, 1)
             if repoid in keys:
-                self.store.set_value( iterator, 0, True )
+                self.store.set_value(iterator, 0, True)
             else:
-                self.store.set_value( iterator, 0, False)
-            iterator = self.store.iter_next( iterator )
+                self.store.set_value(iterator, 0, False)
+            iterator = self.store.iter_next(iterator)
 
 class YumexGroupView:
-    def __init__( self, treeview,qview,base):
+    def __init__(self, treeview, qview, base):
         self.view = treeview
         self.base = base
         self.view.modify_font(const.SMALL_FONT)        
@@ -491,79 +488,79 @@ class YumexGroupView:
         self._groups = None
         
 
-    def setup_view( self ):
+    def setup_view(self):
         """ Setup Group View  """
         model = gtk.TreeStore(gobject.TYPE_BOOLEAN, # 0 Installed
-                              gobject.TYPE_STRING,  # 1 Group Name
-                              gobject.TYPE_STRING,  # 2 Group Id
+                              gobject.TYPE_STRING, # 1 Group Name
+                              gobject.TYPE_STRING, # 2 Group Id
                               gobject.TYPE_BOOLEAN, # 3 In queue          
                               gobject.TYPE_BOOLEAN, # 4 isCategory   
                               gobject.TYPE_STRING)  # 5 Description     
 
 
-        self.view.set_model( model )
+        self.view.set_model(model)
         column = gtk.TreeViewColumn(None, None)
         # Selection checkbox
         selection = gtk.CellRendererToggle()    # Selection
-        selection.set_property( 'activatable', True )
+        selection.set_property('activatable', True)
         column.pack_start(selection, False)
-        column.set_cell_data_func( selection, self.setCheckbox )
-        selection.connect( "toggled", self.on_toggled )            
-        self.view.append_column( column )
+        column.set_cell_data_func(selection, self.setCheckbox)
+        selection.connect("toggled", self.on_toggled)            
+        self.view.append_column(column)
 
         column = gtk.TreeViewColumn(None, None)
         # Queue Status (install/remove group)
         state = gtk.CellRendererPixbuf()    # Queue Status
         state.set_property('stock-size', 1)
         column.pack_start(state, False)
-        column.set_cell_data_func( state, self.queue_pixbuf )
+        column.set_cell_data_func(state, self.queue_pixbuf)
 
         # category/group icons 
         icon = gtk.CellRendererPixbuf()   
         icon.set_property('stock-size', 1)
         column.pack_start(icon, False)
-        column.set_cell_data_func( icon, self.grp_pixbuf )
+        column.set_cell_data_func(icon, self.grp_pixbuf)
         
         category = gtk.CellRendererText()
         column.pack_start(category, False)
         column.add_attribute(category, 'markup', 1)
 
-        self.view.append_column( column )
+        self.view.append_column(column)
         self.view.set_headers_visible(False)
         return model
     
-    def setCheckbox( self, column, cell, model, iterator ):
-        isCategory = model.get_value( iterator, 4 )
-        state = model.get_value( iterator, 0 )
+    def setCheckbox(self, column, cell, model, iterator):
+        isCategory = model.get_value(iterator, 4)
+        state = model.get_value(iterator, 0)
         if isCategory:
-            cell.set_property( 'visible', False)
+            cell.set_property('visible', False)
         else:
-            cell.set_property( 'visible', True)
-            cell.set_property('active',state)
+            cell.set_property('visible', True)
+            cell.set_property('active', state)
 
-    def on_toggled( self, widget, path ):
+    def on_toggled(self, widget, path):
         """ Group selection handler """
-        iterator = self.model.get_iter( path )
-        grpid = self.model.get_value( iterator, 2 )
-        inst = self.model.get_value( iterator, 0 )
+        iterator = self.model.get_iter(path)
+        grpid = self.model.get_value(iterator, 2)
+        inst = self.model.get_value(iterator, 0)
         action = self.queue.hasGroup(grpid)
         if action:
-            self.queue.removeGroup(grpid,action)
-            self._updatePackages(grpid,False,None)
-            self.model.set_value( iterator, 3,False )
+            self.queue.removeGroup(grpid, action)
+            self._updatePackages(grpid, False, None)
+            self.model.set_value(iterator, 3, False)
         else:
             if inst:
-                self.queue.addGroup(grpid,'r') # Add for remove           
-                self._updatePackages(grpid,True,'r')
+                self.queue.addGroup(grpid, 'r') # Add for remove           
+                self._updatePackages(grpid, True, 'r')
             else:
-                self.queue.addGroup(grpid,'i') # Add for install
-                self._updatePackages(grpid,True,'i')
-            self.model.set_value( iterator, 3,True )
-        self.model.set_value( iterator, 0, not inst )
+                self.queue.addGroup(grpid, 'i') # Add for install
+                self._updatePackages(grpid, True, 'i')
+            self.model.set_value(iterator, 3, True)
+        self.model.set_value(iterator, 0, not inst)
         
         
-    def _updatePackages(self,grpid,add,action):
-        pkgs = self.base.backend.get_group_packages(grpid,const.GROUP.default)
+    def _updatePackages(self, grpid, add, action):
+        pkgs = self.base.backend.get_group_packages(grpid, const.GROUP.default)
         # Add group packages to queue
         if add: 
             for po in pkgs:
@@ -571,63 +568,63 @@ class YumexGroupView:
                     if action == 'i' and po.repoid != "installed" : # Install
                         po.queued = po.action      
                         self.queue.add(po)
-                        po.set_select( True )
+                        po.set_select(True)
                     elif action == 'r' and po.repoid == "installed": # Remove
                         po.queued = po.action      
                         self.queue.add(po)
-                        po.set_select( False )                        
+                        po.set_select(False)                        
         # Remove group packages from queue
         else:
             for po in pkgs:
                 if po.queued:
                     po.queued = None
                     self.queue.remove(po)
-                    po.set_select( not po.selected )
+                    po.set_select(not po.selected)
         self.queueView.refresh()
         
-    def populate(self,data):
+    def populate(self, data):
         self.model.clear()
         self._groups = data
-        for cat,catgrps in data:
-            (catid,name,desc) = cat
-            node = self.model.append(None,[None,name,catid,False,True,desc])          
+        for cat, catgrps in data:
+            (catid, name, desc) = cat
+            node = self.model.append(None, [None, name, catid, False, True, desc])          
             for grp in catgrps:
-                (grpid,grp_name,grp_desc,inst, icon) = grp
-                self.model.append(node,[inst,grp_name,grpid,False,False,grp_desc])
+                (grpid, grp_name, grp_desc, inst, icon) = grp
+                self.model.append(node, [inst, grp_name, grpid, False, False, grp_desc])
                 
             
-    def queue_pixbuf( self, column, cell, model, iterator ):
+    def queue_pixbuf(self, column, cell, model, iterator):
         """ 
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
-        grpid = model.get_value( iterator, 2 )
-        queued = model.get_value( iterator, 3 )
+        grpid = model.get_value(iterator, 2)
+        queued = model.get_value(iterator, 3)
         action = self.queue.hasGroup(grpid)
         if action:            
-            if action ==  'i':
+            if action == 'i':
                 icon = 'network-server'
             else:
                 icon = 'edit-delete'                
-            cell.set_property( 'visible', True )
-            cell.set_property( 'icon-name', icon )
-        cell.set_property( 'visible', queued )
+            cell.set_property('visible', True)
+            cell.set_property('icon-name', icon)
+        cell.set_property('visible', queued)
 
-    def grp_pixbuf( self, column, cell, model, iterator ):
+    def grp_pixbuf(self, column, cell, model, iterator):
         """ 
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
-        grpid = model.get_value( iterator, 2 )
+        grpid = model.get_value(iterator, 2)
         pix = None
         fn = "/usr/share/pixmaps/comps/%s.png" % grpid
         if os.access(fn, os.R_OK):
             pix = self._get_pix(fn)
         if pix:
-            cell.set_property( 'visible', True )
-            cell.set_property( 'pixbuf', pix )
+            cell.set_property('visible', True)
+            cell.set_property('pixbuf', pix)
         else:
-            cell.set_property( 'visible', False )
+            cell.set_property('visible', False)
             
 
     def _get_pix(self, fn):

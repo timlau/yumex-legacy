@@ -40,22 +40,22 @@ class YumexProgressBase:
     def is_pulse(self):
         return self._pulse
     
-    def set_pulse(self,pulse):
+    def set_pulse(self, pulse):
         self._pulse = pulse
     
-    def set_title(self,title):
+    def set_title(self, title):
         ''' set the progress dialog title '''
         raise NotImplementedError()
     
-    def set_fraction(self,frac,text=None):
+    def set_fraction(self, frac, text = None):
         ''' set the progress dialog title '''
         raise NotImplementedError()
 
-    def set_header(self,text):
+    def set_header(self, text):
         ''' set the progress header text '''
         raise NotImplementedError()
 
-    def set_action(self,text):
+    def set_action(self, text):
         ''' set the progress action text '''
         raise NotImplementedError()
     
@@ -86,7 +86,7 @@ class YumexFrontendBase:
         ''' Get the current progress element '''
         raise NotImplementedError()
 
-    def set_progress(self,progress):
+    def set_progress(self, progress):
         ''' The Progress is updated'''
         raise NotImplementedError()
 
@@ -127,12 +127,12 @@ class YumexBaseError(Exception):
     Base Yumex Error. All other Errors thrown by yum should inherit from
     this.
     """
-    def __init__(self, value=None):
+    def __init__(self, value = None):
         Exception.__init__(self)
         self.value = value
     
     def __str__(self):
-        return "%s" %(self.value,)
+        return "%s" % (self.value,)
 
 class YumexBackendFatalError(YumexBaseError):
     def __init__(self, err, msg):
@@ -144,7 +144,7 @@ class YumexBackendFatalError(YumexBaseError):
 
 
 # from output.py (yum)
-def format_number(number, SI=0, space=' '):
+def format_number(number, si = 0, space = ' '):
     """Turn numbers into human-readable metric-like numbers"""
     symbols = ['', # (none)
                 'k', # kilo
@@ -156,8 +156,10 @@ def format_number(number, SI=0, space=' '):
                 'Z', # zetta
                 'Y'] # yotta
 
-    if SI: step = 1000.0
-    else: step = 1024.0
+    if si: 
+        step = 1000.0
+    else: 
+        step = 1024.0
 
     thresh = 999
     depth = 0

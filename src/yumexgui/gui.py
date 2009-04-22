@@ -24,7 +24,7 @@ import gtk.glade
 from datetime import date
 from yumexbase.constants import *
 from yumexbackend.yum_backend import YumexPackageYum
-from guihelpers import TextViewBase,busyCursor,normalCursor
+from guihelpers import TextViewBase, busyCursor, normalCursor
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -38,12 +38,12 @@ from yumexbase.i18n import _, P_
 
 class PackageInfoTextView(TextViewBase):
     
-    def __init__(self, textview, font_size=8):
+    def __init__(self, textview, font_size = 8):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
         '''
-        TextViewBase.__init__(self,textview)        
+        TextViewBase.__init__(self, textview)        
 
         # description style
         tag = "description"
@@ -79,7 +79,7 @@ class PackageInfoTextView(TextViewBase):
         self.add_style(tag, style)
         
 class PackageCache:
-    def __init__(self,backend):
+    def __init__(self, backend):
         self._cache = {}
         self.backend = backend
         
@@ -87,7 +87,7 @@ class PackageCache:
         del self._cache
         self._cache = {}
 
-    def get_packages(self,pkg_filter):
+    def get_packages(self, pkg_filter):
         if not str(pkg_filter) in self._cache:
             pkgs = self.backend.get_packages(pkg_filter)
             pkgdict = {}
@@ -96,7 +96,7 @@ class PackageCache:
             self._cache[str(pkg_filter)] = pkgdict
         return self._cache[str(pkg_filter)].values()
     
-    def find(self,po):
+    def find(self, po):
         if po.action == 'u':
             target = self._cache[str(FILTER.updates)]
         elif po.action == 'i':
@@ -112,7 +112,7 @@ class PackageCache:
 class PageHeader(gtk.HBox):
     ''' Page header to show in top of Notebook Page'''
     
-    def __init__(self,text,icon=None):
+    def __init__(self, text, icon = None):
         ''' 
         setup the notebook page header
         @param text: Page Title
@@ -123,21 +123,21 @@ class PageHeader(gtk.HBox):
         self.label = gtk.Label()
         markup = '<span foreground="blue" size="x-large">%s</span>' % text
         self.label.set_markup(markup)
-        self.label.set_padding(10,0)
+        self.label.set_padding(10, 0)
         # Setup Icon
         self.icon = gtk.Image()
         if icon:
             self.icon.set_from_file(icon)
         else:
-            self.icon.set_from_icon_name('gtk-dialog-info',6)
-        self.pack_start(self.label,expand=False)
-        self.pack_end(self.icon,expand=False)
+            self.icon.set_from_icon_name('gtk-dialog-info', 6)
+        self.pack_start(self.label, expand = False)
+        self.pack_end(self.icon, expand = False)
         self.show_all()
 
 class SelectorBase:
     ''' Button selector '''
     
-    def __init__(self,content):
+    def __init__(self, content):
         ''' setup the selector '''
         self.content = content
         self._buttons = {}
@@ -146,33 +146,33 @@ class SelectorBase:
         self.tooltip = gtk.Tooltips()
         
         
-    def add_button(self,key,icon=None,stock=None,tooltip=None):
+    def add_button(self, key, icon = None, stock = None, tooltip = None):
         ''' Add a new selector button '''
         if len(self._buttons) == 0:
-            button = gtk.RadioButton( None )
+            button = gtk.RadioButton(None)
             self._first = button
         else:
-            button = gtk.RadioButton( self._first )
-        button.connect( "clicked", self.on_button_clicked, key )
+            button = gtk.RadioButton(self._first)
+        button.connect("clicked", self.on_button_clicked, key)
     
-        button.set_relief( gtk.RELIEF_NONE )
-        button.set_mode( False )
+        button.set_relief(gtk.RELIEF_NONE)
+        button.set_mode(False)
         if stock:
-            pix = gtk.image_new_from_stock(stock,gtk.ICON_SIZE_MENU)
+            pix = gtk.image_new_from_stock(stock, gtk.ICON_SIZE_MENU)
         else: 
-            p = gtk.gdk.pixbuf_new_from_file( icon )            
+            pb = gtk.gdk.pixbuf_new_from_file(icon)            
             pix = gtk.Image()
-            pix.set_from_pixbuf( p )
+            pix.set_from_pixbuf(pb)
         pix.show()
         button.add(pix)
     
         if tooltip:
-            self.tooltip.set_tip(button,tooltip)
+            self.tooltip.set_tip(button, tooltip)
         button.show()
-        self.content.pack_start( button, False )
+        self.content.pack_start(button, False)
         self._buttons[key] = button
 
-    def set_active(self,key):
+    def set_active(self, key):
         ''' set the active selector button '''
         if key in self._buttons:
             button = self._buttons[key]
@@ -182,37 +182,37 @@ class SelectorBase:
         ''' get the active selector button'''
         return self._selected            
             
-    def on_button_clicked(self, widget=None, key=None ):
+    def on_button_clicked(self, widget = None, key = None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self._selected = key
 
 class PackageInfo(SelectorBase):
-    def __init__(self,main,console,selector,frontend,font_size=8):
+    def __init__(self, main, console, selector, frontend, font_size = 8):
         SelectorBase.__init__(self, selector)
-        self.console = PackageInfoTextView(console,font_size=font_size)
+        self.console = PackageInfoTextView(console, font_size = font_size)
         self.main_window = main
         self.frontend = frontend
-        self.add_button('description', stock='gtk-about', tooltip='Package Description')
-        self.add_button('changelog', stock='gtk-edit', tooltip='Package Changelog')
-        self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
+        self.add_button('description', stock = 'gtk-about', tooltip = 'Package Description')
+        self.add_button('changelog', stock = 'gtk-edit', tooltip = 'Package Changelog')
+        self.add_button('filelist', stock = 'gtk-harddisk', tooltip = 'Package Filelist')
         self.pkg = None
         self._selected = 'description'
 
-    def update(self,pkg):
+    def update(self, pkg):
         self.pkg = pkg
         self.set_active(self._selected)
         
     def clear(self):        
         self.console.clear()
 
-    def on_button_clicked(self, widget=None, key=None ):
+    def on_button_clicked(self, widget = None, key = None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self._selected = key
             self.update_console(key)
     
-    def update_console(self,key):
+    def update_console(self, key):
         if self.pkg:
             busyCursor(self.main_window)
             self.console.clear()
@@ -232,10 +232,10 @@ class PackageInfo(SelectorBase):
         changelog = self.pkg.changelog
         progress = self.frontend.get_progress()
         progress.hide()        
-        for (d,a,msg) in changelog:
-            self.console.write("* %s %s" % (date.fromtimestamp(d).isoformat(),a),"changelog-header")
+        for (c_date, c_ver, msg) in changelog:
+            self.console.write("* %s %s" % (date.fromtimestamp(c_date).isoformat(), c_ver), "changelog-header")
             for line in msg.split('\n'):
-                self.console.write("%s" % line,"changelog")
+                self.console.write("%s" % line, "changelog")
             self.console.write('\n')              
 
     def show_filelist(self):
@@ -244,8 +244,8 @@ class PackageInfo(SelectorBase):
         progress = self.frontend.get_progress()
         progress.hide()        
         files.sort()
-        for f in files:
-            self.console.write(f,"filelist")
+        for fn in files:
+            self.console.write(fn, "filelist")
         
         
         
@@ -255,11 +255,11 @@ class PackageInfo(SelectorBase):
 class PageSelector(SelectorBase):
     ''' Button notebook selector '''
     
-    def __init__(self,content,notebook):
+    def __init__(self, content, notebook):
         ''' setup the selector '''
         SelectorBase.__init__(self, content)
         self.notebook = notebook
-    def on_button_clicked(self, widget=None, key=None ):
+    def on_button_clicked(self, widget = None, key = None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self.notebook.set_page(key) # set the new notebook page
@@ -268,13 +268,13 @@ class PageSelector(SelectorBase):
 class Notebook:
     ''' Notebook with button selector '''
     
-    def __init__(self,notebook,selector):
+    def __init__(self, notebook, selector):
         ''' setup the notebook and the selector '''
         self.notebook = notebook
-        self.selector = PageSelector(selector,self)
+        self.selector = PageSelector(selector, self)
         self._pages = {}
 
-    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True):
+    def add_page(self, key, title, widget, icon = None, tooltip = None, header = True):
         ''' 
         Add a new page and selector button to notebook
         @param key: the page key (name) used by reference the page
@@ -284,35 +284,35 @@ class Notebook:
         '''
         num = len(self._pages)
         container = gtk.VBox()
-        self._pages[key] = (num,container)
+        self._pages[key] = (num, container)
         if header:
-            header = PageHeader(title,icon)
-            container.pack_start(header,expand=False,padding=5)
+            header = PageHeader(title, icon)
+            container.pack_start(header, expand = False, padding = 5)
             sep = gtk.HSeparator()
             sep.show()
-            container.pack_start(sep,expand=False)
+            container.pack_start(sep, expand = False)
         # get the content from the widget and reparent it and add it to page    
         content = gtk.VBox()
         widget.reparent(content)
-        container.pack_start(content,expand=True)
+        container.pack_start(content, expand = True)
         content.show()
         container.show()
         self.notebook.append_page(container)
         # Add selector button
         self.selector.add_button(key, icon, tooltip)
         
-    def set_active(self,key):
+    def set_active(self, key):
         '''
         set the active page in notebook and selector
         @param key: the page key (name) used by reference the page
         '''
         self.selector.set_active(key)
         
-    def set_page(self,key):
+    def set_page(self, key):
         '''
         set the current notebook page
         '''
         if key in self._pages:
-            num,widget = self._pages[key]
+            num, widget = self._pages[key]
             self.notebook.set_current_page(num)
     

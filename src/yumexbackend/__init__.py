@@ -6,7 +6,7 @@ class YumexBackendBase(object):
     Yumex Backend Base class
     This is the base class to interact with the package system    
     '''
-    def __init__(self,frontend,transaction):
+    def __init__(self, frontend, transaction):
         ''' 
         init the backend 
         @param frontend: the current frontend
@@ -14,7 +14,7 @@ class YumexBackendBase(object):
         self.frontend = frontend
         self.transaction = transaction
 
-    def setup(self, repos=[]):
+    def setup(self, repos = []):
         ''' Setup the backend'''
         raise NotImplementedError()
 
@@ -37,7 +37,7 @@ class YumexBackendBase(object):
         '''
         raise NotImplementedError()
 
-    def enable_repository(self, repoid, enabled=True):
+    def enable_repository(self, repoid, enabled = True):
         ''' 
         set repository enable state
         @param repoid: repo id to change
@@ -128,7 +128,7 @@ class YumexPackageBase:
     @property        
     def id(self):
         ''' Return the package id '''        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name,self.epoch,self.version,self.release,self.arch,self.repoid)
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.version, self.release, self.arch, self.repoid)
 
     @property
     def filename(self):
@@ -140,7 +140,7 @@ class YumexGroupBase:
     This is an abstract group object for a package in the package system
    '''
 
-    def __init__(self, grp,category):
+    def __init__(self, grp, category):
         self._grp = grp
         self._category = category
         self.selected = False

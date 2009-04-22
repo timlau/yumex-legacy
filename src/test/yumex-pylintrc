@@ -47,7 +47,7 @@ load-plugins=
 #enable-msg-cat=
 
 # Disable all messages in the listed categories.
-disable-msg-cat=C,R
+disable-msg-cat=R
 
 # Enable the message(s) with the given id(s).
 #enable-msg=
@@ -61,9 +61,9 @@ disable-msg-cat=C,R
 # W0614: *Unused import %s from wildcard import*
 # W0702: *No exception type(s) specified*
 # W0102: *Dangerous default value %s as argument*
+# C0111: *Missing docstring*
 
-
-disable-msg=E1101,W0612,W0613,W0511,W0401,W0614,W0702,W0102
+disable-msg=E1101,W0612,W0613,W0511,W0401,W0614,W0702,W0102,C0111
 
 
 [REPORTS]
@@ -164,32 +164,32 @@ no-docstring-rgx=__.*__
 module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
 
 # Regular expression which should only match correct module level names
-const-rgx=(([A-Z_][A-Z1-9_]*)|(__.*__))$
+const-rgx=(([a-zA-Z_][a-zA-Z1-9_]*)|(__.*__))$
 
 # Regular expression which should only match correct class names
 class-rgx=[A-Z_][a-zA-Z0-9]+$
 
 # Regular expression which should only match correct function names
-function-rgx=[a-z_][a-z0-9_]{2,30}$
+function-rgx=[a-z_][a-z0-9_A-Z]{1,30}$
 
 # Regular expression which should only match correct method names
-method-rgx=[a-z_][a-z0-9_]{2,30}$
+method-rgx=[a-z_][a-z0-9_A-Z]{1,30}$
 
 # Regular expression which should only match correct instance attribute names
-attr-rgx=[a-z_][a-z0-9_]{2,30}$
+attr-rgx=[a-z_][a-z0-9_A-Z]{1,30}$
 
 # Regular expression which should only match correct argument names
-argument-rgx=[a-z_][a-z0-9_]{2,30}$
+argument-rgx=[a-z_][a-z0-9_A-Z]{1,30}$
 
 # Regular expression which should only match correct variable names
-variable-rgx=[a-z_][a-z0-9_]{2,30}$
+variable-rgx=[a-z_][a-z0-9_A-Z]{1,30}$
 
 # Regular expression which should only match correct list comprehension /
 # generator expression variable names
 inlinevar-rgx=[A-Za-z_][A-Za-z0-9_]*$
 
 # Good variable names which should always be accepted, separated by a comma
-good-names=i,j,k,ex,Run,_
+good-names=i,j,k,ex,Run,_,n,e,r,v,a
 
 # Bad variable names which should always be refused, separated by a comma
 bad-names=foo,bar,baz,toto,tutu,tata
@@ -309,7 +309,7 @@ notes=FIXME,XXX,TODO
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length=80
+max-line-length=120
 
 # Maximum number of lines in a module
 max-module-lines=1000

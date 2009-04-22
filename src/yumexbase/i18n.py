@@ -31,7 +31,7 @@ def dummyP_wrapper(str1, str2, n):
     else:
         return str2
     
-def to_unicode(obj, encoding='utf-8', errors='replace'):
+def to_unicode(obj, encoding = 'utf-8', errors = 'replace'):
     ''' convert a 'str' to 'unicode' '''
     if isinstance(obj, basestring):
         if not isinstance(obj, unicode):
@@ -44,7 +44,7 @@ try:
     # available.
     # using ugettext to make sure translated strings are in Unicode.
     import gettext
-    t = gettext.translation('yumex', fallback=True)
+    t = gettext.translation('yumex', fallback = True)
     _ = t.ugettext
     P_ = t.nugettext
 except:

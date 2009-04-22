@@ -34,50 +34,50 @@ from yumexbase.i18n import _, P_
 
 
                
-class YumexBackendYum(YumexBackendBase,YumClient):
+class YumexBackendYum(YumexBackendBase, YumClient):
     ''' Yumex Backend Yume class
 
     This is the base class to interact with yum
     '''
 
     def __init__(self, frontend):
-        transaction = YumexTransactionYum(self,frontend)
-        YumexBackendBase.__init__(self, frontend,transaction)
+        transaction = YumexTransactionYum(self, frontend)
+        YumexBackendBase.__init__(self, frontend, transaction)
         YumClient.__init__(self)
         self.dont_abort = False
 
     # Overload the YumClient message methods
         
-    def error(self,msg):
+    def error(self, msg):
         """ error message """
         self.frontend.error(msg)
 
-    def warning(self,msg):
+    def warning(self, msg):
         """ warning message """
         self.frontend.warning(msg)
 
-    def info(self,msg):
+    def info(self, msg):
         """ info message """
         self.frontend.info(msg)
     
-    def debug(self,msg):
+    def debug(self, msg):
         """ debug message """
         self.frontend.debug(msg)
 
-    def yum_logger(self,msg):
+    def yum_logger(self, msg):
         """ yum logger message """
-        if len(msg.strip())> 0:
-            self.frontend.info("YUM: "+ msg)
+        if len(msg.strip()) > 0:
+            self.frontend.info("YUM: " + msg)
 
-    def yum_rpm_progress(self,action, package, frac, ts_current, ts_total):   
+    def yum_rpm_progress(self, action, package, frac, ts_current, ts_total):   
         """ yum rpm action progress handler """
         progress = self.frontend.get_progress()
-        progress.set_action("%s %s" % (action,package))
-        progress.set_fraction(frac,"%3i %%" % int(frac*100))
+        progress.set_action("%s %s" % (action, package))
+        progress.set_fraction(frac, "%3i %%" % int(frac * 100))
         #msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
         #self.frontend.debug("YUM-RPM: %s" % msg)
 
-    def yum_dnl_progress(self,ftype,name,percent):
+    def yum_dnl_progress(self, ftype, name, percent):
         """ yum download progress handler """
         progress = self.frontend.get_progress()
         if not progress.is_active(): # if the progress is hidden, then show it at set the labels.
@@ -88,16 +88,16 @@ class YumexBackendYum(YumexBackendBase,YumClient):
             progress.set_pulse(True)
         else:
             progress.set_pulse(False)
-        progress.set_fraction(float(percent)/100.0,"%3i %%" % percent)
+        progress.set_fraction(float(percent) / 100.0, "%3i %%" % percent)
         if ftype == "REPO": # This is repo metadata being downloaded
             if percent > 0: # only show update labels once.
                 return
             if '/' in name:
-                repo,mdtype = name.split('/')
+                repo, mdtype = name.split('/')
             else:
                 repo = None
                 mdtype = name
-            msg = _("Unknown Repo Metadata type (%s) for %s") % (mdtype,'%s')
+            msg = _("Unknown Repo Metadata type (%s) for %s") % (mdtype, '%s')
             for key in REPO_INFO_MAP:
                 if key in mdtype:
                     msg = REPO_INFO_MAP[key]
@@ -115,10 +115,10 @@ class YumexBackendYum(YumexBackendBase,YumClient):
             if name:
                 progress.set_action(name)
             else:
-                self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
+                self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype, name, percent))
             
 
-    def yum_state(self,state):
+    def yum_state(self, state):
         progress = self.frontend.get_progress()
         if state == 'download':
             progress.set_header(_("Downloading Packages"))
@@ -133,14 +133,14 @@ class YumexBackendYum(YumexBackendBase,YumClient):
             progress.set_pulse(False)
             progress.set_header(_("Running RPM Transaction"))
 
-    def gpg_check(self,po,userid,hexkeyid):
+    def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key (overload in child class) """
-        msg =  _('Do you want to import GPG Key : %s \n') % hexkeyid 
+        msg = _('Do you want to import GPG Key : %s \n') % hexkeyid 
         msg += "  %s \n" % userid
         msg += _("Needed by %s") % str(po)
         return questionDialog(self.frontend.window, msg)
                 
-    def timeout(self,count):
+    def timeout(self, count):
         """ 
         timeout function call every time an timeout occours
         An timeout occaurs if the server takes more then timeout
@@ -149,11 +149,11 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         """
         self.frontend.timeout(count)
         
-    def exception(self,msg):
+    def exception(self, msg):
         """ debug message """
         self.frontend.exception(msg)
 
-    def setup(self,repos=[]):
+    def setup(self, repos = []):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
             return
@@ -165,7 +165,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      
         self.debug('Initialize yum backend - BEGIN')    
-        rc = YumClient.setup(self,debuglevel=yumdebuglevel,plugins=plugins,filelog=filelog,repos=repos)
+        rc = YumClient.setup(self, debuglevel = yumdebuglevel, plugins = plugins, filelog = filelog, repos = repos)
         self.debug('Initialize yum backend - END')    
         return rc    
         
@@ -179,7 +179,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        pkgs = YumClient.get_packages(self,pkg_filter)
+        pkgs = YumClient.get_packages(self, pkg_filter)
         return [YumexPackageYum(p) for p in pkgs]
 
     def get_repositories(self):
@@ -191,14 +191,14 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         return repos
 
 
-    def enable_repository(self, repoid, enabled=True):
+    def enable_repository(self, repoid, enabled = True):
         ''' 
         set repository enable state
         @param repoid: repo id to change
         @param enabled: repo enable state
         '''
         self.frontend.debug('Setting repository %s (Enabled = %s)' % (repoid, enabled))
-        repo = YumClient.enable_repo(self,repoid,enabled)
+        repo = YumClient.enable_repo(self, repoid, enabled)
         return repo
 
     def get_groups(self):
@@ -210,14 +210,14 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         grps = YumClient.get_groups(self)
         return grps
 
-    def get_group_packages(self, group, grp_filter=None):
+    def get_group_packages(self, group, grp_filter = None):
         ''' 
         get packages in a group 
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
         self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
-        pkgs = YumClient.get_group_packages(self,group,grp_filter)
+        pkgs = YumClient.get_group_packages(self, group, grp_filter)
         return [self.frontend.package_cache.find(po) for po in pkgs]
 
     def search(self, keys, sch_filters):
@@ -227,7 +227,7 @@ class YumexBackendYum(YumexBackendBase,YumClient):
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
-        pkgs = YumClient.search(self,keys, sch_filters)
+        pkgs = YumClient.search(self, keys, sch_filters)
         return [self.frontend.package_cache.find(po) for po in pkgs]
 
 
@@ -245,10 +245,10 @@ class YumexPackageYum(YumexPackageBase):
         self.selected = False
         self.visible = True
 
-    def set_select( self, state ):
+    def set_select(self, state):
         self.selected = state
 
-    def set_visible( self, state ):
+    def set_visible(self, state):
         self.visible = state
         
     def __str__(self):
@@ -348,7 +348,7 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         progress = self.frontend.get_progress()
         progress.set_header(_("Resolving Dependencies"))
-        rc,msgs,trans = self.backend.build_transaction()
+        rc, msgs, trans = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
             progress.hide()
@@ -359,7 +359,7 @@ class YumexTransactionYum(YumexTransactionBase):
             else: # Aborted by User
                 return None
         else:
-            title =  _("Dependency Resolution Failed")
+            title = _("Dependency Resolution Failed")
             text = _("Dependency Resolution Failed")
             longtext = _("Dependency Resolution Errors:")
             longtext += '\n\n'            
@@ -367,7 +367,7 @@ class YumexTransactionYum(YumexTransactionBase):
                 self.frontend.error(msg)
                 longtext += msg            
             # Show error dialog    
-            dialog = ErrorDialog(self.frontend.ui,self.frontend.window, title, text, longtext, modal=True)
+            dialog = ErrorDialog(self.frontend.ui, self.frontend.window, title, text, longtext, modal = True)
             dialog.run()
             dialog.destroy()
             # Write errors to output page

@@ -39,7 +39,7 @@ class TextViewBase:
         self._styles = {}
         self.default_style = None # the default style (text tag)
             
-    def add_style(self,tag,style):
+    def add_style(self, tag, style):
         '''
         Add a new pango style
         @param tag: text tag to indentify the style
@@ -48,7 +48,7 @@ class TextViewBase:
         self._styles[tag] = style
         self.buffer.get_tag_table().add(self._styles[tag])        
                 
-    def get_style(self,tag=None):
+    def get_style(self, tag = None):
         '''
         Get a gtk.TextTag style
         @param tag: the tag of the style to get 
@@ -60,7 +60,7 @@ class TextViewBase:
         else:
             return None
         
-    def change_style(self,tag, color=None, font=None):
+    def change_style(self, tag, color = None, font = None):
         '''
         Change the font and color of a gtk.TextTag style
         @param tag: text tag to indentify the style
@@ -74,7 +74,7 @@ class TextViewBase:
             if font:
                 style.set_property("font", font)
     
-    def write(self, txt, style=None, newline=True):
+    def write(self, txt, style = None, newline = True):
         ''' 
         write a line of text to the textview and scoll to end
         @param txt: Text to write to textview
@@ -84,7 +84,7 @@ class TextViewBase:
         if not txt: 
             return
         txt = toUTF(txt) # Convert the text to UTF-8
-        if newline and txt[-1] != '\n':
+        if newline and txt[ - 1] != '\n':
             txt += '\n'
         start, end = self.buffer.get_bounds()
         style = self.get_style(style)
@@ -115,8 +115,8 @@ class TextViewConsole(TextViewBase):
     @param textview: the gtk.TextView widget to use
     @param text_size: Optional text_size for the styles (default = 8)  
     '''
-    def __init__(self, textview,font_size=8):
-        TextViewBase.__init__(self,textview)
+    def __init__(self, textview, font_size = 8):
+        TextViewBase.__init__(self, textview)
         # info style
         style = gtk.TextTag("info")
         style.set_property("foreground", "midnight blue")
@@ -127,14 +127,14 @@ class TextViewConsole(TextViewBase):
 
         # debug style
         style = gtk.TextTag("debug")
-        style.set_property( "foreground", "DarkOrchid4" )
+        style.set_property("foreground", "DarkOrchid4")
         style.set_property("family", "Monospace")
         style.set_property("size_points", font_size)
         self.add_style('debug', style)
 
         # warning style
         style = gtk.TextTag("warning")
-        style.set_property( "foreground", "darkgreen" )
+        style.set_property("foreground", "darkgreen")
         style.set_property("family", "Monospace")
         style.set_property("size_points", font_size)
         self.add_style('warning', style)
@@ -151,7 +151,7 @@ class TextViewConsole(TextViewBase):
 
 class TextViewLogHandler(logging.Handler):
     ''' Python logging handler for writing in a TextViewConsole'''
-    def __init__(self, console, doGTK=False):
+    def __init__(self, console, doGTK = False):
         logging.Handler.__init__(self)
         self.console = console
         self.doGTK = doGTK
@@ -207,10 +207,10 @@ class Controller:
         `ui' is the user interface to be controlled."""
         self.ui = UI(filename, rootname, domain)
         self.ui.connect_signals(self._getAllMethods())
-        self.window = getattr(self.ui,rootname)
-        self.window.connect( "delete_event", self.main_quit )
+        self.window = getattr(self.ui, rootname)
+        self.window.connect("delete_event", self.main_quit)
 
-    def main_quit(self, widget=None, event=None ):
+    def main_quit(self, widget = None, event = None):
         ''' Main destroy Handler '''
         self.quit()
         
@@ -266,7 +266,7 @@ class Controller:
 # Functions
 #    
 
-def doLoggerSetup(console, logroot, logfmt='%(message)s', loglvl=logging.DEBUG):
+def doLoggerSetup(console, logroot, logfmt = '%(message)s', loglvl = logging.DEBUG):
     ''' Setup Python logging using a TextViewLogHandler '''
     logger = logging.getLogger(logroot)
     logger.setLevel(loglvl)
@@ -280,7 +280,7 @@ def doLoggerSetup(console, logroot, logfmt='%(message)s', loglvl=logging.DEBUG):
     logger.addHandler(handler)
     return handler
     
-def busyCursor(mainwin, insensitive=False):
+def busyCursor(mainwin, insensitive = False):
     ''' Set busy cursor in mainwin and make it insensitive if selected '''
     mainwin.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
     if insensitive:

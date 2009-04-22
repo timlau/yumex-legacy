@@ -37,12 +37,12 @@ if __name__ == "__main__":
     repos = []
     plugins = True
     if len(sys.argv) > 2:
-        debuglevel =  int(sys.argv[1])
-        plugins =  sys.argv[2] == 'True'
+        debuglevel = int(sys.argv[1])
+        plugins = sys.argv[2] == 'True'
         if len(sys.argv) == 4:
             repos = sys.argv[3].split(';')
         else:
             repos = []
         print ":debug\tUsing yum debuglevel = %i" % debuglevel
-    my = YumServer(debuglevel,plugins,repos)
+    my = YumServer(debuglevel, plugins, repos)
     my.dispatcher()

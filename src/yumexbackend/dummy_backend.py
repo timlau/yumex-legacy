@@ -36,11 +36,11 @@ class YumexBackendDummy(YumexBackendBase):
     There returns constant data there can be used for testing
     '''
 
-    def __init__(self,frontend):
-        transaction = YumexTransactionDummy(self,frontend)
-        YumexBackendBase.__init__(self,frontend,transaction)
+    def __init__(self, frontend):
+        transaction = YumexTransactionDummy(self, frontend)
+        YumexBackendBase.__init__(self, frontend, transaction)
 
-    def setup(self,repos=[]):
+    def setup(self, repos = []):
         ''' Setup the backend'''
         self.frontend.debug('Setting up the dummy backend')
 
@@ -84,13 +84,13 @@ class YumexBackendDummy(YumexBackendBase):
         '''
         self.frontend.debug('Getting repository information')
         repos = []
-        repos.append((True,"base","The base repo"))
-        repos.append((True,"updates","The updates repo"))
-        repos.append((False,"base-source","The base source repo"))
-        repos.append((False,"updates-source","The updates source repo"))
+        repos.append((True, "base", "The base repo"))
+        repos.append((True, "updates", "The updates repo"))
+        repos.append((False, "base-source", "The base source repo"))
+        repos.append((False, "updates-source", "The updates source repo"))
         return repos
 
-    def enable_repository(self, repoid, enabled=True):
+    def enable_repository(self, repoid, enabled = True):
         ''' 
         set repository enable state
         @param repoid: repo id to change
@@ -157,9 +157,9 @@ class YumexPackageDummy(YumexPackageBase):
     @property
     def changelog(self):
         clog = []
-        clog.append(('Tue Dec 7 2004','Tim Lauridsen <tla@rasmil.dk>','bump version to 0.1.1'))
-        clog.append(('Fri Dec 8 2004','Tim Lauridsen <tla@rasmil.dk>','bump version to 0.1.2'))
-        clog.append(('Sat Dec 9 2004','Tim Lauridsen <tla@rasmil.dk>','bump version to 0.1.3'))
+        clog.append(('Tue Dec 7 2004', 'Tim Lauridsen <tla@rasmil.dk>', 'bump version to 0.1.1'))
+        clog.append(('Fri Dec 8 2004', 'Tim Lauridsen <tla@rasmil.dk>', 'bump version to 0.1.2'))
+        clog.append(('Sat Dec 9 2004', 'Tim Lauridsen <tla@rasmil.dk>', 'bump version to 0.1.3'))
         return clog    
 
     @property
@@ -248,7 +248,7 @@ class YumexTransactionDummy(YumexTransactionBase):
         '''
 
 
-def make_dummy_pkg(name,ver,rel,arch):
+def make_dummy_pkg(name, ver, rel, arch):
     pkg = {}
     pkg['name'] = name
     pkg['version'] = ver    
