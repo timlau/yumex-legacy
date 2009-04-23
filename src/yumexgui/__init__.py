@@ -114,8 +114,8 @@ class YumexFrontend(YumexFrontendBase):
 
     def timeout(self, count):
         '''
-        
-        @param count:
+        Called on backend timeout (default 0.1 sec)
+        @param count: Number of calls, since start of current action
         '''
         if (count > 0 and count % 600 == 0):
             self.debug('Current backend action has been running for %i min' % int(count / 600))
@@ -123,7 +123,7 @@ class YumexFrontend(YumexFrontendBase):
         
     def refresh(self):     
         '''
-        
+        Refresh the gui and pulse the progress if enabled and in pulse mode
         '''
         progress = self.get_progress()  
         if progress:        
@@ -132,12 +132,12 @@ class YumexFrontend(YumexFrontendBase):
         doGtkEvents()
         
 class YumexHandlers(Controller):
-    ''' This class contains all glade signal callbacks '''
+    ''' This class contains all signal callbacks '''
     
     
     def __init__(self):
         '''
-        
+        Init the signal callback Controller 
         '''
         # init the Controller Class to connect signals etc.
         Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
@@ -158,77 +158,59 @@ class YumexHandlers(Controller):
         
     def on_fileQuit_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : File -> Quit
         '''
         self.main_quit()
 
     def on_editPref_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : Edit -> Preferences
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Edit -> Preferences")
 
     def on_proNew_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : Profile -> New
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Profiles -> New")
 
     def on_proSave_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : Profile -> Save
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Profiles -> Save")
         
     def on_helpAbout_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : Help -> About
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Help -> About")
 
     def on_viewPackages_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : View -> Packages
         '''
         self.notebook.set_active("package")
 
     def on_viewQueue_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : View -> Queue
         '''
         self.notebook.set_active("queue")
 
     def on_viewRepo_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : View -> Repo
         '''
         self.notebook.set_active("repo")
         
     def on_viewOutput_activate(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Menu : View -> Output
         '''
         self.notebook.set_active("output")
         
@@ -236,10 +218,7 @@ class YumexHandlers(Controller):
         
     def on_packageSearch_activate(self, widget = None, event = None):
         '''
-        Enter pressed in search field
-        
-        @param widget:
-        @param event:
+        Enter pressed in the search field
         '''
         busyCursor(self.window)
         self.packageInfo.clear()
@@ -254,7 +233,7 @@ class YumexHandlers(Controller):
     def on_packageView_cursor_changed(self, widget):    
         '''
         package selected in the view 
-        @param widget:
+        @param widget: the view widget
         '''
         (model, iterator) = widget.get_selection().get_selected()
         if model != None and iterator != None:
@@ -265,9 +244,7 @@ class YumexHandlers(Controller):
 
     def on_packageClear_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        The clear search button 
         '''
         self.ui.packageSearch.set_text('')
         self.ui.packageFilterBox.show()
@@ -277,25 +254,21 @@ class YumexHandlers(Controller):
 
     def on_packageSelectAll_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        The Packages Select All button
         '''
         self.packages.selectAll()
 
     def on_packageUndo_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        The Package Undo Button
         '''
         self.packages.deselectAll()
 
     def on_packageFilter_changed(self, widget, active):
         '''
-        
-        @param widget:
-        @param active:
+        Package filter radiobuttons
+        @param widget: The radiobutton there is changed
+        @param active: the button number 0 = Updates, 1 = Available, 2 = Installed, 3 = Groups
         '''
         if widget.get_active():
             self._last_filter = widget
@@ -324,7 +297,7 @@ class YumexHandlers(Controller):
     def on_groupView_cursor_changed(self, widget):
         '''
         Group/Category selected in groupView
-        @param widget:
+        @param widget: the group view widget
         '''
         (model, iterator) = widget.get_selection().get_selected()
         if model != None and iterator != None:
@@ -342,9 +315,7 @@ class YumexHandlers(Controller):
         
     def on_repoRefresh_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Repo refresh button
         '''
         repos = self.repos.get_selected()
         self.current_repos = repos
@@ -352,9 +323,7 @@ class YumexHandlers(Controller):
         
     def on_repoUndo_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Repo undo button
         '''
         self.repos.populate(self.default_repos)
 
@@ -362,33 +331,25 @@ class YumexHandlers(Controller):
 
     def on_queueOpen_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Queue Open Button
         '''
         self.debug("Queue Open")
     
     def on_queueSave_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Queue Save button
         '''
         self.debug("Queue Save")
     
     def on_queueRemove_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        Queue Remove button
         '''
         self.queue.deleteSelected()
         
     def on_Execute_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        The Queue/Packages Execute button
         '''
         self.notebook.set_active("output")
         self.debug("Starting pending actions processing")
@@ -397,9 +358,7 @@ class YumexHandlers(Controller):
         
     def on_progressCancel_clicked(self, widget = None, event = None):
         '''
-        
-        @param widget:
-        @param event:
+        The Progress Dialog Cancel button
         '''
         self.debug("Progress Cancel pressed")
                 
@@ -411,8 +370,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     
     def __init__(self, backend):
         '''
-        
-        @param backend:
+        Init the Yumex Application
+        @param backend: The backend instance class
         '''
         self.progress = None
         self.logger = logging.getLogger(YUMEX_LOG)
@@ -427,7 +386,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
     def setupOptions(self):
         '''
-        
+        Setup and parse Command line options
         '''
         parser = OptionParser()
         parser.add_option("-d", "--debug",
@@ -446,7 +405,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     
     def run(self):
         '''
-        
+        Run the application
         '''
         # setup
         try:
@@ -458,9 +417,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             
     def handle_error(self, err, msg):        
         '''
-        
-        @param err:
-        @param msg:
+        Error message handler
+        @param err: error type
+        @param msg: error message
         '''
         title = _("Fatal Error")
         if err == 'lock-error': # Cant get the yum lock
