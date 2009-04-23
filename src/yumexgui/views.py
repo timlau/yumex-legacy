@@ -16,6 +16,7 @@
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
 '''
+Yum Extender GUI View classes
 '''
 
 
@@ -32,22 +33,23 @@ from yum.misc import sortPkgObj
 
 class SelectionView:
     '''
+    A Base view with an selection column
     '''
 
     def __init__(self, widget):
         '''
-        
-        @param widget:
+        init the view
+        @param widget: the gtk TreeView widget
         '''
         self.view = widget
         self.store = None
 
     def create_text_column_num(self, hdr, colno, resize = True):
         '''
-        
-        @param hdr:
-        @param colno:
-        @param resize:
+        Create a TreeViewColumn with data from a TreeStore column
+        @param hdr: column header text
+        @param colno: TreeStore column to get the data from
+        @param resize: is resizable
         '''
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn(hdr, cell, text = colno)
@@ -71,8 +73,8 @@ class SelectionView:
 
     def create_selection_colunm(self, attr):
         '''
-        
-        @param attr:
+        Create an selection column, there get data via property function and a key attr
+        @param attr: key attr for property funtion
         '''
         # Setup a selection column using a object attribute 
         cell1 = gtk.CellRendererToggle()    # Selection
@@ -88,8 +90,8 @@ class SelectionView:
 
     def create_selection_column_num(self, num):
         '''
-        
-        @param num:
+        Create an selection column, there get data an TreeStore Column        
+        @param num: TreeStore column to get data from
         '''
         # Setup a selection column using a column num
         cell1 = gtk.CellRendererToggle()    # Selection
@@ -103,12 +105,13 @@ class SelectionView:
         
     def get_data_text(self, column, cell, model, iterator, prop):
         '''
-        
+        a property function to get string data from a object in the TreeStore based on
+        an attributes key
         @param column:
         @param cell:
         @param model:
         @param iterator:
-        @param prop:
+        @param prop: attribute key
         '''
         obj = model.get_value(iterator, 0)
         if obj:
@@ -117,12 +120,14 @@ class SelectionView:
 
     def get_data_bool(self, column, cell, model, iterator, prop):
         '''
+        a property function to get boolean data from a object in the TreeStore based on
+        an attributes key
         
         @param column:
         @param cell:
         @param model:
         @param iterator:
-        @param prop:
+        @param prop: attribute key
         '''
         obj = model.get_value(iterator, 0)
         cell.set_property("visible", True)
@@ -139,14 +144,14 @@ class SelectionView:
     
 class YumexPackageView(SelectionView):
     '''
-    
+    Yum Extender Package View
     '''
     
     def __init__(self, widget, qview):
         '''
-        
-        @param widget:
-        @param qview:
+        Init the view
+        @param widget: the gtk TreeView widget
+        @param qview: the queue view instance to use for queuing
         '''
         SelectionView.__init__(self, widget)
         self.view.modify_font(const.SMALL_FONT)
@@ -157,7 +162,7 @@ class YumexPackageView(SelectionView):
         
     def setupView(self):
         '''
-        
+        Setup the TreeView
         '''
         store = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
         self.view.set_model(store)
@@ -195,7 +200,7 @@ class YumexPackageView(SelectionView):
         
     def togglePackage(self, obj):
         '''
-        
+        Toggle the package queue status
         @param obj:
         '''
         if obj.queued == obj.action:
@@ -203,14 +208,13 @@ class YumexPackageView(SelectionView):
             self.queue.remove(obj)
         else:
             obj.queued = obj.action      
-            print "QUEUE: ", obj.name, obj.action
             self.queue.add(obj)
         obj.set_select(not obj.selected)
         
                 
     def selectAll(self):
         '''
-        
+        Select all packages in the view
         '''
         for el in self.store:
             obj = el[0]
@@ -223,7 +227,7 @@ class YumexPackageView(SelectionView):
 
     def deselectAll(self):
         '''
-        
+        Deselect all packages in the view
         '''
         for el in self.store:
             obj = el[0]
@@ -269,14 +273,14 @@ class YumexPackageView(SelectionView):
 
     def clear(self):
         '''
-        
+        Clear the view
         '''
         self.store.clear()
     
     def add_packages(self, pkgs, progress = None):
         '''
-        
-        @param pkgs:
+        Populate the via with package objects
+        @param pkgs: list of package object to add
         @param progress:
         '''
         self.store.clear()
@@ -294,11 +298,12 @@ class YumexPackageView(SelectionView):
 
 class YumexQueue:
     '''
+    A Queue class to store selected packages/groups and the pending actions
     '''
     
     def __init__(self):
         '''
-        
+        Init the queue
         '''
         self.logger = logging.getLogger('yumex.YumexQueue')
         self.packages = {}
