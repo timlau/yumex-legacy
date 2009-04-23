@@ -17,6 +17,9 @@
 
 # Yum Extender Constants
 
+'''
+'''
+
 import os
 import sys
 import pango

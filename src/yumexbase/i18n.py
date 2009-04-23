@@ -15,6 +15,9 @@
 
 # This is a ripped from the yum.i18n and changed to use the yumex translation domain 
 
+'''
+'''
+
 def dummy_wrapper(txt):
     '''
     Dummy Translation wrapper, just returning the same string.

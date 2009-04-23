@@ -15,6 +15,10 @@
 #
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
+'''
+'''
+
+
 import gtk
 import gobject
 import logging
@@ -27,11 +31,24 @@ import yumexbase.constants as const
 from yum.misc import sortPkgObj
 
 class SelectionView:
+    '''
+    '''
+
     def __init__(self, widget):
+        '''
+        
+        @param widget:
+        '''
         self.view = widget
         self.store = None
 
     def create_text_column_num(self, hdr, colno, resize = True):
+        '''
+        
+        @param hdr:
+        @param colno:
+        @param resize:
+        '''
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn(hdr, cell, text = colno)
         column.set_resizable(resize)
@@ -53,6 +70,10 @@ class SelectionView:
         return column
 
     def create_selection_colunm(self, attr):
+        '''
+        
+        @param attr:
+        '''
         # Setup a selection column using a object attribute 
         cell1 = gtk.CellRendererToggle()    # Selection
         cell1.set_property('activatable', True)
@@ -66,6 +87,10 @@ class SelectionView:
         column1.set_clickable(True)
 
     def create_selection_column_num(self, num):
+        '''
+        
+        @param num:
+        '''
         # Setup a selection column using a column num
         cell1 = gtk.CellRendererToggle()    # Selection
         cell1.set_property('activatable', True)
@@ -77,12 +102,28 @@ class SelectionView:
         cell1.connect("toggled", self.on_toggled)     
         
     def get_data_text(self, column, cell, model, iterator, prop):
+        '''
+        
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        @param prop:
+        '''
         obj = model.get_value(iterator, 0)
         if obj:
             cell.set_property('text', getattr(obj, prop))
             cell.set_property('foreground', obj.color)
 
     def get_data_bool(self, column, cell, model, iterator, prop):
+        '''
+        
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        @param prop:
+        '''
         obj = model.get_value(iterator, 0)
         cell.set_property("visible", True)
         if obj:
@@ -97,7 +138,16 @@ class SelectionView:
         pass
     
 class YumexPackageView(SelectionView):
+    '''
+    
+    '''
+    
     def __init__(self, widget, qview):
+        '''
+        
+        @param widget:
+        @param qview:
+        '''
         SelectionView.__init__(self, widget)
         self.view.modify_font(const.SMALL_FONT)
         self.headers = [_("Package"), _("Ver"), _("Summary"), _("Repo"), _("Architecture"), _("Size")]
@@ -106,6 +156,9 @@ class YumexPackageView(SelectionView):
         self.queueView = qview
         
     def setupView(self):
+        '''
+        
+        '''
         store = gtk.ListStore(gobject.TYPE_PYOBJECT, str)
         self.view.set_model(store)
         self.create_selection_colunm('selected')
@@ -141,6 +194,10 @@ class YumexPackageView(SelectionView):
         self.queueView.refresh()
         
     def togglePackage(self, obj):
+        '''
+        
+        @param obj:
+        '''
         if obj.queued == obj.action:
             obj.queued = None
             self.queue.remove(obj)
@@ -152,6 +209,9 @@ class YumexPackageView(SelectionView):
         
                 
     def selectAll(self):
+        '''
+        
+        '''
         for el in self.store:
             obj = el[0]
             if not obj.queued == obj.action:
@@ -162,6 +222,9 @@ class YumexPackageView(SelectionView):
         self.view.queue_draw() 
 
     def deselectAll(self):
+        '''
+        
+        '''
         for el in self.store:
             obj = el[0]
             if obj.queued == obj.action:
@@ -205,9 +268,17 @@ class YumexPackageView(SelectionView):
         return selected
 
     def clear(self):
+        '''
+        
+        '''
         self.store.clear()
     
     def add_packages(self, pkgs, progress = None):
+        '''
+        
+        @param pkgs:
+        @param progress:
+        '''
         self.store.clear()
         queued = self.queue.get()
         if pkgs:
@@ -222,7 +293,13 @@ class YumexPackageView(SelectionView):
         
 
 class YumexQueue:
+    '''
+    '''
+    
     def __init__(self):
+        '''
+        
+        '''
         self.logger = logging.getLogger('yumex.YumexQueue')
         self.packages = {}
         self.packages['i'] = []
@@ -233,6 +310,9 @@ class YumexQueue:
         self.groups['r'] = []
 
     def clear(self):
+        '''
+        
+        '''
         del self.packages
         self.packages = {}
         self.packages['i'] = []
@@ -243,45 +323,77 @@ class YumexQueue:
         self.groups['r'] = []
         
     def get(self, action = None):        
+        '''
+        
+        @param action:
+        '''
         if action == None:
             return self.packages
         else:
             return self.packages[action]
             
     def total(self):
+        '''
+        
+        '''
         return len(self.packages['i']) + len(self.packages['u']) + len(self.packages['r'])
         
     def add(self, pkg):
+        '''
+        
+        @param pkg:
+        '''
         pkg_list = self.packages[pkg.action]
         if not pkg in pkg_list:
             pkg_list.append(pkg)
         self.packages[pkg.action] = pkg_list
 
     def remove(self, pkg):
+        '''
+        
+        @param pkg:
+        '''
         pkg_list = self.packages[pkg.action]
         if pkg in pkg_list:
             pkg_list.remove(pkg)
         self.packages[pkg.action] = pkg_list
 
     def addGroup(self, grp, action):
+        '''
+        
+        @param grp:
+        @param action:
+        '''
         pkg_list = self.groups[action]
         if not grp in pkg_list:
             pkg_list.append(grp)
         self.groups[action] = pkg_list
 
     def removeGroup(self, grp, action):
+        '''
+        
+        @param grp:
+        @param action:
+        '''
         pkg_list = self.groups[action]
         if grp in pkg_list:
             pkg_list.remove(grp)
         self.groups[action] = pkg_list
 
     def hasGroup(self, grp):
+        '''
+        
+        @param grp:
+        '''
         for action in ['i', 'r']:
             if grp in self.groups[action]:
                 return action
         return None
         
     def dump(self):
+        '''
+        
+        '''
         self.logger.info(_("Package Queue:"))
         for action in ['install', 'update', 'remove']:
             a = action[0]
@@ -302,6 +414,10 @@ class YumexQueue:
 class YumexQueueView:
     """ Queue View Class"""
     def __init__(self, widget):
+        '''
+        
+        @param widget:
+        '''
         self.view = widget
         self.view.modify_font(const.SMALL_FONT)
         self.model = self.setup_view()
@@ -325,6 +441,9 @@ class YumexQueueView:
         return model
     
     def deleteSelected(self):
+        '''
+        
+        '''
         rmvlist = []
         model, paths = self.view.get_selection().get_selected_rows()
         for path in paths:
@@ -342,6 +461,10 @@ class YumexQueueView:
 
 
     def getPkgsFromList(self, rlist):
+        '''
+        
+        @param rlist:
+        '''
         rclist = []
         for action in ['u', 'i', 'r']:
             pkg_list = self.queue.packages[action]
@@ -367,6 +490,11 @@ class YumexQueueView:
         self.view.expand_all()
             
     def populate_list(self, label, pkg_list):
+        '''
+        
+        @param label:
+        @param pkg_list:
+        '''
         parent = self.model.append(None, [label, ""])
         for pkg in pkg_list:
             self.model.append(parent, [str(pkg), pkg.summary])
@@ -376,6 +504,10 @@ class YumexRepoView(SelectionView):
     This class controls the repo TreeView
     """
     def __init__(self, widget):
+        '''
+        
+        @param widget:
+        '''
         SelectionView.__init__(self, widget)
         self.view.modify_font(const.SMALL_FONT)        
         self.headers = [_('Repository'), _('Filename')]
@@ -420,6 +552,10 @@ class YumexRepoView(SelectionView):
                 self.store.append([state, ident, name, gpg])     
             
     def isHidden(self, ident):
+        '''
+        
+        @param ident:
+        '''
         for hide in const.REPO_HIDE:
             if hide in ident:
                 return True
@@ -427,6 +563,13 @@ class YumexRepoView(SelectionView):
             return False                  
 
     def new_pixbuf(self, column, cell, model, iterator):
+        '''
+        
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        '''
         gpg = model.get_value(iterator, 3)
         if gpg:
             cell.set_property('visible', True)
@@ -434,6 +577,9 @@ class YumexRepoView(SelectionView):
             cell.set_property('visible', False)
             
     def get_selected(self):
+        '''
+        
+        '''
         selected = []
         for elem in self.store:
             state = elem[0]
@@ -443,6 +589,9 @@ class YumexRepoView(SelectionView):
         return selected
         
     def get_notselected(self):
+        '''
+        
+        '''
         notselected = []
         for elem in self.store:
             state = elem[0]
@@ -452,12 +601,18 @@ class YumexRepoView(SelectionView):
         return notselected
             
     def deselect_all(self):
+        '''
+        
+        '''
         iterator = self.store.get_iter_first()
         while iterator != None:    
             self.store.set_value(iterator, 0, False)
             iterator = self.store.iter_next(iterator)
 
     def select_all(self):
+        '''
+        
+        '''
         iterator = self.store.get_iter_first()
         while iterator != None:    
             self.store.set_value(iterator, 0, True)
@@ -465,6 +620,10 @@ class YumexRepoView(SelectionView):
             
 
     def select_by_keys(self, keys):
+        '''
+        
+        @param keys:
+        '''
         iterator = self.store.get_iter_first()
         while iterator != None:    
             repoid = self.store.get_value(iterator, 1)
@@ -475,7 +634,16 @@ class YumexRepoView(SelectionView):
             iterator = self.store.iter_next(iterator)
 
 class YumexGroupView:
+    '''
+    '''
+    
     def __init__(self, treeview, qview, base):
+        '''
+        
+        @param treeview:
+        @param qview:
+        @param base:
+        '''
         self.view = treeview
         self.base = base
         self.view.modify_font(const.SMALL_FONT)        
@@ -530,6 +698,13 @@ class YumexGroupView:
         return model
     
     def setCheckbox(self, column, cell, model, iterator):
+        '''
+        
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        '''
         isCategory = model.get_value(iterator, 4)
         state = model.get_value(iterator, 0)
         if isCategory:
@@ -560,6 +735,12 @@ class YumexGroupView:
         
         
     def _updatePackages(self, grpid, add, action):
+        '''
+        
+        @param grpid:
+        @param add:
+        @param action:
+        '''
         pkgs = self.base.backend.get_group_packages(grpid, const.GROUP.default)
         # Add group packages to queue
         if add: 
@@ -583,6 +764,10 @@ class YumexGroupView:
         self.queueView.refresh()
         
     def populate(self, data):
+        '''
+        
+        @param data:
+        '''
         self.model.clear()
         self._groups = data
         for cat, catgrps in data:
@@ -628,6 +813,10 @@ class YumexGroupView:
             
 
     def _get_pix(self, fn):
+        '''
+        
+        @param fn:
+        '''
         imgsize = 24
         pix = gtk.gdk.pixbuf_new_from_file(fn)
         if pix.get_height() != imgsize or pix.get_width() != imgsize:

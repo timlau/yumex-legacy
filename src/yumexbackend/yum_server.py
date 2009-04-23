@@ -15,6 +15,9 @@
 #
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
+'''
+'''
+
 import os
 import os.path
 import sys
@@ -125,6 +128,10 @@ class YumServer(yum.YumBase):
 
 
     def doLock(self, lockfile = YUM_PID_FILE):
+        '''
+        
+        @param lockfile:
+        '''
         cnt = 0
         nmsg = ""
         while cnt < 6:
@@ -148,6 +155,10 @@ class YumServer(yum.YumBase):
         self.fatal("lock-error", msg)        
 
     def get_process_info(self, pid):
+        '''
+        
+        @param pid:
+        '''
         if not pid:
             return None
 
@@ -168,6 +179,9 @@ class YumServer(yum.YumBase):
         return ps
                 
     def quit(self):
+        '''
+        
+        '''
         self.debug("Closing rpm db and releasing yum lock  ")
         self.closeRpmDB()
         self.doUnlock()
@@ -180,6 +194,10 @@ class YumServer(yum.YumBase):
         sys.stdout.write("%s\n" % msg)    
         
     def _get_recent(self, po):
+        '''
+        
+        @param po:
+        '''
         if po.repoid == 'installed':
             ftime = int(po.returnSimple('installtime'))
         else:
@@ -200,9 +218,17 @@ class YumServer(yum.YumBase):
                     summary, action, pkg.size, recent))
         
     def _show_group(self, grp):
+        '''
+        
+        @param grp:
+        '''
         self.write(":group\t%s\t%s\t%s" % (grp.cat, grp.id, grp.name))
 
     def _show_repo(self, repo):
+        '''
+        
+        @param repo:
+        '''
         self.write(":repo\t%s\t%s\t%s\t%s" % (repo.enabled, repo.id, repo.name, repo.gpgcheck))
 
     def info(self, msg):
@@ -234,6 +260,11 @@ class YumServer(yum.YumBase):
         self.write(":gpg-check\t%s" % (value))
 
     def message(self, msg_type, value):
+        '''
+        
+        @param msg_type:
+        @param value:
+        '''
         value = pack(value)
         self.write(":msg\t%s\t%s" % (msg_type, value))
 
@@ -244,6 +275,12 @@ class YumServer(yum.YumBase):
         self.write(":yum-rpm\t%s" % value)
         
     def yum_dnl(self, ftype, name, percent):
+        '''
+        
+        @param ftype:
+        @param name:
+        @param percent:
+        '''
         value = (ftype, name, percent)
         value = pack(value)
         self.write(":yum-dnl\t%s" % value)
@@ -257,6 +294,10 @@ class YumServer(yum.YumBase):
         self.write(":yum\t%s" % msg)
         
     def ended(self, state):
+        '''
+        
+        @param state:
+        '''
         state = pack(state)
         self.write(":end\t%s" % state)
         
@@ -321,6 +362,10 @@ class YumServer(yum.YumBase):
         self.write(':attr\t%s' % res)
         
     def add_transaction(self, args):
+        '''
+        
+        @param args:
+        '''
         pkgstr = args[: - 1]
         action = args[ - 1]
         po = self._getPackage(pkgstr)
@@ -337,16 +382,26 @@ class YumServer(yum.YumBase):
         self.ended(True)
             
     def remove_transaction(self, args):
+        '''
+        
+        @param args:
+        '''
         pkgstr = args
         po = self._getPackage(pkgstr)
         self.tsInfo.remove(po)
 
     def list_transaction(self):
+        '''
+        
+        '''
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po, txmbr.ts_state)
         self.ended(True)
             
     def build_transaction(self):
+        '''
+        
+        '''
         rc, msgs = self.buildTransaction()
         self.message('return_code', rc)
         for msg in msgs:
@@ -406,6 +461,9 @@ class YumServer(yum.YumBase):
         
                     
     def run_transaction(self):
+        '''
+        
+        '''
         try:
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
@@ -462,6 +520,10 @@ class YumServer(yum.YumBase):
         self.ended(True)
 
     def get_group_packages(self, args):
+        '''
+        
+        @param args:
+        '''
         grpid = args[0]
         grp_flt = args[1]
         grp = self.comps.return_group(grpid)
@@ -508,6 +570,10 @@ class YumServer(yum.YumBase):
             
 
     def search(self, args):
+        '''
+        
+        @param args:
+        '''
         keys = unpack(args[0])
         filters = unpack(args[1])
         ygh = self.doPackageLists(pkgnarrow = 'updates')
@@ -538,12 +604,20 @@ class YumServer(yum.YumBase):
         self.ended(True)
     
     def get_repos(self, args):
+        '''
+        
+        @param args:
+        '''
         for repo in self.repos.repos:
             self._show_repo(self.repos.getRepo(repo))
         self.ended(True)
             
     
     def enable_repo(self, args):
+        '''
+        
+        @param args:
+        '''
         ident = args[0]
         state = (args[1] == 'True')
         self.debug("Repo : %s Enabled : %s" % (ident, state))
@@ -613,10 +687,22 @@ class YumServer(yum.YumBase):
         self.quit()
 
 class YumexTransCallback:
+    '''
+    '''
+    
     def __init__(self, base):
+        '''
+        
+        @param base:
+        '''
         self.base = base
 
     def event(self, state, data = None):
+        '''
+        
+        @param state:
+        @param data:
+        '''
 
         if state == PT_DOWNLOAD:        # Start Downloading
             self.base.yum_state('download')
@@ -631,14 +717,29 @@ class YumexTransCallback:
 
 
 class YumexRPMCallback(RPMBaseCallback):
+    '''
+    '''
     
     def __init__(self, base):
+        '''
+        
+        @param base:
+        '''
         RPMBaseCallback.__init__(self)
         self.base = base
         self._last_frac = 0.0
         self._last_pkg = None
 
     def event(self, package, action, te_current, te_total, ts_current, ts_total):
+        '''
+        
+        @param package:
+        @param action:
+        @param te_current:
+        @param te_total:
+        @param ts_current:
+        @param ts_total:
+        '''
         # Handle rpm transaction progress
         try:
             if action != TS_UPDATED:
@@ -661,6 +762,11 @@ class YumexRPMCallback(RPMBaseCallback):
             self.base.debug(str(etype))
         
     def scriptout(self, package, msgs):
+        '''
+        
+        @param package:
+        @param msgs:
+        '''
         # Handle rpm scriptlet messages
         if msgs:
             self.base.yum_logger('RPM Scriptlet: %s' % msgs)
@@ -668,6 +774,10 @@ class YumexRPMCallback(RPMBaseCallback):
 class YumexDownloadCallback(DownloadBaseCallback):
     """ Download callback handler """
     def __init__(self, base):
+        '''
+        
+        @param base:
+        '''
         DownloadBaseCallback.__init__(self)
         self.base = base
         self.percent_start = 0
@@ -678,11 +788,21 @@ class YumexDownloadCallback(DownloadBaseCallback):
         self.current_type = None
 
     def setPackages(self, new_pkgs, percent_start, percent_length):
+        '''
+        
+        @param new_pkgs:
+        @param percent_start:
+        @param percent_length:
+        '''
         self.saved_pkgs = new_pkgs
         self.number_packages = float(len(self.saved_pkgs))
         self.percent_start = percent_start
 
     def _getPackage(self, name):
+        '''
+        
+        @param name:
+        '''
         if self.saved_pkgs:
             for pkg in self.saved_pkgs:
                 if isinstance(pkg, YumLocalPackage):

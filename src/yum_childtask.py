@@ -17,6 +17,9 @@
 
 # Copyright (C) 2008
 #    Tim Lauridsen <timlau@fedoraproject.org>
+'''
+The yum child task started by yumex in the background
+'''
 
 import sys
 import signal
@@ -25,6 +28,11 @@ import yum.misc
 
 my = None
 def sigquit(signum, frame):
+    '''
+    
+    @param signum:
+    @param frame:
+    '''
     if my:
         my.quit()
     sys.exit(1)

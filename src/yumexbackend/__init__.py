@@ -1,5 +1,6 @@
 
-
+'''
+'''
 
 class YumexBackendBase(object):
     '''
@@ -74,40 +75,68 @@ class YumexPackageBase:
    '''
 
     def __init__(self, pkg):
+        '''
+        
+        @param pkg:
+        '''
         self._pkg = pkg
         self.selected = False
         
 
     @property
     def name(self):
+        '''
+        
+        '''
         return self._pkg.name
 
     @property
     def version(self):
+        '''
+        
+        '''
         return self._pkg.ver
 
     @property
     def release(self):
+        '''
+        
+        '''
         return self._pkg.rel
 
     @property
     def epoch(self):
+        '''
+        
+        '''
         return self._pkg.epoch
 
     @property
     def arch(self):
+        '''
+        
+        '''
         return self._pkg.arch
 
     @property
     def repoid(self):
+        '''
+        
+        '''
         return self._pkg.repoid
 
     @property
     def action(self):
+        '''
+        
+        '''
         return self._pkg.action
 
     @property
     def summary(self):
+        '''
+        
+        '''
         return self._pkg.summary
 
     @property
@@ -141,6 +170,11 @@ class YumexGroupBase:
    '''
 
     def __init__(self, grp, category):
+        '''
+        
+        @param grp:
+        @param category:
+        '''
         self._grp = grp
         self._category = category
         self.selected = False

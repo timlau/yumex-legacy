@@ -17,6 +17,9 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+'''
+'''
+
 # Constants
 
 from yumexbase import *
@@ -37,6 +40,10 @@ class YumexBackendDummy(YumexBackendBase):
     '''
 
     def __init__(self, frontend):
+        '''
+        
+        @param frontend:
+        '''
         transaction = YumexTransactionDummy(self, frontend)
         YumexBackendBase.__init__(self, frontend, transaction)
 
@@ -128,34 +135,59 @@ class YumexPackageDummy(YumexPackageBase):
     '''
 
     def __init__(self, pkg):
+        '''
+        
+        @param pkg:
+        '''
         YumexPackageBase.__init__(self, pkg)
 
     @property
     def name(self):
+        '''
+        
+        '''
         return self._pkg['name']
 
     @property
     def version(self):
+        '''
+        
+        '''
         return self._pkg['version']
 
     @property
     def release(self):
+        '''
+        
+        '''
         return self._pkg['release']
 
     @property
     def arch(self):
+        '''
+        
+        '''
         return self._pkg['arch']
 
     @property
     def summary(self):
+        '''
+        
+        '''
         return 'this is an dummy package'
 
     @property
     def description(self):
+        '''
+        
+        '''
         return 'This is an dummy package,\n so it has only this dummy description'
 
     @property
     def changelog(self):
+        '''
+        
+        '''
         clog = []
         clog.append(('Tue Dec 7 2004', 'Tim Lauridsen <tla@rasmil.dk>', 'bump version to 0.1.1'))
         clog.append(('Fri Dec 8 2004', 'Tim Lauridsen <tla@rasmil.dk>', 'bump version to 0.1.2'))
@@ -164,6 +196,9 @@ class YumexPackageDummy(YumexPackageBase):
 
     @property
     def filelist(self):
+        '''
+        
+        '''
         flist = []
         flist.append('/usr/share/dummy')
         flist.append('/usr/share/dummy/dummy.png')
@@ -173,10 +208,16 @@ class YumexPackageDummy(YumexPackageBase):
 
     @property
     def id(self):
+        '''
+        
+        '''
         return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
 
     @property
     def filename(self):
+        '''
+        
+        '''
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
 class YumexTransactionDummy(YumexTransactionBase):
@@ -249,6 +290,13 @@ class YumexTransactionDummy(YumexTransactionBase):
 
 
 def make_dummy_pkg(name, ver, rel, arch):
+    '''
+    
+    @param name:
+    @param ver:
+    @param rel:
+    @param arch:
+    '''
     pkg = {}
     pkg['name'] = name
     pkg['version'] = ver    

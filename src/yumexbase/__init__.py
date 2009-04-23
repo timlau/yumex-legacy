@@ -18,11 +18,17 @@
 
 # interface base classes
 
+'''
+'''
+
 class YumexProgressBase:
     '''
     A Virtual Progress class
     '''
     def __init__(self):
+        '''
+        
+        '''
         self._active = False
         self._pulse = False
     
@@ -35,12 +41,22 @@ class YumexProgressBase:
         self._active = False
     
     def is_active(self):
+        '''
+        
+        '''
         return self._active
     
     def is_pulse(self):
+        '''
+        
+        '''
         return self._pulse
     
     def set_pulse(self, pulse):
+        '''
+        
+        @param pulse:
+        '''
         self._pulse = pulse
     
     def set_title(self, title):
@@ -128,14 +144,29 @@ class YumexBaseError(Exception):
     this.
     """
     def __init__(self, value = None):
+        '''
+        
+        @param value:
+        '''
         Exception.__init__(self)
         self.value = value
     
     def __str__(self):
+        '''
+        
+        '''
         return "%s" % (self.value,)
 
 class YumexBackendFatalError(YumexBaseError):
+    '''
+    
+    '''
     def __init__(self, err, msg):
+        '''
+        
+        @param err:
+        @param msg:
+        '''
         YumexBaseError.__init__(self)
         self.err = err
         self.msg = msg

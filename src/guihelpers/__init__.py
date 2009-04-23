@@ -15,8 +15,9 @@
 #
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
-
-# General purpose GUI helper classes
+'''
+General purpose GUI helper classes
+'''
 
 import gtk
 import gtk.glade
@@ -116,6 +117,11 @@ class TextViewConsole(TextViewBase):
     @param text_size: Optional text_size for the styles (default = 8)  
     '''
     def __init__(self, textview, font_size = 8):
+        '''
+        
+        @param textview:
+        @param font_size:
+        '''
         TextViewBase.__init__(self, textview)
         # info style
         style = gtk.TextTag("info")
@@ -158,6 +164,10 @@ class TextViewLogHandler(logging.Handler):
         
         
     def emit(self, record):   
+        '''
+        
+        @param record:
+        '''
         msg = self.format(record)
         if self.console:
             if self.doGTK:
@@ -295,11 +305,18 @@ def normalCursor(mainwin):
     doGtkEvents()
     
 def doGtkEvents():
+    '''
+    
+    '''
     while gtk.events_pending():      # process gtk events
         gtk.main_iteration()
 
 
 def toUTF(txt):
+    '''
+    
+    @param txt:
+    '''
     rc = ""
     if isinstance(txt, types.UnicodeType):
         return txt

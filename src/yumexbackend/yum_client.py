@@ -17,6 +17,8 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+'''
+'''
 
 import sys
 import pickle
@@ -49,6 +51,11 @@ def unpack(value):
 class YumPackage:
     ''' Simple object to store yum package information '''
     def __init__(self, base, args):
+        '''
+        
+        @param base:
+        @param args:
+        '''
         self.base = base
         self.name = args[0]
         self.epoch = args[1]
@@ -62,6 +69,9 @@ class YumPackage:
         self.recent = args[9]
         
     def __str__(self):
+        '''
+        
+        '''
         if self.epoch == '0':
             return '%s-%s-%s.%s' % (self.name, self.ver, self.rel, self.arch)
         else:
@@ -69,18 +79,33 @@ class YumPackage:
 
     @property        
     def id(self):        
+        '''
+        
+        '''
         return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.ver, self.rel, self.arch, self.repoid)
 
     def get_attribute(self, attr):
+        '''
+        
+        @param attr:
+        '''
         return self.base.get_attribute(self.id, attr)
     
     def get_changelog(self, num):
+        '''
+        
+        @param num:
+        '''
         return self.base.get_changelog(self.id, num)
     
 class YumClient:
     """ Client part of a the yum client/server """
 
     def __init__(self, timeout = .1):
+        '''
+        
+        @param timeout:
+        '''
         self.child = None
         self._timeout_value = timeout
         self._timeout_last = 0
@@ -315,6 +340,9 @@ class YumClient:
         return True    
     
     def _wait_for_started(self):
+        '''
+        
+        '''
         cnt = 0
         while True:
             cmd, args = self._readline()
@@ -323,6 +351,11 @@ class YumClient:
                 return True
             
     def is_ended(self, cmd, args):
+        '''
+        
+        @param cmd:
+        @param args:
+        '''
         if cmd == ':end':
             if args:
                 self.end_state = unpack(args[0])
@@ -421,31 +454,53 @@ class YumClient:
             return None
         
     def add_transaction(self, ident, action):
+        '''
+        
+        @param ident:
+        @param action:
+        '''
         self._send_command('add-transaction', [ident, action])
         pkgs = self._get_list()
         return pkgs
         
     def remove_transaction(self, ident, action):
+        '''
+        
+        @param ident:
+        @param action:
+        '''
         self._send_command('remove-transaction', [ident])
         pkgs = self._get_list()
         return pkgs
 
     def list_transaction(self):        
+        '''
+        
+        '''
         self._send_command('list-transaction', [])
         pkgs = self._get_list()
         return pkgs
 
     def build_transaction(self):        
+        '''
+        
+        '''
         self._send_command('build-transaction', [])
         msgs = self._get_messages()
         return msgs['return_code'][0], msgs['messages'], unpack(msgs['transaction'][0])
 
     def run_transaction(self):        
+        '''
+        
+        '''
         self._send_command('run-transaction', [])
         lst = self._get_list()
         return self.end_state
 
     def get_groups(self):
+        '''
+        
+        '''
         self._send_command('get-groups', [])
         msgs = self._get_messages()
         return unpack(msgs['groups'][0])
@@ -462,6 +517,9 @@ class YumClient:
         
 
     def get_repos(self):
+        '''
+        
+        '''
         self._send_command('get-repos', [])
         data = self._get_list(':repo')
         repos = []
@@ -473,12 +531,22 @@ class YumClient:
         return repos
         
     def enable_repo(self, ident, state):
+        '''
+        
+        @param ident:
+        @param state:
+        '''
         self._send_command('enable-repo', [ident, str(state)])
         args = self._get_result(':repo')
         return args
         
         
     def search(self, keys, filters):
+        '''
+        
+        @param keys:
+        @param filters:
+        '''
         bKeys = pack(keys)
         bFilters = pack(filters)
         self._send_command('search', [bKeys, bFilters])

@@ -18,6 +18,9 @@
 # Copyright (C) 2008
 #    Tim Lauridsen <timlau@fedoraproject.org>
 
+'''
+'''
+
 import pexpect
 
 class Package:

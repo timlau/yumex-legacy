@@ -19,6 +19,9 @@
 
 # Yumex gui classes & functions
 
+'''
+'''
+
 import gtk
 import gtk.glade
 from datetime import date
@@ -37,11 +40,15 @@ from yumexbase.i18n import _, P_
 #
 
 class PackageInfoTextView(TextViewBase):
+    '''
+    
+    '''
     
     def __init__(self, textview, font_size = 8):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
+        @param font_size:
         '''
         TextViewBase.__init__(self, textview)        
 
@@ -79,15 +86,29 @@ class PackageInfoTextView(TextViewBase):
         self.add_style(tag, style)
         
 class PackageCache:
+    '''
+    '''
+    
     def __init__(self, backend):
+        '''
+        
+        @param backend:
+        '''
         self._cache = {}
         self.backend = backend
         
     def reset(self):
+        '''
+        
+        '''
         del self._cache
         self._cache = {}
 
     def get_packages(self, pkg_filter):
+        '''
+        
+        @param pkg_filter:
+        '''
         if not str(pkg_filter) in self._cache:
             pkgs = self.backend.get_packages(pkg_filter)
             pkgdict = {}
@@ -97,6 +118,10 @@ class PackageCache:
         return self._cache[str(pkg_filter)].values()
     
     def find(self, po):
+        '''
+        
+        @param po:
+        '''
         if po.action == 'u':
             target = self._cache[str(FILTER.updates)]
         elif po.action == 'i':
@@ -188,7 +213,19 @@ class SelectorBase:
             self._selected = key
 
 class PackageInfo(SelectorBase):
+    '''
+    
+    '''
+    
     def __init__(self, main, console, selector, frontend, font_size = 8):
+        '''
+        
+        @param main:
+        @param console:
+        @param selector:
+        @param frontend:
+        @param font_size:
+        '''
         SelectorBase.__init__(self, selector)
         self.console = PackageInfoTextView(console, font_size = font_size)
         self.main_window = main
@@ -200,10 +237,17 @@ class PackageInfo(SelectorBase):
         self._selected = 'description'
 
     def update(self, pkg):
+        '''
+        
+        @param pkg:
+        '''
         self.pkg = pkg
         self.set_active(self._selected)
         
     def clear(self):        
+        '''
+        
+        '''
         self.console.clear()
 
     def on_button_clicked(self, widget = None, key = None):
@@ -213,6 +257,10 @@ class PackageInfo(SelectorBase):
             self.update_console(key)
     
     def update_console(self, key):
+        '''
+        
+        @param key:
+        '''
         if self.pkg:
             busyCursor(self.main_window)
             self.console.clear()
@@ -226,9 +274,15 @@ class PackageInfo(SelectorBase):
             normalCursor(self.main_window)
         
     def show_description(self):
+        '''
+        
+        '''
         self.console.write(self.pkg.description)
         
     def show_changelog(self):
+        '''
+        
+        '''
         changelog = self.pkg.changelog
         progress = self.frontend.get_progress()
         progress.hide()        
@@ -239,6 +293,9 @@ class PackageInfo(SelectorBase):
             self.console.write('\n')              
 
     def show_filelist(self):
+        '''
+        
+        '''
         i = 0
         files = self.pkg.filelist
         progress = self.frontend.get_progress()

@@ -17,6 +17,9 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+'''
+'''
+
 # Imports
 
 from yumexbase.constants import *
@@ -41,6 +44,10 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     '''
 
     def __init__(self, frontend):
+        '''
+        
+        @param frontend:
+        '''
         transaction = YumexTransactionYum(self, frontend)
         YumexBackendBase.__init__(self, frontend, transaction)
         YumClient.__init__(self)
@@ -119,6 +126,10 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             
 
     def yum_state(self, state):
+        '''
+        
+        @param state:
+        '''
         progress = self.frontend.get_progress()
         if state == 'download':
             progress.set_header(_("Downloading Packages"))
@@ -240,42 +251,75 @@ class YumexPackageYum(YumexPackageBase):
     '''
 
     def __init__(self, pkg):
+        '''
+        
+        @param pkg:
+        '''
         YumexPackageBase.__init__(self, pkg)
         self.queued = False
         self.selected = False
         self.visible = True
 
     def set_select(self, state):
+        '''
+        
+        @param state:
+        '''
         self.selected = state
 
     def set_visible(self, state):
+        '''
+        
+        @param state:
+        '''
         self.visible = state
         
     def __str__(self):
+        '''
+        
+        '''
         return str(self._pkg)
 
     @property
     def size(self):
+        '''
+        
+        '''
         return format_number(long(self._pkg.size))
 
     @property
     def description(self):
+        '''
+        
+        '''
         return self._pkg.get_attribute('description')
 
     @property
     def changelog(self):
+        '''
+        
+        '''
         return self._pkg.get_changelog(4)
 
     @property
     def filelist(self):
+        '''
+        
+        '''
         return self._pkg.get_attribute('filelist') 
 
     @property
     def recent(self):
+        '''
+        
+        '''
         return self._pkg.recent == '1'
 
     @property
     def color(self):
+        '''
+        
+        '''
         color = 'black'
         if self.repoid == 'installed':
             color = 'darkgreen'

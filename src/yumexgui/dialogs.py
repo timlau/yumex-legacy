@@ -15,6 +15,10 @@
 #
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
+'''
+'''
+
+
 import gtk
 import pango
 import gobject
@@ -32,8 +36,16 @@ from yumexbase.i18n import _, P_
 
 
 class Progress(YumexProgressBase):
+    '''
+    
+    '''
     
     def __init__(self, ui, parent):
+        '''
+        
+        @param ui:
+        @param parent:
+        '''
         YumexProgressBase.__init__(self)
         self.ui = ui
         self.dialog = self.ui.Progress
@@ -50,42 +62,78 @@ class Progress(YumexProgressBase):
         self.label.modify_font(SMALL_FONT)
         
     def show(self):
+        '''
+        
+        '''
         self._active = True
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show_all()
         
     def hide(self):
+        '''
+        
+        '''
         self._active = False
         normalCursor(self.parent)
         self.dialog.hide()
 
     def set_title(self, text):
+        '''
+        
+        @param text:
+        '''
         self.dialog.set_title(text)
         
     def set_header(self, text):
+        '''
+        
+        @param text:
+        '''
         self.header.set_text(text)
         self.set_action("")
         
     def set_action(self, text):
+        '''
+        
+        @param text:
+        '''
         self.label.set_markup(text)
         
     def set_fraction(self, frac, text = None):
+        '''
+        
+        @param frac:
+        @param text:
+        '''
         self.progressbar.set_fraction(frac)
         if text:
             self.progressbar.set_text(text)
             
     def pulse(self):
+        '''
+        
+        '''
         self.progressbar.set_text(_("Working !!!"))
         self.progressbar.pulse()
         
     def reset(self):
+        '''
+        
+        '''
         self.progressbar.set_fraction(0.0)
         self.progressbar.set_text("")
             
 class TransactionConfirmation:
+    '''
+    '''
     
     def __init__(self, ui, parent):
+        '''
+        
+        @param ui:
+        @param parent:
+        '''
         self.ui = ui
         self.dialog = self.ui.Transaction
         self.dialog.set_title(_("Transaction Result"))
@@ -101,19 +149,33 @@ class TransactionConfirmation:
         self.store = self.setup_view(self.view)
 
     def run(self):
+        '''
+        
+        '''
         self.dialog.show_all()
         self.view.expand_all()
         rc = self.dialog.run()
         return rc == 1
 
     def destroy(self):
+        '''
+        
+        '''
         self.dialog.hide()
 
         
     def set_header(self, text):
+        '''
+        
+        @param text:
+        '''
         self.header.set_text(text)
         
     def setup_view(self, view):
+        '''
+        
+        @param view:
+        '''
         model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                               gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
         view.set_model(model)
@@ -125,6 +187,13 @@ class TransactionConfirmation:
         return model
 
     def create_text_column(self, hdr, view, colno, min_width = 0):
+        '''
+        
+        @param hdr:
+        @param view:
+        @param colno:
+        @param min_width:
+        '''
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn(hdr, cell, markup = colno)
         column.set_resizable(True)
@@ -134,6 +203,10 @@ class TransactionConfirmation:
              
              
     def populate(self, pkglist):
+        '''
+        
+        @param pkglist:
+        '''
         model = self.store
         self.store.clear()       
         for sub, lvl1 in pkglist:
@@ -146,7 +219,19 @@ class TransactionConfirmation:
 
 
 class ErrorDialog:
+    '''
+    '''
+    
     def __init__(self, ui, parent, title, text, longtext, modal):
+        '''
+        
+        @param ui:
+        @param parent:
+        @param title:
+        @param text:
+        @param longtext:
+        @param modal:
+        '''
         self.ui = ui
         self.dialog = ui.errDialog
         self.parent = parent
@@ -171,21 +256,40 @@ class ErrorDialog:
             self.set_long_text(longtext)
         
     def set_text(self, text):
+        '''
+        
+        @param text:
+        '''
         self.text.set_markup(text)
     
     def set_long_text(self, longtext):
+        '''
+        
+        @param longtext:
+        '''
         buf = self.longtext.get_buffer()
         start, end = buf.get_bounds()
         buf.insert_with_tags(end, longtext, self.style_err)
         
     def run(self):
+        '''
+        
+        '''
         self.dialog.show_all()
         return self.dialog.run()
 
     def destroy(self):
+        '''
+        
+        '''
         self.dialog.hide()
 
 def okDialog(parent, msg):
+    '''
+    
+    @param parent:
+    @param msg:
+    '''
     dlg = gtk.MessageDialog(parent = parent,
                             type = gtk.MESSAGE_INFO,
                             buttons = gtk.BUTTONS_OK)
@@ -194,6 +298,11 @@ def okDialog(parent, msg):
     dlg.destroy()
 
 def questionDialog(parent, msg):
+    '''
+    
+    @param parent:
+    @param msg:
+    '''
     dlg = gtk.MessageDialog(parent = parent,
                             type = gtk.MESSAGE_QUESTION,
                             buttons = gtk.BUTTONS_YES_NO)
@@ -206,6 +315,10 @@ def questionDialog(parent, msg):
         return False
     
 def cleanMarkupSting(msg):
+    '''
+    
+    @param msg:
+    '''
     msg = str(msg) # make sure it is a string
     msg = gobject.markup_escape_text(msg)
     return msg
