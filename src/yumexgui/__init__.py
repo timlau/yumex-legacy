@@ -391,8 +391,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup repository view    
         repos = self.backend.get_repositories()
         self.repos.populate(repos)
+        self.default_repos = repos
         active_repos = self.repos.get_selected()
-        self.default_repos = active_repos
         self.current_repos = active_repos
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
