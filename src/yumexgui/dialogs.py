@@ -18,7 +18,6 @@
 '''
 '''
 
-
 import gtk
 import pango
 import gobject
@@ -37,14 +36,14 @@ from yumexbase.i18n import _, P_
 
 class Progress(YumexProgressBase):
     '''
-    
+    The Progress Dialog
     '''
     
     def __init__(self, ui, parent):
         '''
-        
-        @param ui:
-        @param parent:
+        Setup the progress dialog
+        @param ui: the UI class containing the dialog
+        @param parent: the parent window widget
         '''
         YumexProgressBase.__init__(self)
         self.ui = ui
@@ -63,7 +62,7 @@ class Progress(YumexProgressBase):
         
     def show(self):
         '''
-        
+        Show the progress dialog
         '''
         self._active = True
         busyCursor(self.parent, True)
@@ -72,7 +71,7 @@ class Progress(YumexProgressBase):
         
     def hide(self):
         '''
-        
+        Hide the progress dialog
         '''
         self._active = False
         normalCursor(self.parent)
@@ -80,31 +79,31 @@ class Progress(YumexProgressBase):
 
     def set_title(self, text):
         '''
-        
-        @param text:
+        Set the title of the dialog
+        @param text: the title to set
         '''
         self.dialog.set_title(text)
         
     def set_header(self, text):
         '''
-        
-        @param text:
+        Set the dialog header text, it will also blank the action text
+        @param text: The header text
         '''
         self.header.set_text(text)
         self.set_action("")
         
     def set_action(self, text):
         '''
-        
-        @param text:
+        set the action text 
+        @param text: the action text
         '''
         self.label.set_markup(text)
         
     def set_fraction(self, frac, text = None):
         '''
-        
-        @param frac:
-        @param text:
+        Set the progress bar fraction and text
+        @param frac: the progressbar fraction (0.0 -> 1.0)
+        @param text: the progressbar text
         '''
         self.progressbar.set_fraction(frac)
         if text:
@@ -112,27 +111,28 @@ class Progress(YumexProgressBase):
             
     def pulse(self):
         '''
-        
+        Pulse the progressbar and set the text to Working (translated)
         '''
         self.progressbar.set_text(_("Working !!!"))
         self.progressbar.pulse()
         
     def reset(self):
         '''
-        
+        Reset the progressbar and progressbar text
         '''
         self.progressbar.set_fraction(0.0)
         self.progressbar.set_text("")
             
 class TransactionConfirmation:
     '''
+    The Transaction Confirmation dialog, to validate the result of the current transaction result
     '''
     
     def __init__(self, ui, parent):
         '''
-        
-        @param ui:
-        @param parent:
+        Init the dialog   
+        @param ui: the UI class instance
+        @param parent: the parent window widget
         '''
         self.ui = ui
         self.dialog = self.ui.Transaction
@@ -150,7 +150,7 @@ class TransactionConfirmation:
 
     def run(self):
         '''
-        
+        run the dialog
         '''
         self.dialog.show_all()
         self.view.expand_all()
@@ -159,22 +159,22 @@ class TransactionConfirmation:
 
     def destroy(self):
         '''
-        
+        hide the dialog
         '''
         self.dialog.hide()
 
         
     def set_header(self, text):
         '''
-        
-        @param text:
+        The the header text
+        @param text: the header text
         '''
         self.header.set_text(text)
         
     def setup_view(self, view):
         '''
-        
-        @param view:
+        Setup the TreeView
+        @param view: the TreeView widget
         '''
         model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                               gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
@@ -188,11 +188,11 @@ class TransactionConfirmation:
 
     def create_text_column(self, hdr, view, colno, min_width = 0):
         '''
-        
-        @param hdr:
-        @param view:
-        @param colno:
-        @param min_width:
+        Create at TreeViewColumn 
+        @param hdr: column header text
+        @param view: the TreeView widget
+        @param colno: the TreeStore column containing data for the column
+        @param min_width: the min column view (optional)
         '''
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn(hdr, cell, markup = colno)
@@ -204,8 +204,8 @@ class TransactionConfirmation:
              
     def populate(self, pkglist):
         '''
-        
-        @param pkglist:
+        Populate the TreeView with data
+        @param pkglist: list containing view data 
         '''
         model = self.store
         self.store.clear()       
@@ -220,17 +220,18 @@ class TransactionConfirmation:
 
 class ErrorDialog:
     '''
+    The Error Message Dialog
     '''
     
     def __init__(self, ui, parent, title, text, longtext, modal):
         '''
-        
-        @param ui:
-        @param parent:
-        @param title:
-        @param text:
-        @param longtext:
-        @param modal:
+        Setup the Error Message Dialog
+        @param ui: the UI class
+        @param parent: the parent window widget
+        @param title: dialog title
+        @param text: dialog header text
+        @param longtext: dialog main text
+        @param modal: is modal 
         '''
         self.ui = ui
         self.dialog = ui.errDialog
@@ -257,15 +258,15 @@ class ErrorDialog:
         
     def set_text(self, text):
         '''
-        
-        @param text:
+        Set the dialog header text
+        @param text: the header text
         '''
         self.text.set_markup(text)
     
     def set_long_text(self, longtext):
         '''
-        
-        @param longtext:
+        Set the main dialog text
+        @param longtext: the main text
         '''
         buf = self.longtext.get_buffer()
         start, end = buf.get_bounds()
@@ -273,22 +274,22 @@ class ErrorDialog:
         
     def run(self):
         '''
-        
+        Run the dialog
         '''
         self.dialog.show_all()
         return self.dialog.run()
 
     def destroy(self):
         '''
-        
+        Hide the dialog
         '''
         self.dialog.hide()
 
 def okDialog(parent, msg):
     '''
-    
-    @param parent:
-    @param msg:
+    Open an OK message dialog
+    @param parent: parrent window widget
+    @param msg: dialog message
     '''
     dlg = gtk.MessageDialog(parent = parent,
                             type = gtk.MESSAGE_INFO,
@@ -299,9 +300,9 @@ def okDialog(parent, msg):
 
 def questionDialog(parent, msg):
     '''
-    
-    @param parent:
-    @param msg:
+    Open a Yes/No message dialog
+    @param parent: parent window widget
+    @param msg: dialog message
     '''
     dlg = gtk.MessageDialog(parent = parent,
                             type = gtk.MESSAGE_QUESTION,
@@ -316,7 +317,7 @@ def questionDialog(parent, msg):
     
 def cleanMarkupSting(msg):
     '''
-    
+    Make the sting legal to use as Markup 
     @param msg:
     '''
     msg = str(msg) # make sure it is a string
