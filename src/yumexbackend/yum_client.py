@@ -179,7 +179,7 @@ class YumClient:
         """
         raise NotImplementedError()
 
-    def setup(self, debuglevel = 2, plugins = True, filelog = False, repos = []):
+    def setup(self, debuglevel = 2, plugins = True, filelog = False, repos = None):
         ''' Setup the client and spawn the server'''
         if not self.child:
             if repos:

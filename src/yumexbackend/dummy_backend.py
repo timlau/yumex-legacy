@@ -40,7 +40,7 @@ class YumexBackendDummy(YumexBackendBase):
         transaction = YumexTransactionDummy(self, frontend)
         YumexBackendBase.__init__(self, frontend, transaction)
 
-    def setup(self, repos = []):
+    def setup(self, repos = None):
         ''' Setup the backend'''
         self.frontend.debug('Setting up the dummy backend')
 

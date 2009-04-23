@@ -153,7 +153,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         """ debug message """
         self.frontend.exception(msg)
 
-    def setup(self, repos = []):
+    def setup(self, repos = None):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
             return

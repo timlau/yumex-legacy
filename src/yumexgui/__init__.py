@@ -400,10 +400,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 # pylint: enable-msg=W0201
 
 
-    def setup_filters(self):
+    def setup_filters(self, filters = None):
         ''' Populate Package Filter radiobuttons'''
         num = 0
-        for attr in ('Updates', 'Available', 'Installed', 'Groups'):
+        if not filters:
+            filters = ('Updates', 'Available', 'Installed', 'Groups')
+        for attr in filters:
             rb = getattr(self.ui, 'packageRadio' + attr)
             rb.connect('clicked', self.on_packageFilter_changed, num) 
             num += 1
@@ -422,20 +424,20 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.set_pulse(False)
         self.debug("Getting Group information - END")
         
-    def populate_package_cache(self, repos = []):
+    def populate_package_cache(self, repos = None):
         if not repos:
             repos = self.current_repos
         progress = self.get_progress()
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
         progress.set_title(_("Getting Package Lists"))
-        progress.set_header("Getting Updated Packages")
+        progress.set_header(_("Getting Updated Packages"))
         progress.show()
         self.backend.setup(repos)
         pkgs = self.package_cache.get_packages(FILTER.updates)
-        progress.set_header("Getting Available Packages")
+        progress.set_header(_("Getting Available Packages"))
         pkgs = self.package_cache.get_packages(FILTER.available)
-        progress.set_header("Getting installed Packages")
+        progress.set_header(_("Getting installed Packages"))
         pkgs = self.package_cache.get_packages(FILTER.installed)
         self.debug("Getting package lists - END")
         progress.set_pulse(False)
@@ -469,7 +471,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
 
-    def reload(self, repos = []):
+    def reload(self, repos = None):
         ''' Reset current data and restart the backend '''
         if not repos:
             repos = self.current_repos

@@ -98,7 +98,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self, debuglevel = 2, plugins = True, enabled_repos = []):
+    def __init__(self, debuglevel = 2, plugins = True, enabled_repos = None):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         parser = OptionParser()
