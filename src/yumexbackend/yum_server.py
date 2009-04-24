@@ -52,6 +52,24 @@ from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
 
+class _YumPreBaseConf:
+    """This is the configuration interface for the YumBase configuration.
+       So if you want to change if plugins are on/off, or debuglevel/etc.
+       you tweak it here, and when yb.conf does it's thing ... it happens. """
+
+    def __init__(self):
+        self.fn = '/etc/yum/yum.conf'
+        self.root = '/'
+        self.init_plugins = True
+        self.plugin_types = (plugins.TYPE_CORE,)
+        self.optparser = None
+        self.debuglevel = None
+        self.errorlevel = None
+        self.disabled_plugins = None
+        self.enabled_plugins = None
+        self.syslog_ident = None
+        self.syslog_facility = None
+        self.syslog_device = '/dev/log'
 
 class YumServer(yum.YumBase):
     """ 
@@ -105,8 +123,10 @@ class YumServer(yum.YumBase):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         parser = OptionParser()
-        self.doConfigSetup(debuglevel = debuglevel, plugin_types = (yum.plugins.TYPE_CORE,), 
-                           init_plugins = plugins, optparser = parser)
+        # Setup yum preconfig options
+        self.preconf.debuglevel = debuglevel
+        self.preconf.init_plugins = plugins
+        self.preconf.optparser = parser
         logginglevels.setLoggingApp('yumex')
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
@@ -123,14 +143,14 @@ class YumServer(yum.YumBase):
                 else:
                     self.repos.disableRepo(repo.id)
                 
-        self.write(':started')
+        self.write(':started') # Let the front end know that we are up and running
 
 
 
     def doLock(self, lockfile = YUM_PID_FILE):
         '''
-        
-        @param lockfile:
+        Active the yum lock.
+        @param lockfile: path to yum lock file
         '''
         cnt = 0
         nmsg = ""
@@ -156,8 +176,8 @@ class YumServer(yum.YumBase):
 
     def get_process_info(self, pid):
         '''
-        
-        @param pid:
+        Get process information from /proc 
+        @param pid: the process id
         '''
         if not pid:
             return None
@@ -195,8 +215,8 @@ class YumServer(yum.YumBase):
         
     def _get_recent(self, po):
         '''
-        
-        @param po:
+        get the recent state of a package
+        @param po: yum package object
         '''
         if po.repoid == 'installed':
             ftime = int(po.returnSimple('installtime'))
@@ -219,15 +239,15 @@ class YumServer(yum.YumBase):
         
     def _show_group(self, grp):
         '''
-        
-        @param grp:
+        send a group message to the frontend
+        @param grp: group object
         '''
         self.write(":group\t%s\t%s\t%s" % (grp.cat, grp.id, grp.name))
 
     def _show_repo(self, repo):
         '''
-        
-        @param repo:
+        send a repo message to the frontend        
+        @param repo: repo object
         '''
         self.write(":repo\t%s\t%s\t%s\t%s" % (repo.enabled, repo.id, repo.name, repo.gpgcheck))
 
@@ -261,9 +281,9 @@ class YumServer(yum.YumBase):
 
     def message(self, msg_type, value):
         '''
-        
-        @param msg_type:
-        @param value:
+        send at a custom message to the frontend
+        @param msg_type: message type 
+        @param value: some standard python object (dict,list,tuble etc.) to pass with the message.
         '''
         value = pack(value)
         self.write(":msg\t%s\t%s" % (msg_type, value))
@@ -276,17 +296,20 @@ class YumServer(yum.YumBase):
         
     def yum_dnl(self, ftype, name, percent):
         '''
-        
-        @param ftype:
-        @param name:
-        @param percent:
+        send an yum download progress message to the frontend
+        @param ftype: filetype ('PKG' or 'REPO')
+        @param name: filename
+        @param percent: percent complette
         '''
         value = (ftype, name, percent)
         value = pack(value)
         self.write(":yum-dnl\t%s" % value)
         
     def yum_state(self, state):
-        ''' write an yum transaction state message '''
+        '''
+        Send an yum transaction state message
+        @param state: 
+        '''
         self.write(":yum-state\t%s" % state)
        
     def yum_logger(self, msg):
@@ -295,15 +318,20 @@ class YumServer(yum.YumBase):
         
     def ended(self, state):
         '''
-        
-        @param state:
+        Send and ended message
+        used to signal the end of a process
+        @param state: the exit state of the process (True/False)
         '''
         state = pack(state)
         self.write(":end\t%s" % state)
         
 
     def get_packages(self, pkg_narrow):
-        ''' get list of packages and send results '''
+        '''
+        get list of packages and send results 
+        @param pkg_narrow:
+        '''
+        
         if pkg_narrow:
             narrow = pkg_narrow[0]
             action = FILTER_ACTIONS[narrow]
