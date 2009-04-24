@@ -95,11 +95,6 @@ test-builds:
 	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/.
 	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${VERSION}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${VERSION}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
-	
-
-# Needs gtk2-devel for gtk-builder-convert
-builder-xml:
-	gtk-builder-convert src/yumex.glade src/yumex.xml
 		
 FORCE:
     
