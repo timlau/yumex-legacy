@@ -42,6 +42,8 @@ from output import DepSolveProgressCallBack # yum cli output.py
 # pylint: enable-msg=F0401
 from yum.constants import *
 from yum.callbacks import *
+import yumexbase.constants as const
+
 
 from yum.i18n import _ as yum_translated 
 
@@ -326,15 +328,14 @@ class YumServer(yum.YumBase):
         self.write(":end\t%s" % state)
         
 
-    def get_packages(self, pkg_narrow):
+    def get_packages(self, narrow):
         '''
         get list of packages and send results 
-        @param pkg_narrow:
+        @param narrow:
         '''
         
-        if pkg_narrow:
-            narrow = pkg_narrow[0]
-            action = FILTER_ACTIONS[narrow]
+        if narrow:
+            action = const.FILTER_ACTIONS[narrow]
             ygh = self.doPackageLists(pkgnarrow = narrow)
             for pkg in getattr(ygh, narrow):
                 self._show_package(pkg, action)
@@ -661,8 +662,8 @@ class YumServer(yum.YumBase):
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
-        if cmd == 'get-packages':
-            self.get_packages(args)
+        if cmd == 'get-packages':       # get-packages <Package filter
+            self.get_packages(args[0])
         elif cmd == 'get-attribute':
             self.get_attribute(args)
         elif cmd == 'get-changelog':
