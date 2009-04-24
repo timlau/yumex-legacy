@@ -31,7 +31,7 @@ from yum.packageSack import packagesNewestByNameArch
 
 from yumexbase.constants import *
 from yumexbackend.yum_client import pack, unpack
-
+from yumexbase import format_number
 import yum.logginglevels as logginglevels
 import yum.Errors as Errors
 from yum.rpmtrans import RPMBaseCallback
@@ -129,6 +129,8 @@ class YumServer(yum.YumBase):
         self.preconf.debuglevel = debuglevel
         self.preconf.init_plugins = plugins
         self.preconf.optparser = parser
+        # Disable refresh-package plugin, it will get in the way every time we finish a transaction
+        self.preconf.disabled_plugins = ['refresh-packagekit']
         logginglevels.setLoggingApp('yumex')
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
@@ -815,6 +817,8 @@ class YumexDownloadCallback(DownloadBaseCallback):
         self.download_package_number = 0
         self.current_name = None
         self.current_type = None
+        self._current_pkg = None
+        self._printed =  []
 
     def setPackages(self, new_pkgs, percent_start, percent_length):
         '''
@@ -823,6 +827,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
         @param percent_start:
         @param percent_length:
         '''
+        self._printed =  []
         self.saved_pkgs = new_pkgs
         self.number_packages = float(len(self.saved_pkgs))
         self.percent_start = percent_start
@@ -860,11 +865,11 @@ class YumexDownloadCallback(DownloadBaseCallback):
                 name = fn.strip()
                 cur, tot = cnt[1: - 1].split('/') 
             pkg = self._getPackage(name)
+            self._current_pkg = pkg
             if pkg: # show package to download
                 self.current_name = str(pkg)
                 self.current_type = 'PKG'
             elif name.endswith('.drpm'): # Presto delta rpm
-                self.base.debug("Deltarpm: %s" % name)
                 self.current_name = name
                 self.current_type = 'PKG'                
             elif not name.endswith('.rpm'):
@@ -881,6 +886,10 @@ class YumexDownloadCallback(DownloadBaseCallback):
         if val == 100:
             self.download_package_number += 1
             self.current_name = None
+            if name not in self._printed:
+                # show downloaded <filename> ( <size> )
+                self.base.info(_('Downloaded : %s ( %s )') %(name,self.totSize))
+                self._printed.append(name)
 
 if __name__ == "__main__":
     pass
