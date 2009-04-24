@@ -157,10 +157,10 @@ class TextViewConsole(TextViewBase):
 
 class TextViewLogHandler(logging.Handler):
     ''' Python logging handler for writing in a TextViewConsole'''
-    def __init__(self, console, doGTK = False):
+    def __init__(self, console, do_gtk = False):
         logging.Handler.__init__(self)
         self.console = console
-        self.doGTK = doGTK
+        self.do_gtk = do_gtk
         
         
     def emit(self, record):   
@@ -170,7 +170,7 @@ class TextViewLogHandler(logging.Handler):
         '''
         msg = self.format(record)
         if self.console:
-            if self.doGTK:
+            if self.do_gtk:
                 doGtkEvents()
             if record.levelno < 20: 
                 self.console.write(msg, 'debug')

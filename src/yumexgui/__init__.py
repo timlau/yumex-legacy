@@ -187,8 +187,21 @@ class YumexHandlers(Controller):
         '''
         Menu : Help -> About
         '''
-        okDialog(self.window, "This function has not been implemented yet")
+        self.ui.About.run()
+        self.ui.About.hide()
+        #okDialog(self.window, "This function has not been implemented yet")
         self.debug("Help -> About")
+        
+    def on_About_url(self,widget = None, event = None):
+        '''
+        About Dialog Url handler
+        @param widget:
+        '''
+        # dont need to do any thing
+        self.debug("About url")
+    
+        
+        
 
     def on_viewPackages_activate(self, widget = None, event = None):
         '''
@@ -448,6 +461,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         # setup
         self.window.set_title("Yum Extender NextGen")
+        
+        #Setup About dialog
+        gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler
+        self.ui.About.set_version(const.__yumex_version__)
+
         # Calc font constants based on default font 
         const.DEFAULT_FONT = self.window.get_pango_context().get_font_description()
         const.XSMALL_FONT.set_size(const.DEFAULT_FONT.get_size() - 2 * 1024)

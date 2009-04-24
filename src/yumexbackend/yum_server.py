@@ -180,7 +180,7 @@ class YumServer(yum.YumBase):
                 
     def quit(self):
         '''
-        
+        Exit the yum backend
         '''
         self.debug("Closing rpm db and releasing yum lock  ")
         self.closeRpmDB()
