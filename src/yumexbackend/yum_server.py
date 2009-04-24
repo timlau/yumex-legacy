@@ -43,7 +43,7 @@ from output import DepSolveProgressCallBack # yum cli output.py
 from yum.constants import *
 from yum.callbacks import *
 import yumexbase.constants as const
-
+import yum.plugins
 
 from yum.i18n import _ as yum_translated 
 
@@ -63,7 +63,7 @@ class _YumPreBaseConf:
         self.fn = '/etc/yum/yum.conf'
         self.root = '/'
         self.init_plugins = True
-        self.plugin_types = (plugins.TYPE_CORE,)
+        self.plugin_types = (yum.plugins.TYPE_CORE,)
         self.optparser = None
         self.debuglevel = None
         self.errorlevel = None

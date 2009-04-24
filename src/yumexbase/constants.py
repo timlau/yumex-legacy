@@ -96,3 +96,9 @@ REPO_INFO_MAP = {
     'updateinfo'    : _("Downloading Update information for the %s repository")
 }
 
+TASK_PENDING = 1
+TASK_RUNNING = 2
+TASK_COMPLETE = 3
+TASK_ICONS = {TASK_PENDING  : 'gtk-media-stop',
+              TASK_RUNNING  : 'gtk-refresh',
+              TASK_COMPLETE : 'gtk-yes' }

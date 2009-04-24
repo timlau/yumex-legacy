@@ -133,16 +133,25 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         progress = self.frontend.get_progress()
         if state == 'download':
             progress.set_header(_("Downloading Packages"))
+            progress.tasks.set_state('depsolve', TASK_COMPLETE)
+            progress.tasks.set_state('download', TASK_RUNNING)
             progress.set_pulse(False)
         elif state == 'gpg-check':
             progress.set_pulse(True)
             progress.set_header(_("Checking Package GPG Signatures"))
+            progress.tasks.set_state('download', TASK_COMPLETE)
+            progress.tasks.set_state('gpg-check', TASK_RUNNING)
         elif state == 'test-transaction':
             progress.set_pulse(True)
             progress.set_header(_("Running RPM Test Transaction"))
+            progress.tasks.set_state('download', TASK_COMPLETE) # on erase only the GPG check state is skipped
+            progress.tasks.set_state('gpg-check', TASK_COMPLETE)
+            progress.tasks.set_state('test-trans', TASK_RUNNING)
         elif state == 'transaction':
             progress.set_pulse(False)
             progress.set_header(_("Running RPM Transaction"))
+            progress.tasks.set_state('test-trans', TASK_COMPLETE)
+            progress.tasks.set_state('run-trans', TASK_RUNNING)
 
     def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key (overload in child class) """
@@ -164,7 +173,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         """ debug message """
         self.frontend.exception(msg)
 
-    def setup(self, repos = None):
+    def setup(self, repos=None):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
             return
@@ -176,7 +185,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      
         self.debug('Initialize yum backend - BEGIN')    
-        rc = YumClient.setup(self, debuglevel = yumdebuglevel, plugins = plugins, filelog = filelog, repos = repos)
+        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, repos=repos)
         self.debug('Initialize yum backend - END')    
         return rc    
         
@@ -202,7 +211,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return repos
 
 
-    def enable_repository(self, repoid, enabled = True):
+    def enable_repository(self, repoid, enabled=True):
         ''' 
         set repository enable state
         @param repoid: repo id to change
@@ -221,7 +230,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         grps = YumClient.get_groups(self)
         return grps
 
-    def get_group_packages(self, group, grp_filter = None):
+    def get_group_packages(self, group, grp_filter=None):
         ''' 
         get packages in a group 
         @param group: group id to get packages from
@@ -392,6 +401,8 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         progress = self.frontend.get_progress()
         progress.set_header(_("Resolving Dependencies"))
+        progress.tasks.set_state('depsolve', TASK_RUNNING)
+        
         rc, msgs, trans = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
@@ -399,6 +410,7 @@ class YumexTransactionYum(YumexTransactionBase):
             if self.frontend.confirm_transaction(trans): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()
+                progress.tasks.set_state('run-trans', TASK_COMPLETE)
                 return rc
             else: # Aborted by User
                 return None
@@ -411,7 +423,7 @@ class YumexTransactionYum(YumexTransactionBase):
                 self.frontend.error(msg)
                 longtext += msg            
             # Show error dialog    
-            dialog = ErrorDialog(self.frontend.ui, self.frontend.window, title, text, longtext, modal = True)
+            dialog = ErrorDialog(self.frontend.ui, self.frontend.window, title, text, longtext, modal=True)
             dialog.run()
             dialog.destroy()
             # Write errors to output page

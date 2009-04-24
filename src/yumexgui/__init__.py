@@ -30,8 +30,8 @@ from datetime import date
 from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
-from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog
+from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView
 from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError
@@ -76,7 +76,7 @@ class YumexFrontend(YumexFrontendBase):
         dialog.destroy()
         return ok
 
-    def error(self, msg, exit_pgm = False):
+    def error(self, msg, exit_pgm=False):
         ''' Write an error message to frontend '''
         self.logger.error('ERROR: %s' % msg)
         self.refresh()
@@ -156,34 +156,34 @@ class YumexHandlers(Controller):
 
     # Menu
         
-    def on_fileQuit_activate(self, widget = None, event = None):
+    def on_fileQuit_activate(self, widget=None, event=None):
         '''
         Menu : File -> Quit
         '''
         self.main_quit()
 
-    def on_editPref_activate(self, widget = None, event = None):
+    def on_editPref_activate(self, widget=None, event=None):
         '''
         Menu : Edit -> Preferences
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Edit -> Preferences")
 
-    def on_proNew_activate(self, widget = None, event = None):
+    def on_proNew_activate(self, widget=None, event=None):
         '''
         Menu : Profile -> New
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Profiles -> New")
 
-    def on_proSave_activate(self, widget = None, event = None):
+    def on_proSave_activate(self, widget=None, event=None):
         '''
         Menu : Profile -> Save
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Profiles -> Save")
         
-    def on_helpAbout_activate(self, widget = None, event = None):
+    def on_helpAbout_activate(self, widget=None, event=None):
         '''
         Menu : Help -> About
         '''
@@ -192,7 +192,7 @@ class YumexHandlers(Controller):
         #okDialog(self.window, "This function has not been implemented yet")
         self.debug("Help -> About")
         
-    def on_About_url(self,widget = None, event = None):
+    def on_About_url(self, widget=None, event=None):
         '''
         About Dialog Url handler
         @param widget:
@@ -203,25 +203,25 @@ class YumexHandlers(Controller):
         
         
 
-    def on_viewPackages_activate(self, widget = None, event = None):
+    def on_viewPackages_activate(self, widget=None, event=None):
         '''
         Menu : View -> Packages
         '''
         self.notebook.set_active("package")
 
-    def on_viewQueue_activate(self, widget = None, event = None):
+    def on_viewQueue_activate(self, widget=None, event=None):
         '''
         Menu : View -> Queue
         '''
         self.notebook.set_active("queue")
 
-    def on_viewRepo_activate(self, widget = None, event = None):
+    def on_viewRepo_activate(self, widget=None, event=None):
         '''
         Menu : View -> Repo
         '''
         self.notebook.set_active("repo")
         
-    def on_viewOutput_activate(self, widget = None, event = None):
+    def on_viewOutput_activate(self, widget=None, event=None):
         '''
         Menu : View -> Output
         '''
@@ -229,7 +229,7 @@ class YumexHandlers(Controller):
         
     # Package Page    
         
-    def on_packageSearch_activate(self, widget = None, event = None):
+    def on_packageSearch_activate(self, widget=None, event=None):
         '''
         Enter pressed in the search field
         '''
@@ -255,7 +255,7 @@ class YumexHandlers(Controller):
                 self.packageInfo.update(pkg)
                 
 
-    def on_packageClear_clicked(self, widget = None, event = None):
+    def on_packageClear_clicked(self, widget=None, event=None):
         '''
         The clear search button 
         '''
@@ -265,13 +265,13 @@ class YumexHandlers(Controller):
             self._last_filter.clicked()
             
 
-    def on_packageSelectAll_clicked(self, widget = None, event = None):
+    def on_packageSelectAll_clicked(self, widget=None, event=None):
         '''
         The Packages Select All button
         '''
         self.packages.selectAll()
 
-    def on_packageUndo_clicked(self, widget = None, event = None):
+    def on_packageUndo_clicked(self, widget=None, event=None):
         '''
         The Package Undo Button
         '''
@@ -297,7 +297,7 @@ class YumexHandlers(Controller):
                 self.backend.setup()
                 pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
                 action = ACTIONS[active]
-                self.packages.add_packages(pkgs, progress = self.progress)
+                self.packages.add_packages(pkgs, progress=self.progress)
                 normalCursor(self.window)
             else: # Groups
                 if not self._resized:
@@ -321,12 +321,12 @@ class YumexHandlers(Controller):
             isCategory = model.get_value(iterator, 4)
             if not isCategory:
                 grpid = model.get_value(iterator, 2)
-                pkgs = self.backend.get_group_packages(grpid, grp_filter = GROUP.all)
+                pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
                 self.packages.add_packages(pkgs)
             
     # Repo Page    
         
-    def on_repoRefresh_clicked(self, widget = None, event = None):
+    def on_repoRefresh_clicked(self, widget=None, event=None):
         '''
         Repo refresh button
         '''
@@ -334,7 +334,7 @@ class YumexHandlers(Controller):
         self.current_repos = repos
         self.reload(repos)
         
-    def on_repoUndo_clicked(self, widget = None, event = None):
+    def on_repoUndo_clicked(self, widget=None, event=None):
         '''
         Repo undo button
         '''
@@ -342,25 +342,25 @@ class YumexHandlers(Controller):
 
     # Queue Page    
 
-    def on_queueOpen_clicked(self, widget = None, event = None):
+    def on_queueOpen_clicked(self, widget=None, event=None):
         '''
         Queue Open Button
         '''
         self.debug("Queue Open")
     
-    def on_queueSave_clicked(self, widget = None, event = None):
+    def on_queueSave_clicked(self, widget=None, event=None):
         '''
         Queue Save button
         '''
         self.debug("Queue Save")
     
-    def on_queueRemove_clicked(self, widget = None, event = None):
+    def on_queueRemove_clicked(self, widget=None, event=None):
         '''
         Queue Remove button
         '''
         self.queue.deleteSelected()
         
-    def on_Execute_clicked(self, widget = None, event = None):
+    def on_Execute_clicked(self, widget=None, event=None):
         '''
         The Queue/Packages Execute button
         '''
@@ -369,7 +369,7 @@ class YumexHandlers(Controller):
         self.process_queue()
         self.debug("Ended pending actions processing")
         
-    def on_progressCancel_clicked(self, widget = None, event = None):
+    def on_progressCancel_clicked(self, widget=None, event=None):
         '''
         The Progress Dialog Cancel button
         '''
@@ -403,17 +403,17 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         parser = OptionParser()
         parser.add_option("-d", "--debug",
-                        action = "store_true", dest = "debug", default = False,
-                        help = "Debug mode")
+                        action="store_true", dest="debug", default=False,
+                        help="Debug mode")
         parser.add_option("", "--noplugins",
-                        action = "store_false", dest = "plugins", default = True,
-                        help = "Disable yum plugins")
+                        action="store_false", dest="plugins", default=True,
+                        help="Disable yum plugins")
         parser.add_option("-n", "--noauto",
-                        action = "store_false", dest = "autorefresh", default = True,
-                        help = "No automatic refresh af program start")
-        parser.add_option("", "--debuglevel", dest = "yumdebuglevel", action = "store",
-                default = 2, help = "yum debugging output level", type = 'int',
-                metavar = '[level]')      
+                        action="store_false", dest="autorefresh", default=True,
+                        help="No automatic refresh af program start")
+        parser.add_option("", "--debuglevel", dest="yumdebuglevel", action="store",
+                default=2, help="yum debugging output level", type='int',
+                metavar='[level]')      
         return parser.parse_args()
     
     def run(self):
@@ -447,7 +447,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             longtext = ""
             
         # Show error dialog    
-        dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal = True)
+        dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
         dialog.run()
         dialog.destroy()
         self.main_quit()
@@ -473,30 +473,30 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         const.BIG_FONT.set_size(const.DEFAULT_FONT.get_size() + 4 * 1024)
         font_size = const.SMALL_FONT.get_size() / 1024
         # Setup Output console
-        self.output = TextViewConsole(self.ui.outputText, font_size = font_size)
+        self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
         # Setup main page notebook
         self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent)
-        self.notebook.add_page("package", "Packages", self.ui.packageMain, icon = ICON_PACKAGES)
-        self.notebook.add_page("queue", "Pending Action Queue", self.ui.queueMain, icon = ICON_QUEUE)
-        self.notebook.add_page("repo", "Repositories", self.ui.repoMain, icon = ICON_REPOS)
-        self.notebook.add_page("output", "Output", self.ui.outputMain, icon = ICON_OUTPUT)
+        self.notebook.add_page("package", "Packages", self.ui.packageMain, icon=ICON_PACKAGES)
+        self.notebook.add_page("queue", "Pending Action Queue", self.ui.queueMain, icon=ICON_QUEUE)
+        self.notebook.add_page("repo", "Repositories", self.ui.repoMain, icon=ICON_REPOS)
+        self.notebook.add_page("output", "Output", self.ui.outputMain, icon=ICON_OUTPUT)
         self.ui.groupView.hide()
         self.notebook.set_active("output")
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
         # setup package and package info view
         self.packages = YumexPackageView(self.ui.packageView, self.queue)
-        self.packageInfo = PackageInfo(self.window, self.ui.packageInfo, 
-                                       self.ui.packageInfoSelector, self, font_size = font_size)
+        self.packageInfo = PackageInfo(self.window, self.ui.packageInfo,
+                                       self.ui.packageInfoSelector, self, font_size=font_size)
         # setup group and group description views
         self.groups = YumexGroupView(self.ui.groupView, self.queue, self)
-        self.groupInfo = TextViewConsole(self.ui.groupDesc, font_size = font_size)
+        self.groupInfo = TextViewConsole(self.ui.groupDesc, font_size=font_size)
         # setup repo view
         self.repos = YumexRepoView(self.ui.repoView)
         # setup transaction confirmation dialog
         self.transactionConfirm = TransactionConfirmation(self.ui, self.window)
         # setup yumex log handler
-        self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt = '%(asctime)s : %(message)s')
+        self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
         self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
@@ -519,7 +519,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 # pylint: enable-msg=W0201
 
 
-    def setup_filters(self, filters = None):
+    def setup_filters(self, filters=None):
         ''' 
         Populate Package Filter radiobuttons
         '''
@@ -548,7 +548,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.set_pulse(False)
         self.debug("Getting Group information - END")
         
-    def populate_package_cache(self, repos = None):
+    def populate_package_cache(self, repos=None):
         '''
         Get the packagelists and put them in the package cache.
         @param repos: a list of enabled repositories to use, None = use the current ones
@@ -580,6 +580,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             progress.set_pulse(True)        
             progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
+            progress.show_tasks()
             progress.show()        
             queue = self.queue.queue
             for action in ('install', 'update', 'remove'):
@@ -587,6 +588,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 for po in pkgs:
                     self.backend.transaction.add(po, action)
             rc = self.backend.transaction.process_transaction()                    
+            progress.hide_tasks()
             if rc:
                 self.debug("Transaction Completed OK")
                 progress.hide()        
@@ -602,7 +604,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
 
-    def reload(self, repos = None):
+    def reload(self, repos=None):
         '''
         Reset current data and restart the backend 
         @param repos: a list of enabled repositories to use, None = use the current ones
@@ -612,7 +614,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.backend.reset()                    # close the backend
         self.package_cache.reset()              # clear the package cache
         self.queue.queue.clear()                # clear the pending action queue
-        self.populate_package_cache(repos = repos)           # repopulate the package cache
+        self.populate_package_cache(repos=repos)           # repopulate the package cache
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
         self.ui.packageFilterBox.show()         # Show the filter selector

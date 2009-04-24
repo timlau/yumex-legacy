@@ -44,7 +44,7 @@ class PackageInfoTextView(TextViewBase):
     
     '''
     
-    def __init__(self, textview, font_size = 8):
+    def __init__(self, textview, font_size=8):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
@@ -137,7 +137,7 @@ class PackageCache:
 class PageHeader(gtk.HBox):
     ''' Page header to show in top of Notebook Page'''
     
-    def __init__(self, text, icon = None):
+    def __init__(self, text, icon=None):
         ''' 
         setup the notebook page header
         @param text: Page Title
@@ -155,8 +155,8 @@ class PageHeader(gtk.HBox):
             self.icon.set_from_file(icon)
         else:
             self.icon.set_from_icon_name('gtk-dialog-info', 6)
-        self.pack_start(self.label, expand = False)
-        self.pack_end(self.icon, expand = False)
+        self.pack_start(self.label, expand=False)
+        self.pack_end(self.icon, expand=False)
         self.show_all()
 
 class SelectorBase:
@@ -171,7 +171,7 @@ class SelectorBase:
         self.tooltip = gtk.Tooltips()
         
         
-    def add_button(self, key, icon = None, stock = None, tooltip = None):
+    def add_button(self, key, icon=None, stock=None, tooltip=None):
         ''' Add a new selector button '''
         if len(self._buttons) == 0:
             button = gtk.RadioButton(None)
@@ -207,7 +207,7 @@ class SelectorBase:
         ''' get the active selector button'''
         return self._selected            
             
-    def on_button_clicked(self, widget = None, key = None):
+    def on_button_clicked(self, widget=None, key=None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self._selected = key
@@ -217,7 +217,7 @@ class PackageInfo(SelectorBase):
     
     '''
     
-    def __init__(self, main, console, selector, frontend, font_size = 8):
+    def __init__(self, main, console, selector, frontend, font_size=8):
         '''
         
         @param main:
@@ -227,12 +227,12 @@ class PackageInfo(SelectorBase):
         @param font_size:
         '''
         SelectorBase.__init__(self, selector)
-        self.console = PackageInfoTextView(console, font_size = font_size)
+        self.console = PackageInfoTextView(console, font_size=font_size)
         self.main_window = main
         self.frontend = frontend
-        self.add_button('description', stock = 'gtk-about', tooltip = 'Package Description')
-        self.add_button('changelog', stock = 'gtk-edit', tooltip = 'Package Changelog')
-        self.add_button('filelist', stock = 'gtk-harddisk', tooltip = 'Package Filelist')
+        self.add_button('description', stock='gtk-about', tooltip='Package Description')
+        self.add_button('changelog', stock='gtk-edit', tooltip='Package Changelog')
+        self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
         self.pkg = None
         self._selected = 'description'
 
@@ -250,7 +250,7 @@ class PackageInfo(SelectorBase):
         '''
         self.console.clear()
 
-    def on_button_clicked(self, widget = None, key = None):
+    def on_button_clicked(self, widget=None, key=None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self._selected = key
@@ -316,7 +316,7 @@ class PageSelector(SelectorBase):
         ''' setup the selector '''
         SelectorBase.__init__(self, content)
         self.notebook = notebook
-    def on_button_clicked(self, widget = None, key = None):
+    def on_button_clicked(self, widget=None, key=None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self.notebook.set_page(key) # set the new notebook page
@@ -331,7 +331,7 @@ class Notebook:
         self.selector = PageSelector(selector, self)
         self._pages = {}
 
-    def add_page(self, key, title, widget, icon = None, tooltip = None, header = True):
+    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True):
         ''' 
         Add a new page and selector button to notebook
         @param key: the page key (name) used by reference the page
@@ -344,14 +344,14 @@ class Notebook:
         self._pages[key] = (num, container)
         if header:
             header = PageHeader(title, icon)
-            container.pack_start(header, expand = False, padding = 5)
+            container.pack_start(header, expand=False, padding=5)
             sep = gtk.HSeparator()
             sep.show()
-            container.pack_start(sep, expand = False)
+            container.pack_start(sep, expand=False)
         # get the content from the widget and reparent it and add it to page    
         content = gtk.VBox()
         widget.reparent(content)
-        container.pack_start(content, expand = True)
+        container.pack_start(content, expand=True)
         content.show()
         container.show()
         self.notebook.append_page(container)
@@ -372,4 +372,5 @@ class Notebook:
         if key in self._pages:
             num, widget = self._pages[key]
             self.notebook.set_current_page(num)
-    
+
+                    

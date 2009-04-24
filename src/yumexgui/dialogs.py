@@ -25,13 +25,132 @@ import gobject
 from guihelpers import busyCursor, normalCursor
 from yumexbase import YumexProgressBase
 from yumexbase.constants import *
-
+from guihelpers import doGtkEvents
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
 from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
+
+class TaskList:
+    '''
+    '''
+    
+    def __init__(self, container, parent):
+        '''
+        Init the task list
+        @param container: gtk.VBox widget to use as parent
+        '''
+        self.container = container
+        self.parent = parent
+        self._tasks = {}
+        self.is_hidden = True
+        self.hide()
+
+    def show(self):
+        '''
+        show the tasklist
+        '''
+        self.is_hidden = False
+        self.container.show_all()
+
+    def hide(self):
+        '''
+        hide the tasklist
+        '''
+        self.is_hidden = True
+        self.container.hide()
+        
+    def add_task(self, task_id, description):
+        '''
+        Add a new task to the list
+        @param task_id:
+        @param description:
+        '''
+        hbox = gtk.HBox()
+        icon = gtk.Image()
+        icon.set_from_stock(TASK_ICONS[TASK_PENDING], gtk.ICON_SIZE_MENU)
+        icon.set_size_request(25, 25)
+        hbox.pack_start(icon, expand=False, fill=False, padding=0)
+        sep = gtk.VSeparator()
+        hbox.pack_start(sep, expand=False, fill=False, padding=0)
+        task_label = gtk.Label(description)
+        task_label.set_size_request(300, - 1)
+        task_label.set_alignment(0.0,0.5)
+        task_label.set_padding(5,0)
+        hbox.pack_start(task_label, expand=False, fill=False, padding=0)
+        extra_label = gtk.Label("")
+        hbox.pack_start(extra_label, expand=False, fill=False, padding=0)
+        self.container.pack_start(hbox)
+        self._set_task(task_id,TASK_PENDING, icon, task_label, extra_label)
+        
+    def _set_task(self, task_id, state=None, icon=None, task_label=None, extra_label=None):
+        '''
+        set the task internals
+        @param task_id:
+        @param state:
+        @param icon:
+        @param task_label:
+        @param extra_label:
+        '''
+        if task_id in self._tasks:
+            cur_state, cur_icon, cur_task_label, cur_extra_label = self._get_task(task_id)
+            if not state:
+                state = cur_state
+            if not icon:
+                icon = cur_icon
+            if not task_label:
+                task_label = cur_task_label
+            if not extra_label:
+                extra_label = cur_extra_label
+        if state and icon and task_label and extra_label:
+            self._tasks[task_id] = (state, icon, task_label, extra_label)
+        else:
+            print "Error in _set_task(%s,%s,%s,%s)" % (state, icon, task_label, extra_label)
+
+    def _get_task(self, task_id):
+        '''
+        get the task internals
+        @param task_id:
+        '''
+        if task_id in self._tasks:
+            return self._tasks[task_id]
+
+    def set_state(self, task_id, new_state):
+        '''
+        set task state (TASK_PENDING, TASK_RUNNING, TASK_COMPLETE"
+        @param task_id:
+        @param new_state:
+        '''
+        if task_id in self._tasks:
+            (state, icon, task_label, extra_label) = self._get_task(task_id)
+            icon.set_from_stock(TASK_ICONS[new_state], gtk.ICON_SIZE_MENU)
+            icon.show()
+            self._set_task(task_id, state=new_state)
+        else:
+            print "Error in set_state(%s) task_id not definded"
+            
+    def set_task_label(self, task_id, text):
+        '''
+        set the task label
+        @param task_id:
+        @param text:
+        '''
+        if task_id in self._tasks:
+            (state, icon, task_label, extra_label) = self._get_task(task_id)
+            task_label.set_text(text)
+
+    def set_extra_label(self, task_id, text):
+        '''
+        set the task extra label
+        @param task_id:
+        @param text:
+        '''
+        if task_id in self._tasks:
+            (state, icon, task_label, extra_label) = self._get_task(task_id)
+            extra_label.set_text(text)    
+            
 
 
 class Progress(YumexProgressBase):
@@ -59,6 +178,14 @@ class Progress(YumexProgressBase):
         self.header.modify_font(BIG_FONT)
         self.label = self.ui.progressLabel
         self.label.modify_font(SMALL_FONT)
+        self.tasks = TaskList(self.ui.progressTasks,self.dialog)
+        self.tasks.add_task('depsolve', _('Resolving Dependencies'))
+        self.tasks.add_task('download', _("Downloading Packages"))
+        self.tasks.add_task('gpg-check', _("Checking Package GPG Signatures"))
+        self.tasks.add_task('test-trans', _("Running RPM Test Transaction"))
+        self.tasks.add_task('run-trans', _("Running RPM Transaction"))
+        self.tasks.hide()
+        self.default_w, self.default_h = self.dialog.get_size()
         
     def show(self):
         '''
@@ -67,7 +194,7 @@ class Progress(YumexProgressBase):
         self._active = True
         busyCursor(self.parent, True)
         self.reset()
-        self.dialog.show_all()
+        self.dialog.show()
         
     def hide(self):
         '''
@@ -76,7 +203,15 @@ class Progress(YumexProgressBase):
         self._active = False
         normalCursor(self.parent)
         self.dialog.hide()
+        
+    def show_tasks(self):
+        self.tasks.show()
 
+    def hide_tasks(self):
+        self.tasks.hide()
+        # FIXME: This dont work right
+        #self.dialog.resize(self.default_w, self.default_h)
+        
     def set_title(self, text):
         '''
         Set the title of the dialog
@@ -99,7 +234,7 @@ class Progress(YumexProgressBase):
         '''
         self.label.set_markup(text)
         
-    def set_fraction(self, frac, text = None):
+    def set_fraction(self, frac, text=None):
         '''
         Set the progress bar fraction and text
         @param frac: the progressbar fraction (0.0 -> 1.0)
@@ -186,7 +321,7 @@ class TransactionConfirmation:
         self.create_text_column(_("Size"), view, 4)
         return model
 
-    def create_text_column(self, hdr, view, colno, min_width = 0):
+    def create_text_column(self, hdr, view, colno, min_width=0):
         '''
         Create at TreeViewColumn 
         @param hdr: column header text
@@ -195,7 +330,7 @@ class TransactionConfirmation:
         @param min_width: the min column view (optional)
         '''
         cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn(hdr, cell, markup = colno)
+        column = gtk.TreeViewColumn(hdr, cell, markup=colno)
         column.set_resizable(True)
         if not min_width == 0:
             column.set_min_width(min_width)
@@ -291,9 +426,9 @@ def okDialog(parent, msg):
     @param parent: parrent window widget
     @param msg: dialog message
     '''
-    dlg = gtk.MessageDialog(parent = parent,
-                            type = gtk.MESSAGE_INFO,
-                            buttons = gtk.BUTTONS_OK)
+    dlg = gtk.MessageDialog(parent=parent,
+                            type=gtk.MESSAGE_INFO,
+                            buttons=gtk.BUTTONS_OK)
     dlg.set_markup(cleanMarkupSting(msg))
     rc = dlg.run()
     dlg.destroy()
@@ -304,9 +439,9 @@ def questionDialog(parent, msg):
     @param parent: parent window widget
     @param msg: dialog message
     '''
-    dlg = gtk.MessageDialog(parent = parent,
-                            type = gtk.MESSAGE_QUESTION,
-                            buttons = gtk.BUTTONS_YES_NO)
+    dlg = gtk.MessageDialog(parent=parent,
+                            type=gtk.MESSAGE_QUESTION,
+                            buttons=gtk.BUTTONS_YES_NO)
     dlg.set_markup(cleanMarkupSting(msg))
     rc = dlg.run()
     dlg.destroy()
