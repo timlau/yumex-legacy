@@ -463,7 +463,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.window.set_title("Yum Extender NextGen")
         
         #Setup About dialog
-        gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler
+        #gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler, don't want to start firefox as root :)
         self.ui.About.set_version(const.__yumex_version__)
 
         # Calc font constants based on default font 
