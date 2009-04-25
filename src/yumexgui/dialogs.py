@@ -61,6 +61,11 @@ class TaskList:
         '''
         self.is_hidden = True
         self.container.hide()
+        self.reset()
+        
+    def reset(self):
+        for task_id in self._tasks:
+            self.set_state(task_id, TASK_PENDING)
         
     def add_task(self, task_id, description):
         '''
@@ -76,7 +81,7 @@ class TaskList:
         sep = gtk.VSeparator()
         hbox.pack_start(sep, expand=False, fill=False, padding=0)
         task_label = gtk.Label(description)
-        task_label.set_size_request(300, - 1)
+        task_label.set_size_request(400, - 1)
         task_label.set_alignment(0.0,0.5)
         task_label.set_padding(5,0)
         hbox.pack_start(task_label, expand=False, fill=False, padding=0)
@@ -185,7 +190,8 @@ class Progress(YumexProgressBase):
         self.tasks.add_task('test-trans', _("Running RPM Test Transaction"))
         self.tasks.add_task('run-trans', _("Running RPM Transaction"))
         self.tasks.hide()
-        self.default_w, self.default_h = self.dialog.get_size()
+        self.default_w = None
+        self.default_h = None
         
     def show(self):
         '''
@@ -195,6 +201,9 @@ class Progress(YumexProgressBase):
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show()
+        if not self.default_w:
+            self.default_w, self.default_h = self.dialog.get_size()
+            
         
     def hide(self):
         '''
@@ -210,7 +219,7 @@ class Progress(YumexProgressBase):
     def hide_tasks(self):
         self.tasks.hide()
         # FIXME: This dont work right
-        #self.dialog.resize(self.default_w, self.default_h)
+        self.dialog.resize(self.default_w, self.default_h)
         
     def set_title(self, text):
         '''

@@ -212,11 +212,12 @@ class UI(gtk.Builder):
 class Controller:
     """Base class for all controllers of gtk.Builder UIs."""
     
-    def __init__(self, filename, rootname, domain = None):
+    def __init__(self, filename, rootname, domain = None, connect = True):
         """Initialize a new instance.
         `ui' is the user interface to be controlled."""
         self.ui = UI(filename, rootname, domain)
-        self.ui.connect_signals(self._getAllMethods())
+        if connect:
+            self.ui.connect_signals(self._getAllMethods())
         self.window = getattr(self.ui, rootname)
         self.window.connect("delete_event", self.main_quit)
 
