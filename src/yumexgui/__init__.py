@@ -614,6 +614,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.backend.reset()                    # close the backend
         self.package_cache.reset()              # clear the package cache
         self.queue.queue.clear()                # clear the pending action queue
+        self.queue.refresh()                    # clear the pending action queue
         self.populate_package_cache(repos=repos)           # repopulate the package cache
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
