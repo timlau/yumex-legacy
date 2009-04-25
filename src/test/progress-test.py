@@ -50,8 +50,7 @@ class TestProgress(Controller):
         self.run_tests()
         
     def run_tests(self):
-        print self.ui.Progress.get_size()
-        w,h = self.ui.Progress.get_size()
+        w,h = self.ui.Progress.get_size() # get the default size
         self.progress.set_title("Testing Progress - Title")
         doGtkEvents()
         time.sleep(1)
@@ -64,9 +63,7 @@ class TestProgress(Controller):
         self.test_bar()
         self.test_tasks()
         doGtkEvents()
-        print self.ui.Progress.get_default_size()
-        self.ui.Progress.resize(w,h)
-
+        self.ui.Progress.resize(w,h) # shrink to the default size again
         self.test_bar()
         time.sleep(3)
         self.main_quit()

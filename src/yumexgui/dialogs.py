@@ -201,7 +201,7 @@ class Progress(YumexProgressBase):
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show()
-        if not self.default_w:
+        if not self.default_w: # store the default dialog size
             self.default_w, self.default_h = self.dialog.get_size()
             
         
@@ -218,8 +218,8 @@ class Progress(YumexProgressBase):
 
     def hide_tasks(self):
         self.tasks.hide()
-        # FIXME: This dont work right
-        self.dialog.resize(self.default_w, self.default_h)
+        # Shrink dialog to the default size
+        self.dialog.resize(self.default_w, self.default_h) 
         
     def set_title(self, text):
         '''
