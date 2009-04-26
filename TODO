@@ -1,11 +1,9 @@
 TODO:
 	* Add Repo profile functionality
 	* Add Preferences dialog and functionality
-  	* Add About dialog
   	* Add Test cases (partly done)
   	* Add an option file and code to handle it
   	* Documentation
-  	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
   	* Ask for program exit, when the transaction is completted ok.
   	
 BUGS:
@@ -23,4 +21,6 @@ DONE:
 	* Dynamic font sizes calculated from default system font size.
   	* yum depsolve callback to show depsolve info
   	* add timestamps to output page
-
+  	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
+  	* Add About dialog
+	* Add task based progress dialog

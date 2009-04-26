@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+]>
+
+<chapter id="chap-Yum_Extender_Documentation-Introduction">
+	<title>Introduction</title>
+	<para>
+		This userguide describes how to use Yum Extender
+	</para>
+	<section id="sect-Yum_Extender_Documentation-Introduction-What_is_Yum_Extender">
+		<title>What is Yum Extender</title>
+		<para>
+			Yum Extender is a GUI for the yum package manager that make it easy to unleash the power of the yum.
+		</para>
+	</section>
+	
+	<section id="sect-Yum_Extender_Documentation-Introduction-How_to_install_Yum_Extender">
+		<title>How to install Yum Extender</title>
+		<para>
+			I fedora you can install Yum Extender by typing the following command in a terminal.
+			<screen>
+			<prompt>$</prompt> <command>yum install yumex</command>
+			</screen> 
+
+		</para>
+	</section>
+
+</chapter>
+

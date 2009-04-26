@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+]>
+
+<chapter id="chap-Yum_Extender_Documentation-The_Pages">
+	<title>The Pages</title>
+	<para>
+		The GUI contains a number of pages with special functionality
+	</para>
+	<section id="sect-Yum_Extender_Documentation-The_Pages-Package_Page">
+		<title>Package Page</title>
+		<para>
+			The package page is used for working with packages
+		</para>
+	</section>
+	
+	<section id="sect-Yum_Extender_Documentation-The_Pages-Queue_Page">
+		<title>Queue Page</title>
+		<para>
+			The queue page is giving an overview over the packages there are selected for some kind of action
+			like installation, updating or removal.
+		</para>
+		<screenshot>
+		<screeninfo>Queue Page</screeninfo>
+		<mediaobject>
+		<imageobject> <imagedata fileref="images/queue-page.png" format="PNG" /> </imageobject>
+		</mediaobject>
+		</screenshot> 
+
+		<para>
+			The packages can be moved from the queue, by selecting them in then view and pressing the 
+			<guibutton>Remove</guibutton>
+		</para>
+
+	</section>
+	
+	<section id="sect-Yum_Extender_Documentation-The_Pages-Repository_Page">
+		<title>Repository Page</title>
+		<para>
+			The repository page
+		</para>
+	</section>
+	
+	<section id="sect-Yum_Extender_Documentation-The_Pages-Output_page">
+		<title>Output page</title>
+		<para>
+			The output page
+		</para>
+	</section>
+
+</chapter>
+
