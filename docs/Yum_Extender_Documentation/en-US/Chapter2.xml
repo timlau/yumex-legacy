@@ -9,12 +9,9 @@
 	</para>
 	<section id="sect-Yum_Extender_Documentation-The_Pages-Package_Page">
 		<title>Package Page</title>
-		<screenshot>
-		<screeninfo>Package Page</screeninfo>
 		<mediaobject>
 		<imageobject> <imagedata fileref="images/package-page.png" format="PNG" /> </imageobject>
 		</mediaobject>
-		</screenshot> 
 		<para>
 			The package page is used for working with packages
 		</para>
@@ -22,16 +19,13 @@
 	
 	<section id="sect-Yum_Extender_Documentation-The_Pages-Queue_Page">
 		<title>Queue Page</title>
+		<mediaobject>
+		<imageobject> <imagedata fileref="images/queue-page.png" format="PNG" /> </imageobject>
+		</mediaobject>
 		<para>
 			The queue page is giving an overview over the packages there are selected for some kind of action
 			like installation, updating or removal.
 		</para>
-		<screenshot>
-		<screeninfo>Queue Page</screeninfo>
-		<mediaobject>
-		<imageobject> <imagedata fileref="images/queue-page.png" format="PNG" /> </imageobject>
-		</mediaobject>
-		</screenshot> 
 
 		<para>
 			The packages can be moved from the queue, by selecting them in then view and pressing the 
@@ -42,12 +36,9 @@
 	
 	<section id="sect-Yum_Extender_Documentation-The_Pages-Repository_Page">
 		<title>Repository Page</title>
-		<screenshot>
-		<screeninfo>Repository Page</screeninfo>
 		<mediaobject>
 		<imageobject> <imagedata fileref="images/repo-page.png" format="PNG" /> </imageobject>
 		</mediaobject>
-		</screenshot> 
 		<para>
 			The repository page
 		</para>
@@ -55,12 +46,9 @@
 	
 	<section id="sect-Yum_Extender_Documentation-The_Pages-Output_page">
 		<title>Output page</title>
-		<screenshot>
-		<screeninfo>Output Page</screeninfo>
 		<mediaobject>
 		<imageobject> <imagedata fileref="images/output-page.png" format="PNG" /> </imageobject>
 		</mediaobject>
-		</screenshot> 
 		<para>
 			The output page
 		</para>

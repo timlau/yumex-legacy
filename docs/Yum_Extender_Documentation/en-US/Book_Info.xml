@@ -4,8 +4,8 @@
 
 <bookinfo id="book-Yum_Extender_Documentation-Yum_Extender_Documentation">
 	<title>Yum Extender Documentation</title>
-	<subtitle>Yum Extender Userguide</subtitle>
-	<productname>Yum Extender Userguide</productname>
+	<subtitle>Userguide</subtitle>
+	<productname>Yum Extenter</productname>
 	<productnumber>3.0</productnumber>
 	<edition>0.1</edition>
 	<pubsnumber>0</pubsnumber>
@@ -14,7 +14,7 @@
 			<corpauthor>
 				<inlinemediaobject>
 					<imageobject>
-						<imagedata fileref="Common_Content/images/title_logo.svg" format="SVG" />
+						<imagedata fileref="images/yumex.png" format="PNG" />
 					</imageobject>
 					<textobject>
 						<phrase>Logo</phrase>
