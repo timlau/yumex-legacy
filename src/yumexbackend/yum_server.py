@@ -206,7 +206,7 @@ class YumServer(yum.YumBase):
         '''
         Exit the yum backend
         '''
-        self.debug("Closing rpm db and releasing yum lock  ")
+        self.info("Closing rpm db and releasing yum lock  ")
         self.closeRpmDB()
         self.doUnlock()
         self.ended(True)

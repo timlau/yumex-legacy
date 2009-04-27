@@ -31,7 +31,7 @@ from datetime import date
 from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
-from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog
+from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, questionDialog
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView
 from yumexbase.constants import *
@@ -597,7 +597,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             if rc:
                 self.debug("Transaction Completed OK")
                 progress.hide()        
-                okDialog(self.window, _("Transaction completed successfully"))
+                msg = _("Transaction completed successfully\n\n")
+                msg += _("Do you want to exit Yum Extender")
+                rc = questionDialog(self.window,msg ) # Ask if the user want to Quit
+                if rc:
+                    self.main_quit() # Quit Yum Extender
                 self.reload()
             elif rc == None: # Aborted by user
                 self.warning(_("Transaction Aborted by User"))

@@ -4,7 +4,6 @@ TODO:
   	* Add Test cases (partly done)
   	* Add an option file and code to handle it
   	* Documentation
-  	* Ask for program exit, when the transaction is completted ok.
   	
 BUGS:
 	* Undo in group unselect packages, but dont undo group selection changes  	
@@ -24,3 +23,5 @@ DONE:
   	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
   	* Add About dialog
 	* Add task based progress dialog
+  	* Ask for program exit, when the transaction is completted ok.
+	
