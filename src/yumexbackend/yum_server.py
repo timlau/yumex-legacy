@@ -31,7 +31,7 @@ from yum.packageSack import packagesNewestByNameArch
 
 from yumexbase.constants import *
 from yumexbackend.yum_client import pack, unpack
-from yumexbase import format_number
+from urlgrabber.progress import format_number
 import yum.logginglevels as logginglevels
 import yum.Errors as Errors
 from yum.rpmtrans import RPMBaseCallback

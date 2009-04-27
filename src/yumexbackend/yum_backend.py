@@ -23,7 +23,8 @@
 # Imports
 
 from yumexbase.constants import *
-from yumexbase import format_number
+from urlgrabber.progress import format_number
+
 
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient
