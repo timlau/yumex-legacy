@@ -20,6 +20,7 @@
 # yum extender gui module
 
 '''
+Yum Extender GUI main module
 '''
 
 import sys
@@ -288,6 +289,10 @@ class YumexHandlers(Controller):
             self.packageInfo.clear()
             self.ui.packageSearch.set_text('')        
             if active < 3: # Updates,Available,Installed
+                if active == 0: # Show only SelectAll when viewing updates
+                    self.ui.packageSelectAll.show()
+                else:
+                    self.ui.packageSelectAll.hide()
                 self.ui.groupVBox.hide()
                 if self._resized:
                     width, height = self.window.get_size()
