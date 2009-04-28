@@ -385,6 +385,15 @@ class YumexQueue:
             pkg_list.remove(grp)
         self.groups[action] = pkg_list
 
+    def remove_all_groups(self):
+        '''
+        remove all groups from queue
+        '''
+        for action in ('i','r'):
+            for grp in self.groups[action]:
+                self.removeGroup(grp,action)
+
+
     def hasGroup(self, grp):
         '''
         
@@ -767,6 +776,10 @@ class YumexGroupView:
                     self.queue.remove(po)
                     po.set_select(not po.selected)
         self.queueView.refresh()
+
+    def reset_queued(self):
+        for elem in self.model:
+            elem[3] = False    
         
     def populate(self, data):
         '''
