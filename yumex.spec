@@ -19,7 +19,7 @@ BuildRequires: intltool
 
 
 Requires: yum >= 3.2.21
-Requires: pygtk2
+Requires: pygtk2 >= 2.14
 Requires: usermode
 Requires: pexpect
 Requires: python-enum
@@ -72,8 +72,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
-* Sat Apr 30 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.4.pre
+* Thu Apr 30 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.4.pre
 - bumped version to 2.9.0-0.4.pre
+- added minimum version for pygtk requirement
 * Sat Apr 25 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.3.pre
 - bumped version to 2.9.0-0.3.pre
 * Tue Apr 21 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.2.pre
