@@ -352,7 +352,7 @@ class YumServer(yum.YumBase):
     def _getPackage(self, para):
         ''' find the real package from an package id'''
         n, e, v, r, a, ident = para
-        if ident == 'installed':
+        if ident == 'installed' or ident.startswith('@'):
             pkgs = self.rpmdb.searchNevra(n, e, v, r, a)
         else:
             repo = self.repos.getRepo(ident) # Used the repo sack, it will be faster

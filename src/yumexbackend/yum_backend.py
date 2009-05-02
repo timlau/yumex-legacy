@@ -331,7 +331,7 @@ class YumexPackageYum(YumexPackageBase):
         
         '''
         color = 'black'
-        if self.repoid == 'installed':
+        if self.repoid == 'installed' or self.repoid.startswith('@'):
             color = 'darkgreen'
         elif self.action == 'u':
             color = 'red'
