@@ -237,8 +237,13 @@ class YumServer(yum.YumBase):
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
         action = pack(action)
+        repo = pkg.repoid
+        # get from_repo from yumdb_info if it exist
+        if repo == 'installed':
+            if hasattr(pkg,'yumdb_info') and hasattr(pkg.yumdb_info,'from_repo'):
+                repo = "@%s" % pkg.yumdb_info.from_repo
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % 
-                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.repoid, 
+                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, repo, 
                     summary, action, pkg.size, recent))
         
     def _show_group(self, grp):

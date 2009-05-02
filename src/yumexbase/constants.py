@@ -93,6 +93,7 @@ REPO_INFO_MAP = {
     'filelists'     : _("Downloading Filelist information for the %s repository"),
     'other'         : _("Downloading Changelog information for the %s repository"),
     'group'         : _("Downloading Group information for the %s repository"),
+    'presto'         : _("Downloading Delta update information for the %s repository"),
     'updateinfo'    : _("Downloading Update information for the %s repository")
 }
 
