@@ -85,7 +85,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         #msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
         #self.frontend.debug("YUM-RPM: %s" % msg)
 
-    def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftime):
+    def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         """ yum download progress handler """
         progress = self.frontend.get_progress()
         if not progress.is_active(): # if the progress is hidden, then show it at set the labels.
@@ -96,9 +96,10 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_pulse(True)
         elif percent == 0:
             progress.set_pulse(False)
-        progress.tasks.set_extra_label('download', "[%3s/%3s] ÈTA: %s" % (cur, tot,ftime))
-        progress.set_fraction(float(percent) / 100.0, "%3i %%" % percent)
-        self.frontend.debug("Progress: %s - %s - %s - %s" %  (cur, tot, fread, ftime))
+        width = len("%s" % tot)    
+        progress.tasks.set_extra_label('download', "( %*s / %*s )" % (width,cur,width,tot))
+        progress.set_fraction(float(percent) / 100.0, "%3i %% ( %s / %s ) - %s" % (percent,fread,ftotal,ftime))
+        #self.frontend.debug("Progress: %s - %s - %s - %s - %s" %  (cur, tot, fread, ftotal, ftime))
         if ftype == "REPO": # This is repo metadata being downloaded
             if percent > 0: # only show update labels once.
                 return
@@ -142,6 +143,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         elif state == 'gpg-check':
             progress.set_pulse(True)
             progress.set_header(_("Checking Package GPG Signatures"))
+            progress.tasks.set_extra_label('download', _("Done"))
             progress.tasks.set_state('download', TASK_COMPLETE)
             progress.tasks.set_state('gpg-check', TASK_RUNNING)
         elif state == 'test-transaction':
