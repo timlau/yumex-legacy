@@ -303,14 +303,18 @@ class YumServer(yum.YumBase):
         value = pack(value)
         self.write(":yum-rpm\t%s" % value)
         
-    def yum_dnl(self, ftype, name, percent):
+    def yum_dnl(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         '''
         send an yum download progress message to the frontend
         @param ftype: filetype ('PKG' or 'REPO')
         @param name: filename
         @param percent: percent complette
+        @param cur: current number of file being downloaded
+        @param tot: total number of files to download
+        @param fread: formatted number of bytes read
+        @param ftime: formatted ETA
         '''
-        value = (ftype, name, percent)
+        value = (ftype, name, percent, cur, tot, fread, ftotal, ftime)
         value = pack(value)
         self.write(":yum-dnl\t%s" % value)
         
@@ -824,6 +828,8 @@ class YumexDownloadCallback(DownloadBaseCallback):
         self.current_type = None
         self._current_pkg = None
         self._printed =  []
+        self._cur = 1
+        self._tot = 1
 
     def setPackages(self, new_pkgs, percent_start, percent_length):
         '''
@@ -862,13 +868,16 @@ class YumexDownloadCallback(DownloadBaseCallback):
         '''
 
         val = int(frac * 100)
-
         # new package
         if val == 0:
+            self._cur = 1
+            self._tot = 1
             if ':' in name:
                 cnt, fn = name.split(':')
                 name = fn.strip()
                 cur, tot = cnt[1: - 1].split('/') 
+                self._cur = cur
+                self._tot = tot
             pkg = self._getPackage(name)
             self._current_pkg = pkg
             if pkg: # show package to download
@@ -885,7 +894,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
                 self.current_type = 'PKG'
                 
 
-        self.base.yum_dnl(self.current_type, self.current_name, val)
+        self.base.yum_dnl(self.current_type, self.current_name, val, self._cur, self._tot, fread, self.totSize, ftime)
 
         # keep track of how many we downloaded
         if val == 100:

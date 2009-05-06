@@ -153,10 +153,10 @@ class YumClient:
 
     def _yum_dnl(self, value):
         """ yum download action progress message """
-        (ftype, name, percent) = unpack(value)
-        self.yum_dnl_progress(ftype, name, percent)
+        (ftype, name, percent, cur, tot, fread, ftime) = unpack(value)
+        self.yum_dnl_progress(ftype, name, percent, cur, tot, fread, ftime)
 
-    def yum_dnl_progress(self, ftype, name, percent):
+    def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftime):
         """ yum download progress handler (overload in child class) """   
         raise NotImplementedError()
 
