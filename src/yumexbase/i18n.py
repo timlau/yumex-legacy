@@ -18,6 +18,7 @@
 '''
 '''
 
+
 def dummy_wrapper(txt):
     '''
     Dummy Translation wrapper, just returning the same string.
@@ -49,10 +50,11 @@ try:
     import gettext
     t = gettext.translation('yumex', fallback = True)
     _ = t.ugettext
-    P_ = t.nugettext
+    P_ = t.ungettext
 except:
     # Something went wrong so we make a dummy _() wrapper there is just
     # returning the same text
+    print "Using dummy translation wrappers"
     _ = dummy_wrapper
     P_ = dummyP_wrapper
 

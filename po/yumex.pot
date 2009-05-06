@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-24 11:43+0200\n"
+"POT-Creation-Date: 2009-05-06 13:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,42 +17,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:91 ../src/yumexbackend/yum_backend.py:92
+#: ../src/yumexbackend/yum_backend.py:92 ../src/yumexbackend/yum_backend.py:93
 msgid "Getting Package Information"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:107
+#: ../src/yumexbackend/yum_backend.py:108
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:135
+#: ../src/yumexbackend/yum_backend.py:136 ../src/yumexgui/dialogs.py:188
 msgid "Downloading Packages"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:139
+#: ../src/yumexbackend/yum_backend.py:142 ../src/yumexgui/dialogs.py:189
 msgid "Checking Package GPG Signatures"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:142
+#: ../src/yumexbackend/yum_backend.py:147 ../src/yumexgui/dialogs.py:190
 msgid "Running RPM Test Transaction"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:145
+#: ../src/yumexbackend/yum_backend.py:153 ../src/yumexgui/dialogs.py:191
 msgid "Running RPM Transaction"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:149
+#: ../src/yumexbackend/yum_backend.py:159
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:151
+#: ../src/yumexbackend/yum_backend.py:161
 #, python-format
 msgid "Needed by %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:172
+#: ../src/yumexbackend/yum_backend.py:182
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -60,48 +60,54 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:394
+#: ../src/yumexbackend/yum_backend.py:404 ../src/yumexgui/dialogs.py:187
 msgid "Resolving Dependencies"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:406
-#: ../src/yumexbackend/yum_backend.py:407
+#: ../src/yumexbackend/yum_backend.py:419
+#: ../src/yumexbackend/yum_backend.py:420
 msgid "Dependency Resolution Failed"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:408
+#: ../src/yumexbackend/yum_backend.py:421
 msgid "Dependency Resolution Errors:"
 msgstr ""
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:418
+#: ../src/yumexbackend/yum_backend.py:431
 msgid "Dependency resolving completed with error"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:142
+#: ../src/yumexbackend/yum_server.py:166
 msgid "Yum is locked : "
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:147
+#: ../src/yumexbackend/yum_server.py:171
 msgid "  The other application is: PackageKit"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:149
+#: ../src/yumexbackend/yum_server.py:173
 #, python-format
 msgid "  The other application is: %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:151
+#: ../src/yumexbackend/yum_server.py:175
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:421
+#: ../src/yumexbackend/yum_server.py:457
 msgid "Installing"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:473
+#: ../src/yumexbackend/yum_server.py:509
 #, python-format
 msgid "Error in yum Transaction : %s"
+msgstr ""
+
+#. show downloaded <filename> ( <size> )
+#: ../src/yumexbackend/yum_server.py:896
+#, python-format
+msgid "Downloaded : %s ( %s )"
 msgstr ""
 
 #. NOTE: The package filter radio buttons in the top of the package page
@@ -143,94 +149,105 @@ msgstr ""
 
 #: ../src/yumexbase/constants.py:96
 #, python-format
+msgid "Downloading Delta update information for the %s repository"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:97
+#, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:116
+#: ../src/yumexgui/dialogs.py:263
 msgid "Working !!!"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:139 ../src/yumexgui/dialogs.py:148
+#: ../src/yumexgui/dialogs.py:286 ../src/yumexgui/dialogs.py:295
 msgid "Transaction Result"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:182 ../src/yumexgui/views.py:547
+#: ../src/yumexgui/dialogs.py:329 ../src/yumexgui/views.py:556
 msgid "Name"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:183
+#: ../src/yumexgui/dialogs.py:330
 msgid "Arch"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:184 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:331 ../src/yumexgui/views.py:158
 msgid "Ver"
 msgstr ""
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:185 ../src/yumexgui/views.py:518
-#: ../src/yumexgui/views.py:546
+#: ../src/yumexgui/dialogs.py:332 ../src/yumexgui/views.py:527
+#: ../src/yumexgui/views.py:555
 msgid "Repository"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:186 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:333 ../src/yumexgui/views.py:158
 msgid "Size"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:424
+#: ../src/yumexgui/__init__.py:444
 msgid "Fatal Error"
 msgstr ""
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:426
+#: ../src/yumexgui/__init__.py:446
 msgid "Can't start the yum backend"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:427
+#: ../src/yumexgui/__init__.py:447
 msgid "Another program is locking yum"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:429
+#: ../src/yumexgui/__init__.py:449
 msgid "Message from yum backend:"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:433
+#: ../src/yumexgui/__init__.py:453
 msgid "Unknown Error : "
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:523 ../src/yumexgui/__init__.py:524
+#: ../src/yumexgui/__init__.py:548 ../src/yumexgui/__init__.py:549
 msgid "Getting Group information"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:543
+#: ../src/yumexgui/__init__.py:568
 msgid "Getting Package Lists"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:544
+#: ../src/yumexgui/__init__.py:569
 msgid "Getting Updated Packages"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:548
+#: ../src/yumexgui/__init__.py:573
 msgid "Getting Available Packages"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:550
+#: ../src/yumexgui/__init__.py:575
 msgid "Getting installed Packages"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:563
+#: ../src/yumexgui/__init__.py:588
 msgid "Processing pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:564
+#: ../src/yumexgui/__init__.py:589
 msgid "Preparing the transaction"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:575
-msgid "Transaction completed successfully"
+#: ../src/yumexgui/__init__.py:602
+msgid ""
+"Transaction completed successfully\n"
+"\n"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:603
+msgid "Do you want to exit Yum Extender"
 msgstr ""
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:578
+#: ../src/yumexgui/__init__.py:609
 msgid "Transaction Aborted by User"
 msgstr ""
 
@@ -239,7 +256,7 @@ msgid "Package"
 msgstr ""
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
-#: ../src/yumexgui/views.py:441
+#: ../src/yumexgui/views.py:450
 msgid "Summary"
 msgstr ""
 
@@ -267,15 +284,15 @@ msgstr ""
 msgid "Size."
 msgstr ""
 
-#: ../src/yumexgui/views.py:402
+#: ../src/yumexgui/views.py:411
 msgid "Package Queue:"
 msgstr ""
 
-#: ../src/yumexgui/views.py:436
+#: ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr ""
 
-#: ../src/yumexgui/views.py:518
+#: ../src/yumexgui/views.py:527
 msgid "Filename"
 msgstr ""
 

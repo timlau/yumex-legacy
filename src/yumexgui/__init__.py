@@ -141,7 +141,7 @@ class YumexHandlers(Controller):
         Init the signal callback Controller 
         '''
         # init the Controller Class to connect signals etc.
-        Controller.__init__(self, BUILDER_FILE , 'main', 'yumex')
+        Controller.__init__(self, BUILDER_FILE , 'main', domain = 'yumex')
         self._last_filter = None
         self.default_repos = []
         self.current_repos = []
