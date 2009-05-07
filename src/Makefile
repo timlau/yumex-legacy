@@ -22,4 +22,5 @@ pylint:
 pylint-short:
 	@pylint -r n --enable-msg-cat=C --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
 	
-	 
+epydoc:
+	@epydoc -o ../docs/epydoc --name "Yum Extender" --graph all yumexbase yumexbackend guihelpers yumexgui
