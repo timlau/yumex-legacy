@@ -46,6 +46,7 @@ class TaskList:
         self.parent = parent
         self._tasks = {}
         self.is_hidden = True
+        self.current_running = None
         self.hide()
 
     def show(self):
@@ -133,6 +134,8 @@ class TaskList:
             icon.set_from_stock(TASK_ICONS[new_state], gtk.ICON_SIZE_MENU)
             icon.show()
             self._set_task(task_id, state=new_state)
+            if new_state == TASK_RUNNING:
+                self.current_running = task_id
         else:
             print "Error in set_state(%s) task_id not definded"
             
