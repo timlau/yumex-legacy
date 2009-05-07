@@ -493,12 +493,12 @@ class YumexQueueView:
         label = "<b>%s</b>" % P_("Package to update", "Packages to update", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
-        label = "<b>%s</b>" % P_("Package to install", "Packages to install", len(pkg_list))
         pkg_list = self.queue.packages['i']
+        label = "<b>%s</b>" % P_("Package to install", "Packages to install", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
-        label = "<b>%s</b>" % P_("Package to remove", "Packages to remove", len(pkg_list))
         pkg_list = self.queue.packages['r']
+        label = "<b>%s</b>" % P_("Package to remove", "Packages to remove", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
         self.view.expand_all()

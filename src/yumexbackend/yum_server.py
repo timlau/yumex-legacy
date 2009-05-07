@@ -782,7 +782,7 @@ class YumexRPMCallback(RPMBaseCallback):
         '''
         # Handle rpm transaction progress
         try:
-            if action != TS_UPDATED:
+            if action in (TS_UPDATE, TS_INSTALL, TS_TRUEINSTALL): # only show progress when something is installed
                 if self._last_pkg != package:
                     self._last_pkg = package
                     self._last_frac = 0.0
@@ -799,7 +799,9 @@ class YumexRPMCallback(RPMBaseCallback):
         except:
             self.base.error('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
             etype = sys.exc_info()[0]
-            self.base.debug(str(etype))
+            evalue = sys.exc_info()[1]
+            self.base.error(str(etype))
+            self.base.error(str(evalue))
         
     def scriptout(self, package, msgs):
         '''
