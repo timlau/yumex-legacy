@@ -98,8 +98,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_pulse(False)
         if progress.tasks.current_running == 'download':    
             width = len("%s" % tot)    
-            progress.tasks.set_extra_label('download', "( %*s / %*s )" % (width,cur,width,tot))
-        progress.set_fraction(float(percent) / 100.0, "%3i %% ( %s / %s ) - %s" % (percent,fread,ftotal,ftime))
+            progress.tasks.set_extra_label('download', "( %*s / %*s )" % (width, cur, width, tot))
+        progress.set_fraction(float(percent) / 100.0, "%3i %% ( %s / %s ) - %s" % (percent, fread, ftotal, ftime))
         #self.frontend.debug("Progress: %s - %s - %s - %s - %s" %  (cur, tot, fread, ftotal, ftime))
         if ftype == "REPO": # This is repo metadata being downloaded
             if percent > 0: # only show update labels once.

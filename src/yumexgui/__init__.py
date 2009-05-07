@@ -141,7 +141,7 @@ class YumexHandlers(Controller):
         Init the signal callback Controller 
         '''
         # init the Controller Class to connect signals etc.
-        Controller.__init__(self, BUILDER_FILE , 'main', domain = 'yumex')
+        Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex')
         self._last_filter = None
         self.default_repos = []
         self.current_repos = []
@@ -601,7 +601,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 progress.hide()        
                 msg = _("Transaction completed successfully\n\n")
                 msg += _("Do you want to exit Yum Extender")
-                rc = questionDialog(self.window,msg ) # Ask if the user want to Quit
+                rc = questionDialog(self.window, msg) # Ask if the user want to Quit
                 if rc:
                     self.main_quit() # Quit Yum Extender
                 self.reload()

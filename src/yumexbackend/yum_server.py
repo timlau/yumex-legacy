@@ -121,7 +121,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self, debuglevel = 2, plugins = True, enabled_repos = None):
+    def __init__(self, debuglevel=2, plugins=True, enabled_repos=None):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         parser = OptionParser()
@@ -151,7 +151,7 @@ class YumServer(yum.YumBase):
 
 
 
-    def doLock(self, lockfile = YUM_PID_FILE):
+    def doLock(self, lockfile=YUM_PID_FILE):
         '''
         Active the yum lock.
         @param lockfile: path to yum lock file
@@ -232,7 +232,7 @@ class YumServer(yum.YumBase):
             return 0
                     
     
-    def _show_package(self, pkg, action = None):
+    def _show_package(self, pkg, action=None):
         ''' write package result'''
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
@@ -240,10 +240,10 @@ class YumServer(yum.YumBase):
         repo = pkg.repoid
         # get from_repo from yumdb_info if it exist
         if repo == 'installed':
-            if hasattr(pkg,'yumdb_info') and hasattr(pkg.yumdb_info,'from_repo'):
+            if hasattr(pkg, 'yumdb_info') and hasattr(pkg.yumdb_info, 'from_repo'):
                 repo = "@%s" % pkg.yumdb_info.from_repo
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % 
-                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, repo, 
+                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, repo,
                     summary, action, pkg.size, recent))
         
     def _show_group(self, grp):
@@ -347,7 +347,7 @@ class YumServer(yum.YumBase):
         
         if narrow:
             action = const.FILTER_ACTIONS[narrow]
-            ygh = self.doPackageLists(pkgnarrow = narrow)
+            ygh = self.doPackageLists(pkgnarrow=narrow)
             for pkg in getattr(ygh, narrow):
                 self._show_package(pkg, action)
             del ygh
@@ -507,7 +507,7 @@ class YumServer(yum.YumBase):
         try:
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
-            self.processTransaction(callback = callback, rpmDisplay = rpmDisplay)
+            self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
             self.ended(True)
         except Errors.YumBaseError, e:
             self.error(_('Error in yum Transaction : %s') % str(e))
@@ -616,9 +616,9 @@ class YumServer(yum.YumBase):
         '''
         keys = unpack(args[0])
         filters = unpack(args[1])
-        ygh = self.doPackageLists(pkgnarrow = 'updates')
+        ygh = self.doPackageLists(pkgnarrow='updates')
         pkgs = {}
-        for found in self.searchGenerator(filters, keys, showdups = True, keys = True):
+        for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
             pkg = found[0]
             fkeys = found[1]
             if not len(fkeys) == len(keys): # skip the result if not all keys matches
@@ -631,9 +631,9 @@ class YumServer(yum.YumBase):
         for na in pkgs:
             best = packagesNewestByNameArch(pkgs[na])
             for po in best:           
-                if self.rpmdb.contains(po = po): # if the best po is installed, then return the installed po 
+                if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
                     (n, a, e, v, r) = po.pkgtup
-                    po = self.rpmdb.searchNevra(name = n, arch = a, ver = v, rel = r, epoch = e)[0]
+                    po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
                     action = 'r'
                 else:
                     if po in ygh.updates:
@@ -737,7 +737,7 @@ class YumexTransCallback:
         '''
         self.base = base
 
-    def event(self, state, data = None):
+    def event(self, state, data=None):
         '''
         
         @param state:
@@ -829,7 +829,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
         self.current_name = None
         self.current_type = None
         self._current_pkg = None
-        self._printed =  []
+        self._printed = []
         self._cur = 1
         self._tot = 1
 
@@ -840,7 +840,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
         @param percent_start:
         @param percent_length:
         '''
-        self._printed =  []
+        self._printed = []
         self.saved_pkgs = new_pkgs
         self.number_packages = float(len(self.saved_pkgs))
         self.percent_start = percent_start
@@ -904,7 +904,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
             self.current_name = None
             if name not in self._printed:
                 # show downloaded <filename> ( <size> )
-                self.base.info(_('Downloaded : %s ( %s )') %(name,self.totSize))
+                self.base.info(_('Downloaded : %s ( %s )') % (name, self.totSize))
                 self._printed.append(name)
 
 if __name__ == "__main__":

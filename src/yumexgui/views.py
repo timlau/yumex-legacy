@@ -44,7 +44,7 @@ class SelectionView:
         self.view = widget
         self.store = None
 
-    def create_text_column_num(self, hdr, colno, resize = True):
+    def create_text_column_num(self, hdr, colno, resize=True):
         '''
         Create a TreeViewColumn with data from a TreeStore column
         @param hdr: column header text
@@ -52,11 +52,11 @@ class SelectionView:
         @param resize: is resizable
         '''
         cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn(hdr, cell, text = colno)
+        column = gtk.TreeViewColumn(hdr, cell, text=colno)
         column.set_resizable(resize)
         self.view.append_column(column)        
 
-    def create_text_column(self, hdr, prop, size, sortcol = None):
+    def create_text_column(self, hdr, prop, size, sortcol=None):
         """ 
         Create a TreeViewColumn with text and set
         the sorting properties and add it to the view
@@ -178,12 +178,12 @@ class YumexPackageView(SelectionView):
         self.view.append_column(column2)
         column2.set_clickable(True)
 
-        self.create_text_column(_("Package"), 'name' , size = 200)
-        self.create_text_column(_("Ver."), 'version', size = 80)
-        self.create_text_column(_("Arch."), 'arch' , size = 60)
-        self.create_text_column(_("Summary"), 'summary', size = 400)
-        self.create_text_column(_("Repo."), 'repoid' , size = 90)
-        self.create_text_column(_("Size."), 'size' , size = 90)
+        self.create_text_column(_("Package"), 'name' , size=200)
+        self.create_text_column(_("Ver."), 'version', size=80)
+        self.create_text_column(_("Arch."), 'arch' , size=60)
+        self.create_text_column(_("Summary"), 'summary', size=400)
+        self.create_text_column(_("Repo."), 'repoid' , size=90)
+        self.create_text_column(_("Size."), 'size' , size=90)
         self.view.set_search_column(1)
         self.view.set_enable_search(True)
         #store.set_sort_column_id(1, gtk.SORT_ASCENDING)
@@ -260,7 +260,7 @@ class YumexPackageView(SelectionView):
             cell.set_property('visible', False)
             
 
-    def get_selected(self, package = True):
+    def get_selected(self, package=True):
         """ Get selected packages in current packageList """
         selected = []
         for row in self.store:
@@ -277,7 +277,7 @@ class YumexPackageView(SelectionView):
         '''
         self.store.clear()
     
-    def add_packages(self, pkgs, progress = None):
+    def add_packages(self, pkgs, progress=None):
         '''
         Populate the via with package objects
         @param pkgs: list of package object to add
@@ -327,7 +327,7 @@ class YumexQueue:
         self.groups['i'] = []
         self.groups['r'] = []
         
-    def get(self, action = None):        
+    def get(self, action=None):        
         '''
         
         @param action:
@@ -389,9 +389,9 @@ class YumexQueue:
         '''
         remove all groups from queue
         '''
-        for action in ('i','r'):
+        for action in ('i', 'r'):
             for grp in self.groups[action]:
-                self.removeGroup(grp,action)
+                self.removeGroup(grp, action)
 
 
     def hasGroup(self, grp):
@@ -442,12 +442,12 @@ class YumexQueueView:
         model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)           
         self.view.set_model(model)
         cell1 = gtk.CellRendererText()
-        column1 = gtk.TreeViewColumn(_("Packages"), cell1, markup = 0)
+        column1 = gtk.TreeViewColumn(_("Packages"), cell1, markup=0)
         column1.set_resizable(True)
         self.view.append_column(column1)
 
         cell2 = gtk.CellRendererText()
-        column2 = gtk.TreeViewColumn(_("Summary"), cell2, text = 1)
+        column2 = gtk.TreeViewColumn(_("Summary"), cell2, text=1)
         column2.set_resizable(True)
         self.view.append_column(column2)
         model.set_sort_column_id(0, gtk.SORT_ASCENDING)
@@ -558,7 +558,7 @@ class YumexRepoView(SelectionView):
         self.view.set_reorderable(False)
         return store
     
-    def populate(self, data, showAll = False):
+    def populate(self, data, showAll=False):
         """ Populate a repo liststore with data """
         self.store.clear()
         for state, ident, name, gpg in data:
@@ -778,6 +778,9 @@ class YumexGroupView:
         self.queueView.refresh()
 
     def reset_queued(self):
+        '''
+        
+        '''
         for elem in self.model:
             elem[3] = False    
         

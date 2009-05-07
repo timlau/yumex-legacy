@@ -65,6 +65,9 @@ class TaskList:
         self.reset()
         
     def reset(self):
+        '''
+        reset the task list by setting all tasks to TASK_PENDING
+        '''
         for task_id in self._tasks:
             self.set_state(task_id, TASK_PENDING)
         
@@ -83,13 +86,13 @@ class TaskList:
         hbox.pack_start(sep, expand=False, fill=False, padding=0)
         task_label = gtk.Label(description)
         task_label.set_size_request(400, - 1)
-        task_label.set_alignment(0.0,0.5)
-        task_label.set_padding(5,0)
+        task_label.set_alignment(0.0, 0.5)
+        task_label.set_padding(5, 0)
         hbox.pack_start(task_label, expand=False, fill=False, padding=0)
         extra_label = gtk.Label("")
         hbox.pack_start(extra_label, expand=False, fill=False, padding=0)
         self.container.pack_start(hbox)
-        self._set_task(task_id,TASK_PENDING, icon, task_label, extra_label)
+        self._set_task(task_id, TASK_PENDING, icon, task_label, extra_label)
         
     def _set_task(self, task_id, state=None, icon=None, task_label=None, extra_label=None):
         '''
@@ -186,7 +189,7 @@ class Progress(YumexProgressBase):
         self.header.modify_font(BIG_FONT)
         self.label = self.ui.progressLabel
         self.label.modify_font(SMALL_FONT)
-        self.tasks = TaskList(self.ui.progressTasks,self.dialog)
+        self.tasks = TaskList(self.ui.progressTasks, self.dialog)
         self.tasks.add_task('depsolve', _('Resolving Dependencies'))
         self.tasks.add_task('download', _("Downloading Packages"))
         self.tasks.add_task('gpg-check', _("Checking Package GPG Signatures"))
@@ -222,9 +225,15 @@ class Progress(YumexProgressBase):
         self.dialog.hide()
         
     def show_tasks(self):
+        '''
+        Show the tasks in the progress dialog
+        '''
         self.tasks.show()
 
     def hide_tasks(self):
+        '''
+        Hide the tasks in the progress dialog
+        '''
         self.tasks.hide()
         
     def set_title(self, text):
