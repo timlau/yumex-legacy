@@ -6,6 +6,7 @@ TODO:
   	RFE: Documentation
   	RFE: Display current transaction / total transaction when performing transaction 
   	RFE: Set default focus to search field on package page
+  	RFE: Support for showing update info.
   	
 BUGS:
 	BUG: Undo in group unselect packages, but dont undo group selection changes
