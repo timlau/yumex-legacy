@@ -5,6 +5,7 @@ TODO:
   	RFE: Add an option file and code to handle it
   	RFE: Documentation
   	RFE: Display current transaction / total transaction when performing transaction 
+  	RFE: Set default focus to search field on package page
   	
 BUGS:
 	BUG: Undo in group unselect packages, but dont undo group selection changes
