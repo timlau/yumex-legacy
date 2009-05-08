@@ -390,25 +390,6 @@ repositories</property>
                   <object class="GtkHBox" id="hbox3">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkButton" id="packageClear">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <signal name="clicked" handler="on_packageClear_clicked"/>
-                        <child>
-                          <object class="GtkImage" id="image2">
-                            <property name="visible">True</property>
-                            <property name="tooltip_text" translatable="yes">Reset current search</property>
-                            <property name="stock">gtk-clear</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkEntry" id="packageSearch">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -418,12 +399,13 @@ words.
 </property>
                         <property name="primary_icon_stock">gtk-find</property>
                         <property name="secondary_icon_stock">gtk-clear</property>
+                        <property name="primary_icon_activatable">True</property>
                         <property name="secondary_icon_activatable">True</property>
                         <signal name="activate" handler="on_packageSearch_activate"/>
                         <signal name="icon_press" handler="on_packageSearch_icon_press"/>
                       </object>
                       <packing>
-                        <property name="position">1</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                   </object>

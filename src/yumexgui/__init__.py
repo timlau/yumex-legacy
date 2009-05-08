@@ -248,7 +248,14 @@ class YumexHandlers(Controller):
         '''
         icon pressed in the search field
         '''
-        print widget,str(icon_pos),event
+        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
+            self.ui.packageSearch.set_text('')
+            self.ui.packageFilterBox.show()
+            if self._last_filter:
+                self._last_filter.clicked()
+            
+        else:
+            self.on_packageSearch_activate()
         
     def on_packageView_cursor_changed(self, widget):    
         '''
@@ -266,10 +273,6 @@ class YumexHandlers(Controller):
         '''
         The clear search button 
         '''
-        self.ui.packageSearch.set_text('')
-        self.ui.packageFilterBox.show()
-        if self._last_filter:
-            self._last_filter.clicked()
             
 
     def on_packageSelectAll_clicked(self, widget=None, event=None):
