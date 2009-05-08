@@ -121,7 +121,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self, debuglevel=2, plugins=True, enabled_repos=None):
+    def __init__(self, debuglevel = 2, plugins = True, enabled_repos = None):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         parser = OptionParser()
@@ -151,7 +151,7 @@ class YumServer(yum.YumBase):
 
 
 
-    def doLock(self, lockfile=YUM_PID_FILE):
+    def doLock(self, lockfile = YUM_PID_FILE):
         '''
         Active the yum lock.
         @param lockfile: path to yum lock file
@@ -232,7 +232,7 @@ class YumServer(yum.YumBase):
             return 0
                     
     
-    def _show_package(self, pkg, action=None):
+    def _show_package(self, pkg, action = None):
         ''' write package result'''
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
@@ -347,7 +347,7 @@ class YumServer(yum.YumBase):
         
         if narrow:
             action = const.FILTER_ACTIONS[narrow]
-            ygh = self.doPackageLists(pkgnarrow=narrow)
+            ygh = self.doPackageLists(pkgnarrow = narrow)
             for pkg in getattr(ygh, narrow):
                 self._show_package(pkg, action)
             del ygh
@@ -507,7 +507,7 @@ class YumServer(yum.YumBase):
         try:
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
-            self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
+            self.processTransaction(callback = callback, rpmDisplay = rpmDisplay)
             self.ended(True)
         except Errors.YumBaseError, e:
             self.error(_('Error in yum Transaction : %s') % str(e))
@@ -616,9 +616,9 @@ class YumServer(yum.YumBase):
         '''
         keys = unpack(args[0])
         filters = unpack(args[1])
-        ygh = self.doPackageLists(pkgnarrow='updates')
+        ygh = self.doPackageLists(pkgnarrow = 'updates')
         pkgs = {}
-        for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
+        for found in self.searchGenerator(filters, keys, showdups = True, keys = True):
             pkg = found[0]
             fkeys = found[1]
             if not len(fkeys) == len(keys): # skip the result if not all keys matches
@@ -631,9 +631,9 @@ class YumServer(yum.YumBase):
         for na in pkgs:
             best = packagesNewestByNameArch(pkgs[na])
             for po in best:           
-                if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
+                if self.rpmdb.contains(po = po): # if the best po is installed, then return the installed po 
                     (n, a, e, v, r) = po.pkgtup
-                    po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
+                    po = self.rpmdb.searchNevra(name = n, arch = a, ver = v, rel = r, epoch = e)[0]
                     action = 'r'
                 else:
                     if po in ygh.updates:
@@ -737,7 +737,7 @@ class YumexTransCallback:
         '''
         self.base = base
 
-    def event(self, state, data=None):
+    def event(self, state, data = None):
         '''
         
         @param state:
@@ -809,9 +809,14 @@ class YumexRPMCallback(RPMBaseCallback):
             self.base.error(str(evalue))
 
     def show_action(self, package, action):
+        '''
+        Show action messages after trasaction is completted
+        @param package: package name
+        @param action: TS Action enum
+        '''
         if not str(package) in self._printed:
             self._printed[str(package)] = 1     
-            self.base.info("%s %s" % (self.fileaction[action],package))
+            self.base.info("%s %s" % (self.fileaction[action], package))
                
         
     def scriptout(self, package, msgs):
