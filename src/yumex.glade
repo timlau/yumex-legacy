@@ -416,7 +416,11 @@ repositories</property>
 to find packages containing the search
 words.
 </property>
+                        <property name="primary_icon_stock">gtk-find</property>
+                        <property name="secondary_icon_stock">gtk-clear</property>
+                        <property name="secondary_icon_activatable">True</property>
                         <signal name="activate" handler="on_packageSearch_activate"/>
+                        <signal name="icon_press" handler="on_packageSearch_icon_press"/>
                       </object>
                       <packing>
                         <property name="position">1</property>

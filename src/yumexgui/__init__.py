@@ -243,6 +243,12 @@ class YumexHandlers(Controller):
         self._last_filter.set_active(True)            
         self.packages.add_packages(pkgs)
         normalCursor(self.window)
+
+    def on_packageSearch_icon_press(self, widget, icon_pos, event):
+        '''
+        icon pressed in the search field
+        '''
+        print widget,str(icon_pos),event
         
     def on_packageView_cursor_changed(self, widget):    
         '''
