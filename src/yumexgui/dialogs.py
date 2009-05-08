@@ -16,6 +16,7 @@
 # (C) 2009 - Tim Lauridsen <timlau@fedoraproject.org>
 
 '''
+Yum Extender dialog classes and helper funtions
 '''
 
 import gtk

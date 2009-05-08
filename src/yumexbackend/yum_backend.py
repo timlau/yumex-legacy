@@ -82,6 +82,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         progress = self.frontend.get_progress()
         progress.set_action("%s %s" % (action, package))
         progress.set_fraction(frac, "%3i %%" % int(frac * 100))
+        width = len("%s" % ts_total)            
+        progress.tasks.set_extra_label('run-trans', "( %*s / %*s )" % (width, ts_current, width, ts_total))
         
     def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         """ yum download progress handler """
@@ -417,6 +419,7 @@ class YumexTransactionYum(YumexTransactionBase):
                 progress.show()
                 rc = self.backend.run_transaction()
                 progress.tasks.set_state('run-trans', TASK_COMPLETE)
+                progress.tasks.set_extra_label('run-trans', "")
                 return rc
             else: # Aborted by User
                 return None
