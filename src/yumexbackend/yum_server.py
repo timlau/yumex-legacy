@@ -769,10 +769,11 @@ class YumexRPMCallback(RPMBaseCallback):
         self.base = base
         self._last_frac = 0.0
         self._last_pkg = None
+        self._printed = {}
 
     def event(self, package, action, te_current, te_total, ts_current, ts_total):
-        '''
-        
+        '''g
+        RPM Event callback handler
         @param package:
         @param action:
         @param te_current:
@@ -793,8 +794,12 @@ class YumexRPMCallback(RPMBaseCallback):
                     #self.base.debug(str([self.action[action], str(package), frac, ts_current, ts_total]))
                     self.base.yum_rpm(self.action[action], str(package), frac, ts_current, ts_total)
                     self._last_frac = frac
+                    if frac == 1.0:
+                        self.show_action(package, action)
             else:
                 self.base.yum_rpm(self.action[action], str(package), 1.0, ts_current, ts_total)
+                self.show_action(package, action)
+            
                 
         except:
             self.base.error('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
@@ -802,6 +807,12 @@ class YumexRPMCallback(RPMBaseCallback):
             evalue = sys.exc_info()[1]
             self.base.error(str(etype))
             self.base.error(str(evalue))
+
+    def show_action(self, package, action):
+        if not str(package) in self._printed:
+            self._printed[str(package)] = 1     
+            self.base.info("%s %s" % (self.fileaction[action],package))
+               
         
     def scriptout(self, package, msgs):
         '''

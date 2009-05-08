@@ -82,9 +82,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         progress = self.frontend.get_progress()
         progress.set_action("%s %s" % (action, package))
         progress.set_fraction(frac, "%3i %%" % int(frac * 100))
-        #msg = '%s: %s %i %% [%s/%s]' % (action, package, int(frac*100), ts_current, ts_total) 
-        #self.frontend.debug("YUM-RPM: %s" % msg)
-
+        
     def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         """ yum download progress handler """
         progress = self.frontend.get_progress()
