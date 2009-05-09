@@ -5,7 +5,7 @@ TODO:
   	RFE: Add an option file and code to handle it
   	RFE: Documentation
   	RFE: Set default focus to search field on package page
-  	RFE: Support for showing update info.
+  	RFE: Support for showing update info. (backend parts is done)
   	
   	
 BUGS:
