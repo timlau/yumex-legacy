@@ -91,6 +91,7 @@ class TaskList:
         task_label.set_padding(5, 0)
         hbox.pack_start(task_label, expand=False, fill=False, padding=0)
         extra_label = gtk.Label("")
+        extra_label.modify_font(SMALL_FONT)
         hbox.pack_start(extra_label, expand=False, fill=False, padding=0)
         self.container.pack_start(hbox)
         self._set_task(task_id, TASK_PENDING, icon, task_label, extra_label)
@@ -161,7 +162,7 @@ class TaskList:
         '''
         if task_id in self._tasks:
             (state, icon, task_label, extra_label) = self._get_task(task_id)
-            extra_label.set_text(text)    
+            extra_label.set_markup(text)    
             
 
 

@@ -83,7 +83,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         progress.set_action("%s %s" % (action, package))
         progress.set_fraction(frac, "%3i %%" % int(frac * 100))
         width = len("%s" % ts_total)            
-        progress.tasks.set_extra_label('run-trans', "( %*s / %*s )" % (width, ts_current, width, ts_total))
+        progress.tasks.set_extra_label('run-trans', "<b>( %*s / %*s )</b>" % (width, ts_current, width, ts_total))
         
     def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         """ yum download progress handler """
@@ -98,7 +98,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_pulse(False)
         if progress.tasks.current_running == 'download':    
             width = len("%s" % tot)    
-            progress.tasks.set_extra_label('download', "( %*s / %*s )" % (width, cur, width, tot))
+            progress.tasks.set_extra_label('download', "<b>( %*s / %*s )</b>" % (width, cur, width, tot))
         progress.set_fraction(float(percent) / 100.0, "%3i %% ( %s / %s ) - %s" % (percent, fread, ftotal, ftime))
         #self.frontend.debug("Progress: %s - %s - %s - %s - %s" %  (cur, tot, fread, ftotal, ftime))
         if ftype == "REPO": # This is repo metadata being downloaded
@@ -183,7 +183,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
             return
-        self.frontend.info(_("Starting yum backend child process"))
+        self.frontend.info(_("Starting yum child process"))
         if repos:
             self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
         plugins = self.frontend.cmd_options.plugins
@@ -198,7 +198,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
-        self.frontend.info(_("Stopping yum backend child process"))
+        self.frontend.info(_("Stopping yum child process"))
         YumClient.reset(self)
 
     def get_packages(self, pkg_filter):
