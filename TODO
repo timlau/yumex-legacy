@@ -22,7 +22,7 @@ Fixed / implemented:
 	* Add Repo selection and refresh functionality
 	* Dynamic font sizes calculated from default system font size.
   	* yum depsolve callback to show depsolve info
-  	* add timestamps to output page
+  	* add time stamps to output page
   	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
   	* Add About dialog
 	* Add task based progress dialog
