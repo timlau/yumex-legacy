@@ -41,14 +41,14 @@ from yumexbase.i18n import _, P_
 
 class PackageInfoTextView(TextViewBase):
     '''
-    
+    TextView handler for showing package information
     '''
     
     def __init__(self, textview, font_size=8):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
-        @param font_size:
+        @param font_size: default text size
         '''
         TextViewBase.__init__(self, textview)        
 
@@ -87,27 +87,29 @@ class PackageInfoTextView(TextViewBase):
         
 class PackageCache:
     '''
+    Package cache to contain packages from backend, so we dont have get them more
+    than once.
     '''
     
     def __init__(self, backend):
         '''
-        
-        @param backend:
+        setup the cache
+        @param backend:    backend instance
         '''
         self._cache = {}
         self.backend = backend
         
     def reset(self):
         '''
-        
+        reset the cache
         '''
         del self._cache
         self._cache = {}
 
     def get_packages(self, pkg_filter):
         '''
-        
-        @param pkg_filter:
+        get packages from baqckend and put them in the cache
+        @param pkg_filter: package type to get 
         '''
         if not str(pkg_filter) in self._cache:
             pkgs = self.backend.get_packages(pkg_filter)
@@ -119,7 +121,7 @@ class PackageCache:
     
     def find(self, po):
         '''
-        
+        if a package in the cache
         @param po:
         '''
         if po.action == 'u':
@@ -160,10 +162,13 @@ class PageHeader(gtk.HBox):
         self.show_all()
 
 class SelectorBase:
-    ''' Button selector '''
+    ''' Button selector base '''
     
     def __init__(self, content):
-        ''' setup the selector '''
+        '''
+        Setup the selector
+        @param content: a gtk.VBox widget to contain the selector buttons
+        '''
         self.content = content
         self._buttons = {}
         self._first = None
@@ -214,17 +219,19 @@ class SelectorBase:
 
 class PackageInfo(SelectorBase):
     '''
-    
+    Package information gui handler
+    controls the package info Textview and the buttons to show
+    description, changelog and filelist.
     '''
     
     def __init__(self, main, console, selector, frontend, font_size=8):
         '''
-        
-        @param main:
-        @param console:
-        @param selector:
-        @param frontend:
-        @param font_size:
+        Setup the package info
+        @param main: main window
+        @param console: Widget for writing infomation (gtk.TextView)
+        @param selector: the selector ui widget (gtk.VBox)
+        @param frontend: the frontend instance
+        @param font_size: the fontsize in the console
         '''
         SelectorBase.__init__(self, selector)
         self.console = PackageInfoTextView(console, font_size=font_size)
@@ -238,15 +245,15 @@ class PackageInfo(SelectorBase):
 
     def update(self, pkg):
         '''
-        
-        @param pkg:
+        update the package info with a new package
+        @param pkg: package to show info for
         '''
         self.pkg = pkg
         self.set_active(self._selected)
         
     def clear(self):        
         '''
-        
+        clear the package info console
         '''
         self.console.clear()
 
@@ -258,8 +265,8 @@ class PackageInfo(SelectorBase):
     
     def update_console(self, key):
         '''
-        
-        @param key:
+        update the console with information
+        @param key: information to show (description,changelog,filelist)
         '''
         if self.pkg:
             busyCursor(self.main_window)
@@ -275,7 +282,7 @@ class PackageInfo(SelectorBase):
         
     def show_description(self):
         '''
-        
+        show the package description
         '''
         upd_info = self.pkg.updateinfo
         # FIXME: Add code to show the update info, when there is some
@@ -288,7 +295,7 @@ class PackageInfo(SelectorBase):
         
     def show_changelog(self):
         '''
-        
+        show the package changelog 
         '''
         changelog = self.pkg.changelog
         progress = self.frontend.get_progress()
@@ -301,7 +308,7 @@ class PackageInfo(SelectorBase):
 
     def show_filelist(self):
         '''
-        
+        show the package filelist
         '''
         i = 0
         files = self.pkg.filelist
