@@ -9,12 +9,12 @@ TODO:
   	
   	
 BUGS:
-	BUG: Undo in group unselect packages, but dont undo group selection changes
+	BUG: Undo in group unselect packages, but don't undo group selection changes
   	
 Fixed / implemented:
 	* Separate the GUI and the backend doing the package stuff
 	  * make an abstract backend, to make the gui interfacing to the backend more common.
-	  * make a forked yum backend to increase the responciveness of the GUI
+	  * make a forked yum backend to increase the responsiveness of the GUI
   	* pylint checking
   	* Add a View menu, with Pages 
   	* GPG import confirmation dialog
@@ -26,8 +26,8 @@ Fixed / implemented:
   	* Cleanup Makefiles and yumex.spec to fit current yumex nextgen version
   	* Add About dialog
 	* Add task based progress dialog
-  	* Ask for program exit, when the transaction is completted ok.
-	. BUG: Dont show number of files to download, if we are not i the download package task.
+  	* Ask for program exit, when the transaction is completed ok.
+	. BUG: Don't show number of files to download, if we are not i the download package task.
 	. BUG: Fixed singular, plural labels in queue view
 	. BUG: Fix exception when removing stuff while installing something else  	
   	. RFE: Display current transaction / total transaction when performing transaction 
