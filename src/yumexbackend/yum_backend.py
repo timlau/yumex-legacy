@@ -321,21 +321,21 @@ class YumexPackageYum(YumexPackageBase):
     @property
     def filelist(self):
         '''
-        
+        get package filelist
         '''
         return self._pkg.get_attribute('filelist') 
 
     @property
     def recent(self):
         '''
-        
+        get package recent state
         '''
         return self._pkg.recent == '1'
 
     @property
     def color(self):
         '''
-        
+        get package color to show in view
         '''
         color = 'black'
         if self.repoid == 'installed' or self.repoid.startswith('@'):
@@ -343,6 +343,13 @@ class YumexPackageYum(YumexPackageBase):
         elif self.action == 'u':
             color = 'red'
         return color    
+
+    @property
+    def updateinfo(self):
+        '''
+        get update info for package
+        '''
+        return self._pkg.get_update_info()
         
 
 class YumexTransactionYum(YumexTransactionBase):

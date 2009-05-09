@@ -28,6 +28,7 @@ import traceback
 from optparse import OptionParser
 
 from yum.packageSack import packagesNewestByNameArch
+from yum.update_md import UpdateMetadata
 
 from yumexbase.constants import *
 from yumexbackend.yum_client import pack, unpack
@@ -146,7 +147,7 @@ class YumServer(yum.YumBase):
                     self.repos.enableRepo(repo.id)
                 else:
                     self.repos.disableRepo(repo.id)
-                
+        self._updateMetadata = None # Update metadata cache 
         self.write(':started') # Let the front end know that we are up and running
 
 
@@ -671,6 +672,29 @@ class YumServer(yum.YumBase):
         else:
             self.error("Repo : %s not found" % ident)
 
+    @property            
+    def update_metadata(self):
+        if not self._updateMetadata:
+            self._updateMetadata = UpdateMetadata()
+            for repo in self.repos.listEnabled():
+                try:
+                    self._updateMetadata.add(repo)
+                except Exception, e:
+                    pass # No updateinfo.xml.gz in repo
+        return self._updateMetadata
+
+    def get_update_info(self,args):
+        '''
+        Get update infomation
+        '''
+        pkg = self._getPackage(args)
+        if pkg:
+            md = self.update_metadata
+            ret = md.get_applicable_notices(pkg.pkgtup)
+            self.message("updateinfo", ret)
+        self.ended(True)
+        
+
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
         if cmd == 'get-packages':       # get-packages <Package filter
@@ -699,6 +723,8 @@ class YumServer(yum.YumBase):
             self.enable_repo(args)
         elif cmd == 'search':
             self.search(args)
+        elif cmd == 'update-info':
+            self.get_update_info(args)
         else:
             self.error('Unknown command : %s' % cmd)
 

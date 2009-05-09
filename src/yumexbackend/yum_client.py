@@ -98,6 +98,9 @@ class YumPackage:
         '''
         return self.base.get_changelog(self.id, num)
     
+    def get_update_info(self):
+        return self.base.get_update_info(self.id)
+    
 class YumClient:
     """ Client part of a the yum client/server """
 
@@ -452,7 +455,12 @@ class YumClient:
             return unpack(args[0])
         else:
             return None
-        
+
+    def get_update_info(self,ident):  
+        self._send_command('update-info', [ident])
+        msgs = self._get_messages()
+        return msgs['updateinfo'][0]
+              
     def add_transaction(self, ident, action):
         '''
         

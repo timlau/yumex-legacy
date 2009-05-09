@@ -277,6 +277,13 @@ class PackageInfo(SelectorBase):
         '''
         
         '''
+        upd_info = self.pkg.updateinfo
+        # FIXME: Add code to show the update info, when there is some
+        if upd_info:
+            print upd_info
+        else:
+            print "no update info for %s" % str(self.pkg)
+            print upd_info
         self.console.write(self.pkg.description)
         
     def show_changelog(self):
