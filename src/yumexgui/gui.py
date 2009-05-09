@@ -242,13 +242,16 @@ class PackageInfo(SelectorBase):
         self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
         self.pkg = None
         self._selected = 'description'
+        self._is_update = False
 
-    def update(self, pkg):
+    def update(self, pkg, update=False):
         '''
         update the package info with a new package
         @param pkg: package to show info for
+        @param update: package is an update (used to display update info) 
         '''
         self.pkg = pkg
+        self._is_update = update
         self.set_active(self._selected)
         
     def clear(self):        
@@ -284,13 +287,14 @@ class PackageInfo(SelectorBase):
         '''
         show the package description
         '''
-        upd_info = self.pkg.updateinfo
-        # FIXME: Add code to show the update info, when there is some
-        if upd_info:
-            print upd_info
-        else:
-            print "no update info for %s" % str(self.pkg)
-            print upd_info
+        if self._is_update: # Package is an update 
+            upd_info = self.pkg.updateinfo
+            # FIXME: Add code to show the update info, when there is some
+            if upd_info:
+                print upd_info
+            else:
+                print "no update info for %s" % str(self.pkg)
+                print upd_info
         self.console.write(self.pkg.description)
         
     def show_changelog(self):

@@ -146,7 +146,8 @@ class YumexHandlers(Controller):
         self.default_repos = []
         self.current_repos = []
         self._resized = False
-
+        self._current_active = None
+        
 # Signal handlers
       
     def quit(self):
@@ -266,8 +267,10 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             pkg = model.get_value(iterator, 0)
             if pkg:
-                self.packageInfo.update(pkg)
-                
+                if self._current_active == 0:
+                    self.packageInfo.update(pkg, update=True)
+                else:
+                    self.packageInfo.update(pkg)
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -297,6 +300,7 @@ class YumexHandlers(Controller):
         '''
         if widget.get_active():
             self._last_filter = widget
+            self._current_active = active
             self.packageInfo.clear()
             self.ui.packageSearch.set_text('')        
             if active < 3: # Updates,Available,Installed
