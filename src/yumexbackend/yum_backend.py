@@ -291,11 +291,6 @@ class YumexPackageYum(YumexPackageBase):
         '''
         self.visible = state
         
-    def __str__(self):
-        '''
-        
-        '''
-        return str(self._pkg)
 
     @property
     def size(self):

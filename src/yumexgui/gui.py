@@ -295,6 +295,9 @@ class PackageInfo(SelectorBase):
             else:
                 print "no update info for %s" % str(self.pkg)
                 print upd_info
+        msg = "%s (%s) - %s :" % (self.pkg.fullname, self.pkg.size, self.pkg.repoid)                
+        self.console.write(msg,"changelog-header")   
+        #self.console.write(len(msg) * "=")     
         self.console.write(self.pkg.description)
         
     def show_changelog(self):

@@ -81,7 +81,13 @@ class YumexPackageBase:
         '''
         self._pkg = pkg
         self.selected = False
-        
+
+    def __str__(self):
+        '''
+        string representation of the package object
+        '''
+        return self.fullname
+      
 
     @property
     def name(self):
@@ -161,8 +167,24 @@ class YumexPackageBase:
 
     @property
     def filename(self):
-        ''' Package id (the full package filename) '''        
+        ''' Package id (the full package filename) '''     
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
+
+    @property
+    def fullname(self):
+        ''' Package fullname  '''        
+        if self.epoch and self.epoch <> '0':
+            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.version, self.release, self.arch)
+        else:   
+            return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
+    
+    @property
+    def fullver (self):
+        '''
+        Package full version-release
+        '''
+        return "%s-%s" % (self.version, self.release)
+    
 
 class YumexGroupBase:
     '''

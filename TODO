@@ -6,6 +6,7 @@ TODO:
   	RFE: Documentation
   	RFE: Set default focus to search field on package page
   	RFE: Support for showing update info. (backend parts is done)
+  	RFE: Key bindings, all functionality should reachable by the keyboard
   	
   	
 BUGS:

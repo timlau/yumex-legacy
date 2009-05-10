@@ -179,7 +179,7 @@ class YumexPackageView(SelectionView):
         column2.set_clickable(True)
 
         self.create_text_column(_("Package"), 'name' , size=200)
-        self.create_text_column(_("Ver."), 'version', size=80)
+        self.create_text_column(_("Ver."), 'fullver', size=120)
         self.create_text_column(_("Arch."), 'arch' , size=60)
         self.create_text_column(_("Summary"), 'summary', size=400)
         self.create_text_column(_("Repo."), 'repoid' , size=90)
