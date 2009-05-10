@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  2.9.0
-Release:  0.5.pre%{?dist}
+Release:  0.6.pre%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -72,6 +72,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Sun May 10 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.6.pre
+- bumped version to 2.9.0-0.6.pre
 * Wed May 6 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.5.pre
 - bumped version to 2.9.0-0.5.pre
 * Thu Apr 30 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.4.pre
