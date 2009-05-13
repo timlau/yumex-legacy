@@ -681,6 +681,8 @@ class YumServer(yum.YumBase):
                     self._updateMetadata.add(repo)
                 except Exception, e:
                     pass # No updateinfo.xml.gz in repo
+                for md in self._updateMetadata.get_notices(name='curl'):
+                    print str(md)
         return self._updateMetadata
 
     def get_update_info(self,args):
@@ -690,7 +692,8 @@ class YumServer(yum.YumBase):
         pkg = self._getPackage(args)
         if pkg:
             md = self.update_metadata
-            ret = md.get_applicable_notices(pkg.pkgtup)
+            nvr = (pkg.name,pkg.ver,pkg.rel)
+            ret = md.get_notice(nvr)
             self.message("updateinfo", ret)
         self.ended(True)
         

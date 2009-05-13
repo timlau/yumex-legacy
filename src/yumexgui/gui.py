@@ -28,6 +28,8 @@ from datetime import date
 from yumexbase.constants import *
 from yumexbackend.yum_backend import YumexPackageYum
 from guihelpers import TextViewBase, busyCursor, normalCursor
+from yum.i18n import utf8_text_wrap, to_utf8
+
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -287,18 +289,58 @@ class PackageInfo(SelectorBase):
         '''
         show the package description
         '''
+        upd_info = None
         if self._is_update: # Package is an update 
             upd_info = self.pkg.updateinfo
-            # FIXME: Add code to show the update info, when there is some
-            if upd_info:
-                print upd_info
-            else:
-                print "no update info for %s" % str(self.pkg)
-                print upd_info
+            progress = self.frontend.get_progress()
+            progress.hide()        
         msg = "%s (%s) - %s :" % (self.pkg.fullname, self.pkg.size, self.pkg.repoid)                
         self.console.write(msg,"changelog-header")   
-        #self.console.write(len(msg) * "=")     
+        if upd_info:
+            self.show_update_info(upd_info)
+            self.console.write(_("\nPackage Description"),"changelog-header")
         self.console.write(self.pkg.description)
+
+    def show_update_info(self,upd_info):
+        head = ""
+        head += ("%12s " % _("Update ID")) + ": %(update_id)s\n"
+        head += ("%12s " % _("Release"))   + ": %(release)s\n" 
+        head += ("%12s " % _("Type"))      + ": %(type)s\n"
+        head += ("%12s " % _("Status"))    + ": %(status)s\n"
+        head += ("%12s " % _("Issued"))    + ": %(issued)s\n"
+        head = head  % upd_info
+
+        if upd_info['updated'] and upd_info['updated'] != upd_info['issued']:
+            head += "    Updated : %s" % upd_info['updated']
+
+        # Add our bugzilla references
+        if upd_info['references']:
+            bzs = [ r for r in upd_info['references'] if r and r['type'] == 'bugzilla']
+            if len(bzs):
+                buglist = _("       Bugs :")
+                for bz in bzs:
+                    if 'title' in bz and bz['title']:
+                        bug_msg = ' - %s' % bz['title']
+                    else:
+                        bug_msg = ' - %s' % 'https://bugzilla.redhat.com/show_bug.cgi?id='+bz['id']
+                        
+                    buglist += " %s%s\n\t    :" % (bz['id'], bug_msg)
+                head += buglist[: - 1].rstrip() + '\n'
+
+        # Add our CVE references
+        if upd_info['references']:
+            cves = [ r for r in upd_info['references'] if r and r['type'] == 'cve']
+            if len(cves):
+                cvelist = "       CVEs :"
+                for cve in cves:
+                    cvelist += " %s\n\t    :" % cve['id']
+                head += cvelist[: - 1].rstrip() + '\n'
+
+        if upd_info['description'] is not None:
+            desc = utf8_text_wrap(upd_info['description'], width=64,
+                                  subsequent_indent=' ' * 12 + ': ')
+            head += _("Description : %s\n") % '\n'.join(desc)
+        self.console.write(head)
         
     def show_changelog(self):
         '''
