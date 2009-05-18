@@ -426,22 +426,22 @@ class YumexTransactionYum(YumexTransactionBase):
             else: # Aborted by User
                 return None
         else:
+            progress.hide()
             title = _("Dependency Resolution Failed")
             text = _("Dependency Resolution Failed")
             longtext = _("Dependency Resolution Errors:")
             longtext += '\n\n'            
             for msg in msgs:
-                self.frontend.error(msg)
                 longtext += msg            
             # Show error dialog    
             dialog = ErrorDialog(self.frontend.ui, self.frontend.window, title, text, longtext, modal=True)
             dialog.run()
             dialog.destroy()
             # Write errors to output page
-            self.error(_('Dependency resolving completed with error'))
+            self.frontend.error(_('Dependency resolving completed with errors'))
             for msg in msgs:
                 self.frontend.error("  %s" % msg)
-            return False
+            return rc
         
     def get_transaction_packages(self):
         '''

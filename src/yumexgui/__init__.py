@@ -609,7 +609,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     self.backend.transaction.add(po, action)
             rc = self.backend.transaction.process_transaction()                    
             progress.hide_tasks()
-            if rc:
+            if rc == 2: # Transaction ok
                 self.debug("Transaction Completed OK")
                 progress.hide()        
                 msg = _("Transaction completed successfully\n\n")
@@ -621,8 +621,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             elif rc == None: # Aborted by user
                 self.warning(_("Transaction Aborted by User"))
                 self.notebook.set_active("package")     # show the package page
-            else: # Errors in transaction
-                self.debug("Transaction Failed")
             progress.hide()        
             progress.set_pulse(False)        
         except YumexBackendFatalError, e:
