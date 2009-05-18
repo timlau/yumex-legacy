@@ -422,7 +422,7 @@ class YumexTransactionYum(YumexTransactionBase):
                 rc = self.backend.run_transaction()
                 progress.tasks.set_state('run-trans', TASK_COMPLETE)
                 progress.tasks.set_extra_label('run-trans', "")
-                return rc
+                return True
             else: # Aborted by User
                 return None
         else:
@@ -441,7 +441,7 @@ class YumexTransactionYum(YumexTransactionBase):
             self.frontend.error(_('Dependency resolving completed with errors'))
             for msg in msgs:
                 self.frontend.error("  %s" % msg)
-            return rc
+            return False
         
     def get_transaction_packages(self):
         '''

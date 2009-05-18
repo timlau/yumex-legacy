@@ -609,11 +609,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     self.backend.transaction.add(po, action)
             rc = self.backend.transaction.process_transaction()                    
             progress.hide_tasks()
-            if rc == 2: # Transaction ok
-                self.debug("Transaction Completed OK")
+            if rc: # Transaction ok
+                self.info("Transaction completed successfully")
                 progress.hide()        
-                msg = _("Transaction completed successfully\n\n")
-                msg += _("Do you want to exit Yum Extender")
+                msg = _("Transaction completed successfully")
+                msg += _("\n\nDo you want to exit Yum Extender")
                 rc = questionDialog(self.window, msg) # Ask if the user want to Quit
                 if rc:
                     self.main_quit() # Quit Yum Extender
