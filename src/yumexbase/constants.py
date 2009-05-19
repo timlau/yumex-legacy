@@ -106,16 +106,3 @@ TASK_ICONS = {TASK_PENDING  : 'gtk-media-stop',
               TASK_RUNNING  : 'gtk-refresh',
               TASK_COMPLETE : 'gtk-yes' }
 
-YUMEX_CONF_DEFAULTS = {
-    "autorefresh"   : 1,
-    "recentdays"    : 14,
-    "proxy"         : '',
-    "exclude"       : '',
-    "debug"         : 0,
-    "color_install" : 'darkgreen',
-    "color_update"  : 'red',
-    "color_normal"  : 'black',
-    "color_obsolete": 'blue',
-    "plugins"       : 1,
-    "yumdebuglevel" : 2
-}

@@ -423,16 +423,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     @property
     def settings(self):
         return self.cfg.settings
-        
-    def _get_config(self,cfg_file):
-        self._ini = INIConfig(open(cfg_file,"r"))
-        cfg = self._ini.yumex
-        for key in YUMEX_CONF_DEFAULTS:
-            if not key in cfg:
-                print("using default : [%s] for the %s option" % (YUMEX_CONF_DEFAULTS[key],key))
-                cfg[key] = YUMEX_CONF_DEFAULTS[key]
-        return cfg
-
     
     def run(self):
         '''
