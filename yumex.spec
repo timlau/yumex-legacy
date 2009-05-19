@@ -23,6 +23,7 @@ Requires: pygtk2 >= 2.14
 Requires: usermode
 Requires: pexpect
 Requires: python-enum
+Requires: python-iniparse
 
 %description
 Graphical User Interface for Yum.

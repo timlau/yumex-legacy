@@ -186,8 +186,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         self.frontend.info(_("Starting yum child process"))
         if repos:
             self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
-        plugins = self.frontend.cmd_options.plugins
-        yumdebuglevel = self.frontend.cmd_options.yumdebuglevel
+        plugins = self.frontend.settings.plugins
+        yumdebuglevel = self.frontend.settings.yumdebuglevel
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      

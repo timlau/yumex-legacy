@@ -28,7 +28,6 @@ import gtk
 import pango
 
 from datetime import date
-from optparse import OptionParser
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, questionDialog
@@ -37,6 +36,7 @@ from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, Yume
 from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError
 import yumexbase.constants as const
+from yumexbase.conf import YumexOptions
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -98,7 +98,7 @@ class YumexFrontend(YumexFrontendBase):
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
-        if self.cmd_options.debug:
+        if self.settings.debug:
             print "DEBUG:", msg
             self.logger.debug('DEBUG: %s' % msg)
         self.refresh()
@@ -407,35 +407,32 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Init the Yumex Application
         @param backend: The backend instance class
         '''
+        self.cfg = YumexOptions()
+        self.cfg.dump()
         self.progress = None
         self.logger = logging.getLogger(YUMEX_LOG)
         self.debug_options = []        
-        (self.cmd_options, self.cmd_args) = self.setupOptions()
+        #(self.cmd_options, self.cmd_args) = self.cfg.get_cmd_options()
         self.backend = backend(self)
         YumexHandlers.__init__(self)
         progress = Progress(self.ui, self.window)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
         self.package_cache = PackageCache(self.backend)
+    
+    @property
+    def settings(self):
+        return self.cfg.settings
+        
+    def _get_config(self,cfg_file):
+        self._ini = INIConfig(open(cfg_file,"r"))
+        cfg = self._ini.yumex
+        for key in YUMEX_CONF_DEFAULTS:
+            if not key in cfg:
+                print("using default : [%s] for the %s option" % (YUMEX_CONF_DEFAULTS[key],key))
+                cfg[key] = YUMEX_CONF_DEFAULTS[key]
+        return cfg
 
-    def setupOptions(self):
-        '''
-        Setup and parse Command line options
-        '''
-        parser = OptionParser()
-        parser.add_option("-d", "--debug",
-                        action="store_true", dest="debug", default=False,
-                        help="Debug mode")
-        parser.add_option("", "--noplugins",
-                        action="store_false", dest="plugins", default=True,
-                        help="Disable yum plugins")
-        parser.add_option("-n", "--noauto",
-                        action="store_false", dest="autorefresh", default=True,
-                        help="No automatic refresh af program start")
-        parser.add_option("", "--debuglevel", dest="yumdebuglevel", action="store",
-                default=2, help="yum debugging output level", type='int',
-                metavar='[level]')      
-        return parser.parse_args()
     
     def run(self):
         '''
@@ -481,7 +478,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Setup the gui
         '''
         # setup
-        self.window.set_title("Yum Extender NextGen")
+        self.window.set_title(self.settings.branding_title)
         
         #Setup About dialog
         #gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler, don't want to start firefox as root :)
@@ -499,7 +496,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent)
         self.notebook.add_page("package", "Packages", self.ui.packageMain, icon=ICON_PACKAGES)
         self.notebook.add_page("queue", "Pending Action Queue", self.ui.queueMain, icon=ICON_QUEUE)
-        self.notebook.add_page("repo", "Repositories", self.ui.repoMain, icon=ICON_REPOS)
+        if not self.settings.disable_repo_page:
+            self.notebook.add_page("repo", "Repositories", self.ui.repoMain, icon=ICON_REPOS)
         self.notebook.add_page("output", "Output", self.ui.outputMain, icon=ICON_OUTPUT)
         self.ui.groupView.hide()
         self.notebook.set_active("output")
@@ -522,7 +520,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
         # load packages and groups 
-        if self.cmd_options.autorefresh:
+        # We cant disable both repo page and auto refresh
+        if self.settings.autorefresh or self.settings.disable_repo_page: 
             self.populate_package_cache()
             self.setup_groups()
             self.notebook.set_active("package")
