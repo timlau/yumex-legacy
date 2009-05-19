@@ -319,6 +319,7 @@ class YumexHandlers(Controller):
                 action = ACTIONS[active]
                 self.packages.add_packages(pkgs, progress=self.progress)
                 normalCursor(self.window)
+                self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
             else: # Groups
                 if not self._resized:
                     width, height = self.window.get_size()
@@ -535,6 +536,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.current_repos = active_repos
         # setup default package filter (updates)
         self.ui.packageRadioUpdates.clicked()
+
 
 # pylint: enable-msg=W0201
 

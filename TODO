@@ -4,8 +4,6 @@ TODO:
   	RFE: Add Test cases (partly done)
   	RFE: Add an option file and code to handle it
   	RFE: Documentation
-  	RFE: Set default focus to search field on package page
-  	RFE: Support for showing update info. (backend parts is done)
   	RFE: Key bindings, all functionality should reachable by the keyboard
   	
   	
@@ -28,9 +26,11 @@ Fixed / implemented:
   	* Add About dialog
 	* Add task based progress dialog
   	* Ask for program exit, when the transaction is completed ok.
-	. BUG: Don't show number of files to download, if we are not i the download package task.
-	. BUG: Fixed singular, plural labels in queue view
-	. BUG: Fix exception when removing stuff while installing something else  	
-  	. RFE: Display current transaction / total transaction when performing transaction 
+	* BUG: Don't show number of files to download, if we are not i the download package task.
+	* BUG: Fixed singular, plural labels in queue view
+	* BUG: Fix exception when removing stuff while installing something else  	
+  	* RFE: Display current transaction / total transaction when performing transaction 
+  	. RFE: Support for showing update info. 
+  	. RFE: Set default focus to search field on package page
 
 ( * = Released, . = Upstream )	
