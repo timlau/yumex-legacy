@@ -8,7 +8,6 @@ TODO:
   	
 BUGS:
 	BUG: Undo in group unselect packages, but don't undo group selection changes
-	BUG: No repos when using --noauto
   	
 Fixed / implemented:
 	* Separate the GUI and the backend doing the package stuff
@@ -33,5 +32,6 @@ Fixed / implemented:
   	. RFE: Support for showing update info. 
   	. RFE: Set default focus to search field on package page
   	. RFE: Add an option file and code to handle it
+	. BUG: No repos when using --noauto
 
 ( * = Released, . = Upstream )	

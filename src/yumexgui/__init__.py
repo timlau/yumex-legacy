@@ -516,6 +516,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.setup_groups()
             self.notebook.set_active("package")
         else:
+            self.backend.setup(repos=self.current_repos)
             self.notebook.set_active("repo")
         # setup repository view    
         repos = self.backend.get_repositories()
