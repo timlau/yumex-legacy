@@ -123,8 +123,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 self.frontend.debug(msg)
                 progress.set_action(msg)
         elif ftype == 'REBUILD':
-            progress.set_action(_('Rebuiding deltarpm : %s') % name)
-            
+            progress.set_action(_('Rebuiding deltarpm'))
         else: # this is a package being downloaded
             #self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
             if name:
