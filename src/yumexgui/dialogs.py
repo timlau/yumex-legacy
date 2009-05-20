@@ -36,6 +36,22 @@ from yumexbase.i18n import _, P_
 
 class TaskList:
     '''
+    A Task based progress list to show in a gtk.VBox widget
+    
+    tasks = TaskList(container,parent_window)
+    tasks.add_task('task1','This is task 1')
+    tasks.add_task('task2','This is task 2')
+    tasks.add_task('task3','This is task 3')
+    
+    tasks.run_current() # task1 is now running
+    tasks.show()
+    # Do the action for task1
+    tasks.next()  # task 2 is now running
+    # Do the action for task2
+    tasks.next()  # task 3 is now running
+    # Do the action for task3
+    tasks.complete_current() # task3 is complete
+    tasks.hide()
     '''
     
     def __init__(self, container, parent):
