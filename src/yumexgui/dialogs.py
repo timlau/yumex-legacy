@@ -200,6 +200,7 @@ class Progress(YumexProgressBase):
         self.tasks.hide()
         self.default_w = None
         self.default_h = None
+        self.ui.progressImage.set_from_file(ICON_SPINNER)
         
     def show(self):
         '''

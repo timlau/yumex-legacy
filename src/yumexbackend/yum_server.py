@@ -951,7 +951,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
             if name not in self._printed:
                 # show downloaded <filename> ( <size> )
                 if name == '<delta rebuild>':
-                    self.base.info(_('Rebuild from deltarpm : %s ( %s )') % (self.text, self.totSize))
+                    self.base.info(_('Rebuild from deltarpms completted'))
                 else:
                     self.base.info(_('Downloaded : %s ( %s )') % (name, self.totSize))
                 self._printed.append(name)
