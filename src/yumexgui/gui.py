@@ -236,6 +236,7 @@ class PackageInfo(SelectorBase):
         @param font_size: the fontsize in the console
         '''
         SelectorBase.__init__(self, selector)
+        self.widget = console
         self.console = PackageInfoTextView(console, font_size=font_size)
         self.main_window = main
         self.frontend = frontend
@@ -252,9 +253,11 @@ class PackageInfo(SelectorBase):
         @param pkg: package to show info for
         @param update: package is an update (used to display update info) 
         '''
+        self.widget.grab_add() # look everything but then TextView widget, until we have updated
         self.pkg = pkg
         self._is_update = update
         self.set_active(self._selected)
+        self.widget.grab_remove()
         
     def clear(self):        
         '''
