@@ -73,7 +73,7 @@ class TaskList:
         reset the task list by setting all tasks to TASK_PENDING
         '''
         for task_id in self._tasks:
-            self.set_state(task_id, TASK_PENDING)
+            self._set_state(task_id, TASK_PENDING)
         self.num_current = 0
         
     def add_task(self, task_id, description):
