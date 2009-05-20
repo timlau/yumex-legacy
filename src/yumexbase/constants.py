@@ -68,6 +68,7 @@ ICON_QUEUE = PIXMAPS_PATH + '/button-queue.png'
 ICON_OUTPUT = PIXMAPS_PATH + '/button-output.png'
 ICON_REPOS = PIXMAPS_PATH + '/button-repo.png'
 ICON_SPINNER = PIXMAPS_PATH + '/spinner.gif'
+ICON_SMALL_SPINNER = PIXMAPS_PATH + '/spinner-small.gif'
     
 # NOTE: The package filter radio buttons in the top of the package page
 PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))

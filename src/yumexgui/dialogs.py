@@ -136,7 +136,10 @@ class TaskList:
         '''
         if task_id in self._tasks:
             (state, icon, task_label, extra_label) = self._get_task(task_id)
-            icon.set_from_stock(TASK_ICONS[new_state], gtk.ICON_SIZE_MENU)
+            if new_state == TASK_RUNNING:
+                icon.set_from_file(ICON_SMALL_SPINNER)
+            else:
+                icon.set_from_stock(TASK_ICONS[new_state], gtk.ICON_SIZE_MENU)
             icon.show()
             self._set_task(task_id, state=new_state)
             if new_state == TASK_RUNNING:
