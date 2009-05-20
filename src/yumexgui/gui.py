@@ -253,7 +253,7 @@ class PackageInfo(SelectorBase):
         @param pkg: package to show info for
         @param update: package is an update (used to display update info) 
         '''
-        self.widget.grab_add() # look everything but then TextView widget, until we have updated
+        self.widget.grab_add() # lock everything but then TextView widget, until we have updated
         self.pkg = pkg
         self._is_update = update
         self.set_active(self._selected)
