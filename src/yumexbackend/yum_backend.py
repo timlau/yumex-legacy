@@ -140,26 +140,20 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         progress = self.frontend.get_progress()
         if state == 'download':
             progress.set_header(_("Downloading Packages"))
-            progress.tasks.set_state('depsolve', TASK_COMPLETE)
-            progress.tasks.set_state('download', TASK_RUNNING)
+            progress.tasks.next()
             progress.set_pulse(False)
         elif state == 'gpg-check':
             progress.set_pulse(True)
             progress.set_header(_("Checking Package GPG Signatures"))
             progress.tasks.set_extra_label('download', "")
-            progress.tasks.set_state('download', TASK_COMPLETE)
-            progress.tasks.set_state('gpg-check', TASK_RUNNING)
+            progress.tasks.next()
         elif state == 'test-transaction':
             progress.set_pulse(True)
             progress.set_header(_("Running RPM Test Transaction"))
-            progress.tasks.set_state('download', TASK_COMPLETE) # on erase only the GPG check state is skipped
-            progress.tasks.set_state('gpg-check', TASK_COMPLETE)
-            progress.tasks.set_state('test-trans', TASK_RUNNING)
+            progress.tasks.next('gpg-check')
         elif state == 'transaction':
             progress.set_pulse(False)
-            progress.set_header(_("Running RPM Transaction"))
-            progress.tasks.set_state('test-trans', TASK_COMPLETE)
-            progress.tasks.set_state('run-trans', TASK_RUNNING)
+            progress.tasks.next()
 
     def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key (overload in child class) """
@@ -413,8 +407,8 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         progress = self.frontend.get_progress()
         progress.set_header(_("Resolving Dependencies"))
-        progress.tasks.set_state('depsolve', TASK_RUNNING)
-        
+        progress.tasks.reset()
+        progress.tasks.run_current()
         rc, msgs, trans = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
@@ -422,7 +416,7 @@ class YumexTransactionYum(YumexTransactionBase):
             if self.frontend.confirm_transaction(trans): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()
-                progress.tasks.set_state('run-trans', TASK_COMPLETE)
+                progress.tasks.complete_current()
                 progress.tasks.set_extra_label('run-trans', "")
                 return True
             else: # Aborted by User

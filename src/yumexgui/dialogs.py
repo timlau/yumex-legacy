@@ -46,6 +46,9 @@ class TaskList:
         self.container = container
         self.parent = parent
         self._tasks = {}
+        self._task_no = []
+        self.num_tasks = 0
+        self.num_current = 0
         self.is_hidden = True
         self.current_running = None
         self.hide()
@@ -71,6 +74,7 @@ class TaskList:
         '''
         for task_id in self._tasks:
             self.set_state(task_id, TASK_PENDING)
+        self.num_current = 0
         
     def add_task(self, task_id, description):
         '''
@@ -78,6 +82,8 @@ class TaskList:
         @param task_id:
         @param description:
         '''
+        self._task_no.append(task_id)   
+        self.num_tasks += 1
         hbox = gtk.HBox()
         icon = gtk.Image()
         icon.set_from_stock(TASK_ICONS[TASK_PENDING], gtk.ICON_SIZE_MENU)
@@ -95,6 +101,36 @@ class TaskList:
         hbox.pack_start(extra_label, expand=False, fill=False, padding=0)
         self.container.pack_start(hbox)
         self._set_task(task_id, TASK_PENDING, icon, task_label, extra_label)
+        
+    def run_current(self):       
+        '''
+        Run the current task
+        ''' 
+        cur = self._task_no[self.num_current] 
+        self._set_state(cur, TASK_RUNNING)
+
+    def complete_current(self):        
+        '''
+        Complete the current task
+        '''
+        cur = self._task_no[self.num_current] 
+        self._set_state(cur, TASK_COMPLETE)
+        return cur
+    
+    def next(self,task_id = None):
+        '''
+        Complete the current task and set the next to running
+        if a task_id is given, all task before this task will be completted too
+        @param task_id: Optional task_id to complete
+        '''
+        cur = None
+        if not task_id:
+            task_id = self._task_no[self.num_current]
+        while task_id != cur:
+            cur = self.complete_current()
+            self.num_current += 1
+        if self.num_current < self.num_tasks:
+            self.run_current()
         
     def _set_task(self, task_id, state=None, icon=None, task_label=None, extra_label=None):
         '''
@@ -128,7 +164,7 @@ class TaskList:
         if task_id in self._tasks:
             return self._tasks[task_id]
 
-    def set_state(self, task_id, new_state):
+    def _set_state(self, task_id, new_state):
         '''
         set task state (TASK_PENDING, TASK_RUNNING, TASK_COMPLETE"
         @param task_id:
