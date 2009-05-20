@@ -26,7 +26,6 @@ import gobject
 from guihelpers import busyCursor, normalCursor
 from yumexbase import YumexProgressBase
 from yumexbase.constants import *
-from guihelpers import doGtkEvents
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611

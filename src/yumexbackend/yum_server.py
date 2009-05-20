@@ -45,6 +45,7 @@ from yum.constants import *
 from yum.callbacks import *
 import yumexbase.constants as const
 import yum.plugins
+from urlgrabber.grabber import URLGrabError
 
 from yum.i18n import _ as yum_translated 
 
@@ -147,6 +148,9 @@ class YumServer(yum.YumBase):
                     self.repos.enableRepo(repo.id)
                 else:
                     self.repos.disableRepo(repo.id)
+        # Setup failure callback
+        freport = ( self._failureReport, (), {} )
+        self.repos.setFailureCallback( freport )       
         self._updateMetadata = None # Update metadata cache 
         self.write(':started') # Let the front end know that we are up and running
 
@@ -532,6 +536,23 @@ class YumServer(yum.YumBase):
         else:
             return False
 
+    def _failureReport( self, errobj ):
+        """failure output for failovers from urlgrabber"""
+        
+        self.warning( _( 'Failure getting %s: ' ), errobj.url )
+        self.warning( _('Trying other mirror.') )
+        raise errobj.exception
+
+    def _interrupt_callback(self, cbobj):
+        '''Handle CTRL-C's during downloads
+
+        If a CTRL-C occurs a URLGrabError will be raised to push the download
+        onto the next mirror.  
+        
+        @param cbobj: urlgrabber callback obj
+        '''
+        # Go to next mirror
+        raise URLGrabError(15, 'user interrupt')
             
     
     def get_groups(self, args):
