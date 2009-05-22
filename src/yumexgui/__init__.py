@@ -107,6 +107,15 @@ class YumexFrontend(YumexFrontendBase):
         ''' handle an expection '''
         msg = msg.replace(";", "\n")
         print "exception:", msg
+        title = "Exception in yum backend"
+        text = "Exception in yum backend"
+        longtext = "Exception:"
+        longtext += '\n\n'            
+        longtext += msg            
+        # Show error dialog    
+        dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
+        dialog.run()
+        dialog.destroy()
         sys.exit(1)
 
     def reset(self):

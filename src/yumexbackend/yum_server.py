@@ -539,7 +539,7 @@ class YumServer(yum.YumBase):
     def _failureReport( self, errobj ):
         """failure output for failovers from urlgrabber"""
         
-        self.warning( _( 'Failure getting %s: ' ), errobj.url )
+        self.warning( _( 'Failure getting %s: ' ) % errobj.url )
         self.warning( _('Trying other mirror.') )
         raise errobj.exception
 
