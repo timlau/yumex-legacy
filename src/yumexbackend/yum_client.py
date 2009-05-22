@@ -309,8 +309,6 @@ class YumClient:
                 self._timeout()
                 continue
             
-        
-        
     def _check_for_message(self, cmd, args):
         ''' 
         check if the command is a message and call the
@@ -425,6 +423,12 @@ class YumClient:
                     msgs[msg_type] = [value]
         return msgs
             
+    def _get_return_code(self):
+        while True:
+            cmd, args = self._readline()
+            if self.is_ended(cmd, args):
+                break
+        return self.end_state
     
     def _close(self):        
         ''' terminate the child server process '''
@@ -437,6 +441,11 @@ class YumClient:
         self._send_command('get-packages', [str(pkg_filter)])
         pkgs = self._get_list()
         return pkgs
+
+    def set_option(self, option, value, on_repos = False):    
+        ''' get a list of packages based on pkg_filter '''
+        self._send_command('set-option', [option,pack(value),pack(on_repos)])
+        return self._get_return_code()
 
     def get_attribute(self, ident, attr):    
         ''' get an attribute of an package '''

@@ -105,18 +105,19 @@ class YumexFrontend(YumexFrontendBase):
 
     def exception(self, msg):
         ''' handle an expection '''
-        msg = msg.replace(";", "\n")
-        print "exception:", msg
-        title = "Exception in yum backend"
-        text = "Exception in yum backend"
-        longtext = "Exception:"
-        longtext += '\n\n'            
-        longtext += msg            
+        #self.progress.hide()
+        print "Exception:", msg
+        title = "Exception in Yum Extender"
+        text = "An exception was triggered "
+        longtext = msg            
         # Show error dialog    
         dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
         dialog.run()
         dialog.destroy()
-        sys.exit(1)
+        try: # try to close nicely
+            self.main_quit()
+        except: # exit
+            sys.exit(1)
 
     def reset(self):
         ''' trigger a frontend reset '''
@@ -162,7 +163,10 @@ class YumexHandlers(Controller):
     def quit(self):
         ''' destroy Handler '''
         self.backend.debug("Quiting the program !!!")
-        self.backend.reset()
+        try:
+            self.backend.reset()
+        except:
+            pass
         self.backend.debug("Backend reset completted")
 
     # Menu
@@ -211,7 +215,10 @@ class YumexHandlers(Controller):
         # dont need to do any thing
         self.debug("About url")
     
-        
+# Options
+
+    def on_option_nogpgcheck_toggled(self, widget=None, event=None):
+        self.backend.set_option('gpgcheck',not widget.get_active(),on_repos=True)
         
 
     def on_viewPackages_activate(self, widget=None, event=None):
@@ -627,6 +634,21 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
 
+    def _get_options(self):
+        '''
+        Store the session based options in the Options menu
+        '''
+        options = []
+        options.append( (self.ui.option_nogpgcheck,self.ui.option_nogpgcheck.get_active()) )
+        return options
+    
+    def _set_options(self,options):
+        '''
+        Reset the session based options in the Options menu
+        '''
+        for (option,state) in options:
+            option.set_active(state)
+
     def reload(self, repos=None):
         '''
         Reset current data and restart the backend 
@@ -634,6 +656,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         if not repos:
             repos = self.current_repos
+        options = self._get_options()
         self.backend.reset()                    # close the backend
         self.package_cache.reset()              # clear the package cache
         self.queue.queue.clear()                # clear the pending action queue
@@ -642,5 +665,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
         self.ui.packageFilterBox.show()         # Show the filter selector
+        self._set_options(options)
         self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
                 

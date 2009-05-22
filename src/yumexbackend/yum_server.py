@@ -692,7 +692,22 @@ class YumServer(yum.YumBase):
             self._show_repo(repo)
         else:
             self.error("Repo : %s not found" % ident)
-
+            
+    def set_option(self,args):
+        option = args[0]
+        value = unpack(args[1])
+        on_repos = unpack(args[2])
+        if hasattr(self.conf,option):
+            setattr(self.conf,option,value)
+            self.info("Setting Yum Option %s = %s" %(option,value))
+            for repo in self.repos.repos.values():
+                if repo.isEnabled():
+                    if hasattr(repo,option):
+                        setattr(repo,option,value)
+                        self.debug("Setting Yum Option %s = %s (%s)" %(option,value,repo.id))
+                    
+        self.ended(True)
+            
     @property            
     def update_metadata(self):
         if not self._updateMetadata:
@@ -747,6 +762,8 @@ class YumServer(yum.YumBase):
             self.search(args)
         elif cmd == 'update-info':
             self.get_update_info(args)
+        elif cmd == 'set-option':
+            self.set_option(args)
         else:
             self.error('Unknown command : %s' % cmd)
 
@@ -761,16 +778,8 @@ class YumServer(yum.YumBase):
                 args = line.split('\t')
                 self.parse_command(args[0], args[1:])
         except:
-            etype = sys.exc_info()[0]
-            evalue = sys.exc_info()[1]
-            etb = traceback.extract_tb(sys.exc_info()[2])
-            errmsg = 'Error Type: %s ;' % str(etype)
-            errmsg += 'Error Value: %s ;' % str(evalue)
-            for tub in etb:
-                fn, lineno, func, codeline = tub # file,lineno, function, codeline
-                errmsg += '  File : %s , line %s, in %s;' % (fn, str(lineno), func)
-                errmsg += '    %s ;' % codeline
-            self.write(":exception\t%s" % errmsg)
+            errmsg = traceback.format_exc()
+            self.write(":exception\t%s" % pack(errmsg))
             self.ended(True)
         self.quit()
 

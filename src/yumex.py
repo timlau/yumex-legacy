@@ -21,7 +21,9 @@ Main Yum Extender Executable
 '''
 import sys
 import os
+import traceback
 from yumexgui import YumexApplication
+from yumexgui.dialogs import ErrorDialog
 
 if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy':
     from yumexbackend.dummy_backend import YumexBackendDummy as backend 
@@ -32,10 +34,20 @@ debug = []
 if 'YUMEX_DBG' in os.environ:
     debug = os.environ['YUMEX_DBG'].lower().split(',')
     print debug
-app = YumexApplication(backend)
-app.debug_options = debug
-#app.run_test()
-app.run()
     
-
+try:    
+    app = YumexApplication(backend)
+    app.debug_options = debug
+    #app.run_test()
+    app.run()
+except SystemExit,e:
+    print "Program Terminated"    
+    sys.exit(1)
+except: # catch other exception and write it to the logger.
+    errmsg = traceback.format_exc()
+    try:
+        app.exception(errmsg)
+    except:
+        pass
+    sys.exit(1)
 sys.exit(0)

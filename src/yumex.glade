@@ -111,7 +111,6 @@
             </child>
             <child>
               <object class="GtkMenuItem" id="profileMenu">
-                <property name="visible">True</property>
                 <property name="label" translatable="yes">_Profiles</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
@@ -146,12 +145,23 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="toolsMenu">
+              <object class="GtkMenuItem" id="options">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Tools</property>
+                <property name="label" translatable="yes">_Options</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="toolsMenu_menu"/>
+                  <object class="GtkMenu" id="menu2">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="option_nogpgcheck">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Dont  check signatures for packages</property>
+                        <property name="label" translatable="yes">no GPG Check</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_option_nogpgcheck_toggled"/>
+                      </object>
+                    </child>
+                  </object>
                 </child>
               </object>
             </child>

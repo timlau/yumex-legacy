@@ -27,7 +27,7 @@ from urlgrabber.progress import format_number
 
 
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
-from yumexbackend.yum_client import YumClient
+from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -173,7 +173,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         
     def exception(self, msg):
         """ debug message """
-        self.frontend.exception(msg)
+        self.frontend.exception(unpack(msg))
 
     def setup(self, repos=None):
         ''' Setup the backend'''

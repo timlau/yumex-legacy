@@ -33,5 +33,7 @@ Fixed / implemented:
   	. RFE: Set default focus to search field on package page
   	. RFE: Add an option file and code to handle it
 	. BUG: No repos when using --noauto
+	. Added Option Menu with 'No GPG Check' option
+	. make the exception handling more solid and show exception in a dialog
 
 ( * = Released, . = Upstream )	
