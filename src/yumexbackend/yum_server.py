@@ -776,7 +776,10 @@ class YumServer(yum.YumBase):
                 if not line or line.startswith('exit'):
                     break
                 args = line.split('\t')
+                ts = time.time()
                 self.parse_command(args[0], args[1:])
+                t = time.time() - ts
+                self.debug("Yum Child Task: Command %s took %.2f s to complete" % (args[0],t))
         except:
             errmsg = traceback.format_exc()
             self.write(":exception\t%s" % pack(errmsg))

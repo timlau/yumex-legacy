@@ -362,7 +362,6 @@ class YumClient:
                 self.end_state = unpack(args[0])
             else: # no parameter to :end
                 self.end_state = True
-            self.debug("end_state = %s" % str(self.end_state))   
             return True
         else:
             return False
