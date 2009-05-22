@@ -418,7 +418,7 @@ class YumexTransactionYum(YumexTransactionBase):
                 rc = self.backend.run_transaction()
                 progress.tasks.complete_current()
                 progress.tasks.set_extra_label('run-trans', "")
-                return True
+                return rc
             else: # Aborted by User
                 return None
         else:

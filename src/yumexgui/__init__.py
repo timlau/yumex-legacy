@@ -401,7 +401,6 @@ class YumexHandlers(Controller):
         '''
         The Queue/Packages Execute button
         '''
-        self.notebook.set_active("output")
         self.debug("Starting pending actions processing")
         self.process_queue()
         self.debug("Ended pending actions processing")
@@ -604,19 +603,25 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Process the pending actions in the queue
         '''
         try:
+            queue = self.queue.queue
+            if queue.total() == 0:
+                okDialog(self.window,_("The pending action queue is empty")) 
+                return        
+            self.notebook.set_active("output")
             progress = self.get_progress()
             progress.set_pulse(True)        
             progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
             progress.show_tasks()
             progress.show()        
-            queue = self.queue.queue
             for action in ('install', 'update', 'remove'):
                 pkgs = queue.get(action[0])
                 for po in pkgs:
                     self.backend.transaction.add(po, action)
-            rc = self.backend.transaction.process_transaction()                    
+            rc = self.backend.transaction.process_transaction()   
+            print "transaction result", rc
             progress.hide_tasks()
+            progress.hide()        
             if rc: # Transaction ok
                 self.info("Transaction completed successfully")
                 progress.hide()        
@@ -629,7 +634,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             elif rc == None: # Aborted by user
                 self.warning(_("Transaction Aborted by User"))
                 self.notebook.set_active("package")     # show the package page
-            progress.hide()        
+            else:
+                msg = _("Transaction completed with errors,\n check output page for details")
+                rc = okDialog(self.window,msg)
+                
             progress.set_pulse(False)        
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
