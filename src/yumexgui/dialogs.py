@@ -339,6 +339,106 @@ class Progress(YumexProgressBase):
         self.progressbar.set_fraction(0.0)
         self.progressbar.set_text("")
             
+class PrefCheckbutton(gtk.HBox):
+    def __init__(self,text):
+        gtk.HBox.__init__(self)
+        # Setup CheckButton
+        self._checkbutton = gtk.CheckButton(text)
+        self.pack_start(self._checkbutton, expand=False)
+        self.show_all()
+    
+    def get_value(self):
+        return self._checkbutton.get_active()
+
+    def set_value(self,state):
+        return self._checkbutton.set_active(state)
+
+class Preferences:
+
+    def __init__(self, ui, parent, cfg):
+        '''
+        Preference dialog handler
+        @param ui:
+        @param parent:
+        @param cfg: YumexOptions class instance
+        '''
+        self.ui = ui
+        self.cfg = cfg
+        self.settings = cfg.conf_settings
+        self.dialog = self.ui.preferences
+        self.dialog.set_title(_("Preferences"))
+        self.parent = parent
+        self.dialog.set_transient_for(parent)    
+        self._options = {}    
+        self.setup_basic()
+        self.setup_advanced()
+        self.setup_yum()
+
+    def setup_basic(self):
+        '''
+        setup the basic options
+        '''
+        vbox = self.ui.prefBasicVBox
+        self._add_option_checkbutton(vbox, 'autorefresh', _('Load packages on launch'))       
+        vbox.show_all()
+
+    def setup_advanced(self):
+        '''
+        setup the advanced options
+        '''
+        vbox = self.ui.prefAdvVBox
+        self._add_option_checkbutton(vbox, 'debug', _('Debug Mode'))
+        vbox.show_all()
+
+    def setup_yum(self):
+        '''
+        setup the yum releated options
+        '''
+        vbox = self.ui.prefYumVBox
+        self._add_option_checkbutton(vbox, 'plugins', _('Enable Yum Plugins'))
+        vbox.show_all()
+    
+    def _add_option_checkbutton(self,vbox,id,text):
+        '''
+        Add an CheckButton option
+        @param vbox: the option page VBox widget
+        @param id: the settings id (to read to setting value from)
+        @param text: the option description text
+        '''
+        opt = PrefCheckbutton(text)
+        vbox.pack_start(opt ,expand=False)
+        self._options[id] = opt
+        opt.set_value(getattr(self.settings,id))
+
+    def _refresh(self):
+        for id in self._options:
+            opt = self._options[id]
+            opt.set_value(getattr(self.settings,id))
+
+                
+    def run(self):
+        '''
+        run the dialog
+        '''
+        self._refresh()
+        self.dialog.show_all()
+        rc = self.dialog.run()
+        if rc == 1: # OK, save the options
+            for id in self._options:
+                opt = self._options[id]
+                setattr(self.settings,id,opt.get_value())
+            self.cfg.save()
+            self.cfg.reload()
+            self.cfg.dump()
+        self.destroy()
+            
+    def destroy(self):
+        '''
+        hide the dialog
+        '''
+        self.dialog.hide()
+   
+
 class TransactionConfirmation:
     '''
     The Transaction Confirmation dialog, to validate the result of the current transaction result

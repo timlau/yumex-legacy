@@ -30,7 +30,8 @@ import pango
 from datetime import date
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
-from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, questionDialog
+from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
+                             questionDialog, Preferences
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView
 from yumexbase.constants import *
@@ -181,8 +182,10 @@ class YumexHandlers(Controller):
         '''
         Menu : Edit -> Preferences
         '''
-        okDialog(self.window, "This function has not been implemented yet")
+        #okDialog(self.window, "This function has not been implemented yet")
         self.debug("Edit -> Preferences")
+        self.preferences.run()
+        self.preferences.destroy()
 
     def on_proNew_activate(self, widget=None, event=None):
         '''
@@ -437,7 +440,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     
     @property
     def settings(self):
+        '''
+        easy access property for current settings
+        '''
         return self.cfg.settings
+
     
     def run(self):
         '''
@@ -506,6 +513,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.notebook.add_page("output", "Output", self.ui.outputMain, icon=ICON_OUTPUT)
         self.ui.groupView.hide()
         self.notebook.set_active("output")
+        # Preferences
+        self.preferences = Preferences(self.ui,self.window,self.cfg)
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
         # setup package and package info view
