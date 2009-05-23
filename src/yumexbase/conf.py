@@ -50,7 +50,7 @@ class YumexOptions:
     def __init__(self):
         self.logger = logging.getLogger('yumex.YumexOptions')
         self.conf_settings = self.get_yumex_config()
-        self.settings = self.conf_settings
+        self.settings = self.get_yumex_config()
         self._optparser = OptionParser()
         (self.cmd_options, self.cmd_args) = self.setupParser()
         self.update_settings()
@@ -119,7 +119,6 @@ class YumexOptions:
              setattr( self.settings, option,cmdopt)
         
     def save(self, configfile='/etc/yumex.conf'):
-        print self.conf_settings.cfg.sections()
         fn = open(configfile,"w")
         self.conf_settings.write(fn)
         fn.close()

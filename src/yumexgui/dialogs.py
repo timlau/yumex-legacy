@@ -344,30 +344,47 @@ class PrefBoolean(gtk.HBox):
         gtk.HBox.__init__(self)
         # Setup CheckButton
         self._checkbutton = gtk.CheckButton(text)
-        self.pack_start(self._checkbutton, expand=False)
+        self._checkbutton.get_children()[0].modify_font(SMALL_FONT)
+        self._checkbutton.set_alignment(0.0, 0.5)
+        #self._checkbutton.set_padding(5, 0)
+        self.pack_start(self._checkbutton, expand=False, padding=5)
         self.show_all()
     
     def get_value(self):
         return self._checkbutton.get_active()
 
     def set_value(self,state):
-        return self._checkbutton.set_active(state)
+        self._checkbutton.set_active(state)
 
 class PrefInt(gtk.HBox):
-    def __init__(self,text):
+    def __init__(self,text,width=10):
         gtk.HBox.__init__(self)
-        # Setup CheckButton
         self._label = gtk.Label(text)
+        self._label.modify_font(SMALL_FONT)
+        self._label.set_alignment(0.0, 0.5)
+        self._label.set_padding(5, 0)
         self._entry = gtk.Entry()
-        self.pack_start(self._label, expand=False)
-        self.pack_end(self._entry, expand=False)
+        self._entry.modify_font(SMALL_FONT)
+        self._entry.set_width_chars(width)
+        self.pack_start(self._label, expand=False, padding=5)
+        self.pack_end(self._entry, expand=False, padding=5)
         self.show_all()
     
     def get_value(self):
         return int(self._entry.get_text())
 
     def set_value(self,value):
-        return self._entry.set_text(str(value))
+        self._entry.set_text(str(value))
+
+class PrefStr(PrefInt):
+    def __init__(self,text,width=40):
+        PrefInt.__init__(self,text,width)
+    
+    def get_value(self):
+        return self._entry.get_text()
+
+    def set_value(self,text):
+        self._entry.set_text(text)
 
 class Preferences:
 
@@ -404,6 +421,9 @@ class Preferences:
         '''
         vbox = self.ui.prefAdvVBox
         self._add_option(PrefBoolean, vbox, 'debug', _('Debug Mode'))
+        self._add_option(PrefStr, vbox, 'color_install', _('Color (Installed)'))       
+        self._add_option(PrefStr, vbox, 'color_update', _('Color (Update)'))       
+        self._add_option(PrefStr, vbox, 'color_normal', _('Color (Available)'))       
         vbox.show_all()
 
     def setup_yum(self):
@@ -412,7 +432,8 @@ class Preferences:
         '''
         vbox = self.ui.prefYumVBox
         self._add_option(PrefBoolean, vbox, 'plugins', _('Enable Yum Plugins'))
-        self._add_option(PrefInf, vbox, 'yumloglevel', _('Yum Log Level'))
+        self._add_option(PrefStr, vbox, 'proxy', _('Proxy'))       
+        self._add_option(PrefInt, vbox, 'yumdebuglevel', _('Yum Debug Level'))
         vbox.show_all()
     
     def _add_option(self,obj,vbox,id,text):
@@ -423,7 +444,7 @@ class Preferences:
         @param text: the option description text
         '''
         opt = obj(text)
-        vbox.pack_start(opt ,expand=False)
+        vbox.pack_start(opt ,expand=False, padding=5)
         self._options[id] = opt
         opt.set_value(getattr(self.settings,id))
 
@@ -446,7 +467,6 @@ class Preferences:
                 setattr(self.settings,id,opt.get_value())
             self.cfg.save()
             self.cfg.reload()
-            self.cfg.dump()
         self.destroy()
             
     def destroy(self):
