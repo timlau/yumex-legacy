@@ -207,16 +207,22 @@ class YumClient:
         """
         raise NotImplementedError()
 
-    def setup(self, debuglevel = 2, plugins = True, filelog = False, repos = None):
+    def setup(self, debuglevel = 2, plugins = True, filelog = False, repos = None, proxy = None):
         ''' Setup the client and spawn the server'''
         if not self.child:
-            if repos:
+            prefix = ""
+            args = []
+            args.append(str(debuglevel)) # debuglevel
+            args.append(str(plugins))    # plugins 
+            if repos:                    # enabled repos
                 repo_str = ";".join(repos)
-                self.child = pexpect.spawn(MAIN_PATH + '/yum_childtask.py %i %s %s' % 
-                                           (debuglevel, plugins, repo_str), timeout = self._timeout_value)
-            else:    
-                self.child = pexpect.spawn(MAIN_PATH + '/yum_childtask.py %i %s' %  
-                                          (debuglevel, plugins), timeout = self._timeout_value)
+                args.append(repo_str)
+#            if proxy:
+#                prefix="HTTP_PROXY=%s " % proxy
+#                self.info("Setting : %s" % prefix)
+            cmd =  MAIN_PATH + '/yum_childtask.py'
+            print cmd
+            self.child = pexpect.spawn(cmd,args, timeout = self._timeout_value)
             self.child.setecho(False)
             if filelog:
                 self.child.logfile_read = sys.stdout

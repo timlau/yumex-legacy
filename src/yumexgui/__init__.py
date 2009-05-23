@@ -457,7 +457,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             gtk.main()
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
-            
+
     def handle_error(self, err, msg):        
         '''
         Error message handler
