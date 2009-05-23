@@ -339,7 +339,7 @@ class Progress(YumexProgressBase):
         self.progressbar.set_fraction(0.0)
         self.progressbar.set_text("")
             
-class PrefCheckbutton(gtk.HBox):
+class PrefBoolean(gtk.HBox):
     def __init__(self,text):
         gtk.HBox.__init__(self)
         # Setup CheckButton
@@ -352,6 +352,22 @@ class PrefCheckbutton(gtk.HBox):
 
     def set_value(self,state):
         return self._checkbutton.set_active(state)
+
+class PrefInt(gtk.HBox):
+    def __init__(self,text):
+        gtk.HBox.__init__(self)
+        # Setup CheckButton
+        self._label = gtk.Label(text)
+        self._entry = gtk.Entry()
+        self.pack_start(self._label, expand=False)
+        self.pack_end(self._entry, expand=False)
+        self.show_all()
+    
+    def get_value(self):
+        return int(self._entry.get_text())
+
+    def set_value(self,value):
+        return self._entry.set_text(str(value))
 
 class Preferences:
 
@@ -379,7 +395,7 @@ class Preferences:
         setup the basic options
         '''
         vbox = self.ui.prefBasicVBox
-        self._add_option_checkbutton(vbox, 'autorefresh', _('Load packages on launch'))       
+        self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))       
         vbox.show_all()
 
     def setup_advanced(self):
@@ -387,7 +403,7 @@ class Preferences:
         setup the advanced options
         '''
         vbox = self.ui.prefAdvVBox
-        self._add_option_checkbutton(vbox, 'debug', _('Debug Mode'))
+        self._add_option(PrefBoolean, vbox, 'debug', _('Debug Mode'))
         vbox.show_all()
 
     def setup_yum(self):
@@ -395,17 +411,18 @@ class Preferences:
         setup the yum releated options
         '''
         vbox = self.ui.prefYumVBox
-        self._add_option_checkbutton(vbox, 'plugins', _('Enable Yum Plugins'))
+        self._add_option(PrefBoolean, vbox, 'plugins', _('Enable Yum Plugins'))
+        self._add_option(PrefInf, vbox, 'yumloglevel', _('Yum Log Level'))
         vbox.show_all()
     
-    def _add_option_checkbutton(self,vbox,id,text):
+    def _add_option(self,obj,vbox,id,text):
         '''
-        Add an CheckButton option
+        Add an boolean option (CheckButton)
         @param vbox: the option page VBox widget
         @param id: the settings id (to read to setting value from)
         @param text: the option description text
         '''
-        opt = PrefCheckbutton(text)
+        opt = obj(text)
         vbox.pack_start(opt ,expand=False)
         self._options[id] = opt
         opt.set_value(getattr(self.settings,id))
