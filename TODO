@@ -1,6 +1,5 @@
 TODO:
 	RFE: Add Repo profile functionality
-	RFE: Add Preferences dialog and functionality
   	RFE: Add Test cases (partly done)
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
@@ -34,7 +33,9 @@ Fixed / implemented:
   	. RFE: Add an option file and code to handle it
 	. BUG: No repos when using --noauto
 	. Added Option Menu with 'No GPG Check' option
+	. Added 'Skip Broken' option to option menu
 	. Make the exception handling more solid and show exception in a dialog
 	. BUG: Processing an empty queue
+	. RFE: Add Preferences dialog and functionality
 
 ( * = Released, . = Upstream )	
