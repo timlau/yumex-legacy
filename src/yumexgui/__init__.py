@@ -223,6 +223,9 @@ class YumexHandlers(Controller):
     def on_option_nogpgcheck_toggled(self, widget=None, event=None):
         self.backend.set_option('gpgcheck',not widget.get_active(),on_repos=True)
         
+    def on_option_skipbroken_toggled(self, widget=None, event=None):
+        self.backend.set_option('skip_broken', widget.get_active())
+
 
     def on_viewPackages_activate(self, widget=None, event=None):
         '''

@@ -153,6 +153,15 @@
                   <object class="GtkMenu" id="menu2">
                     <property name="visible">True</property>
                     <child>
+                      <object class="GtkCheckMenuItem" id="option_skipbroken">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Skip packages there get depsolve errors</property>
+                        <property name="label" translatable="yes">Skip Broken</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_option_skipbroken_toggled"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkCheckMenuItem" id="option_nogpgcheck">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">Dont  check signatures for packages</property>
