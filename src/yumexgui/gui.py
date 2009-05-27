@@ -135,6 +135,7 @@ class PackageCache:
         if str(po) in target:
             return(target[str(po)])
         else:   
+            print 'not found in cache : [%s] [%s] ' % (po, po.action)
             return YumexPackageYum(po)
     
 

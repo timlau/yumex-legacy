@@ -67,15 +67,20 @@ class YumPackage:
         self.action = unpack(args[7])
         self.size = args[8]
         self.recent = args[9]
-        
+
     def __str__(self):
         '''
-        
+        string representation of the package object
         '''
-        if self.epoch == '0':
-            return '%s-%s-%s.%s' % (self.name, self.ver, self.rel, self.arch)
-        else:
-            return '%s:%s-%s-%s.%s' % (self.epoch, self.name, self.ver, self.rel, self.arch)
+        return self.fullname
+        
+    @property
+    def fullname(self):
+        ''' Package fullname  '''        
+        if self.epoch and self.epoch <> '0':
+            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
+        else:   
+            return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
     @property        
     def id(self):        
