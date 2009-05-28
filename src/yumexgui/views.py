@@ -779,10 +779,16 @@ class YumexGroupView:
 
     def reset_queued(self):
         '''
-        
+        Reset the selection of all queued groups
+        used to undo the selection
         '''
-        for elem in self.model:
-            elem[3] = False    
+        for row in self.model: # Loop trough the categories
+            children = row.iterchildren() # get the children
+            if children: # is there any children
+                for elem in children: # loop trough the groups
+                    if elem[3] == True: # if in queue
+                        elem[3] = False
+                        elem[0] = not elem[0] # invert the section
         
     def populate(self, data):
         '''

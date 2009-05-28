@@ -314,6 +314,7 @@ class YumexHandlers(Controller):
         self.queue.queue.remove_all_groups()
         self.groups.reset_queued()
         
+        
     def on_packageFilter_changed(self, widget, active):
         '''
         Package filter radiobuttons
