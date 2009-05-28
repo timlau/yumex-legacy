@@ -257,15 +257,16 @@ class YumexHandlers(Controller):
         '''
         Enter pressed in the search field
         '''
-        busyCursor(self.window)
-        self.packageInfo.clear()
-        filters = ['name', 'summary']
-        keys = self.ui.packageSearch.get_text().split(' ')
-        pkgs = self.backend.search(keys, filters)
-        self.ui.packageFilterBox.hide()
-        self._last_filter.set_active(True)            
-        self.packages.add_packages(pkgs)
-        normalCursor(self.window)
+        if self._packages_loaded:
+            busyCursor(self.window)
+            self.packageInfo.clear()
+            filters = ['name', 'summary']
+            keys = self.ui.packageSearch.get_text().split(' ')
+            pkgs = self.backend.search(keys, filters)
+            self.ui.packageFilterBox.hide()
+            self._last_filter.set_active(True)            
+            self.packages.add_packages(pkgs)
+            normalCursor(self.window)
 
     def on_packageSearch_icon_press(self, widget, icon_pos, event):
         '''
@@ -336,13 +337,14 @@ class YumexHandlers(Controller):
                     width, height = self.window.get_size()
                     self.window.resize(width - 150, height)
                     self._resized = False
-                busyCursor(self.window)
-                self.backend.setup()
-                pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
-                action = ACTIONS[active]
-                self.packages.add_packages(pkgs, progress=self.progress)
-                normalCursor(self.window)
-                self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+                if self._packages_loaded: # Only refresh packages if they are loaded
+                    busyCursor(self.window)
+                    self.backend.setup()
+                    pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
+                    action = ACTIONS[active]
+                    self.packages.add_packages(pkgs, progress=self.progress)
+                    normalCursor(self.window)
+                    self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
             else: # Groups
                 if not self._resized:
                     width, height = self.window.get_size()
@@ -441,6 +443,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
         self.package_cache = PackageCache(self.backend)
+        self._packages_loaded = False
     
     @property
     def settings(self):
@@ -610,7 +613,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.debug("Getting package lists - END")
         progress.set_pulse(False)
         progress.hide()
-        
+        self._packages_loaded = True
+
     def process_queue(self):
         '''
         Process the pending actions in the queue
