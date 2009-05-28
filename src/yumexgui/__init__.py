@@ -513,11 +513,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
         # Setup main page notebook
         self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent)
-        self.notebook.add_page("package", "Packages", self.ui.packageMain, icon=ICON_PACKAGES)
-        self.notebook.add_page("queue", "Pending Action Queue", self.ui.queueMain, icon=ICON_QUEUE)
+        self.notebook.add_page("package", "Packages", self.ui.packageMain, 
+                                icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"))
+        self.notebook.add_page("queue", "Pending Actions", self.ui.queueMain, 
+                               icon=ICON_QUEUE, tooltip=_("Work with pending actions"))
         if not self.settings.disable_repo_page:
-            self.notebook.add_page("repo", "Repositories", self.ui.repoMain, icon=ICON_REPOS)
-        self.notebook.add_page("output", "Output", self.ui.outputMain, icon=ICON_OUTPUT)
+            self.notebook.add_page("repo", "Repositories", self.ui.repoMain, 
+                                   icon=ICON_REPOS, tooltip=_("Select active repositories"))
+        self.notebook.add_page("output", "Output", self.ui.outputMain, 
+                               icon=ICON_OUTPUT, tooltip=_("Watch output details"))
         self.ui.groupView.hide()
         self.notebook.set_active("output")
         # Preferences

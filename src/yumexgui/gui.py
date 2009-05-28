@@ -423,7 +423,7 @@ class Notebook:
         container.show()
         self.notebook.append_page(container)
         # Add selector button
-        self.selector.add_button(key, icon, tooltip)
+        self.selector.add_button(key, icon=icon, tooltip=tooltip)
         
     def set_active(self, key):
         '''
