@@ -444,6 +444,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
         self.package_cache = PackageCache(self.backend)
         self._packages_loaded = False
+        self._key_bindings = gtk.AccelGroup()
     
     @property
     def settings(self):
@@ -489,6 +490,17 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         dialog.destroy()
         self.main_quit()
                     
+    def _add_key_to_menu(self, widget, key, mask=gtk.gdk.CONTROL_MASK):
+        widget.add_accelerator("activate", self._key_bindings,
+                               ord(key), gtk.gdk.CONTROL_MASK, 0)
+
+    def add_keybindings(self):
+        self.window.add_accel_group(self._key_bindings)
+        self._add_key_to_menu(self.ui.viewPackages,'1')
+        self._add_key_to_menu(self.ui.viewQueue,'2')
+        self._add_key_to_menu(self.ui.viewRepo,'3')
+        self._add_key_to_menu(self.ui.viewOutput,'4')
+        
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
 
@@ -498,6 +510,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         # setup
         self.window.set_title(self.settings.branding_title)
+        
+        # Setup keyboard shortcuts
+        self.add_keybindings()
         
         #Setup About dialog
         #gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler, don't want to start firefox as root :)

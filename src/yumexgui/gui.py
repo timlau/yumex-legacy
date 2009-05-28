@@ -167,7 +167,7 @@ class PageHeader(gtk.HBox):
 class SelectorBase:
     ''' Button selector base '''
     
-    def __init__(self, content):
+    def __init__(self, content, key_bindings=None):
         '''
         Setup the selector
         @param content: a gtk.VBox widget to contain the selector buttons
@@ -177,9 +177,9 @@ class SelectorBase:
         self._first = None
         self._selected = None
         self.tooltip = gtk.Tooltips()
+        self.key_bindings = key_bindings
         
-        
-    def add_button(self, key, icon=None, stock=None, tooltip=None):
+    def add_button(self, key, icon=None, stock=None, tooltip=None, accel=None):
         ''' Add a new selector button '''
         if len(self._buttons) == 0:
             button = gtk.RadioButton(None)
@@ -187,6 +187,9 @@ class SelectorBase:
         else:
             button = gtk.RadioButton(self._first)
         button.connect("clicked", self.on_button_clicked, key)
+        if accel:
+            keyval,mask = gtk.accelerator_parse(accel)
+            button.add_accelerator("clicked", self.key_bindings, keyval, mask, 0)
     
         button.set_relief(gtk.RELIEF_NONE)
         button.set_mode(False)
@@ -236,14 +239,17 @@ class PackageInfo(SelectorBase):
         @param frontend: the frontend instance
         @param font_size: the fontsize in the console
         '''
-        SelectorBase.__init__(self, selector)
+        SelectorBase.__init__(self, selector, key_bindings = frontend._key_bindings)
         self.widget = console
         self.console = PackageInfoTextView(console, font_size=font_size)
         self.main_window = main
         self.frontend = frontend
-        self.add_button('description', stock='gtk-about', tooltip='Package Description')
-        self.add_button('changelog', stock='gtk-edit', tooltip='Package Changelog')
-        self.add_button('filelist', stock='gtk-harddisk', tooltip='Package Filelist')
+        self.add_button('description', stock='gtk-about', 
+                        tooltip='Package Description', accel = '<Alt>1')
+        self.add_button('changelog', stock='gtk-edit', 
+                        tooltip='Package Changelog', accel = '<Alt>2')
+        self.add_button('filelist', stock='gtk-harddisk', 
+                        tooltip='Package Filelist', accel = '<Alt>3')
         self.pkg = None
         self._selected = 'description'
         self._is_update = False

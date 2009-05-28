@@ -71,7 +71,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <property name="accel_group">accelgroup1</property>
+                        <accelerator key="1" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewPackages_activate"/>
                       </object>
                     </child>
@@ -81,7 +81,7 @@
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <property name="accel_group">accelgroup1</property>
+                        <accelerator key="2" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewQueue_activate"/>
                       </object>
                     </child>
@@ -92,6 +92,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
+                        <accelerator key="3" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewRepo_activate"/>
                       </object>
                     </child>
@@ -102,6 +103,7 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="accel_group">accelgroup1</property>
+                        <accelerator key="4" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewOutput_activate"/>
                       </object>
                     </child>
