@@ -630,7 +630,7 @@ words.
                     </child>
                     <child>
                       <object class="GtkButton" id="packageExecute">
-                        <property name="label" translatable="yes">gtk-execute</property>
+                        <property name="label" translatable="yes">gtk-apply</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -758,7 +758,7 @@ words.
             </child>
             <child>
               <object class="GtkButton" id="queueExecute">
-                <property name="label" translatable="yes">gtk-execute</property>
+                <property name="label" translatable="yes">gtk-apply</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
