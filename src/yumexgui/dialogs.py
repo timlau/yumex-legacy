@@ -532,14 +532,14 @@ class TransactionConfirmation:
         model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                               gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
         view.set_model(model)
-        self.create_text_column(_("Name"), view, 0)
+        self.create_text_column(_("Name"), view, 0, size = 250)
         self.create_text_column(_("Arch"), view, 1)
         self.create_text_column(_("Ver"), view, 2)
         self.create_text_column(_("Repository"), view, 3)
         self.create_text_column(_("Size"), view, 4)
         return model
 
-    def create_text_column(self, hdr, view, colno, min_width=0):
+    def create_text_column(self, hdr, view, colno, size=None):
         '''
         Create at TreeViewColumn 
         @param hdr: column header text
@@ -550,8 +550,9 @@ class TransactionConfirmation:
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn(hdr, cell, markup=colno)
         column.set_resizable(True)
-        if not min_width == 0:
-            column.set_min_width(min_width)
+        if size:
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_fixed_width(size)
         view.append_column(column)        
              
              

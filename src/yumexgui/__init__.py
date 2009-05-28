@@ -691,6 +691,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.queue.queue.clear()                # clear the pending action queue
         self.queue.refresh()                    # clear the pending action queue
         self.populate_package_cache(repos=repos)           # repopulate the package cache
+        self.setup_groups()
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
         self.ui.packageFilterBox.show()         # Show the filter selector
