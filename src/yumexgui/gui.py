@@ -245,11 +245,11 @@ class PackageInfo(SelectorBase):
         self.main_window = main
         self.frontend = frontend
         self.add_button('description', stock='gtk-about', 
-                        tooltip='Package Description', accel = '<Alt>1')
+                        tooltip=_('Package Description'), accel = '<Shift>d')
         self.add_button('changelog', stock='gtk-edit', 
-                        tooltip='Package Changelog', accel = '<Alt>2')
+                        tooltip=_('Package Changelog'), accel = '<Shift>c')
         self.add_button('filelist', stock='gtk-harddisk', 
-                        tooltip='Package Filelist', accel = '<Alt>3')
+                        tooltip=_('Package Filelist'), accel = '<Shift>f')
         self.pkg = None
         self._selected = 'description'
         self._is_update = False
@@ -385,9 +385,9 @@ class PackageInfo(SelectorBase):
 class PageSelector(SelectorBase):
     ''' Button notebook selector '''
     
-    def __init__(self, content, notebook):
+    def __init__(self, content, notebook, key_bindings=None):
         ''' setup the selector '''
-        SelectorBase.__init__(self, content)
+        SelectorBase.__init__(self, content, key_bindings)
         self.notebook = notebook
     def on_button_clicked(self, widget=None, key=None):
         ''' button clicked callback handler'''
@@ -398,13 +398,13 @@ class PageSelector(SelectorBase):
 class Notebook:
     ''' Notebook with button selector '''
     
-    def __init__(self, notebook, selector):
+    def __init__(self, notebook, selector, key_bindings=None):
         ''' setup the notebook and the selector '''
         self.notebook = notebook
-        self.selector = PageSelector(selector, self)
+        self.selector = PageSelector(selector, self, key_bindings)
         self._pages = {}
 
-    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True):
+    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True, accel=None ):
         ''' 
         Add a new page and selector button to notebook
         @param key: the page key (name) used by reference the page
@@ -429,7 +429,7 @@ class Notebook:
         container.show()
         self.notebook.append_page(container)
         # Add selector button
-        self.selector.add_button(key, icon=icon, tooltip=tooltip)
+        self.selector.add_button(key, icon=icon, tooltip=tooltip, accel=accel)
         
     def set_active(self, key):
         '''

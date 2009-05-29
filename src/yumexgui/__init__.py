@@ -510,9 +510,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         # setup
         self.window.set_title(self.settings.branding_title)
+        self.window.add_accel_group(self._key_bindings)
         
-        # Setup keyboard shortcuts
-        self.add_keybindings()
         
         #Setup About dialog
         #gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler, don't want to start firefox as root :)
@@ -527,16 +526,20 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # Setup Output console
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
         # Setup main page notebook
-        self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent)
+        self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent, self._key_bindings)
         self.notebook.add_page("package", "Packages", self.ui.packageMain, 
-                                icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"))
+                                icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"),
+                                accel = '<Ctrl>1')
         self.notebook.add_page("queue", "Pending Actions", self.ui.queueMain, 
-                               icon=ICON_QUEUE, tooltip=_("Work with pending actions"))
+                               icon=ICON_QUEUE, tooltip=_("Work with pending actions"),
+                                accel = '<Ctrl>2')
         if not self.settings.disable_repo_page:
             self.notebook.add_page("repo", "Repositories", self.ui.repoMain, 
-                                   icon=ICON_REPOS, tooltip=_("Select active repositories"))
+                                   icon=ICON_REPOS, tooltip=_("Select active repositories"),
+                                accel = '<Ctrl>3')
         self.notebook.add_page("output", "Output", self.ui.outputMain, 
-                               icon=ICON_OUTPUT, tooltip=_("Watch output details"))
+                               icon=ICON_OUTPUT, tooltip=_("Watch output details"),
+                                accel = '<Ctrl>4')
         self.ui.groupView.hide()
         self.notebook.set_active("output")
         # Preferences

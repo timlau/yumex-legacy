@@ -442,7 +442,7 @@ words.
                     <property name="layout_style">start</property>
                     <child>
                       <object class="GtkRadioButton" id="packageRadioUpdates">
-                        <property name="label" translatable="yes">_Updates</property>
+                        <property name="label" translatable="yes">U_pdates</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -460,7 +460,7 @@ words.
                     </child>
                     <child>
                       <object class="GtkRadioButton" id="packageRadioAvailable">
-                        <property name="label" translatable="yes">_Available</property>
+                        <property name="label" translatable="yes">Availa_ble</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
