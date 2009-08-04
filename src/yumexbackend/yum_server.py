@@ -114,6 +114,7 @@ class YumServer(yum.YumBase):
         :group <grp>           : group
         :repo <repo>           : repo
         :msg <type> <value>
+        :media-change <media info> 
         
         Parameters:
         <message>  : a text message ('\n' is replaced with ';'
@@ -292,6 +293,13 @@ class YumServer(yum.YumBase):
         value = (str(po), userid, hexkeyid)
         value = pack(value)
         self.write(":gpg-check\t%s" % (value))
+
+    def media_change(self, media_name, media_num):
+        ''' write an media change message '''
+        value = (media_name, media_num)
+        value = pack(value)
+        self.write(":media-change\t%s" % (value))
+
 
     def message(self, msg_type, value):
         '''
@@ -530,6 +538,17 @@ class YumServer(yum.YumBase):
         This need to be overloaded in a subclass to make GPG Key import work
         '''
         self.gpg_check(po, userid, hexkeyid)
+        line = sys.stdin.readline().strip('\n')
+        if line == ':true':
+            return True
+        else:
+            return False
+
+    def _ask_for_media_change(self, media_name, media_num=None):
+        ''' 
+        Ask for media change 
+        '''
+        self.media_change(media_name, media_num)
         line = sys.stdin.readline().strip('\n')
         if line == ':true':
             return True

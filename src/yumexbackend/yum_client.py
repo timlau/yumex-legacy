@@ -181,6 +181,19 @@ class YumClient:
         """  Confirm GPG key (overload in child class) """
         return False
     
+    def _media_change(self, value):
+        """ media change signal """
+        (media_name,media_num) = unpack(value)
+        ok = self.media_change(media_name,media_num)
+        if ok:
+            self.child.sendline(":true")
+        else:
+            self.child.sendline(":false")
+            
+    def media_change(self, media_name,media_num):
+        """  media change (overload in child class) """
+        return False
+
     def fatal(self, args):
         """ fatal backend error """
         err = args[0]
@@ -341,6 +354,8 @@ class YumClient:
             self.fatal(args)
         elif cmd == ':gpg-check':
             self._gpg_check(args[0])
+        elif cmd == ':media-change':
+            self._media_change(args[0])
         elif cmd == ':yum-rpm': # yum rpm action progress
             self._yum_rpm(args[0])
         elif cmd == ':yum-dnl': # yum dnl progress

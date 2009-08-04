@@ -156,10 +156,18 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.tasks.next()
 
     def gpg_check(self, po, userid, hexkeyid):
-        """  Confirm GPG key (overload in child class) """
+        """  Confirm GPG key  """
         msg = _('Do you want to import GPG Key : %s \n') % hexkeyid 
         msg += "  %s \n" % userid
         msg += _("Needed by %s") % str(po)
+        return questionDialog(self.frontend.window, msg)
+
+    def media_change(self, media_name, media_num):
+        """  Confirm Media Change  """
+        if media_num:
+            msg = _("Please insert media labeled %s #%d.") %(media_name,media_num)
+        else:
+            msg = _("Please insert media labeled %s.") %(name,)
         return questionDialog(self.frontend.window, msg)
                 
     def timeout(self, count):
