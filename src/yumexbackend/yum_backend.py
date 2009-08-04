@@ -28,7 +28,7 @@ from urlgrabber.progress import format_number
 
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
-from yumexgui.dialogs import ErrorDialog, questionDialog
+from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -168,7 +168,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             msg = _("Please insert media labeled %s #%d.") %(media_name,media_num)
         else:
             msg = _("Please insert media labeled %s.") %(name,)
-        return questionDialog(self.frontend.window, msg)
+        return okCancelDialog(self.frontend.window, msg)
                 
     def timeout(self, count):
         """ 

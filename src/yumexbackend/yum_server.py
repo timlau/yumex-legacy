@@ -357,7 +357,6 @@ class YumServer(yum.YumBase):
         get list of packages and send results 
         @param narrow:
         '''
-        
         if narrow:
             action = const.FILTER_ACTIONS[narrow]
             ygh = self.doPackageLists(pkgnarrow = narrow)

@@ -668,6 +668,23 @@ def questionDialog(parent, msg):
         return True
     else:
         return False
+
+def okCancelDialog(parent, msg):
+    '''
+    Open a Ok/Cancel message dialog
+    @param parent: parent window widget
+    @param msg: dialog message
+    '''
+    dlg = gtk.MessageDialog(parent=parent,
+                            type=gtk.MESSAGE_QUESTION,
+                            buttons=gtk.BUTTONS_OK_CANCEL)
+    dlg.set_markup(cleanMarkupSting(msg))
+    rc = dlg.run()
+    dlg.destroy()
+    if rc == gtk.RESPONSE_OK:
+        return True
+    else:
+        return False
     
 def cleanMarkupSting(msg):
     '''
