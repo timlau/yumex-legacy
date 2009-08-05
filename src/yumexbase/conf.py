@@ -20,10 +20,13 @@
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
+import os
+import shutil
 from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
 from yum.config import *
+#from yumexbase.constants import *
 
 from optparse import OptionParser
 from iniparse.compat import ConfigParser,SafeConfigParser
@@ -58,9 +61,12 @@ class YumexOptions:
     def get_cmd_options(self):    
         return (self.cmd_options, self.cmd_args)
 
-    def get_yumex_config(self,configfile='/etc/yumex.conf', sec='yumex' ):
+    def get_yumex_config(self,configfile='.yumex.conf', sec='yumex' ):
         conf = YumexConf()
         parser = ConfigParser()    
+        configfile=os.environ['HOME']+"/"+configfile
+        if not os.path.exists(configfile):
+            shutil.copyfile('/etc/yumex.conf', configfile)
         parser.read( configfile )
         if not parser.has_section('yumex'):
             parser.add_section('yumex')
@@ -118,7 +124,8 @@ class YumexOptions:
         if cmdopt != default:
              setattr( self.settings, option,cmdopt)
         
-    def save(self, configfile='/etc/yumex.conf'):
+    def save(self, configfile='.yumex.conf'):
+        configfile=os.environ['HOME']+"/"+configfile
         fn = open(configfile,"w")
         self.conf_settings.write(fn)
         fn.close()

@@ -649,7 +649,7 @@ def okDialog(parent, msg):
                             type=gtk.MESSAGE_INFO,
                             buttons=gtk.BUTTONS_OK)
     dlg.set_markup(cleanMarkupSting(msg))
-    rc = dlg.run()
+    dlg.run()
     dlg.destroy()
 
 def questionDialog(parent, msg):

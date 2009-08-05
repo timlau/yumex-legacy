@@ -26,16 +26,16 @@ install:
 	mkdir -p $(DESTDIR)/etc/pam.d
 	mkdir -p $(DESTDIR)/etc/security/console.apps
 	install -m644 COPYING $(DESTDIR)/usr/share/yumex/.
-	install -m755 $(MISCDIR)/yumex $(DESTDIR)/usr/share/yumex/.
+	install -m755 $(MISCDIR)/yumex $(DESTDIR)/usr/bin/yumex
+	install -m755 $(MISCDIR)/yumex-yum-backend $(DESTDIR)/usr/share/yumex/.
 	install -m644 $(PIXDIR)/*.png $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.
-	install -m644 $(MISCDIR)/yumex.pam $(DESTDIR)/etc/pam.d/yumex
-	install -m600 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
-	install -m644 $(MISCDIR)/yumex.pam $(DESTDIR)/etc/pam.d/yumex
-	install -m644 $(MISCDIR)/yumex.console.app $(DESTDIR)/etc/security/console.apps/yumex
-	ln -s consolehelper $(DESTDIR)/usr/bin/yumex
-	chmod +x $(DESTDIR)/usr/share/yumex/yumex
+	install -m644 $(MISCDIR)/yumex-yum-backend.pam $(DESTDIR)/etc/pam.d/yumex-yum-backend
+	install -m644 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
+	install -m644 $(MISCDIR)/yumex-yum-backend.console.app $(DESTDIR)/etc/security/console.apps/yumex-yum-backend
+	ln -s consolehelper $(DESTDIR)/usr/bin/yumex-yum-backend
+	chmod +x $(DESTDIR)/usr/share/yumex/yumex-yum-backend
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 

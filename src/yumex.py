@@ -25,11 +25,17 @@ import traceback
 from yumexgui import YumexApplication
 from yumexgui.dialogs import ErrorDialog
 
+
 if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy':
     from yumexbackend.dummy_backend import YumexBackendDummy as backend 
 else:
     from yumexbackend.yum_backend import YumexBackendYum as backend 
 
+if os.getuid() == 0:
+    print "Don't run yumex as root"
+    sys.exit(1)
+
+print "running"
 debug = []
 if 'YUMEX_DBG' in os.environ:
     debug = os.environ['YUMEX_DBG'].lower().split(',')
@@ -48,6 +54,7 @@ except: # catch other exception and write it to the logger.
     try:
         app.exception(errmsg)
     except:
+        print errmsg
         pass
     sys.exit(1)
 sys.exit(0)

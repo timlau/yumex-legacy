@@ -186,6 +186,10 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: then mountpoint of the requested media
         '''
         # TODO: Insert some media detection code etc here
+        import gio
+        vm=gio.volume_monitor_get()
+        print vm
+        print filter(lambda d: d.is_media_removable(),vm.get_connected_drives())
         return "/media/%s" % media_name
                 
     def timeout(self, count):

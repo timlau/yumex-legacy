@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  2.9.0
-Release:  0.8.pre%{?dist}
+Release:  0.9.pre%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -60,19 +60,22 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING ChangeLog TODO
 %{_datadir}/pixmaps/yumex
 %{_datadir}/yumex
-%{_bindir}/yumex
+%{_bindir}/yumex*
 %{python_sitelib}/yumexbackend/
 %{python_sitelib}/yumexbase/
 %{python_sitelib}/yumexgui/
 %{python_sitelib}/guihelpers/
 %config(noreplace)  %{_sysconfdir}/yumex.profiles.conf
 %config(noreplace)  %{_sysconfdir}/yumex.conf
-%config(noreplace) %{_sysconfdir}/pam.d/yumex
-%config(noreplace) %{_sysconfdir}/security/console.apps/yumex
+%config(noreplace) %{_sysconfdir}/pam.d/yumex*
+%config(noreplace) %{_sysconfdir}/security/console.apps/yumex*
 
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Sun May 24 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.9.pre
+- bumped version to 2.9.0-0.9.pre
+- handle new yumex-yum-backend in %%files section 
 * Sun May 24 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.8.pre
 - bumped version to 2.9.0-0.8.pre
 * Wed May 20 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.7.pre
