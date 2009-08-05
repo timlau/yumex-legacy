@@ -163,12 +163,30 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return questionDialog(self.frontend.window, msg)
 
     def media_change(self, media_name, media_num):
-        """  Confirm Media Change  """
+        '''
+        Media change callback, triggered from the yum backend, when a media
+        change is needed.
+        @param media_name: The media name
+        @param media_num: The media discnum   
+        @return: then mountpoint of the requested media
+        '''
         if media_num:
             msg = _("Please insert media labeled %s #%d.") %(media_name,media_num)
         else:
             msg = _("Please insert media labeled %s.") %(name,)
-        return okCancelDialog(self.frontend.window, msg)
+        rc = okCancelDialog(self.frontend.window, msg)
+        if rc:
+            return self._get_mount_point(media_name, media_num)
+
+    def _get_mount_point(self, media_name, media_num):
+        '''
+        Get the mount point of a media
+        @param media_name: The media name
+        @param media_num: The media discnum   
+        @return: then mountpoint of the requested media
+        '''
+        # TODO: Insert some media detection code etc here
+        return "/media/%s" % media_name
                 
     def timeout(self, count):
         """ 

@@ -183,6 +183,20 @@ class YumServer(yum.YumBase):
                 time.sleep(10)
         msg = e.msg + "\n" + nmsg
         self.fatal("lock-error", msg)        
+        
+    def mediagrabber(self, *args, **kwargs):
+        '''
+        Media handler
+        '''
+        mediaid = kwargs["mediaid"]
+        discnum = kwargs["discnum"]
+        name = kwargs["name"]
+        mp = self._ask_for_media_change(name,discnum)
+        if mp: # We got the media mount point
+            # FIXME: Add the needed code here
+            pass
+        else:
+            self.error(_("The needed media was not found"))
 
     def get_process_info(self, pid):
         '''
@@ -547,12 +561,19 @@ class YumServer(yum.YumBase):
         ''' 
         Ask for media change 
         '''
+        if media_num:
+            self.debug("media : %s #%d is needed" % ( media_name, media_num))
+        else:
+            self.debug("media : %s is needed" % ( media_name,))
         self.media_change(media_name, media_num)
         line = sys.stdin.readline().strip('\n')
-        if line == ':true':
-            return True
+        if line.startswith(':mountpoint'):
+            mountpoint = unpack(line.split('\t')[1])
+            self.debug("media mount point : %s" % mountpoint)
+            return mountpoint
         else:
-            return False
+            self.debug("no media mount point returned")
+            return None
 
     def _failureReport( self, errobj ):
         """failure output for failovers from urlgrabber"""
