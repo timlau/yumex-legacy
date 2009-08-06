@@ -216,8 +216,8 @@ class YumexHandlers(Controller):
         @param widget:
         '''
         # dont need to do any thing
-        self.debug("About url")
-    
+        pass
+        
 # Options
 
     def on_option_nogpgcheck_toggled(self, widget=None, event=None):
@@ -514,7 +514,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         
         
         #Setup About dialog
-        #gtk.about_dialog_set_url_hook(self.on_About_url) # About url handler, don't want to start firefox as root :)
+        gtk.about_dialog_set_url_hook(self.on_About_url) 
         self.ui.About.set_version(const.__yumex_version__)
 
         # Calc font constants based on default font 

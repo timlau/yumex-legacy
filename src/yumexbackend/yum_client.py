@@ -228,11 +228,10 @@ class YumClient:
         if not self.child:
             prefix = ""
             args = []
-            self.info(MAIN_PATH)
             if MAIN_PATH == '/usr/share/yumex': # Non root
                 cmd = '/usr/bin/yumex-yum-backend'
             else:
-                self.info('Running backend with sudo (%s)' % MAIN_PATH + "/yum_childtask.py")
+                self.info('Running backend with sudo (%s)' % (MAIN_PATH + "/yum_childtask.py"))
                 cmd ='/usr/bin/sudo' 
                 args.append(MAIN_PATH + "/yum_childtask.py")
             args.append(str(debuglevel)) # debuglevel
