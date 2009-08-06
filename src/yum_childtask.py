@@ -23,6 +23,7 @@ The yum child task started by yumex in the background
 
 import sys
 import signal
+import os
 from yumexbackend.yum_server import YumServer
 import yum.misc
 
@@ -39,6 +40,9 @@ def sigquit(signum, frame):
 
 
 if __name__ == "__main__":
+    if os.getuid() != 0:
+        print "yum_childtask.py need to be running as root"
+        sys.exit(1)
     signal.signal(signal.SIGQUIT, sigquit)
     yum.misc.setup_locale() # setup the locales
     debuglevel = 2
