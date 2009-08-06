@@ -25,6 +25,9 @@ import pango
 import logging
 import types
 import sys
+from gettext import bind_textdomain_codeset
+
+
 
 class TextViewBase:
     '''  Encapsulate a gtk.TextView with support for adding and using pango styles'''
@@ -196,7 +199,9 @@ class UI(gtk.Builder):
         self.add_from_file(filename)
         self.root = self.get_object(rootname)
         if domain:
+            bind_textdomain_codeset(domain, "UTF-8")
             self.set_translation_domain(domain)
+            
 
     def __getattr__(self, name):
         """Look up an as-yet undefined attribute, assuming it's a widget."""
