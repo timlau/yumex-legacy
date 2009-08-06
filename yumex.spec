@@ -67,8 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/guihelpers/
 %config(noreplace)  %{_sysconfdir}/yumex.profiles.conf
 %config(noreplace)  %{_sysconfdir}/yumex.conf
-%config(replace) %{_sysconfdir}/pam.d/yumex-yum-backend
-%config(replace) %{_sysconfdir}/security/console.apps/-yum-backend
+%config %{_sysconfdir}/pam.d/yumex-yum-backend
+%config %{_sysconfdir}/security/console.apps/-yum-backend
 
 %{_datadir}/applications/fedora-%{name}.desktop
 
