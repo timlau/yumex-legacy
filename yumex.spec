@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace)  %{_sysconfdir}/yumex.profiles.conf
 %config(noreplace)  %{_sysconfdir}/yumex.conf
 %config %{_sysconfdir}/pam.d/yumex-yum-backend
-%config %{_sysconfdir}/security/console.apps/-yum-backend
+%config %{_sysconfdir}/security/console.apps/yumex-yum-backend
 
 %{_datadir}/applications/fedora-%{name}.desktop
 
