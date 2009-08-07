@@ -653,6 +653,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             progress.set_header(_("Preparing the transaction"))
             progress.show_tasks()
             progress.show()        
+            self.backend.transaction.reset()
             for action in ('install', 'update', 'remove'):
                 pkgs = queue.get(action[0])
                 for po in pkgs:

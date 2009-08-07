@@ -525,6 +525,12 @@ class YumClient:
         pkgs = self._get_list()
         return pkgs
 
+    def reset_transaction(self):        
+        '''
+        
+        '''
+        self._send_command('reset-transaction', [])
+
     def build_transaction(self):        
         '''
         

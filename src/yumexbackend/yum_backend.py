@@ -404,6 +404,13 @@ class YumexTransactionYum(YumexTransactionBase):
         '''
         self.backend.remove_transaction(po.id)
 
+    def reset(self):
+        '''
+        reset the transaction queue
+        '''
+        self.backend.reset_transaction()
+
+
     def has_item(self, po):
         '''
         check if a package is already in the queue

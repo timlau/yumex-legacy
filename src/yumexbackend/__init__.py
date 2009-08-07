@@ -255,6 +255,12 @@ class YumexTransactionBase:
         '''
         pass
 
+    def reset(self):
+        '''
+        reset the transaction queue
+        '''
+        pass
+
     def has_item(self, po):
         '''
         check if a package is already in the queue

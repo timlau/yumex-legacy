@@ -456,6 +456,13 @@ class YumServer(yum.YumBase):
         po = self._getPackage(pkgstr)
         self.tsInfo.remove(po)
 
+    def reset_transaction(self):
+        '''
+        reset tsInfo for a new run
+        '''
+        self._tsInfo = None
+        
+
     def list_transaction(self):
         '''
         
@@ -783,6 +790,8 @@ class YumServer(yum.YumBase):
             self.add_transaction(args)
         elif cmd == 'remove-transaction':
             self.remove_transaction(args)
+        elif cmd == 'reset-transaction':
+            self.reset_transaction()
         elif cmd == 'list-transaction':
             self.list_transaction()
         elif cmd == 'run-transaction':
