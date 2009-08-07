@@ -338,13 +338,13 @@ class YumexHandlers(Controller):
                     self.window.resize(width - 150, height)
                     self._resized = False
                 if self._packages_loaded: # Only refresh packages if they are loaded
+                    self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
                     busyCursor(self.window)
                     self.backend.setup()
                     pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
                     action = ACTIONS[active]
                     self.packages.add_packages(pkgs, progress=self.progress)
                     normalCursor(self.window)
-                    self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
             else: # Groups
                 if not self._resized:
                     width, height = self.window.get_size()
