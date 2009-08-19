@@ -38,7 +38,7 @@ class YumexConf( BaseConfig ):
     recentdays = IntOption( 14 )
     debug = BoolOption( False )
     plugins = BoolOption( True)
-    proxy = Option()
+    proxy = Option('')
     repo_exclude = ListOption(['debug','source'])
     yumdebuglevel = IntOption( 2 )
     color_install = Option( 'darkgreen' )
@@ -66,7 +66,9 @@ class YumexOptions:
         parser = ConfigParser()    
         configfile=os.environ['HOME']+"/"+configfile
         if not os.path.exists(configfile):
-            shutil.copyfile('/etc/yumex.conf', configfile)
+            # if /etc/yumex.conf exists and is readable the copy it to homedir
+            if os.path.exists('/etc/yumex.conf') and os.access("/etc/yumex.conf", os.R_OK):
+                shutil.copyfile('/etc/yumex.conf', configfile)
         parser.read( configfile )
         if not parser.has_section('yumex'):
             parser.add_section('yumex')
