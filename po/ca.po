@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-09-27 19:42+0100\n"
+"PO-Revision-Date: 2009-08-19 19:42+0100\n"
 "Last-Translator: Pere Argelich <bakidok@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -437,9 +437,9 @@ msgid "No update Metadata found for %s "
 msgstr "No s'han trobat metadades per actualitzar per %s"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Les metadades per actualitzar s'han carregat des de %s"
+msgstr "S'ha produït un error en carregar les metadades per actualitzar des de %s "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
