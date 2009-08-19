@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-06 13:27+0200\n"
+"POT-Creation-Date: 2009-08-19 13:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,21 +78,21 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:440 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:447 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:457
-#: ../src/yumexbackend/yum_backend.py:458
+#: ../src/yumexbackend/yum_backend.py:464
+#: ../src/yumexbackend/yum_backend.py:465
 msgid "Dependency Resolution Failed"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:459
+#: ../src/yumexbackend/yum_backend.py:466
 msgid "Dependency Resolution Errors:"
 msgstr ""
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:468
+#: ../src/yumexbackend/yum_backend.py:475
 msgid "Dependency resolving completed with errors"
 msgstr ""
 
@@ -117,29 +117,29 @@ msgstr ""
 msgid "The needed media was not found"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:487
+#: ../src/yumexbackend/yum_server.py:494
 msgid "Installing"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:539
+#: ../src/yumexbackend/yum_server.py:546
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:581
+#: ../src/yumexbackend/yum_server.py:588
 #, python-format
 msgid "Failure getting %s: "
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:582
+#: ../src/yumexbackend/yum_server.py:589
 msgid "Trying other mirror."
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1026
+#: ../src/yumexbackend/yum_server.py:1035
 msgid "Rebuild from deltarpms completted"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1028
+#: ../src/yumexbackend/yum_server.py:1037
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr ""
@@ -382,11 +382,11 @@ msgstr ""
 msgid "Preparing the transaction"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:667
+#: ../src/yumexgui/__init__.py:668
 msgid "Transaction completed successfully"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:668
+#: ../src/yumexgui/__init__.py:669
 msgid ""
 "\n"
 "\n"
@@ -394,11 +394,11 @@ msgid ""
 msgstr ""
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:674
+#: ../src/yumexgui/__init__.py:675
 msgid "Transaction Aborted by User"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:677
+#: ../src/yumexgui/__init__.py:678
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -571,41 +571,5 @@ msgid "_View"
 msgstr ""
 
 #: ../src/yumex.glade.h:36
-msgid "gtk-apply"
-msgstr ""
-
-#: ../src/yumex.glade.h:37
-msgid "gtk-cancel"
-msgstr ""
-
-#: ../src/yumex.glade.h:38
-msgid "gtk-ok"
-msgstr ""
-
-#: ../src/yumex.glade.h:39
-msgid "gtk-open"
-msgstr ""
-
-#: ../src/yumex.glade.h:40
-msgid "gtk-refresh"
-msgstr ""
-
-#: ../src/yumex.glade.h:41
-msgid "gtk-remove"
-msgstr ""
-
-#: ../src/yumex.glade.h:42
-msgid "gtk-save"
-msgstr ""
-
-#: ../src/yumex.glade.h:43
-msgid "gtk-select-all"
-msgstr ""
-
-#: ../src/yumex.glade.h:44
-msgid "gtk-undo"
-msgstr ""
-
-#: ../src/yumex.glade.h:45
 msgid "no GPG Check"
 msgstr ""

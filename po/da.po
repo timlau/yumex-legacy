@@ -1,25 +1,26 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Tim Lauridsen <tla@rasmil.dl>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-06 13:27+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: im Lauridsen <timlau@fedoraproject.org>\n"
-"Language-Team: Danish <da@li.org>\n"
+"POT-Creation-Date: 2009-08-19 13:10+0200\n"
+"PO-Revision-Date: 2009-08-19 13:02+0200\n"
+"Last-Translator: Tim Lauridsen <tla@rasmil.dl>\n"
+"Language-Team: da team\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.4.0\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:92 ../src/yumexbackend/yum_backend.py:93
 msgid "Getting Package Information"
-msgstr "Henter Pakke Information"
+msgstr "Modtager pakke-information"
 
 #: ../src/yumexbackend/yum_backend.py:112
 #, python-format
@@ -55,12 +56,12 @@ msgstr "Behøves af %s"
 #: ../src/yumexbackend/yum_backend.py:174
 #, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr ""
+msgstr "indsæt media %s #%d."
 
 #: ../src/yumexbackend/yum_backend.py:176
 #, python-format
 msgid "Please insert media labeled %s."
-msgstr ""
+msgstr "Indsæt media %s."
 
 #: ../src/yumexbackend/yum_backend.py:212
 msgid "Starting yum child process"
@@ -81,21 +82,21 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "Stopper yum baggrundsprocess"
 
-#: ../src/yumexbackend/yum_backend.py:440 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:447 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Finder Afhængigheder"
 
-#: ../src/yumexbackend/yum_backend.py:457
-#: ../src/yumexbackend/yum_backend.py:458
+#: ../src/yumexbackend/yum_backend.py:464
+#: ../src/yumexbackend/yum_backend.py:465
 msgid "Dependency Resolution Failed"
 msgstr "Afhængigheds Søgning Fejlede"
 
-#: ../src/yumexbackend/yum_backend.py:459
+#: ../src/yumexbackend/yum_backend.py:466
 msgid "Dependency Resolution Errors:"
 msgstr "Fejl i Søgning efter Afhængigheder"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:468
+#: ../src/yumexbackend/yum_backend.py:475
 #, fuzzy
 msgid "Dependency resolving completed with errors"
 msgstr "Søgning efter Afhængigheder afsluttet med fejl"
@@ -119,31 +120,31 @@ msgstr "Venter 10 sekunder og prøver igen"
 
 #: ../src/yumexbackend/yum_server.py:199
 msgid "The needed media was not found"
-msgstr ""
+msgstr "Det afspurgte medie blev ikke fundet"
 
-#: ../src/yumexbackend/yum_server.py:487
+#: ../src/yumexbackend/yum_server.py:494
 msgid "Installing"
 msgstr "Installere"
 
-#: ../src/yumexbackend/yum_server.py:539
+#: ../src/yumexbackend/yum_server.py:546
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Fejl i yum Transaktion : %s"
 
-#: ../src/yumexbackend/yum_server.py:581
+#: ../src/yumexbackend/yum_server.py:588
 #, python-format
 msgid "Failure getting %s: "
-msgstr ""
+msgstr "Fejl ved henting af %s: "
 
-#: ../src/yumexbackend/yum_server.py:582
+#: ../src/yumexbackend/yum_server.py:589
 msgid "Trying other mirror."
-msgstr ""
+msgstr "Prøver et andet webspejl"
 
-#: ../src/yumexbackend/yum_server.py:1026
+#: ../src/yumexbackend/yum_server.py:1035
 msgid "Rebuild from deltarpms completted"
 msgstr "Generering af deltarpms afsluttet"
 
-#: ../src/yumexbackend/yum_server.py:1028
+#: ../src/yumexbackend/yum_server.py:1037
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "Hentet : %s ( %s )"
@@ -218,7 +219,7 @@ msgstr "Indlæs pakke lister ved program start"
 
 #: ../src/yumexgui/dialogs.py:423
 msgid "Debug Mode"
-msgstr ""
+msgstr "Fejlsøgnings tilstand"
 
 #: ../src/yumexgui/dialogs.py:424
 #, fuzzy
@@ -240,11 +241,11 @@ msgstr "Aktiver Yum Plugins"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
 #: ../src/yumexgui/dialogs.py:436
 msgid "Yum Debug Level"
-msgstr ""
+msgstr "Yum Debug logningsniveau"
 
 #: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
 msgid "Transaction Result"
@@ -298,19 +299,19 @@ msgstr "Opdaterings ID"
 
 #: ../src/yumexgui/gui.py:317
 msgid "Release"
-msgstr ""
+msgstr "Udgave"
 
 #: ../src/yumexgui/gui.py:318
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: ../src/yumexgui/gui.py:319
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ../src/yumexgui/gui.py:320
 msgid "Issued"
-msgstr ""
+msgstr "Udgivet"
 
 #: ../src/yumexgui/gui.py:330
 msgid "       Bugs :"
@@ -391,11 +392,11 @@ msgstr "Udfører ventede jobs"
 msgid "Preparing the transaction"
 msgstr "Klargører transaktionen"
 
-#: ../src/yumexgui/__init__.py:667
+#: ../src/yumexgui/__init__.py:668
 msgid "Transaction completed successfully"
 msgstr "Transaktion er afsluttet uden fejl"
 
-#: ../src/yumexgui/__init__.py:668
+#: ../src/yumexgui/__init__.py:669
 msgid ""
 "\n"
 "\n"
@@ -406,11 +407,11 @@ msgstr ""
 "Ønsker du at afslutte Yum Extender"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:674
+#: ../src/yumexgui/__init__.py:675
 msgid "Transaction Aborted by User"
 msgstr "Transaktionen er afbrugt af brugeren"
 
-#: ../src/yumexgui/__init__.py:677
+#: ../src/yumexgui/__init__.py:678
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -481,10 +482,11 @@ msgstr "_Tilgængelge"
 
 #: ../src/yumex.glade.h:7
 msgid "Basic"
-msgstr ""
+msgstr "Basis"
 
 #: ../src/yumex.glade.h:8
-msgid "Dont check signatures for packages"
+#, fuzzy
+msgid "Dont  check signatures for packages"
 msgstr "Check ikke pakke signaturer"
 
 #: ../src/yumex.glade.h:9
@@ -525,11 +527,11 @@ msgstr "Viser oversigt med opdateringer"
 
 #: ../src/yumex.glade.h:18
 msgid "Skip Broken"
-msgstr ""
+msgstr "Ignorer pakker med afhængigsfejl"
 
 #: ../src/yumex.glade.h:19
 msgid "Skip packages there get depsolve errors"
-msgstr ""
+msgstr "Spring pakker over som har problemmer med afhænginger"
 
 #: ../src/yumex.glade.h:20
 msgid ""
@@ -555,7 +557,7 @@ msgstr "Nulstil ændringer af valgte kilder"
 
 #: ../src/yumex.glade.h:27
 msgid "Yum"
-msgstr ""
+msgstr "Yum"
 
 #: ../src/yumex.glade.h:28
 msgid "_Edit"
@@ -579,7 +581,7 @@ msgstr "_Installerede"
 
 #: ../src/yumex.glade.h:33
 msgid "_Options"
-msgstr ""
+msgstr "_Indstillinger"
 
 #: ../src/yumex.glade.h:34
 msgid "_Profiles"
@@ -590,44 +592,8 @@ msgid "_View"
 msgstr "_Vis"
 
 #: ../src/yumex.glade.h:36
-msgid "gtk-apply"
-msgstr ""
-
-#: ../src/yumex.glade.h:37
-msgid "gtk-cancel"
-msgstr ""
-
-#: ../src/yumex.glade.h:38
-msgid "gtk-ok"
-msgstr ""
-
-#: ../src/yumex.glade.h:39
-msgid "gtk-open"
-msgstr ""
-
-#: ../src/yumex.glade.h:40
-msgid "gtk-refresh"
-msgstr ""
-
-#: ../src/yumex.glade.h:41
-msgid "gtk-remove"
-msgstr ""
-
-#: ../src/yumex.glade.h:42
-msgid "gtk-save"
-msgstr ""
-
-#: ../src/yumex.glade.h:43
-msgid "gtk-select-all"
-msgstr ""
-
-#: ../src/yumex.glade.h:44
-msgid "gtk-undo"
-msgstr ""
-
-#: ../src/yumex.glade.h:45
 msgid "no GPG Check"
-msgstr ""
+msgstr "ingen check af GPG signatur"
 
 #~ msgid "Reset current search"
 #~ msgstr "Nulstiller nuværende søgning"

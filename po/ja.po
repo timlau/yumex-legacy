@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 2.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-06 13:27+0200\n"
+"POT-Creation-Date: 2009-08-19 13:10+0200\n"
 "PO-Revision-Date: 2009-08-14 13:40+0900\n"
 "Last-Translator: Takanori MATSUURA <t.matsuu@gmail.com>\n"
 "Language-Team: Japanese <>\n"
@@ -81,21 +81,21 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "yumの子プロセスを停止中"
 
-#: ../src/yumexbackend/yum_backend.py:440 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:447 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "依存関係を解決中"
 
-#: ../src/yumexbackend/yum_backend.py:457
-#: ../src/yumexbackend/yum_backend.py:458
+#: ../src/yumexbackend/yum_backend.py:464
+#: ../src/yumexbackend/yum_backend.py:465
 msgid "Dependency Resolution Failed"
 msgstr "依存関係の解決に失敗しました"
 
-#: ../src/yumexbackend/yum_backend.py:459
+#: ../src/yumexbackend/yum_backend.py:466
 msgid "Dependency Resolution Errors:"
 msgstr "依存関係の解決中エラー:"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:468
+#: ../src/yumexbackend/yum_backend.py:475
 msgid "Dependency resolving completed with errors"
 msgstr "依存関係の解決がエラーで完了しました"
 
@@ -120,29 +120,29 @@ msgstr "10秒待機して再試行します!!"
 msgid "The needed media was not found"
 msgstr "必要とされるメディアが見つかりませんでした"
 
-#: ../src/yumexbackend/yum_server.py:487
+#: ../src/yumexbackend/yum_server.py:494
 msgid "Installing"
 msgstr "インストール中"
 
-#: ../src/yumexbackend/yum_server.py:539
+#: ../src/yumexbackend/yum_server.py:546
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "yumトランザクション中にエラー: %s"
 
-#: ../src/yumexbackend/yum_server.py:581
+#: ../src/yumexbackend/yum_server.py:588
 #, python-format
 msgid "Failure getting %s: "
 msgstr "%sの取得に失敗: "
 
-#: ../src/yumexbackend/yum_server.py:582
+#: ../src/yumexbackend/yum_server.py:589
 msgid "Trying other mirror."
 msgstr "他のミラーを試行中。"
 
-#: ../src/yumexbackend/yum_server.py:1026
+#: ../src/yumexbackend/yum_server.py:1035
 msgid "Rebuild from deltarpms completted"
 msgstr "deltarpmからの再構築が完了"
 
-#: ../src/yumexbackend/yum_server.py:1028
+#: ../src/yumexbackend/yum_server.py:1037
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "ダウンロード済: %s (%s)"
@@ -387,11 +387,11 @@ msgstr "保留しているアクションを処理中"
 msgid "Preparing the transaction"
 msgstr "トランザクションを準備中"
 
-#: ../src/yumexgui/__init__.py:667
+#: ../src/yumexgui/__init__.py:668
 msgid "Transaction completed successfully"
 msgstr "トランザクションが正常に完了しました"
 
-#: ../src/yumexgui/__init__.py:668
+#: ../src/yumexgui/__init__.py:669
 msgid ""
 "\n"
 "\n"
@@ -402,11 +402,11 @@ msgstr ""
 "Yum Extenderを終了しますか"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:674
+#: ../src/yumexgui/__init__.py:675
 msgid "Transaction Aborted by User"
 msgstr "トランザクションがユーザによって中止されました"
 
-#: ../src/yumexgui/__init__.py:677
+#: ../src/yumexgui/__init__.py:678
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -583,41 +583,5 @@ msgid "_View"
 msgstr "表示(_V)"
 
 #: ../src/yumex.glade.h:36
-msgid "gtk-apply"
-msgstr ""
-
-#: ../src/yumex.glade.h:37
-msgid "gtk-cancel"
-msgstr ""
-
-#: ../src/yumex.glade.h:38
-msgid "gtk-ok"
-msgstr ""
-
-#: ../src/yumex.glade.h:39
-msgid "gtk-open"
-msgstr ""
-
-#: ../src/yumex.glade.h:40
-msgid "gtk-refresh"
-msgstr ""
-
-#: ../src/yumex.glade.h:41
-msgid "gtk-remove"
-msgstr ""
-
-#: ../src/yumex.glade.h:42
-msgid "gtk-save"
-msgstr ""
-
-#: ../src/yumex.glade.h:43
-msgid "gtk-select-all"
-msgstr ""
-
-#: ../src/yumex.glade.h:44
-msgid "gtk-undo"
-msgstr ""
-
-#: ../src/yumex.glade.h:45
 msgid "no GPG Check"
 msgstr "GPGを確認しない"

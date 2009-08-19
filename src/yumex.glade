@@ -279,7 +279,7 @@
                 <property name="layout_style">end</property>
                 <child>
                   <object class="GtkButton" id="repoRefresh">
-                    <property name="label" translatable="yes">gtk-refresh</property>
+                    <property name="label">gtk-refresh</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -296,7 +296,7 @@ repositories</property>
                 </child>
                 <child>
                   <object class="GtkButton" id="repoUndo">
-                    <property name="label" translatable="yes">gtk-undo</property>
+                    <property name="label">gtk-undo</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -601,7 +601,7 @@ words.
                     <property name="layout_style">end</property>
                     <child>
                       <object class="GtkButton" id="packageSelectAll">
-                        <property name="label" translatable="yes">gtk-select-all</property>
+                        <property name="label">gtk-select-all</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -617,7 +617,7 @@ words.
                     </child>
                     <child>
                       <object class="GtkButton" id="packageUndo">
-                        <property name="label" translatable="yes">gtk-undo</property>
+                        <property name="label">gtk-undo</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -633,7 +633,7 @@ words.
                     </child>
                     <child>
                       <object class="GtkButton" id="packageExecute">
-                        <property name="label" translatable="yes">gtk-apply</property>
+                        <property name="label">gtk-apply</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -717,7 +717,7 @@ words.
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="queueOpen">
-                <property name="label" translatable="yes">gtk-open</property>
+                <property name="label">gtk-open</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
@@ -731,7 +731,7 @@ words.
             </child>
             <child>
               <object class="GtkButton" id="queueSave">
-                <property name="label" translatable="yes">gtk-save</property>
+                <property name="label">gtk-save</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
@@ -745,7 +745,7 @@ words.
             </child>
             <child>
               <object class="GtkButton" id="queueRemove">
-                <property name="label" translatable="yes">gtk-remove</property>
+                <property name="label">gtk-remove</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -761,7 +761,7 @@ words.
             </child>
             <child>
               <object class="GtkButton" id="queueExecute">
-                <property name="label" translatable="yes">gtk-apply</property>
+                <property name="label">gtk-apply</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -923,7 +923,7 @@ words.
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="progressCancel">
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1044,7 +1044,7 @@ words.
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="transactionOK">
-                <property name="label" translatable="yes">gtk-ok</property>
+                <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1058,7 +1058,7 @@ words.
             </child>
             <child>
               <object class="GtkButton" id="transactionCancel">
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1345,7 +1345,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="prefOK">
-                <property name="label" translatable="yes">gtk-ok</property>
+                <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1359,7 +1359,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             </child>
             <child>
               <object class="GtkButton" id="prefCancel">
-                <property name="label" translatable="yes">gtk-cancel</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
