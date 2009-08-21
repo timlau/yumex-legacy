@@ -73,6 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Fri Aug 21 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.11.pre
+- bumped version to 2.9.0-0.11.pre
 * Fri Aug 7 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.10.pre
 - bumped version to 2.9.0-0.10.pre
 * Thu Aug 6 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.0-0.9.pre
