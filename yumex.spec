@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  2.9.0
-Release:  0.10.pre%{?dist}
+Release:  0.11.pre%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
