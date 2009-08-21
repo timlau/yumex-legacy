@@ -163,6 +163,17 @@ class YumexHandlers(Controller):
       
     def quit(self):
         ''' destroy Handler '''
+        # Save the windows size and separator position
+        try:
+            width, height = self.window.get_size()
+            setattr( self.cfg.conf_settings, 'win_width',width)
+            setattr( self.cfg.conf_settings, 'win_height',height)
+            pos = self.ui.packageSep.get_position()
+            setattr( self.cfg.conf_settings, 'win_sep',pos)
+            self.cfg.save()
+            
+        except:
+            self.backend.info("Error in saving window size")
         self.backend.debug("Quiting the program !!!")
         try:
             self.backend.reset()
@@ -559,6 +570,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.transactionConfirm = TransactionConfirmation(self.ui, self.window)
         # setup yumex log handler
         self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
+        # Set saved windows size and separator position
+        if self.settings.win_height > 0 and self.settings.win_width > 0:
+            self.window.resize(self.settings.win_width,self.settings.win_height)
+            if self.settings.win_sep > 0:
+                self.ui.packageSep.set_position(self.settings.win_sep)
         self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
