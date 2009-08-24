@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-19 13:10+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Héctor Daniel Cabrera <h.daniel.cabrera@gmail.com>\n"
+"Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Fedora Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -181,9 +181,9 @@ msgid "Downloading Filelist information for the %s repository"
 msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr "Descargando información de cambios en el registro del repositorio %s "
+msgstr "Descargando información del registro de cambios del repositorio %s"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
@@ -191,12 +191,12 @@ msgid "Downloading Group information for the %s repository"
 msgstr "Descargando información de grupos del repositorio %s"
 
 #: ../src/yumexbase/constants.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr "Descargando información de metaenlace del repositori9o %s"
+msgstr "Descargando información de metaenlace del repositorio %s"
 
 #: ../src/yumexbase/constants.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "Downloading Delta update information for the %s repository"
 msgstr "Descargando información de actualización de deltas del repositorio %s"
 
@@ -518,9 +518,8 @@ msgid "Remove selected packages from queue"
 msgstr "Eliminar los paquetes seleccionados de la cola"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Select all packages in current view"
-msgstr "Selecciona todos los paquetes de la vista actual"
+msgstr "Seleccione todos los paquetes de la vista actual"
 
 #: ../src/yumex.glade.h:15
 msgid "Show available packages"
@@ -539,9 +538,8 @@ msgid "Skip Broken"
 msgstr "Omitir los Rotos"
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Skip packages there get depsolve errors"
-msgstr "Ignora los paquetes con errores de resolución de dependencias"
+msgstr "Ignorar los paquetes con errores de resolución de dependencias"
 
 #: ../src/yumex.glade.h:20
 msgid ""
@@ -553,9 +551,8 @@ msgstr ""
 "por espacios para poder encontrar los paquetes que las contengan.\n"
 
 #: ../src/yumex.glade.h:24
-#, fuzzy
 msgid "U_pdates"
-msgstr "A_ctualizaciones"
+msgstr "_Actualizaciones"
 
 #: ../src/yumex.glade.h:25
 msgid "Undo all package selection"
