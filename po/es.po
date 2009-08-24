@@ -1,5 +1,7 @@
 # Fedora Spanish Translation of yumex.nextgen
 # This file is distributed under the same license as yumex.nextgen package
+#
+# Domingo Becker <domingobecker@gmail.com>. 2009.
 # Héctor Daniel Cabrera <h.daniel.cabrera@gmail.com>, 2009.
 #
 msgid ""
