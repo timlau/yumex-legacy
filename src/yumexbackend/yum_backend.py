@@ -29,7 +29,7 @@ from urlgrabber.progress import format_number
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
-
+from yumMediaManagerDeviceKit import MediaManagerDeviceKit as MediaManager
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
@@ -162,36 +162,66 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         msg += _("Needed by %s") % str(po)
         return questionDialog(self.frontend.window, msg)
 
-    def media_change(self, media_name, media_num):
+    def media_change(self, prompt_first, media_id, media_name, media_num):
         '''
         Media change callback, triggered from the yum backend, when a media
         change is needed.
+        @param prompt_first: should prompt user before looking for the media
+        @param media_id: An ID to make sure we got the required disc
         @param media_name: The media name
         @param media_num: The media discnum   
-        @return: then mountpoint of the requested media
+        @return: the mountpoint of the requested media or None to cancel
         '''
+        prompt = prompt_first
         if media_num:
             msg = _("Please insert media labeled %s #%d.") %(media_name,media_num)
         else:
             msg = _("Please insert media labeled %s.") %(name,)
-        rc = okCancelDialog(self.frontend.window, msg)
-        if rc:
-            return self._get_mount_point(media_name, media_num)
+        while(1): # breaks if the user cancels it or if we found the needed media
+            if prompt:
+                rc = okCancelDialog(self.frontend.window, msg)
+                if not rc: return None
+            mp=self._get_mount_point(media_id, media_num)
+            if mp: return mp
+            prompt=True
 
-    def _get_mount_point(self, media_name, media_num):
+    def _get_mount_point(self, media_id, media_num):
         '''
         Get the mount point of a media
-        @param media_name: The media name
-        @param media_num: The media discnum   
-        @return: then mountpoint of the requested media
+        @param media_id: An ID to make sure we got the required disc
+        @param media_num: The media discnum
+        @return: then mountpoint of the requested media or None if not found
         '''
-        # TODO: Insert some media detection code etc here
-        import gio
-        vm=gio.volume_monitor_get()
-        print vm
-        print filter(lambda d: d.is_media_removable(),vm.get_connected_drives())
-        return "/media/%s" % media_name
-                
+        try:
+            manager = MediaManager()
+        except NotImplemented:
+            return None
+        # check for the needed media in every media provided by yumMediaManager
+        for media in manager:
+            # mnt now holds the mount point
+            mnt = media.acquire()
+            # if not mounted skip this media for this loop
+            if not mnt:
+                continue
+            # load ".discinfo" from the media and parse it
+            if os.path.exists("%s/.discinfo" %(mnt,)):
+                f = open("%s/.discinfo" %(mnt,), "r")
+                lines = f.readlines()
+                f.close()
+                theid = lines[0].strip()
+                discs_s = lines[3].strip()
+                # if discs_s == ALL then no need to match disc number
+                if discs_s != 'ALL':
+                    discs = map(lambda x: int(x), discs_s.split(","))
+                    samenum = media_num in discs
+                else:
+                    samenum = True
+                # if the media is different or of different number skip it and loop over
+                if media_id == theid and samenum:
+                    return mnt
+        return None
+
+
     def timeout(self, count):
         """ 
         timeout function call every time an timeout occours

@@ -45,7 +45,7 @@ from yum.constants import *
 from yum.callbacks import *
 import yumexbase.constants as const
 import yum.plugins
-from urlgrabber.grabber import URLGrabError
+from urlgrabber.grabber import URLGrabber, URLGrabError
 
 from yum.i18n import _ as yum_translated 
 
@@ -127,6 +127,7 @@ class YumServer(yum.YumBase):
     def __init__(self, debuglevel = 2, plugins = True, enabled_repos = None):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
+        self.mediagrabber=self.mediaGrabber
         parser = OptionParser()
         # Setup yum preconfig options
         self.preconf.debuglevel = debuglevel
@@ -184,19 +185,37 @@ class YumServer(yum.YumBase):
         msg = e.msg + "\n" + nmsg
         self.fatal("lock-error", msg)        
         
-    def mediagrabber(self, *args, **kwargs):
+    def mediaGrabber(self, *args, **kwargs):
         '''
         Media handler
         '''
         mediaid = kwargs["mediaid"]
         discnum = kwargs["discnum"]
         name = kwargs["name"]
-        mp = self._ask_for_media_change(name,discnum)
-        if mp: # We got the media mount point
-            # FIXME: Add the needed code here
-            pass
-        else:
-            self.error(_("The needed media was not found"))
+        found = False
+        prompt_first = False # check without asking the user
+        while(not found):
+            mp = self._ask_for_media_change(prompt_first, mediaid, name, discnum)
+            # We got the media mount point
+            if mp:
+               # the actual copying is done by URLGrabber
+               ug = URLGrabber(checkfunc = kwargs["checkfunc"])
+               try:
+                   ug.urlgrab("%s/%s" %(mp, kwargs["relative"]),
+                       kwargs["local"], text=kwargs["text"],
+                       range=kwargs["range"], copy_local=1)
+               except (IOError, URLGrabError):
+                   # ask again as user might got a better media or he might clean the media
+                   prompt_first = True # next time prompt user first so he can cancel
+               else:
+                   found=True # done
+            else:
+                # mp==None ie. user canceled media change
+                break
+        if not found:
+            # yumRepo will catch this
+            raise yum.Errors.MediaError, "The disc was not inserted"
+        return kwargs["local"]
 
     def get_process_info(self, pid):
         '''
@@ -308,9 +327,9 @@ class YumServer(yum.YumBase):
         value = pack(value)
         self.write(":gpg-check\t%s" % (value))
 
-    def media_change(self, media_name, media_num):
+    def media_change(self, prompt_first, media_id, media_name, media_num):
         ''' write an media change message '''
-        value = (media_name, media_num)
+        value = (prompt_first, media_id, media_name, media_num)
         value = pack(value)
         self.write(":media-change\t%s" % (value))
 
@@ -564,7 +583,7 @@ class YumServer(yum.YumBase):
         else:
             return False
 
-    def _ask_for_media_change(self, media_name, media_num=None):
+    def _ask_for_media_change(self, prompt_first, media_id, media_name, media_num=None):
         ''' 
         Ask for media change 
         '''
@@ -572,7 +591,7 @@ class YumServer(yum.YumBase):
             self.debug("media : %s #%d is needed" % ( media_name, media_num))
         else:
             self.debug("media : %s is needed" % ( media_name,))
-        self.media_change(media_name, media_num)
+        self.media_change(prompt_first, media_id, media_name, media_num)
         line = sys.stdin.readline().strip('\n')
         if line.startswith(':mountpoint'):
             mountpoint = unpack(line.split('\t')[1])

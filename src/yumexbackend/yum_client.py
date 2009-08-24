@@ -184,11 +184,11 @@ class YumClient:
     
     def _media_change(self, value):
         """ media change signal """
-        (media_name,media_num) = unpack(value)
-        mp = self.media_change(media_name,media_num)
+        (prompt_first, media_id, media_name, media_num) = unpack(value)
+        mp = self.media_change(prompt_first, media_id, media_name, media_num)
         self.child.sendline(":mountpoint\t%s" % pack(mp))
             
-    def media_change(self, media_name,media_num):
+    def media_change(self, prompt_first, media_id, media_name, media_num):
         """  media change (overload in child class) """
         return False
 
