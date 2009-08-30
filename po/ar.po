@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex 3.0.0\n"
-"Report-Msgid-Bugs-To: core@ojuba.org\n"
-"POT-Creation-Date: 2009-08-19 13:10+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-30 14:42+0200\n"
 "PO-Revision-Date: 2009-08-23 13:10+0200\n"
 "Last-Translator: Muayyad Saleh Alsadi <alsadi@ojuba.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -52,21 +52,21 @@ msgstr "هل ترغب في استيراد متاح توقيع GPG: %s \n"
 msgid "Needed by %s"
 msgstr "يحتاجها %s"
 
-#: ../src/yumexbackend/yum_backend.py:174
+#: ../src/yumexbackend/yum_backend.py:177
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "فضلا أدخل الوسيط المعنون %s ذي الرقم %d."
 
-#: ../src/yumexbackend/yum_backend.py:176
+#: ../src/yumexbackend/yum_backend.py:179
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "فضلا أدخل الوسيط المعنون %s."
 
-#: ../src/yumexbackend/yum_backend.py:212
+#: ../src/yumexbackend/yum_backend.py:242
 msgid "Starting yum child process"
 msgstr "يجري بدء عملية yum الوليدة"
 
-#: ../src/yumexbackend/yum_backend.py:214
+#: ../src/yumexbackend/yum_backend.py:244
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -77,72 +77,68 @@ msgstr ""
 "%s\n"
 "\n"
 
-#: ../src/yumexbackend/yum_backend.py:228
+#: ../src/yumexbackend/yum_backend.py:258
 msgid "Stopping yum child process"
 msgstr "يجري إيقاف عملية yum الوليدة"
 
-#: ../src/yumexbackend/yum_backend.py:447 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:477 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "يجري حلحلت الاعتماديات"
 
-#: ../src/yumexbackend/yum_backend.py:464
-#: ../src/yumexbackend/yum_backend.py:465
+#: ../src/yumexbackend/yum_backend.py:494
+#: ../src/yumexbackend/yum_backend.py:495
 msgid "Dependency Resolution Failed"
 msgstr "فشلت عملية حلحلت الاعتماديات"
 
-#: ../src/yumexbackend/yum_backend.py:466
+#: ../src/yumexbackend/yum_backend.py:496
 msgid "Dependency Resolution Errors:"
 msgstr "الأخطاء التي أعاقت حلحلت الاعتماديات"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:475
+#: ../src/yumexbackend/yum_backend.py:505
 msgid "Dependency resolving completed with errors"
 msgstr "انتهت عملية حلحلت الاعتماديات بأخطاء"
 
-#: ../src/yumexbackend/yum_server.py:172
+#: ../src/yumexbackend/yum_server.py:173
 msgid "Yum is locked : "
 msgstr "Yum مقفل :"
 
-#: ../src/yumexbackend/yum_server.py:177
+#: ../src/yumexbackend/yum_server.py:178
 msgid "  The other application is: PackageKit"
 msgstr "  التطبيق الآخر هو: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:179
+#: ../src/yumexbackend/yum_server.py:180
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  التطبيق الآخر هو: %s"
 
-#: ../src/yumexbackend/yum_server.py:181
+#: ../src/yumexbackend/yum_server.py:182
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "انتظار 10 ثواني قبل المحاولة من جديد!!!"
 
-#: ../src/yumexbackend/yum_server.py:199
-msgid "The needed media was not found"
-msgstr "الوسيط المطلوب غير موجود"
-
-#: ../src/yumexbackend/yum_server.py:494
+#: ../src/yumexbackend/yum_server.py:513
 msgid "Installing"
 msgstr "تثبيت"
 
-#: ../src/yumexbackend/yum_server.py:546
+#: ../src/yumexbackend/yum_server.py:565
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "خطأ في عملية yum: %s"
 
-#: ../src/yumexbackend/yum_server.py:588
+#: ../src/yumexbackend/yum_server.py:607
 #, python-format
 msgid "Failure getting %s: "
 msgstr "خطأ في جلب %s : "
 
-#: ../src/yumexbackend/yum_server.py:589
+#: ../src/yumexbackend/yum_server.py:608
 msgid "Trying other mirror."
 msgstr "يجري تجربة موقع مرآة آخر."
 
-#: ../src/yumexbackend/yum_server.py:1035
+#: ../src/yumexbackend/yum_server.py:1054
 msgid "Rebuild from deltarpms completted"
 msgstr "تم الانتهاء من بناء الحزمة من فروقات deltarpms"
 
-#: ../src/yumexbackend/yum_server.py:1037
+#: ../src/yumexbackend/yum_server.py:1056
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "تنزيل : %s ( %s )"
@@ -318,80 +314,97 @@ msgstr "       العثرات :"
 msgid "Description : %s\n"
 msgstr "الوصف : %s\n"
 
-#: ../src/yumexgui/__init__.py:475
+#: ../src/yumexgui/__init__.py:486
 msgid "Fatal Error"
 msgstr "خطأ قاتل"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:477
+#: ../src/yumexgui/__init__.py:488
 msgid "Can't start the yum backend"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:478
+#: ../src/yumexgui/__init__.py:489
 msgid "Another program is locking yum"
 msgstr "برنامج آخر يقفل yum"
 
-#: ../src/yumexgui/__init__.py:480
+#: ../src/yumexgui/__init__.py:491
 msgid "Message from yum backend:"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:484
+#: ../src/yumexgui/__init__.py:495
 msgid "Unknown Error : "
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:531
+#: ../src/yumexgui/__init__.py:558 ../src/yumexgui/views.py:445
+msgid "Packages"
+msgstr "الحزم"
+
+#: ../src/yumexgui/__init__.py:559
 msgid "Perform actions on packages"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:534
+#: ../src/yumexgui/__init__.py:561
+msgid "Pending Actions"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:562
 msgid "Work with pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:538
+#: ../src/yumexgui/__init__.py:565
+#, fuzzy
+msgid "Repositories"
+msgstr "المتسودع"
+
+#: ../src/yumexgui/__init__.py:566
 msgid "Select active repositories"
 msgstr "اختر المستودعات الفاعلة"
 
-#: ../src/yumexgui/__init__.py:541
+#: ../src/yumexgui/__init__.py:568
+msgid "Output"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:569
 msgid "Watch output details"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:606 ../src/yumexgui/__init__.py:607
+#: ../src/yumexgui/__init__.py:639 ../src/yumexgui/__init__.py:640
 msgid "Getting Group information"
 msgstr "جلب معلومات المجموعات"
 
-#: ../src/yumexgui/__init__.py:627
+#: ../src/yumexgui/__init__.py:660
 msgid "Getting Package Lists"
 msgstr "جلب قوائم الحزم"
 
-#: ../src/yumexgui/__init__.py:628
+#: ../src/yumexgui/__init__.py:661
 msgid "Getting Updated Packages"
 msgstr "جلب الحزم المحدثة"
 
-#: ../src/yumexgui/__init__.py:631
+#: ../src/yumexgui/__init__.py:664
 msgid "Getting Available Packages"
 msgstr "جلب الحزم المتوفرة"
 
-#: ../src/yumexgui/__init__.py:633
+#: ../src/yumexgui/__init__.py:666
 msgid "Getting installed Packages"
 msgstr "جلب الحزم المثبتة"
 
-#: ../src/yumexgui/__init__.py:647
+#: ../src/yumexgui/__init__.py:680
 msgid "The pending action queue is empty"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:652
+#: ../src/yumexgui/__init__.py:685
 msgid "Processing pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:653
+#: ../src/yumexgui/__init__.py:686
 msgid "Preparing the transaction"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:668
+#: ../src/yumexgui/__init__.py:701
 msgid "Transaction completed successfully"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:669
+#: ../src/yumexgui/__init__.py:702
 msgid ""
 "\n"
 "\n"
@@ -402,11 +415,11 @@ msgstr ""
 "هل ترغب في الخروج من Yum Extender"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:675
+#: ../src/yumexgui/__init__.py:708
 msgid "Transaction Aborted by User"
 msgstr "أجهض المستخدم العملية"
 
-#: ../src/yumexgui/__init__.py:678
+#: ../src/yumexgui/__init__.py:711
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -449,10 +462,6 @@ msgstr "الحجم."
 msgid "Package Queue:"
 msgstr "طابور الحزم:"
 
-#: ../src/yumexgui/views.py:445
-msgid "Packages"
-msgstr "الحزم"
-
 #: ../src/yumexgui/views.py:527
 msgid "Filename"
 msgstr "اسم الملف"
@@ -490,43 +499,47 @@ msgid "Execute all pending actions in queue"
 msgstr ""
 
 #: ../src/yumex.glade.h:11
+#, fuzzy
+msgid "R_epositories"
+msgstr "المتسودع"
+
+#: ../src/yumex.glade.h:12
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
 msgstr ""
-""
 "Refresh packages with current selected\n"
 "repositories"
 
-#: ../src/yumex.glade.h:13
+#: ../src/yumex.glade.h:14
 msgid "Remove selected packages from queue"
 msgstr "إزالة الحزم المختارة من الطابور"
 
-#: ../src/yumex.glade.h:14
+#: ../src/yumex.glade.h:15
 msgid "Select all packages in current view"
 msgstr "اختر كل الحزم المعروضة"
 
-#: ../src/yumex.glade.h:15
+#: ../src/yumex.glade.h:16
 msgid "Show available packages"
 msgstr "عرض الحزم المتوفرة"
 
-#: ../src/yumex.glade.h:16
+#: ../src/yumex.glade.h:17
 msgid "Show installed packages"
 msgstr "عرض الحزم المثبتة"
 
-#: ../src/yumex.glade.h:17
+#: ../src/yumex.glade.h:18
 msgid "Show package updates"
 msgstr "عرض التحديثات"
 
-#: ../src/yumex.glade.h:18
+#: ../src/yumex.glade.h:19
 msgid "Skip Broken"
 msgstr ""
 
-#: ../src/yumex.glade.h:19
+#: ../src/yumex.glade.h:20
 msgid "Skip packages there get depsolve errors"
 msgstr ""
 
-#: ../src/yumex.glade.h:20
+#: ../src/yumex.glade.h:21
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
@@ -535,54 +548,70 @@ msgstr ""
 "اكتب كلمات البحث وبينها مسافات\n"
 "للعثور على الحزم التي تحتويها.\n"
 
-#: ../src/yumex.glade.h:24
+#: ../src/yumex.glade.h:25
 msgid "U_pdates"
 msgstr "ت_حديثات"
 
-#: ../src/yumex.glade.h:25
+#: ../src/yumex.glade.h:26
 msgid "Undo all package selection"
 msgstr "التراجع عن كل التغييرات في اختيار الحزم"
 
-#: ../src/yumex.glade.h:26
+#: ../src/yumex.glade.h:27
 msgid "Undo repository selection changes"
 msgstr "التراجع عن كل التغييرات في اختيار المستودعات"
 
-#: ../src/yumex.glade.h:27
+#: ../src/yumex.glade.h:28
 msgid "Yum"
 msgstr ""
 
-#: ../src/yumex.glade.h:28
+#: ../src/yumex.glade.h:29
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../src/yumex.glade.h:29
+#: ../src/yumex.glade.h:30
 msgid "_File"
 msgstr "_ملف"
 
-#: ../src/yumex.glade.h:30
+#: ../src/yumex.glade.h:31
 msgid "_Groups"
 msgstr "م_جموعات"
 
-#: ../src/yumex.glade.h:31
+#: ../src/yumex.glade.h:32
 msgid "_Help"
 msgstr "م_ساعدة"
 
-#: ../src/yumex.glade.h:32
+#: ../src/yumex.glade.h:33
 msgid "_Installed"
 msgstr "الم_ثبتة"
 
-#: ../src/yumex.glade.h:33
+#: ../src/yumex.glade.h:34
 msgid "_Options"
 msgstr "_خيارات"
 
-#: ../src/yumex.glade.h:34
+#: ../src/yumex.glade.h:35
+msgid "_Output"
+msgstr ""
+
+#: ../src/yumex.glade.h:36
+#, fuzzy
+msgid "_Packages"
+msgstr "الحزم"
+
+#: ../src/yumex.glade.h:37
 msgid "_Profiles"
 msgstr ""
 
-#: ../src/yumex.glade.h:35
+#: ../src/yumex.glade.h:38
+msgid "_Queue"
+msgstr ""
+
+#: ../src/yumex.glade.h:39
 msgid "_View"
 msgstr "_عرض"
 
-#: ../src/yumex.glade.h:36
+#: ../src/yumex.glade.h:40
 msgid "no GPG Check"
 msgstr "لا تفحص توقيع GPG"
+
+#~ msgid "The needed media was not found"
+#~ msgstr "الوسيط المطلوب غير موجود"

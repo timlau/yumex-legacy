@@ -16,7 +16,7 @@
             <property name="visible">True</property>
             <property name="border_width">1</property>
             <child>
-              <object class="GtkMenuItem" id="menuitem1">
+              <object class="GtkMenuItem" id="fileMenu">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
@@ -37,7 +37,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="edit1">
+              <object class="GtkMenuItem" id="editMenu">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_Edit</property>
                 <property name="use_underline">True</property>
@@ -67,30 +67,34 @@
                     <property name="visible">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="viewPackages">
-                        <property name="label">_Packages</property>
+                        <property name="label" translatable="yes">_Packages</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image2</property>
+                        <property name="use_stock">False</property>
+                        <property name="accel_group">accelgroup1</property>
                         <accelerator key="1" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewPackages_activate"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="viewQueue">
-                        <property name="label">_Queue</property>
+                        <property name="label" translatable="yes">_Queue</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image1</property>
+                        <property name="use_stock">False</property>
                         <accelerator key="2" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewQueue_activate"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="viewRepo">
-                        <property name="label">R_epositories</property>
+                        <property name="label" translatable="yes">R_epositories</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image3</property>
+                        <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="3" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewRepo_activate"/>
@@ -98,10 +102,11 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="viewOutput">
-                        <property name="label">_Output</property>
+                        <property name="label" translatable="yes">_Output</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image4</property>
+                        <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
                         <accelerator key="4" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewOutput_activate"/>
@@ -147,7 +152,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="options">
+              <object class="GtkMenuItem" id="optionsMenu">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_Options</property>
                 <property name="use_underline">True</property>
@@ -177,7 +182,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="help1">
+              <object class="GtkMenuItem" id="helpMenu">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
@@ -1384,5 +1389,21 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
       <action-widget response="1">prefOK</action-widget>
       <action-widget response="0">prefCancel</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-harddisk</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-network</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="stock">gtk-dialog-info</property>
   </object>
 </interface>

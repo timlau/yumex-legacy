@@ -36,9 +36,14 @@ if os.getuid() == 0:
     sys.exit(1)
 
 print "running"
+
+import gettext
+gettext.bindtextdomain("yumex", "/usr/share/locale")
+gettext.textdomain("yumex")
+
 debug = []
 if 'YUMEX_DBG' in os.environ:
-    debug = os.environ['YUMEX_DBG'].lower().split(',')
+    debug = os.environ['YUMEX_DBG'].lower().split(',') 
     print debug
     
 try:    

@@ -512,6 +512,21 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._add_key_to_menu(self.ui.viewRepo,'3')
         self._add_key_to_menu(self.ui.viewOutput,'4')
         
+    def fix_gtkbuilder_translations(self):
+        '''
+        fix stuff, that don't get translated in the gtk.builder xml file
+        '''
+        # Fix main menues
+        menus = ['fileMenu','editMenu','viewMenu','optionsMenu','helpMenu','viewPackages','viewQueue',\
+                 'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck']
+        for menu in menus:
+            obj = getattr(self.ui,menu)
+            label = obj.get_child()
+            print label.get_label()
+            label.set_label(_(label.get_label()))
+            
+        
+            
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
 
@@ -519,6 +534,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         Setup the gui
         '''
+        # Fix the translations in gtk.Builder object
+        self.fix_gtkbuilder_translations()
         # setup
         self.window.set_title(self.settings.branding_title)
         self.window.add_accel_group(self._key_bindings)
@@ -538,17 +555,17 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
         # Setup main page notebook
         self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent, self._key_bindings)
-        self.notebook.add_page("package", "Packages", self.ui.packageMain, 
+        self.notebook.add_page("package", _("Packages"), self.ui.packageMain, 
                                 icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"),
                                 accel = '<Ctrl>1')
-        self.notebook.add_page("queue", "Pending Actions", self.ui.queueMain, 
+        self.notebook.add_page("queue", _("Pending Actions"), self.ui.queueMain, 
                                icon=ICON_QUEUE, tooltip=_("Work with pending actions"),
                                 accel = '<Ctrl>2')
         if not self.settings.disable_repo_page:
-            self.notebook.add_page("repo", "Repositories", self.ui.repoMain, 
+            self.notebook.add_page("repo", _("Repositories"), self.ui.repoMain, 
                                    icon=ICON_REPOS, tooltip=_("Select active repositories"),
                                 accel = '<Ctrl>3')
-        self.notebook.add_page("output", "Output", self.ui.outputMain, 
+        self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
                                icon=ICON_OUTPUT, tooltip=_("Watch output details"),
                                 accel = '<Ctrl>4')
         self.ui.groupView.hide()
