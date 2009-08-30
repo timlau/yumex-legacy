@@ -18,7 +18,8 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:92 ../src/yumexbackend/yum_backend.py:93
+#: ../src/yumexbackend/yum_backend.py:92
+#: ../src/yumexbackend/yum_backend.py:93
 msgid "Getting Package Information"
 msgstr "Extrayendo información del paquete"
 
@@ -31,15 +32,18 @@ msgstr "Tipo de Metadatos del Repo desconocido (%s) para %s"
 msgid "Buiding rpms from deltarpm"
 msgstr "Construyendo rpms desde deltarpm"
 
-#: ../src/yumexbackend/yum_backend.py:142 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:142
+#: ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "Descargando paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:147 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:147
+#: ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "Chequeando las firmas GPG de los paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:152 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:152
+#: ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "Ejecutando la prueba de las Transacciones RPM"
 
@@ -82,7 +86,8 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "Deteniendo el proceso hijo yum"
 
-#: ../src/yumexbackend/yum_backend.py:477 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:477
+#: ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Resolviendo dependencias"
 
@@ -169,8 +174,7 @@ msgstr "Descargando la información de los paquetes desde el repositorio %s"
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-"Descargando la información de la lista de archivos desde el repositorio %s"
+msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
@@ -241,11 +245,13 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Nivel de depuración de Yum"
 
-#: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
+#: ../src/yumexgui/dialogs.py:492
+#: ../src/yumexgui/dialogs.py:501
 msgid "Transaction Result"
 msgstr "Resultado de la transacción"
 
-#: ../src/yumexgui/dialogs.py:535 ../src/yumexgui/views.py:556
+#: ../src/yumexgui/dialogs.py:535
+#: ../src/yumexgui/views.py:556
 msgid "Name"
 msgstr "Nombre"
 
@@ -253,17 +259,20 @@ msgstr "Nombre"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:537
+#: ../src/yumexgui/views.py:158
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:538 ../src/yumexgui/views.py:527
+#: ../src/yumexgui/dialogs.py:538
+#: ../src/yumexgui/views.py:527
 #: ../src/yumexgui/views.py:555
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/yumexgui/dialogs.py:539 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:539
+#: ../src/yumexgui/views.py:158
 msgid "Size"
 msgstr "Tamaño"
 
@@ -337,7 +346,8 @@ msgstr "Error del subsistema yum:"
 msgid "Unknown Error : "
 msgstr "Error desconocido : "
 
-#: ../src/yumexgui/__init__.py:558 ../src/yumexgui/views.py:445
+#: ../src/yumexgui/__init__.py:558
+#: ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr "Paquetes"
 
@@ -346,18 +356,16 @@ msgid "Perform actions on packages"
 msgstr "Realizar acciones sobre los paquetes"
 
 #: ../src/yumexgui/__init__.py:561
-#, fuzzy
 msgid "Pending Actions"
-msgstr "Procesando las acciones pendientes"
+msgstr "Acciones Pendientes"
 
 #: ../src/yumexgui/__init__.py:562
 msgid "Work with pending actions"
 msgstr "Trabajar con las acciones pendientes"
 
 #: ../src/yumexgui/__init__.py:565
-#, fuzzy
 msgid "Repositories"
-msgstr "Repositorio"
+msgstr "Repositorios"
 
 #: ../src/yumexgui/__init__.py:566
 msgid "Select active repositories"
@@ -365,13 +373,14 @@ msgstr "Seleccionar repositorios activos"
 
 #: ../src/yumexgui/__init__.py:568
 msgid "Output"
-msgstr ""
+msgstr "Salida"
 
 #: ../src/yumexgui/__init__.py:569
 msgid "Watch output details"
 msgstr "Ver los detalles de la salida"
 
-#: ../src/yumexgui/__init__.py:639 ../src/yumexgui/__init__.py:640
+#: ../src/yumexgui/__init__.py:639
+#: ../src/yumexgui/__init__.py:640
 msgid "Getting Group information"
 msgstr "Obteniendo información de grupos"
 
@@ -430,11 +439,13 @@ msgstr ""
 "Transasción completa pero con errores,\n"
 " consulte la página de salida para conocer los detalles"
 
-#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
+#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/views.py:181
 msgid "Package"
 msgstr "Paquete"
 
-#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/views.py:184
 #: ../src/yumexgui/views.py:450
 msgid "Summary"
 msgstr "Resumen"
@@ -504,9 +515,8 @@ msgid "Execute all pending actions in queue"
 msgstr "Ejecuta todas las acciones pendientes en la lista"
 
 #: ../src/yumex.glade.h:11
-#, fuzzy
 msgid "R_epositories"
-msgstr "Repositorio"
+msgstr "R_epositorios"
 
 #: ../src/yumex.glade.h:12
 msgid ""
@@ -595,12 +605,11 @@ msgstr "_Opciones"
 
 #: ../src/yumex.glade.h:35
 msgid "_Output"
-msgstr ""
+msgstr "_Salida"
 
 #: ../src/yumex.glade.h:36
-#, fuzzy
 msgid "_Packages"
-msgstr "Paquetes"
+msgstr "_Paquetes"
 
 #: ../src/yumex.glade.h:37
 msgid "_Profiles"
@@ -608,7 +617,7 @@ msgstr "_Perfiles"
 
 #: ../src/yumex.glade.h:38
 msgid "_Queue"
-msgstr ""
+msgstr "_Cola"
 
 #: ../src/yumex.glade.h:39
 msgid "_View"
@@ -620,3 +629,4 @@ msgstr "sin Chequeo de GPG"
 
 #~ msgid "The needed media was not found"
 #~ msgstr "El medio que se necesita no fue encontrado"
+
