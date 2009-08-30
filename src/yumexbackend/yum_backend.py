@@ -75,6 +75,9 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def yum_logger(self, msg):
         """ yum logger message """
         if len(msg.strip()) > 0:
+            # skip the bogus gtk error
+            if 'gdk_x11_atom_to_xatom_for_display' in msg: 
+                return
             self.frontend.info("YUM: " + msg)
 
     def yum_rpm_progress(self, action, package, frac, ts_current, ts_total):   
