@@ -518,7 +518,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         # Fix main menues
         menus = ['fileMenu','editMenu','viewMenu','optionsMenu','helpMenu','viewPackages','viewQueue',\
-                 'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck']
+                 'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck','packageRadioUpdates',\
+                'packageRadioAvailable','packageRadioInstalled','packageRadioGroups' ]
         for menu in menus:
             obj = getattr(self.ui,menu)
             label = obj.get_child()
