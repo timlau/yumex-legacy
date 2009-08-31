@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-30 14:42+0200\n"
-"PO-Revision-Date: 2009-08-22 12:48+0200\n"
+"PO-Revision-Date: 2009-08-31 14:01+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -343,18 +343,16 @@ msgid "Perform actions on packages"
 msgstr "Wykonaj działania na pakietach"
 
 #: ../src/yumexgui/__init__.py:561
-#, fuzzy
 msgid "Pending Actions"
-msgstr "Przetwarzanie oczekujących działań"
+msgstr "Oczekujące działania"
 
 #: ../src/yumexgui/__init__.py:562
 msgid "Work with pending actions"
 msgstr "Trwa praca z oczekującymi działaniami"
 
 #: ../src/yumexgui/__init__.py:565
-#, fuzzy
 msgid "Repositories"
-msgstr "Repozytorium"
+msgstr "Repozytoria"
 
 #: ../src/yumexgui/__init__.py:566
 msgid "Select active repositories"
@@ -362,7 +360,7 @@ msgstr "Wybierz aktywne repozytoria"
 
 #: ../src/yumexgui/__init__.py:568
 msgid "Output"
-msgstr ""
+msgstr "Wyjście"
 
 #: ../src/yumexgui/__init__.py:569
 msgid "Watch output details"
@@ -501,9 +499,8 @@ msgid "Execute all pending actions in queue"
 msgstr "Wykonaj wszystkie oczekujące działania w kolejce"
 
 #: ../src/yumex.glade.h:11
-#, fuzzy
 msgid "R_epositories"
-msgstr "Repozytorium"
+msgstr "R_epozytoria"
 
 #: ../src/yumex.glade.h:12
 msgid ""
@@ -592,12 +589,11 @@ msgstr "_Opcje"
 
 #: ../src/yumex.glade.h:35
 msgid "_Output"
-msgstr ""
+msgstr "_Wyjście"
 
 #: ../src/yumex.glade.h:36
-#, fuzzy
 msgid "_Packages"
-msgstr "Pakiety"
+msgstr "_Pakiety"
 
 #: ../src/yumex.glade.h:37
 msgid "_Profiles"
@@ -605,7 +601,7 @@ msgstr "_Profile"
 
 #: ../src/yumex.glade.h:38
 msgid "_Queue"
-msgstr ""
+msgstr "_Kolejka"
 
 #: ../src/yumex.glade.h:39
 msgid "_View"
@@ -614,6 +610,3 @@ msgstr "_Widok"
 #: ../src/yumex.glade.h:40
 msgid "no GPG Check"
 msgstr "bez sprawdzania GPG"
-
-#~ msgid "The needed media was not found"
-#~ msgstr "Nie znaleziono wymaganego nośnika"
