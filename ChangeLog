@@ -1,3 +1,796 @@
+2009-09-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped version to 2.9.0
+
+2009-09-01  warrink <warrink@fedoraproject.org>
+
+	* po/nl.po: Sending translation for po/nl.po
+
+2009-08-31  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2009-08-30  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-08-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: skip some bogus gtk error msg
+
+2009-08-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped release to
+	2.9.0-0.13.pre
+
+2009-08-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Fix translation issues : package page
+	radio buttons
+
+2009-08-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/es.po, po/ja.po, po/pl.po, po/yumex.pot,
+	src/yumex.glade, src/yumex.py, src/yumexgui/__init__.py: Fix
+	translation issues and updates pot/po files
+
+2009-08-24  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-08-24  logan <logan@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-08-24  logan <logan@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-08-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yumMediaManager.py,
+	src/yumexbackend/yumMediaManagerDeviceKit.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, yumex.spec: Added media support by
+	مؤيد السعدي and bump the release
+
+2009-08-23  alsadi <alsadi@fedoraproject.org>
+
+	* po/ar.po: Sending translation for po/ar.po
+
+2009-08-23  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-08-23  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for po/es.po
+
+2009-08-22  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for po/pl.po
+
+2009-08-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped release to 2.9.0-0.11.pre
+
+2009-08-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped release to 2.9.0-0.11.pre
+
+2009-08-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py, src/yumexgui/__init__.py: save windows size
+	and package list/info separator position and use it at next launch
+
+2009-08-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py: handle missing .yumex.conf better
+
+2009-08-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/da.po, po/ja.po, po/yumex.pot, src/yumex.glade: removed gtk-xxx
+	labels from translation and updated da translation
+
+2009-08-17  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ja.po: Added jp translation by MATSUURA Takanori
+
+2009-08-07  Tim Lauridsen <tim@naboo.local>
+
+	* yumex.spec: new prerelease
+
+2009-08-07  Tim Lauridsen <tim@naboo.local>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: make sure the transaction is cleared
+	between each run, so deselected packages not get into a second run
+
+2009-08-07  Tim Lauridsen <tim@naboo.local>
+
+	* src/yumexgui/__init__.py: make sure the search field get the focus
+
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/guihelpers/__init__.py, src/yumex.glade: undo latest commit
+	(it dont fix the issue)
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/guihelpers/__init__.py: try to fix problems with missing
+	translation of gtk.Builder widgets
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/da.po, po/yumex.pot: refresh translation files and update the
+	da tranlation
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: minor spec file cleanup
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: minor spec file cleanup
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: minor spec file cleanup
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexgui/__init__.py: Added
+	yumex homepage in about dialog
+
+2009-08-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py: check if backend is running as root
+
+2009-08-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Dont show dialog before backend is
+	loaded
+
+2009-08-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/yumex-yum-backend,
+	misc/yumex-yum-backend.console.app, misc/yumex-yum-backend.pam,
+	misc/yumex.pam, src/yumex.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbase/conf.py,
+	src/yumexgui/dialogs.py, yumex.spec: Make the gui run as non root
+	and make the backend a consolehelper app
+
+2009-08-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py: Added more basics for media handing
+
+
+2009-08-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/dialogs.py:  Use OK/Cancel dialog for media change, instead of Yes/No
+
+2009-08-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py: Added basics for media change
+	support
+
+2009-08-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* gfx/svg/yumex-packages.svg, gfx/svg/yumex-repo.svg: use 24x24
+	icons in page selector
+
+2009-08-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* gfx/button-output.png, gfx/button-packages.png,
+	gfx/button-queue.png, gfx/button-repo.png: use 24x24 icons in page
+	selector
+
+2009-05-29  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py, src/yumexgui/gui.py: 
+	Reworked keyboard shortcuts
+
+2009-05-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py, src/yumexgui/gui.py: 
+	Added keyboard shortcuts
+
+2009-05-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/dialogs.py: make the size
+	of name column in confirmation dialog fixed
+
+2009-05-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/gui.py: Added tooltips to
+	package buttons
+
+2009-05-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: dont show package in view when --noauto
+	is given
+
+2009-05-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* gfx/button-group.png, gfx/button-output.png,
+	gfx/button-packages.png, gfx/button-queue.png, gfx/button-repo.png,
+	gfx/svg/yumex-packages.svg, gfx/svg/yumex-queue.svg,
+	gfx/svg/yumex-repo.svg, src/yumex.glade: Added new icons
+
+2009-05-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, src/yumexgui/__init__.py, src/yumexgui/views.py: Fixed group
+	selection not reset on Undo and updated TODO
+
+2009-05-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexgui/gui.py: Fixed the
+	packages in group, not getting updated, when group is selected
+
+2009-05-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to
+	2.9.0-0.8.pre
+
+2009-05-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: updated TODO
+
+2009-05-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py: added skip-broken to
+	option menu
+
+2009-05-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexgui/__init__.py: Add some pieces to use for proxy support
+
+2009-05-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py, src/yumexgui/dialogs.py: Added more options
+	to preferences
+
+2009-05-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: Added preference dialog basics
+
+2009-05-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbase/conf.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py: Added preference dialog basics
+
+2009-05-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, src/yumexbackend/yum_backend.py, src/yumexgui/__init__.py: - show a warning dialog on an empty package action queue - show a
+	dialog on transaction errors, like 'foo is not signed'
+
+2009-05-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py: 
+	Added yum child command timming in debug mode
+
+2009-05-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, src/yumex.glade, src/yumex.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: - Added Option Menu with 'No GPG Check' option - Make the exception
+	handling more solid and show exception in a dialog
+
+2009-05-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: Added
+	expetion dialog and fix to many param exception
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/dialogs.py: url
+	failure support
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexgui/gui.py: typo
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexgui/gui.py: lock the gui, while getting package details,
+	so we dont call the yum backend again before it has responded
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* Makefile: install *.gif too
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to
+	2.9.0-0.7.pre
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexgui/dialogs.py: added TaskList doc string
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexgui/dialogs.py: fix missing rename
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/dialogs.py: - make the task list class easier to use
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* gfx/spinner-small.gif, gfx/spinner.gif, src/yumex.glade,
+	src/yumexbase/constants.py, src/yumexgui/dialogs.py: - new progress spinner - added TASK_RUNNING spinner
+
+2009-05-20  Tim Lauridsen <tim@localhost.localdomain>
+
+	* gfx/spinner.gif, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/constants.py,
+	src/yumexgui/dialogs.py: - clean up presto support code - added spinner to progress dialog
+
+2009-05-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: presto support changes
+
+2009-05-19  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py: 
+	added some presto support code
+
+2009-05-19  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO, src/yumexgui/__init__.py: make --noauto show some repos :)
+
+2009-05-19  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbase/constants.py, src/yumexgui/__init__.py: remove old
+	config code
+
+2009-05-19  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO, misc/yumex.conf.default, src/yumexbackend/yum_backend.py,
+	src/yumexbase/conf.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, yumex.spec: Added code to hande a conf
+	file
+
+2009-05-19  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO, src/yumexgui/__init__.py: Make search entry have the default
+	focus
+
+2009-05-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/__init__.py: Fixed
+	missing transaction complete transaction regression
+
+2009-05-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/__init__.py: Fixed
+	problems then depsolve has errors
+
+2009-05-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexbase/constants.py: detect
+	metalink repo data and remove some debug stuff
+
+2009-05-13  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/gui.py: Make the
+	updateinfo work and look right
+
+2009-05-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped to 2.9.0-0.6.pre
+
+2009-05-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, src/yumexbackend/__init__.py,
+	src/yumexbackend/yum_backend.py, src/yumexgui/gui.py,
+	src/yumexgui/views.py: * Show full version-release in package view * Show package fullname
+	in package info when showing description
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: Updated TODO
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/dialogs.py: make the
+	(current/total) in tasklist smaller and in bold
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/gui.py: only get update
+	info for updates
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: Updated TODO
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: Updated TODO
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: Updated TODO
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: Updated doc strings
+
+2009-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/gui.py: Added the
+	backend stuff for getting update info, but the display code is
+	waiting for F11 is released and there is some update info to display
+
+
+2009-05-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, src/yumexbackend/yum_backend.py, src/yumexgui/dialogs.py: 
+	Display current transaction / total transaction when performing
+	transaction
+
+2009-05-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: pylint fixes
+
+2009-05-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py: 
+	Added action messages in output after transaction actions is
+	completted
+
+2009-05-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py: Added search entry
+	icons for search and clear search
+
+2009-05-08  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumex.glade, src/yumexgui/__init__.py: search entry icons
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO: updated TODO
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/Makefile: Added epydoc Makefile target (epydoc, graphviz %
+	graphviz-python needed to use it)
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py, src/yumexgui/views.py: Cleanup pylint
+	warnings and errors
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO: updated TODO
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/views.py: Fix exception
+	when removing stuff while installing something else
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO: updated TODO
+
+2009-05-07  Tim Lauridsen <tim@localhost.localdomain>
+
+	* TODO, src/yumexbackend/yum_backend.py, src/yumexgui/dialogs.py: 
+	Dont show number of files to download, if we are not i the download
+	package task
+
+2009-05-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped spec release
+
+2009-05-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py: 
+	more details on download progress
+
+2009-05-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'future' of ssh://git.fedorahosted.org/git/yumex
+	into future
+
+2009-05-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py: Added more download info
+
+2009-05-06  Tim Lauridsen <tilau@localhost.localdomain>
+
+	* po/da.po, po/yumex.pot, src/yumexbase/i18n.py,
+	src/yumexgui/__init__.py: Make translation work and updated danish
+	translation
+
+2009-05-06  Tim Lauridsen <tilau@localhost.localdomain>
+
+	* yumex.spec: remove execute attr from spec
+
+2009-05-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py: 
+	repo ids starting @ is installed packages
+
+2009-05-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexbase/constants.py: detect
+	presto metadata and support from_repo from yumdb_info
+
+2009-04-30  Tim Lauridsen <tim@localhost.localdomain>
+
+	* Makefile: Makefile updates
+
+2009-04-30  Tim Lauridsen <tim@localhost.localdomain>
+
+	* yumex.spec: minor spec file adjustments
+
+2009-04-30  Tim Lauridsen <tim@localhost.localdomain>
+
+	* yumex.spec: bumped preview release to 2.9.0-0.4.pre in spec file
+
+2009-04-28  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexgui/__init__.py, src/yumexgui/views.py: Better group undo
+	(not complete yet)
+
+2009-04-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: 
+	added dialog there ask if the user want's to Quit after transaction
+	is completted without errors
+
+2009-04-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Only show SelectAll in updates
+
+2009-04-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/old-stuff/callbacks.py, src/old-stuff/dialogs.py,
+	src/old-stuff/filters.py, src/old-stuff/gui.py,
+	src/old-stuff/i18n.py, src/old-stuff/misc.py,
+	src/old-stuff/packages.py, src/old-stuff/views.py,
+	src/old-stuff/yumapi.py, src/old-stuff/yumex.glade,
+	src/old-stuff/yumex.py, src/old-stuff/yumgui/Makefile,
+	src/old-stuff/yumgui/__init__.py,
+	src/old-stuff/yumgui/__init__.pyc,
+	src/old-stuff/yumgui/callbacks.py,
+	src/old-stuff/yumgui/callbacks.pyc,
+	src/old-stuff/yumgui/packages.py,
+	src/old-stuff/yumgui/packages.pyc, src/old-stuff/yumgui/widgets.py,
+	src/old-stuff/yumgui/widgets.pyc, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/__init__.py: removed
+	oldstuff and removed internal format_number and use the one in
+	urlgrabber
+
+2009-04-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* docs/Yum_Extender_Documentation/en-US/Book_Info.xml,
+	docs/Yum_Extender_Documentation/en-US/Chapter2.xml,
+	docs/Yum_Extender_Documentation/en-US/images/icon.svg,
+	docs/Yum_Extender_Documentation/en-US/images/output-page.png,
+	docs/Yum_Extender_Documentation/en-US/images/package-page.png,
+	docs/Yum_Extender_Documentation/en-US/images/queue-page.png,
+	docs/Yum_Extender_Documentation/en-US/images/repo-page.png: updated
+	user guide
+
+2009-04-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* docs/Yum_Extender_Documentation/en-US/Chapter1.xml~,
+	docs/Yum_Extender_Documentation/en-US/Chapter2.xml,
+	docs/Yum_Extender_Documentation/en-US/Chapter2.xml~,
+	docs/Yum_Extender_Documentation/en-US/Yum_Extender_Documentation.xm
+	l~: updated user guide and removed backup files from git
+
+2009-04-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO, docs/Yum_Extender_Documentation/Makefile,
+	docs/Yum_Extender_Documentation/en-US/Author_Group.xml,
+	docs/Yum_Extender_Documentation/en-US/Book_Info.xml,
+	docs/Yum_Extender_Documentation/en-US/Chapter1.xml,
+	docs/Yum_Extender_Documentation/en-US/Chapter1.xml~,
+	docs/Yum_Extender_Documentation/en-US/Chapter2.xml,
+	docs/Yum_Extender_Documentation/en-US/Chapter2.xml~,
+	docs/Yum_Extender_Documentation/en-US/Chapter3.xml,
+	docs/Yum_Extender_Documentation/en-US/Preface.xml,
+	docs/Yum_Extender_Documentation/en-US/Revision_History.xml,
+	docs/Yum_Extender_Documentation/en-US/Yum_Extender_Documentation.en
+	t,
+	docs/Yum_Extender_Documentation/en-US/Yum_Extender_Documentation.xm
+	l,
+	docs/Yum_Extender_Documentation/en-US/Yum_Extender_Documentation.xm
+	l~, docs/Yum_Extender_Documentation/en-US/images/icon.svg,
+	docs/Yum_Extender_Documentation/en-US/images/output-page.png,
+	docs/Yum_Extender_Documentation/en-US/images/package-page.png,
+	docs/Yum_Extender_Documentation/en-US/images/queue-page.png,
+	docs/Yum_Extender_Documentation/en-US/images/repo-page.png: Added
+	the start to the yumex user guide created using publician tool
+
+2009-04-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/dialogs.py: make progress
+	dialog shirk after tasklist has been shown and hidden (2 try)
+
+2009-04-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped release to 2.9.0-0.3.pre
+
+2009-04-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/progress-test.py, src/yumexgui/dialogs.py: make progress
+	dialog shirk after tasklist has been shown and hidden and added some
+	progress dialog test code
+
+2009-04-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/guihelpers/__init__.py, src/test/progress-test.py,
+	src/yumexgui/dialogs.py: make progress dialog shirk after tasklist
+	has been shown and hidden and added some progress dialog test code
+
+2009-04-25  Tim Lauridsen <tim@localhost.localdomain>
+
+	Merge branch 'future' of ssh://git.fedorahosted.org/git/yumex
+	into future
+
+2009-04-25  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumex.glade, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py: Added task list progress
+
+2009-04-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Show info about downloaded files
+	in output console
+
+2009-04-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: disable the refresh-packagekit
+	plugin, it gets in the way, every time we is finish an transaction
+
+2009-04-24  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexgui/__init__.py: disable about url handler, we dont want
+	to start the browser as root :)
+
+2009-04-24  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_server.py: minor cleanup in get-packages
+
+2009-04-24  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/yumexbackend/yum_server.py: use yum.preconf instead of
+	doConfigSetup() and add some doc strings
+
+2009-04-24  Tim Lauridsen <tim@localhost.localdomain>
+
+	* src/guihelpers/__init__.py, src/yumex.glade,
+	src/yumexbackend/yum_server.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py: Added About dialog
+
+2009-04-24  Tim Lauridsen <tim@localhost.localdomain>
+
+	* Makefile, po/Makefile, po/POTFILES.in, po/da.po, po/yumex.pot,
+	src/Makefile, src/yumex.glade, src/yumex.xml,
+	src/yumexbase/constants.py: Use yumex.glade in glade3 (F11/Rawhide)
+	GtkBuilder format, instead of yumex.xml and updated translation to
+	include glade file translations
+
+2009-04-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/views.py: updated doc strings
+
+2009-04-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: updated doc strings
+
+2009-04-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: updated doc strings
+
+2009-04-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/guihelpers/__init__.py, src/test/client.py,
+	src/test/yumex-pylintrc, src/yum_childtask.py, src/yumex.py,
+	src/yumexbackend/__init__.py, src/yumexbackend/dummy_backend.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/__init__.py,
+	src/yumexbase/constants.py, src/yumexbase/i18n.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py, src/yumexgui/views.py: Added missing docstrings
+	and let pylint check for docstrings
+
+2009-04-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/yumex-pylintrc, src/yumexbackend/__init__.py,
+	src/yumexbackend/dummy_backend.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: pylint cleanup
+
+2009-04-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: make Repo - Redo work again
+
+2009-04-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/Makefile, src/guihelpers/__init__.py,
+	src/test/yumex-pylintrc, src/yum_childtask.py,
+	src/yumexbackend/__init__.py, src/yumexbackend/dummy_backend.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/__init__.py,
+	src/yumexbase/constants.py, src/yumexbase/i18n.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py, src/yumexgui/views.py: Added pylint convention
+	checking and fixed all the errors and warnings
+
+2009-04-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py, src/yum_server.py,
+	src/yumexbackend/yum_client.py: renamed yum_server.py to
+	yum_childtask.py
+
+2009-04-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Added pylint comment
+
+2009-04-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/yumex-pylintrc, src/yum_server.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_clientserver.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: split
+	yumexbackend/yum_clintserver into yum_client.py & yum_server.py
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/yumex-pylintrc, src/yumexbackend/dummy_backend.py,
+	src/yumexbase/__init__.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/views.py: fixed pylint errors
+	and warnings
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: make builds work in rawhide
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: Bumped release in yumex.spec
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_clientserver.py: fix issues with presto in
+	rawhide
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Added some information dialog on not
+	implemented functions
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, src/yumexgui/__init__.py: make the Queue -> Remove
+	remove the selected packages
+
+2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: added ChangeLog
+
 2009-04-21  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* Makefile, yumex.spec: make changelog show only yumex nextgen
