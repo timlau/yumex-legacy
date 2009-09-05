@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-30 14:42+0200\n"
+"POT-Creation-Date: 2009-09-05 16:52+0200\n"
 "PO-Revision-Date: 2009-08-23 13:10+0200\n"
 "Last-Translator: Muayyad Saleh Alsadi <alsadi@ojuba.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -17,56 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:92 ../src/yumexbackend/yum_backend.py:93
+#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
 msgid "Getting Package Information"
 msgstr "يجري جلب معلومات الحزم"
 
-#: ../src/yumexbackend/yum_backend.py:112
+#: ../src/yumexbackend/yum_backend.py:115
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "نوع بيانات الميتا (%s) للمستودع %s غير معروفة"
 
-#: ../src/yumexbackend/yum_backend.py:126
+#: ../src/yumexbackend/yum_backend.py:129
 msgid "Buiding rpms from deltarpm"
 msgstr "بناء حزم rpms من الفروقات"
 
-#: ../src/yumexbackend/yum_backend.py:142 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "تنزيل الحزم"
 
-#: ../src/yumexbackend/yum_backend.py:147 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:150 ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "فحص تواقيع GPG على الحزم"
 
-#: ../src/yumexbackend/yum_backend.py:152 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:155 ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "يجري تنفيذ مرحلة فحص العملية من RPM"
 
-#: ../src/yumexbackend/yum_backend.py:160
+#: ../src/yumexbackend/yum_backend.py:163
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "هل ترغب في استيراد متاح توقيع GPG: %s \n"
 
-#: ../src/yumexbackend/yum_backend.py:162
+#: ../src/yumexbackend/yum_backend.py:165
 #, python-format
 msgid "Needed by %s"
 msgstr "يحتاجها %s"
 
-#: ../src/yumexbackend/yum_backend.py:177
+#: ../src/yumexbackend/yum_backend.py:180
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "فضلا أدخل الوسيط المعنون %s ذي الرقم %d."
 
-#: ../src/yumexbackend/yum_backend.py:179
+#: ../src/yumexbackend/yum_backend.py:182
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "فضلا أدخل الوسيط المعنون %s."
 
-#: ../src/yumexbackend/yum_backend.py:242
+#: ../src/yumexbackend/yum_backend.py:245
 msgid "Starting yum child process"
 msgstr "يجري بدء عملية yum الوليدة"
 
-#: ../src/yumexbackend/yum_backend.py:244
+#: ../src/yumexbackend/yum_backend.py:247
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -77,68 +77,75 @@ msgstr ""
 "%s\n"
 "\n"
 
-#: ../src/yumexbackend/yum_backend.py:258
+#: ../src/yumexbackend/yum_backend.py:261
 msgid "Stopping yum child process"
 msgstr "يجري إيقاف عملية yum الوليدة"
 
-#: ../src/yumexbackend/yum_backend.py:477 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:480 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "يجري حلحلت الاعتماديات"
 
-#: ../src/yumexbackend/yum_backend.py:494
-#: ../src/yumexbackend/yum_backend.py:495
+#: ../src/yumexbackend/yum_backend.py:497
+#: ../src/yumexbackend/yum_backend.py:498
 msgid "Dependency Resolution Failed"
 msgstr "فشلت عملية حلحلت الاعتماديات"
 
-#: ../src/yumexbackend/yum_backend.py:496
+#: ../src/yumexbackend/yum_backend.py:499
 msgid "Dependency Resolution Errors:"
 msgstr "الأخطاء التي أعاقت حلحلت الاعتماديات"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:505
+#: ../src/yumexbackend/yum_backend.py:508
 msgid "Dependency resolving completed with errors"
 msgstr "انتهت عملية حلحلت الاعتماديات بأخطاء"
 
-#: ../src/yumexbackend/yum_server.py:173
+#. Not local disable it
+#. No, disable it
+#: ../src/yumexbackend/yum_server.py:183 ../src/yumexbackend/yum_server.py:192
+#, python-format
+msgid "No network connection, disable non local repo %s"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:207
 msgid "Yum is locked : "
 msgstr "Yum مقفل :"
 
-#: ../src/yumexbackend/yum_server.py:178
+#: ../src/yumexbackend/yum_server.py:212
 msgid "  The other application is: PackageKit"
 msgstr "  التطبيق الآخر هو: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:180
+#: ../src/yumexbackend/yum_server.py:214
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  التطبيق الآخر هو: %s"
 
-#: ../src/yumexbackend/yum_server.py:182
+#: ../src/yumexbackend/yum_server.py:216
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "انتظار 10 ثواني قبل المحاولة من جديد!!!"
 
-#: ../src/yumexbackend/yum_server.py:513
+#: ../src/yumexbackend/yum_server.py:547
 msgid "Installing"
 msgstr "تثبيت"
 
-#: ../src/yumexbackend/yum_server.py:565
+#: ../src/yumexbackend/yum_server.py:599
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "خطأ في عملية yum: %s"
 
-#: ../src/yumexbackend/yum_server.py:607
+#: ../src/yumexbackend/yum_server.py:641
 #, python-format
 msgid "Failure getting %s: "
 msgstr "خطأ في جلب %s : "
 
-#: ../src/yumexbackend/yum_server.py:608
+#: ../src/yumexbackend/yum_server.py:642
 msgid "Trying other mirror."
 msgstr "يجري تجربة موقع مرآة آخر."
 
-#: ../src/yumexbackend/yum_server.py:1054
+#: ../src/yumexbackend/yum_server.py:1091
 msgid "Rebuild from deltarpms completted"
 msgstr "تم الانتهاء من بناء الحزمة من فروقات deltarpms"
 
-#: ../src/yumexbackend/yum_server.py:1056
+#: ../src/yumexbackend/yum_server.py:1093
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "تنزيل : %s ( %s )"
@@ -314,97 +321,115 @@ msgstr "       العثرات :"
 msgid "Description : %s\n"
 msgstr "الوصف : %s\n"
 
-#: ../src/yumexgui/__init__.py:486
+#: ../src/yumexgui/__init__.py:497
 msgid "Fatal Error"
 msgstr "خطأ قاتل"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:488
+#: ../src/yumexgui/__init__.py:499
 msgid "Can't start the yum backend"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:489
+#: ../src/yumexgui/__init__.py:500
 msgid "Another program is locking yum"
 msgstr "برنامج آخر يقفل yum"
 
-#: ../src/yumexgui/__init__.py:491
+#: ../src/yumexgui/__init__.py:502
 msgid "Message from yum backend:"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:495
+#: ../src/yumexgui/__init__.py:506
 msgid "Unknown Error : "
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:558 ../src/yumexgui/views.py:445
+#: ../src/yumexgui/__init__.py:569 ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr "الحزم"
 
-#: ../src/yumexgui/__init__.py:559
+#: ../src/yumexgui/__init__.py:570
 msgid "Perform actions on packages"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:561
+#: ../src/yumexgui/__init__.py:572
 msgid "Pending Actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:562
+#: ../src/yumexgui/__init__.py:573
 msgid "Work with pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:565
+#: ../src/yumexgui/__init__.py:576
 #, fuzzy
 msgid "Repositories"
 msgstr "المتسودع"
 
-#: ../src/yumexgui/__init__.py:566
+#: ../src/yumexgui/__init__.py:577
 msgid "Select active repositories"
 msgstr "اختر المستودعات الفاعلة"
 
-#: ../src/yumexgui/__init__.py:568
+#: ../src/yumexgui/__init__.py:579
 msgid "Output"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:569
+#: ../src/yumexgui/__init__.py:580
 msgid "Watch output details"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:639 ../src/yumexgui/__init__.py:640
+#: ../src/yumexgui/__init__.py:611
+msgid "Not connected to an network"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:612
+msgid ""
+"Not connected to an network.\n"
+"Do you want to continue "
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:617
+msgid "Can't detect the network connection state"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:619
+msgid "Connected to an network"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:662 ../src/yumexgui/__init__.py:663
 msgid "Getting Group information"
 msgstr "جلب معلومات المجموعات"
 
-#: ../src/yumexgui/__init__.py:660
+#: ../src/yumexgui/__init__.py:683
 msgid "Getting Package Lists"
 msgstr "جلب قوائم الحزم"
 
-#: ../src/yumexgui/__init__.py:661
+#: ../src/yumexgui/__init__.py:684
 msgid "Getting Updated Packages"
 msgstr "جلب الحزم المحدثة"
 
-#: ../src/yumexgui/__init__.py:664
+#: ../src/yumexgui/__init__.py:687
 msgid "Getting Available Packages"
 msgstr "جلب الحزم المتوفرة"
 
-#: ../src/yumexgui/__init__.py:666
+#: ../src/yumexgui/__init__.py:689
 msgid "Getting installed Packages"
 msgstr "جلب الحزم المثبتة"
 
-#: ../src/yumexgui/__init__.py:680
+#: ../src/yumexgui/__init__.py:703
 msgid "The pending action queue is empty"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:685
+#: ../src/yumexgui/__init__.py:708
 msgid "Processing pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:686
+#: ../src/yumexgui/__init__.py:709
 msgid "Preparing the transaction"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:701
+#: ../src/yumexgui/__init__.py:724
 msgid "Transaction completed successfully"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:702
+#: ../src/yumexgui/__init__.py:725
 msgid ""
 "\n"
 "\n"
@@ -415,11 +440,11 @@ msgstr ""
 "هل ترغب في الخروج من Yum Extender"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:708
+#: ../src/yumexgui/__init__.py:731
 msgid "Transaction Aborted by User"
 msgstr "أجهض المستخدم العملية"
 
-#: ../src/yumexgui/__init__.py:711
+#: ../src/yumexgui/__init__.py:734
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
