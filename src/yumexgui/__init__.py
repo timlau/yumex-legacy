@@ -32,6 +32,7 @@ from datetime import date
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences
+from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView
 from yumexbase.constants import *
@@ -442,6 +443,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Init the Yumex Application
         @param backend: The backend instance class
         '''
+        self._network = NetworkCheckNetworkManager()
         self.cfg = YumexOptions()
         self.cfg.dump()
         self.progress = None
@@ -456,6 +458,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.package_cache = PackageCache(self.backend)
         self._packages_loaded = False
         self._key_bindings = gtk.AccelGroup()
+        self._network = NetworkCheckNetworkManager()
+
+    @property
+    def is_offline(self):
+        self._network.check_network_connection()
+        if self._network.is_connected == False:
+            return True
+        else:
+            return False
     
     @property
     def settings(self):
@@ -523,7 +534,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         for menu in menus:
             obj = getattr(self.ui,menu)
             label = obj.get_child()
-            print label.get_label()
             label.set_label(_(label.get_label()))
             
         
@@ -596,6 +606,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
+        # check network state
+        if self.is_offline:
+            self.info("Not connected to an network")
+        else:
+            if self._network.is_connected == None:
+                self.info("Can't detect the network connection state")
+            else:
+                self.info("Connected to an network")
+
         # load packages and groups 
         # We cant disable both repo page and auto refresh
         if self.settings.autorefresh or self.settings.disable_repo_page: 
