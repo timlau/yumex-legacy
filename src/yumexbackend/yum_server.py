@@ -124,7 +124,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self, debuglevel = 2, plugins = True, enabled_repos = None):
+    def __init__(self, debuglevel = 2, plugins = True, offline = False, enabled_repos = None):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         self.mediagrabber=self.mediaGrabber
@@ -144,19 +144,53 @@ class YumServer(yum.YumBase):
         self.plugins.setCmdLine(options, args)
         dscb = DepSolveProgressCallBack()
         self.dsCallback = dscb
-        if enabled_repos:
-            for repo in self.repos.repos.values():
-                if repo.id in enabled_repos:
-                    self.repos.enableRepo(repo.id)
-                else:
-                    self.repos.disableRepo(repo.id)
+        self.offline = offline
+        # Setup repos
+        self._setup_repos(enabled_repos)
         # Setup failure callback
         freport = ( self._failureReport, (), {} )
         self.repos.setFailureCallback( freport )       
         self._updateMetadata = None # Update metadata cache 
         self.write(':started') # Let the front end know that we are up and running
 
+    def _is_local_repo(self,repo):
+        '''
+        Check if an repo is local (media or file:// repo)
+        '''
+        if repo.mediaid or filter(lambda r: r.startswith('file:'), repo.baseurl):
+            return True
+        else:
+            return False
 
+    def _setup_repos(self, enabled_repos):
+        '''
+        Setup the repo to be enabled/disabled
+        '''
+        if not self.offline: # Online
+            if enabled_repos: # Use the positive list of repos to enable
+                for repo in self.repos.repos.values():
+                    if repo.id in enabled_repos: # is in the positive list
+                        self.repos.enableRepo(repo.id)
+                    else:
+                        self.repos.disableRepo(repo.id)
+        else: # Offline, use only media or locale file:// repos
+            if enabled_repos: # Use the supplied list of repos to enable
+                for repo in self.repos.repos.values():
+                    if repo.id in enabled_repos:
+                        if self._is_local_repo(repo): # is local ?
+                            self.repos.enableRepo(repo.id)
+                        else: # Not local disable it
+                            self.info(_("No network connection, disable non local repo %s") % repo.id)
+                            self.repos.disableRepo(repo.id)                            
+                    else: # not in positive list, disable it
+                        self.repos.disableRepo(repo.id)
+            else: # Use the default enabled ones
+                for repo in self.repos.listEnabled():
+                    if self._is_local_repo(repo): # is local ?
+                        self.repos.enableRepo(repo.id)
+                    else: # No, disable it
+                        self.info(_("No network connection, disable non local repo %s") % repo.id)
+                        self.repos.disableRepo(repo.id)
 
     def doLock(self, lockfile = YUM_PID_FILE):
         '''
@@ -625,24 +659,27 @@ class YumServer(yum.YumBase):
         get category/group list
         '''
         all_groups = []
-        cats = self.comps.get_categories()
-        for category in cats:
-            cat = (category.categoryid, category.ui_name, category.ui_description)
-            cat_grps = []
-            grps = [self.comps.return_group(g) for g in category.groups if self.comps.has_group(g)]
-            for grp in grps:
-                icon = None
-                fn = "/usr/share/pixmaps/comps/%s.png" % grp.groupid
-                if os.access(fn, os.R_OK):
-                    icon = fn
-                else:
-                    fn = "/usr/share/pixmaps/comps/%s.png" % category.categoryid
+        try:
+            cats = self.comps.get_categories()
+            for category in cats:
+                cat = (category.categoryid, category.ui_name, category.ui_description)
+                cat_grps = []
+                grps = [self.comps.return_group(g) for g in category.groups if self.comps.has_group(g)]
+                for grp in grps:
+                    icon = None
+                    fn = "/usr/share/pixmaps/comps/%s.png" % grp.groupid
                     if os.access(fn, os.R_OK):
                         icon = fn
-
-                elem = (grp.groupid, grp.ui_name, grp.ui_description, grp.installed, icon)
-                cat_grps.append(elem)
-            all_groups.append((cat, cat_grps))
+                    else:
+                        fn = "/usr/share/pixmaps/comps/%s.png" % category.categoryid
+                        if os.access(fn, os.R_OK):
+                            icon = fn
+    
+                    elem = (grp.groupid, grp.ui_name, grp.ui_description, grp.installed, icon)
+                    cat_grps.append(elem)
+                all_groups.append((cat, cat_grps))
+        except Errors.GroupsError,e:
+            print str(e)
         self.message('groups', pack(all_groups))
         self.ended(True)
 

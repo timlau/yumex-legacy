@@ -238,7 +238,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         """ debug message """
         self.frontend.exception(unpack(msg))
 
-    def setup(self, repos=None):
+    def setup(self, offline = False,repos=None):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
             return
@@ -252,7 +252,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      
         self.debug('Initialize yum backend - BEGIN')    
-        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, repos=repos, proxy=proxy)
+        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, offline=offline, repos=repos, proxy=proxy)
         self.debug('Initialize yum backend - END')    
         return rc    
         

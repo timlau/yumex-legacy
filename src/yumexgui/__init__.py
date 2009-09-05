@@ -608,12 +608,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.setup_filters()
         # check network state
         if self.is_offline:
-            self.info("Not connected to an network")
+            self.info(_("Not connected to an network"))
+            rc = questionDialog(self.window,_("Not connected to an network.\nDo you want to continue "))
+            if not rc:
+                self.main_quit()
         else:
             if self._network.is_connected == None:
-                self.info("Can't detect the network connection state")
+                self.info(_("Can't detect the network connection state"))
             else:
-                self.info("Connected to an network")
+                self.info(_("Connected to an network"))
 
         # load packages and groups 
         # We cant disable both repo page and auto refresh
@@ -676,7 +679,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress = self.get_progress()
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
-        self.backend.setup(repos)
+        self.backend.setup(self.is_offline, repos)
         progress.set_title(_("Getting Package Lists"))
         progress.set_header(_("Getting Updated Packages"))
         progress.show()
