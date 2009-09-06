@@ -18,7 +18,8 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:95
+#: ../src/yumexbackend/yum_backend.py:96
 msgid "Getting Package Information"
 msgstr "Extrayendo información del paquete"
 
@@ -31,15 +32,18 @@ msgstr "Tipo de Metadatos del Repo desconocido (%s) para %s"
 msgid "Buiding rpms from deltarpm"
 msgstr "Construyendo rpms desde deltarpm"
 
-#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145
+#: ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "Descargando paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:150 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:150
+#: ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "Chequeando las firmas GPG de los paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:155 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:155
+#: ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "Ejecutando la prueba de las Transacciones RPM"
 
@@ -82,7 +86,8 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "Deteniendo el proceso hijo yum"
 
-#: ../src/yumexbackend/yum_backend.py:480 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:480
+#: ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Resolviendo dependencias"
 
@@ -102,10 +107,11 @@ msgstr "Resolución de dependencia completa pero con errores"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:183 ../src/yumexbackend/yum_server.py:192
+#: ../src/yumexbackend/yum_server.py:183
+#: ../src/yumexbackend/yum_server.py:192
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
+msgstr "No hay conexión a red, se deshabilita el repo no local %s"
 
 #: ../src/yumexbackend/yum_server.py:207
 msgid "Yum is locked : "
@@ -176,8 +182,7 @@ msgstr "Descargando la información de los paquetes desde el repositorio %s"
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-"Descargando la información de la lista de archivos desde el repositorio %s"
+msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
@@ -248,11 +253,13 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Nivel de depuración de Yum"
 
-#: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
+#: ../src/yumexgui/dialogs.py:492
+#: ../src/yumexgui/dialogs.py:501
 msgid "Transaction Result"
 msgstr "Resultado de la transacción"
 
-#: ../src/yumexgui/dialogs.py:535 ../src/yumexgui/views.py:556
+#: ../src/yumexgui/dialogs.py:535
+#: ../src/yumexgui/views.py:556
 msgid "Name"
 msgstr "Nombre"
 
@@ -260,17 +267,20 @@ msgstr "Nombre"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:537
+#: ../src/yumexgui/views.py:158
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:538 ../src/yumexgui/views.py:527
+#: ../src/yumexgui/dialogs.py:538
+#: ../src/yumexgui/views.py:527
 #: ../src/yumexgui/views.py:555
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/yumexgui/dialogs.py:539 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:539
+#: ../src/yumexgui/views.py:158
 msgid "Size"
 msgstr "Tamaño"
 
@@ -344,7 +354,8 @@ msgstr "Error del subsistema yum:"
 msgid "Unknown Error : "
 msgstr "Error desconocido : "
 
-#: ../src/yumexgui/__init__.py:569 ../src/yumexgui/views.py:445
+#: ../src/yumexgui/__init__.py:569
+#: ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr "Paquetes"
 
@@ -378,23 +389,26 @@ msgstr "Ver los detalles de la salida"
 
 #: ../src/yumexgui/__init__.py:611
 msgid "Not connected to an network"
-msgstr ""
+msgstr "No está conectado a una red"
 
 #: ../src/yumexgui/__init__.py:612
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
 msgstr ""
+"No está conectado a una red.\n"
+"¿Desea continuar?"
 
 #: ../src/yumexgui/__init__.py:617
 msgid "Can't detect the network connection state"
-msgstr ""
+msgstr "No se pudo detectar el estado de la conexión a la red"
 
 #: ../src/yumexgui/__init__.py:619
 msgid "Connected to an network"
-msgstr ""
+msgstr "Conectado a una red"
 
-#: ../src/yumexgui/__init__.py:662 ../src/yumexgui/__init__.py:663
+#: ../src/yumexgui/__init__.py:662
+#: ../src/yumexgui/__init__.py:663
 msgid "Getting Group information"
 msgstr "Obteniendo información de grupos"
 
@@ -453,11 +467,13 @@ msgstr ""
 "Transasción completa pero con errores,\n"
 " consulte la página de salida para conocer los detalles"
 
-#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
+#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/views.py:181
 msgid "Package"
 msgstr "Paquete"
 
-#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/views.py:184
 #: ../src/yumexgui/views.py:450
 msgid "Summary"
 msgstr "Resumen"
@@ -641,3 +657,4 @@ msgstr "sin Chequeo de GPG"
 
 #~ msgid "The needed media was not found"
 #~ msgstr "El medio que se necesita no fue encontrado"
+
