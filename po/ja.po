@@ -2,6 +2,7 @@
 # Copyright (C) 2005, 2006 Tim Lauridsen
 # This file is distributed under the same license as the Yumex package.
 # MATSUURA Takanori <t.matsuu@gmail.com>, 2005-2007.
+# Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
 #
 #
 msgid ""
@@ -9,8 +10,8 @@ msgstr ""
 "Project-Id-Version: yumex 2.0.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2007-10-16 19:01+0900\n"
-"Last-Translator: MATSUURA Takanori <t.matsuu@gmail.com>\n"
+"PO-Revision-Date: 2009-09-06 18:51+0900\n"
+"Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,24 +45,20 @@ msgid "Processing metadata"
 msgstr "メタデータを処理中"
 
 #: ../src/callbacks.py:234
-#, fuzzy
 msgid "installed"
-msgstr "インストール"
+msgstr "インストール済"
 
 #: ../src/callbacks.py:235
-#, fuzzy
 msgid "updated"
-msgstr "更新"
+msgstr "更新されました"
 
 #: ../src/callbacks.py:236
-#, fuzzy
 msgid "obsoleted"
-msgstr "廃止"
+msgstr "廃止されました"
 
 #: ../src/callbacks.py:237
-#, fuzzy
 msgid "erased"
-msgstr "消去"
+msgstr "消去されました"
 
 #: ../src/callbacks.py:240
 #, python-format
@@ -105,7 +102,7 @@ msgstr ""
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
 msgstr ""
-"---> トランザクション・セットに使用するため、%sのヘッダをダウンロード中。"
+"---> トランザクション・セットに使用するため、%sのヘッダーをダウンロード中。"
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
@@ -117,7 +114,7 @@ msgstr "名前"
 
 #: ../src/dialogs.py:216 ../src/yumex.glade.h:24
 msgid "Arch"
-msgstr "Arch"
+msgstr "アーキ"
 
 #: ../src/dialogs.py:217 ../src/views.py:61
 msgid "Ver"
@@ -126,7 +123,7 @@ msgstr "バージョン"
 #. Setup reponame & repofile column's
 #: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
-msgstr "リポジトリ"
+msgstr "リポジトリー"
 
 #: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
@@ -143,7 +140,7 @@ msgid ""
 "Updating : %s\n"
 "\n"
 msgstr ""
-"更新: %s\n"
+"更新中: %s\n"
 "\n"
 
 #: ../src/gui.py:70
@@ -187,23 +184,23 @@ msgstr "インストールされたパッケージを表示"
 #. Setup Vertical Toolbar
 #: ../src/gui.py:379
 msgid "Package View"
-msgstr "パッケージ"
+msgstr "パッケージ一覧"
 
 #: ../src/gui.py:380
 msgid "Group View"
-msgstr "グループ"
+msgstr "グループ一覧"
 
 #: ../src/gui.py:381
 msgid "Package Queue View"
-msgstr "パッケージキュー"
+msgstr "パッケージキュー一覧"
 
 #: ../src/gui.py:383
 msgid "Repository Selection View"
-msgstr "リポジトリ選択"
+msgstr "リポジトリー選択一覧"
 
 #: ../src/gui.py:384
 msgid "Output View"
-msgstr "出力"
+msgstr "出力一覧"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
@@ -214,11 +211,11 @@ msgstr "RPMグループ"
 
 #: ../src/misc.py:95
 msgid "Repositories"
-msgstr "リポジトリ"
+msgstr "リポジトリー"
 
 #: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
-msgstr "アーキテクチャ"
+msgstr "アーキテクチャー"
 
 #: ../src/misc.py:97
 msgid "Sizes"
@@ -257,34 +254,31 @@ msgid "Special Thanks To:"
 msgstr "謝辞:"
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting update packages"
-msgstr "パッケージを取得中: %s"
+msgstr "更新パッケージを取得中"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "インストールされたパッケージを表示"
+msgstr "インストールされたパッケージを取得中"
 
 #: ../src/misc.py:154
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "利用可能なパッケージを表示"
+msgstr "利用可能なパッケージを取得中"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "%d個の%sパッケージを発見"
+msgstr "%d個の更新パッケージを発見"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "%d個の%sパッケージを発見"
+msgstr "%d個のインストールされたパッケージを発見"
 
 #: ../src/misc.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "%d個の%sパッケージを発見"
+msgstr "%d個の利用可能なパッケージを発見"
 
 #: ../src/misc.py:375
 msgid "Package Queue:"
@@ -321,7 +315,7 @@ msgstr "現在の設定: "
 
 #: ../src/views.py:40
 msgid "Categories"
-msgstr "カテゴリ"
+msgstr "カテゴリー"
 
 #: ../src/views.py:61 ../src/views.py:91
 msgid "Package"
@@ -337,7 +331,7 @@ msgstr "Repo"
 
 #: ../src/views.py:92
 msgid "Arch."
-msgstr "Arch."
+msgstr "アーキ"
 
 #: ../src/views.py:93
 msgid "Ver."
@@ -386,7 +380,7 @@ msgstr "Yum準備: RPMデータベース"
 #. -> Repo Setup
 #: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
-msgstr "Yum準備: リポジトリ"
+msgstr "Yum準備: リポジトリー"
 
 #. -> Sack Setup
 #: ../src/yumapi.py:77 ../src/yumapi.py:129
@@ -411,27 +405,27 @@ msgstr "Yum準備: 基本設定完了"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "印のあるメタデータサポートの準備"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "%s 用のリポジトリーメタデータ (repomd.xml)"
 
 #: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "%sから更新されたメタデータを読み込みました"
+msgstr "%sから更新されたメタデータを読み込みました "
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr "%sの更新メタデータが見つかりませんでした"
+msgstr "%sの更新メタデータが見つかりませんでした "
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "%sから更新されたメタデータを読み込みました"
+msgstr "%sからの更新されたメタデータの読込みに失敗しました "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -439,7 +433,7 @@ msgstr "インストール/削除/更新の準備中"
 
 #: ../src/yumapi.py:191
 msgid "--> Preparing for install"
-msgstr "--> インストールの準備中.."
+msgstr "--> インストールの準備中"
 
 #: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
@@ -460,11 +454,11 @@ msgstr "--> 全ての廃止パッケージをトランザクションに追加�
 #: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
-msgstr "インストール"
+msgstr "インストール中"
 
 #: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
-msgstr "更新"
+msgstr "更新中"
 
 #: ../src/yumapi.py:233
 msgid "Installing for dependencies"
@@ -485,7 +479,7 @@ msgstr "%sの取得に失敗: "
 
 #: ../src/yumapi.py:303
 msgid "Downloading Packages:"
-msgstr "パッケージをダウンロード中"
+msgstr "パッケージをダウンロード中:"
 
 #: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
@@ -494,7 +488,7 @@ msgstr "パッケージをダウンロード中にエラー:\n"
 #. Check GPG signatures
 #: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
-msgstr "GPG署名を確認中"
+msgstr "GPG署名を確認中:"
 
 #: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
@@ -527,7 +521,7 @@ msgstr "トランザクションを実行中"
 #: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr "鍵を併合しますか: %s\n"
+msgstr "GPG 鍵: %s を併合しますか\n"
 
 #: ../src/yumapi.py:478
 #, python-format
@@ -628,7 +622,7 @@ msgstr "パッケージリストを構築中"
 
 #: ../src/yumex.py:480
 msgid "Building Package Lists Completed"
-msgstr "パッケージリストを構築完了"
+msgstr "パッケージリストの構築完了"
 
 #: ../src/yumex.py:481
 msgid "Building Groups Lists"
@@ -636,7 +630,7 @@ msgstr "グループリストを構築中"
 
 #: ../src/yumex.py:484
 msgid "Building Group Lists Completed"
-msgstr "グループリストを構築完了"
+msgstr "グループリストの構築完了"
 
 #. -> Sort Lists
 #: ../src/yumex.py:523
@@ -661,11 +655,11 @@ msgstr "パッケージ表示を投入完了"
 
 #: ../src/yumex.py:558
 msgid "Category View Population"
-msgstr "カテゴリ表示の投入"
+msgstr "カテゴリー表示の投入"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr "カテゴリ表示を投入完了"
+msgstr "カテゴリー表示を投入完了"
 
 #: ../src/yumex.py:602
 msgid "Processing Packages in queue"
@@ -707,7 +701,7 @@ msgstr "%sするパッケージを解析中"
 #: ../src/yumex.py:703
 #, python-format
 msgid "found %d packages, matching : %s"
-msgstr "%d個のパッケージを検出, 一致: %s"
+msgstr "%d個のパッケージを検出、一致: %s"
 
 #: ../src/yumex.py:743
 msgid "Yum is locked by another application"
@@ -727,24 +721,24 @@ msgstr "消去中"
 
 #: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
-msgstr "廃止"
+msgstr "廃止されました"
 
 #: ../src/yumgui/callbacks.py:66
 msgid "Updated"
-msgstr "更新"
+msgstr "更新されました"
 
 #: ../src/yumgui/callbacks.py:67
 msgid "Erased"
-msgstr "消去"
+msgstr "消去されました"
 
 #: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
 #: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
 msgid "Installed"
-msgstr "インストール"
+msgstr "インストールされました"
 
 #: ../src/yumgui/callbacks.py:181
 msgid "No header - huh?"
-msgstr "ヘッダがありません、ん?"
+msgstr "ヘッダーがありません、ん?"
 
 #: ../src/yumex.glade.h:1
 msgid " "
@@ -780,7 +774,7 @@ msgstr "<b>動作</b>"
 
 #: ../src/yumex.glade.h:9
 msgid "<b>Category</b>"
-msgstr "<b>カテゴリ</b>"
+msgstr "<b>カテゴリー</b>"
 
 #: ../src/yumex.glade.h:10
 msgid "<b>Fonts </b>"
@@ -796,7 +790,7 @@ msgstr "<b>すぐにキューに追加</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>Repository  Exclude Filters</b>"
-msgstr "<b>リポジトリ除外フィルタ</b>"
+msgstr "<b>リポジトリー除外フィルター</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
@@ -824,7 +818,7 @@ msgstr "<span size=\"xx-large\" color=\"black\">パッケージキュー</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">リポジトリの選択</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">リポジトリーの選択</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -900,7 +894,7 @@ msgstr "更新"
 
 #: ../src/yumex.glade.h:44
 msgid "Use _proxy"
-msgstr "プロキシを使用する(_U)"
+msgstr "プロキシーを使用する(_U)"
 
 #: ../src/yumex.glade.h:45
 msgid "Yum Extender"
