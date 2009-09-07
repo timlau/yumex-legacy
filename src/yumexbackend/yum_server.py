@@ -441,8 +441,13 @@ class YumServer(yum.YumBase):
         @param ndx: Size range index
         '''
         ygh = self.doPackageLists()
+        action = const.FILTER_ACTIONS['available']        
         for pkg in ygh.available:
-            if _in_size_range(pkg,ndx):
+            if self._in_size_range(pkg,ndx):
+                self._show_package(pkg, action)
+        action = const.FILTER_ACTIONS['installed']        
+        for pkg in ygh.installed:
+            if self._in_size_range(pkg,ndx):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
@@ -881,7 +886,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'get-group-packages':
             self.get_group_packages(args)
         elif cmd == 'get-packages-size':
-            self.get_packages_size(args)
+            self.get_packages_size(args[0])
         elif cmd == 'get-repos':
             self.get_repos(args)
         elif cmd == 'enable-repo':

@@ -384,6 +384,7 @@ class YumexHandlers(Controller):
             id = model.get_value(iterator, 0)
             print "%s : %s" % (self.current_category, id)
             if self.current_category == 'size':
+                self.packages.clear()
                 pkgs = self.backend.get_packages_size(id)
                 self.packages.add_packages(pkgs)
                 
