@@ -157,10 +157,13 @@ class YumServer(yum.YumBase):
         '''
         Check if an repo is local (media or file:// repo)
         '''
-        if repo.mediaid or filter(lambda r: r.startswith('file:'), repo.baseurl):
+        if repo.mediaid or _is_fileurl(repo.baseurl):
             return True
         else:
             return False
+
+    def _is_file_url(self,urls):
+        return [url for url in urls if url.startswith('file:')]
 
     def _setup_repos(self, enabled_repos):
         '''

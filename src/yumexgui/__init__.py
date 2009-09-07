@@ -34,7 +34,8 @@ from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okD
                              questionDialog, Preferences
 from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
-from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView
+from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
+                           YumexCategoryContentView, YumexCategoryTypesView
 from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError
 import yumexbase.constants as const
@@ -159,7 +160,8 @@ class YumexHandlers(Controller):
         self.current_repos = []
         self._resized = False
         self._current_active = None
-        
+        self.current_category = None
+                
 # Signal handlers
       
     def quit(self):
@@ -167,6 +169,8 @@ class YumexHandlers(Controller):
         # Save the windows size and separator position
         try:
             width, height = self.window.get_size()
+            if self._resized:
+                width = width - 150
             setattr( self.cfg.conf_settings, 'win_width',width)
             setattr( self.cfg.conf_settings, 'win_height',height)
             pos = self.ui.packageSep.get_position()
@@ -332,19 +336,21 @@ class YumexHandlers(Controller):
         '''
         Package filter radiobuttons
         @param widget: The radiobutton there is changed
-        @param active: the button number 0 = Updates, 1 = Available, 2 = Installed, 3 = Groups
+        @param active: the button number 0 = Updates, 1 = Available, 2 = Installed, 3 = Groups, 4 = Category
         '''
         if widget.get_active():
             self._last_filter = widget
             self._current_active = active
             self.packageInfo.clear()
             self.ui.packageSearch.set_text('')        
+            self.ui.groupVBox.hide()
+            self.ui.categoryWindow.hide()
+            self.ui.leftBox.hide()
             if active < 3: # Updates,Available,Installed
                 if active == 0: # Show only SelectAll when viewing updates
                     self.ui.packageSelectAll.show()
                 else:
                     self.ui.packageSelectAll.hide()
-                self.ui.groupVBox.hide()
                 if self._resized:
                     width, height = self.window.get_size()
                     self.window.resize(width - 150, height)
@@ -357,14 +363,44 @@ class YumexHandlers(Controller):
                     action = ACTIONS[active]
                     self.packages.add_packages(pkgs, progress=self.progress)
                     normalCursor(self.window)
-            else: # Groups
+            else:
                 if not self._resized:
                     width, height = self.window.get_size()
                     self.window.resize(width + 150, height)
                     self._resized = True
-                self.ui.groupVBox.show_all()
+                self.ui.leftBox.show()
                 self.packages.clear()
-                
+                if active == 3: # Groups
+                    self.ui.groupVBox.show_all()
+                elif active == 4: # Categories
+                    self.ui.categoryWindow.show_all()
+
+    def on_categoryContent_cursor_changed(self, widget):
+        '''
+        Category Content element selected
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            id = model.get_value(iterator, 0)
+            print "%s : %s" % (self.current_category, id)
+            
+    def on_categoryTypes_cursor_changed(self, widget):
+        '''
+        Category Type element selected
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            id = model.get_value(iterator, 0)
+            self.current_category = id
+            print id
+            if id == 'repo':
+                data = [(repo,repo) for repo in sorted(self.current_repos)]
+                self.category_content.populate(data)
+            elif id == 'age':
+                self.category_content.populate(const.CATEGORY_AGE)
+            elif id == 'size':
+                self.category_content.populate(const.CATEGORY_SIZE)
+        
     def on_groupView_cursor_changed(self, widget):
         '''
         Group/Category selected in groupView
@@ -592,6 +628,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup group and group description views
         self.groups = YumexGroupView(self.ui.groupView, self.queue, self)
         self.groupInfo = TextViewConsole(self.ui.groupDesc, font_size=font_size)
+        # setup category views
+        self.category_types = YumexCategoryTypesView(self.ui.categoryTypes)
+        self.category_content = YumexCategoryContentView(self.ui.categoryContent)
+        self.setup_categories()
         # setup repo view
         self.repos = YumexRepoView(self.ui.repoView)
         # setup transaction confirmation dialog
@@ -639,6 +679,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
 # pylint: enable-msg=W0201
 
+    def setup_categories(self):
+        cats = [('repo',_('By Repositories')),
+                ('age' ,_('By Age') ),
+                ('size',_('By Size'))
+                ]
+                        
+        self.category_types.populate(cats)
 
     def setup_filters(self, filters=None):
         ''' 
@@ -646,7 +693,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         num = 0
         if not filters:
-            filters = ('Updates', 'Available', 'Installed', 'Groups')
+            filters = ('Updates', 'Available', 'Installed', 'Groups','Categories')
         for attr in filters:
             rb = getattr(self.ui, 'packageRadio' + attr)
             rb.connect('clicked', self.on_packageFilter_changed, num) 

@@ -108,3 +108,17 @@ TASK_ICONS = {TASK_PENDING  : 'gtk-media-stop',
               TASK_RUNNING  : 'gtk-refresh',
               TASK_COMPLETE : 'gtk-yes' }
 
+CATEGORY_AGE= [
+            ('1', _('0 - 7 Days')), 
+            ('2', _('7 - 14 Days')), 
+            ('3', _('14 - 21 Days')), 
+            ('4', _('21  - 30 days')), 
+            ('5', _('30 - 90 days')), 
+            ('6', _('90+ days'))]
+
+CATEGORY_SIZE = [
+    ('1','0 KB - 100 KB'),
+    ('2','100 KB - 1 MB'),
+    ('3','1 MB - 10 MB'), 
+    ('4','10 MB - 50 MB'),
+    ('5','50+ MB')]

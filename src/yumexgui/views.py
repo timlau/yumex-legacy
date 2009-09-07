@@ -850,3 +850,50 @@ class YumexGroupView:
             pix = pix.scale_simple(imgsize, imgsize,
                                    gtk.gdk.INTERP_BILINEAR)
         return pix
+
+class YumexCategoryTypesView(SelectionView):
+    '''
+    '''
+
+    def __init__(self, widget):
+        SelectionView.__init__(self, widget)
+        self.model = self.setup_view()
+        self.view.modify_font(const.SMALL_FONT)        
+
+    def setup_view(self):
+        """ Create models and columns for the TextView  """
+        
+        store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.view.set_model(store)
+        self.create_text_column_num(_('Categories'), 1)
+        return store
+        
+    def populate(self,data):
+        self.model.clear()
+        for (id,txt) in data:
+            self.model.append([id,txt])          
+
+
+class YumexCategoryContentView(SelectionView):
+    '''
+    '''
+
+    def __init__(self, widget):
+        SelectionView.__init__(self, widget)
+        self.model = self.setup_view()
+        self.view.modify_font(const.SMALL_FONT)        
+        
+    def setup_view(self):
+        """ Create models and columns for the TextView  """
+        store = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
+        self.view.set_model(store)
+        self.create_text_column_num('', 1)
+        self.view.set_headers_visible(False)
+        return store
+
+    def populate(self,data):
+        self.model.clear()
+        for (id,txt) in data:
+            self.model.append([id,txt])          
+
+    
