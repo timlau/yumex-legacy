@@ -382,13 +382,11 @@ class YumexHandlers(Controller):
         (model, iterator) = widget.get_selection().get_selected()
         if model != None and iterator != None:
             id = model.get_value(iterator, 0)
-            print "%s : %s" % (self.current_category, id)
+            self.packages.clear()
             if self.current_category == 'size':
-                self.packages.clear()
                 pkgs = self.backend.get_packages_size(id)
                 self.packages.add_packages(pkgs)
             elif self.current_category == 'repo':
-                self.packages.clear()
                 pkgs = self.backend.get_packages_repo(id)
                 self.packages.add_packages(pkgs)
                 
@@ -401,7 +399,7 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             id = model.get_value(iterator, 0)
             self.current_category = id
-            print id
+            self.packages.clear()
             if id == 'repo':
                 data = [(repo,repo) for repo in sorted(self.current_repos)]
                 self.category_content.populate(data)
