@@ -434,6 +434,25 @@ class YumServer(yum.YumBase):
                 self._show_package(pkg, action)
             del ygh
         self.ended(True)
+
+    def get_packages_size(self, ndx):
+        '''
+        get list of packages in a size range
+        @param ndx: Size range index
+        '''
+        ygh = self.doPackageLists()
+        for pkg in ygh.available:
+            if _in_size_range(pkg,ndx):
+                self._show_package(pkg, action)
+        del ygh
+        self.ended(True)
+        
+    def _in_size_range(self,pkg,ndx):
+        min,max = SIZE_RANGES[ndx]
+        if pkg.size >= min and pkg.size < max:
+            return True
+        else:
+            return False
         
     def _getPackage(self, para):
         ''' find the real package from an package id'''
@@ -861,6 +880,8 @@ class YumServer(yum.YumBase):
             self.get_groups(args)
         elif cmd == 'get-group-packages':
             self.get_group_packages(args)
+        elif cmd == 'get-packages-size':
+            self.get_packages_size(args)
         elif cmd == 'get-repos':
             self.get_repos(args)
         elif cmd == 'enable-repo':

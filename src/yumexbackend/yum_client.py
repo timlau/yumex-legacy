@@ -470,6 +470,12 @@ class YumClient:
         pkgs = self._get_list()
         return pkgs
 
+    def get_packages_size(self, ndx):    
+        ''' get a list of packages based on pkg_filter '''
+        self._send_command('get-packages-size', [str(ndx)])
+        pkgs = self._get_list()
+        return pkgs
+
     def set_option(self, option, value, on_repos = False):    
         ''' get a list of packages based on pkg_filter '''
         self._send_command('set-option', [option,pack(value),pack(on_repos)])

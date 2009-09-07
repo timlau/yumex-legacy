@@ -383,6 +383,10 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             id = model.get_value(iterator, 0)
             print "%s : %s" % (self.current_category, id)
+            if self.current_category == 'size':
+                pkgs = self.backend.get_packages_size(id)
+                self.packages.add_packages(pkgs)
+                
             
     def on_categoryTypes_cursor_changed(self, widget):
         '''
