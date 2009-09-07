@@ -469,16 +469,21 @@ class YumServer(yum.YumBase):
         for pkg in ygh.available:
             if self._in_a_repo(pkg,repoid):
                 self._show_package(pkg, action)
-        action = const.FILTER_ACTIONS['installed']        
+        action = const.FILTER_ACTIONS['installed']     
         for pkg in ygh.installed:
-            if self._in_a_repo(pkg,repoid):
+            if self._in_a_repo(pkg,repoid,inst = True):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
 
-    def _in_a_repo(self,pkg,repoid):
-        if pkg.repoid == repoid or pkg.repoid == '@%s' % repoid:
+    def _in_a_repo(self,pkg,repoid,inst = False):
+        if not inst and pkg.repoid == repoid:
             return True
+        elif hasattr(pkg, 'yumdb_info') and hasattr(pkg.yumdb_info, 'from_repo'):
+            if pkg.yumdb_info.from_repo == repoid:
+                return True
+            else:
+                return False
         else:
             return False
         

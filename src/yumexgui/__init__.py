@@ -405,8 +405,8 @@ class YumexHandlers(Controller):
             if id == 'repo':
                 data = [(repo,repo) for repo in sorted(self.current_repos)]
                 self.category_content.populate(data)
-            elif id == 'age':
-                self.category_content.populate(const.CATEGORY_AGE)
+            #elif id == 'age':
+            #    self.category_content.populate(const.CATEGORY_AGE)
             elif id == 'size':
                 self.category_content.populate(const.CATEGORY_SIZE)
         
@@ -690,8 +690,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
     def setup_categories(self):
         cats = [('repo',_('By Repositories')),
-                ('age' ,_('By Age') ),
                 ('size',_('By Size'))
+                #('age' ,_('By Age') ))
                 ]
                         
         self.category_types.populate(cats)
