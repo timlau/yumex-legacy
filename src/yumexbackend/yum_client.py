@@ -471,8 +471,14 @@ class YumClient:
         return pkgs
 
     def get_packages_size(self, ndx):    
-        ''' get a list of packages based on pkg_filter '''
+        ''' get a list of packages based on size range '''
         self._send_command('get-packages-size', [str(ndx)])
+        pkgs = self._get_list()
+        return pkgs
+
+    def get_packages_repo(self, repoid):    
+        ''' get a list of packages based on repo '''
+        self._send_command('get-packages-repo', [repoid])
         pkgs = self._get_list()
         return pkgs
 

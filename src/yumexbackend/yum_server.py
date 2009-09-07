@@ -458,6 +458,29 @@ class YumServer(yum.YumBase):
             return True
         else:
             return False
+
+    def get_packages_repo(self, repoid):
+        '''
+        get list of packages in a size range
+        @param ndx: Size range index
+        '''
+        ygh = self.doPackageLists()
+        action = const.FILTER_ACTIONS['available']        
+        for pkg in ygh.available:
+            if self._in_a_repo(pkg,repoid):
+                self._show_package(pkg, action)
+        action = const.FILTER_ACTIONS['installed']        
+        for pkg in ygh.installed:
+            if self._in_a_repo(pkg,repoid):
+                self._show_package(pkg, action)
+        del ygh
+        self.ended(True)
+
+    def _in_a_repo(self,pkg,repoid):
+        if pkg.repoid == repoid or pkg.repoid == '@%s' % repoid:
+            return True
+        else:
+            return False
         
     def _getPackage(self, para):
         ''' find the real package from an package id'''
@@ -887,6 +910,8 @@ class YumServer(yum.YumBase):
             self.get_group_packages(args)
         elif cmd == 'get-packages-size':
             self.get_packages_size(args[0])
+        elif cmd == 'get-packages-repo':
+            self.get_packages_repo(args[0])
         elif cmd == 'get-repos':
             self.get_repos(args)
         elif cmd == 'enable-repo':

@@ -279,6 +279,15 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.get_packages_size(self, ndx)
         return [self.frontend.package_cache.find(po) for po in pkgs]
 
+    def get_packages_size(self, repoid):
+        ''' 
+        get packages based on repoid
+        @param ndx: size range index
+        @return: a list of packages
+        '''
+        pkgs = YumClient.get_packages_repo(self, repoid)
+        return [self.frontend.package_cache.find(po) for po in pkgs]
+
     def get_repositories(self):
         ''' 
         get repositories 

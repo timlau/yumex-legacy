@@ -387,6 +387,10 @@ class YumexHandlers(Controller):
                 self.packages.clear()
                 pkgs = self.backend.get_packages_size(id)
                 self.packages.add_packages(pkgs)
+            elif self.current_category == 'repo':
+                self.packages.clear()
+                pkgs = self.backend.get_packages_repo(id)
+                self.packages.add_packages(pkgs)
                 
             
     def on_categoryTypes_cursor_changed(self, widget):
