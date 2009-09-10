@@ -5,13 +5,14 @@
 #
 #
 # Takanori MATSUURA <t.matsuu@gmail.com>, 2009.
+# Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex 2.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-05 16:52+0200\n"
-"PO-Revision-Date: 2009-08-14 13:40+0900\n"
-"Last-Translator: Takanori MATSUURA <t.matsuu@gmail.com>\n"
+"PO-Revision-Date: 2009-09-10 18:25+0900\n"
+"Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
 "Language-Team: Japanese <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "パッケージ情報を取得中"
 #: ../src/yumexbackend/yum_backend.py:115
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
-msgstr "不明なリポジトリメタデータタイプ; リポジトリ %2s (%1s)"
+msgstr "不明なリポジトリーメタデータタイプ; リポジトリー %2s (%1s)"
 
 #: ../src/yumexbackend/yum_backend.py:129
 msgid "Buiding rpms from deltarpm"
@@ -74,7 +75,7 @@ msgid ""
 "%s\n"
 "\n"
 msgstr ""
-"以下のリポジトリを使用中:\n"
+"以下のリポジトリーを使用中:\n"
 "%s\n"
 
 #: ../src/yumexbackend/yum_backend.py:261
@@ -104,7 +105,8 @@ msgstr "依存関係の解決がエラーで完了しました"
 #: ../src/yumexbackend/yum_server.py:183 ../src/yumexbackend/yum_server.py:192
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
+msgstr "ネットワーク接続がないので、ローカルではないリポジトリー %s を"
+"無効にします"
 
 #: ../src/yumexbackend/yum_server.py:207
 msgid "Yum is locked : "
@@ -170,37 +172,37 @@ msgstr "リポジトリ情報をダウンロード中"
 #: ../src/yumexbase/constants.py:95
 #, python-format
 msgid "Downloading Package information for the %s repository"
-msgstr "%sリポジトリのパッケージ情報をダウンロード中"
+msgstr "%sリポジトリーのパッケージ情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr "%sリポジトリのファイルリスト情報をダウンロード中"
+msgstr "%sリポジトリーのファイルリスト情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr "%sリポジトリの変更履歴情報をダウンロード中"
+msgstr "%sリポジトリーの変更履歴情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr "%sリポジトリのグループ情報をダウンロード中"
+msgstr "%sリポジトリーのグループ情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr "%sリポジトリのメタリンク情報をダウンロード中"
+msgstr "%sリポジトリーのメタリンク情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:100
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr "%sリポジトリの差分更新情報をダウンロード中"
+msgstr "%sリポジトリーの差分更新情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:101
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "%sリポジトリの更新情報をダウンロード中"
+msgstr "%sリポジトリーの更新情報をダウンロード中"
 
 #: ../src/yumexgui/dialogs.py:253
 msgid "Running RPM Transaction"
@@ -240,7 +242,7 @@ msgstr "Yumプラグインを有効にする"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Proxy"
-msgstr "プロキシ"
+msgstr "プロキシー"
 
 #: ../src/yumexgui/dialogs.py:436
 msgid "Yum Debug Level"
@@ -256,7 +258,7 @@ msgstr "名前"
 
 #: ../src/yumexgui/dialogs.py:536
 msgid "Arch"
-msgstr "Arch"
+msgstr "アーキ"
 
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/views.py:158
 msgid "Ver"
@@ -266,7 +268,7 @@ msgstr "バージョン"
 #: ../src/yumexgui/dialogs.py:538 ../src/yumexgui/views.py:527
 #: ../src/yumexgui/views.py:555
 msgid "Repository"
-msgstr "リポジトリ"
+msgstr "リポジトリー"
 
 #: ../src/yumexgui/dialogs.py:539 ../src/yumexgui/views.py:158
 msgid "Size"
@@ -351,26 +353,24 @@ msgid "Perform actions on packages"
 msgstr "パッケージに対するアクションを実行する"
 
 #: ../src/yumexgui/__init__.py:572
-#, fuzzy
 msgid "Pending Actions"
-msgstr "保留しているアクションを処理中"
+msgstr "保留しているアクション"
 
 #: ../src/yumexgui/__init__.py:573
 msgid "Work with pending actions"
 msgstr "保留しているアクションと共に実行する"
 
 #: ../src/yumexgui/__init__.py:576
-#, fuzzy
 msgid "Repositories"
-msgstr "リポジトリ"
+msgstr "リポジトリー"
 
 #: ../src/yumexgui/__init__.py:577
 msgid "Select active repositories"
-msgstr "有効なリポジトリを選択する"
+msgstr "有効なリポジトリーを選択する"
 
 #: ../src/yumexgui/__init__.py:579
 msgid "Output"
-msgstr ""
+msgstr "出力"
 
 #: ../src/yumexgui/__init__.py:580
 msgid "Watch output details"
@@ -378,21 +378,23 @@ msgstr "出力の詳細を見る"
 
 #: ../src/yumexgui/__init__.py:611
 msgid "Not connected to an network"
-msgstr ""
+msgstr "ネットワークに接続されていません"
 
 #: ../src/yumexgui/__init__.py:612
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
 msgstr ""
+"ネットワークに接続されていません。\n"
+"続けますか "
 
 #: ../src/yumexgui/__init__.py:617
 msgid "Can't detect the network connection state"
-msgstr ""
+msgstr "ネットワーク接続状態を検出できません"
 
 #: ../src/yumexgui/__init__.py:619
 msgid "Connected to an network"
-msgstr ""
+msgstr "ネットワークに接続しました"
 
 #: ../src/yumexgui/__init__.py:662 ../src/yumexgui/__init__.py:663
 msgid "Getting Group information"
@@ -443,7 +445,7 @@ msgstr ""
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:731
 msgid "Transaction Aborted by User"
-msgstr "トランザクションがユーザによって中止されました"
+msgstr "トランザクションがユーザーによって中止されました"
 
 #: ../src/yumexgui/__init__.py:734
 msgid ""
@@ -468,7 +470,7 @@ msgstr "Repo"
 
 #: ../src/yumexgui/views.py:158
 msgid "Architecture"
-msgstr "アーキテクチャ"
+msgstr "アーキテクチャー"
 
 #: ../src/yumexgui/views.py:182
 msgid "Ver."
@@ -476,7 +478,7 @@ msgstr "バージョン"
 
 #: ../src/yumexgui/views.py:183
 msgid "Arch."
-msgstr "Arch."
+msgstr "アーキ."
 
 #: ../src/yumexgui/views.py:185
 msgid "Repo."
@@ -527,15 +529,14 @@ msgid "Execute all pending actions in queue"
 msgstr "キューにある全ての保留されているアクションを実行します"
 
 #: ../src/yumex.glade.h:11
-#, fuzzy
 msgid "R_epositories"
-msgstr "リポジトリ"
+msgstr "リポジトリー(_E)"
 
 #: ../src/yumex.glade.h:12
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr "パッケージを現在選択されているリポジトリで更新します"
+msgstr "パッケージを現在選択されているリポジトリーで更新します"
 
 #: ../src/yumex.glade.h:14
 msgid "Remove selected packages from queue"
@@ -584,7 +585,7 @@ msgstr "全てのパッケージ選択を元に戻します"
 
 #: ../src/yumex.glade.h:27
 msgid "Undo repository selection changes"
-msgstr "リポジトリ選択の変更を元に戻します"
+msgstr "リポジトリー選択の変更を元に戻します"
 
 #: ../src/yumex.glade.h:28
 msgid "Yum"
@@ -616,12 +617,11 @@ msgstr "オプション(_O)"
 
 #: ../src/yumex.glade.h:35
 msgid "_Output"
-msgstr ""
+msgstr "出力(_O)"
 
 #: ../src/yumex.glade.h:36
-#, fuzzy
 msgid "_Packages"
-msgstr "パッケージ"
+msgstr "パッケージ(_P)"
 
 #: ../src/yumex.glade.h:37
 msgid "_Profiles"
@@ -629,7 +629,7 @@ msgstr "プロファイル(_P)"
 
 #: ../src/yumex.glade.h:38
 msgid "_Queue"
-msgstr ""
+msgstr "キュー(_Q)"
 
 #: ../src/yumex.glade.h:39
 msgid "_View"
