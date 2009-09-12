@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2008-09-27 19:42+0100\n"
+"PO-Revision-Date: 2009-09-12 19:42+0100\n"
 "Last-Translator: Pere Argelich <bakidok@gmail.com>\n"
 "Language-Team: Catalan <fedora@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "S'està obtenint : %s"
 
 #: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
-msgstr "S'està eliminant"
+msgstr "S'està suprimint"
 
 #: ../src/callbacks.py:166
 msgid "Cleanup"
@@ -45,7 +45,7 @@ msgstr "Neteja"
 #: ../src/callbacks.py:184
 #, python-format
 msgid "Erased: %s"
-msgstr "Eliminat: %s"
+msgstr "Suprimit: %s"
 
 #: ../src/callbacks.py:205
 #, python-format
@@ -70,7 +70,7 @@ msgstr "obsolet"
 
 #: ../src/callbacks.py:237
 msgid "erased"
-msgstr "eliminat"
+msgstr "suprimit"
 
 #: ../src/callbacks.py:240
 #, python-format
@@ -373,7 +373,7 @@ msgstr "<b>Paquets a instal·lar</b>"
 
 #: ../src/views.py:263
 msgid "<b>Packages To Remove</b>"
-msgstr "<b>Paquets a eliminar</b>"
+msgstr "<b>Paquets a suprimir</b>"
 
 #: ../src/views.py:438
 msgid "Filename"
@@ -437,13 +437,13 @@ msgid "No update Metadata found for %s "
 msgstr "No s'han trobat metadades per actualitzar per %s"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Les metadades per actualitzar s'han carregat des de %s"
+msgstr "S'ha produït un error en carregar les metadades d'actualització des de %s "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
-msgstr "S'està preparant per instal·lar/eliminar/actualitzar"
+msgstr "S'està preparant per instal·lar/suprimir/actualitzar"
 
 #: ../src/yumapi.py:191
 msgid "--> Preparing for install"
@@ -451,7 +451,7 @@ msgstr "--> S'està preparant per instal·lar"
 
 #: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
-msgstr "--> S'està preparant per eliminar"
+msgstr "--> S'està preparant per suprimir"
 
 #: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
@@ -484,7 +484,7 @@ msgstr "S'està actualitzant per a satisfer les dependències"
 
 #: ../src/yumapi.py:235
 msgid "Removing for dependencies"
-msgstr "S'està eliminant per a satisfer les dependències"
+msgstr "S'està suprimint per a satisfer les dependències"
 
 #: ../src/yumapi.py:281
 #, python-format
@@ -572,7 +572,7 @@ msgstr "voleu continuar ?"
 #: ../src/yumex.py:248
 #, python-format
 msgid "You are about to remove %s packages\n"
-msgstr "Esteu a punt d'eliminar %s paquets\n"
+msgstr "Esteu a punt de suprimir %s paquets\n"
 
 #: ../src/yumex.py:354
 #, python-format
@@ -733,7 +733,7 @@ msgstr "S'ha produït un error en el connector, es sortirà del Yum Extender"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
-msgstr "S'està eliminant"
+msgstr "S'està suprimint"
 
 #: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
@@ -745,7 +745,7 @@ msgstr "Actualitzat"
 
 #: ../src/yumgui/callbacks.py:67
 msgid "Erased"
-msgstr "Eliminat"
+msgstr "Suprimit"
 
 #: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
 #: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
@@ -964,7 +964,7 @@ msgstr "_Perfils"
 
 #: ../src/yumex.glade.h:57
 msgid "_Remove All"
-msgstr "_Elimina-ho tot"
+msgstr "_Suprimeix-ho tot"
 
 #: ../src/yumex.glade.h:58
 msgid "_Skip"
@@ -976,7 +976,7 @@ msgstr "_Eines"
 
 #: ../src/yumex.glade.h:60
 msgid "_Yum Clean All"
-msgstr "_Neteja tot de Yum:"
+msgstr "Neteja tot allò del _Yum:"
 
 #: ../src/yumex.glade.h:61
 msgid "_Yum excludes:"
