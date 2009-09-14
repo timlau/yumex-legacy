@@ -1,19 +1,22 @@
+# translation of ru.po to Russian
 # Russian translation of yumex.
 # Copyright (C) 2005 Free Software Foundation
 # This file is distributed under the same license as the PACKAGE package.
-# Nik <niktr@mail.ru>, 2007
 #
+# Nik <niktr@mail.ru>, 2007.
+# Yulia Poyarkova <yulia.poyarkova@gmail.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex-ru\n"
+"Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2007-10-16 11:29+0400\n"
-"Last-Translator:  Nik <niktr@mail.ru>\n"
-"Language-Team: Russian <ru@li.org>\n"
+"PO-Revision-Date: 2009-09-14 10:28+1000\n"
+"Last-Translator: Yulia Poyarkova <yulia.poyarkova@gmail.com>\n"
+"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../src/callbacks.py:69
 #, python-format
@@ -43,24 +46,20 @@ msgid "Processing metadata"
 msgstr "Обрабатываются метаданные"
 
 #: ../src/callbacks.py:234
-#, fuzzy
 msgid "installed"
-msgstr "Установленные"
+msgstr "установленные"
 
 #: ../src/callbacks.py:235
-#, fuzzy
 msgid "updated"
-msgstr "Обновлённые"
+msgstr "обновлённые"
 
 #: ../src/callbacks.py:236
-#, fuzzy
 msgid "obsoleted"
-msgstr "Устаревшие"
+msgstr "устаревшие"
 
 #: ../src/callbacks.py:237
-#, fuzzy
 msgid "erased"
-msgstr "Удалённые"
+msgstr "удалённые"
 
 #: ../src/callbacks.py:240
 #, python-format
@@ -101,7 +100,7 @@ msgstr "--> Транзакция заполняется выбранными п�
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr "---> Загружается заголовок %s для добавления в набор транзакции."
+msgstr "---> Загружается заголовок %s для добавления в набор транзакций."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
@@ -122,16 +121,16 @@ msgstr "Версия"
 #. Setup reponame & repofile column's
 #: ../src/dialogs.py:218 ../src/views.py:438 ../src/views.py:473
 msgid "Repository"
-msgstr "Хранилище"
+msgstr "Репозиторий"
 
 #: ../src/dialogs.py:219 ../src/views.py:61
 msgid "Size"
 msgstr "Размер"
 
 #: ../src/dialogs.py:351
-#, fuzzy, python-format
+#, python-format
 msgid "About %s"
-msgstr "О программе"
+msgstr "О %s"
 
 #: ../src/gui.py:66
 #, python-format
@@ -143,7 +142,7 @@ msgstr ""
 "\n"
 
 #: ../src/gui.py:70
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Obsoleting : %s\n"
 "\n"
@@ -195,7 +194,7 @@ msgstr "Очередь пакетов"
 
 #: ../src/gui.py:383
 msgid "Repository Selection View"
-msgstr "Выбор хранилищ"
+msgstr "Выбор репозитория"
 
 #: ../src/gui.py:384
 msgid "Output View"
@@ -210,7 +209,7 @@ msgstr "Группы RPM"
 
 #: ../src/misc.py:95
 msgid "Repositories"
-msgstr "Хранилища"
+msgstr "Репозитории"
 
 #: ../src/misc.py:96 ../src/views.py:61
 msgid "Architecture"
@@ -226,7 +225,7 @@ msgstr "Возраст"
 
 #: ../src/misc.py:108
 msgid "Mandatory"
-msgstr "Обязательные пакеты"
+msgstr "Обязательные"
 
 #: ../src/misc.py:109
 msgid "Default"
@@ -234,12 +233,11 @@ msgstr "По умолчанию"
 
 #: ../src/misc.py:110
 msgid "Optional"
-msgstr "Необязательные пакеты"
+msgstr "Необязательные"
 
 #: ../src/misc.py:111
-#, fuzzy
 msgid "Conditional"
-msgstr "Условные пакеты"
+msgstr "Условные"
 
 #: ../src/misc.py:119
 msgid "Programming:"
@@ -254,34 +252,31 @@ msgid "Special Thanks To:"
 msgstr "Особо благодарим:"
 
 #: ../src/misc.py:152
-#, fuzzy
 msgid "Getting update packages"
-msgstr "Получение пакетов : %s"
+msgstr "Получение пакетов обновлений"
 
 #: ../src/misc.py:153
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Показать установленные пакеты"
+msgstr "Получение установленных пакетов"
 
 #: ../src/misc.py:154
-#, fuzzy
 msgid "Getting available packacages"
-msgstr "Показать все доступные пакеты"
+msgstr "Получение доступных пакетов"
 
 #: ../src/misc.py:158
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d update packages"
-msgstr "Найдено %d %s пакетов"
+msgstr "Найдено пакетов обновлений: %d"
 
 #: ../src/misc.py:159
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d installed packages"
-msgstr "Найдено %d %s пакетов"
+msgstr "Найдено установленных пакетов: %d"
 
 #: ../src/misc.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "Found %d available packages"
-msgstr "Найдено %d %s пакетов"
+msgstr "Найдено доступных пакетов: %d"
 
 #: ../src/misc.py:375
 msgid "Package Queue:"
@@ -290,12 +285,12 @@ msgstr "Очередь пакетов:"
 #: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
-msgstr "Пакеты %s"
+msgstr " Пакеты %s"
 
 #: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
-msgstr "Группы %s"
+msgstr " Группы %s"
 
 #: ../src/misc.py:451
 #, python-format
@@ -314,7 +309,7 @@ msgstr "Неверная версия файла (%s)"
 
 #: ../src/misc.py:639
 msgid "Current Settings :"
-msgstr "Параметры :"
+msgstr "Параметры:"
 
 #: ../src/views.py:40
 msgid "Categories"
@@ -408,27 +403,27 @@ msgstr "Начальная установка Yum: Базовая установ
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr ""
+msgstr "Настройка поддержки подписанных метаданных"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "Метаданные репозитория (repomd.xml) для %s"
 
 #: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Загруженные обновления метаданных из %s"
+msgstr "Загружены метаданные обновлений из %s"
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr "Обновлений метаданных для %s не найдено"
+msgstr "Метаданных обновлений для %s не найдено"
 
 #: ../src/yumapi.py:166
-#, fuzzy, python-format
+#, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Загруженные обновления метаданных из %s"
+msgstr "Ошибка при загрузке метаданных обновлений из %s"
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
@@ -547,7 +542,7 @@ msgstr "Пакеты не выбраны"
 #: ../src/yumex.py:236
 #, python-format
 msgid "You are about to add %s packages\n"
-msgstr "Вы добавляете %s пакеты\n"
+msgstr "Будут добавлены пакеты: %s\n"
 
 #: ../src/yumex.py:237 ../src/yumex.py:249
 msgid "It will take some time\n"
@@ -560,7 +555,7 @@ msgstr "хотите продолжить ?"
 #: ../src/yumex.py:248
 #, python-format
 msgid "You are about to remove %s packages\n"
-msgstr "Вы удаляете %s пакеты \n"
+msgstr "Будут удалены пакеты: %s\n"
 
 #: ../src/yumex.py:354
 #, python-format
@@ -670,7 +665,7 @@ msgstr "Обработка пакетов в очереди"
 
 #: ../src/yumex.py:608
 msgid "Error in Dependency Resolution"
-msgstr "Ошибка в разрешение зависимостей"
+msgstr "Ошибка в разрешении зависимостей"
 
 #: ../src/yumex.py:625
 msgid "No packages selected"
@@ -682,7 +677,7 @@ msgstr "Пакеты для транзакции не выбраны"
 
 #: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
-msgstr "Обрабатываются пакеты (см. Окно вывода)"
+msgstr "Обрабатываются пакеты (см. окно вывода)"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing"
@@ -793,7 +788,7 @@ msgstr "<b>Быстрое добавление</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>Repository  Exclude Filters</b>"
-msgstr "<b>Фильтры для исключения хранилищ</b>"
+msgstr "<b>Фильтры для исключения репозиториев</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
@@ -821,7 +816,7 @@ msgstr "<span size=\"xx-large\" color=\"black\">Очередь пакетов</s
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">Выбор хранилищ</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">Выбор репозиториев</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -885,7 +880,7 @@ msgstr "Подтверждение обработки очереди"
 
 #: ../src/yumex.glade.h:41
 msgid "Repos"
-msgstr "Хранилища"
+msgstr "Репозитории"
 
 #: ../src/yumex.glade.h:42
 msgid "Search Options"
@@ -975,5 +970,3 @@ msgstr "_Дополнения:"
 msgid "dialog1"
 msgstr "диалог1"
 
-#~ msgid "Quiting, please wait !!!!!!"
-#~ msgstr "Завершение, пожалуйста подождите !!!!!!"
