@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: yumex.master.es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2009-04-09 12:42-0300\n"
-"Last-Translator: Claudio Rodrigo Pereyra Diaz <claudio@pereyradiaz.com.ar>\n"
+"PO-Revision-Date: 2009-09-16 22:51-0300\n"
+"Last-Translator: Dennis Tobar <dennis.tobar@gmail.com>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,7 +174,7 @@ msgstr "No se puede leer el atributo %s"
 
 #: ../src/gui.py:367
 msgid "Show All Packages"
-msgstr "Mostrar todos los Paquetes"
+msgstr "Mostrar todos los paquetes"
 
 #: ../src/gui.py:368
 msgid "Show Package Updates"
@@ -182,11 +182,11 @@ msgstr "Mostrar actualización de paquetes"
 
 #: ../src/gui.py:369
 msgid "Show available Packages"
-msgstr "Mostrar Paquetes disponibles"
+msgstr "Mostrar paquetes disponibles"
 
 #: ../src/gui.py:370
 msgid "Show Installed Packages"
-msgstr "Mostrar paquetes instalados:"
+msgstr "Mostrar paquetes instalados"
 
 #. Setup Vertical Toolbar
 #: ../src/gui.py:379
@@ -664,7 +664,7 @@ msgstr "Construcción de listas de paquetes completa"
 #. -> Sort Lists
 #: ../src/yumex.py:523
 msgid "Sorting packages"
-msgstr "Clasificación de paquetes:"
+msgstr "Clasificación de paquetes"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
