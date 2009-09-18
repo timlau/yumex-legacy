@@ -1,3 +1,111 @@
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.1
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'future' of ssh://git.fedorahosted.org/git/yumex
+	into future
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/es.po, po/ja.po, po/nl.po, po/pl.po,
+	po/yumex.pot: Refreshed po/pot files
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexgui/__init__.py: Added all
+	button to show all packages
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: fix traceback is pkg.filelist is None (rhbz
+	#524128)
+
+2009-09-18  ypoyarko <ypoyarko@fedoraproject.org>
+
+	* po/ru.po: Sending translation for po/ru.po
+
+2009-09-17  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: fix error in GtkBuilder file
+
+2009-09-10  hyuuga <hyuuga@fedoraproject.org>
+
+	* po/ja.po: Sending translation for Japanese
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* misc/yumex-yum-backend.pam: Change the pam config, so root
+	password only i asked once every 30 min
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: clear packages when changing category
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: Added Categories By repo backend code
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: Added
+	Categories By Size backend code
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: Added Categories By Size backend code
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexgui/__init__.py: Added
+	Categories GUI parts
+
+2009-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexgui/__init__.py,
+	src/yumexgui/views.py: Added Categories GUI parts
+
+2009-09-07  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2009-09-06  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-09-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/es.po, po/ja.po, po/nl.po, po/pl.po,
+	po/yumex.pot: refreshed pot/po files with new strings and updated da
+	translation
+
+2009-09-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: Ask user for confirmation if there is no
+	network connection disable all non local repo if offline
+
+2009-09-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/network.py, src/yumexgui/__init__.py: Added network
+	connection detection code
+
+2009-09-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py: Fix version num.
+
+2009-09-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2009-09-04  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* yumex.spec: bumped version to 2.9.0
