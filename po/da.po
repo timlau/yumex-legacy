@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-05 16:52+0200\n"
+"POT-Creation-Date: 2009-09-18 10:08+0200\n"
 "PO-Revision-Date: 2009-08-30 14:34+0200\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dl>\n"
 "Language-Team: da team\n"
@@ -82,127 +82,151 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "Stopper yum baggrundsprocess"
 
-#: ../src/yumexbackend/yum_backend.py:480 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:498 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Finder Afhængigheder"
 
-#: ../src/yumexbackend/yum_backend.py:497
-#: ../src/yumexbackend/yum_backend.py:498
+#: ../src/yumexbackend/yum_backend.py:515
+#: ../src/yumexbackend/yum_backend.py:516
 msgid "Dependency Resolution Failed"
 msgstr "Afhængigheds Søgning Fejlede"
 
-#: ../src/yumexbackend/yum_backend.py:499
+#: ../src/yumexbackend/yum_backend.py:517
 msgid "Dependency Resolution Errors:"
 msgstr "Fejl i Søgning efter Afhængigheder"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:508
+#: ../src/yumexbackend/yum_backend.py:526
 #, fuzzy
 msgid "Dependency resolving completed with errors"
 msgstr "Søgning efter Afhængigheder afsluttet med fejl"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:183 ../src/yumexbackend/yum_server.py:192
+#: ../src/yumexbackend/yum_server.py:186 ../src/yumexbackend/yum_server.py:195
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:207
+#: ../src/yumexbackend/yum_server.py:210
 msgid "Yum is locked : "
 msgstr "Yum er Låst : "
 
-#: ../src/yumexbackend/yum_server.py:212
+#: ../src/yumexbackend/yum_server.py:215
 msgid "  The other application is: PackageKit"
 msgstr "  Den anden applikation er: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:214
+#: ../src/yumexbackend/yum_server.py:217
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  Den anden applikation er: %s"
 
-#: ../src/yumexbackend/yum_server.py:216
+#: ../src/yumexbackend/yum_server.py:219
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "Venter 10 sekunder og prøver igen"
 
-#: ../src/yumexbackend/yum_server.py:547
+#: ../src/yumexbackend/yum_server.py:608
 msgid "Installing"
 msgstr "Installere"
 
-#: ../src/yumexbackend/yum_server.py:599
+#: ../src/yumexbackend/yum_server.py:660
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Fejl i yum Transaktion : %s"
 
-#: ../src/yumexbackend/yum_server.py:641
+#: ../src/yumexbackend/yum_server.py:702
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Fejl ved henting af %s: "
 
-#: ../src/yumexbackend/yum_server.py:642
+#: ../src/yumexbackend/yum_server.py:703
 msgid "Trying other mirror."
 msgstr "Prøver et andet webspejl"
 
-#: ../src/yumexbackend/yum_server.py:1091
+#: ../src/yumexbackend/yum_server.py:1156
 msgid "Rebuild from deltarpms completted"
 msgstr "Generering af deltarpms afsluttet"
 
-#: ../src/yumexbackend/yum_server.py:1093
+#: ../src/yumexbackend/yum_server.py:1158
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "Hentet : %s ( %s )"
 
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:74
+#: ../src/yumexbase/constants.py:72
 msgid "updates"
 msgstr "opdateringer"
 
-#: ../src/yumexbase/constants.py:74
+#: ../src/yumexbase/constants.py:72
 msgid "available"
 msgstr "tilgængelige"
 
-#: ../src/yumexbase/constants.py:74
+#: ../src/yumexbase/constants.py:72
 msgid "installed"
 msgstr "Installerede"
 
-#: ../src/yumexbase/constants.py:94
+#: ../src/yumexbase/constants.py:92
 msgid "Downloading repository information"
 msgstr "Henter Information om kilder"
 
-#: ../src/yumexbase/constants.py:95
+#: ../src/yumexbase/constants.py:93
 #, python-format
 msgid "Downloading Package information for the %s repository"
 msgstr "Henter information om pakker for %s kilden"
 
-#: ../src/yumexbase/constants.py:96
+#: ../src/yumexbase/constants.py:94
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
 msgstr "Henter information om filer for %s kilden"
 
-#: ../src/yumexbase/constants.py:97
+#: ../src/yumexbase/constants.py:95
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
 msgstr "Henter information om ændringslog for %s kilden"
 
-#: ../src/yumexbase/constants.py:98
+#: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Group information for the %s repository"
 msgstr "Henter information om grupper for %s kilden"
 
-#: ../src/yumexbase/constants.py:99
+#: ../src/yumexbase/constants.py:97
 #, fuzzy, python-format
 msgid "Downloading metalink information for the %s repository"
 msgstr "Henter information om filer for %s kilden"
 
-#: ../src/yumexbase/constants.py:100
+#: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
 msgstr "Henter information om delta pakker for %s kilden"
 
-#: ../src/yumexbase/constants.py:101
+#: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr "Henter information om opdateringer for %s kilden"
+
+#: ../src/yumexbase/constants.py:110
+msgid "0 - 7 Days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:111
+msgid "7 - 14 Days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:112
+msgid "14 - 21 Days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:113
+msgid "21  - 30 days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:114
+msgid "30 - 90 days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:115
+msgid "90+ days"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:253
 msgid "Running RPM Transaction"
@@ -325,66 +349,66 @@ msgstr "       Fejl :"
 msgid "Description : %s\n"
 msgstr "Beskrivelse : %s\n"
 
-#: ../src/yumexgui/__init__.py:497
+#: ../src/yumexgui/__init__.py:539
 msgid "Fatal Error"
 msgstr "Fatal Fejl"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:499
+#: ../src/yumexgui/__init__.py:541
 msgid "Can't start the yum backend"
 msgstr "Kan ikke starte yum baggrunds process"
 
-#: ../src/yumexgui/__init__.py:500
+#: ../src/yumexgui/__init__.py:542
 msgid "Another program is locking yum"
 msgstr "Et andet program, låser yum"
 
-#: ../src/yumexgui/__init__.py:502
+#: ../src/yumexgui/__init__.py:544
 msgid "Message from yum backend:"
 msgstr "Besked fra yum baggrundsjob"
 
-#: ../src/yumexgui/__init__.py:506
+#: ../src/yumexgui/__init__.py:548
 msgid "Unknown Error : "
 msgstr "Ukendt Fejl : "
 
-#: ../src/yumexgui/__init__.py:569 ../src/yumexgui/views.py:445
+#: ../src/yumexgui/__init__.py:612 ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr "Pakker"
 
-#: ../src/yumexgui/__init__.py:570
+#: ../src/yumexgui/__init__.py:613
 msgid "Perform actions on packages"
 msgstr "Udfører handlinger på de valgte pakker"
 
-#: ../src/yumexgui/__init__.py:572
+#: ../src/yumexgui/__init__.py:615
 #, fuzzy
 msgid "Pending Actions"
 msgstr "Udfører ventede jobs"
 
-#: ../src/yumexgui/__init__.py:573
+#: ../src/yumexgui/__init__.py:616
 msgid "Work with pending actions"
 msgstr "Udfører ventede jobs"
 
-#: ../src/yumexgui/__init__.py:576
+#: ../src/yumexgui/__init__.py:619
 #, fuzzy
 msgid "Repositories"
 msgstr "Filkilde"
 
-#: ../src/yumexgui/__init__.py:577
+#: ../src/yumexgui/__init__.py:620
 msgid "Select active repositories"
 msgstr "Vælg aktive kilder"
 
-#: ../src/yumexgui/__init__.py:579
+#: ../src/yumexgui/__init__.py:622
 msgid "Output"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:580
+#: ../src/yumexgui/__init__.py:623
 msgid "Watch output details"
 msgstr "Vis detaljeret output"
 
-#: ../src/yumexgui/__init__.py:611
+#: ../src/yumexgui/__init__.py:658
 msgid "Not connected to an network"
 msgstr "Ikke tilsluttet til netværket"
 
-#: ../src/yumexgui/__init__.py:612
+#: ../src/yumexgui/__init__.py:659
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
@@ -392,51 +416,61 @@ msgstr ""
 "Ikke tilsluttet til netværket\n"
 "Ønsker du at forsætte "
 
-#: ../src/yumexgui/__init__.py:617
+#: ../src/yumexgui/__init__.py:664
 msgid "Can't detect the network connection state"
 msgstr "Kan ikke besteme om der er forbindelse til netværket"
 
-#: ../src/yumexgui/__init__.py:619
+#: ../src/yumexgui/__init__.py:666
 msgid "Connected to an network"
 msgstr "Tilsluttet til netværket"
 
-#: ../src/yumexgui/__init__.py:662 ../src/yumexgui/__init__.py:663
+#: ../src/yumexgui/__init__.py:690
+#, fuzzy
+msgid "By Repositories"
+msgstr "Filkilde"
+
+#: ../src/yumexgui/__init__.py:691
+#, fuzzy
+msgid "By Size"
+msgstr "Str."
+
+#: ../src/yumexgui/__init__.py:714 ../src/yumexgui/__init__.py:715
 msgid "Getting Group information"
 msgstr "Henter Information Om grupper"
 
-#: ../src/yumexgui/__init__.py:683
+#: ../src/yumexgui/__init__.py:735
 msgid "Getting Package Lists"
 msgstr "Henter Pakke Lister"
 
-#: ../src/yumexgui/__init__.py:684
+#: ../src/yumexgui/__init__.py:736
 msgid "Getting Updated Packages"
 msgstr "Henter Opdaterede Pakker"
 
-#: ../src/yumexgui/__init__.py:687
+#: ../src/yumexgui/__init__.py:739
 msgid "Getting Available Packages"
 msgstr "Henter Tilgængelige Pakker"
 
-#: ../src/yumexgui/__init__.py:689
+#: ../src/yumexgui/__init__.py:741
 msgid "Getting installed Packages"
 msgstr "Henter installerede pakker"
 
-#: ../src/yumexgui/__init__.py:703
+#: ../src/yumexgui/__init__.py:755
 msgid "The pending action queue is empty"
 msgstr "der er ingen ventende handlinger i køen"
 
-#: ../src/yumexgui/__init__.py:708
+#: ../src/yumexgui/__init__.py:760
 msgid "Processing pending actions"
 msgstr "Udfører ventede jobs"
 
-#: ../src/yumexgui/__init__.py:709
+#: ../src/yumexgui/__init__.py:761
 msgid "Preparing the transaction"
 msgstr "Klargører transaktionen"
 
-#: ../src/yumexgui/__init__.py:724
+#: ../src/yumexgui/__init__.py:776
 msgid "Transaction completed successfully"
 msgstr "Transaktion er afsluttet uden fejl"
 
-#: ../src/yumexgui/__init__.py:725
+#: ../src/yumexgui/__init__.py:777
 msgid ""
 "\n"
 "\n"
@@ -447,11 +481,11 @@ msgstr ""
 "Ønsker du at afslutte Yum Extender"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:731
+#: ../src/yumexgui/__init__.py:783
 msgid "Transaction Aborted by User"
 msgstr "Transaktionen er afbrugt af brugeren"
 
-#: ../src/yumexgui/__init__.py:734
+#: ../src/yumexgui/__init__.py:786
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -500,6 +534,10 @@ msgstr "Pakke Køen:"
 msgid "Filename"
 msgstr "Filnavn"
 
+#: ../src/yumexgui/views.py:868
+msgid "Categories"
+msgstr ""
+
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
 msgstr "<span size=\"x-large\">Transaktion</span>\n"
@@ -513,32 +551,36 @@ msgid "Advanced"
 msgstr "Advanceret"
 
 #: ../src/yumex.glade.h:6
+msgid "All"
+msgstr ""
+
+#: ../src/yumex.glade.h:7
 msgid "Availa_ble"
 msgstr "_Tilgængelge"
 
-#: ../src/yumex.glade.h:7
+#: ../src/yumex.glade.h:8
 msgid "Basic"
 msgstr "Basis"
 
-#: ../src/yumex.glade.h:8
+#: ../src/yumex.glade.h:9
 #, fuzzy
 msgid "Dont  check signatures for packages"
 msgstr "Check ikke pakke signaturer"
 
-#: ../src/yumex.glade.h:9
+#: ../src/yumex.glade.h:10
 msgid "Error"
 msgstr "Fejl"
 
-#: ../src/yumex.glade.h:10
+#: ../src/yumex.glade.h:11
 msgid "Execute all pending actions in queue"
 msgstr "Udfører alle ventende handlinger i køen"
 
-#: ../src/yumex.glade.h:11
+#: ../src/yumex.glade.h:12
 #, fuzzy
 msgid "R_epositories"
 msgstr "Filkilde"
 
-#: ../src/yumex.glade.h:12
+#: ../src/yumex.glade.h:13
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
@@ -546,35 +588,35 @@ msgstr ""
 "Henter pakkelister for valgt\n"
 "kilder"
 
-#: ../src/yumex.glade.h:14
+#: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
 msgstr "Sletter valgte pakker fra køen"
 
-#: ../src/yumex.glade.h:15
+#: ../src/yumex.glade.h:16
 msgid "Select all packages in current view"
 msgstr "Vælger alle pakker i denne oversigt"
 
-#: ../src/yumex.glade.h:16
+#: ../src/yumex.glade.h:17
 msgid "Show available packages"
 msgstr "Viser oversigt med tilgængelige pakker"
 
-#: ../src/yumex.glade.h:17
+#: ../src/yumex.glade.h:18
 msgid "Show installed packages"
 msgstr "Viser oversigt med installerede pakker"
 
-#: ../src/yumex.glade.h:18
+#: ../src/yumex.glade.h:19
 msgid "Show package updates"
 msgstr "Viser oversigt med opdateringer"
 
-#: ../src/yumex.glade.h:19
+#: ../src/yumex.glade.h:20
 msgid "Skip Broken"
 msgstr "Ignorer pakker med afhængigsfejl"
 
-#: ../src/yumex.glade.h:20
+#: ../src/yumex.glade.h:21
 msgid "Skip packages there get depsolve errors"
 msgstr "Spring pakker over som har problemmer med afhænginger"
 
-#: ../src/yumex.glade.h:21
+#: ../src/yumex.glade.h:22
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
@@ -584,68 +626,72 @@ msgstr ""
 "for at finde pakker som indeholder\n"
 "disse søgeord\n"
 
-#: ../src/yumex.glade.h:25
+#: ../src/yumex.glade.h:26
 msgid "U_pdates"
 msgstr "_Opdateringer"
 
-#: ../src/yumex.glade.h:26
+#: ../src/yumex.glade.h:27
 msgid "Undo all package selection"
 msgstr "Nulstil alle valgte pakker"
 
-#: ../src/yumex.glade.h:27
+#: ../src/yumex.glade.h:28
 msgid "Undo repository selection changes"
 msgstr "Nulstil ændringer af valgte kilder"
 
-#: ../src/yumex.glade.h:28
+#: ../src/yumex.glade.h:29
 msgid "Yum"
 msgstr "Yum"
 
-#: ../src/yumex.glade.h:29
+#: ../src/yumex.glade.h:30
+msgid "_Categories"
+msgstr ""
+
+#: ../src/yumex.glade.h:31
 msgid "_Edit"
 msgstr "_Rediger"
 
-#: ../src/yumex.glade.h:30
+#: ../src/yumex.glade.h:32
 msgid "_File"
 msgstr "_Filer"
 
-#: ../src/yumex.glade.h:31
+#: ../src/yumex.glade.h:33
 msgid "_Groups"
 msgstr "_Grupper"
 
-#: ../src/yumex.glade.h:32
+#: ../src/yumex.glade.h:34
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: ../src/yumex.glade.h:33
+#: ../src/yumex.glade.h:35
 msgid "_Installed"
 msgstr "_Installerede"
 
-#: ../src/yumex.glade.h:34
+#: ../src/yumex.glade.h:36
 msgid "_Options"
 msgstr "_Indstillinger"
 
-#: ../src/yumex.glade.h:35
+#: ../src/yumex.glade.h:37
 msgid "_Output"
 msgstr "_Output"
 
-#: ../src/yumex.glade.h:36
+#: ../src/yumex.glade.h:38
 #, fuzzy
 msgid "_Packages"
 msgstr "Pakker"
 
-#: ../src/yumex.glade.h:37
+#: ../src/yumex.glade.h:39
 msgid "_Profiles"
 msgstr "_Profiler"
 
-#: ../src/yumex.glade.h:38
+#: ../src/yumex.glade.h:40
 msgid "_Queue"
 msgstr "_Kø"
 
-#: ../src/yumex.glade.h:39
+#: ../src/yumex.glade.h:41
 msgid "_View"
 msgstr "_Vis"
 
-#: ../src/yumex.glade.h:40
+#: ../src/yumex.glade.h:42
 msgid "no GPG Check"
 msgstr "ingen check af GPG signatur"
 
