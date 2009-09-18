@@ -428,10 +428,16 @@ class YumServer(yum.YumBase):
         @param narrow:
         '''
         if narrow:
-            action = const.FILTER_ACTIONS[narrow]
             ygh = self.doPackageLists(pkgnarrow = narrow)
-            for pkg in getattr(ygh, narrow):
-                self._show_package(pkg, action)
+            if narrow == "all":
+                for pkg in ygh.installed:
+                    self._show_package(pkg,'r')
+                for pkg in ygh.available:
+                    self._show_package(pkg, 'i')                    
+            else:
+                action = const.FILTER_ACTIONS[narrow]
+                for pkg in getattr(ygh, narrow):
+                    self._show_package(pkg, action)
             del ygh
         self.ended(True)
 

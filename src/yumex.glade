@@ -492,7 +492,6 @@ words.
                 <child>
                   <object class="GtkHButtonBox" id="packageFilterBox">
                     <property name="visible">True</property>
-                    <property name="spacing">5</property>
                     <property name="layout_style">start</property>
                     <child>
                       <object class="GtkRadioButton" id="packageRadioUpdates">
@@ -552,12 +551,11 @@ words.
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton" id="packageRadioGroups">
-                        <property name="label" translatable="yes">_Groups</property>
+                      <object class="GtkRadioButton" id="packageRadioAll">
+                        <property name="label" translatable="yes">All</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="use_underline">True</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">packageRadioUpdates</property>
@@ -569,13 +567,12 @@ words.
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkRadioButton" id="packageRadioCategories">
-                        <property name="label" translatable="yes">_Categories</property>
+                      <object class="GtkRadioButton" id="packageRadioGroups">
+                        <property name="label" translatable="yes">_Groups</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="use_underline">True</property>
-                        <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">packageRadioUpdates</property>
                       </object>
@@ -584,6 +581,25 @@ words.
                         <property name="fill">False</property>
                         <property name="position">4</property>
                       </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRadioButton" id="packageRadioCategories">
+                        <property name="label" translatable="yes">_Categories</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="group">packageRadioUpdates</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>

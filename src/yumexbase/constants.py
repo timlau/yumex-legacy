@@ -48,8 +48,6 @@ SEARCH = Enum('name', 'summary', 'description', 'ver', 'arch', 'repoid')
 GROUP = Enum('all', 'default')
 # State
 STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
-# Actions
-ACTIONS = {0 : 'u', 1: 'i', 2 : 'r'}
 FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r'}
 
 # Paths

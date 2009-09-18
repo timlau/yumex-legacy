@@ -346,7 +346,7 @@ class YumexHandlers(Controller):
             self.ui.groupVBox.hide()
             self.ui.categoryWindow.hide()
             self.ui.leftBox.hide()
-            if active < 3: # Updates,Available,Installed
+            if active in ['updates', 'available', 'installed', 'all']: # Updates,Available,Installed
                 if active == 0: # Show only SelectAll when viewing updates
                     self.ui.packageSelectAll.show()
                 else:
@@ -359,8 +359,7 @@ class YumexHandlers(Controller):
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
                     busyCursor(self.window)
                     self.backend.setup()
-                    pkgs = self.package_cache.get_packages(PKG_FILTERS_ENUMS[active])
-                    action = ACTIONS[active]
+                    pkgs = self.package_cache.get_packages(getattr(FILTER,active))
                     self.packages.add_packages(pkgs, progress=self.progress)
                     normalCursor(self.window)
             else:
@@ -370,9 +369,9 @@ class YumexHandlers(Controller):
                     self._resized = True
                 self.ui.leftBox.show()
                 self.packages.clear()
-                if active == 3: # Groups
+                if active == 'groups': # Groups
                     self.ui.groupVBox.show_all()
-                elif active == 4: # Categories
+                elif active == 'categories': # Categories
                     self.ui.categoryWindow.show_all()
 
     def on_categoryContent_cursor_changed(self, widget):
@@ -573,7 +572,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # Fix main menues
         menus = ['fileMenu','editMenu','viewMenu','optionsMenu','helpMenu','viewPackages','viewQueue',\
                  'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck','packageRadioUpdates',\
-                'packageRadioAvailable','packageRadioInstalled','packageRadioGroups' ]
+                'packageRadioAvailable','packageRadioInstalled','packageRadioGroups','packageRadioCategories',\
+                'packageRadioAll' ]
         for menu in menus:
             obj = getattr(self.ui,menu)
             label = obj.get_child()
@@ -698,13 +698,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         ''' 
         Populate Package Filter radiobuttons
         '''
-        num = 0
         if not filters:
-            filters = ('Updates', 'Available', 'Installed', 'Groups','Categories')
+            filters = ('Updates', 'Available', 'Installed', 'Groups','Categories','All')
         for attr in filters:
             rb = getattr(self.ui, 'packageRadio' + attr)
-            rb.connect('clicked', self.on_packageFilter_changed, num) 
-            num += 1
+            rb.connect('clicked', self.on_packageFilter_changed, attr.lower()) 
             rb.child.modify_font(SMALL_FONT)
             
     def setup_groups(self):
