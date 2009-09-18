@@ -372,10 +372,11 @@ class PackageInfo(SelectorBase):
         i = 0
         files = self.pkg.filelist
         progress = self.frontend.get_progress()
-        progress.hide()        
-        files.sort()
-        for fn in files:
-            self.console.write(fn, "filelist")
+        progress.hide()     
+        if files: # files can be None   
+            files.sort()
+            for fn in files:
+                self.console.write(fn, "filelist")
         
         
         
