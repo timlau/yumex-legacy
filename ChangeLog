@@ -1,5 +1,13 @@
 2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
 
+	* yumex.spec: bumped version to 2.9.1
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.1
 
 2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
