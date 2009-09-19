@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-18 10:08+0200\n"
-"PO-Revision-Date: 2009-09-07 12:08+0200\n"
+"PO-Revision-Date: 2009-09-19 12:03+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -203,27 +203,27 @@ msgstr "Pobieranie informacji o aktualizacja dla repozytorium %s"
 
 #: ../src/yumexbase/constants.py:110
 msgid "0 - 7 Days"
-msgstr ""
+msgstr "0-7 dni"
 
 #: ../src/yumexbase/constants.py:111
 msgid "7 - 14 Days"
-msgstr ""
+msgstr "7-14 dni"
 
 #: ../src/yumexbase/constants.py:112
 msgid "14 - 21 Days"
-msgstr ""
+msgstr "14-21 dni"
 
 #: ../src/yumexbase/constants.py:113
 msgid "21  - 30 days"
-msgstr ""
+msgstr "21-30 dni"
 
 #: ../src/yumexbase/constants.py:114
 msgid "30 - 90 days"
-msgstr ""
+msgstr "30-90 dni"
 
 #: ../src/yumexbase/constants.py:115
 msgid "90+ days"
-msgstr ""
+msgstr "Więcej niż 90 dni"
 
 #: ../src/yumexgui/dialogs.py:253
 msgid "Running RPM Transaction"
@@ -418,14 +418,12 @@ msgid "Connected to an network"
 msgstr "Połączono z siecią"
 
 #: ../src/yumexgui/__init__.py:690
-#, fuzzy
 msgid "By Repositories"
-msgstr "Repozytoria"
+msgstr "Według repozytoriów"
 
 #: ../src/yumexgui/__init__.py:691
-#, fuzzy
 msgid "By Size"
-msgstr "Rozmiar"
+msgstr "Według rozmiaru"
 
 #: ../src/yumexgui/__init__.py:714 ../src/yumexgui/__init__.py:715
 msgid "Getting Group information"
@@ -529,7 +527,7 @@ msgstr "Nazwa pliku"
 
 #: ../src/yumexgui/views.py:868
 msgid "Categories"
-msgstr ""
+msgstr "Kategorie"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -545,7 +543,7 @@ msgstr "Zaawansowane"
 
 #: ../src/yumex.glade.h:6
 msgid "All"
-msgstr ""
+msgstr "Wszystko"
 
 #: ../src/yumex.glade.h:7
 msgid "Availa_ble"
@@ -634,7 +632,7 @@ msgstr "Yum"
 
 #: ../src/yumex.glade.h:30
 msgid "_Categories"
-msgstr ""
+msgstr "_Kategorie"
 
 #: ../src/yumex.glade.h:31
 msgid "_Edit"
