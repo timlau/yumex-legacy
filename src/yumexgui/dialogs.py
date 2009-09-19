@@ -596,12 +596,15 @@ class ErrorDialog:
         self.dialog.set_title(title)
         self.text = self.ui.errText
         self.longtext = self.ui.errTextView
-        self.style_err = gtk.TextTag("error") 
-        self.style_err.set_property("style", pango.STYLE_ITALIC)
-        self.style_err.set_property("foreground", "red")
-        self.style_err.set_property("family", "Monospace")
-        self.style_err.set_property("size_points", 8)
-        self.longtext.get_buffer().get_tag_table().add(self.style_err)
+        tag_table = self.longtext.get_buffer().get_tag_table()
+        # make sure we only add the error tag once
+        if not tag_table.lookup("error"):
+            self.style_err = gtk.TextTag("error") 
+            self.style_err.set_property("style", pango.STYLE_ITALIC)
+            self.style_err.set_property("foreground", "red")
+            self.style_err.set_property("family", "Monospace")
+            self.style_err.set_property("size_points", 8)
+            tag_table.add(self.style_err)
         
         if modal:
             self.dialog.set_modal(True)
