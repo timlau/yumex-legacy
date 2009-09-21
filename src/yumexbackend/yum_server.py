@@ -136,6 +136,8 @@ class YumServer(yum.YumBase):
         # Disable refresh-package plugin, it will get in the way every time we finish a transaction
         self.preconf.disabled_plugins = ['refresh-packagekit']
         logginglevels.setLoggingApp('yumex')
+        if hasattr(self, 'registerPackageName'):
+            self.registerPackageName("yumex")
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
         self.repos.setProgressBar(self.dnlCallback)
