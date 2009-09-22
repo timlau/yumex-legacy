@@ -347,7 +347,7 @@ class YumexHandlers(Controller):
             self.ui.categoryWindow.hide()
             self.ui.leftBox.hide()
             if active in ['updates', 'available', 'installed', 'all']: # Updates,Available,Installed
-                if active == 0: # Show only SelectAll when viewing updates
+                if active == 'updates': # Show only SelectAll when viewing updates
                     self.ui.packageSelectAll.show()
                 else:
                     self.ui.packageSelectAll.hide()
