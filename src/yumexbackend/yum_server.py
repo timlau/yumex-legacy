@@ -137,7 +137,6 @@ class YumServer(yum.YumBase):
         self.preconf.disabled_plugins = ['refresh-packagekit']
         logginglevels.setLoggingApp('yumex')
         if hasattr(self, 'run_with_package_names'):
-            self.info('using yum history')
             self.run_with_package_names.add("yumex")
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
