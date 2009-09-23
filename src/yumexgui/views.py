@@ -733,15 +733,15 @@ class YumexGroupView:
         grpid = self.model.get_value(iterator, 2)
         inst = self.model.get_value(iterator, 0)
         action = self.queue.hasGroup(grpid)
-        if action:
+        if action: # Group is in the queue, remove it from the queue
             self.queue.removeGroup(grpid, action)
             self._updatePackages(grpid, False, None)
             self.model.set_value(iterator, 3, False)
         else:
-            if inst:
+            if inst: # Group is installed add it to queue for removal
                 self.queue.addGroup(grpid, 'r') # Add for remove           
                 self._updatePackages(grpid, True, 'r')
-            else:
+            else: # Group is not installed, add it to queue for installation
                 self.queue.addGroup(grpid, 'i') # Add for install
                 self._updatePackages(grpid, True, 'i')
             self.model.set_value(iterator, 3, True)
@@ -760,11 +760,11 @@ class YumexGroupView:
         if add: 
             for po in pkgs:
                 if not po.queued: 
-                    if action == 'i' and po.repoid != "installed" : # Install
+                    if action == 'i' and not po.is_installed() : # Install
                         po.queued = po.action      
                         self.queue.add(po)
                         po.set_select(True)
-                    elif action == 'r' and po.repoid == "installed": # Remove
+                    elif action == 'r' and po.is_installed() : # Remove
                         po.queued = po.action      
                         self.queue.add(po)
                         po.set_select(False)                        

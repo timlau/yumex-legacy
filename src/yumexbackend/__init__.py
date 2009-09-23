@@ -184,7 +184,10 @@ class YumexPackageBase:
         Package full version-release
         '''
         return "%s-%s" % (self.version, self.release)
-    
+ 
+    def is_installed(self):
+        return self.repoid[0] == '@' or self.repoid == 'installed'
+   
 
 class YumexGroupBase:
     '''

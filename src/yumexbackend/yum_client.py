@@ -107,6 +107,7 @@ class YumPackage:
     def get_update_info(self):
         return self.base.get_update_info(self.id)
     
+    
 class YumClient:
     """ Client part of a the yum client/server """
 
