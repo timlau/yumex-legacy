@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-18 10:08+0200\n"
-"PO-Revision-Date: 2009-09-19 12:03+0200\n"
+"PO-Revision-Date: 2009-09-27 13:31+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Uruchamianie testowych transakcji RPM"
 #: ../src/yumexbackend/yum_backend.py:163
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr "Czy chcesz zaimportować klucz GPG: %s \n"
+msgstr "Czy zaimportować klucz GPG: %s \n"
 
 #: ../src/yumexbackend/yum_backend.py:165
 #, python-format
@@ -54,16 +54,16 @@ msgstr "Wymagany przez %s"
 #: ../src/yumexbackend/yum_backend.py:180
 #, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr "Włóż nośnik z etykietą %s #%d."
+msgstr "Proszę włożyć nośnik z etykietą %s #%d."
 
 #: ../src/yumexbackend/yum_backend.py:182
 #, python-format
 msgid "Please insert media labeled %s."
-msgstr "Włóż nośnik z etykietą %s."
+msgstr "Proszę włożyć nośnik z etykietą %s."
 
 #: ../src/yumexbackend/yum_backend.py:245
 msgid "Starting yum child process"
-msgstr "Uruchamianie procesu potomnego yuma"
+msgstr "Uruchamianie procesu potomnego programu yum"
 
 #: ../src/yumexbackend/yum_backend.py:247
 #, python-format
@@ -78,7 +78,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:261
 msgid "Stopping yum child process"
-msgstr "Zatrzymywanie procesu potomnego yuma"
+msgstr "Zatrzymywanie procesu potomnego programu yum"
 
 #: ../src/yumexbackend/yum_backend.py:498 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
@@ -107,7 +107,7 @@ msgstr "Brak połączenia sieciowego, wyłączanie nielokalnego repozytorium %s"
 
 #: ../src/yumexbackend/yum_server.py:210
 msgid "Yum is locked : "
-msgstr "Yum jest zablokowany: "
+msgstr "Program yum jest zablokowany: "
 
 #: ../src/yumexbackend/yum_server.py:215
 msgid "  The other application is: PackageKit"
@@ -120,7 +120,7 @@ msgstr "  Inna aplikacja to: %s"
 
 #: ../src/yumexbackend/yum_server.py:219
 msgid "Waiting 10 seconds and tries again !!!"
-msgstr "Oczekiwanie 10 sekund i ponowna próba!"
+msgstr "Oczekiwanie 10 sekund i ponowne próbowanie."
 
 #: ../src/yumexbackend/yum_server.py:608
 msgid "Installing"
@@ -129,7 +129,7 @@ msgstr "Instalowanie"
 #: ../src/yumexbackend/yum_server.py:660
 #, python-format
 msgid "Error in yum Transaction : %s"
-msgstr "Błąd transakcji yuma: %s"
+msgstr "Błąd transakcji programu yum: %s"
 
 #: ../src/yumexbackend/yum_server.py:702
 #, python-format
@@ -142,7 +142,7 @@ msgstr "Próbowanie innego serwera lustrzanego."
 
 #: ../src/yumexbackend/yum_server.py:1156
 msgid "Rebuild from deltarpms completted"
-msgstr "Zakończono ponowne budowanie z pakietów DeltaRPM"
+msgstr "Ukończono ponowne budowanie z pakietów DeltaRPM"
 
 #: ../src/yumexbackend/yum_server.py:1158
 #, python-format
@@ -231,7 +231,7 @@ msgstr "Wykonywanie transakcji RPM"
 
 #: ../src/yumexgui/dialogs.py:332
 msgid "Working !!!"
-msgstr "Trwa praca!"
+msgstr "Praca w toku."
 
 #: ../src/yumexgui/dialogs.py:402
 msgid "Preferences"
@@ -239,7 +239,7 @@ msgstr "Preferencje"
 
 #: ../src/yumexgui/dialogs.py:415
 msgid "Load packages on launch"
-msgstr "Wczytaj pakiety podczas uruchamiania"
+msgstr "Wczytanie pakietów podczas uruchamiania"
 
 #: ../src/yumexgui/dialogs.py:423
 msgid "Debug Mode"
@@ -259,7 +259,7 @@ msgstr "Kolor (dostępne)"
 
 #: ../src/yumexgui/dialogs.py:434
 msgid "Enable Yum Plugins"
-msgstr "Włącz wtyczki yuma"
+msgstr "Włączenie wtyczek programu yum"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Proxy"
@@ -267,7 +267,7 @@ msgstr "Pośrednik sieciowy"
 
 #: ../src/yumexgui/dialogs.py:436
 msgid "Yum Debug Level"
-msgstr "Poziom debugowania yuma"
+msgstr "Poziom debugowania programu yum"
 
 #: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
 msgid "Transaction Result"
@@ -351,15 +351,15 @@ msgstr "Błąd krytyczny"
 #. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:541
 msgid "Can't start the yum backend"
-msgstr "Nie można uruchomić zaplecza yuma"
+msgstr "Nie można uruchomić zaplecza programu yum"
 
 #: ../src/yumexgui/__init__.py:542
 msgid "Another program is locking yum"
-msgstr "Inny program blokuje yuma"
+msgstr "Inny program blokuje program yum"
 
 #: ../src/yumexgui/__init__.py:544
 msgid "Message from yum backend:"
-msgstr "Komunikat od zaplecza yuma:"
+msgstr "Komunikat od zaplecza programu yum:"
 
 #: ../src/yumexgui/__init__.py:548
 msgid "Unknown Error : "
@@ -371,11 +371,11 @@ msgstr "Pakiety"
 
 #: ../src/yumexgui/__init__.py:613
 msgid "Perform actions on packages"
-msgstr "Wykonaj działania na pakietach"
+msgstr "Wykonanie czynności na pakietach"
 
 #: ../src/yumexgui/__init__.py:615
 msgid "Pending Actions"
-msgstr "Oczekujące działania"
+msgstr "Oczekujące czynności"
 
 #: ../src/yumexgui/__init__.py:616
 msgid "Work with pending actions"
@@ -387,7 +387,7 @@ msgstr "Repozytoria"
 
 #: ../src/yumexgui/__init__.py:620
 msgid "Select active repositories"
-msgstr "Wybierz aktywne repozytoria"
+msgstr "Wybór aktywnych repozytoriów"
 
 #: ../src/yumexgui/__init__.py:622
 msgid "Output"
@@ -395,7 +395,7 @@ msgstr "Wyjście"
 
 #: ../src/yumexgui/__init__.py:623
 msgid "Watch output details"
-msgstr "Obserwuj szczegóły wujścia"
+msgstr "Obserwacja szczegółów wyjścia"
 
 #: ../src/yumexgui/__init__.py:658
 msgid "Not connected to an network"
@@ -407,7 +407,7 @@ msgid ""
 "Do you want to continue "
 msgstr ""
 "Nie połączono z siecią.\n"
-"Czy chcesz kontynuować "
+"Czy kontynuować "
 
 #: ../src/yumexgui/__init__.py:664
 msgid "Can't detect the network connection state"
@@ -469,7 +469,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Czy chcesz zakończyć Yum Extender"
+"Czy zakończyć program Yum Extender"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -482,7 +482,7 @@ msgid ""
 " check output page for details"
 msgstr ""
 "Zakończono transakcję z błędami,\n"
-" sprawdź stronę wyjścia, aby poznać szczegóły"
+" proszę sprawdzić stronę wyjścia, aby uzyskać szczegóły"
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
 msgid "Package"
@@ -535,7 +535,7 @@ msgstr "<span size=\"x-large\">Transakcja</span>\n"
 
 #: ../src/yumex.glade.h:3
 msgid "<span size=\"x-large\">Working ....</span>\n"
-msgstr "<span size=\"x-large\">Trwa praca...</span>\n"
+msgstr "<span size=\"x-large\">Praca w toku...</span>\n"
 
 #: ../src/yumex.glade.h:5
 msgid "Advanced"
@@ -555,7 +555,7 @@ msgstr "Podstawowe"
 
 #: ../src/yumex.glade.h:9
 msgid "Dont  check signatures for packages"
-msgstr "Nie sprawdzaj podpisów pakietów"
+msgstr "Bez sprawdzania podpisów pakietów"
 
 #: ../src/yumex.glade.h:10
 msgid "Error"
@@ -563,7 +563,7 @@ msgstr "Błąd"
 
 #: ../src/yumex.glade.h:11
 msgid "Execute all pending actions in queue"
-msgstr "Wykonaj wszystkie oczekujące działania w kolejce"
+msgstr "Wykonanie wszystkich oczekujących czynności w kolejce"
 
 #: ../src/yumex.glade.h:12
 msgid "R_epositories"
@@ -574,36 +574,36 @@ msgid ""
 "Refresh packages with current selected\n"
 "repositories"
 msgstr ""
-"Odśwież pakiety za pomocą obecnie\n"
+"Odświeżenie pakietów za pomocą obecnie\n"
 "wybranych repozytoriów"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
-msgstr "Usuń wybrane pakiety z kolejki"
+msgstr "Usunięcie wybranych pakietów z kolejki"
 
 #: ../src/yumex.glade.h:16
 msgid "Select all packages in current view"
-msgstr "Wybierz wszystkie pakiety z bieżącego widoku"
+msgstr "Wybór wszystkich pakietów z bieżącego widoku"
 
 #: ../src/yumex.glade.h:17
 msgid "Show available packages"
-msgstr "Wyświetl dostępne pakiety"
+msgstr "Wyświetla dostępne pakiety"
 
 #: ../src/yumex.glade.h:18
 msgid "Show installed packages"
-msgstr "Wyświetl zainstalowane pakiety"
+msgstr "Wyświetla zainstalowane pakiety"
 
 #: ../src/yumex.glade.h:19
 msgid "Show package updates"
-msgstr "Wyświetl aktualizacje pakietów"
+msgstr "Wyświetla aktualizacje pakietów"
 
 #: ../src/yumex.glade.h:20
 msgid "Skip Broken"
-msgstr "Pomiń uszkodzone"
+msgstr "Pomijanie uszkodzonych"
 
 #: ../src/yumex.glade.h:21
 msgid "Skip packages there get depsolve errors"
-msgstr "Pomiń pakiety, wobec których występują błędy rozwiązywania zależności"
+msgstr "Pomija pakiety, wobec których występują błędy rozwiązywania zależności"
 
 #: ../src/yumex.glade.h:22
 msgid ""
@@ -611,8 +611,8 @@ msgid ""
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
-"Podaj wyszukiwane słowa oddzielone spacjami,\n"
-"aby znaleźć pakiety je zawierające.\n"
+"Proszę podać wyszukiwane słowa oddzielone\n"
+"spacjami, aby odnaleźć pakiety je zawierające.\n"
 
 #: ../src/yumex.glade.h:26
 msgid "U_pdates"
@@ -620,11 +620,11 @@ msgstr "A_ktualizacje"
 
 #: ../src/yumex.glade.h:27
 msgid "Undo all package selection"
-msgstr "Cofnij wybór pakietów"
+msgstr "Cofnięcie wyboru pakietów"
 
 #: ../src/yumex.glade.h:28
 msgid "Undo repository selection changes"
-msgstr "Cofnij zmiany wyboru repozytoriów"
+msgstr "Cofnięcie zmian wyboru repozytoriów"
 
 #: ../src/yumex.glade.h:29
 msgid "Yum"
