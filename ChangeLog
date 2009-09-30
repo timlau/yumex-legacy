@@ -1,3 +1,72 @@
+2009-09-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.2
+
+2009-09-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: show updates in all packages
+
+2009-09-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: seach in descriptions too
+
+2009-09-29  kristho <kristho@fedoraproject.org>
+
+	* po/da.po: Sending translation for Danish
+
+2009-09-27  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2009-09-24  warrink <warrink@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2009-09-23  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_client.py,
+	src/yumexgui/views.py: fix selecting a group, are removing already
+	installed packages in the group
+
+2009-09-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: remove debug output
+
+2009-09-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: add yumex to the yum history the
+	right way
+
+2009-09-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Show SelectAll button in updates
+
+2009-09-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: register yum history package name
+
+
+2009-09-20  fgonz <fgonz@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-09-19  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2009-09-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: make sure the error TextTag is only set
+	once in the ErrorDialog (rhbz# 524294)
+
+2009-09-18  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2009-09-18  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* yumex.spec: bumped version to 2.9.1
