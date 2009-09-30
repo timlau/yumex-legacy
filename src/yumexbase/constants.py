@@ -35,7 +35,7 @@ from yumexbase.i18n import _, P_
 
 # Constant
 
-__yumex_version__ = "2.9.1"
+__yumex_version__ = "2.9.2"
 
 YUMEX_LOG = 'yumex.verbose'
 # Package Types
