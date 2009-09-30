@@ -432,10 +432,15 @@ class YumServer(yum.YumBase):
         if narrow:
             ygh = self.doPackageLists(pkgnarrow = narrow)
             if narrow == "all":
+                updates = self.doPackageLists(pkgnarrow = 'updates').updates
                 for pkg in ygh.installed:
                     self._show_package(pkg,'r')
                 for pkg in ygh.available:
-                    self._show_package(pkg, 'i')                    
+                    if pkg in updates:
+                        action = 'u'
+                    else:
+                        action = 'i'
+                    self._show_package(pkg, action)                    
             else:
                 action = const.FILTER_ACTIONS[narrow]
                 for pkg in getattr(ygh, narrow):
