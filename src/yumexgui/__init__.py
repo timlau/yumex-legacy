@@ -276,7 +276,7 @@ class YumexHandlers(Controller):
         if self._packages_loaded:
             busyCursor(self.window)
             self.packageInfo.clear()
-            filters = ['name', 'summary']
+            filters = ['name', 'summary', 'description']
             keys = self.ui.packageSearch.get_text().split(' ')
             pkgs = self.backend.search(keys, filters)
             self.ui.packageFilterBox.hide()
