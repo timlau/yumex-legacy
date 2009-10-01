@@ -862,6 +862,24 @@ class YumServer(yum.YumBase):
             self._show_repo(repo)
         else:
             self.error("Repo : %s not found" % ident)
+
+    def enable_repo_persistent(self, args):
+        '''
+        
+        @param args:
+        '''
+        ident = args[0]
+        state = (args[1] == 'True')
+        self.debug("enable-repo-persistent: Repo : %s Enabled : %s" % (ident, state))
+        repo = self.repos.getRepo(ident)
+        if repo:
+            if state:
+                repo.enablePersistent()
+            else:
+                repo.disablePersistent()
+        else:
+            self.error("Repo : %s not found" % ident)
+        self.ended(True)
             
     def set_option(self,args):
         option = args[0]
@@ -934,6 +952,8 @@ class YumServer(yum.YumBase):
             self.get_repos(args)
         elif cmd == 'enable-repo':
             self.enable_repo(args)
+        elif cmd == 'enable-repo-persistent':
+            self.enable_repo_persistent(args)
         elif cmd == 'search':
             self.search(args)
         elif cmd == 'update-info':

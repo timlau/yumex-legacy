@@ -604,6 +604,14 @@ class YumClient:
         args = self._get_result(':repo')
         return args
         
+    def enable_repo_persistent(self, ident, state):
+        '''
+        
+        @param ident:
+        @param state:
+        '''
+        self._send_command('enable-repo-persistent', [ident, str(state)])
+        return self._get_return_code()
         
     def search(self, keys, filters):
         '''

@@ -458,10 +458,17 @@ class YumexHandlers(Controller):
             return True
         
     def on_repo_popup_activate(self,widget,enable,path):
-        print enable,path
+        '''
+        
+        @param widget:
+        @param enable: repo persistent enable state (True = enable, False = disable)
+        @param path: treeview path for current item
+        '''
         store = self.ui.repoView.get_model()
         iter = store.get_iter( path )
-        state = store.set_value(iter,0,enable)
+        id = store.get_value(iter,1)
+        store.set_value(iter,0,enable)
+        self.backend.enable_repo_persistent( id, enable)
         
     # Queue Page    
 
