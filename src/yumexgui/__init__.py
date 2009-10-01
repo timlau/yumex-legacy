@@ -31,7 +31,7 @@ from datetime import date
 
 from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
-                             questionDialog, Preferences
+                             questionDialog, Preferences, okCancelDialog
 from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
@@ -456,6 +456,15 @@ class YumexHandlers(Controller):
                 popup = self.get_repo_popup(state,path)
                 popup.popup( None, None, None, event.button, time)
             return True
+
+
+    def on_repo_popup_other(self,widget,action_id,path):
+        if action_id.startswith('clean-'):
+            what = action_id.split("-")[1]
+            rc = okCancelDialog(self.window,_("Do you want to clean %s from the yum cache") % what)
+            if rc:
+                self.backend.clean(what)
+                
         
     def on_repo_popup_enabled(self,widget,enable,path):
         '''
@@ -717,6 +726,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
 # pylint: enable-msg=W0201
 
+    def _add_menu(self,menu,label,action_id,path):
+        mi = gtk.MenuItem (label)
+        mi.connect('activate', self.on_repo_popup_other, action_id, path)
+        menu.add(mi)
+        
+
     def get_repo_popup(self,enabled,path):
         repo_popup = gtk.Menu()
         if not enabled:
@@ -727,6 +742,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             mi = gtk.MenuItem (_("Disable Permanently"))
             mi.connect('activate', self.on_repo_popup_enabled, False, path)
             repo_popup.add(mi)
+        self._add_menu(repo_popup, _("Clean Metadata"), "clean-metadata", path)
+        self._add_menu(repo_popup, _("Clean Packages"), "clean-packages", path)
+        self._add_menu(repo_popup, _("Clean DbCache"), "clean-dbcache", path)
+        self._add_menu(repo_popup, _("Clean All"), "clean-all", path)
         repo_popup.show_all()
         return repo_popup
 

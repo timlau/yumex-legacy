@@ -924,16 +924,19 @@ class YumServer(yum.YumBase):
         what = args[0]
         if what == 'metadata':
             self.cleanMetadata()
+            msg = _("Cleaned metadata from local cache")
         elif what == 'dbcache':
             self.cleanSqlite()                
+            msg = _("Cleaned dbcache")
         elif what == 'packages':
             self.cleanPackages()
+            msg = _("Cleaned packages from local cache")
         elif what == 'all':
+            msg = _("Cleaned everything from local cache")
             self.cleanMetadata()
             self.cleanPackages()
-            self.cleanSqlite()                
-        else:
-            self.error("don't know how to clean : %s" % what)
+            self.cleanSqlite()
+        self.info(msg)    
         self.ended(True)
             
 
