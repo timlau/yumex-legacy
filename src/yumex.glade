@@ -263,6 +263,7 @@
               <object class="GtkTreeView" id="repoView">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <signal name="button_press_event" handler="on_repoView_button_press_event"/>
               </object>
             </child>
           </object>

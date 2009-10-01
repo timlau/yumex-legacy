@@ -439,7 +439,30 @@ class YumexHandlers(Controller):
         Repo undo button
         '''
         self.repos.populate(self.default_repos)
-
+        
+    def on_repoView_button_press_event(self, treeview, event):
+        if event.button == 3: # Right Click
+            x = int(event.x)
+            y = int(event.y)
+            time = event.time
+            pthinfo = treeview.get_path_at_pos(x, y)
+            if pthinfo is not None:
+                path, col, cellx, celly = pthinfo
+                treeview.grab_focus()
+                treeview.set_cursor( path, col, 0)
+                store = treeview.get_model() 
+                iter = store.get_iter( path )
+                state = store.get_value(iter,0)
+                popup = self.get_repo_popup(state,path)
+                popup.popup( None, None, None, event.button, time)
+            return True
+        
+    def on_repo_popup_activate(self,widget,enable,path):
+        print enable,path
+        store = self.ui.repoView.get_model()
+        iter = store.get_iter( path )
+        state = store.set_value(iter,0,enable)
+        
     # Queue Page    
 
     def on_queueOpen_clicked(self, widget=None, event=None):
@@ -501,6 +524,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._packages_loaded = False
         self._key_bindings = gtk.AccelGroup()
         self._network = NetworkCheckNetworkManager()
+        self.repo_popup = None # Repo page popup menu 
 
     @property
     def is_offline(self):
@@ -685,6 +709,20 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
 
 # pylint: enable-msg=W0201
+
+    def get_repo_popup(self,enabled,path):
+        repo_popup = gtk.Menu()
+        if not enabled:
+            mi = gtk.MenuItem ("Enable Permanently")
+            mi.connect('activate', self.on_repo_popup_activate, True, path)
+            repo_popup.add(mi)
+        else: 
+            mi = gtk.MenuItem ("Disable Permanently")
+            mi.connect('activate', self.on_repo_popup_activate, False, path)
+            repo_popup.add(mi)
+        repo_popup.show_all()
+        return repo_popup
+
 
     def setup_categories(self):
         cats = [('repo',_('By Repositories')),
