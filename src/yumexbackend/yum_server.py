@@ -870,13 +870,14 @@ class YumServer(yum.YumBase):
         '''
         ident = args[0]
         state = (args[1] == 'True')
-        self.debug("enable-repo-persistent: Repo : %s Enabled : %s" % (ident, state))
         repo = self.repos.getRepo(ident)
         if repo:
             if state:
                 repo.enablePersistent()
+                self.info(_("The %s repository has been enabled permanently") % ident)
             else:
                 repo.disablePersistent()
+                self.info(_("The %s repository has been disabled permanently") % ident)
         else:
             self.error("Repo : %s not found" % ident)
         self.ended(True)

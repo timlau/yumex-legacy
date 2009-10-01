@@ -457,7 +457,7 @@ class YumexHandlers(Controller):
                 popup.popup( None, None, None, event.button, time)
             return True
         
-    def on_repo_popup_activate(self,widget,enable,path):
+    def on_repo_popup_enabled(self,widget,enable,path):
         '''
         
         @param widget:
@@ -720,12 +720,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def get_repo_popup(self,enabled,path):
         repo_popup = gtk.Menu()
         if not enabled:
-            mi = gtk.MenuItem ("Enable Permanently")
-            mi.connect('activate', self.on_repo_popup_activate, True, path)
+            mi = gtk.MenuItem (_("Enable Permanently"))
+            mi.connect('activate', self.on_repo_popup_enabled, True, path)
             repo_popup.add(mi)
         else: 
-            mi = gtk.MenuItem ("Disable Permanently")
-            mi.connect('activate', self.on_repo_popup_activate, False, path)
+            mi = gtk.MenuItem (_("Disable Permanently"))
+            mi.connect('activate', self.on_repo_popup_enabled, False, path)
             repo_popup.add(mi)
         repo_popup.show_all()
         return repo_popup
