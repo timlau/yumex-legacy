@@ -625,6 +625,16 @@ class YumClient:
         pkgs = self._get_list()
         return pkgs
 
+    def clean(self, what):
+        '''
+        
+        @param ident:
+        @param state:
+        '''
+        self._send_command('clean', [what])
+        return self._get_return_code()
+    
+
 if __name__ == "__main__":
     pass
 

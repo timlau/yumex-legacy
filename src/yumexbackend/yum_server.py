@@ -920,6 +920,22 @@ class YumServer(yum.YumBase):
             self.message("updateinfo", ret)
         self.ended(True)
         
+    def clean(self,args):
+        what = args[0]
+        if what == 'metadata':
+            self.cleanMetadata()
+        elif what == 'dbcache':
+            self.cleanSqlite()                
+        elif what == 'packages':
+            self.cleanPackages()
+        elif what == 'all':
+            self.cleanMetadata()
+            self.cleanPackages()
+            self.cleanSqlite()                
+        else:
+            self.error("don't know how to clean : %s" % what)
+        self.ended(True)
+            
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
@@ -961,6 +977,8 @@ class YumServer(yum.YumBase):
             self.get_update_info(args)
         elif cmd == 'set-option':
             self.set_option(args)
+        elif cmd == 'clean':
+            self.clean(args)
         else:
             self.error('Unknown command : %s' % cmd)
 
