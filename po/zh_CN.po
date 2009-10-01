@@ -1,0 +1,716 @@
+# Japanese translation of Yumex
+# Copyright (C) 2005, 2006 Tim Lauridsen
+# This file is distributed under the same license as the Yumex package.
+# Takanori MATSUURA <t.matsuu@gmail.com>, 2005-2009.
+# Takanori MATSUURA <t.matsuu@gmail.com>, 2009.
+# Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
+# CyrusHMH <cyrushmh@vip.qq.com;cyrusyzgtt@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: yumex 2.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-18 10:08+0200\n"
+"PO-Revision-Date: 2009-10-02 00:51+0800\n"
+"Last-Translator: CyrusHMH <cyrushmh@vip.qq.com;cyrusyzgtt@gmail.com>\n"
+"Language-Team: cvsl10n\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Virtaal 0.4.0\n"
+
+#. if the progress is hidden, then show it at set the labels.
+#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+msgid "Getting Package Information"
+msgstr "获取软件包信息"
+
+#: ../src/yumexbackend/yum_backend.py:115
+#, python-format
+msgid "Unknown Repo Metadata type (%s) for %s"
+msgstr "未知Pepo元数据类型 (%s) 时为 %s"
+
+#: ../src/yumexbackend/yum_backend.py:129
+msgid "Buiding rpms from deltarpm"
+msgstr "从deltarpm建立rpms"
+
+#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+msgid "Downloading Packages"
+msgstr "下载软件包"
+
+#: ../src/yumexbackend/yum_backend.py:150 ../src/yumexgui/dialogs.py:251
+msgid "Checking Package GPG Signatures"
+msgstr "检查包GPG签名"
+
+#: ../src/yumexbackend/yum_backend.py:155 ../src/yumexgui/dialogs.py:252
+msgid "Running RPM Test Transaction"
+msgstr "运行RPM测试处理"
+
+#: ../src/yumexbackend/yum_backend.py:163
+#, python-format
+msgid "Do you want to import GPG Key : %s \n"
+msgstr "你希望导入 GPG 密匙 : %s \n"
+
+#: ../src/yumexbackend/yum_backend.py:165
+#, python-format
+msgid "Needed by %s"
+msgstr "由 %s 所需"
+
+#: ../src/yumexbackend/yum_backend.py:180
+#, python-format
+msgid "Please insert media labeled %s #%d."
+msgstr "请插入标记 %s #%d 的媒体"
+
+#: ../src/yumexbackend/yum_backend.py:182
+#, python-format
+msgid "Please insert media labeled %s."
+msgstr "请插入标记 %s 的媒体."
+
+#: ../src/yumexbackend/yum_backend.py:245
+msgid "Starting yum child process"
+msgstr "开始yum子进程"
+
+#: ../src/yumexbackend/yum_backend.py:247
+#, python-format
+msgid ""
+"Using the following repositories :\n"
+"%s\n"
+"\n"
+msgstr ""
+"使用下面的库:\n"
+"%s\n"
+
+#: ../src/yumexbackend/yum_backend.py:261
+msgid "Stopping yum child process"
+msgstr "停止yum子进程"
+
+#: ../src/yumexbackend/yum_backend.py:498 ../src/yumexgui/dialogs.py:249
+msgid "Resolving Dependencies"
+msgstr "解决依赖"
+
+#: ../src/yumexbackend/yum_backend.py:515
+#: ../src/yumexbackend/yum_backend.py:516
+msgid "Dependency Resolution Failed"
+msgstr "依赖解析失败"
+
+#: ../src/yumexbackend/yum_backend.py:517
+msgid "Dependency Resolution Errors:"
+msgstr "依赖解析错误:"
+
+#. Write errors to output page
+#: ../src/yumexbackend/yum_backend.py:526
+msgid "Dependency resolving completed with errors"
+msgstr ""
+"\t\n"
+"依赖解决完成错误"
+
+#. Not local disable it
+#. No, disable it
+#: ../src/yumexbackend/yum_server.py:186 ../src/yumexbackend/yum_server.py:195
+#, python-format
+msgid "No network connection, disable non local repo %s"
+msgstr ""
+"\t\n"
+"没有网络连接，禁用非本地 repo %s"
+
+#: ../src/yumexbackend/yum_server.py:210
+msgid "Yum is locked : "
+msgstr "Yum被锁定: "
+
+#: ../src/yumexbackend/yum_server.py:215
+msgid "  The other application is: PackageKit"
+msgstr "  其他应用程序: PackageKit"
+
+#: ../src/yumexbackend/yum_server.py:217
+#, python-format
+msgid "  The other application is: %s"
+msgstr "  其他应用程序: %s"
+
+#: ../src/yumexbackend/yum_server.py:219
+msgid "Waiting 10 seconds and tries again !!!"
+msgstr "等待10秒，再次尝试 !!!"
+
+#: ../src/yumexbackend/yum_server.py:608
+msgid "Installing"
+msgstr "安装中"
+
+#: ../src/yumexbackend/yum_server.py:660
+#, python-format
+msgid "Error in yum Transaction : %s"
+msgstr "yum处理出错: %s"
+
+#: ../src/yumexbackend/yum_server.py:702
+#, python-format
+msgid "Failure getting %s: "
+msgstr "获取失败 %s: "
+
+#: ../src/yumexbackend/yum_server.py:703
+msgid "Trying other mirror."
+msgstr "尝试其它镜像。"
+
+#: ../src/yumexbackend/yum_server.py:1156
+msgid "Rebuild from deltarpms completted"
+msgstr "从deltarpms重建完成"
+
+#: ../src/yumexbackend/yum_server.py:1158
+#, python-format
+msgid "Downloaded : %s ( %s )"
+msgstr "下载: %s (%s)"
+
+#. NOTE: The package filter radio buttons in the top of the package page
+#: ../src/yumexbase/constants.py:72
+msgid "updates"
+msgstr "更新"
+
+#: ../src/yumexbase/constants.py:72
+msgid "available"
+msgstr "可用的"
+
+#: ../src/yumexbase/constants.py:72
+msgid "installed"
+msgstr "安装"
+
+#: ../src/yumexbase/constants.py:92
+msgid "Downloading repository information"
+msgstr "下载仓库信息"
+
+#: ../src/yumexbase/constants.py:93
+#, python-format
+msgid "Downloading Package information for the %s repository"
+msgstr "下载包信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:94
+#, python-format
+msgid "Downloading Filelist information for the %s repository"
+msgstr "下载文件列表信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:95
+#, python-format
+msgid "Downloading Changelog information for the %s repository"
+msgstr "下载变更日志信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:96
+#, python-format
+msgid "Downloading Group information for the %s repository"
+msgstr "下载组信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:97
+#, python-format
+msgid "Downloading metalink information for the %s repository"
+msgstr "下载metalink信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:98
+#, python-format
+msgid "Downloading Delta update information for the %s repository"
+msgstr "下载并删除更新信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:99
+#, python-format
+msgid "Downloading Update information for the %s repository"
+msgstr "下载并更新信息 %s 仓库"
+
+#: ../src/yumexbase/constants.py:110
+msgid "0 - 7 Days"
+msgstr "0 - 7 日"
+
+#: ../src/yumexbase/constants.py:111
+msgid "7 - 14 Days"
+msgstr "7 - 14 日"
+
+#: ../src/yumexbase/constants.py:112
+msgid "14 - 21 Days"
+msgstr "14 - 21 日"
+
+#: ../src/yumexbase/constants.py:113
+msgid "21  - 30 days"
+msgstr "21  - 30 日"
+
+#: ../src/yumexbase/constants.py:114
+msgid "30 - 90 days"
+msgstr "30 - 90 日"
+
+#: ../src/yumexbase/constants.py:115
+msgid "90+ days"
+msgstr "90+ 日"
+
+#: ../src/yumexgui/dialogs.py:253
+msgid "Running RPM Transaction"
+msgstr "运行RPM处理"
+
+#: ../src/yumexgui/dialogs.py:332
+msgid "Working !!!"
+msgstr "工作!!!"
+
+#: ../src/yumexgui/dialogs.py:402
+msgid "Preferences"
+msgstr "偏好"
+
+#: ../src/yumexgui/dialogs.py:415
+msgid "Load packages on launch"
+msgstr "在启动加载程序包"
+
+#: ../src/yumexgui/dialogs.py:423
+msgid "Debug Mode"
+msgstr "调试模式"
+
+#: ../src/yumexgui/dialogs.py:424
+msgid "Color (Installed)"
+msgstr "颜色(安装)"
+
+#: ../src/yumexgui/dialogs.py:425
+msgid "Color (Update)"
+msgstr "颜色（更新）"
+
+#: ../src/yumexgui/dialogs.py:426
+msgid "Color (Available)"
+msgstr "颜色（可用）"
+
+#: ../src/yumexgui/dialogs.py:434
+msgid "Enable Yum Plugins"
+msgstr "启用Yum插件"
+
+#: ../src/yumexgui/dialogs.py:435
+msgid "Proxy"
+msgstr "代理"
+
+#: ../src/yumexgui/dialogs.py:436
+msgid "Yum Debug Level"
+msgstr "Yum调试级别"
+
+#: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
+msgid "Transaction Result"
+msgstr "处理结果"
+
+#: ../src/yumexgui/dialogs.py:535 ../src/yumexgui/views.py:556
+msgid "Name"
+msgstr "名称"
+
+#: ../src/yumexgui/dialogs.py:536
+msgid "Arch"
+msgstr "结构"
+
+#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/views.py:158
+msgid "Ver"
+msgstr "版本"
+
+#. Setup reponame & repofile column's
+#: ../src/yumexgui/dialogs.py:538 ../src/yumexgui/views.py:527
+#: ../src/yumexgui/views.py:555
+msgid "Repository"
+msgstr "仓库"
+
+#: ../src/yumexgui/dialogs.py:539 ../src/yumexgui/views.py:158
+msgid "Size"
+msgstr "大小"
+
+#: ../src/yumexgui/gui.py:248
+msgid "Package Description"
+msgstr "套件描述"
+
+#: ../src/yumexgui/gui.py:250
+msgid "Package Changelog"
+msgstr "套件变更日志"
+
+#: ../src/yumexgui/gui.py:252
+msgid "Package Filelist"
+msgstr "套件清单"
+
+#: ../src/yumexgui/gui.py:311
+msgid ""
+"\n"
+"Package Description"
+msgstr ""
+"\n"
+"套件描述"
+
+#: ../src/yumexgui/gui.py:316
+msgid "Update ID"
+msgstr "更新ID"
+
+#: ../src/yumexgui/gui.py:317
+msgid "Release"
+msgstr "释放"
+
+#: ../src/yumexgui/gui.py:318
+msgid "Type"
+msgstr ""
+"\t\n"
+"类型"
+
+#: ../src/yumexgui/gui.py:319
+msgid "Status"
+msgstr "状态"
+
+#: ../src/yumexgui/gui.py:320
+msgid "Issued"
+msgstr "发行"
+
+#: ../src/yumexgui/gui.py:330
+msgid "       Bugs :"
+msgstr "       错误:"
+
+#: ../src/yumexgui/gui.py:352
+#, python-format
+msgid "Description : %s\n"
+msgstr "描述: %s\n"
+
+#: ../src/yumexgui/__init__.py:539
+msgid "Fatal Error"
+msgstr "致命错误"
+
+#. Cant get the yum lock
+#: ../src/yumexgui/__init__.py:541
+msgid "Can't start the yum backend"
+msgstr "无法启动yum后端"
+
+#: ../src/yumexgui/__init__.py:542
+msgid "Another program is locking yum"
+msgstr "另一个项目是锁定yum"
+
+#: ../src/yumexgui/__init__.py:544
+msgid "Message from yum backend:"
+msgstr "从yum信息后端"
+
+#: ../src/yumexgui/__init__.py:548
+msgid "Unknown Error : "
+msgstr "不明出错: "
+
+#: ../src/yumexgui/__init__.py:612 ../src/yumexgui/views.py:445
+msgid "Packages"
+msgstr "套件"
+
+#: ../src/yumexgui/__init__.py:613
+msgid "Perform actions on packages"
+msgstr "套件上的执行行动"
+
+#: ../src/yumexgui/__init__.py:615
+msgid "Pending Actions"
+msgstr "未决的行为"
+
+#: ../src/yumexgui/__init__.py:616
+msgid "Work with pending actions"
+msgstr "与未决的行为"
+
+#: ../src/yumexgui/__init__.py:619
+msgid "Repositories"
+msgstr "库"
+
+#: ../src/yumexgui/__init__.py:620
+msgid "Select active repositories"
+msgstr "选择一个有效的仓库"
+
+#: ../src/yumexgui/__init__.py:622
+msgid "Output"
+msgstr ""
+"\t\n"
+"输出"
+
+#: ../src/yumexgui/__init__.py:623
+msgid "Watch output details"
+msgstr "观察输出细节"
+
+#: ../src/yumexgui/__init__.py:658
+msgid "Not connected to an network"
+msgstr "没有连接到网络"
+
+#: ../src/yumexgui/__init__.py:659
+msgid ""
+"Not connected to an network.\n"
+"Do you want to continue "
+msgstr ""
+"没有连接到网络。\n"
+"是否要继续 "
+
+#: ../src/yumexgui/__init__.py:664
+msgid "Can't detect the network connection state"
+msgstr "无法检测网络连接状态"
+
+#: ../src/yumexgui/__init__.py:666
+msgid "Connected to an network"
+msgstr "连接到网络"
+
+#: ../src/yumexgui/__init__.py:690
+#, fuzzy
+msgid "By Repositories"
+msgstr "按仓库"
+
+#: ../src/yumexgui/__init__.py:691
+#, fuzzy
+msgid "By Size"
+msgstr ""
+"\t\n"
+"按大小"
+
+#: ../src/yumexgui/__init__.py:714 ../src/yumexgui/__init__.py:715
+msgid "Getting Group information"
+msgstr "获取组信息"
+
+#: ../src/yumexgui/__init__.py:735
+msgid "Getting Package Lists"
+msgstr "使用软件包列表"
+
+#: ../src/yumexgui/__init__.py:736
+msgid "Getting Updated Packages"
+msgstr "使用更新包"
+
+#: ../src/yumexgui/__init__.py:739
+msgid "Getting Available Packages"
+msgstr "使用可用的软件包"
+
+#: ../src/yumexgui/__init__.py:741
+msgid "Getting installed Packages"
+msgstr "使用安装的软件包"
+
+#: ../src/yumexgui/__init__.py:755
+msgid "The pending action queue is empty"
+msgstr ""
+"\t\n"
+"在等待处理队列为空"
+
+#: ../src/yumexgui/__init__.py:760
+msgid "Processing pending actions"
+msgstr "处理未决的行为"
+
+#: ../src/yumexgui/__init__.py:761
+msgid "Preparing the transaction"
+msgstr "准备处理"
+
+#: ../src/yumexgui/__init__.py:776
+msgid "Transaction completed successfully"
+msgstr "处理成功完成"
+
+#: ../src/yumexgui/__init__.py:777
+msgid ""
+"\n"
+"\n"
+"Do you want to exit Yum Extender"
+msgstr ""
+"\n"
+"\n"
+"你要退出Yum Extender"
+
+#. Aborted by user
+#: ../src/yumexgui/__init__.py:783
+msgid "Transaction Aborted by User"
+msgstr "处理终止的用户"
+
+#: ../src/yumexgui/__init__.py:786
+msgid ""
+"Transaction completed with errors,\n"
+" check output page for details"
+msgstr ""
+"处理完成错误，\n"
+" 查询详情输出页"
+
+#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
+msgid "Package"
+msgstr ""
+"\t \t\n"
+"包"
+
+#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:450
+msgid "Summary"
+msgstr "概要"
+
+#: ../src/yumexgui/views.py:158
+msgid "Repo"
+msgstr "Repo"
+
+#: ../src/yumexgui/views.py:158
+msgid "Architecture"
+msgstr "体系结构"
+
+#: ../src/yumexgui/views.py:182
+msgid "Ver."
+msgstr "版本"
+
+#: ../src/yumexgui/views.py:183
+msgid "Arch."
+msgstr "结构."
+
+#: ../src/yumexgui/views.py:185
+msgid "Repo."
+msgstr "Repo."
+
+#: ../src/yumexgui/views.py:186
+msgid "Size."
+msgstr ""
+"\t\n"
+"大小."
+
+#: ../src/yumexgui/views.py:411
+msgid "Package Queue:"
+msgstr "队列包:"
+
+#: ../src/yumexgui/views.py:527
+msgid "Filename"
+msgstr "文件名"
+
+#: ../src/yumexgui/views.py:868
+msgid "Categories"
+msgstr "分类"
+
+#: ../src/yumex.glade.h:1
+msgid "<span size=\"x-large\">Transaction</span>\n"
+msgstr "<span size=\"x-large\">处理</span>\n"
+
+#: ../src/yumex.glade.h:3
+msgid "<span size=\"x-large\">Working ....</span>\n"
+msgstr "<span size=\"x-large\">処理中…</span>\n"
+
+#: ../src/yumex.glade.h:5
+msgid "Advanced"
+msgstr "详细"
+
+#: ../src/yumex.glade.h:6
+msgid "All"
+msgstr "所有"
+
+#: ../src/yumex.glade.h:7
+msgid "Availa_ble"
+msgstr "可利用(_B)"
+
+#: ../src/yumex.glade.h:8
+msgid "Basic"
+msgstr "基本"
+
+#: ../src/yumex.glade.h:9
+msgid "Dont  check signatures for packages"
+msgstr "不验证软件包的签名"
+
+#: ../src/yumex.glade.h:10
+msgid "Error"
+msgstr "错误"
+
+#: ../src/yumex.glade.h:11
+msgid "Execute all pending actions in queue"
+msgstr "运行所有的行动是在队列中等待"
+
+#: ../src/yumex.glade.h:12
+msgid "R_epositories"
+msgstr "库(_E)"
+
+#: ../src/yumex.glade.h:13
+msgid ""
+"Refresh packages with current selected\n"
+"repositories"
+msgstr "库已更新，与当前选定的软件包"
+
+#: ../src/yumex.glade.h:15
+msgid "Remove selected packages from queue"
+msgstr "从队列中删除选定的软件包"
+
+#: ../src/yumex.glade.h:16
+msgid "Select all packages in current view"
+msgstr "选择所有包装当前视图"
+
+#: ../src/yumex.glade.h:17
+msgid "Show available packages"
+msgstr ""
+"\t\n"
+"显示可用的软件包"
+
+#: ../src/yumex.glade.h:18
+msgid "Show installed packages"
+msgstr "显示安装的软件包"
+
+#: ../src/yumex.glade.h:19
+msgid "Show package updates"
+msgstr ""
+"\t\n"
+"显示包更新"
+
+#: ../src/yumex.glade.h:20
+msgid "Skip Broken"
+msgstr "跳过损坏的依赖"
+
+#: ../src/yumex.glade.h:21
+msgid "Skip packages there get depsolve errors"
+msgstr ""
+"\t\n"
+"跳过包有错误得到depsolve"
+
+#: ../src/yumex.glade.h:22
+msgid ""
+"Type search words separated by spaces\n"
+"to find packages containing the search\n"
+"words.\n"
+msgstr ""
+"类型搜索由空格分隔的单词\n"
+"找到包包含搜索字词。\n"
+
+#: ../src/yumex.glade.h:26
+msgid "U_pdates"
+msgstr "更新(_P)"
+
+#: ../src/yumex.glade.h:27
+msgid "Undo all package selection"
+msgstr "撤消所有软件包选择"
+
+#: ../src/yumex.glade.h:28
+msgid "Undo repository selection changes"
+msgstr ""
+"\t\n"
+"撤消库选择改变"
+
+#: ../src/yumex.glade.h:29
+msgid "Yum"
+msgstr "Yum"
+
+#: ../src/yumex.glade.h:30
+msgid "_Categories"
+msgstr ""
+"\t\n"
+"分类(_C)"
+
+#: ../src/yumex.glade.h:31
+msgid "_Edit"
+msgstr "编辑(_E)"
+
+#: ../src/yumex.glade.h:32
+msgid "_File"
+msgstr "文件(_F)"
+
+#: ../src/yumex.glade.h:33
+msgid "_Groups"
+msgstr "团队(_G)"
+
+#: ../src/yumex.glade.h:34
+msgid "_Help"
+msgstr "帮助(_H)"
+
+#: ../src/yumex.glade.h:35
+msgid "_Installed"
+msgstr "安装(_I)"
+
+#: ../src/yumex.glade.h:36
+msgid "_Options"
+msgstr "配置(_O)"
+
+#: ../src/yumex.glade.h:37
+msgid "_Output"
+msgstr "输出(_O)"
+
+#: ../src/yumex.glade.h:38
+msgid "_Packages"
+msgstr "软件包(_P)"
+
+#: ../src/yumex.glade.h:39
+msgid "_Profiles"
+msgstr "概况(_P)"
+
+#: ../src/yumex.glade.h:40
+msgid "_Queue"
+msgstr "队列(_Q)"
+
+#: ../src/yumex.glade.h:41
+msgid "_View"
+msgstr "表示(_V)"
+
+#: ../src/yumex.glade.h:42
+msgid "no GPG Check"
+msgstr "没有GPG检查"
+
+#~ msgid "The needed media was not found"
+#~ msgstr "必要とされるメディアが見つかりませんでした"
