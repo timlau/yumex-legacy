@@ -1,4 +1,5 @@
-# Japanese translation of Yumex
+# Chinese (Simplified) translation of Yumex
+# Change by Japanese translation of Yumex
 # Copyright (C) 2005, 2006 Tim Lauridsen
 # This file is distributed under the same license as the Yumex package.
 # Takanori MATSUURA <t.matsuu@gmail.com>, 2005-2009.
@@ -13,10 +14,10 @@ msgstr ""
 "PO-Revision-Date: 2009-10-02 00:51+0800\n"
 "Last-Translator: CyrusHMH <cyrushmh@vip.qq.com;cyrusyzgtt@gmail.com>\n"
 "Language-Team: cvsl10n\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Virtaal 0.4.0\n"
 
@@ -79,6 +80,7 @@ msgid ""
 msgstr ""
 "使用下面的库:\n"
 "%s\n"
+"\n"
 
 #: ../src/yumexbackend/yum_backend.py:261
 msgid "Stopping yum child process"
@@ -100,18 +102,14 @@ msgstr "依赖解析错误:"
 #. Write errors to output page
 #: ../src/yumexbackend/yum_backend.py:526
 msgid "Dependency resolving completed with errors"
-msgstr ""
-"\t\n"
-"依赖解决完成错误"
+msgstr "依赖解决完成错误"
 
 #. Not local disable it
 #. No, disable it
 #: ../src/yumexbackend/yum_server.py:186 ../src/yumexbackend/yum_server.py:195
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
-"\t\n"
-"没有网络连接，禁用非本地 repo %s"
+msgstr "没有网络连接，禁用非本地 repo %s"
 
 #: ../src/yumexbackend/yum_server.py:210
 msgid "Yum is locked : "
@@ -333,9 +331,7 @@ msgstr "释放"
 
 #: ../src/yumexgui/gui.py:318
 msgid "Type"
-msgstr ""
-"\t\n"
-"类型"
+msgstr "类型"
 
 #: ../src/yumexgui/gui.py:319
 msgid "Status"
@@ -401,9 +397,7 @@ msgstr "选择一个有效的仓库"
 
 #: ../src/yumexgui/__init__.py:622
 msgid "Output"
-msgstr ""
-"\t\n"
-"输出"
+msgstr "输出"
 
 #: ../src/yumexgui/__init__.py:623
 msgid "Watch output details"
@@ -437,9 +431,7 @@ msgstr "按仓库"
 #: ../src/yumexgui/__init__.py:691
 #, fuzzy
 msgid "By Size"
-msgstr ""
-"\t\n"
-"按大小"
+msgstr "按大小"
 
 #: ../src/yumexgui/__init__.py:714 ../src/yumexgui/__init__.py:715
 msgid "Getting Group information"
@@ -463,9 +455,7 @@ msgstr "使用安装的软件包"
 
 #: ../src/yumexgui/__init__.py:755
 msgid "The pending action queue is empty"
-msgstr ""
-"\t\n"
-"在等待处理队列为空"
+msgstr "在等待处理队列为空"
 
 #: ../src/yumexgui/__init__.py:760
 msgid "Processing pending actions"
@@ -504,9 +494,7 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
 msgid "Package"
-msgstr ""
-"\t \t\n"
-"包"
+msgstr "包"
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
 #: ../src/yumexgui/views.py:450
@@ -535,9 +523,7 @@ msgstr "Repo."
 
 #: ../src/yumexgui/views.py:186
 msgid "Size."
-msgstr ""
-"\t\n"
-"大小."
+msgstr "大小."
 
 #: ../src/yumexgui/views.py:411
 msgid "Package Queue:"
@@ -557,7 +543,7 @@ msgstr "<span size=\"x-large\">处理</span>\n"
 
 #: ../src/yumex.glade.h:3
 msgid "<span size=\"x-large\">Working ....</span>\n"
-msgstr "<span size=\"x-large\">処理中…</span>\n"
+msgstr "<span size=\"x-large\">工作中…</span>\n"
 
 #: ../src/yumex.glade.h:5
 msgid "Advanced"
@@ -607,9 +593,7 @@ msgstr "选择所有包装当前视图"
 
 #: ../src/yumex.glade.h:17
 msgid "Show available packages"
-msgstr ""
-"\t\n"
-"显示可用的软件包"
+msgstr "显示可用的软件包"
 
 #: ../src/yumex.glade.h:18
 msgid "Show installed packages"
@@ -617,9 +601,7 @@ msgstr "显示安装的软件包"
 
 #: ../src/yumex.glade.h:19
 msgid "Show package updates"
-msgstr ""
-"\t\n"
-"显示包更新"
+msgstr "显示包更新"
 
 #: ../src/yumex.glade.h:20
 msgid "Skip Broken"
@@ -627,9 +609,7 @@ msgstr "跳过损坏的依赖"
 
 #: ../src/yumex.glade.h:21
 msgid "Skip packages there get depsolve errors"
-msgstr ""
-"\t\n"
-"跳过包有错误得到depsolve"
+msgstr "跳过包有错误得到depsolve"
 
 #: ../src/yumex.glade.h:22
 msgid ""
@@ -650,9 +630,7 @@ msgstr "撤消所有软件包选择"
 
 #: ../src/yumex.glade.h:28
 msgid "Undo repository selection changes"
-msgstr ""
-"\t\n"
-"撤消库选择改变"
+msgstr "撤消库选择改变"
 
 #: ../src/yumex.glade.h:29
 msgid "Yum"
@@ -660,9 +638,7 @@ msgstr "Yum"
 
 #: ../src/yumex.glade.h:30
 msgid "_Categories"
-msgstr ""
-"\t\n"
-"分类(_C)"
+msgstr "分类(_C)"
 
 #: ../src/yumex.glade.h:31
 msgid "_Edit"
@@ -713,4 +689,4 @@ msgid "no GPG Check"
 msgstr "没有GPG检查"
 
 #~ msgid "The needed media was not found"
-#~ msgstr "必要とされるメディアが見つかりませんでした"
+#~ msgstr "The needed media was not found"
