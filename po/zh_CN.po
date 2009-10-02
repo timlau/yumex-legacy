@@ -689,4 +689,4 @@ msgid "no GPG Check"
 msgstr "没有GPG检查"
 
 #~ msgid "The needed media was not found"
-#~ msgstr "所需要的媒体没有被发现"
+#~ msgstr "所需要的媒介没有被发现"
