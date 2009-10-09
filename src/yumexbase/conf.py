@@ -47,9 +47,9 @@ class YumexConf( BaseConfig ):
     color_obsolete = Option( 'blue' )
     disable_repo_page = BoolOption( False )
     branding_title = Option('Yum Extender NextGen')
-    win_width = IntOption( -1 )
-    win_height = IntOption( -1 ) 
-    win_sep = IntOption( -1 ) 
+    win_width = IntOption( 1000)
+    win_height = IntOption( 600 ) 
+    win_sep = IntOption( 300 ) 
     
 
 class YumexOptions:
@@ -92,6 +92,9 @@ class YumexOptions:
         parser.add_option("", "--noplugins",
                         action="store_false", dest="plugins", default=self.settings.plugins,
                         help="Disable yum plugins")
+        parser.add_option("", "--win-size",
+                        dest="win_size", action="store", type='string',
+                        help="Set size of window (h = height, w = widght)", metavar='[wxh]')
         parser.add_option("-n", "--noauto",
                         action="store_false", dest="autorefresh", default=self.settings.autorefresh,
                         help="No automatic refresh af program start")
@@ -113,7 +116,19 @@ class YumexOptions:
         options = ['plugins', 'debug', 'yumdebuglevel','autorefresh']
         for opt in options:
             self._calcOption(opt)
+        self._check_win_size()
             
+    def _check_win_size(self):        
+        if self.cmd_options.win_size:
+            size = self.cmd_options.win_size
+            if 'x' in size:
+                s = size.split('x')
+                w = int(s[0])
+                h = int(s[1])
+                if w > 635 and h > 351: # Check for min size 
+                    self.settings.win_width = w
+                    self.settings.win_height = h
+                
         
     def _calcOption(self,option):
         '''

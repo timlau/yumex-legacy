@@ -3,8 +3,6 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="main">
-    <property name="width_request">1000</property>
-    <property name="height_request">600</property>
     <accel-groups>
       <group name="accelgroup1"/>
     </accel-groups>
