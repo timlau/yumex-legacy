@@ -55,6 +55,23 @@ import logging
 from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
+def catchYumException(func):
+    """
+    This decorator catch yum exceptions and send fatal signal to frontend 
+    """
+    def newFunc(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Errors.RepoError, e:
+            base = args[0]
+            # signal to the front end that we have a fatal error
+            base.fatal('repo-error',str(e))
+            base.ended(False)
+
+    newFunc.__name__ = func.__name__
+    newFunc.__doc__ = func.__doc__
+    newFunc.__dict__.update(func.__dict__)
+    return newFunc
 
 class _YumPreBaseConf:
     """This is the configuration interface for the YumBase configuration.
@@ -423,7 +440,7 @@ class YumServer(yum.YumBase):
         state = pack(state)
         self.write(":end\t%s" % state)
         
-
+    @catchYumException
     def get_packages(self, narrow):
         '''
         get list of packages and send results 
@@ -1206,6 +1223,9 @@ class YumexDownloadCallback(DownloadBaseCallback):
                 else:
                     self.base.info(_('Downloaded : %s ( %s )') % (name, self.totSize))
                 self._printed.append(name)
+
+
+
 
 if __name__ == "__main__":
     pass

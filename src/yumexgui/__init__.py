@@ -83,6 +83,7 @@ class YumexFrontend(YumexFrontendBase):
     def error(self, msg, exit_pgm=False):
         ''' Write an error message to frontend '''
         self.logger.error('ERROR: %s' % msg)
+        print "ERROR:", msg
         self.refresh()
         if exit_pgm:
             sys.exit(1)
@@ -91,6 +92,7 @@ class YumexFrontend(YumexFrontendBase):
     def warning(self, msg):
         ''' Write an warning message to frontend '''
         self.logger.warning('WARNING: %s' % msg)
+        print "WARNING:", msg
         self.refresh()
 
     def info(self, msg):
@@ -584,6 +586,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             longtext += _('Message from yum backend:')            
             longtext += '\n\n'            
             longtext += msg            
+        if err == "repo-error":
+            text = _("Error in repository setup")
+            longtext = msg
+            longtext += '\n\n'
+            longtext += _('You can try starting \'yumex -n\' from a command line\n')
+            longtext += _('and deseleting the repositories causing problems\n')
+            longtext += _('and try again.\n')
+            progress = self.get_progress()
+            progress.hide()
         else:
             text = _("Unknown Error : ") + msg
             longtext = ""
@@ -592,6 +603,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
         dialog.run()
         dialog.destroy()
+        self.error(text)
+        self.error(longtext)
         self.main_quit()
                     
     def _add_key_to_menu(self, widget, key, mask=gtk.gdk.CONTROL_MASK):
