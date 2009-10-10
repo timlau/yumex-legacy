@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-10 11:49+0200\n"
-"PO-Revision-Date: 2009-09-27 13:31+0200\n"
+"PO-Revision-Date: 2009-10-10 16:01+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -143,29 +143,28 @@ msgstr "Próbowanie innego serwera lustrzanego."
 #: ../src/yumexbackend/yum_server.py:894
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr ""
+msgstr "Repozytorium %s zostało trwale włączone"
 
 #: ../src/yumexbackend/yum_server.py:897
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr ""
+msgstr "Repozytorium %s zostało trwale wyłączone"
 
 #: ../src/yumexbackend/yum_server.py:944
 msgid "Cleaned metadata from local cache"
-msgstr ""
+msgstr "Wyczyszczono metadane z lokalnej pamięci podręcznej"
 
 #: ../src/yumexbackend/yum_server.py:947
 msgid "Cleaned dbcache"
-msgstr ""
+msgstr "Wyczyszczono pamięć podręczną bazy danych"
 
 #: ../src/yumexbackend/yum_server.py:950
-#, fuzzy
 msgid "Cleaned packages from local cache"
-msgstr "Wczytanie pakietów podczas uruchamiania"
+msgstr "Wyczyszczono pakiety z lokalnej pamięci podręcznej"
 
 #: ../src/yumexbackend/yum_server.py:952
 msgid "Cleaned everything from local cache"
-msgstr ""
+msgstr "Wyczyszczono całość lokalnej pamięci podręcznej"
 
 #: ../src/yumexbackend/yum_server.py:1222
 msgid "Rebuild from deltarpms completted"
@@ -374,7 +373,7 @@ msgstr "Opis: %s\n"
 #: ../src/yumexgui/__init__.py:466
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr ""
+msgstr "Czy wyczyścić %s z pamięci podręcznej programu yum"
 
 #: ../src/yumexgui/__init__.py:581
 msgid "Fatal Error"
@@ -395,19 +394,19 @@ msgstr "Komunikat od zaplecza programu yum:"
 
 #: ../src/yumexgui/__init__.py:590
 msgid "Error in repository setup"
-msgstr ""
+msgstr "Błąd ustawień repozytorium"
 
 #: ../src/yumexgui/__init__.py:593
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgstr "Można uruchomić \"yumex -n\" z wiersza poleceń,\n"
 
 #: ../src/yumexgui/__init__.py:594
 msgid "and deseleting the repositories causing problems\n"
-msgstr ""
+msgstr "odznaczyć repozytoria sprawiające problemy\n"
 
 #: ../src/yumexgui/__init__.py:595
 msgid "and try again.\n"
-msgstr ""
+msgstr "i spróbować ponownie.\n"
 
 #: ../src/yumexgui/__init__.py:599
 msgid "Unknown Error : "
@@ -467,28 +466,27 @@ msgstr "Połączono z siecią"
 
 #: ../src/yumexgui/__init__.py:751
 msgid "Enable Permanently"
-msgstr ""
+msgstr "Trwałe włączenie"
 
 #: ../src/yumexgui/__init__.py:755
 msgid "Disable Permanently"
-msgstr ""
+msgstr "Trwałe wyłączenie"
 
 #: ../src/yumexgui/__init__.py:758
 msgid "Clean Metadata"
-msgstr ""
+msgstr "Wyczyść metadane"
 
 #: ../src/yumexgui/__init__.py:759
-#, fuzzy
 msgid "Clean Packages"
-msgstr "Pakiety"
+msgstr "Wyczyść pakiety"
 
 #: ../src/yumexgui/__init__.py:760
 msgid "Clean DbCache"
-msgstr ""
+msgstr "Wyczyść pamięć podręczną bazy danych"
 
 #: ../src/yumexgui/__init__.py:761
 msgid "Clean All"
-msgstr ""
+msgstr "Wyczyść wszystko"
 
 #: ../src/yumexgui/__init__.py:767
 msgid "By Repositories"
