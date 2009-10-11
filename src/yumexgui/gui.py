@@ -28,7 +28,7 @@ from datetime import date
 from yumexbase.constants import *
 from yumexbackend.yum_backend import YumexPackageYum
 from guihelpers import TextViewBase, busyCursor, normalCursor
-from yum.i18n import utf8_text_wrap, to_utf8
+from yum.i18n import utf8_text_wrap
 
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -239,7 +239,7 @@ class PackageInfo(SelectorBase):
         @param frontend: the frontend instance
         @param font_size: the fontsize in the console
         '''
-        SelectorBase.__init__(self, selector, key_bindings = frontend._key_bindings)
+        SelectorBase.__init__(self, selector, key_bindings = frontend.key_bindings)
         self.widget = console
         self.console = PackageInfoTextView(console, font_size=font_size)
         self.main_window = main

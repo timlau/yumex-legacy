@@ -55,12 +55,14 @@ NOTE: releasing (unmounting and unlocking) is done when media is destructed
 import dbus
 import dbus.service
 from dbus.mainloop.glib import DBusGMainLoop
-from yumMediaManager import MediaManager, MediaDevice
+from yumexbackend.yumMediaManager import MediaManager, MediaDevice
 dbus_loop = DBusGMainLoop(set_as_default = True)
 bus = dbus.SystemBus()
 interface = 'org.freedesktop.DeviceKit.Disks'
 
 # TODO: catch some "except dbus.exceptions.DBusException"
+# Don't care about __init__ method from base class 'MediaDevice' is not called
+# pylint: disable-msg=W0231 
 
 class MediaDeviceDeviceKit(MediaDevice):
     """
@@ -136,6 +138,7 @@ class MediaDeviceDeviceKit(MediaDevice):
         except dbus.exceptions.DBusException:
             pass
         return not self.is_mounted()
+
 
 class MediaManagerDeviceKit(MediaManager):
     """Just iterate over an instance of this class to get MediaDevice objects"""

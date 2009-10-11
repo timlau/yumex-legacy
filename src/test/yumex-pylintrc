@@ -61,8 +61,9 @@ disable-msg-cat=R,C
 # W0614: *Unused import %s from wildcard import*
 # W0702: *No exception type(s) specified*
 # C0112: *Empty docstring*
+# W0622:  Redefining built-in 
 
-disable-msg=E1101,W0612,W0613,W0511,W0401,W0614,W0702,C0112
+disable-msg=E1101,W0612,W0613,W0511,W0401,W0614,W0702,C0112,W0622
 
 
 [REPORTS]

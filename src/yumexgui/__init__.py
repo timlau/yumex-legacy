@@ -446,7 +446,7 @@ class YumexHandlers(Controller):
         if event.button == 3: # Right Click
             x = int(event.x)
             y = int(event.y)
-            time = event.time
+            t = event.time
             pthinfo = treeview.get_path_at_pos(x, y)
             if pthinfo is not None:
                 path, col, cellx, celly = pthinfo
@@ -456,7 +456,7 @@ class YumexHandlers(Controller):
                 iter = store.get_iter( path )
                 state = store.get_value(iter,0)
                 popup = self.get_repo_popup(state,path)
-                popup.popup( None, None, None, event.button, time)
+                popup.popup( None, None, None, event.button, t)
             return True
 
 
@@ -540,7 +540,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
         self.package_cache = PackageCache(self.backend)
         self._packages_loaded = False
-        self._key_bindings = gtk.AccelGroup()
+        self.key_bindings = gtk.AccelGroup()
         self._network = NetworkCheckNetworkManager()
         self.repo_popup = None # Repo page popup menu 
 
@@ -608,11 +608,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.main_quit()
                     
     def _add_key_to_menu(self, widget, key, mask=gtk.gdk.CONTROL_MASK):
-        widget.add_accelerator("activate", self._key_bindings,
+        widget.add_accelerator("activate", self.key_bindings,
                                ord(key), gtk.gdk.CONTROL_MASK, 0)
 
     def add_keybindings(self):
-        self.window.add_accel_group(self._key_bindings)
+        self.window.add_accel_group(self.key_bindings)
         self._add_key_to_menu(self.ui.viewPackages,'1')
         self._add_key_to_menu(self.ui.viewQueue,'2')
         self._add_key_to_menu(self.ui.viewRepo,'3')
@@ -645,7 +645,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.fix_gtkbuilder_translations()
         # setup
         self.window.set_title(self.settings.branding_title)
-        self.window.add_accel_group(self._key_bindings)
+        self.window.add_accel_group(self.key_bindings)
         
         
         #Setup About dialog
@@ -661,7 +661,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # Setup Output console
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
         # Setup main page notebook
-        self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent, self._key_bindings)
+        self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent, self.key_bindings)
         self.notebook.add_page("package", _("Packages"), self.ui.packageMain, 
                                 icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"),
                                 accel = '<Ctrl>1')
@@ -861,7 +861,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 self.notebook.set_active("package")     # show the package page
             else:
                 msg = _("Transaction completed with errors,\n check output page for details")
-                rc = okDialog(self.window,msg)
+                okDialog(self.window,msg)
                 
             progress.set_pulse(False)        
         except YumexBackendFatalError, e:

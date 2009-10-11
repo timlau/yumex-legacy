@@ -23,7 +23,6 @@
 import sys
 import pickle
 import base64
-import os
 
 import pexpect
 
@@ -78,7 +77,7 @@ class YumPackage:
     @property
     def fullname(self):
         ''' Package fullname  '''        
-        if self.epoch and self.epoch <> '0':
+        if self.epoch and self.epoch != '0':
             return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
         else:   
             return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)

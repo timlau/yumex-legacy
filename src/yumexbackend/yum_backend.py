@@ -29,7 +29,7 @@ from urlgrabber.progress import format_number
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
-from yumMediaManagerDeviceKit import MediaManagerDeviceKit as MediaManager
+from yumexbackend.yumMediaManagerDeviceKit import MediaManagerDeviceKit as MediaManager
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
@@ -179,7 +179,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         if media_num:
             msg = _("Please insert media labeled %s #%d.") %(media_name,media_num)
         else:
-            msg = _("Please insert media labeled %s.") %(name,)
+            msg = _("Please insert media labeled %s.") %(media_name,)
         while(1): # breaks if the user cancels it or if we found the needed media
             if prompt:
                 rc = okCancelDialog(self.frontend.window, msg)
@@ -215,7 +215,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 discs_s = lines[3].strip()
                 # if discs_s == ALL then no need to match disc number
                 if discs_s != 'ALL':
-                    discs = map(lambda x: int(x), discs_s.split(","))
+                    discs = [int(x) for x in discs_s.split(",")]
                     samenum = media_num in discs
                 else:
                     samenum = True

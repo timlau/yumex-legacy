@@ -29,7 +29,7 @@ from yum.config import *
 #from yumexbase.constants import *
 
 from optparse import OptionParser
-from iniparse.compat import ConfigParser,SafeConfigParser
+from iniparse.compat import ConfigParser
 
 
 class YumexConf( BaseConfig ):
@@ -143,7 +143,7 @@ class YumexOptions:
             optobj = self.settings.optionobj(option)
             default = optobj.default
         if cmdopt != default:
-             setattr( self.settings, option,cmdopt)
+            setattr( self.settings, option,cmdopt)
         
     def save(self, configfile='.yumex.conf'):
         configfile=os.environ['HOME']+"/"+configfile

@@ -65,7 +65,7 @@ def catchYumException(func):
         except Errors.RepoError, e:
             base = args[0]
             # signal to the front end that we have a fatal error
-            base.fatal('repo-error',str(e))
+            base.fatal('repo-error', str(e))
             base.ended(False)
 
     newFunc.__name__ = func.__name__
@@ -141,10 +141,10 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self, debuglevel = 2, plugins = True, offline = False, enabled_repos = None):
+    def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
-        self.mediagrabber=self.mediaGrabber
+        self.mediagrabber = self.mediaGrabber
         parser = OptionParser()
         # Setup yum preconfig options
         self.preconf.debuglevel = debuglevel
@@ -167,12 +167,12 @@ class YumServer(yum.YumBase):
         # Setup repos
         self._setup_repos(enabled_repos)
         # Setup failure callback
-        freport = ( self._failureReport, (), {} )
-        self.repos.setFailureCallback( freport )       
+        freport = (self._failureReport, (), {})
+        self.repos.setFailureCallback(freport)       
         self._updateMetadata = None # Update metadata cache 
         self.write(':started') # Let the front end know that we are up and running
 
-    def _is_local_repo(self,repo):
+    def _is_local_repo(self, repo):
         '''
         Check if an repo is local (media or file:// repo)
         '''
@@ -181,7 +181,7 @@ class YumServer(yum.YumBase):
         else:
             return False
 
-    def _is_file_url(self,urls):
+    def _is_file_url(self, urls):
         return [url for url in urls if url.startswith('file:')]
 
     def _setup_repos(self, enabled_repos):
@@ -214,7 +214,7 @@ class YumServer(yum.YumBase):
                         self.info(_("No network connection, disable non local repo %s") % repo.id)
                         self.repos.disableRepo(repo.id)
 
-    def doLock(self, lockfile = YUM_PID_FILE):
+    def doLock(self, lockfile=YUM_PID_FILE):
         '''
         Active the yum lock.
         @param lockfile: path to yum lock file
@@ -254,17 +254,17 @@ class YumServer(yum.YumBase):
             mp = self._ask_for_media_change(prompt_first, mediaid, name, discnum)
             # We got the media mount point
             if mp:
-               # the actual copying is done by URLGrabber
-               ug = URLGrabber(checkfunc = kwargs["checkfunc"])
-               try:
-                   ug.urlgrab("%s/%s" %(mp, kwargs["relative"]),
-                       kwargs["local"], text=kwargs["text"],
-                       range=kwargs["range"], copy_local=1)
-               except (IOError, URLGrabError):
-                   # ask again as user might got a better media or he might clean the media
-                   prompt_first = True # next time prompt user first so he can cancel
-               else:
-                   found=True # done
+                # the actual copying is done by URLGrabber
+                ug = URLGrabber(checkfunc=kwargs["checkfunc"])
+                try:
+                    ug.urlgrab("%s/%s" % (mp, kwargs["relative"]),
+                        kwargs["local"], text=kwargs["text"],
+                        range=kwargs["range"], copy_local=1)
+                except (IOError, URLGrabError):
+                    # ask again as user might got a better media or he might clean the media
+                    prompt_first = True # next time prompt user first so he can cancel
+                else:
+                    found = True # done
             else:
                 # mp==None ie. user canceled media change
                 break
@@ -327,7 +327,7 @@ class YumServer(yum.YumBase):
             return 0
                     
     
-    def _show_package(self, pkg, action = None):
+    def _show_package(self, pkg, action=None):
         ''' write package result'''
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
@@ -447,11 +447,11 @@ class YumServer(yum.YumBase):
         @param narrow:
         '''
         if narrow:
-            ygh = self.doPackageLists(pkgnarrow = narrow)
+            ygh = self.doPackageLists(pkgnarrow=narrow)
             if narrow == "all":
-                updates = self.doPackageLists(pkgnarrow = 'updates').updates
+                updates = self.doPackageLists(pkgnarrow='updates').updates
                 for pkg in ygh.installed:
-                    self._show_package(pkg,'r')
+                    self._show_package(pkg, 'r')
                 for pkg in ygh.available:
                     if pkg in updates:
                         action = 'u'
@@ -473,17 +473,17 @@ class YumServer(yum.YumBase):
         ygh = self.doPackageLists()
         action = const.FILTER_ACTIONS['available']        
         for pkg in ygh.available:
-            if self._in_size_range(pkg,ndx):
+            if self._in_size_range(pkg, ndx):
                 self._show_package(pkg, action)
         action = const.FILTER_ACTIONS['installed']        
         for pkg in ygh.installed:
-            if self._in_size_range(pkg,ndx):
+            if self._in_size_range(pkg, ndx):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
         
-    def _in_size_range(self,pkg,ndx):
-        min,max = SIZE_RANGES[ndx]
+    def _in_size_range(self, pkg, ndx):
+        min, max = SIZE_RANGES[ndx]
         if pkg.size >= min and pkg.size < max:
             return True
         else:
@@ -497,16 +497,16 @@ class YumServer(yum.YumBase):
         ygh = self.doPackageLists()
         action = const.FILTER_ACTIONS['available']        
         for pkg in ygh.available:
-            if self._in_a_repo(pkg,repoid):
+            if self._in_a_repo(pkg, repoid):
                 self._show_package(pkg, action)
         action = const.FILTER_ACTIONS['installed']     
         for pkg in ygh.installed:
-            if self._in_a_repo(pkg,repoid,inst = True):
+            if self._in_a_repo(pkg, repoid, inst=True):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
 
-    def _in_a_repo(self,pkg,repoid,inst = False):
+    def _in_a_repo(self, pkg, repoid, inst=False):
         if not inst and pkg.repoid == repoid:
             return True
         elif hasattr(pkg, 'yumdb_info') and hasattr(pkg.yumdb_info, 'from_repo'):
@@ -678,7 +678,7 @@ class YumServer(yum.YumBase):
         try:
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
-            self.processTransaction(callback = callback, rpmDisplay = rpmDisplay)
+            self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
             self.ended(True)
         except Errors.YumBaseError, e:
             self.error(_('Error in yum Transaction : %s') % str(e))
@@ -707,9 +707,9 @@ class YumServer(yum.YumBase):
         Ask for media change 
         '''
         if media_num:
-            self.debug("media : %s #%d is needed" % ( media_name, media_num))
+            self.debug("media : %s #%d is needed" % (media_name, media_num))
         else:
-            self.debug("media : %s is needed" % ( media_name,))
+            self.debug("media : %s is needed" % (media_name,))
         self.media_change(prompt_first, media_id, media_name, media_num)
         line = sys.stdin.readline().strip('\n')
         if line.startswith(':mountpoint'):
@@ -720,11 +720,11 @@ class YumServer(yum.YumBase):
             self.debug("no media mount point returned")
             return None
 
-    def _failureReport( self, errobj ):
+    def _failureReport(self, errobj):
         """failure output for failovers from urlgrabber"""
         
-        self.warning( _( 'Failure getting %s: ' ) % errobj.url )
-        self.warning( _('Trying other mirror.') )
+        self.warning(_('Failure getting %s: ') % errobj.url)
+        self.warning(_('Trying other mirror.'))
         raise errobj.exception
 
     def _interrupt_callback(self, cbobj):
@@ -763,7 +763,7 @@ class YumServer(yum.YumBase):
                     elem = (grp.groupid, grp.ui_name, grp.ui_description, grp.installed, icon)
                     cat_grps.append(elem)
                 all_groups.append((cat, cat_grps))
-        except Errors.GroupsError,e:
+        except Errors.GroupsError, e:
             print str(e)
         self.message('groups', pack(all_groups))
         self.ended(True)
@@ -825,9 +825,9 @@ class YumServer(yum.YumBase):
         '''
         keys = unpack(args[0])
         filters = unpack(args[1])
-        ygh = self.doPackageLists(pkgnarrow = 'updates')
+        ygh = self.doPackageLists(pkgnarrow='updates')
         pkgs = {}
-        for found in self.searchGenerator(filters, keys, showdups = True, keys = True):
+        for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
             pkg = found[0]
             fkeys = found[1]
             if not len(fkeys) == len(keys): # skip the result if not all keys matches
@@ -840,9 +840,9 @@ class YumServer(yum.YumBase):
         for na in pkgs:
             best = packagesNewestByNameArch(pkgs[na])
             for po in best:           
-                if self.rpmdb.contains(po = po): # if the best po is installed, then return the installed po 
+                if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
                     (n, a, e, v, r) = po.pkgtup
-                    po = self.rpmdb.searchNevra(name = n, arch = a, ver = v, rel = r, epoch = e)[0]
+                    po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
                     action = 'r'
                 else:
                     if po in ygh.updates:
@@ -899,18 +899,18 @@ class YumServer(yum.YumBase):
             self.error("Repo : %s not found" % ident)
         self.ended(True)
             
-    def set_option(self,args):
+    def set_option(self, args):
         option = args[0]
         value = unpack(args[1])
         on_repos = unpack(args[2])
-        if hasattr(self.conf,option):
-            setattr(self.conf,option,value)
-            self.info("Setting Yum Option %s = %s" %(option,value))
+        if hasattr(self.conf, option):
+            setattr(self.conf, option, value)
+            self.info("Setting Yum Option %s = %s" % (option, value))
             for repo in self.repos.repos.values():
                 if repo.isEnabled():
-                    if hasattr(repo,option):
-                        setattr(repo,option,value)
-                        self.debug("Setting Yum Option %s = %s (%s)" %(option,value,repo.id))
+                    if hasattr(repo, option):
+                        setattr(repo, option, value)
+                        self.debug("Setting Yum Option %s = %s (%s)" % (option, value, repo.id))
                     
         self.ended(True)
             
@@ -925,19 +925,19 @@ class YumServer(yum.YumBase):
                     pass # No updateinfo.xml.gz in repo
         return self._updateMetadata
 
-    def get_update_info(self,args):
+    def get_update_info(self, args):
         '''
         Get update infomation
         '''
         pkg = self._getPackage(args)
         if pkg:
             md = self.update_metadata
-            nvr = (pkg.name,pkg.ver,pkg.rel)
+            nvr = (pkg.name, pkg.ver, pkg.rel)
             ret = md.get_notice(nvr)
             self.message("updateinfo", ret)
         self.ended(True)
         
-    def clean(self,args):
+    def clean(self, args):
         what = args[0]
         if what == 'metadata':
             self.cleanMetadata()
@@ -1014,7 +1014,7 @@ class YumServer(yum.YumBase):
                 ts = time.time()
                 self.parse_command(args[0], args[1:])
                 t = time.time() - ts
-                self.debug("Yum Child Task: Command %s took %.2f s to complete" % (args[0],t))
+                self.debug("Yum Child Task: Command %s took %.2f s to complete" % (args[0], t))
         except:
             errmsg = traceback.format_exc()
             self.write(":exception\t%s" % pack(errmsg))
@@ -1032,7 +1032,7 @@ class YumexTransCallback:
         '''
         self.base = base
 
-    def event(self, state, data = None):
+    def event(self, state, data=None):
         '''
         
         @param state:

@@ -23,7 +23,6 @@ import sys
 import os
 import traceback
 from yumexgui import YumexApplication
-from yumexgui.dialogs import ErrorDialog
 
 
 if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy':
@@ -60,6 +59,5 @@ except: # catch other exception and write it to the logger.
         app.exception(errmsg)
     except:
         print errmsg
-        pass
     sys.exit(1)
 sys.exit(0)

@@ -15,7 +15,7 @@ class YumexBackendBase(object):
         self.frontend = frontend
         self.transaction = transaction
 
-    def setup(self, repos = None):
+    def setup(self, offline = False,repos=None):
         ''' Setup the backend'''
         raise NotImplementedError()
 
@@ -173,7 +173,7 @@ class YumexPackageBase:
     @property
     def fullname(self):
         ''' Package fullname  '''        
-        if self.epoch and self.epoch <> '0':
+        if self.epoch and self.epoch != '0':
             return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.version, self.release, self.arch)
         else:   
             return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
