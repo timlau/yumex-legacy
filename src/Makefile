@@ -22,7 +22,7 @@ pylint:
 pylint-short:
 	@pylint -r n --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
 
-pylint-long:
+pylint-convertion:
 	@pylint -r n --enable-msg-cat=C --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
 	
 epydoc:
