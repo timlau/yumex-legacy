@@ -176,7 +176,7 @@ class YumServer(yum.YumBase):
         '''
         Check if an repo is local (media or file:// repo)
         '''
-        if repo.mediaid or _is_fileurl(repo.baseurl):
+        if repo.mediaid or self._is_fileurl(repo.baseurl):
             return True
         else:
             return False
