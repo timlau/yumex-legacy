@@ -1,3 +1,121 @@
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.3
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/es.po: refreshed po/pot
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: fix git-achive in Makefile
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/Makefile: don't show all the stupid 'maximum recursion depth
+	exceeded' RuntimeError's in pylint
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/Makefile: makefile tag name change for pylint issues
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/Makefile, src/test/yumex-pylintrc, src/yumex.py,
+	src/yumexbackend/__init__.py, src/yumexbackend/dummy_backend.py,
+	src/yumexbackend/yumMediaManagerDeviceKit.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/conf.py,
+	src/yumexgui/__init__.py, src/yumexgui/gui.py: Fix a lot pylint
+	issues
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/yumex-pylintrc: make pylint more gently
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: fix missing self (rhbz #528302)
+
+2009-10-11  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-10-10  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2009-10-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/es.po, po/ja.po, po/nl.po, po/pl.po,
+	po/ru.po, po/yumex.pot, po/zh_CN.po: Updated po/pot files with new
+	strings
+
+2009-10-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: Improve
+	handling of repo error with offline repo errors
+
+2009-10-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'future' of ssh://git.fedorahosted.org/git/yumex
+	into future
+
+2009-10-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbase/conf.py: make it posible to make
+	the gui main window smaller and add --win-size=WWWxHHH option to set
+	Width and height from command line
+
+2009-10-02  cyrushmh <cyrushmh@fedoraproject.org>
+
+	* po/zh_CN.po: Sending translation for Chinese (Simplified)
+
+2009-10-02  cyrushmh <cyrushmh@fedoraproject.org>
+
+	* po/zh_CN.po: Sending translation for Chinese (Simplified)
+
+2009-10-02  cyrushmh <cyrushmh@fedoraproject.org>
+
+	* po/zh_CN.po: Sending translation for Chinese (Simplified)
+
+2009-10-01  cyrushmh <cyrushmh@fedoraproject.org>
+
+	* po/zh_CN.po: Sending translation for po/zh_CN.po
+
+2009-10-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: added
+	clean cache item to repo view right click menu
+
+2009-10-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py: 
+	added backend parts to clean metadata,packages, dbcache
+
+2009-10-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: cleanup
+	the repo persistent code
+
+2009-10-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: add code to persistently enable/disable
+	repo from repoview right-click menu
+
+2009-10-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py: add repo popup menu
+
+2009-10-01  kristho <kristho@fedoraproject.org>
+
+	* po/da.po: Sending translation for Danish
+
+2009-09-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2009-09-30  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.2
