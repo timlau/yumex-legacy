@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-10 11:49+0200\n"
-"PO-Revision-Date: 2009-09-24 21:03+0200\n"
+"PO-Revision-Date: 2009-10-11 14:50+0200\n"
 "Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
 "Language-Team: nl <nl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Onbekend Repo metadata type (%s) voor %s"
 
 #: ../src/yumexbackend/yum_backend.py:129
 msgid "Buiding rpms from deltarpm"
-msgstr "Rpms opbouwen van detlarpm"
+msgstr "Rpms opbouwen van deltarpm"
 
 #: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
@@ -145,29 +145,28 @@ msgstr "Probeer een andere spiegel"
 #: ../src/yumexbackend/yum_server.py:894
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr ""
+msgstr "De %s repository is permanent aangezet"
 
 #: ../src/yumexbackend/yum_server.py:897
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr ""
+msgstr "De %s repository is permanent uitgezet"
 
 #: ../src/yumexbackend/yum_server.py:944
 msgid "Cleaned metadata from local cache"
-msgstr ""
+msgstr "Metadata op locale cache opgeschoond"
 
 #: ../src/yumexbackend/yum_server.py:947
 msgid "Cleaned dbcache"
-msgstr ""
+msgstr "dbcache opgeschoond"
 
 #: ../src/yumexbackend/yum_server.py:950
-#, fuzzy
 msgid "Cleaned packages from local cache"
-msgstr "Laad pakketten bij opstarten"
+msgstr "Pakketten in locale cache opgeschoond"
 
 #: ../src/yumexbackend/yum_server.py:952
 msgid "Cleaned everything from local cache"
-msgstr ""
+msgstr "Locale cache helemaal opgeschoond"
 
 #: ../src/yumexbackend/yum_server.py:1222
 msgid "Rebuild from deltarpms completted"
@@ -376,7 +375,7 @@ msgstr "Beschrijving : %s\n"
 #: ../src/yumexgui/__init__.py:466
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr ""
+msgstr "Wil je %s opschonen in je locale yum cache"
 
 #: ../src/yumexgui/__init__.py:581
 msgid "Fatal Error"
@@ -397,19 +396,19 @@ msgstr "Boodschap van yum back-end:"
 
 #: ../src/yumexgui/__init__.py:590
 msgid "Error in repository setup"
-msgstr ""
+msgstr "Fout in repository instellingen"
 
 #: ../src/yumexgui/__init__.py:593
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgstr "Je kunt proberen om 'yumex -n' op te starten op een commando-regel\n"
 
 #: ../src/yumexgui/__init__.py:594
 msgid "and deseleting the repositories causing problems\n"
-msgstr ""
+msgstr "en de repositories uitzetten die problemen veroorzaken\n"
 
 #: ../src/yumexgui/__init__.py:595
 msgid "and try again.\n"
-msgstr ""
+msgstr "en opnieuw proberen.\n"
 
 #: ../src/yumexgui/__init__.py:599
 msgid "Unknown Error : "
@@ -469,28 +468,27 @@ msgstr "Verbonden met een netwerk"
 
 #: ../src/yumexgui/__init__.py:751
 msgid "Enable Permanently"
-msgstr ""
+msgstr "Permanent aanzetten"
 
 #: ../src/yumexgui/__init__.py:755
 msgid "Disable Permanently"
-msgstr ""
+msgstr "Permanent uitzetten"
 
 #: ../src/yumexgui/__init__.py:758
 msgid "Clean Metadata"
-msgstr ""
+msgstr "Metadata opschonen"
 
 #: ../src/yumexgui/__init__.py:759
-#, fuzzy
 msgid "Clean Packages"
-msgstr "Pakketten"
+msgstr "Pakketten opschonen"
 
 #: ../src/yumexgui/__init__.py:760
 msgid "Clean DbCache"
-msgstr ""
+msgstr "DbCache opschonen"
 
 #: ../src/yumexgui/__init__.py:761
 msgid "Clean All"
-msgstr ""
+msgstr "Alles opschonen"
 
 #: ../src/yumexgui/__init__.py:767
 msgid "By Repositories"
