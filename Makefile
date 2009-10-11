@@ -74,7 +74,7 @@ test-release:
 	@git commit -a -m "updated ChangeLog"
     	# Make archive
 	@rm -rf ${PKGNAME}-${VERSION}.test.tar.gz
-	@git-archive --format=tar --prefix=$(PKGNAME)-$(VERSION).test/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).test.tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION).test/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).test.tar.gz
 	# Build RPMS
 	@rpmbuild -ta  ${PKGNAME}-${VERSION}.test.tar.gz
 	@$(MAKE) test-cleanup
