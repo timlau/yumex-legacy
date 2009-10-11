@@ -17,13 +17,13 @@ install:
 	install -m644 yumex.glade $(DESTDIR)/$(PKGDIR)/.
 
 pylint:
-	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
+	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers 2>/dev/null
 
 pylint-short:
-	@pylint -r n --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
+	@pylint -r n --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers 2>/dev/null
 
 pylint-convertion:
-	@pylint -r n --enable-msg-cat=C --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers
+	@pylint -r n --enable-msg-cat=C --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers 2>/dev/null
 	
 epydoc:
 	@epydoc -o ../docs/epydoc --name "Yum Extender" --graph all yumexbase yumexbackend guihelpers yumexgui
