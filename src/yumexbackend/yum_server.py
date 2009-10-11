@@ -26,6 +26,7 @@ sys.path.insert(0, '/usr/share/yum-cli')
 import yum
 import traceback
 from optparse import OptionParser
+import types
 
 from yum.packageSack import packagesNewestByNameArch
 from yum.update_md import UpdateMetadata
@@ -1066,6 +1067,55 @@ class YumexRPMCallback(RPMBaseCallback):
         self._last_pkg = None
         self._printed = {}
 
+    # Copied from yum/output.py        
+    def pkgname_ui(self, pkgname, ts_states=None):
+        """ Get more information on a simple pkgname, if we can. We need to search
+            packages that we are dealing with atm. and installed packages (if the
+            transaction isn't complete). """
+    
+        if ts_states is None:
+            #  Note 'd' is a placeholder for downgrade, and
+            # 'r' is a placeholder for reinstall. Neither exist atm.
+            ts_states = ('d', 'e', 'i', 'r', 'u')
+    
+        matches = []
+        def _cond_add(po):
+            if matches and matches[0].arch == po.arch and matches[0].verEQ(po):
+                return
+            matches.append(po)
+    
+        for txmbr in self.base.tsInfo.matchNaevr(name=pkgname):
+            if txmbr.ts_state not in ts_states:
+                continue
+            _cond_add(txmbr.po)
+    
+        if not matches:
+            return pkgname
+        fmatch = matches.pop(0)
+        if not matches:
+            return str(fmatch)
+    
+        show_ver  = True
+        show_arch = True
+        for match in matches:
+            if not fmatch.verEQ(match):
+                show_ver  = False
+            if fmatch.arch != match.arch:
+                show_arch = False
+    
+        if show_ver: # Multilib. *sigh*
+            if fmatch.epoch == '0':
+                return '%s-%s-%s' % (fmatch.name, fmatch.version, fmatch.release)
+            else:
+                return '%s:%s-%s-%s' % (fmatch.epoch, fmatch.name,
+                                        fmatch.version, fmatch.release)
+    
+        if show_arch:
+            return '%s.%s' % (fmatch.name, fmatch.arch)
+    
+        return pkgname
+        
+
     def event(self, package, action, te_current, te_total, ts_current, ts_total):
         '''g
         RPM Event callback handler
@@ -1078,6 +1128,12 @@ class YumexRPMCallback(RPMBaseCallback):
         '''
         # Handle rpm transaction progress
         try:
+            # get the package name, if a string then get info from transaction
+            if type(package) not in types.StringTypes:
+                pkgname = str(package)
+            else:
+                pkgname = self.pkgname_ui(package)
+                
             if action in (TS_UPDATE, TS_INSTALL, TS_TRUEINSTALL): # only show progress when something is installed
                 if self._last_pkg != package:
                     self._last_pkg = package
@@ -1087,21 +1143,21 @@ class YumexRPMCallback(RPMBaseCallback):
                     frac = 1.0
                 if frac > self._last_frac + 0.005 or frac == 1.0:
                     #self.base.debug(str([self.action[action], str(package), frac, ts_current, ts_total]))
-                    self.base.yum_rpm(self.action[action], str(package), frac, ts_current, ts_total)
+                    self.base.yum_rpm(self.action[action], pkgname, frac, ts_current, ts_total)
                     self._last_frac = frac
                     if frac == 1.0:
-                        self.show_action(package, action)
+                        self.show_action(pkgname, action)
             else:
-                self.base.yum_rpm(self.action[action], str(package), 1.0, ts_current, ts_total)
-                self.show_action(package, action)
+                self.base.yum_rpm(self.action[action], pkgname, 1.0, ts_current, ts_total)
+                self.show_action(pkgname, action)
             
                 
         except:
             self.base.error('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
-            etype = sys.exc_info()[0]
-            evalue = sys.exc_info()[1]
-            self.base.error(str(etype))
-            self.base.error(str(evalue))
+            errmsg = traceback.format_exc()
+            for eline in errmsg.split('\n'):
+                if eline:
+                    self.base.error(eline)
 
     def show_action(self, package, action):
         '''
