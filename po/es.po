@@ -19,8 +19,7 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95
-#: ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
 msgid "Getting Package Information"
 msgstr "Extrayendo información del paquete"
 
@@ -33,18 +32,15 @@ msgstr "Tipo de Metadatos del Repo desconocido (%s) para %s"
 msgid "Buiding rpms from deltarpm"
 msgstr "Construyendo rpms desde deltarpm"
 
-#: ../src/yumexbackend/yum_backend.py:145
-#: ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "Descargando paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:150
-#: ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:150 ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "Chequeando las firmas GPG de los paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:155
-#: ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:155 ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "Ejecutando la prueba de las Transacciones RPM"
 
@@ -87,8 +83,7 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "Deteniendo el proceso hijo yum"
 
-#: ../src/yumexbackend/yum_backend.py:498
-#: ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:498 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Resolviendo dependencias"
 
@@ -108,8 +103,7 @@ msgstr "Resolución de dependencia completa pero con errores"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:205
-#: ../src/yumexbackend/yum_server.py:214
+#: ../src/yumexbackend/yum_server.py:205 ../src/yumexbackend/yum_server.py:214
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "Sin conexión de red, desactivar repositorios no locales %s"
@@ -209,7 +203,8 @@ msgstr "Descargando la información de los paquetes desde el repositorio %s"
 #: ../src/yumexbase/constants.py:94
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
+msgstr ""
+"Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:95
 #, python-format
@@ -304,13 +299,11 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Nivel de depuración de Yum"
 
-#: ../src/yumexgui/dialogs.py:492
-#: ../src/yumexgui/dialogs.py:501
+#: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
 msgid "Transaction Result"
 msgstr "Resultado de la transacción"
 
-#: ../src/yumexgui/dialogs.py:535
-#: ../src/yumexgui/views.py:556
+#: ../src/yumexgui/dialogs.py:535 ../src/yumexgui/views.py:556
 msgid "Name"
 msgstr "Nombre"
 
@@ -318,20 +311,17 @@ msgstr "Nombre"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:537
-#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/views.py:158
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:538
-#: ../src/yumexgui/views.py:527
+#: ../src/yumexgui/dialogs.py:538 ../src/yumexgui/views.py:527
 #: ../src/yumexgui/views.py:555
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/yumexgui/dialogs.py:539
-#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:539 ../src/yumexgui/views.py:158
 msgid "Size"
 msgstr "Tamaño"
 
@@ -426,8 +416,7 @@ msgstr "e intentar nuevamente.\n"
 msgid "Unknown Error : "
 msgstr "Error desconocido : "
 
-#: ../src/yumexgui/__init__.py:665
-#: ../src/yumexgui/views.py:445
+#: ../src/yumexgui/__init__.py:665 ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr "Paquetes"
 
@@ -511,8 +500,7 @@ msgstr "Por Repositorios"
 msgid "By Size"
 msgstr "Por Tamaño"
 
-#: ../src/yumexgui/__init__.py:791
-#: ../src/yumexgui/__init__.py:792
+#: ../src/yumexgui/__init__.py:791 ../src/yumexgui/__init__.py:792
 msgid "Getting Group information"
 msgstr "Obteniendo información de grupos"
 
@@ -571,13 +559,11 @@ msgstr ""
 "Transasción completa pero con errores,\n"
 " consulte la página de salida para conocer los detalles"
 
-#: ../src/yumexgui/views.py:158
-#: ../src/yumexgui/views.py:181
+#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
 msgid "Package"
 msgstr "Paquete"
 
-#: ../src/yumexgui/views.py:158
-#: ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
 #: ../src/yumexgui/views.py:450
 msgid "Summary"
 msgstr "Resumen"
@@ -773,4 +759,3 @@ msgstr "sin Chequeo de GPG"
 
 #~ msgid "The needed media was not found"
 #~ msgstr "El medio que se necesita no fue encontrado"
-
