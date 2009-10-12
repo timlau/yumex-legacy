@@ -32,7 +32,8 @@ from yum.packageSack import packagesNewestByNameArch
 from yum.update_md import UpdateMetadata
 
 from yumexbase.constants import *
-from yumexbackend.yum_client import pack, unpack
+from yumexbackend import YumHistoryTransaction, YumHistoryPackage,  pack, unpack
+
 from urlgrabber.progress import format_number
 import yum.logginglevels as logginglevels
 import yum.Errors as Errors
@@ -328,8 +329,18 @@ class YumServer(yum.YumBase):
             return 0
                     
     
-    def _show_package(self, pkg, action=None):
+    def _show_history_package(self, pkg):
+        ''' write history package result'''
+        yhp = pack(YumHistoryPackage(pkg))
+        self.write(":histpkg\t%s" % yhp) 
+
+    def _show_history_item(self, yht):
         ''' write package result'''
+        item = pack(YumHistoryTransaction(yht))
+        self.write(":hist\t%s" % item) 
+
+    def _show_package(self, pkg, action = None):
+        ''' write history package result'''
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
         action = pack(action)
@@ -957,7 +968,28 @@ class YumServer(yum.YumBase):
         self.info(msg)    
         self.ended(True)
             
-
+    def get_history(self,args):
+        """
+        Get the yum history elements
+        """
+        if hasattr(self,"_history"): # Yum supports history
+            tids = self.history.old()
+            for yht in tids:
+                self._show_history_item(yht)
+            self.ended(True)
+        else:
+            self.ended(False)
+            
+    def get_history_packages(self,args):
+        tid = int(args[0])
+        tids = self.history.old([tid])
+        for yht in tids:
+            yhp = yht.trans_data
+            for pkg in yhp:
+                self._show_history_package(pkg)
+            self.ended(True)
+        
+    
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
         if cmd == 'get-packages':       # get-packages <Package filter
@@ -1000,6 +1032,10 @@ class YumServer(yum.YumBase):
             self.set_option(args)
         elif cmd == 'clean':
             self.clean(args)
+        elif cmd == 'get-history':
+            self.get_history(args)
+        elif cmd == 'get-history-packages':
+            self.get_history_packages(args)
         else:
             self.error('Unknown command : %s' % cmd)
 
@@ -1018,6 +1054,7 @@ class YumServer(yum.YumBase):
                 self.debug("Yum Child Task: Command %s took %.2f s to complete" % (args[0], t))
         except:
             errmsg = traceback.format_exc()
+            #print errmsg
             self.write(":exception\t%s" % pack(errmsg))
             self.ended(True)
         self.quit()

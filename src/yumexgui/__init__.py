@@ -723,6 +723,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         if self.settings.autorefresh or self.settings.disable_repo_page: 
             self.populate_package_cache()
             self.setup_groups()
+            self.setup_history()
             self.notebook.set_active("package")
         else:
             self.backend.setup(repos=self.current_repos)
@@ -896,9 +897,20 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.queue.refresh()                    # clear the pending action queue
         self.populate_package_cache(repos=repos)           # repopulate the package cache
         self.setup_groups()
+        self.setup_history()
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
         self.ui.packageFilterBox.show()         # Show the filter selector
         self._set_options(options)
         self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
                 
+    def setup_history(self):
+        tids = self.backend.get_history()
+        if tids:
+            print("History Enabled")
+            pkgs = self.backend.get_history_packages(tids[0].tid)
+            for pkg in pkgs:
+                print pkg
+        else:
+            print("History Disabled")
+            

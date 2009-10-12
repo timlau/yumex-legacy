@@ -21,13 +21,12 @@
 '''
 
 import sys
-import pickle
-import base64
 
 import pexpect
 
 from yumexbase.constants import *
 from yumexbase import YumexBackendFatalError
+from yumexbackend import YumHistoryTransaction, YumHistoryPackage, YumPackage,  pack, unpack
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -36,76 +35,10 @@ from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
 
+
+
 #logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
-# helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
-def pack(value):
-    '''  Pickle and base64 encode an python object'''
-    return base64.b64encode(pickle.dumps(value))
-    
-def unpack(value):
-    '''  base64 decode and unpickle an python object'''
-    return pickle.loads(base64.b64decode(value))
-
-
-class YumPackage:
-    ''' Simple object to store yum package information '''
-    def __init__(self, base, args):
-        '''
-        
-        @param base:
-        @param args:
-        '''
-        self.base = base
-        self.name = args[0]
-        self.epoch = args[1]
-        self.ver = args[2]
-        self.rel = args[3]
-        self.arch = args[4]
-        self.repoid = args[5]
-        self.summary = unpack(args[6])
-        self.action = unpack(args[7])
-        self.size = args[8]
-        self.recent = args[9]
-
-    def __str__(self):
-        '''
-        string representation of the package object
-        '''
-        return self.fullname
-        
-    @property
-    def fullname(self):
-        ''' Package fullname  '''        
-        if self.epoch and self.epoch != '0':
-            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
-        else:   
-            return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
-
-    @property        
-    def id(self):        
-        '''
-        
-        '''
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.ver, self.rel, self.arch, self.repoid)
-
-    def get_attribute(self, attr):
-        '''
-        
-        @param attr:
-        '''
-        return self.base.get_attribute(self.id, attr)
-    
-    def get_changelog(self, num):
-        '''
-        
-        @param num:
-        '''
-        return self.base.get_changelog(self.id, num)
-    
-    def get_update_info(self):
-        return self.base.get_update_info(self.id)
-    
     
 class YumClient:
     """ Client part of a the yum client/server """
@@ -417,6 +350,48 @@ class YumClient:
                 data.append(args)
         return data
 
+    def _get_history_pkgs(self):
+        ''' 
+        read a list of :histpkg commands from the server, until and
+        :end command is received
+        '''
+        data = []
+        cnt = 0L
+        while True:
+            cmd, args = self._readline()
+            if self.is_ended(cmd, args):
+                break
+            if cmd == None: # readline is locked:
+                break
+            elif not cmd == result_cmd: 
+                self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
+            elif cmd == ':histpkg':
+                po = unpack(args[0])
+                data.append(po)
+            else:
+                data.append(args)
+        return data
+
+    def _get_packed_list(self, result_cmd):
+        ''' 
+        read a list of :hist commands from the server, until and
+        :end command is received
+        '''
+        data = []
+        cnt = 0L
+        while True:
+            cmd, args = self._readline()
+            if self.is_ended(cmd, args):
+                break
+            if cmd == None: # readline is locked:
+                break
+            elif not cmd == result_cmd: 
+                self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
+            else:
+                elem = unpack(args[0])
+                data.append(elem)
+        return data
+
     def _get_result(self, result_cmd):
         '''
         read a given result command from the server.
@@ -481,6 +456,18 @@ class YumClient:
         self._send_command('get-packages-repo', [repoid])
         pkgs = self._get_list()
         return pkgs
+
+    def get_history_packages(self, tid):    
+        ''' get a list of packages based on pkg_filter '''
+        self._send_command('get-history-packages', [str(tid)])
+        pkgs = self._get_packed_list(result_cmd = ':histpkg')
+        return pkgs
+
+    def get_history(self):    
+        ''' get a list of packages based on pkg_filter '''
+        self._send_command('get-history', [])
+        tids = self._get_packed_list(result_cmd = ':hist')
+        return tids
 
     def set_option(self, option, value, on_repos = False):    
         ''' get a list of packages based on pkg_filter '''
