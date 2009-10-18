@@ -9,6 +9,7 @@
     <child>
       <object class="GtkVBox" id="vbox3">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
@@ -251,6 +252,7 @@
     <child>
       <object class="GtkVBox" id="repoMain">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkScrolledWindow" id="scrolledwindow4">
             <property name="visible">True</property>
@@ -333,6 +335,7 @@ repositories</property>
         <child>
           <object class="GtkVBox" id="vbox1">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow1">
                 <property name="visible">True</property>
@@ -362,6 +365,7 @@ repositories</property>
     <child>
       <object class="GtkVBox" id="packageMain">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkHPaned" id="hpaned3">
             <property name="visible">True</property>
@@ -413,7 +417,6 @@ repositories</property>
                 <child>
                   <object class="GtkVBox" id="groupVBox">
                     <property name="visible">True</property>
-                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolledwindow7">
                         <property name="visible">True</property>
@@ -460,6 +463,7 @@ repositories</property>
             <child>
               <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkHBox" id="hbox3">
                     <property name="visible">True</property>
@@ -612,6 +616,7 @@ words.
                   <object class="GtkVPaned" id="packageSep">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="orientation">vertical</property>
                     <property name="position">300</property>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolledwindow2">
@@ -759,6 +764,7 @@ words.
     <child>
       <object class="GtkVBox" id="queueMain">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkHBox" id="hbox2">
             <property name="visible">True</property>
@@ -882,10 +888,12 @@ words.
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <object class="GtkVBox" id="progressMain">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkEventBox" id="progressEvent">
                 <property name="visible">True</property>
@@ -1045,10 +1053,12 @@ words.
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox3">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <object class="GtkVBox" id="transactionMain">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkEventBox" id="transactionEvent">
                 <property name="visible">True</property>
@@ -1182,11 +1192,13 @@ words.
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox11">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <object class="GtkVBox" id="vbox34">
             <property name="visible">True</property>
             <property name="border_width">5</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkHBox" id="hbox50">
