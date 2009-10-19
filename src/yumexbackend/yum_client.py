@@ -537,7 +537,7 @@ class YumClient:
         '''
         self._send_command('build-transaction', [])
         msgs = self._get_messages()
-        return msgs['return_code'][0], msgs['messages'], unpack(msgs['transaction'][0])
+        return msgs['return_code'][0], msgs['messages'], unpack(msgs['transaction'][0]), msgs['size']
 
     def run_transaction(self):        
         '''

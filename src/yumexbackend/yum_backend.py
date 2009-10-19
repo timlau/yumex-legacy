@@ -498,11 +498,11 @@ class YumexTransactionYum(YumexTransactionBase):
         progress.set_header(_("Resolving Dependencies"))
         progress.tasks.reset()
         progress.tasks.run_current()
-        rc, msgs, trans = self.backend.build_transaction()
+        rc, msgs, trans, size = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
             progress.hide()
-            if self.frontend.confirm_transaction(trans): # Let the user confirm the transaction
+            if self.frontend.confirm_transaction(trans,size[0]): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()
                 progress.tasks.complete_current()

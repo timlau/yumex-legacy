@@ -72,10 +72,10 @@ class YumexFrontend(YumexFrontendBase):
         ''' trigger at progress update'''
         self._progress = progress
 
-    def confirm_transaction(self, transaction):
+    def confirm_transaction(self, transaction, size):
         ''' confirm the current transaction'''
         dialog = self.transactionConfirm
-        dialog.populate(transaction)
+        dialog.populate(transaction,size)
         ok = dialog.run()
         dialog.destroy()
         return ok

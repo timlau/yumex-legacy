@@ -556,7 +556,7 @@ class TransactionConfirmation:
         view.append_column(column)        
              
              
-    def populate(self, pkglist):
+    def populate(self, pkglist,dnl_size):
         '''
         Populate the TreeView with data
         @param pkglist: list containing view data 
@@ -569,7 +569,8 @@ class TransactionConfirmation:
             for name, arch, ver, repo, size, replaces in lvl1:
                 level2 = model.append(level1, [name, arch, ver, repo, size])
                 for r in replaces:
-                    level3 = model.append(level2, [ r, "", "", "", ""])
+                    level3 = model.append(level2, [ r, "", "", "", ""])            
+        self.ui.transactionLabel.set_text(_("Download Size : %s ") % dnl_size)
 
 
 class ErrorDialog:

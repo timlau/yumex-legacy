@@ -630,7 +630,17 @@ class YumServer(yum.YumBase):
         for msg in msgs:
             self.message('messages', msg)
         self.message('transaction', pack(self._get_transaction_list()))
+        self.message("size", self._get_download_size())
         self.ended(True)
+
+    def _get_download_size(self):
+        total = 0L
+        dlpkgs = map(lambda x: x.po, filter(lambda txmbr:
+                                            txmbr.ts_state in ("i", "u"),
+                                            self.tsInfo.getMembers()))
+        for po in dlpkgs:
+            total += po.size
+        return format_number(total)    
         
     def _get_transaction_list(self):
         ''' 
