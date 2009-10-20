@@ -509,6 +509,12 @@ class YumexHandlers(Controller):
         self.process_queue()
         self.debug("Ended pending actions processing")
         
+    def on_historyUndo_clicked(self, widget=None, event=None):
+        pass
+    
+    def on_historyRedo_clicked(self, widget=None, event=None):
+        pass        
+        
     def on_progressCancel_clicked(self, widget=None, event=None):
         '''
         The Progress Dialog Cancel button
@@ -675,6 +681,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
                                icon=ICON_OUTPUT, tooltip=_("Watch output details"),
                                 accel = '<Ctrl>4')
+        self.notebook.add_page("history", _("History"), self.ui.historyMain, 
+                               icon=ICON_OUTPUT, tooltip=_("Watch yum history"),
+                                accel = '<Ctrl>5')
         self.ui.groupView.hide()
         self.notebook.set_active("output")
         # Preferences
