@@ -331,7 +331,7 @@ class YumHistoryPackage:
         self.ver    = yhp.version
         self.rel    = yhp.release
         self.arch   = yhp.arch
-
+        self.state  = yhp.state
         
     @property
     def version(self):

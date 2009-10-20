@@ -896,4 +896,30 @@ class YumexCategoryContentView(SelectionView):
         for (id,txt) in data:
             self.model.append([id,txt])          
 
+
+class YumexHistoryView(SelectionView):
+    '''
+    '''
+
+    def __init__(self, widget):
+        SelectionView.__init__(self, widget)
+        self.model = self.setup_view()
+        self.view.modify_font(const.SMALL_FONT)        
+        
+    def setup_view(self):
+        """ Create models and columns for the TextView  """
+        store = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING,gobject.TYPE_STRING, \
+                              gobject.TYPE_STRING,gobject.TYPE_STRING)
+        self.view.set_model(store)
+        self.create_text_column_num(_('Id'), 0)
+        self.create_text_column_num(_('Login User'), 1)
+        self.create_text_column_num(_('Data/Time'), 2)
+        self.create_text_column_num(_('Action(s)'), 3)
+        self.create_text_column_num(_('Altered'), 4)
+        return store
+
+    def populate(self,data):
+        self.model.clear()
+        for (id,user,dt,action,alt) in data:
+            self.model.append([id,user,dt,action,alt])          
     

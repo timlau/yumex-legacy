@@ -26,6 +26,7 @@ Yum Extender GUI main module
 import sys
 import gtk
 import pango
+import pwd
 
 from datetime import date
 
@@ -35,7 +36,7 @@ from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okD
 from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
-                           YumexCategoryContentView, YumexCategoryTypesView
+                           YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView
 from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError
 import yumexbase.constants as const
@@ -509,11 +510,30 @@ class YumexHandlers(Controller):
         self.process_queue()
         self.debug("Ended pending actions processing")
         
+        
+# History Page
+        
     def on_historyUndo_clicked(self, widget=None, event=None):
         pass
     
     def on_historyRedo_clicked(self, widget=None, event=None):
         pass        
+    
+    def on_historyView_cursor_changed(self, widget):
+        '''
+        Group/Category selected in groupView
+        @param widget: the group view widget
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            tid = model.get_value(iterator, 0)
+            self.histInfo.clear()
+            pkgs = self.backend.get_history_packages(tid)
+            for pkg in pkgs:
+                self.histInfo.write("%-25s %s\n" % (pkg.state,pkg))
+            
+    
+# Progress dialog    
         
     def on_progressCancel_clicked(self, widget=None, event=None):
         '''
@@ -697,6 +717,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup group and group description views
         self.groups = YumexGroupView(self.ui.groupView, self.queue, self)
         self.groupInfo = TextViewConsole(self.ui.groupDesc, font_size=font_size)
+        # setup history page
+        self.history = YumexHistoryView(self.ui.historyView)
+        self.histInfo = TextViewConsole(self.ui.historyInfo, font_size=font_size)
+        
         # setup category views
         self.category_types = YumexCategoryTypesView(self.ui.categoryTypes)
         self.category_content = YumexCategoryContentView(self.ui.categoryContent)
@@ -912,14 +936,66 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.ui.packageFilterBox.show()         # Show the filter selector
         self._set_options(options)
         self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
+
+# History helpers from yum output.py
+
+    def _history_uiactions(self, hpkgs):
+        actions = set()
+        count = 0
+        for hpkg in hpkgs:
+            st = hpkg.state
+            if st == 'True-Install':
+                st = 'Install'
+            if st == 'Dep-Install': # Mask these at the higher levels
+                st = 'Install'
+            if st == 'Obsoleted': #  This is just a UI tweak, as we can't have
+                                  # just one but we need to count them all.
+                st = 'Obsoleting'
+            if st in ('Install', 'Update', 'Erase', 'Reinstall', 'Downgrade',
+                      'Obsoleting'):
+                actions.add(st)
+                count += 1
+        assert len(actions) <= 6
+        if len(actions) > 1:
+            return count, ", ".join([x[0] for x in sorted(actions)])
+
+        # So empty transactions work, although that "shouldn't" really happen
+        return count, "".join(list(actions))
+
+    def _pwd_ui_username(self, uid, limit=None):
+        # loginuid is set to -1 on init.
+        if uid is None or uid == 0xFFFFFFFF:
+            loginid = _("<unset>")
+            name = _("System") + " " + loginid
+            if limit is not None and len(name) > limit:
+                name = loginid
+            return name
+
+        try:
+            user = pwd.getpwuid(uid)
+            fullname = user.pw_gecos.split(';', 2)[0]
+            name = "%s <%s>" % (fullname, user.pw_name)
+            if limit is not None and len(name) > limit:
+                name = "%s ... <%s>" % (fullname.split()[0], user.pw_name)
+                if len(name) > limit:
+                    name = "<%s>" % user.pw_name
+            return name
+        except KeyError:
+            return str(uid)
                 
     def setup_history(self):
         tids = self.backend.get_history()
         if tids:
             print("History Enabled")
-            pkgs = self.backend.get_history_packages(tids[0].tid)
-            for pkg in pkgs:
-                print pkg
+            data = []
+            for tid in tids:
+                name = self._pwd_ui_username(tid.loginuid, 22)
+                tm = time.strftime("%Y-%m-%d %H:%M",
+                               time.localtime(tid.beg_timestamp))
+                pkgs = self.backend.get_history_packages(tid.tid)
+                num, uiacts = self._history_uiactions(pkgs)
+                data.append([tid.tid, name, tm, uiacts, num])
+            self.history.populate(data)
         else:
             print("History Disabled")
             

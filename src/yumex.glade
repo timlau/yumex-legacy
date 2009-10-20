@@ -686,7 +686,7 @@ words.
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHButtonBox" id="hbuttonbox1">
+                  <object class="GtkHButtonBox" id="packageButtonBox">
                     <property name="visible">True</property>
                     <property name="spacing">5</property>
                     <property name="layout_style">end</property>
@@ -803,7 +803,7 @@ words.
           </packing>
         </child>
         <child>
-          <object class="GtkHButtonBox" id="hbuttonbox2">
+          <object class="GtkHButtonBox" id="queueButtonBox">
             <property name="visible">True</property>
             <property name="spacing">5</property>
             <property name="layout_style">end</property>
@@ -1516,12 +1516,13 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkVPaned" id="vpaned1">
+          <object class="GtkVPaned" id="historyVpaned">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="orientation">vertical</property>
+            <property name="position">250</property>
             <child>
-              <object class="GtkScrolledWindow" id="historySW2">
+              <object class="GtkScrolledWindow" id="historySW3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hscrollbar_policy">automatic</property>
@@ -1530,6 +1531,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                   <object class="GtkTreeView" id="historyView">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <signal name="cursor_changed" handler="on_historyView_cursor_changed"/>
                   </object>
                 </child>
               </object>
@@ -1562,7 +1564,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
           </packing>
         </child>
         <child>
-          <object class="GtkHButtonBox" id="hbuttonbox3">
+          <object class="GtkHButtonBox" id="historyButtonBox">
             <property name="visible">True</property>
             <property name="spacing">5</property>
             <property name="layout_style">end</property>
