@@ -65,6 +65,7 @@ ICON_GROUPS = PIXMAPS_PATH + '/button-group.png'
 ICON_QUEUE = PIXMAPS_PATH + '/button-queue.png'
 ICON_OUTPUT = PIXMAPS_PATH + '/button-output.png'
 ICON_REPOS = PIXMAPS_PATH + '/button-repo.png'
+ICON_HISTORY = PIXMAPS_PATH + '/button-history.png'
 ICON_SPINNER = PIXMAPS_PATH + '/spinner.gif'
 ICON_SMALL_SPINNER = PIXMAPS_PATH + '/spinner-small.gif'
     
@@ -128,3 +129,7 @@ SIZE_RANGES = {
    '4' : (10*1024*1024,50*1024*1024),
    '5' : (50*1024*1024,1024*1024*1024)
 }
+
+HISTORY_KEYS = ['True-Install', 'Install', 'Update', 'Erase', \
+'Dep-Install', 'Reinstall', 'Obsoleted', 'Downgrade', \
+ 'Updated', 'Downgraded', 'Obsoleting']

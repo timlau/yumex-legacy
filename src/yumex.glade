@@ -100,6 +100,18 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkImageMenuItem" id="viewHistory">
+                        <property name="label" translatable="yes">_History</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image5</property>
+                        <property name="use_stock">False</property>
+                        <property name="accel_group">accelgroup1</property>
+                        <accelerator key="4" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="on_viewHistory_activate"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkImageMenuItem" id="viewOutput">
                         <property name="label" translatable="yes">_Output</property>
                         <property name="visible">True</property>
@@ -107,7 +119,7 @@
                         <property name="image">image4</property>
                         <property name="use_stock">False</property>
                         <property name="accel_group">accelgroup1</property>
-                        <accelerator key="4" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <accelerator key="5" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="on_viewOutput_activate"/>
                       </object>
                     </child>
@@ -1494,22 +1506,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
       <action-widget response="0">prefCancel</action-widget>
     </action-widgets>
   </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="stock">gtk-apply</property>
-  </object>
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="stock">gtk-harddisk</property>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="stock">gtk-network</property>
-  </object>
-  <object class="GtkImage" id="image4">
-    <property name="visible">True</property>
-    <property name="stock">gtk-dialog-info</property>
-  </object>
   <object class="GtkWindow" id="historyPage">
     <child>
       <object class="GtkVBox" id="historyMain">
@@ -1590,6 +1586,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_historyRedo_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1606,5 +1603,25 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-harddisk</property>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-network</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="stock">gtk-dialog-info</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="stock">gtk-dialog-info</property>
   </object>
 </interface>

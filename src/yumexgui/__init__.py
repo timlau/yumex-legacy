@@ -270,6 +270,11 @@ class YumexHandlers(Controller):
         '''
         self.notebook.set_active("output")
         
+    def on_viewHistory_activate(self, widget=None, event=None):
+        '''
+        Menu : View -> History
+        '''
+        self.notebook.set_active("history")
     # Package Page    
         
     def on_packageSearch_activate(self, widget=None, event=None):
@@ -507,30 +512,50 @@ class YumexHandlers(Controller):
         The Queue/Packages Execute button
         '''
         self.debug("Starting pending actions processing")
-        self.process_queue()
+        self.process_transaction(action="queue")
         self.debug("Ended pending actions processing")
         
         
 # History Page
         
     def on_historyUndo_clicked(self, widget=None, event=None):
-        pass
+        (model, iterator) = self.ui.historyView.get_selection().get_selected()
+        if model != None and iterator != None:
+            tid = model.get_value(iterator, 0)
+            self.debug("Starting history undo")
+            self.process_transaction(action="history-undo",tid=tid)
+            self.debug("Ended History undo")
     
     def on_historyRedo_clicked(self, widget=None, event=None):
-        pass        
+        (model, iterator) = self.ui.historyView.get_selection().get_selected()
+        if model != None and iterator != None:
+            tid = model.get_value(iterator, 0)
+            self.debug("Starting history redo")
+            self.process_transaction(action="history-redo",tid=tid)
+            self.debug("Ended History redo")
     
     def on_historyView_cursor_changed(self, widget):
         '''
-        Group/Category selected in groupView
-        @param widget: the group view widget
+        a new History element is selected in history view
         '''
         (model, iterator) = widget.get_selection().get_selected()
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
             self.histInfo.clear()
             pkgs = self.backend.get_history_packages(tid)
+            dict = {}
             for pkg in pkgs:
-                self.histInfo.write("%-25s %s\n" % (pkg.state,pkg))
+                if pkg.state in dict:
+                    dict[pkg.state].append(pkg)
+                else:
+                    dict[pkg.state] = [pkg]
+            for key in HISTORY_KEYS:
+                if not key in dict:
+                    continue
+                self.histInfo.write("%s" % (key),'error')
+                pkgs = dict[key]
+                for pkg in pkgs:
+                    self.histInfo.write("   %s\n" % (pkg))
             
     
 # Progress dialog    
@@ -698,11 +723,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.notebook.add_page("repo", _("Repositories"), self.ui.repoMain, 
                                    icon=ICON_REPOS, tooltip=_("Select active repositories"),
                                 accel = '<Ctrl>3')
+        self.notebook.add_page("history", _("History"), self.ui.historyMain, 
+                               icon=ICON_HISTORY, tooltip=_("Watch yum history"),
+                                accel = '<Ctrl>4')
         self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
                                icon=ICON_OUTPUT, tooltip=_("Watch output details"),
-                                accel = '<Ctrl>4')
-        self.notebook.add_page("history", _("History"), self.ui.historyMain, 
-                               icon=ICON_OUTPUT, tooltip=_("Watch yum history"),
                                 accel = '<Ctrl>5')
         self.ui.groupView.hide()
         self.notebook.set_active("output")
@@ -860,25 +885,38 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         Process the pending actions in the queue
         '''
+        queue = self.queue.queue
+        if queue.total() == 0:
+            okDialog(self.window,_("The pending action queue is empty")) 
+            return False        
+        self.backend.transaction.reset()
+        for action in ('install', 'update', 'remove'):
+            pkgs = queue.get(action[0])
+            for po in pkgs:
+                self.backend.transaction.add(po, action)
+        return True
+
+    def process_transaction(self, action="queue", tid=None):
+        '''
+        '''
+        rc = False
         try:
-            queue = self.queue.queue
-            if queue.total() == 0:
-                okDialog(self.window,_("The pending action queue is empty")) 
-                return        
             self.notebook.set_active("output")
             progress = self.get_progress()
             progress.set_pulse(True)        
             progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
             progress.show_tasks()
-            progress.show()        
-            self.backend.transaction.reset()
-            for action in ('install', 'update', 'remove'):
-                pkgs = queue.get(action[0])
-                for po in pkgs:
-                    self.backend.transaction.add(po, action)
+            if action == "queue":
+                rc = self.process_queue()
+            elif action == "history-undo":
+                rc = self.backend.history_undo(tid)
+            elif action == "history-redo":
+                rc = self.backend.history_redo(tid)
+            if not rc: # the transaction population failed
+                return
+
             rc = self.backend.transaction.process_transaction()   
-            print "transaction result", rc
             progress.hide_tasks()
             progress.hide()        
             if rc: # Transaction ok

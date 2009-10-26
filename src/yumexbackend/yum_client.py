@@ -469,6 +469,16 @@ class YumClient:
         tids = self._get_packed_list(result_cmd = ':hist')
         return tids
 
+    def history_redo(self, tid):    
+        ''' reodo a history transaction '''
+        self._send_command('history-redo', [str(tid)])
+        return self._get_return_code()
+
+    def history_undo(self, tid):    
+        ''' undo a history transaction '''
+        self._send_command('history-undo', [str(tid)])
+        return self._get_return_code()
+
     def set_option(self, option, value, on_repos = False):    
         ''' get a list of packages based on pkg_filter '''
         self._send_command('set-option', [option,pack(value),pack(on_repos)])

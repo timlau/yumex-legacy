@@ -997,9 +997,37 @@ class YumServer(yum.YumBase):
             yhp = yht.trans_data
             for pkg in yhp:
                 self._show_history_package(pkg)
+        self.ended(True)
+
+    def history_undo(self,args):    
+        '''
+        Undo a history transaction
+        '''
+        tid = int(args[0])
+        tids = self.history.old([tid])
+        if tids:
+            yum.YumBase.history_undo(self, tids[0])
+        print "Transaction after undo"    
+        for txmbr in self.tsInfo:
+            print txmbr.po
+        if len(self.tsInfo) > 0:
             self.ended(True)
-        
-    
+        else:
+            self.ended(False)
+
+    def history_redo(self,args):    
+        '''
+        Redo a history transaction
+        '''
+        tid = int(args[0])
+        tids = self.history.old([tid])
+        if tids:
+            yum.YumBase.history_redo(self, tids[0])
+        if len(self.tsInfo) > 0:
+            self.ended(True)
+        else:
+            self.ended(False)
+            
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
         if cmd == 'get-packages':       # get-packages <Package filter
@@ -1046,6 +1074,10 @@ class YumServer(yum.YumBase):
             self.get_history(args)
         elif cmd == 'get-history-packages':
             self.get_history_packages(args)
+        elif cmd == 'history-undo':
+            self.history_undo(args)
+        elif cmd == 'history-redo':
+            self.history_redo(args)
         else:
             self.error('Unknown command : %s' % cmd)
 
