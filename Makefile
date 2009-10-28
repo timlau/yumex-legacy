@@ -34,8 +34,6 @@ install:
 	install -m644 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
 	install -m644 $(MISCDIR)/yumex-yum-backend.console.app $(DESTDIR)/etc/security/console.apps/yumex-yum-backend
 	ln -s consolehelper $(DESTDIR)/usr/bin/yumex-yum-backend
-	chmod +x $(DESTDIR)/usr/share/yumex/yum_childtask.py
-	ln -s  $(DESTDIR)/usr/share/yumex/yum_childtask.py $(DESTDIR)/usr/share/yumex/yumex-yum-backend
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
