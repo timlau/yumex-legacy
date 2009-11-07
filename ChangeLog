@@ -1,3 +1,95 @@
+2009-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.4
+
+2009-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: fix rhbz# 533423 -  ErrorDialog instance
+	has no attribute 'style_err'
+
+2009-10-29  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py: Added -E to python shebang for extra
+	security
+
+2009-10-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/Makefile: fix Makefile
+
+2009-10-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, src/Makefile: move yumex-yum-backend install to other
+	Makefile
+
+2009-10-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* misc/yumex-yum-backend: remove the old  yumex-yum-backend shell
+	script
+
+2009-10-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: skip the yumex-yum-backend shell script and just link
+	yum_childtask.py to yumex-yum-backend
+
+2009-10-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* gfx/button-history.png, gfx/svg/yumex-history.svg,
+	src/yumex.glade, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py: - Add history icon and view menu - Categorize history transaction
+	packages in 'install','update' etc. - implemented history undo and
+	reso
+
+2009-10-20  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/__init__.py,
+	src/yumexgui/__init__.py, src/yumexgui/views.py: Added history data
+	(Draft)
+
+2009-10-20  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py: Added history page
+
+2009-10-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py: show download
+	size in transaction dialog
+
+2009-10-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: fix GtkBuilder file because glade3 in f12 show
+	Vbox as default horizontal orientation
+
+2009-10-13  “Tim <“timlau@fedoraproject.org”>
+
+	* src/yumexbackend/yum_server.py: fix AttributeError: 'YumServer'
+	object has no attribute '_is_fileurl' (rhbz #528302)
+
+2009-10-12  “Tim <“timlau@fedoraproject.org”>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: added
+	backend parts to support reading yum history info
+
+2009-10-11  warrink <warrink@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: show full name on erase/cleanup,
+	just like yum does
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: forgot to update spec file changelog
+
+2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2009-10-11  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.3
