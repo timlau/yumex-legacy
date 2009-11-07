@@ -599,7 +599,8 @@ class ErrorDialog:
         self.longtext = self.ui.errTextView
         tag_table = self.longtext.get_buffer().get_tag_table()
         # make sure we only add the error tag once
-        if not tag_table.lookup("error"):
+        self.style_err = tag_table.lookup("error")
+        if not self.style_err:
             self.style_err = gtk.TextTag("error") 
             self.style_err.set_property("style", pango.STYLE_ITALIC)
             self.style_err.set_property("foreground", "red")
