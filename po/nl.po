@@ -1,21 +1,23 @@
 # Dutch translation of yumex
 # Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
+#
 #
 # Geert Warrink <geert.warrink@onsnet.nu>, 2009.
-#
+# R.E. van der Luit <nippur@fedoraproject.org>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-10 11:49+0200\n"
-"PO-Revision-Date: 2009-11-11 11:32+0100\n"
-"Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
-"Language-Team: nl <nl@li.org>\n"
+"PO-Revision-Date: 2009-11-11 11:37+0100\n"
+"Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
+"Language-Team: Dutch <nippur@fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding:  "
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -755,4 +757,5 @@ msgstr "Be_kijk"
 #: ../src/yumex.glade.h:42
 msgid "no GPG Check"
 msgstr "geen GPG check"
+
 
