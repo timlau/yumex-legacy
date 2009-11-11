@@ -1,7 +1,7 @@
 # Dutch translation of yumex
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2009.
 #
 # Geert Warrink <geert.warrink@onsnet.nu>, 2009.
 #
@@ -10,12 +10,12 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-10 11:49+0200\n"
-"PO-Revision-Date: 2009-10-11 14:50+0200\n"
+"PO-Revision-Date: 2009-11-11 11:32+0100\n"
 "Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
 "Language-Team: nl <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding:  \n"
+"Content-Transfer-Encoding:  "
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -140,7 +140,7 @@ msgstr "Fout bij het ophalen van %s: "
 
 #: ../src/yumexbackend/yum_server.py:727
 msgid "Trying other mirror."
-msgstr "Probeer een andere spiegel"
+msgstr "Probeer een andere mirror"
 
 #: ../src/yumexbackend/yum_server.py:894
 #, python-format
@@ -227,7 +227,7 @@ msgstr "Delta vernieuwing informatie downloaden van de %s repository"
 #: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "Vernieuwing informatie downloaden van de %s repository"
+msgstr "Informatie voor bijwerken downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:110
 msgid "0 - 7 Days"
@@ -361,7 +361,7 @@ msgstr "Status"
 
 #: ../src/yumexgui/gui.py:320
 msgid "Issued"
-msgstr "Uigegeven"
+msgstr "Uitgegeven"
 
 #: ../src/yumexgui/gui.py:330
 msgid "       Bugs :"
@@ -508,7 +508,7 @@ msgstr "Pakket lijsten ophalen"
 
 #: ../src/yumexgui/__init__.py:813
 msgid "Getting Updated Packages"
-msgstr "Verniewde pakketten ophalen"
+msgstr "Vernieuwde pakketten ophalen"
 
 #: ../src/yumexgui/__init__.py:816
 msgid "Getting Available Packages"
@@ -600,7 +600,7 @@ msgstr "Bestandsnaam"
 
 #: ../src/yumexgui/views.py:868
 msgid "Categories"
-msgstr "Caregorieën"
+msgstr "Categorieën"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -656,7 +656,7 @@ msgstr "Verwijder geselecteerde pakketten uit de wachtrij"
 
 #: ../src/yumex.glade.h:16
 msgid "Select all packages in current view"
-msgstr "Selecteer alle poakketten in het huidig overzicht"
+msgstr "Selecteer alle pakketten in het huidig overzicht"
 
 #: ../src/yumex.glade.h:17
 msgid "Show available packages"
@@ -676,7 +676,7 @@ msgstr "Sla beschadigde over"
 
 #: ../src/yumex.glade.h:21
 msgid "Skip packages there get depsolve errors"
-msgstr "Sla pakketten met oplos fouten over"
+msgstr "Sla pakketten met afhankelijkheidsfouten over"
 
 #: ../src/yumex.glade.h:22
 msgid ""
@@ -684,8 +684,8 @@ msgid ""
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
-"Vul zoek woorden in gescheiden door spaties\n"
-"om pakketten te inden die de zoek woorden\n"
+"Vul zoekwoorden in, gescheiden door spaties\n"
+"om pakketten te vinden die de zoekwoorden\n"
 "bevatten.\n"
 
 #: ../src/yumex.glade.h:26
@@ -694,7 +694,7 @@ msgstr "Vernieuwingen"
 
 #: ../src/yumex.glade.h:27
 msgid "Undo all package selection"
-msgstr "Maak alle pakkat selecties ongedaan"
+msgstr "Maak alle pakketselecties ongedaan"
 
 #: ../src/yumex.glade.h:28
 msgid "Undo repository selection changes"
@@ -755,3 +755,4 @@ msgstr "Be_kijk"
 #: ../src/yumex.glade.h:42
 msgid "no GPG Check"
 msgstr "geen GPG check"
+
