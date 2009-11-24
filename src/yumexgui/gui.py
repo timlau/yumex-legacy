@@ -359,11 +359,12 @@ class PackageInfo(SelectorBase):
         changelog = self.pkg.changelog
         progress = self.frontend.get_progress()
         progress.hide()        
-        for (c_date, c_ver, msg) in changelog:
-            self.console.write("* %s %s" % (date.fromtimestamp(c_date).isoformat(), c_ver), "changelog-header")
-            for line in msg.split('\n'):
-                self.console.write("%s" % line, "changelog")
-            self.console.write('\n')              
+        if changelog:
+            for (c_date, c_ver, msg) in changelog:
+                self.console.write("* %s %s" % (date.fromtimestamp(c_date).isoformat(), c_ver), "changelog-header")
+                for line in msg.split('\n'):
+                    self.console.write("%s" % line, "changelog")
+                self.console.write('\n')              
 
     def show_filelist(self):
         '''
