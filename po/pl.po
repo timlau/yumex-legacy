@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-05 08:39+0100\n"
-"PO-Revision-Date: 2009-10-10 16:01+0200\n"
+"PO-Revision-Date: 2009-12-05 14:09+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -322,9 +322,9 @@ msgid "Size"
 msgstr "Rozmiar"
 
 #: ../src/yumexgui/dialogs.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Download Size : %s "
-msgstr "Pobrano: %s (%s)"
+msgstr "Rozmiar pobierania: %s"
 
 #: ../src/yumexgui/gui.py:248
 msgid "Package Description"
@@ -443,11 +443,11 @@ msgstr "Wybór aktywnych repozytoriów"
 
 #: ../src/yumexgui/__init__.py:733
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: ../src/yumexgui/__init__.py:734
 msgid "Watch yum history"
-msgstr ""
+msgstr "Obserwacja historii programu yum"
 
 #: ../src/yumexgui/__init__.py:736
 msgid "Output"
@@ -511,23 +511,23 @@ msgstr "Według rozmiaru"
 
 #: ../src/yumexgui/__init__.py:857 ../src/yumexgui/__init__.py:858
 msgid "Getting Group information"
-msgstr "Uzyskiwanie informacji o grupach"
+msgstr "Pobieranie informacji o grupach"
 
 #: ../src/yumexgui/__init__.py:878
 msgid "Getting Package Lists"
-msgstr "Uzyskiwanie list pakietów"
+msgstr "Pobieranie list pakietów"
 
 #: ../src/yumexgui/__init__.py:879
 msgid "Getting Updated Packages"
-msgstr "Uzyskiwanie zaktualizowanych pakietów"
+msgstr "Pobieranie zaktualizowanych pakietów"
 
 #: ../src/yumexgui/__init__.py:882
 msgid "Getting Available Packages"
-msgstr "Uzyskiwanie dostępnych pakietów"
+msgstr "Pobieranie dostępnych pakietów"
 
 #: ../src/yumexgui/__init__.py:884
 msgid "Getting installed Packages"
-msgstr "Uzyskiwanie zainstalowanych pakietów"
+msgstr "Pobieranie zainstalowanych pakietów"
 
 #: ../src/yumexgui/__init__.py:897
 msgid "The pending action queue is empty"
@@ -570,26 +570,23 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:1013
 msgid "<unset>"
-msgstr ""
+msgstr "<nieustawione>"
 
 #: ../src/yumexgui/__init__.py:1014
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../src/yumexgui/__init__.py:1037
-#, fuzzy
 msgid "Getting History Information"
-msgstr "Uzyskiwanie informacji o grupach"
+msgstr "Pobieranie informacji o historii"
 
 #: ../src/yumexgui/__init__.py:1039
-#, fuzzy
 msgid "Getting Latest History Information"
-msgstr "Pobieranie informacji o pakiecie"
+msgstr "Pobieranie informacji o najnowszej historii"
 
 #: ../src/yumexgui/__init__.py:1041
-#, fuzzy
 msgid "Getting All History Information"
-msgstr "Uzyskiwanie informacji o grupach"
+msgstr "Pobieranie informacji o całej historii"
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
 msgid "Package"
@@ -638,23 +635,23 @@ msgstr "Kategorie"
 
 #: ../src/yumexgui/views.py:914
 msgid "Id"
-msgstr ""
+msgstr "Identyfikator"
 
 #: ../src/yumexgui/views.py:915
 msgid "Login User"
-msgstr ""
+msgstr "Login użytkownika"
 
 #: ../src/yumexgui/views.py:916
 msgid "Data/Time"
-msgstr ""
+msgstr "Data/czas"
 
 #: ../src/yumexgui/views.py:917
 msgid "Action(s)"
-msgstr ""
+msgstr "Czynności"
 
 #: ../src/yumexgui/views.py:918
 msgid "Altered"
-msgstr ""
+msgstr "Zmienione"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -694,16 +691,15 @@ msgstr "Wykonanie wszystkich oczekujących czynności w kolejce"
 
 #: ../src/yumex.glade.h:12
 msgid "Get all History elements"
-msgstr ""
+msgstr "Pobranie wszystkich elementów historii"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
 msgstr "R_epozytoria"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "Przygotowywanie transakcji"
+msgstr "Cofnięcie transakcji z historii"
 
 #: ../src/yumex.glade.h:15
 msgid ""
@@ -722,19 +718,16 @@ msgid "Select all packages in current view"
 msgstr "Wybór wszystkich pakietów z bieżącego widoku"
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Categories"
-msgstr "Kategorie"
+msgstr "Wyświetla kategorie"
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show Groups"
-msgstr "_Grupy"
+msgstr "Wyświetla grupy"
 
 #: ../src/yumex.glade.h:21
-#, fuzzy
 msgid "Show all Packages"
-msgstr "Wyświetla dostępne pakiety"
+msgstr "Wyświetla wszystkie pakiety"
 
 #: ../src/yumex.glade.h:22
 msgid "Show available packages"
@@ -771,7 +764,7 @@ msgstr "A_ktualizacje"
 
 #: ../src/yumex.glade.h:32
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "Cofnięcie transakcji z historii"
 
 #: ../src/yumex.glade.h:33
 msgid "Undo all package selection"
@@ -807,7 +800,7 @@ msgstr "Pomo_c"
 
 #: ../src/yumex.glade.h:41
 msgid "_History"
-msgstr ""
+msgstr "_Historia"
 
 #: ../src/yumex.glade.h:42
 msgid "_Installed"
