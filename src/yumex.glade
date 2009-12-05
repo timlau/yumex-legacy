@@ -571,6 +571,7 @@ words.
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Show all Packages</property>
                         <property name="active">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">packageRadioUpdates</property>
@@ -587,6 +588,7 @@ words.
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Show Groups</property>
                         <property name="use_underline">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">packageRadioUpdates</property>
@@ -603,6 +605,7 @@ words.
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
+                        <property name="tooltip_text" translatable="yes">Show Categories</property>
                         <property name="use_underline">True</property>
                         <property name="draw_indicator">True</property>
                         <property name="group">packageRadioUpdates</property>
@@ -1565,13 +1568,14 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <property name="spacing">5</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="historyUndo">
-                <property name="label">gtk-undo</property>
+              <object class="GtkButton" id="historyRefresh">
+                <property name="label">gtk-refresh</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Get all History elements</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="on_historyUndo_clicked"/>
+                <signal name="clicked" handler="on_historyRefresh_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1580,18 +1584,35 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
               </packing>
             </child>
             <child>
+              <object class="GtkButton" id="historyUndo">
+                <property name="label">gtk-undo</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Undo a history transaction</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_historyUndo_clicked"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="historyRedo">
                 <property name="label">gtk-redo</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Redo a history transaction</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_historyRedo_clicked"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>

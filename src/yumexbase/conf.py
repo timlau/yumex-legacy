@@ -50,6 +50,7 @@ class YumexConf( BaseConfig ):
     win_width = IntOption( 1000)
     win_height = IntOption( 600 ) 
     win_sep = IntOption( 300 ) 
+    history_limit = IntOption(15)
     
 
 class YumexOptions:

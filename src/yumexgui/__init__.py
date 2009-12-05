@@ -27,6 +27,7 @@ import sys
 import gtk
 import pango
 import pwd
+import time
 
 from datetime import date
 
@@ -534,6 +535,12 @@ class YumexHandlers(Controller):
             self.process_transaction(action="history-redo",tid=tid)
             self.debug("Ended History redo")
     
+    def on_historyRefresh_clicked(self, widget=None, event=None):
+        busyCursor(self.window)
+        self.setup_history()
+        normalCursor(self.window)
+    
+    
     def on_historyView_cursor_changed(self, widget):
         '''
         a new History element is selected in history view
@@ -781,7 +788,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         if self.settings.autorefresh or self.settings.disable_repo_page: 
             self.populate_package_cache()
             self.setup_groups()
-            self.setup_history()
+            self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")
         else:
             self.backend.setup(repos=self.current_repos)
@@ -968,7 +975,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.queue.refresh()                    # clear the pending action queue
         self.populate_package_cache(repos=repos)           # repopulate the package cache
         self.setup_groups()
-        self.setup_history()
+        self.setup_history(limit=self.settings.history_limit)
         self.notebook.set_active("package")     # show the package page
         self.ui.packageSearch.set_text('')      # Reset search entry
         self.ui.packageFilterBox.show()         # Show the filter selector
@@ -1021,19 +1028,35 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except KeyError:
             return str(uid)
                 
-    def setup_history(self):
+    def setup_history(self,limit = None):        
+        self.debug("Getting History Information - BEGIN")
         tids = self.backend.get_history()
         if tids:
-            print("History Enabled")
+            progress = self.get_progress()
+            progress.set_pulse(True)
+            progress.set_title(_("Getting History Information"))
+            if limit:
+                progress.set_header(_("Getting Latest History Information"))
+            else:
+                progress.set_header(_("Getting All History Information"))
+
+            progress.show()
             data = []
+            num_elem = 0
             for tid in tids:
+                self.refresh()
                 name = self._pwd_ui_username(tid.loginuid, 22)
                 tm = time.strftime("%Y-%m-%d %H:%M",
                                time.localtime(tid.beg_timestamp))
                 pkgs = self.backend.get_history_packages(tid.tid)
                 num, uiacts = self._history_uiactions(pkgs)
                 data.append([tid.tid, name, tm, uiacts, num])
+                num_elem +=1
+                if limit and num_elem > limit: # Show only a limited number of history elements (SPEED)
+                    break
             self.history.populate(data)
         else:
             print("History Disabled")
+        progress.hide()
+        self.debug("Getting History Information - END")
             
