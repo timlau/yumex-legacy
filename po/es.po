@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: yumex-nextgen\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-05 08:39+0100\n"
-"PO-Revision-Date: 2009-10-10 22:00-0300\n"
+"PO-Revision-Date: 2009-12-06 12:03-0300\n"
 "Last-Translator: Domingo Becker <domingobecker@gmail.com>\n"
 "Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,8 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:95
+#: ../src/yumexbackend/yum_backend.py:96
 msgid "Getting Package Information"
 msgstr "Extrayendo información del paquete"
 
@@ -32,15 +33,18 @@ msgstr "Tipo de Metadatos del Repo desconocido (%s) para %s"
 msgid "Buiding rpms from deltarpm"
 msgstr "Construyendo rpms desde deltarpm"
 
-#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145
+#: ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "Descargando paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:150 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:150
+#: ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "Chequeando las firmas GPG de los paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:155 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:155
+#: ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "Ejecutando la prueba de las Transacciones RPM"
 
@@ -83,7 +87,8 @@ msgstr ""
 msgid "Stopping yum child process"
 msgstr "Deteniendo el proceso hijo yum"
 
-#: ../src/yumexbackend/yum_backend.py:498 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:498
+#: ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Resolviendo dependencias"
 
@@ -103,7 +108,8 @@ msgstr "Resolución de dependencia completa pero con errores"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:207 ../src/yumexbackend/yum_server.py:216
+#: ../src/yumexbackend/yum_server.py:207
+#: ../src/yumexbackend/yum_server.py:216
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "Sin conexión de red, desactivar repositorios no locales %s"
@@ -203,8 +209,7 @@ msgstr "Descargando la información de los paquetes desde el repositorio %s"
 #: ../src/yumexbase/constants.py:95
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-"Descargando la información de la lista de archivos desde el repositorio %s"
+msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:96
 #, python-format
@@ -299,11 +304,13 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Nivel de depuración de Yum"
 
-#: ../src/yumexgui/dialogs.py:492 ../src/yumexgui/dialogs.py:501
+#: ../src/yumexgui/dialogs.py:492
+#: ../src/yumexgui/dialogs.py:501
 msgid "Transaction Result"
 msgstr "Resultado de la transacción"
 
-#: ../src/yumexgui/dialogs.py:535 ../src/yumexgui/views.py:556
+#: ../src/yumexgui/dialogs.py:535
+#: ../src/yumexgui/views.py:556
 msgid "Name"
 msgstr "Nombre"
 
@@ -311,24 +318,27 @@ msgstr "Nombre"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:537
+#: ../src/yumexgui/views.py:158
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:538 ../src/yumexgui/views.py:527
+#: ../src/yumexgui/dialogs.py:538
+#: ../src/yumexgui/views.py:527
 #: ../src/yumexgui/views.py:555
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/yumexgui/dialogs.py:539 ../src/yumexgui/views.py:158
+#: ../src/yumexgui/dialogs.py:539
+#: ../src/yumexgui/views.py:158
 msgid "Size"
 msgstr "Tamaño"
 
 #: ../src/yumexgui/dialogs.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Download Size : %s "
-msgstr "Descargado : %s ( %s )"
+msgstr "Tamaño de Descarga : %s"
 
 #: ../src/yumexgui/gui.py:248
 msgid "Package Description"
@@ -421,7 +431,8 @@ msgstr "e intentar nuevamente.\n"
 msgid "Unknown Error : "
 msgstr "Error desconocido : "
 
-#: ../src/yumexgui/__init__.py:723 ../src/yumexgui/views.py:445
+#: ../src/yumexgui/__init__.py:723
+#: ../src/yumexgui/views.py:445
 msgid "Packages"
 msgstr "Paquetes"
 
@@ -447,11 +458,11 @@ msgstr "Seleccionar repositorios activos"
 
 #: ../src/yumexgui/__init__.py:733
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: ../src/yumexgui/__init__.py:734
 msgid "Watch yum history"
-msgstr ""
+msgstr "Ver el historial de yum"
 
 #: ../src/yumexgui/__init__.py:736
 msgid "Output"
@@ -513,7 +524,8 @@ msgstr "Por Repositorios"
 msgid "By Size"
 msgstr "Por Tamaño"
 
-#: ../src/yumexgui/__init__.py:857 ../src/yumexgui/__init__.py:858
+#: ../src/yumexgui/__init__.py:857
+#: ../src/yumexgui/__init__.py:858
 msgid "Getting Group information"
 msgstr "Obteniendo información de grupos"
 
@@ -574,32 +586,31 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:1013
 msgid "<unset>"
-msgstr ""
+msgstr "<no puesto>"
 
 #: ../src/yumexgui/__init__.py:1014
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: ../src/yumexgui/__init__.py:1037
-#, fuzzy
 msgid "Getting History Information"
-msgstr "Obteniendo información de grupos"
+msgstr "Obteniendo información del histórico"
 
 #: ../src/yumexgui/__init__.py:1039
-#, fuzzy
 msgid "Getting Latest History Information"
-msgstr "Extrayendo información del paquete"
+msgstr "Obteniendo la última información del histórico"
 
 #: ../src/yumexgui/__init__.py:1041
-#, fuzzy
 msgid "Getting All History Information"
-msgstr "Obteniendo información de grupos"
+msgstr "Obteniendo toda la información del histórico"
 
-#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
+#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/views.py:181
 msgid "Package"
 msgstr "Paquete"
 
-#: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:158
+#: ../src/yumexgui/views.py:184
 #: ../src/yumexgui/views.py:450
 msgid "Summary"
 msgstr "Resumen"
@@ -642,23 +653,23 @@ msgstr "Categorías"
 
 #: ../src/yumexgui/views.py:914
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:915
 msgid "Login User"
-msgstr ""
+msgstr "Usuario de ingreso"
 
 #: ../src/yumexgui/views.py:916
 msgid "Data/Time"
-msgstr ""
+msgstr "Fecha/Hora"
 
 #: ../src/yumexgui/views.py:917
 msgid "Action(s)"
-msgstr ""
+msgstr "Accion(es)"
 
 #: ../src/yumexgui/views.py:918
 msgid "Altered"
-msgstr ""
+msgstr "Alterado"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -698,16 +709,15 @@ msgstr "Ejecuta todas las acciones pendientes en la lista"
 
 #: ../src/yumex.glade.h:12
 msgid "Get all History elements"
-msgstr ""
+msgstr "Obtener todos los elementos del histórico"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
 msgstr "R_epositorios"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "Preparando la transacción"
+msgstr "Rehacer una transacción del histórico"
 
 #: ../src/yumex.glade.h:15
 msgid ""
@@ -726,19 +736,16 @@ msgid "Select all packages in current view"
 msgstr "Seleccione todos los paquetes de la vista actual"
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Categories"
-msgstr "Categorías"
+msgstr "Mostrar las Categorías"
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show Groups"
-msgstr "_Grupos"
+msgstr "Mostrar los Grupos"
 
 #: ../src/yumex.glade.h:21
-#, fuzzy
 msgid "Show all Packages"
-msgstr "Mostrar paquetes disponibles"
+msgstr "Mostrar todos los paquetes"
 
 #: ../src/yumex.glade.h:22
 msgid "Show available packages"
@@ -775,7 +782,7 @@ msgstr "_Actualizaciones"
 
 #: ../src/yumex.glade.h:32
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "Deshacer una transacción histórica"
 
 #: ../src/yumex.glade.h:33
 msgid "Undo all package selection"
@@ -811,7 +818,7 @@ msgstr "Ay_uda"
 
 #: ../src/yumex.glade.h:41
 msgid "_History"
-msgstr ""
+msgstr "_Histórico"
 
 #: ../src/yumex.glade.h:42
 msgid "_Installed"
@@ -847,3 +854,4 @@ msgstr "sin Chequeo de GPG"
 
 #~ msgid "The needed media was not found"
 #~ msgstr "El medio que se necesita no fue encontrado"
+
