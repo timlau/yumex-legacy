@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-05 08:39+0100\n"
-"PO-Revision-Date: 2009-11-11 11:37+0100\n"
+"PO-Revision-Date: 2009-12-07 18:50+0100\n"
 "Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
 "Language-Team: Dutch <nippur@fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
@@ -171,12 +171,12 @@ msgstr "Locale cache helemaal opgeschoond"
 
 #: ../src/yumexbackend/yum_server.py:1357
 msgid "Rebuild from deltarpms completted"
-msgstr "Opbouw met deltarpms is klaar"
+msgstr "Opbouwen met deltarpms is klaar"
 
 #: ../src/yumexbackend/yum_server.py:1359
 #, python-format
 msgid "Downloaded : %s ( %s )"
-msgstr "Dowdloaden : %s ( %s )"
+msgstr "Downloaden : %s ( %s )"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:73
@@ -208,7 +208,7 @@ msgstr "Bestand informatie downloaden van de %s repository"
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr "Verander log informatie downloaden van de %s repository"
+msgstr "Verander-log informatie downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
@@ -325,9 +325,9 @@ msgid "Size"
 msgstr "Grootte"
 
 #: ../src/yumexgui/dialogs.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Download Size : %s "
-msgstr "Dowdloaden : %s ( %s )"
+msgstr "Download grootte : %s"
 
 #: ../src/yumexgui/gui.py:248
 msgid "Package Description"
@@ -335,7 +335,7 @@ msgstr "Pakket beschrijving"
 
 #: ../src/yumexgui/gui.py:250
 msgid "Package Changelog"
-msgstr "Pakket verander log"
+msgstr "Pakket verander-log"
 
 #: ../src/yumexgui/gui.py:252
 msgid "Package Filelist"
@@ -381,7 +381,7 @@ msgstr "Beschrijving : %s\n"
 #: ../src/yumexgui/__init__.py:473
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr "Wil je %s opschonen in je locale yum cache"
+msgstr "Wil je %s opschonen in jouw locale yum cache"
 
 #: ../src/yumexgui/__init__.py:639
 msgid "Fatal Error"
@@ -446,11 +446,11 @@ msgstr "Selecteer actieve repositories"
 
 #: ../src/yumexgui/__init__.py:733
 msgid "History"
-msgstr ""
+msgstr "Geschiedenis"
 
 #: ../src/yumexgui/__init__.py:734
 msgid "Watch yum history"
-msgstr ""
+msgstr "Bekijk de yum geschiedenis"
 
 #: ../src/yumexgui/__init__.py:736
 msgid "Output"
@@ -569,30 +569,27 @@ msgid ""
 " check output page for details"
 msgstr ""
 "Transactie afgemaakt met fouten,\n"
-" controleer de ouput pagina voor details"
+" controleer de output pagina voor details"
 
 #: ../src/yumexgui/__init__.py:1013
 msgid "<unset>"
-msgstr ""
+msgstr "<unset>"
 
 #: ../src/yumexgui/__init__.py:1014
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 #: ../src/yumexgui/__init__.py:1037
-#, fuzzy
 msgid "Getting History Information"
-msgstr "Groep informatie ophalen"
+msgstr "Geschiedenis informatie ophalen"
 
 #: ../src/yumexgui/__init__.py:1039
-#, fuzzy
 msgid "Getting Latest History Information"
-msgstr "Pakket informatie ophalen"
+msgstr "De laatste geschiedenis informatie ophalen"
 
 #: ../src/yumexgui/__init__.py:1041
-#, fuzzy
 msgid "Getting All History Information"
-msgstr "Groep informatie ophalen"
+msgstr "Alle geschiedenis informatie ophalen"
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
 msgid "Package"
@@ -641,23 +638,23 @@ msgstr "Categorieën"
 
 #: ../src/yumexgui/views.py:914
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:915
 msgid "Login User"
-msgstr ""
+msgstr "Ingelogde gebruiker"
 
 #: ../src/yumexgui/views.py:916
 msgid "Data/Time"
-msgstr ""
+msgstr "Datum/tijd"
 
 #: ../src/yumexgui/views.py:917
 msgid "Action(s)"
-msgstr ""
+msgstr "Actie(s)"
 
 #: ../src/yumexgui/views.py:918
 msgid "Altered"
-msgstr ""
+msgstr "Veranderd"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -697,16 +694,15 @@ msgstr "Voer alle wachtende acties in de wachtrij uit"
 
 #: ../src/yumex.glade.h:12
 msgid "Get all History elements"
-msgstr ""
+msgstr "Haal alle geschiedenis elementen op"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
 msgstr "R_epositories"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "De transactie voorbereiden"
+msgstr "Een geschiedenis transactie opnieuw uitvoeren"
 
 #: ../src/yumex.glade.h:15
 msgid ""
@@ -725,19 +721,16 @@ msgid "Select all packages in current view"
 msgstr "Selecteer alle pakketten in het huidig overzicht"
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Categories"
-msgstr "Categorieën"
+msgstr "Laat categorieën zien"
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show Groups"
-msgstr "_Groepen"
+msgstr "Laat groepen zien"
 
 #: ../src/yumex.glade.h:21
-#, fuzzy
 msgid "Show all Packages"
-msgstr "Laat beschikbare pakketten zien"
+msgstr "Laat alle pakketten zien"
 
 #: ../src/yumex.glade.h:22
 msgid "Show available packages"
@@ -771,15 +764,15 @@ msgstr ""
 
 #: ../src/yumex.glade.h:31
 msgid "U_pdates"
-msgstr "Vernieuwingen"
+msgstr "_Vernieuwingen"
 
 #: ../src/yumex.glade.h:32
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "Maak een geschiedenis transactie ongedaan"
 
 #: ../src/yumex.glade.h:33
 msgid "Undo all package selection"
-msgstr "Maak alle pakketselecties ongedaan"
+msgstr "Maak alle pakket selecties ongedaan"
 
 #: ../src/yumex.glade.h:34
 msgid "Undo repository selection changes"
@@ -811,7 +804,7 @@ msgstr "_Hulp"
 
 #: ../src/yumex.glade.h:41
 msgid "_History"
-msgstr ""
+msgstr "_Geschiedenis"
 
 #: ../src/yumex.glade.h:42
 msgid "_Installed"
