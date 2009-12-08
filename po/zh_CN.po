@@ -1,25 +1,27 @@
-# Chinese (Simplified) translation of Yumex
-# Change by Japanese translation of Yumex
-# Copyright (C) 2005, 2006 Tim Lauridsen
-# This file is distributed under the same license as the Yumex package.
+# translation of yumex.nextgen.po to Simplified Chinese
 # Takanori MATSUURA <t.matsuu@gmail.com>, 2005-2009.
 # Takanori MATSUURA <t.matsuu@gmail.com>, 2009.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
 # cyrushmh <cyrushmh@vip.qq.com;cyrusyzgtt@gmail.com>, 2009.
+# Leah Liu <lliu@redhat.com>, 2009.
+# Chinese (Simplified) translation of Yumex
+# Change by Japanese translation of Yumex
+# Copyright (C) 2005, 2006 Tim Lauridsen
+# This file is distributed under the same license as the Yumex package.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex 2.9.0\n"
+"Project-Id-Version: yumex.nextgen\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-05 08:39+0100\n"
-"PO-Revision-Date: 2009-10-02 00:51+0800\n"
-"Last-Translator: cyrushmh <cyrushmh@vip.qq.com;cyrusyzgtt@gmail.com>\n"
-"Language-Team: cvsl10n\n"
+"PO-Revision-Date: 2009-12-08 09:35+1000\n"
+"Last-Translator: Leah Liu <lliu@redhat.com>\n"
+"Language-Team: Simplified Chinese <zh@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Virtaal 0.4.0\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -149,33 +151,32 @@ msgstr "尝试其它镜像。"
 #: ../src/yumexbackend/yum_server.py:916
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr ""
+msgstr "已经永久启用 %s 程序库"
 
 #: ../src/yumexbackend/yum_server.py:919
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr ""
+msgstr "已经永久禁用 %s 程序库"
 
 #: ../src/yumexbackend/yum_server.py:966
 msgid "Cleaned metadata from local cache"
-msgstr ""
+msgstr "在本地缓存中清除元数据"
 
 #: ../src/yumexbackend/yum_server.py:969
 msgid "Cleaned dbcache"
-msgstr ""
+msgstr "清除 dbcache"
 
 #: ../src/yumexbackend/yum_server.py:972
-#, fuzzy
 msgid "Cleaned packages from local cache"
-msgstr "在启动加载程序包"
+msgstr "在本地缓存中清除软件包"
 
 #: ../src/yumexbackend/yum_server.py:974
 msgid "Cleaned everything from local cache"
-msgstr ""
+msgstr "在本地缓存中清除所有信息"
 
 #: ../src/yumexbackend/yum_server.py:1357
 msgid "Rebuild from deltarpms completted"
-msgstr "从deltarpms重建完成"
+msgstr "从 deltarpms 重建完成"
 
 #: ../src/yumexbackend/yum_server.py:1359
 #, python-format
@@ -329,9 +330,9 @@ msgid "Size"
 msgstr "大小"
 
 #: ../src/yumexgui/dialogs.py:573
-#, fuzzy, python-format
+#, python-format
 msgid "Download Size : %s "
-msgstr "下载: %s (%s)"
+msgstr "下载: %s "
 
 #: ../src/yumexgui/gui.py:248
 msgid "Package Description"
@@ -385,7 +386,7 @@ msgstr "描述: %s\n"
 #: ../src/yumexgui/__init__.py:473
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr ""
+msgstr "您要从 yum 缓存中清除 %s 吗？"
 
 #: ../src/yumexgui/__init__.py:639
 msgid "Fatal Error"
@@ -406,19 +407,19 @@ msgstr "从yum信息后端"
 
 #: ../src/yumexgui/__init__.py:648
 msgid "Error in repository setup"
-msgstr ""
+msgstr "程序库设置错误"
 
 #: ../src/yumexgui/__init__.py:651
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgstr "您可以尝试在命令行中启动‘yumex -n’\n"
 
 #: ../src/yumexgui/__init__.py:652
 msgid "and deseleting the repositories causing problems\n"
-msgstr ""
+msgstr "并取消对导致问题的程序库的选择\n"
 
 #: ../src/yumexgui/__init__.py:653
 msgid "and try again.\n"
-msgstr ""
+msgstr "然后重试。\n"
 
 #: ../src/yumexgui/__init__.py:657
 msgid "Unknown Error : "
@@ -450,11 +451,11 @@ msgstr "选择一个有效的仓库"
 
 #: ../src/yumexgui/__init__.py:733
 msgid "History"
-msgstr ""
+msgstr "历史记录"
 
 #: ../src/yumexgui/__init__.py:734
 msgid "Watch yum history"
-msgstr ""
+msgstr "观察 yum 历史记录"
 
 #: ../src/yumexgui/__init__.py:736
 msgid "Output"
@@ -486,38 +487,35 @@ msgstr "连接到网络"
 
 #: ../src/yumexgui/__init__.py:817
 msgid "Enable Permanently"
-msgstr ""
+msgstr "永久启用"
 
 #: ../src/yumexgui/__init__.py:821
 msgid "Disable Permanently"
-msgstr ""
+msgstr "永久禁用"
 
 #: ../src/yumexgui/__init__.py:824
 msgid "Clean Metadata"
-msgstr ""
+msgstr "清除元数据"
 
 #: ../src/yumexgui/__init__.py:825
-#, fuzzy
 msgid "Clean Packages"
-msgstr "套件"
+msgstr "清除软件包"
 
 #: ../src/yumexgui/__init__.py:826
 msgid "Clean DbCache"
-msgstr ""
+msgstr "清除 DbCache"
 
 #: ../src/yumexgui/__init__.py:827
 msgid "Clean All"
-msgstr ""
+msgstr "清除所有"
 
 #: ../src/yumexgui/__init__.py:833
-#, fuzzy
 msgid "By Repositories"
-msgstr "按仓库"
+msgstr "根据程序库"
 
 #: ../src/yumexgui/__init__.py:834
-#, fuzzy
 msgid "By Size"
-msgstr "按大小"
+msgstr "根据大小"
 
 #: ../src/yumexgui/__init__.py:857 ../src/yumexgui/__init__.py:858
 msgid "Getting Group information"
@@ -580,26 +578,23 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:1013
 msgid "<unset>"
-msgstr ""
+msgstr "<unset>"
 
 #: ../src/yumexgui/__init__.py:1014
 msgid "System"
-msgstr ""
+msgstr "系统"
 
 #: ../src/yumexgui/__init__.py:1037
-#, fuzzy
 msgid "Getting History Information"
-msgstr "获取组信息"
+msgstr "获取历史记录信息"
 
 #: ../src/yumexgui/__init__.py:1039
-#, fuzzy
 msgid "Getting Latest History Information"
-msgstr "获取软件包信息"
+msgstr "获取最新历史记录信息"
 
 #: ../src/yumexgui/__init__.py:1041
-#, fuzzy
 msgid "Getting All History Information"
-msgstr "获取组信息"
+msgstr "获取所有历史记录信息"
 
 #: ../src/yumexgui/views.py:158 ../src/yumexgui/views.py:181
 msgid "Package"
@@ -648,23 +643,23 @@ msgstr "分类"
 
 #: ../src/yumexgui/views.py:914
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:915
 msgid "Login User"
-msgstr ""
+msgstr "登录用户"
 
 #: ../src/yumexgui/views.py:916
 msgid "Data/Time"
-msgstr ""
+msgstr "日期/时间"
 
 #: ../src/yumexgui/views.py:917
 msgid "Action(s)"
-msgstr ""
+msgstr "动作"
 
 #: ../src/yumexgui/views.py:918
 msgid "Altered"
-msgstr ""
+msgstr "更改"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -704,16 +699,15 @@ msgstr "运行所有的行动是在队列中等待"
 
 #: ../src/yumex.glade.h:12
 msgid "Get all History elements"
-msgstr ""
+msgstr "获取所有历史记录要素"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
-msgstr "库(_E)"
+msgstr "程序库（_e）"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "准备处理"
+msgstr "重新进行历史记录处理"
 
 #: ../src/yumex.glade.h:15
 msgid ""
@@ -730,19 +724,16 @@ msgid "Select all packages in current view"
 msgstr "选择所有包装当前视图"
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Categories"
-msgstr "分类"
+msgstr "显示分类"
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show Groups"
-msgstr "团队(_G)"
+msgstr "显示组群"
 
 #: ../src/yumex.glade.h:21
-#, fuzzy
 msgid "Show all Packages"
-msgstr "显示可用的软件包"
+msgstr "显示所有软件包"
 
 #: ../src/yumex.glade.h:22
 msgid "Show available packages"
@@ -779,7 +770,7 @@ msgstr "更新(_P)"
 
 #: ../src/yumex.glade.h:32
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "撤销历史记录处理"
 
 #: ../src/yumex.glade.h:33
 msgid "Undo all package selection"
@@ -815,7 +806,7 @@ msgstr "帮助(_H)"
 
 #: ../src/yumex.glade.h:41
 msgid "_History"
-msgstr ""
+msgstr "历史记录（_H）"
 
 #: ../src/yumex.glade.h:42
 msgid "_Installed"
@@ -849,5 +840,3 @@ msgstr "表示(_V)"
 msgid "no GPG Check"
 msgstr "没有GPG检查"
 
-#~ msgid "The needed media was not found"
-#~ msgstr "所需要的媒介没有被发现"
