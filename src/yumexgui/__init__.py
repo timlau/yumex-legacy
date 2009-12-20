@@ -27,7 +27,7 @@ import sys
 import gtk
 import pango
 import pwd
-import time
+#import time
 
 from datetime import date
 
@@ -711,10 +711,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.ui.About.set_version(const.__yumex_version__)
 
         # Calc font constants based on default font 
-        const.DEFAULT_FONT = self.window.get_pango_context().get_font_description()
-        const.XSMALL_FONT.set_size(const.DEFAULT_FONT.get_size() - 2 * 1024)
-        const.SMALL_FONT.set_size(const.DEFAULT_FONT.get_size() - 1 * 1024)
-        const.BIG_FONT.set_size(const.DEFAULT_FONT.get_size() + 4 * 1024)
+        DEFAULT_FONT = self.window.get_pango_context().get_font_description()
+        const.XSMALL_FONT.set_size(DEFAULT_FONT.get_size() - 2 * 1024)
+        const.SMALL_FONT.set_size(DEFAULT_FONT.get_size() - 1 * 1024)
+        const.BIG_FONT.set_size(DEFAULT_FONT.get_size() + 4 * 1024)
         font_size = const.SMALL_FONT.get_size() / 1024
         # Setup Output console
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)

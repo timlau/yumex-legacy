@@ -209,7 +209,7 @@ class YumClient:
     def _send_command(self, cmd, args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd, "\t".join(args))
-        self.debug('Sending command: %s args: %s' % (cmd, str(args)))
+        debug_msg = 'Sending command: %s args: %s' % (cmd, str(args))
         timeouts = 0
         self.sending = True
         self.end_state = None        
@@ -224,6 +224,7 @@ class YumClient:
             except pexpect.TIMEOUT, e:
                 self._timeout()
                 continue
+        self.debug(debug_msg)
         self.child.sendline(line)
         self.sending = False
         return True

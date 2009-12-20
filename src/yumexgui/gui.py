@@ -24,6 +24,7 @@
 
 import gtk
 import gtk.glade
+import gtk.gdk
 from datetime import date
 from yumexbase.constants import *
 from yumexbackend.yum_backend import YumexPackageYum

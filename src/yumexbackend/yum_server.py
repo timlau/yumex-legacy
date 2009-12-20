@@ -27,6 +27,7 @@ import yum
 import traceback
 from optparse import OptionParser
 import types
+import time
 
 from yum.packageSack import packagesNewestByNameArch
 from yum.update_md import UpdateMetadata
@@ -459,6 +460,7 @@ class YumServer(yum.YumBase):
         @param narrow:
         '''
         if narrow:
+            print "getting packages - %s "% narrow
             ygh = self.doPackageLists(pkgnarrow=narrow)
             if narrow == "all":
                 updates = self.doPackageLists(pkgnarrow='updates').updates
