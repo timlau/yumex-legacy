@@ -252,6 +252,7 @@ class Progress(YumexProgressBase):
         self.tasks.add_task('test-trans', _("Running RPM Test Transaction"))
         self.tasks.add_task('run-trans', _("Running RPM Transaction"))
         self.tasks.hide()
+        self.show_cancel(False) # Hide the Cancel button
         self.default_w = None
         self.default_h = None
         self.ui.progressImage.set_from_file(ICON_SPINNER)
@@ -285,13 +286,23 @@ class Progress(YumexProgressBase):
         '''
         Show the tasks in the progress dialog
         '''
+        #TODO : Make it possible to Cancel, before showing a cancel button
+        #self.show_cancel(True)
         self.tasks.show()
 
     def hide_tasks(self):
         '''
         Hide the tasks in the progress dialog
         '''
+        self.show_cancel(False)
         self.tasks.hide()
+
+    def show_cancel(self,state=True):
+        if state:
+            self.ui.progressAction.show()
+        else:
+            self.ui.progressAction.hide()
+
         
     def set_title(self, text):
         '''

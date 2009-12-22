@@ -147,6 +147,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_pulse(False)
         elif state == 'gpg-check':
             progress.set_pulse(True)
+            progress.show_cancel(False) # Don't allow Cancel any more
             progress.set_header(_("Checking Package GPG Signatures"))
             progress.tasks.set_extra_label('download', "")
             progress.tasks.next()
