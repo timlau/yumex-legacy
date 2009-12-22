@@ -371,7 +371,6 @@ class PackageInfo(SelectorBase):
         '''
         show the package filelist
         '''
-        i = 0
         files = self.pkg.filelist
         progress = self.frontend.get_progress()
         progress.hide()     

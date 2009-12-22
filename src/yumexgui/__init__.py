@@ -931,7 +931,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 self.info("Transaction completed successfully")
                 progress.hide()        
                 msg = _("Transaction completed successfully")
-                msg += _("\n\nDo you want to exit Yum Extender")
+                msg += _("\n\nDo you want to exit Yum Extender ?")
                 rc = questionDialog(self.window, msg) # Ask if the user want to Quit
                 if rc:
                     self.main_quit() # Quit Yum Extender
