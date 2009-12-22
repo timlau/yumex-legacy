@@ -967,21 +967,26 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Reset current data and restart the backend 
         @param repos: a list of enabled repositories to use, None = use the current ones
         '''
-        if not repos:
-            repos = self.current_repos
-        options = self._get_options()
-        self.backend.reset()                    # close the backend
-        self.package_cache.reset()              # clear the package cache
-        self.queue.queue.clear()                # clear the pending action queue
-        self.queue.refresh()                    # clear the pending action queue
-        self.populate_package_cache(repos=repos)           # repopulate the package cache
-        self.setup_groups()
-        self.setup_history(limit=self.settings.history_limit)
-        self.notebook.set_active("package")     # show the package page
-        self.ui.packageSearch.set_text('')      # Reset search entry
-        self.ui.packageFilterBox.show()         # Show the filter selector
-        self._set_options(options)
-        self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
+        try:
+            if not repos:
+                repos = self.current_repos
+            options = self._get_options()
+            self.backend.reset()                    # close the backend
+            self.package_cache.reset()              # clear the package cache
+            self.queue.queue.clear()                # clear the pending action queue
+            self.queue.refresh()                    # clear the pending action queue
+            self.populate_package_cache(repos=repos)           # repopulate the package cache
+            self.setup_groups()
+            self.setup_history(limit=self.settings.history_limit)
+            self.notebook.set_active("package")     # show the package page
+            self.ui.packageSearch.set_text('')      # Reset search entry
+            self.ui.packageFilterBox.show()         # Show the filter selector
+            self._set_options(options)
+            self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
+        except YumexBackendFatalError, e:
+            progress = self.get_progress()
+            progress.hide()
+            self.handle_error(e.err, e.msg)
 
 # History helpers from yum output.py
 
