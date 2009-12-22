@@ -289,7 +289,8 @@ class YumexHandlers(Controller):
             keys = self.ui.packageSearch.get_text().split(' ')
             pkgs = self.backend.search(keys, filters)
             self.ui.packageFilterBox.hide()
-            self._last_filter.set_active(True)            
+            if self._last_filter:
+                self._last_filter.set_active(True)            
             self.packages.add_packages(pkgs)
             normalCursor(self.window)
 
@@ -993,8 +994,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 st = 'Install'
             if st == 'Dep-Install': # Mask these at the higher levels
                 st = 'Install'
-            if st == 'Obsoleted': #  This is just a UI tweak, as we can't have
-                                  # just one but we need to count them all.
+            if st == 'Obsoleted': 
                 st = 'Obsoleting'
             if st in ('Install', 'Update', 'Erase', 'Reinstall', 'Downgrade',
                       'Obsoleting'):
@@ -1006,6 +1006,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
         # So empty transactions work, although that "shouldn't" really happen
         return count, "".join(list(actions))
+
 
     def _pwd_ui_username(self, uid, limit=None):
         # loginuid is set to -1 on init.
