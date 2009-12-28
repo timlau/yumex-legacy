@@ -445,7 +445,13 @@ class YumClient:
     def _close(self):        
         ''' terminate the child server process '''
         if self.child:
-            self.child.close(force = True)
+            if self.child.isalive():
+                try:
+                    self.child.close(force = True)
+                except pexpect.ExceptionPexpect,e:
+                    raise YumexBackendFatalError("backend-error", str(e))
+            else:
+                self.info("backend was not running")
             self.child = None
         
     def get_packages(self, pkg_filter):    
