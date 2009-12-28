@@ -30,8 +30,8 @@ if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy
 else:
     from yumexbackend.yum_backend import YumexBackendYum as backend 
 
-if os.getuid() == 0:
-    print "Don't run yumex as root"
+if os.getuid() == 0 and not '--root' in sys.argv:
+    print "Don't run yumex as root it is unsafe (Use --root to force)"
     sys.exit(1)
 
 print "running"

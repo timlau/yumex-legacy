@@ -161,12 +161,20 @@ class YumClient:
         if not self.child:
             prefix = ""
             args = []
-            if MAIN_PATH == '/usr/share/yumex': # Non root
-                cmd = '/usr/bin/yumex-yum-backend'
+            if MAIN_PATH == '/usr/share/yumex': # Bin package
+                if os.getuid() == 0: # Root
+                    self.info('Client is running in rootmode, starting backend directly')
+                    cmd = '/usr/share/yumex/yumex-yum-backend'
+                else: # Non root run using console helper wrapper
+                    cmd = '/usr/bin/yumex-yum-backend'
             else:
-                self.info('Running backend with sudo (%s)' % (MAIN_PATH + "/yum_childtask.py"))
-                cmd ='/usr/bin/sudo' 
-                args.append(MAIN_PATH + "/yum_childtask.py")
+                if os.getuid() != 0: # Non Root
+                    self.info('Running backend with sudo (%s)' % (MAIN_PATH + "/yum_childtask.py"))
+                    cmd ='/usr/bin/sudo' 
+                    args.append(MAIN_PATH + "/yum_childtask.py")
+                else: # root
+                    self.info('ROOTMODE: Running backend (%s)' % (MAIN_PATH + "/yum_childtask.py"))
+                    cmd = MAIN_PATH + "/yum_childtask.py"
             args.append(str(debuglevel)) # debuglevel
             args.append(str(plugins))    # plugins 
             args.append(str(offline))    # is offline

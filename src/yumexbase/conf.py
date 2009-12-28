@@ -87,6 +87,9 @@ class YumexOptions:
 
     def setupParser(self):
         parser = self._optparser
+        parser.add_option("", "--root",
+                        action="store_true", dest="root", default=False,
+                        help="Run as root")
         parser.add_option("-d", "--debug",
                         action="store_true", dest="debug", default=self.settings.debug,
                         help="Debug mode")
