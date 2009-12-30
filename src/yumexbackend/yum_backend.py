@@ -242,6 +242,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def setup(self, offline = False,repos=None):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
+            self.frontend.debug("yum backend already running")
             return
         self.frontend.info(_("Starting yum child process"))
         if repos:
@@ -259,8 +260,9 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
-        self.frontend.info(_("Stopping yum child process"))
-        YumClient.reset(self)
+        rc = YumClient.reset(self)
+        if rc:
+            self.frontend.info(_("yum backend process is ended"))
 
     def get_packages(self, pkg_filter):
         ''' 

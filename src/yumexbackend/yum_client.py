@@ -21,6 +21,7 @@
 '''
 
 import sys
+import time
 
 import pexpect
 
@@ -129,6 +130,11 @@ class YumClient:
         """ fatal backend error """
         err = args[0]
         msg = unpack(args[1])
+        lines = self.child.readlines()
+        for line in lines:
+            cmd, args = self._parse_command(line)
+            if cmd:
+                self._check_for_message(cmd, args)
         raise YumexBackendFatalError(err, msg)
 
     def _timeout(self):
@@ -195,21 +201,26 @@ class YumClient:
 
     def reset(self):
         """ reset the client"""
-        if not self.child or not self.child.isalive():
+        if not self.child: # yum backend not running
             return True
-        cnt = 0
-        while self.waiting and cnt < 5:
-            self.debug("Trying to close the yum backend")
-            time.sleep(1)
-            cnt += 1
-        if cnt < 10:
-            rc = self._send_command('exit', [])
-            if rc:
-                cmd, args = self._readline()
-                self._close()
-                return True
+        if not self.child.isalive():
+            del self.child
+            self.child = None
+            return True
+        else:
+            cnt = 0
+            while self.waiting and cnt < 5:
+                self.debug("Trying to close the yum backend")
+                time.sleep(1)
+                cnt += 1
+            if cnt < 10:
+                rc = self._send_command('exit', [])
+                if rc:
+                    cmd, args = self._readline()
+                    self._close()
+                    return True
         # The yum backend did not ended nicely               
-        self.error("Yum backend did not close nicely in time")
+        self.error(_("Yum backend did not close nicely in time"))
         self._close()
         return False
 
@@ -447,12 +458,15 @@ class YumClient:
         if self.child:
             if self.child.isalive():
                 try:
+                    time.sleep(2) # Waiting a while to make sure that backend is closed
+                    self.debug("Forcing backend to close")
                     self.child.close(force = True)
                 except pexpect.ExceptionPexpect,e:
+                    del self.child
+                    self.child = None
                     raise YumexBackendFatalError("backend-error", str(e))
-            else:
-                self.info("backend was not running")
-            self.child = None
+            del self.child
+        self.child = None
         
     def get_packages(self, pkg_filter):    
         ''' get a list of packages based on pkg_filter '''

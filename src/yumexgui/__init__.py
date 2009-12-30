@@ -31,7 +31,7 @@ import pwd
 
 from datetime import date
 
-from yumexgui.gui import Notebook, PackageCache, Notebook, PackageInfo
+from yumexgui.gui import Notebook, PackageCache, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog
 from yumexbase.network import NetworkCheckNetworkManager                             
@@ -442,7 +442,10 @@ class YumexHandlers(Controller):
         '''
         repos = self.repos.get_selected()
         self.current_repos = repos
-        self.reload(repos)
+        print "DEBUG","RELOAD START"
+        rc = self.reload(repos)
+        print "DEBUG","RELOAD END",rc
+        return rc
         
     def on_repoUndo_clicked(self, widget=None, event=None):
         '''
@@ -637,6 +640,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         @param err: error type
         @param msg: error message
         '''
+        quit = True
         title = _("Fatal Error")
         if err == 'lock-error': # Cant get the yum lock
             text = _("Can't start the yum backend")
@@ -645,7 +649,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             longtext += _('Message from yum backend:')            
             longtext += '\n\n'            
             longtext += msg            
-        if err == "repo-error":
+        elif err == "repo-error":
             text = _("Error in repository setup")
             longtext = msg
             longtext += '\n\n'
@@ -654,22 +658,23 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             longtext += _('and try again.\n')
             progress = self.get_progress()
             progress.hide()
-        if err == "backend-error":
-            text= _('Fatal Error in backend')
+            quit = False
+        elif err == "backend-error":
+            text= _('Fatal Error in backend restart')
             longtext = _("Backend could not be closed")
             longtext += '\n\n'
             longtext += msg
         else:
-            text = _("Unknown Error : ") + msg
-            longtext = ""
-            
+            text = _("Fatal Error : ") + err
+            longtext = msg
         # Show error dialog    
         dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
         dialog.run()
         dialog.destroy()
         self.error(text)
         self.error(longtext)
-        self.main_quit()
+        if quit:
+            self.main_quit()
                     
     def _add_key_to_menu(self, widget, key, mask=gtk.gdk.CONTROL_MASK):
         widget.add_accelerator("activate", self.key_bindings,
@@ -973,6 +978,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         @param repos: a list of enabled repositories to use, None = use the current ones
         '''
         try:
+            self.notebook.set_active("output")
             if not repos:
                 repos = self.current_repos
             options = self._get_options()
@@ -988,10 +994,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.ui.packageFilterBox.show()         # Show the filter selector
             self._set_options(options)
             self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
+            return True
         except YumexBackendFatalError, e:
             progress = self.get_progress()
             progress.hide()
             self.handle_error(e.err, e.msg)
+            return False
 
 # History helpers from yum output.py
 
