@@ -34,6 +34,8 @@ from yum.update_md import UpdateMetadata
 
 from yumexbase.constants import *
 from yumexbackend import YumHistoryTransaction, YumHistoryPackage,  pack, unpack
+from yumexbase import YumexBackendFatalError
+
 
 from urlgrabber.progress import format_number
 import yum.logginglevels as logginglevels
@@ -386,9 +388,9 @@ class YumServer(yum.YumBase):
 
     def fatal(self, err, msg):
         ''' write an fatal message '''
-        msg = pack(msg)
-        self.write(":fatal\t%s\t%s" % (err, msg))
-        sys.exit(1)
+        pmsg = pack(msg)
+        self.write(":fatal\t%s\t%s" % (err, pmsg))
+        raise YumexBackendFatalError(err,msg)
         
     def gpg_check(self, po, userid, hexkeyid):
         ''' write an fatal message '''
@@ -1096,6 +1098,9 @@ class YumServer(yum.YumBase):
                 self.parse_command(args[0], args[1:])
                 t = time.time() - ts
                 self.debug("Yum Child Task: Command %s took %.2f s to complete" % (args[0], t))
+        except YumexBackendFatalError,e:
+            self.ended(True)
+            self.quit()
         except:
             errmsg = traceback.format_exc()
             #print errmsg

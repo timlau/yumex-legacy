@@ -134,9 +134,8 @@ class YumClient:
         lines = self.child.readlines()
         for line in lines:
             cmd, args = self._parse_command(line)
-            if cmd and cmd in [':info',':debug',':yum', ':warning', ':error']:
+            if cmd:
                 self._check_for_message(cmd, args)
-        self._close()
         raise YumexBackendFatalError(err, msg)
 
     def _timeout(self):
@@ -328,6 +327,8 @@ class YumClient:
         '''
         
         '''
+        if not self.child.isalive():
+            return False
         cnt = 0
         while True:
             cmd, args = self._readline()

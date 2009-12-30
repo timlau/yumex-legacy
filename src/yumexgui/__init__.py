@@ -658,7 +658,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             longtext += _('and try again.\n')
             progress = self.get_progress()
             progress.hide()
-            # quit = False
+            #quit = False
         elif err == "backend-error":
             text= _('Fatal Error in backend restart')
             longtext = _("Backend could not be closed")
