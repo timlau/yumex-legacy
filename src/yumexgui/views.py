@@ -54,7 +54,8 @@ class SelectionView:
         cell = gtk.CellRendererText()    # Size Column
         column = gtk.TreeViewColumn(hdr, cell, text=colno)
         column.set_resizable(resize)
-        self.view.append_column(column)        
+        self.view.append_column(column)      
+        return column  
 
     def create_text_column(self, hdr, prop, size, sortcol=None):
         """ 
@@ -101,7 +102,8 @@ class SelectionView:
         column1.set_resizable(True)
         column1.set_sort_column_id(-1)            
         self.view.append_column(column1)
-        cell1.connect("toggled", self.on_toggled)     
+        cell1.connect("toggled", self.on_toggled)   
+        return column1
         
     def get_data_text(self, column, cell, model, iterator, prop):
         '''
@@ -526,6 +528,8 @@ class YumexRepoView(SelectionView):
         self.view.modify_font(const.SMALL_FONT)        
         self.headers = [_('Repository'), _('Filename')]
         self.store = self.setup_view()
+        self.state = 'normal'
+        self._last_selected = []
     
     
     def on_toggled(self, widget, path):
@@ -533,13 +537,31 @@ class YumexRepoView(SelectionView):
         iterator = self.store.get_iter(path)
         state = self.store.get_value(iterator, 0)
         self.store.set_value(iterator, 0, not state)
+        
+    def on_section_header_clicked(self, widget):
+        """  Selection column header clicked"""
+        if self.state == 'normal': # deselect all
+            self._last_selected = self.get_selected()
+            self.deselect_all()
+            self.state = 'deselected'
+        elif self.state == 'deselected': # select all
+            self.state = 'selected'
+            self.select_all()
+        elif self.state == 'selected': # select previous selected
+            self.state = 'normal'
+            self.select_by_keys(self._last_selected)
+            self._last_selected = []
+            
                      
     def setup_view(self):
         """ Create models and columns for the Repo TextView  """
         store = gtk.ListStore('gboolean', gobject.TYPE_STRING, gobject.TYPE_STRING, 'gboolean')
         self.view.set_model(store)
         # Setup Selection Column
-        self.create_selection_column_num(0) 
+        col = self.create_selection_column_num(0) 
+        col.set_clickable(True)
+        col.connect('clicked',self.on_section_header_clicked)
+        
         # Setup resent column
         cell2 = gtk.CellRendererPixbuf()    # gpgcheck
         cell2.set_property('stock-id', gtk.STOCK_DIALOG_AUTHENTICATION)
@@ -549,7 +571,6 @@ class YumexRepoView(SelectionView):
         column2.set_fixed_width(20)
         column2.set_sort_column_id(-1)            
         self.view.append_column(column2)
-        column2.set_clickable(True)
                
         # Setup reponame & repofile column's
         self.create_text_column_num(_('Repository'), 1)
