@@ -130,11 +130,13 @@ class YumClient:
         """ fatal backend error """
         err = args[0]
         msg = unpack(args[1])
+        # flush messages from child
         lines = self.child.readlines()
         for line in lines:
             cmd, args = self._parse_command(line)
-            if cmd:
+            if cmd and cmd in [':info',':debug',':yum', ':warning', ':error']:
                 self._check_for_message(cmd, args)
+        self._close()
         raise YumexBackendFatalError(err, msg)
 
     def _timeout(self):
