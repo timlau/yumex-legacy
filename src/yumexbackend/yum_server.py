@@ -105,16 +105,28 @@ class YumServer(yum.YumBase):
     
     Commands: (commands and parameters are separated with '\t' )
         get-packages <pkg-filter>            : get a list of packages based on a filter
+        get-packages-size                    : 
+        get-packages-repo                    : 
         get-attribute <pkg_id> <attribute>   : get an attribute of an package
+        get-changelog                        : 
+        update-info                          : 
+        set-option                           : 
         add-transaction <pkg_id> <action>    : add a po to the transaction
         remove-transaction <pkg_id>          : add a po to the transaction
         list-transaction                     : list po's in transaction
         build-transaction                    : build the transaction (resolve dependencies)
         run-transaction                      : run the transaction
         get-groups                           : Get the groups
+        get-group-packages                   : 
         get-repos                            : Get the repositories
         enable-repo                          : enable/disable a repository
+        enable-repo-persistent               : 
         search                               : search
+        clean                                : 
+        get-history                          : 
+        get-history-packages                 : 
+        history-undo                         : 
+        history-redo                         : 
     
         Parameters:
         <pkg-filter> : all,installed,available,updates,obsoletes

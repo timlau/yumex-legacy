@@ -1,4 +1,4 @@
- #!/usr/bin/python -tt
+#!/usr/bin/python -tt
 # -*- coding: iso-8859-1 -*-
 #    Yum Exteder (yumex) - A GUI for yum
 #    Copyright (C) 2008 Tim Lauridsen < tim<AT>yum-extender<DOT>org >
