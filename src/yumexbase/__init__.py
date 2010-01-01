@@ -107,7 +107,7 @@ class YumexFrontendBase:
         ''' The Progress is updated'''
         raise NotImplementedError()
 
-    def confirm_transaction(self, transaction):
+    def confirm_transaction(self, transaction, size):
         ''' confirm the current transaction'''
         raise NotImplementedError()
 

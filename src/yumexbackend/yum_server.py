@@ -651,9 +651,7 @@ class YumServer(yum.YumBase):
 
     def _get_download_size(self):
         total = 0L
-        dlpkgs = map(lambda x: x.po, filter(lambda txmbr:
-                                            txmbr.ts_state in ("i", "u"),
-                                            self.tsInfo.getMembers()))
+        dlpkgs = [x.po for x in self.tsInfo.getMembers() if x.ts_state in ("i", "u")]
         for po in dlpkgs:
             total += po.size
         return format_number(total)    
@@ -959,7 +957,7 @@ class YumServer(yum.YumBase):
             for repo in self.repos.listEnabled():
                 try:
                     self._updateMetadata.add(repo)
-                except Exception, e:
+                except:
                     pass # No updateinfo.xml.gz in repo
         return self._updateMetadata
 

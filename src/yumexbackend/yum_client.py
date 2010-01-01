@@ -27,7 +27,7 @@ import pexpect
 
 from yumexbase.constants import *
 from yumexbase import YumexBackendFatalError
-from yumexbackend import YumHistoryTransaction, YumHistoryPackage, YumPackage,  pack, unpack
+from yumexbackend import  YumPackage,  pack, unpack
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -386,8 +386,6 @@ class YumClient:
                 break
             if cmd == None: # readline is locked:
                 break
-            elif not cmd == result_cmd: 
-                self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
             elif cmd == ':histpkg':
                 po = unpack(args[0])
                 data.append(po)
