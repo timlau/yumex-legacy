@@ -1,3 +1,144 @@
+2010-01-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.5
+
+2010-01-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/__init__.py: fixed pylint issues
+
+2010-01-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/Makefile, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py: updated doc strings
+
+2009-12-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/views.py: implement all repo deselection/selection by
+	clicking on selection column header
+
+2009-12-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: More sane fatal error handling
+
+2009-12-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexgui/__init__.py: Exit on
+	repo error
+
+2009-12-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexgui/__init__.py: Better error handling
+
+2009-12-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexgui/__init__.py: Added
+	better error handling on backend closure problems
+
+2009-12-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.py, src/yumexbackend/yum_client.py,
+	src/yumexbase/conf.py: added root mode (--root) to run yumex GUI as
+	root
+
+2009-12-22  lewis41 <lewis41@fedoraproject.org>
+
+	* po/it.po: Sending translation for po/it.po
+
+2009-12-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/yum_backend.py,
+	src/yumexgui/dialogs.py: Hide Cancel in progress dialog
+
+2009-12-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: remove double imports
+
+2009-12-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: handle YumexBackendFatalError from repo
+	page , refresh button clicked (rhbz #541523)
+
+2009-12-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/gui.py: Added missing ? :)
+	(rhbz # 539368)
+
+2009-12-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: make sure last filter has a value before
+	make it active (RHBZ # 539898)
+
+2009-12-22  lewis41 <lewis41@fedoraproject.org>
+
+	* po/it_IT.po: Sending translation for po/it_IT.po
+
+2009-12-20  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py, src/yumexgui/gui.py: better debugging
+	output
+
+2009-12-15  mrtom <mrtom@fedoraproject.org>
+
+	* po/fr.po: Sending translation for po/fr.po
+
+2009-12-08  leahliu <leahliu@fedoraproject.org>
+
+	* po/zh_CN.po: Sending translation for Chinese (Simplified)
+
+2009-12-07  warrink <warrink@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2009-12-06  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2009-12-05  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2009-12-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/es.po, po/ja.po, po/nl.po, po/pl.po,
+	po/ru.po, po/sr.po, po/sr@latin.po, po/yumex.pot, po/zh_CN.po: 
+	refresh translation strings
+
+2009-12-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbase/conf.py, src/yumexgui/__init__.py: 
+	Only load a limmited number of history elements to speed up things.
+	Add a refresh button on history page to load all history elements.
+	Add gui progress to history element loading
+
+2009-11-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: add a check for empty changelog (bz #540422)
+
+
+2009-11-11  nippur <nippur@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2009-11-11  nippur <nippur@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2009-11-08  kmilos <kmilos@fedoraproject.org>
+
+	* po/sr@latin.po: Sending translation for po/sr@latin.po
+
+2009-11-08  kmilos <kmilos@fedoraproject.org>
+
+	* po/sr.po: Sending translation for po/sr.po
+
+2009-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2009-11-07  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.4
