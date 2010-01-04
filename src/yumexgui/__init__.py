@@ -230,13 +230,6 @@ class YumexHandlers(Controller):
         #okDialog(self.window, "This function has not been implemented yet")
         self.debug("Help -> About")
         
-    def on_About_url(self, widget=None, event=None):
-        '''
-        About Dialog Url handler
-        @param widget:
-        '''
-        # dont need to do any thing
-        pass
         
 # Options
 
@@ -718,7 +711,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         
         
         #Setup About dialog
-        gtk.about_dialog_set_url_hook(self.on_About_url) 
         self.ui.About.set_version(const.__yumex_version__)
 
         # Calc font constants based on default font 
