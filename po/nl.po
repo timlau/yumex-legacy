@@ -5,17 +5,18 @@
 #
 # Geert Warrink <geert.warrink@onsnet.nu>, 2009.
 # R.E. van der Luit <nippur@fedoraproject.org>, 2009.
+# Richard van der luit <nippur@fedoraproject.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-05 08:39+0100\n"
-"PO-Revision-Date: 2009-12-07 18:50+0100\n"
-"Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
-"Language-Team: Dutch <nippur@fedoraproject.org>\n"
+"PO-Revision-Date: 2010-01-06 22:02+0100\n"
+"Last-Translator: Richard van der luit <nippur@fedoraproject.org>\n"
+"Language-Team: nl <nippur@fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding:  X-Generator: Lokalize 1.0\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. if the progress is hidden, then show it at set the labels.
@@ -260,7 +261,7 @@ msgstr "RPM transactie uitvoeren"
 
 #: ../src/yumexgui/dialogs.py:332
 msgid "Working !!!"
-msgstr "Bezig !!!"
+msgstr "Bezig....."
 
 #: ../src/yumexgui/dialogs.py:402
 msgid "Preferences"
