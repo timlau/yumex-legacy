@@ -107,13 +107,13 @@ class PackageCache:
         del self._cache
         self._cache = {}
 
-    def get_packages(self, pkg_filter):
+    def get_packages(self, pkg_filter, show_dupes = False):
         '''
         get packages from baqckend and put them in the cache
         @param pkg_filter: package type to get 
         '''
         if not str(pkg_filter) in self._cache:
-            pkgs = self.backend.get_packages(pkg_filter)
+            pkgs = self.backend.get_packages(pkg_filter, show_dupes)
             pkgdict = {}
             for pkg in pkgs:
                 pkgdict[str(pkg)] = pkg

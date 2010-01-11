@@ -360,11 +360,14 @@ class YumexHandlers(Controller):
                     self._resized = False
                 if self._packages_loaded: # Only refresh packages if they are loaded
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+                    self.debug('START: Getting %s packages' % active)
                     busyCursor(self.window)
                     self.backend.setup()
                     pkgs = self.package_cache.get_packages(getattr(FILTER,active))
+                    self.debug('START: Adding %s packages to view' % active)
                     self.packages.add_packages(pkgs, progress=self.progress)
                     normalCursor(self.window)
+                    self.debug('END: Getting %s packages' % active)
             else:
                 if not self._resized:
                     width, height = self.window.get_size()
@@ -598,6 +601,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.key_bindings = gtk.AccelGroup()
         self._network = NetworkCheckNetworkManager()
         self.repo_popup = None # Repo page popup menu 
+        self.show_dupes = True # show duplicate available packages
 
     @property
     def is_offline(self):
@@ -867,7 +871,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.set_pulse(False)
         self.debug("Getting Group information - END")
         
-    def populate_package_cache(self, repos=None):
+    def populate_package_cache(self, repos=None, show_dupes=False):
         '''
         Get the packagelists and put them in the package cache.
         @param repos: a list of enabled repositories to use, None = use the current ones
@@ -883,7 +887,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.show()
         pkgs = self.package_cache.get_packages(FILTER.updates)
         progress.set_header(_("Getting Available Packages"))
-        pkgs = self.package_cache.get_packages(FILTER.available)
+        pkgs = self.package_cache.get_packages(FILTER.available, show_dupes)
         progress.set_header(_("Getting installed Packages"))
         pkgs = self.package_cache.get_packages(FILTER.installed)
         self.debug("Getting package lists - END")
@@ -978,7 +982,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.package_cache.reset()              # clear the package cache
             self.queue.queue.clear()                # clear the pending action queue
             self.queue.refresh()                    # clear the pending action queue
-            self.populate_package_cache(repos=repos)           # repopulate the package cache
+            self.populate_package_cache(repos=repos, show_dupes=self.show_dupes) # repopulate the package cache
             self.setup_groups()
             self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")     # show the package page
@@ -1042,8 +1046,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def setup_history(self,limit = None):        
         self.debug("Getting History Information - BEGIN")
         tids = self.backend.get_history()
+        progress = self.get_progress()
         if tids:
-            progress = self.get_progress()
             progress.set_pulse(True)
             progress.set_title(_("Getting History Information"))
             if limit:

@@ -469,9 +469,9 @@ class YumClient:
             del self.child
         self.child = None
         
-    def get_packages(self, pkg_filter):    
+    def get_packages(self, pkg_filter, show_dupes=False):    
         ''' get a list of packages based on pkg_filter '''
-        self._send_command('get-packages', [str(pkg_filter)])
+        self._send_command('get-packages', [str(pkg_filter),str(show_dupes)])
         pkgs = self._get_list()
         return pkgs
 

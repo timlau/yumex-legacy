@@ -78,6 +78,32 @@ def catchYumException(func):
     newFunc.__dict__.update(func.__dict__)
     return newFunc
 
+class YumPackageCache:
+    
+    def __init__(self,base):
+        self.base = base
+        self._loaded = False
+        self.updates = []
+        self.available = []
+        self.installed = []
+
+    def load(self,show_dupes = False):
+        self.updates = []
+        self.available = []
+        self.installed = []
+        # Get Updates
+        ygh = self.base.doPackageLists(pkgnarrow='updates')
+        self.updates.extend(ygh.updates)
+        # Get installed and available packages
+        ygh = self.base.doPackageLists(showdups=show_dupes)
+        self.available.extend(ygh.available)
+        self.installed.extend(ygh.installed)
+        self._loaded = True
+        
+    def isLoaded(self):
+        return self._loaded
+
+        
 class _YumPreBaseConf:
     """This is the configuration interface for the YumBase configuration.
        So if you want to change if plugins are on/off, or debuglevel/etc.
@@ -104,7 +130,7 @@ class YumServer(yum.YumBase):
     to stdout.
     
     Commands: (commands and parameters are separated with '\t' )
-        get-packages <pkg-filter>            : get a list of packages based on a filter
+        get-packages <pkg-filter> <show_dupes>  : get a list of packages based on a filter
         get-packages-size                    : 
         get-packages-repo                    : 
         get-attribute <pkg_id> <attribute>   : get an attribute of an package
@@ -133,7 +159,8 @@ class YumServer(yum.YumBase):
         <pkg_id>     : name epoch ver release arch repoid ('\t' separated)
         <attribute>  : pkg attribute (ex. description, changelog)
         <action>     : 'install', 'update', 'remove' 
-         
+        <show_dupes> : Show duplicate packages (True or False)
+        
     Results:(starts with and ':' and cmd and parameters are separated with '\t')
     
         :info <message>        : information message
@@ -187,6 +214,7 @@ class YumServer(yum.YumBase):
         freport = (self._failureReport, (), {})
         self.repos.setFailureCallback(freport)       
         self._updateMetadata = None # Update metadata cache 
+        self._package_cache = YumPackageCache(self)
         self.write(':started') # Let the front end know that we are up and running
 
     def _is_local_repo(self, repo):
@@ -468,19 +496,22 @@ class YumServer(yum.YumBase):
         self.write(":end\t%s" % state)
         
     @catchYumException
-    def get_packages(self, narrow):
+    def get_packages(self, narrow, dupes):
         '''
         get list of packages and send results 
         @param narrow:
         '''
         if narrow:
+            show_dupes = (dupes == 'True')
+            if not self._package_cache.isLoaded():
+                print "Populating Package Cache"
+                self._package_cache.load(show_dupes=show_dupes)
             print "getting packages - %s "% narrow
-            ygh = self.doPackageLists(pkgnarrow=narrow)
             if narrow == "all":
-                updates = self.doPackageLists(pkgnarrow='updates').updates
-                for pkg in ygh.installed:
+                updates = self._package_cache.updates
+                for pkg in self._package_cache.installed:
                     self._show_package(pkg, 'r')
-                for pkg in ygh.available:
+                for pkg in self._package_cache.available:
                     if pkg in updates:
                         action = 'u'
                     else:
@@ -488,9 +519,8 @@ class YumServer(yum.YumBase):
                     self._show_package(pkg, action)                    
             else:
                 action = const.FILTER_ACTIONS[narrow]
-                for pkg in getattr(ygh, narrow):
+                for pkg in getattr(self._package_cache, narrow):
                     self._show_package(pkg, action)
-            del ygh
         self.ended(True)
 
     def get_packages_size(self, ndx):
@@ -1045,7 +1075,7 @@ class YumServer(yum.YumBase):
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
         if cmd == 'get-packages':       # get-packages <Package filter
-            self.get_packages(args[0])
+            self.get_packages(args[0],args[1])
         elif cmd == 'get-attribute':
             self.get_attribute(args)
         elif cmd == 'get-changelog':

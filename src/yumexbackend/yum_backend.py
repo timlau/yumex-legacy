@@ -242,7 +242,6 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def setup(self, offline = False,repos=None):
         ''' Setup the backend'''
         if self.child: # Check if backend is already running
-            self.frontend.debug("yum backend already running")
             return
         self.frontend.info(_("Starting yum child process"))
         if repos:
@@ -264,13 +263,13 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         if rc:
             self.frontend.info(_("yum backend process is ended"))
 
-    def get_packages(self, pkg_filter):
+    def get_packages(self, pkg_filter, show_dupes=False):
         ''' 
         get packages based on filter 
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        pkgs = YumClient.get_packages(self, pkg_filter)
+        pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
         return [YumexPackageYum(p) for p in pkgs]
 
     def get_packages_size(self, ndx):
