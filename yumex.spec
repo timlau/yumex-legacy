@@ -74,7 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Mon Jan 11 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.6-1
-- bumped version to 2.9.6-1 
+- bumped version to 2.9.6-1
 * Fri Jan 1 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.5-1
 - bumped version to 2.9.5-1 
 * Sun Oct 11 2009 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.4-1
