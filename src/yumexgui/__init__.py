@@ -605,6 +605,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
     @property
     def is_offline(self):
+        if self.settings.disable_netcheck: # we are not offline if diaable-netcheck is enabled
+            return False
         self._network.check_network_connection()
         if self._network.is_connected == False:
             return True
@@ -785,7 +787,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             if not rc:
                 self.main_quit()
         else:
-            if self._network.is_connected == None:
+            if self.settings.disable_netcheck:
+                self.info(_("network connection state check is disabled"))
+            elif self._network.is_connected == None:
                 self.info(_("Can't detect the network connection state"))
             else:
                 self.info(_("Connected to an network"))

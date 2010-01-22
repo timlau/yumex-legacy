@@ -51,6 +51,7 @@ class YumexConf( BaseConfig ):
     win_height = IntOption( 600 ) 
     win_sep = IntOption( 300 ) 
     history_limit = IntOption(15)
+    disable_netcheck = BoolOption( False )
     
 
 class YumexOptions:
@@ -90,6 +91,9 @@ class YumexOptions:
         parser.add_option("", "--root",
                         action="store_true", dest="root", default=False,
                         help="Run as root")
+        parser.add_option("", "--disable-netcheck",
+                        action="store_true", dest="disable_netcheck", default=False,
+                        help="Disable the automatic network connection check")
         parser.add_option("-d", "--debug",
                         action="store_true", dest="debug", default=self.settings.debug,
                         help="Debug mode")
@@ -117,7 +121,7 @@ class YumexOptions:
     def update_settings( self ):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh']
+        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh','disable_netcheck']
         for opt in options:
             self._calcOption(opt)
         self._check_win_size()
