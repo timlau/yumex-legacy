@@ -290,7 +290,7 @@ class YumClient:
                 self._timeout()
                 continue
         # Client is not running any more
-        args = ['backend-not-running',pack('backend not running')]
+        args = ['backend-not-running',pack('backend not running as expected (yumex will close)')]
         self.fatal(args)
             
     def _check_for_message(self, cmd, args):
