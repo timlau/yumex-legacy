@@ -205,7 +205,7 @@ class YumServer(yum.YumBase):
         # make some dummy options,args for yum plugins
         (options, args) = parser.parse_args()
         self.plugins.setCmdLine(options, args)
-        dscb = DepSolveProgressCallBack()
+        dscb = DepSolveProgressCallBack(ayum=self)
         self.dsCallback = dscb
         self.offline = offline
         # Setup repos
