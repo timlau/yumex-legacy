@@ -268,7 +268,7 @@ class YumClient:
         line = None
         if self.waiting: # Somebody else is already waiting for something
             return None, None
-        while True:
+        while True and self.child.isalive():
             try:
                 self.waiting = True
                 if self.child:
@@ -289,6 +289,9 @@ class YumClient:
             except pexpect.TIMEOUT, e:
                 self._timeout()
                 continue
+        # Client is not running any more
+        args = ['backend-not-running','backend not running']
+        self.fatal(args)
             
     def _check_for_message(self, cmd, args):
         ''' 
@@ -327,14 +330,14 @@ class YumClient:
         '''
         
         '''
-        if not self.child.isalive():
-            return False
+        time.sleep(2)
         cnt = 0
-        while True:
+        while True and self.child.isalive():
             cmd, args = self._readline()
             cnt += 1
             if cmd == ':started':
                 return True
+        return False
             
     def is_ended(self, cmd, args):
         '''
