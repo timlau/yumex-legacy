@@ -65,7 +65,7 @@ release:
 test-release:
 	@git checkout -b release-test
 	# Add '.test' to Version in spec file
-	@cat yumex.spec | sed  's/^Version:.*/&.-1.test/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
+	@cat yumex.spec | sed  's/^Version:.*/&-1.1-test/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
 	@git commit -a -m "bumped yumex version to $(VERSION).test"
 	# Make Changelog
 	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
