@@ -99,7 +99,8 @@ class YumexFrontend(YumexFrontendBase):
 
     def info(self, msg):
         ''' Write an info message to frontend '''
-        print msg
+        if sys.stdout.isatty():
+            print >> sys.stdout, msg
         self.logger.info(msg)
         self.refresh()
 
