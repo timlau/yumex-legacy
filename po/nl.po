@@ -11,13 +11,14 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 08:44+0100\n"
-"PO-Revision-Date: 2010-01-06 22:02+0100\n"
-"Last-Translator: Richard van der luit <nippur@fedoraproject.org>\n"
-"Language-Team: nl <nippur@fedoraproject.org>\n"
+"PO-Revision-Date: 2010-01-31 21:52+0100\n"
+"Last-Translator: \n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.0\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -283,7 +284,7 @@ msgstr "Debug mode"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Disable startup network check"
-msgstr ""
+msgstr "Schakel opstart netwerkcontrole uit "
 
 #: ../src/yumexgui/dialogs.py:436
 msgid "Color (Installed)"
@@ -429,16 +430,15 @@ msgstr "en opnieuw proberen.\n"
 
 #: ../src/yumexgui/__init__.py:663
 msgid "Fatal Error in backend restart"
-msgstr ""
+msgstr "Fatale Fout bij herstarten op achtergrond"
 
 #: ../src/yumexgui/__init__.py:664
 msgid "Backend could not be closed"
-msgstr ""
+msgstr "Achtergrondproces kon niet worden afgesloten"
 
 #: ../src/yumexgui/__init__.py:668
-#, fuzzy
 msgid "Fatal Error : "
-msgstr "Fatale fout"
+msgstr "Fatale fout :"
 
 #: ../src/yumexgui/__init__.py:733 ../src/yumexgui/views.py:447
 msgid "Packages"
@@ -493,9 +493,8 @@ msgstr ""
 "Wil je verder gaan "
 
 #: ../src/yumexgui/__init__.py:792
-#, fuzzy
 msgid "network connection state check is disabled"
-msgstr "Geen netwerk verbinding, niet-locale repo %s uitgezet"
+msgstr "netwerkconnectie statuscontrole is uitgezet"
 
 #: ../src/yumexgui/__init__.py:794
 msgid "Can't detect the network connection state"
@@ -574,7 +573,6 @@ msgid "Transaction completed successfully"
 msgstr "Transactie met succes uitgevoerd"
 
 #: ../src/yumexgui/__init__.py:945
-#, fuzzy
 msgid ""
 "\n"
 "\n"
@@ -582,7 +580,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Wil je Yum Extender verlaten"
+"Wil je Yum Extender verlaten?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:951
