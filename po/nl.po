@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 08:44+0100\n"
-"PO-Revision-Date: 2010-01-31 21:52+0100\n"
+"PO-Revision-Date: 2010-01-31 21:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:264
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "yum achtergrondproces is geeindigd"
 
 #: ../src/yumexbackend/yum_backend.py:500 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
@@ -107,7 +107,7 @@ msgstr "Oplossen van afhankelijkheden afgemaakt met fouten"
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:224
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Yum achtergrondproces is uiteindelijk niet netjes afgesloten"
 
 #. Not local disable it
 #. No, disable it
