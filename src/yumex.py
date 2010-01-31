@@ -23,12 +23,7 @@ import sys
 import os
 import traceback
 from yumexgui import YumexApplication
-
-
-if os.environ.has_key('YUMEX_BACKEND') and os.environ['YUMEX_BACKEND'] == 'dummy':
-    from yumexbackend.dummy_backend import YumexBackendDummy as backend 
-else:
-    from yumexbackend.yum_backend import YumexBackendYum as backend 
+from yumexbackend.yum_backend import YumexBackendYum as backend 
 
 if os.getuid() == 0 and not '--root' in sys.argv:
     print "Don't run yumex as root it is unsafe (Use --root to force)"

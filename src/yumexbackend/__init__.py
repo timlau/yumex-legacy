@@ -26,10 +26,11 @@ class YumexBackendBase(object):
         ''' Reset the backend, so it can be setup again'''
         raise NotImplementedError()
 
-    def get_packages(self, pkg_filter):
+    def get_packages(self, pkg_filter, show_dupes=False):
         ''' 
         get packages based on filter 
         @param pkg_filer: package list filter (Enum FILTER)
+        @param show_dupes: show duplicate packages
         @return: a list of packages
         '''
         raise NotImplementedError()
