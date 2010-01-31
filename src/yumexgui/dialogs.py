@@ -432,6 +432,7 @@ class Preferences:
         '''
         vbox = self.ui.prefAdvVBox
         self._add_option(PrefBoolean, vbox, 'debug', _('Debug Mode'))
+        self._add_option(PrefBoolean, vbox, 'disable_netcheck', _('Disable startup network check'))
         self._add_option(PrefStr, vbox, 'color_install', _('Color (Installed)'))       
         self._add_option(PrefStr, vbox, 'color_update', _('Color (Update)'))       
         self._add_option(PrefStr, vbox, 'color_normal', _('Color (Available)'))       
