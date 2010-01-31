@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 08:44+0100\n"
-"PO-Revision-Date: 2009-12-05 14:09+0100\n"
+"PO-Revision-Date: 2010-01-31 18:13+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <fedora-trans-pl@redhat.com>\n"
+"Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,7 +79,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:264
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "proces zaplecza yum został zakończony"
 
 #: ../src/yumexbackend/yum_backend.py:500 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
@@ -102,7 +102,7 @@ msgstr "Zakończono rozwiązywanie zależności z błędami"
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:224
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Zaplecze yum nie zostało odpowiednio wyłączone"
 
 #. Not local disable it
 #. No, disable it
@@ -279,7 +279,7 @@ msgstr "Tryb debugowania"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Disable startup network check"
-msgstr ""
+msgstr "Wyłączenie sprawdzania stanu sieci podczas uruchamiania"
 
 #: ../src/yumexgui/dialogs.py:436
 msgid "Color (Installed)"
@@ -425,16 +425,15 @@ msgstr "i spróbować ponownie.\n"
 
 #: ../src/yumexgui/__init__.py:663
 msgid "Fatal Error in backend restart"
-msgstr ""
+msgstr "Błąd krytyczny podczas ponownego uruchomienia zaplecza"
 
 #: ../src/yumexgui/__init__.py:664
 msgid "Backend could not be closed"
-msgstr ""
+msgstr "Zaplecze nie może zostać zamknięte"
 
 #: ../src/yumexgui/__init__.py:668
-#, fuzzy
 msgid "Fatal Error : "
-msgstr "Błąd krytyczny"
+msgstr "Błąd krytyczny: "
 
 #: ../src/yumexgui/__init__.py:733 ../src/yumexgui/views.py:447
 msgid "Packages"
@@ -489,9 +488,8 @@ msgstr ""
 "Czy kontynuować "
 
 #: ../src/yumexgui/__init__.py:792
-#, fuzzy
 msgid "network connection state check is disabled"
-msgstr "Brak połączenia sieciowego, wyłączanie nielokalnego repozytorium %s"
+msgstr "sprawdzanie stanu połączenia sieciowego jest wyłączone"
 
 #: ../src/yumexgui/__init__.py:794
 msgid "Can't detect the network connection state"
@@ -570,7 +568,6 @@ msgid "Transaction completed successfully"
 msgstr "Pomyślnie zakończono transakcję"
 
 #: ../src/yumexgui/__init__.py:945
-#, fuzzy
 msgid ""
 "\n"
 "\n"
@@ -578,7 +575,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Czy zakończyć program Yum Extender"
+"Zakończyć program Yum Extender?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:951
@@ -857,10 +854,4 @@ msgstr "_Widok"
 
 #: ../src/yumex.glade.h:49
 msgid "no GPG Check"
-msgstr "bez sprawdzania GPG"
-
-#~ msgid "Stopping yum child process"
-#~ msgstr "Zatrzymywanie procesu potomnego programu yum"
-
-#~ msgid "Unknown Error : "
-#~ msgstr "Nieznany błąd: "
+msgstr "bez sprawdzania podpisów GPG"
