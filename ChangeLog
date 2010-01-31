@@ -1,3 +1,80 @@
+2010-01-31  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.7
+
+2010-01-31  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/POTFILES.in, po/ar.po, po/da.po, po/es.po, po/fr.po, po/it.po,
+	po/it_IT.po, po/ja.po, po/nl.po, po/pl.po, po/ru.po, po/sr.po,
+	po/sr@latin.po, po/yumex.pot, po/zh_CN.po: refreshed translation
+	files
+
+2010-01-31  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: Added disable network check to gui
+	preferences
+
+2010-01-31  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.py, src/yumexbackend/__init__.py,
+	src/yumexbackend/dummy_backend.py: fix pylint error and removed
+	dummy backend
+
+2010-01-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Only write stuff to console if it is a
+	tty
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: better backend-not-running message
+
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: fix missing pack
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: ROOLBACK : Make test release naming a little better
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Make test release naming a little better
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Make test release naming a little better
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Make test release naming a little better
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Make test release naming a little better
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: handle cases where the backend is
+	not started (if the user presses cancel in the consolehelper root
+	password dialog) (rhbz #558016)
+
+2010-01-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: format_missing_requires in current
+	yum HEAD will need ayum, to not blowup (rhbz #558770)
+
+2010-01-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py, src/yumexgui/__init__.py: added to
+	--disable-netcheck to bypass the network connection check and the
+	auto disable of non local repos
+
+2010-01-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2010-01-11  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* ChangeLog, yumex.spec: bumped version to 2.9.6
