@@ -53,10 +53,11 @@ if __name__ == "__main__":
         debuglevel = int(sys.argv[1])
         plugins = sys.argv[2] == 'True'
         offline = sys.argv[3] == 'True'
-        if len(sys.argv) == 5:
-            repos = sys.argv[4].split(';')
+        yum_conf = sys.argv[4]
+        if len(sys.argv) == 6:
+            repos = sys.argv[5].split(';')
         else:
             repos = []
         print ":debug\tUsing yum debuglevel = %i" % debuglevel
-    my = YumServer(debuglevel, plugins, offline, repos)
+    my = YumServer(debuglevel, plugins, offline, repos, yum_conf)
     my.dispatcher()

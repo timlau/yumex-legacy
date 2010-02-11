@@ -52,6 +52,7 @@ class YumexConf( BaseConfig ):
     win_sep = IntOption( 300 ) 
     history_limit = IntOption(15)
     disable_netcheck = BoolOption( False )
+    yum_conf = Option( '/etc/yum.conf' )
     
 
 class YumexOptions:
@@ -109,6 +110,10 @@ class YumexOptions:
         parser.add_option("", "--debuglevel", dest="yumdebuglevel", action="store",
                 default=self.settings.yumdebuglevel, help="yum debugging output level", type='int',
                 metavar='[level]')      
+        parser.add_option("-c", "", dest="yum_conf", action="store", 
+                default='/etc/yum.conf', help="yum config file to use default = /etc/yum.conf",
+                metavar=' [config file]')
+        
         return parser.parse_args()
 
     def dump(self):
@@ -121,7 +126,7 @@ class YumexOptions:
     def update_settings( self ):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh','disable_netcheck']
+        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh','disable_netcheck','yum_conf']
         for opt in options:
             self._calcOption(opt)
         self._check_win_size()

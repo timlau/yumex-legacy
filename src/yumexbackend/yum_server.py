@@ -185,7 +185,7 @@ class YumServer(yum.YumBase):
     
     """
     
-    def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None):
+    def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None,yum_conf='/etc/yum.conf'):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         self.mediagrabber = self.mediaGrabber
@@ -194,6 +194,9 @@ class YumServer(yum.YumBase):
         self.preconf.debuglevel = debuglevel
         self.preconf.init_plugins = plugins
         self.preconf.optparser = parser
+        if yum_conf != '/etc/yum.conf':
+            self.info(_('Using %s for yum configuration') % yum_conf)
+        self.preconf.fn = yum_conf
         # Disable refresh-package plugin, it will get in the way every time we finish a transaction
         self.preconf.disabled_plugins = ['refresh-packagekit']
         logginglevels.setLoggingApp('yumex')

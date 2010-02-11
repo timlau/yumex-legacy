@@ -249,11 +249,12 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         plugins = self.frontend.settings.plugins
         yumdebuglevel = self.frontend.settings.yumdebuglevel
         proxy=self.frontend.settings.proxy.strip()
+        yum_conf = self.frontend.settings.yum_conf
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      
         self.debug('Initialize yum backend - BEGIN')    
-        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, offline=offline, repos=repos, proxy=proxy)
+        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, offline=offline, repos=repos, proxy=proxy, yum_conf=yum_conf)
         self.debug('Initialize yum backend - END')    
         return rc    
         

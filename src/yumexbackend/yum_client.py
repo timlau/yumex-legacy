@@ -163,7 +163,7 @@ class YumClient:
         """
         raise NotImplementedError()
 
-    def setup(self, debuglevel = 2, plugins = True, filelog = False, offline = False, repos = None, proxy = None):
+    def setup(self, debuglevel = 2, plugins = True, filelog = False, offline = False, repos = None, proxy = None, yum_conf = '/etc/yum.conf'):
         ''' Setup the client and spawn the server'''
         if not self.child:
             prefix = ""
@@ -185,6 +185,7 @@ class YumClient:
             args.append(str(debuglevel)) # debuglevel
             args.append(str(plugins))    # plugins 
             args.append(str(offline))    # is offline
+            args.append(str(yum_conf))    # is offline
             if repos:                    # enabled repos
                 repo_str = ";".join(repos)
                 args.append(repo_str)
