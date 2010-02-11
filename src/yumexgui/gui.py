@@ -175,7 +175,6 @@ class SelectorBase:
         self._buttons = {}
         self._first = None
         self._selected = None
-        self.tooltip = gtk.Tooltips()
         self.key_bindings = key_bindings
         
     def add_button(self, key, icon=None, stock=None, tooltip=None, accel=None):
@@ -202,7 +201,7 @@ class SelectorBase:
         button.add(pix)
     
         if tooltip:
-            self.tooltip.set_tip(button, tooltip)
+            button.set_tooltip_text(tooltip)
         button.show()
         self.content.pack_start(button, False)
         self._buttons[key] = button

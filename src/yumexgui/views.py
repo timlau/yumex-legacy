@@ -68,7 +68,12 @@ class SelectionView:
         column.set_cell_data_func(cell, self.get_data_text, prop)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_fixed_width(size)
-        column.set_sort_column_id(-1)            
+        if sortcol:
+            column.set_sort_column_id(sortcol)     
+            #column.set_sort_indicator(True)
+            #column.set_sort_order(gtk.SORT_ASCENDING)       
+        else:
+            column.set_sort_column_id(-1)            
         self.view.append_column(column)        
         return column
 
@@ -297,6 +302,177 @@ class YumexPackageView(SelectionView):
                     po.set_select(True)
             self.view.set_model(self.store)
         
+class YumexPackageViewSorted(SelectionView):
+    '''
+    Yum Extender Package View
+    '''
+    
+    def __init__(self, widget, qview):
+        '''
+        Init the view
+        @param widget: the gtk TreeView widget
+        @param qview: the queue view instance to use for queuing
+        '''
+        SelectionView.__init__(self, widget)
+        self.view.modify_font(const.SMALL_FONT)
+        self.headers = [_("Package"), _("Ver"), _("Summary"), _("Repo"), _("Architecture"), _("Size")]
+        self.store = self.setupView()
+        self.queue = qview.queue
+        self.queueView = qview
+        
+    def setupView(self):
+        '''
+        Setup the TreeView
+        '''
+        store = gtk.ListStore(gobject.TYPE_PYOBJECT, str, str, str, str, str, long)
+        self.sort_store = gtk.TreeModelSort(store)
+
+        self.view.set_model(self.sort_store)
+        self.create_selection_colunm('selected')
+        # Setup resent column
+        cell2 = gtk.CellRendererPixbuf()    # new
+        cell2.set_property('stock-id', gtk.STOCK_ADD)
+        column2 = gtk.TreeViewColumn("", cell2)
+        column2.set_cell_data_func(cell2, self.new_pixbuf)
+        column2.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column2.set_fixed_width(20)
+        column2.set_sort_column_id(-1)            
+        self.view.append_column(column2)
+        column2.set_clickable(True)
+
+        self.create_text_column(_("Package"), 'name' , size=200, sortcol=1)
+        self.create_text_column(_("Ver."), 'fullver', size=120, sortcol=2)
+        self.create_text_column(_("Arch."), 'arch' , size=60, sortcol=3)
+        self.create_text_column(_("Summary"), 'summary', size=400, sortcol=4)
+        self.create_text_column(_("Repo."), 'repoid' , size=90, sortcol=5)
+        self.create_text_column(_("Size."), 'size' , size=90, sortcol=6)
+        #self.view.set_search_column(1)
+        #self.view.set_enable_search(True)
+        self.sort_store.set_sort_column_id(1, gtk.SORT_ASCENDING)
+        self.view.set_reorderable(False)
+        return store
+   
+    
+    def on_toggled(self, widget, path):
+        """ Package selection handler """
+        child_path = self.sort_store.convert_path_to_child_path(path)
+        iterator = self.store.get_iter(child_path)
+        obj = self.store.get_value(iterator, 0)
+        self.togglePackage(obj)
+        self.queueView.refresh()
+
+    def get_data_text(self, column, cell, model, iterator, prop):
+        '''
+        a property function to get string data from a object in the TreeStore based on
+        an attributes key
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        @param prop: attribute key
+        '''
+        obj = model.get_value(iterator, 0)
+        if obj:
+            cell.set_property('text', getattr(obj, prop))
+            cell.set_property('foreground', obj.color)
+            
+        
+    def togglePackage(self, obj):
+        '''
+        Toggle the package queue status
+        @param obj:
+        '''
+        if obj.queued == obj.action:
+            obj.queued = None
+            self.queue.remove(obj)
+        else:
+            obj.queued = obj.action      
+            self.queue.add(obj)
+        obj.set_select(not obj.selected)
+        
+                
+    def selectAll(self):
+        '''
+        Select all packages in the view
+        '''
+        for el in self.store:
+            obj = el[0]
+            if not obj.queued == obj.action:
+                obj.queued = obj.action      
+                self.queue.add(obj)
+                obj.set_select(not obj.selected)
+        self.queueView.refresh()
+        self.view.queue_draw() 
+
+    def deselectAll(self):
+        '''
+        Deselect all packages in the view
+        '''
+        for el in self.store:
+            obj = el[0]
+            if obj.queued == obj.action:
+                obj.queued = None
+                self.queue.remove(obj)
+                obj.set_select(not obj.selected)
+        self.queueView.refresh()
+        self.view.queue_draw() 
+
+    def new_pixbuf(self, column, cell, model, iterator):
+        """ 
+        Cell Data function for recent Column, shows pixmap
+        if recent Value is True.
+        """
+        pkg = model.get_value(iterator, 0)
+        if pkg:
+            action = pkg.queued
+            if action:            
+                if action in ('u', 'i'):
+                    icon = 'network-server'
+                else:
+                    icon = 'edit-delete'
+                cell.set_property('visible', True)
+                cell.set_property('icon-name', icon)
+            else:
+                cell.set_property('visible', pkg.recent)
+                cell.set_property('icon-name', 'document-new')
+        else:
+            cell.set_property('visible', False)
+            
+
+    def get_selected(self, package=True):
+        """ Get selected packages in current packageList """
+        selected = []
+        for row in self.store:
+            col = row[0]
+            if col:
+                pkg = row[0][0]
+                if pkg.selected:
+                    selected.append(pkg)
+        return selected
+
+    def clear(self):
+        '''
+        Clear the view
+        '''
+        self.store.clear()
+    
+    def add_packages(self, pkgs, progress=None):
+        '''
+        Populate the via with package objects
+        @param pkgs: list of package object to add
+        @param progress:
+        '''
+        self.store.clear()
+        queued = self.queue.get()
+        if pkgs:
+            #pkgs.sort(sortPkgObj)
+            self.view.set_model(None)
+            for po in pkgs:
+                self.store.append([po, po.fullname,po.fullver,po.arch,po.summary,po.repoid,po.sizeBytes])
+                if po in queued[po.action]:
+                    po.queued = po.action
+                    po.set_select(True)
+            self.view.set_model(self.sort_store)
 
 class YumexQueue:
     '''

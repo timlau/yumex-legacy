@@ -37,7 +37,7 @@ from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okD
 from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
-                           YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView
+                           YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView, YumexPackageViewSorted
 from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError
 import yumexbase.constants as const
@@ -753,7 +753,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
         # setup package and package info view
-        self.packages = YumexPackageView(self.ui.packageView, self.queue)
+        if self.settings.use_sortable_view:
+            self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
+        else:
+            self.packages = YumexPackageView(self.ui.packageView, self.queue)
+            
         self.packageInfo = PackageInfo(self.window, self.ui.packageInfo,
                                        self.ui.packageInfoSelector, self, font_size=font_size)
         # setup group and group description views

@@ -53,6 +53,7 @@ class YumexConf( BaseConfig ):
     history_limit = IntOption(15)
     disable_netcheck = BoolOption( False )
     yum_conf = Option( '/etc/yum.conf' )
+    use_sortable_view = BoolOption( False )
     
 
 class YumexOptions:

@@ -374,6 +374,13 @@ class YumexPackageYum(YumexPackageBase):
         
 
     @property
+    def sizeBytes(self):
+        '''
+        
+        '''
+        return long(self._pkg.size)
+
+    @property
     def size(self):
         '''
         
