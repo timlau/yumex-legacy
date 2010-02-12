@@ -5,15 +5,20 @@ msgstr ""
 "Project-Id-Version: YumEx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 08:44+0100\n"
-"PO-Revision-Date: 2010-02-09 17:34+0100\n"
+"PO-Revision-Date: 2010-02-12 17:37+0100\n"
 "Last-Translator: Nikolas Slivka <snicore@gmail.com>\n"
 "Language-Team: Hungarian <fedora-trans-hu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:95
+#: ../src/yumexbackend/yum_backend.py:96
 msgid "Getting Package Information"
 msgstr "Csomaginformációk lekérése"
 
@@ -26,16 +31,19 @@ msgstr "Ismeretlen tároló metaadat(%s) a(z) %s-hoz"
 msgid "Buiding rpms from deltarpm"
 msgstr "Csomagok építése a deltarpmekből"
 
-#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145
+#: ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "Csomagok letöltése"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:151 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:151
+#: ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "A csomag GPG aláírásának ellenőrzése"
 
-#: ../src/yumexbackend/yum_backend.py:156 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:156
+#: ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "RPM teszt tranzakció futtatása"
 
@@ -78,7 +86,8 @@ msgstr ""
 msgid "yum backend process is ended"
 msgstr "yum háttérrendszer-folyamat kész"
 
-#: ../src/yumexbackend/yum_backend.py:500 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:500
+#: ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Függőségek feloldása"
 
@@ -103,7 +112,8 @@ msgstr ""
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:250 ../src/yumexbackend/yum_server.py:259
+#: ../src/yumexbackend/yum_server.py:250
+#: ../src/yumexbackend/yum_server.py:259
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "Nincs hálózati kapcsolat, a nem helyi tároló letiltása %s"
@@ -135,9 +145,9 @@ msgid "Error in yum Transaction : %s"
 msgstr "Hiba a yum tranzakcióban : %s"
 
 #: ../src/yumexbackend/yum_server.py:792
-#, fuzzy, python-format
+#, python-format
 msgid "Failure getting %s: "
-msgstr "Kategóriák lekérése"
+msgstr "Hibát okozott %s:"
 
 #: ../src/yumexbackend/yum_server.py:793
 msgid "Trying other mirror."
@@ -302,11 +312,13 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Nyomkövetési (debug) szint beállítása"
 
-#: ../src/yumexgui/dialogs.py:504 ../src/yumexgui/dialogs.py:513
+#: ../src/yumexgui/dialogs.py:504
+#: ../src/yumexgui/dialogs.py:513
 msgid "Transaction Result"
 msgstr "Tranzakció eredménye"
 
-#: ../src/yumexgui/dialogs.py:547 ../src/yumexgui/views.py:577
+#: ../src/yumexgui/dialogs.py:547
+#: ../src/yumexgui/views.py:577
 msgid "Name"
 msgstr "Név"
 
@@ -314,17 +326,20 @@ msgstr "Név"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:549 ../src/yumexgui/views.py:160
+#: ../src/yumexgui/dialogs.py:549
+#: ../src/yumexgui/views.py:160
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:550 ../src/yumexgui/views.py:529
+#: ../src/yumexgui/dialogs.py:550
+#: ../src/yumexgui/views.py:529
 #: ../src/yumexgui/views.py:576
 msgid "Repository"
 msgstr "Tároló"
 
-#: ../src/yumexgui/dialogs.py:551 ../src/yumexgui/views.py:160
+#: ../src/yumexgui/dialogs.py:551
+#: ../src/yumexgui/views.py:160
 msgid "Size"
 msgstr "Méret"
 
@@ -432,7 +447,8 @@ msgstr "A háttérrendszer lehet hogy nem zárt"
 msgid "Fatal Error : "
 msgstr "Végzetes hiba:"
 
-#: ../src/yumexgui/__init__.py:733 ../src/yumexgui/views.py:447
+#: ../src/yumexgui/__init__.py:733
+#: ../src/yumexgui/views.py:447
 msgid "Packages"
 msgstr "Csomagok"
 
@@ -528,7 +544,8 @@ msgstr "Tároló szerint"
 msgid "By Size"
 msgstr "Méret szerint"
 
-#: ../src/yumexgui/__init__.py:869 ../src/yumexgui/__init__.py:870
+#: ../src/yumexgui/__init__.py:869
+#: ../src/yumexgui/__init__.py:870
 msgid "Getting Group information"
 msgstr "Csoportinformációk lekérése"
 
@@ -605,11 +622,13 @@ msgstr "Legutolsó előzményadatok lekérése"
 msgid "Getting All History Information"
 msgstr "Összes előzményadat lekérése"
 
-#: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:183
+#: ../src/yumexgui/views.py:160
+#: ../src/yumexgui/views.py:183
 msgid "Package"
 msgstr "Csomag"
 
-#: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:186
+#: ../src/yumexgui/views.py:160
+#: ../src/yumexgui/views.py:186
 #: ../src/yumexgui/views.py:452
 msgid "Summary"
 msgstr "Összegzés"
@@ -704,21 +723,19 @@ msgstr "Hiba"
 
 #: ../src/yumex.glade.h:11
 msgid "Execute all pending actions in queue"
-msgstr ""
+msgstr "Összes várakozó művelet végrehajtása a sorban"
 
 #: ../src/yumex.glade.h:12
-#, fuzzy
 msgid "Get all History elements"
-msgstr "Az összes bejegyzés törlése"
+msgstr "Az össze előzményi elem beszerzése"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
 msgstr "Tá_rolók"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "Hiba az átvitel végrehajtása alatt"
+msgstr ""
 
 #: ../src/yumex.glade.h:15
 msgid ""
@@ -727,9 +744,8 @@ msgid ""
 msgstr "Csomagok frissítése a kiválasztott tárolókból"
 
 #: ../src/yumex.glade.h:17
-#, fuzzy
 msgid "Remove selected packages from queue"
-msgstr "Eltávolítja a kijelölt fényképet az F-Spotból?"
+msgstr "A kiválasztott csomagok eltávolítása a várakozási sorból"
 
 #: ../src/yumex.glade.h:18
 msgid "Select all packages in current view"
@@ -765,7 +781,7 @@ msgstr "Törött kihagyása"
 
 #: ../src/yumex.glade.h:26
 msgid "Skip packages there get depsolve errors"
-msgstr ""
+msgstr "Azok a csomagok kihagyása, amelyek függőségi hibákat okoztak"
 
 #: ../src/yumex.glade.h:27
 msgid ""
@@ -781,17 +797,15 @@ msgstr "F_rissítések"
 #: ../src/yumex.glade.h:32
 #, fuzzy
 msgid "Undo a history transaction"
-msgstr "Nincs visszavonási történet"
+msgstr "Előzmények visszavonása"
 
 #: ../src/yumex.glade.h:33
-#, fuzzy
 msgid "Undo all package selection"
-msgstr "Az összes művelet eltávolítása a visszavonási előzményekből"
+msgstr "Az összes csomag kiválasztásának visszavonása"
 
 #: ../src/yumex.glade.h:34
-#, fuzzy
 msgid "Undo repository selection changes"
-msgstr "A legutóbbi művelet visszavonása a láthatósági változások elhagyásával"
+msgstr "A tároló kiválasztásának visszavonása"
 
 #: ../src/yumex.glade.h:35
 msgid "Yum"
@@ -852,3 +866,4 @@ msgstr "_Nézet"
 #: ../src/yumex.glade.h:49
 msgid "no GPG Check"
 msgstr "GPG ellenőrzés kihagyása"
+
