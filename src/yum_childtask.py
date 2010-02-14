@@ -25,6 +25,8 @@ import sys
 import signal
 import os
 from yumexbackend.yum_server import YumServer
+from yumexbase import YumexBackendFatalError
+
 import yum.misc
 
 my = None
@@ -59,5 +61,10 @@ if __name__ == "__main__":
         else:
             repos = []
         print ":debug\tUsing yum debuglevel = %i" % debuglevel
-    my = YumServer(debuglevel, plugins, offline, repos, yum_conf)
-    my.dispatcher()
+    try:
+        my = YumServer(debuglevel, plugins, offline, repos, yum_conf)
+        my.dispatcher()
+    except YumexBackendFatalError,e: # Lock errors etc
+        err,msg = (e.err, e.msg)
+        print err,msg
+        sys.exit(200)
