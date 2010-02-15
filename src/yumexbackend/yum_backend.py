@@ -271,7 +271,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
-        return [YumexPackageYum(p) for p in pkgs]
+        return [YumexPackageYum(p,self.frontend) for p in pkgs]
 
     def get_packages_size(self, ndx):
         ''' 
@@ -348,7 +348,7 @@ class YumexPackageYum(YumexPackageBase):
     This is an abstract package object for a package in the package system
     '''
 
-    def __init__(self, pkg):
+    def __init__(self, pkg, frontend):
         '''
         
         @param pkg:
@@ -357,6 +357,7 @@ class YumexPackageYum(YumexPackageBase):
         self.queued = False
         self.selected = False
         self.visible = True
+        self.frontend = frontend
 
     def set_select(self, state):
         '''
@@ -420,11 +421,11 @@ class YumexPackageYum(YumexPackageBase):
         '''
         get package color to show in view
         '''
-        color = 'black'
+        color = self.frontend.settings.color_normal
         if self.repoid == 'installed' or self.repoid.startswith('@'):
-            color = 'darkgreen'
+            color = self.frontend.settings.color_install
         elif self.action == 'u':
-            color = 'red'
+            color = self.frontend.settings.color_update
         return color    
 
     @property
