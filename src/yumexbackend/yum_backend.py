@@ -271,6 +271,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
+        self.frontend.debug("got %i packages" % len(pkgs))
         return [YumexPackageYum(p,self.frontend) for p in pkgs]
 
     def get_packages_size(self, ndx):
