@@ -176,8 +176,9 @@ class YumClient:
                     cmd = '/usr/bin/yumex-yum-backend'
             else:
                 if os.getuid() != 0: # Non Root
-                    self.info('Running backend with sudo (%s)' % (MAIN_PATH + "/yum_childtask.py"))
-                    cmd ='/usr/bin/sudo' 
+                    self.info('Running backend with beesu (%s)' % (MAIN_PATH + "/yum_childtask.py"))
+                    cmd ='beesu'
+                    args.append('-c') 
                     args.append(MAIN_PATH + "/yum_childtask.py")
                 else: # root
                     self.info('ROOTMODE: Running backend (%s)' % (MAIN_PATH + "/yum_childtask.py"))
