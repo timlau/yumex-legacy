@@ -307,6 +307,7 @@ class PackageInfo(SelectorBase):
         if upd_info:
             self.show_update_info(upd_info)
             self.console.write(_("\nPackage Description"),"changelog-header")
+            
         self.console.write(self.pkg.description)
 
     def show_update_info(self,upd_info):

@@ -310,7 +310,7 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             pkg = model.get_value(iterator, 0)
             if pkg:
-                if self._current_active == 0:
+                if self._current_active == 'updates':
                     self.packageInfo.update(pkg, update=True)
                 else:
                     self.packageInfo.update(pkg)
