@@ -298,11 +298,15 @@ class PackageInfo(SelectorBase):
         show the package description
         '''
         upd_info = None
+        updated_po = None
         if self._is_update: # Package is an update 
-            upd_info = self.pkg.updateinfo
+            upd_info, updated_po = self.pkg.updateinfo
             progress = self.frontend.get_progress()
-            progress.hide()        
-        msg = "%s (%s) - %s :" % (self.pkg.fullname, self.pkg.size, self.pkg.repoid)                
+            progress.hide()
+        if updated_po:
+            msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size,  updated_po)                
+        else:        
+            msg = "%s (%s) - %s \n\n" % (self.pkg.fullname, self.pkg.size, self.pkg.repoid)                
         self.console.write(msg,"changelog-header")   
         if upd_info:
             self.show_update_info(upd_info)
