@@ -695,7 +695,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         menus = ['fileMenu','editMenu','viewMenu','optionsMenu','helpMenu','viewPackages','viewQueue',\
                  'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck','packageRadioUpdates',\
                 'packageRadioAvailable','packageRadioInstalled','packageRadioGroups','packageRadioCategories',\
-                'packageRadioAll' ]
+                'packageRadioAll','viewHistory', 'prefBasic', 'prefAdvanced']
         for menu in menus:
             obj = getattr(self.ui,menu)
             label = obj.get_child()
