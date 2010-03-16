@@ -1,0 +1,7 @@
+*.pyc
+*.tar.gz
+*.rpm
+*~
+.*project*
+.settings/
+docs/epydoc/
