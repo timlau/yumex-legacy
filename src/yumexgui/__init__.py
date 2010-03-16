@@ -695,12 +695,17 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         menus = ['fileMenu','editMenu','viewMenu','optionsMenu','helpMenu','viewPackages','viewQueue',\
                  'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck','packageRadioUpdates',\
                 'packageRadioAvailable','packageRadioInstalled','packageRadioGroups','packageRadioCategories',\
-                'packageRadioAll','viewHistory', 'prefBasic', 'prefAdvanced']
+                'packageRadioAll','viewHistory']
         for menu in menus:
             obj = getattr(self.ui,menu)
             label = obj.get_child()
             label.set_label(_(label.get_label()))
             
+        tabs = ['prefBasic', 'prefAdvanced']
+        for tab in tabs:
+            obj = getattr(self.ui,tab)
+            obj.set_label(_(obj.get_label()))
+        
         
             
 # shut up pylint whinning about attributes declared outside __init__
