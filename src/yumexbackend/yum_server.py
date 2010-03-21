@@ -1004,9 +1004,11 @@ class YumServer(yum.YumBase):
             nvr = (pkg.name, pkg.ver, pkg.rel)
             ret = md.get_notice(nvr)
             self.message("updateinfo", ret)
-            new,old  = self._getUpdates().getUpdatesTuples(name=pkg.name)[0]
-            po = self.getInstalledPackageObject(old)
-            self.message("updated_po", str(po))
+            tup = self._getUpdates().getUpdatesTuples(name=pkg.name)[0]
+            if tup:
+                new,old  = self._getUpdates().getUpdatesTuples(name=pkg.name)[0]
+                po = self.getInstalledPackageObject(old)
+                self.message("updated_po", str(po))
         self.ended(True)
         
     def clean(self, args):
