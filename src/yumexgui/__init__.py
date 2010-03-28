@@ -608,11 +608,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def is_offline(self):
         if self.settings.disable_netcheck: # we are not offline if diaable-netcheck is enabled
             return False
-        self._network.check_network_connection()
-        if self._network.is_connected == False:
-            return True
-        else:
+        rc = self._network.check_network_connection()
+        if rc: # do we have a real network state
+            if self._network.is_connected == False:
+                return True
+            else:
+                return False
+        else: # Network connection can't be checked, so act as online  
             return False
+        
     
     @property
     def settings(self):
