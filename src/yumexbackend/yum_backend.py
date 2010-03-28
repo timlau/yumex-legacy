@@ -157,6 +157,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.tasks.next('gpg-check')
         elif state == 'transaction':
             progress.set_pulse(False)
+            progress.set_header(_("Running RPM Transaction"))
             progress.tasks.next()
 
     def gpg_check(self, po, userid, hexkeyid):
