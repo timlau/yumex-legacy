@@ -1006,7 +1006,7 @@ class YumServer(yum.YumBase):
             self.message("updateinfo", ret)
             tup = self._getUpdates().getUpdatesTuples(name=pkg.name)[0]
             if tup:
-                new,old  = self._getUpdates().getUpdatesTuples(name=pkg.name)[0]
+                new,old  = tup
                 po = self.getInstalledPackageObject(old)
                 self.message("updated_po", str(po))
         self.ended(True)
