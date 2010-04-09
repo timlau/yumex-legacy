@@ -428,6 +428,8 @@ class YumexPackageYum(YumexPackageBase):
             color = self.frontend.settings.color_install
         elif self.action == 'u':
             color = self.frontend.settings.color_update
+        elif self.action == 'o':
+            color = self.frontend.settings.color_obsolete
         return color    
 
     @property

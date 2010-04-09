@@ -84,6 +84,7 @@ class YumPackageCache:
         self.base = base
         self._loaded = False
         self.updates = []
+        self.obsoletes = []
         self.available = []
         self.installed = []
 
@@ -91,9 +92,12 @@ class YumPackageCache:
         self.updates = []
         self.available = []
         self.installed = []
-        # Get Updates
+        # Get Updates & obsoletes
         ygh = self.base.doPackageLists(pkgnarrow='updates')
         self.updates.extend(ygh.updates)
+        ygh = self.base.doPackageLists(pkgnarrow='obsoletes')
+        self.obsoletes.extend(ygh.obsoletes)
+        
         # Get installed and available packages
         ygh = self.base.doPackageLists(showdups=show_dupes)
         self.available.extend(ygh.available)
@@ -512,11 +516,14 @@ class YumServer(yum.YumBase):
             print "getting packages - %s "% narrow
             if narrow == "all":
                 updates = self._package_cache.updates
+                obsoltes = self._package_cache.obsoletes
                 for pkg in self._package_cache.installed:
                     self._show_package(pkg, 'r')
                 for pkg in self._package_cache.available:
                     if pkg in updates:
                         action = 'u'
+                    elif pkg in obsoletes:
+                        action = 'o'
                     else:
                         action = 'i'
                     self._show_package(pkg, action)                    
@@ -637,7 +644,7 @@ class YumServer(yum.YumBase):
         txmbrs = []
         if action == "install":
             txmbrs = self.install(po)
-        elif action == "update":
+        elif action == "update" or action == "obsolete":
             txmbrs = self.update(po)
         elif action == "remove":
             txmbrs = self.remove(po)
@@ -1004,12 +1011,21 @@ class YumServer(yum.YumBase):
             nvr = (pkg.name, pkg.ver, pkg.rel)
             ret = md.get_notice(nvr)
             self.message("updateinfo", ret)
-            tup = self._getUpdates().getUpdatesTuples(name=pkg.name)[0]
+            po = self._get_updated_po(pkg)
+            self.message("updated_po", str(po))
+        self.ended(True)
+        
+    def _get_updated_po(self,pkg):
+        po = None
+        tuples = self._getUpdates().getUpdatesTuples(name=pkg.name)
+        if not tuples:
+            tuples = self._getUpdates().getObsoletersTuples(name=pkg.name)
+        if tuples:            
+            tup = tuples[0]
             if tup:
                 new,old  = tup
                 po = self.getInstalledPackageObject(old)
-                self.message("updated_po", str(po))
-        self.ended(True)
+        return po
         
     def clean(self, args):
         what = args[0]

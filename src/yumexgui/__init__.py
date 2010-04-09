@@ -364,9 +364,16 @@ class YumexHandlers(Controller):
                     self.debug('START: Getting %s packages' % active)
                     busyCursor(self.window)
                     self.backend.setup()
+                    label = active
                     pkgs = self.package_cache.get_packages(getattr(FILTER,active))
-                    self.debug('START: Adding %s packages to view' % active)
+                    # if Updates, then add obsoletes too
+                    if active == 'updates':
+                        obs = self.package_cache.get_packages(getattr(FILTER,'obsoletes'))
+                        pkgs.extend(obs)
+                        label = "updates & obsoletes"
+                    self.debug('START: Adding %s packages to view' % label)
                     self.packages.add_packages(pkgs, progress=self.progress)
+                        
                     normalCursor(self.window)
                     self.debug('END: Getting %s packages' % active)
             else:
@@ -904,6 +911,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.set_header(_("Getting Updated Packages"))
         progress.show()
         pkgs = self.package_cache.get_packages(FILTER.updates)
+        pkgs = self.package_cache.get_packages(FILTER.obsoletes)
         progress.set_header(_("Getting Available Packages"))
         pkgs = self.package_cache.get_packages(FILTER.available, show_dupes)
         progress.set_header(_("Getting installed Packages"))
@@ -922,7 +930,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             okDialog(self.window,_("The pending action queue is empty")) 
             return False        
         self.backend.transaction.reset()
-        for action in ('install', 'update', 'remove'):
+        for action in ('install', 'update', 'remove','obsolete'):
             pkgs = queue.get(action[0])
             for po in pkgs:
                 self.backend.transaction.add(po, action)

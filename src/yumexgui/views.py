@@ -254,7 +254,7 @@ class YumexPackageView(SelectionView):
         if pkg:
             action = pkg.queued
             if action:            
-                if action in ('u', 'i'):
+                if action in ('u', 'i','o'):
                     icon = 'network-server'
                 else:
                     icon = 'edit-delete'
@@ -426,7 +426,7 @@ class YumexPackageViewSorted(SelectionView):
         if pkg:
             action = pkg.queued
             if action:            
-                if action in ('u', 'i'):
+                if action in ('u', 'i', 'o'):
                     icon = 'network-server'
                 else:
                     icon = 'edit-delete'
@@ -487,6 +487,7 @@ class YumexQueue:
         self.packages = {}
         self.packages['i'] = []
         self.packages['u'] = []
+        self.packages['o'] = []
         self.packages['r'] = []
         self.groups = {}
         self.groups['i'] = []
@@ -500,6 +501,7 @@ class YumexQueue:
         self.packages = {}
         self.packages['i'] = []
         self.packages['u'] = []
+        self.packages['o'] = []
         self.packages['r'] = []
         self.groups = {}
         self.groups['i'] = []
@@ -519,7 +521,7 @@ class YumexQueue:
         '''
         
         '''
-        return len(self.packages['i']) + len(self.packages['u']) + len(self.packages['r'])
+        return len(self.packages['i']) + len(self.packages['u']) + len(self.packages['o']) + len(self.packages['r'])
         
     def add(self, pkg):
         '''
@@ -645,7 +647,7 @@ class YumexQueueView:
         for pkg in self.getPkgsFromList(rmvlist):
             pkg.queued = None
             pkg.set_select(not pkg.selected)
-        for action in ['u', 'i', 'r']:
+        for action in ['u', 'i', 'r', 'o']:
             pkg_list = self.queue.get(action)
             if pkg_list:
                 self.queue.packages[action] = [x for x in pkg_list if str(x) not in rmvlist]
@@ -658,7 +660,7 @@ class YumexQueueView:
         @param rlist:
         '''
         rclist = []
-        for action in ['u', 'i', 'r']:
+        for action in ['u', 'i', 'r', 'o']:
             pkg_list = self.queue.packages[action]
             if pkg_list:
                 rclist.extend([x for x in pkg_list if str(x) in rlist])
@@ -667,7 +669,7 @@ class YumexQueueView:
     def refresh (self):
         """ Populate view with data from queue """
         self.model.clear()
-        pkg_list = self.queue.packages['u']
+        pkg_list = self.queue.packages['u'] + self.queue.packages['o']
         label = "<b>%s</b>" % P_("Package to update", "Packages to update", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
