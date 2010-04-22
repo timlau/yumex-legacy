@@ -516,7 +516,7 @@ class YumServer(yum.YumBase):
             print "getting packages - %s "% narrow
             if narrow == "all":
                 updates = self._package_cache.updates
-                obsoltes = self._package_cache.obsoletes
+                obsoletes = self._package_cache.obsoletes
                 for pkg in self._package_cache.installed:
                     self._show_package(pkg, 'r')
                 for pkg in self._package_cache.available:
