@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: yumex.nextgen\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 08:44+0100\n"
-"PO-Revision-Date: 2010-04-27 11:10-0300\n"
+"PO-Revision-Date: 2010-04-27 11:26-0300\n"
 "Last-Translator: Vitor Vilas Boas <vitor@vitorvilasboas.com.br>\n"
 "Language-Team: fedora-trans-pt@redhat.com\n"
 "Language: pt\n"
@@ -27,9 +27,9 @@ msgid "Getting Package Information"
 msgstr "A obter informação de pacotes"
 
 #: ../src/yumexbackend/yum_backend.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
-msgstr "Comando desconhecido `%s'. Escreva `help' para ajuda."
+msgstr "Tipo de metadados de repositório desconhecido (%s) para %s"
 
 #: ../src/yumexbackend/yum_backend.py:129
 msgid "Buiding rpms from deltarpm"
@@ -52,9 +52,9 @@ msgid "Running RPM Test Transaction"
 msgstr "Executando Teste de Transação RPM"
 
 #: ../src/yumexbackend/yum_backend.py:164
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr "Quer importar a chave GPG : %s \n"
+msgstr "Você quer importar a chave GPG : %s \n"
 
 #: ../src/yumexbackend/yum_backend.py:166
 #, python-format
@@ -62,9 +62,9 @@ msgid "Needed by %s"
 msgstr "Necessira de %s"
 
 #: ../src/yumexbackend/yum_backend.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr "Por favor, insira o suporte correcto"
+msgstr "Por favor, insira a mídia etiquetada %s #%d."
 
 #: ../src/yumexbackend/yum_backend.py:183
 #, python-format
@@ -76,12 +76,15 @@ msgid "Starting yum child process"
 msgstr "Iniciando processofilho do yum"
 
 #: ../src/yumexbackend/yum_backend.py:248
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr "Todos os repositórios registrados"
+msgstr ""
+"Usando para seguir repositórios :\n"
+"%s\n"
+"\n"
 
 #: ../src/yumexbackend/yum_backend.py:264
 msgid "yum backend process is ended"
@@ -160,9 +163,9 @@ msgid "The %s repository has been enabled permanently"
 msgstr "O repositório %s foi habilitado permanentemente"
 
 #: ../src/yumexbackend/yum_server.py:963
-#, fuzzy, python-format
+#, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr "Esta chave foi desactivada"
+msgstr "O repositório %s foi desabilitado permanentemente"
 
 #: ../src/yumexbackend/yum_server.py:1010
 msgid "Cleaned metadata from local cache"
@@ -222,9 +225,9 @@ msgid "Downloading Changelog information for the %s repository"
 msgstr "Baixando informação de Changelog do repositório %s"
 
 #: ../src/yumexbase/constants.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr "Incapaz de obter informação do grupo para o utilizador\n"
+msgstr "Baixando informação de Grupos para o repositório %s"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
@@ -278,9 +281,8 @@ msgid "Preferences"
 msgstr "Preferências"
 
 #: ../src/yumexgui/dialogs.py:426
-#, fuzzy
 msgid "Load packages on launch"
-msgstr "Comando para executar no clique :"
+msgstr "Carregando pacotes ao lançar"
 
 #: ../src/yumexgui/dialogs.py:434
 msgid "Debug Mode"
@@ -427,11 +429,11 @@ msgstr "Erro na configuração do repositório"
 
 #: ../src/yumexgui/__init__.py:656
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgstr "Você pode tentar iniciar 'yumex -n' na linha de comando\n"
 
 #: ../src/yumexgui/__init__.py:657
 msgid "and deseleting the repositories causing problems\n"
-msgstr ""
+msgstr "e desmarcando o repositório que causou problemas\n"
 
 #: ../src/yumexgui/__init__.py:658
 msgid "and try again.\n"
@@ -504,7 +506,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:792
 msgid "network connection state check is disabled"
-msgstr ""
+msgstr "a checagem de conexão de rede está desativada"
 
 #: ../src/yumexgui/__init__.py:794
 msgid "Can't detect the network connection state"
@@ -589,6 +591,9 @@ msgid ""
 "\n"
 "Do you want to exit Yum Extender ?"
 msgstr ""
+"\n"
+"\n"
+"Você quer sair do Yum Extender?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:951
@@ -600,6 +605,8 @@ msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr ""
+"Transação completa com erros,\n"
+" cheque a página de saída para detalhes"
 
 #: ../src/yumexgui/__init__.py:1033
 msgid "<unset>"
@@ -714,7 +721,7 @@ msgstr "Básico"
 
 #: ../src/yumex.glade.h:9
 msgid "Dont  check signatures for packages"
-msgstr ""
+msgstr "Sem checar assinaturas para pacotes"
 
 #: ../src/yumex.glade.h:10
 msgid "Error"
@@ -733,20 +740,20 @@ msgid "R_epositories"
 msgstr "R_epositórios"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "Histórico do desfazer/refazer"
+msgstr "Desfazendo histórico de atualizações"
 
 #: ../src/yumex.glade.h:15
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
 msgstr ""
+"Atualizar pacotes atualmente selecionados\n"
+"repositórios"
 
 #: ../src/yumex.glade.h:17
-#, fuzzy
 msgid "Remove selected packages from queue"
-msgstr "Remover o item seleccionado da barra de ferramentas"
+msgstr "Removendo seleção de pacotes da lista"
 
 #: ../src/yumex.glade.h:18
 msgid "Select all packages in current view"
@@ -782,7 +789,7 @@ msgstr "Pulando quebrado"
 
 #: ../src/yumex.glade.h:26
 msgid "Skip packages there get depsolve errors"
-msgstr ""
+msgstr "Pular pacotes com erros de dependencias"
 
 #: ../src/yumex.glade.h:27
 msgid ""
@@ -790,6 +797,9 @@ msgid ""
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
+"Escrever palavras separadas por espaço\n"
+"para procurar pacotes contendo a busca por\n"
+"palavras.\n"
 
 #: ../src/yumex.glade.h:31
 msgid "U_pdates"
@@ -804,9 +814,8 @@ msgid "Undo all package selection"
 msgstr "Desfazer todas as seleções de pacotes"
 
 #: ../src/yumex.glade.h:34
-#, fuzzy
 msgid "Undo repository selection changes"
-msgstr "<b>Reverter</b>Reverter as alterações locais."
+msgstr "Desfazendo seleção de mudanças de repositório"
 
 #: ../src/yumex.glade.h:35
 msgid "Yum"
