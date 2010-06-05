@@ -18,11 +18,11 @@
 #    Muayyad Saleh Alsadi <alsadi@ojuba.org>
 
 """
-This is the DeviceKit implementation of MediaManager module for dealing with removable media
+This is the UDisks implementation of MediaManager module for dealing with removable media
 
 it's used like this
 
-    from yumMediaManagerDeviceKit import MediaManagerDeviceKit as MediaManager
+    from yumMediaManagerUDisks import MediaManagerUDisks as MediaManager
     manager = MediaManager()
     media, found = None, False
     for media in manager:
@@ -36,20 +36,20 @@ NOTE: releasing (unmounting and unlocking) is done when media is destructed
 """
 
 #list:
-#dbus-send --system --print-reply --dest=org.freedesktop.DeviceKit.Disks
-#/org/freedesktop/DeviceKit/Disks
-#org.freedesktop.DeviceKit.Disks.EnumerateDevices
+#dbus-send --system --print-reply --dest=org.freedesktop.UDisks
+#/org/freedesktop/UDisks
+#org.freedesktop.UDisks.EnumerateDevices
 #
 #filter:
-#dbus-send --system --print-reply --dest=org.freedesktop.DeviceKit.Disks
-#/org/freedesktop/DeviceKit/Disks/devices/sr0
+#dbus-send --system --print-reply --dest=org.freedesktop.UDisks
+#/org/freedesktop/UDisks/devices/sr0
 #org.freedesktop.DBus.Properties.Get
-#string:org.freedesktop.DeviceKit.Disks.Device string:"device-is-removable"
+#string:org.freedesktop.UDisks.Device string:"device-is-removable"
 #
 #mount:
-#dbus-send --system --print-reply --dest=org.freedesktop.DeviceKit.Disks
-#/org/freedesktop/DeviceKit/Disks/devices/sr0
-#org.freedesktop.DeviceKit.Disks.Device.FilesystemMount string:auto
+#dbus-send --system --print-reply --dest=org.freedesktop.UDisks
+#/org/freedesktop/UDisks/devices/sr0
+#org.freedesktop.UDisks.Device.FilesystemMount string:auto
 #array:string:
 
 import dbus
@@ -58,13 +58,13 @@ from dbus.mainloop.glib import DBusGMainLoop
 from yumexbackend.yumMediaManager import MediaManager, MediaDevice
 dbus_loop = DBusGMainLoop(set_as_default = True)
 bus = dbus.SystemBus()
-interface = 'org.freedesktop.DeviceKit.Disks'
+interface = 'org.freedesktop.UDisks'
 
 # TODO: catch some "except dbus.exceptions.DBusException"
 # Don't care about __init__ method from base class 'MediaDevice' is not called
 # pylint: disable-msg=W0231 
 
-class MediaDeviceDeviceKit(MediaDevice):
+class MediaDeviceUDisks(MediaDevice):
     """
     You should just use acquire() to get the mount point (the implementation is
     supposed to be smart enough to return mount point when it's already mounted)
@@ -140,16 +140,16 @@ class MediaDeviceDeviceKit(MediaDevice):
         return not self.is_mounted()
 
 
-class MediaManagerDeviceKit(MediaManager):
+class MediaManagerUDisks(MediaManager):
     """Just iterate over an instance of this class to get MediaDevice objects"""
     def __init__(self):
-        self.__dev = bus.get_object(interface, "/org/freedesktop/DeviceKit/Disks")
+        self.__dev = bus.get_object(interface, "/org/freedesktop/UDisks/Disks")
 
     def __iter__(self):
         #self.__close_tray_and_be_ready()
         # use volume.disc to restrict that to optical discs
         for i in self.__dev.EnumerateDevices(dbus_interface = interface):
-            o = MediaDeviceDeviceKit(i)
+            o = MediaDeviceUDisks(i)
             if o.is_removable():
                 yield o
 

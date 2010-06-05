@@ -29,7 +29,7 @@ from urlgrabber.progress import format_number
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
-from yumexbackend.yumMediaManagerDeviceKit import MediaManagerDeviceKit as MediaManager
+from yumexbackend.yumMediaManagerUDisks import MediaManagerUDisks as MediaManager
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
