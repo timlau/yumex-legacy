@@ -1,3 +1,213 @@
+2010-06-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py, src/yumexbase/constants.py, yumex.spec: 
+	bumped version to 2.9.8
+
+2010-06-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: added udisks to requirements
+
+2010-06-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/POTFILES.in, src/yumexbackend/yumMediaManagerDeviceKit.py,
+	src/yumexbackend/yumMediaManagerUDisks.py,
+	src/yumexbackend/yum_backend.py: Use udisks insted of
+	devicekit-disks for media handling by Muayyad Alsadi
+
+2010-06-01  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: Add dbus-python as a requirment
+
+2010-05-28  dichi <dichi@fedoraproject.org>
+
+	* po/id.po: l10n: Updates to Indonesian (id) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-05-20  fab <fab@fedoraproject.org>
+
+	* po/de.po: l10n: Initial German translations  Transmitted-via:
+	Transifex (translate.fedoraproject.org)
+
+2010-04-27  vitorvilas <vitorvilas@fedoraproject.org>
+
+	* po/pt.po: l10n: Updates to Portuguese (pt) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-04-27  vitorvilas <vitorvilas@fedoraproject.org>
+
+	* po/pt.po: l10n: Updates to Portuguese (pt) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-04-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: fix typo
+
+2010-04-19  dichi <dichi@fedoraproject.org>
+
+	* po/id.po: l10n: Updates to Indonesian (id) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-04-16  ruigo <ruigo@fedoraproject.org>
+
+	* po/pt.po: l10n: Portuguese translation  Transmitted-via: Transifex
+	(translate.fedoraproject.org)
+
+2010-04-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexgui/__init__.py,
+	src/yumexgui/views.py: Added support for obsoletes
+
+2010-04-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Dont get updatetuples twice
+
+2010-03-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bump yum requirement to 3.2.23 (needed of
+	DepSolveProgressCallBack(ayum=self) )
+
+2010-03-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: fix missing 'Running RPM
+	Transaction' header message (rhbz #575467)
+
+2010-03-28  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: make the net connection check a little
+	better
+
+2010-03-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: fix issue with empty updated tuple
+
+
+2010-03-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: make History, Basic and advanced
+	translation work - stupid gtkbuilder
+
+2010-03-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py: make History, Basic and
+	advanced translation work - stupid gtkbuilder
+
+2010-03-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* .gitignore: added .gitignore
+
+2010-03-15  kristho <kristho@fedoraproject.org>
+
+	* po/da.po: l10n: Updates to Danish (da) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-03-13  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Initial Ukrainian translation  Transmitted-via:
+	Transifex (translate.fedoraproject.org)
+
+2010-03-07  renault <renault@fedoraproject.org>
+
+	* po/fr.po: Sending translation for French
+
+2010-02-24  kristho <kristho@fedoraproject.org>
+
+	* po/da.po: Sending translation for Danish
+
+2010-02-20  snicore <snicore@fedoraproject.org>
+
+	* po/hu.po: Sending translation for Hungarian
+
+2010-02-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/gui.py: Show package being updated in package info
+
+2010-02-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/gui.py: fix update info is
+	not showing on updates
+
+2010-02-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py: 
+	dont use beesu (give strange results on reload)
+
+2010-02-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: minor beesu adjustments
+
+2010-02-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: use beesu to lauch backend, when
+	running from source tree
+
+2010-02-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: use the colors in pref to display
+	package (rhbz# 565384)
+
+2010-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py: handle special case of locking error (rhbz
+	#564965)
+
+2010-02-12  snicore <snicore@fedoraproject.org>
+
+	* po/hu.po: Sending translation for Hungarian
+
+2010-02-12  dichi <dichi@fedoraproject.org>
+
+	* po/id.po: Sending translation for po/id.po
+
+2010-02-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/yum_backend.py,
+	src/yumexbase/conf.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py, src/yumexgui/gui.py, src/yumexgui/views.py: 
+	Added an option to enable package views with sortable columns, not
+	enabled by default because it takes longer time to populate the
+	views also fixed the gtk.Tooltips deprecation warnings
+
+2010-02-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/conf.py: Added -c option and yum_conf setting to be
+	able to specify a custom yum config file to use (#17)
+
+2010-02-09  snicore <snicore@fedoraproject.org>
+
+	* po/hu.po: Sending translation for Hungarian
+
+2010-02-09  snicore <snicore@fedoraproject.org>
+
+	* po/hu.po: Sending translation for Hungarian
+
+2010-02-08  snicore <snicore@fedoraproject.org>
+
+	* po/hu.po: Sending translation for po/hu.po
+
+2010-02-02  logan <logan@fedoraproject.org>
+
+	* po/es.po: Sending translation for Spanish
+
+2010-01-31  nippur <nippur@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2010-01-31  nippur <nippur@fedoraproject.org>
+
+	* po/nl.po: Sending translation for Dutch
+
+2010-01-31  raven <raven@fedoraproject.org>
+
+	* po/pl.po: Sending translation for Polish
+
+2010-01-31  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2010-01-31  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.7
