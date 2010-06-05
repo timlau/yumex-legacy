@@ -46,7 +46,7 @@ class YumexConf( BaseConfig ):
     color_normal = Option( 'black' )
     color_obsolete = Option( 'blue' )
     disable_repo_page = BoolOption( False )
-    branding_title = Option('Yum Extender NextGen')
+    branding_title = Option('Yum Extender')
     win_width = IntOption( 1000)
     win_height = IntOption( 600 ) 
     win_sep = IntOption( 300 ) 
