@@ -25,6 +25,7 @@ Requires: pexpect
 Requires: python-enum
 Requires: python-iniparse
 Requires: dbus-python
+Requires: udisks
 
 %description
 Graphical User Interface for Yum.
