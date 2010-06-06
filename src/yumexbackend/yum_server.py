@@ -838,9 +838,11 @@ class YumServer(yum.YumBase):
     
                     elem = (grp.groupid, grp.ui_name, grp.ui_description, grp.installed, icon)
                     cat_grps.append(elem)
+                cat_grps.sort()
                 all_groups.append((cat, cat_grps))
         except Errors.GroupsError, e:
             print str(e)
+        all_groups.sort()    
         self.message('groups', pack(all_groups))
         self.ended(True)
 
