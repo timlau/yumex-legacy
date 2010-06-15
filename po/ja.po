@@ -1,22 +1,26 @@
+# translation of ja.po to Japanese
 # Japanese translation of Yumex
 # Copyright (C) 2005, 2006 Tim Lauridsen
 # This file is distributed under the same license as the Yumex package.
+#
+#
 # Takanori MATSUURA <t.matsuu@gmail.com>, 2005-2009.
-#
-#
 # Takanori MATSUURA <t.matsuu@gmail.com>, 2009.
 # Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
+# Kiyoto Hashida <khashida@redhat.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex 2.9.0\n"
+"Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-01-31 08:44+0100\n"
-"PO-Revision-Date: 2009-09-10 18:25+0900\n"
-"Last-Translator: Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>\n"
-"Language-Team: Japanese <>\n"
+"PO-Revision-Date: 2010-06-15 10:55+0900\n"
+"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
+"Language-Team: Japanese <jp@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -81,7 +85,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:264
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "yum のバックエンドプロセスは終了しました"
 
 #: ../src/yumexbackend/yum_backend.py:500 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
@@ -104,15 +108,14 @@ msgstr "依存関係の解決がエラーで完了しました"
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:224
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Yum バックエンドは時間内に正しく終了しませんでした"
 
 #. Not local disable it
 #. No, disable it
 #: ../src/yumexbackend/yum_server.py:250 ../src/yumexbackend/yum_server.py:259
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
-"ネットワーク接続がないので、ローカルではないリポジトリー %s を無効にします"
+msgstr "ネットワーク接続がないので、ローカルではないリポジトリー %s を無効にします"
 
 #: ../src/yumexbackend/yum_server.py:274
 msgid "Yum is locked : "
@@ -152,29 +155,28 @@ msgstr "他のミラーを試行中。"
 #: ../src/yumexbackend/yum_server.py:960
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr ""
+msgstr "%s レポジトリは恒久的に有効になっています"
 
 #: ../src/yumexbackend/yum_server.py:963
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr ""
+msgstr "%s レポジトリは恒久的に無効になっています"
 
 #: ../src/yumexbackend/yum_server.py:1010
 msgid "Cleaned metadata from local cache"
-msgstr ""
+msgstr "ローカルキャッシュからデータを除去しました"
 
 #: ../src/yumexbackend/yum_server.py:1013
 msgid "Cleaned dbcache"
-msgstr ""
+msgstr "DB キャッシュを除去しました"
 
 #: ../src/yumexbackend/yum_server.py:1016
-#, fuzzy
 msgid "Cleaned packages from local cache"
-msgstr "起動時にパッケージを読み込む"
+msgstr "ローカルキャッシュからパッケージを除去しました"
 
 #: ../src/yumexbackend/yum_server.py:1018
 msgid "Cleaned everything from local cache"
-msgstr ""
+msgstr "ローカルキャッシュから全てを除去しました"
 
 #: ../src/yumexbackend/yum_server.py:1404
 msgid "Rebuild from deltarpms completted"
@@ -239,27 +241,27 @@ msgstr "%sリポジトリーの更新情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:111
 msgid "0 - 7 Days"
-msgstr ""
+msgstr "0 - 7 日"
 
 #: ../src/yumexbase/constants.py:112
 msgid "7 - 14 Days"
-msgstr ""
+msgstr "7 - 14 日"
 
 #: ../src/yumexbase/constants.py:113
 msgid "14 - 21 Days"
-msgstr ""
+msgstr "14 - 21 日"
 
 #: ../src/yumexbase/constants.py:114
 msgid "21  - 30 days"
-msgstr ""
+msgstr "21  - 30 日"
 
 #: ../src/yumexbase/constants.py:115
 msgid "30 - 90 days"
-msgstr ""
+msgstr "30 - 90 日"
 
 #: ../src/yumexbase/constants.py:116
 msgid "90+ days"
-msgstr ""
+msgstr "90+ 日"
 
 #: ../src/yumexgui/dialogs.py:253
 msgid "Running RPM Transaction"
@@ -283,7 +285,7 @@ msgstr "デバッグモード"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Disable startup network check"
-msgstr ""
+msgstr "ネットワーク開始のチェックを無効にする"
 
 #: ../src/yumexgui/dialogs.py:436
 msgid "Color (Installed)"
@@ -336,9 +338,9 @@ msgid "Size"
 msgstr "サイズ"
 
 #: ../src/yumexgui/dialogs.py:585
-#, fuzzy, python-format
+#, python-format
 msgid "Download Size : %s "
-msgstr "ダウンロード済: %s (%s)"
+msgstr "ダウンロードサイズ: %s "
 
 #: ../src/yumexgui/gui.py:247
 msgid "Package Description"
@@ -392,7 +394,7 @@ msgstr "説明: %s\n"
 #: ../src/yumexgui/__init__.py:474
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr ""
+msgstr "yum キャッシュから %s を除去したいですか"
 
 #: ../src/yumexgui/__init__.py:644
 msgid "Fatal Error"
@@ -413,32 +415,31 @@ msgstr "yumバックエンドからのメッセージ:"
 
 #: ../src/yumexgui/__init__.py:653
 msgid "Error in repository setup"
-msgstr ""
+msgstr "レポジトリセットアップにエラー"
 
 #: ../src/yumexgui/__init__.py:656
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgstr "コマンドラインから 'yumex -n' の開始を試すことができます\n"
 
 #: ../src/yumexgui/__init__.py:657
 msgid "and deseleting the repositories causing problems\n"
-msgstr ""
+msgstr "そして、問題のあるレポジトリを選択解除します\n"
 
 #: ../src/yumexgui/__init__.py:658
 msgid "and try again.\n"
-msgstr ""
+msgstr "それから再試行します。\n"
 
 #: ../src/yumexgui/__init__.py:663
 msgid "Fatal Error in backend restart"
-msgstr ""
+msgstr "バックエンドの再開始に致命的なエラー"
 
 #: ../src/yumexgui/__init__.py:664
 msgid "Backend could not be closed"
-msgstr ""
+msgstr "バックエンドを閉じることができません"
 
 #: ../src/yumexgui/__init__.py:668
-#, fuzzy
 msgid "Fatal Error : "
-msgstr "致命的ななエラー"
+msgstr "致命的ななエラー : "
 
 #: ../src/yumexgui/__init__.py:733 ../src/yumexgui/views.py:447
 msgid "Packages"
@@ -466,11 +467,11 @@ msgstr "有効なリポジトリーを選択する"
 
 #: ../src/yumexgui/__init__.py:743
 msgid "History"
-msgstr ""
+msgstr "履歴"
 
 #: ../src/yumexgui/__init__.py:744
 msgid "Watch yum history"
-msgstr ""
+msgstr "yum の履歴を見る"
 
 #: ../src/yumexgui/__init__.py:746
 msgid "Output"
@@ -493,10 +494,8 @@ msgstr ""
 "続けますか "
 
 #: ../src/yumexgui/__init__.py:792
-#, fuzzy
 msgid "network connection state check is disabled"
-msgstr ""
-"ネットワーク接続がないので、ローカルではないリポジトリー %s を無効にします"
+msgstr "ネットワーク接続の状態チェックは無効になっています"
 
 #: ../src/yumexgui/__init__.py:794
 msgid "Can't detect the network connection state"
@@ -508,38 +507,35 @@ msgstr "ネットワークに接続しました"
 
 #: ../src/yumexgui/__init__.py:829
 msgid "Enable Permanently"
-msgstr ""
+msgstr "恒久的に有効にする"
 
 #: ../src/yumexgui/__init__.py:833
 msgid "Disable Permanently"
-msgstr ""
+msgstr "恒久的に無効にする"
 
 #: ../src/yumexgui/__init__.py:836
 msgid "Clean Metadata"
-msgstr ""
+msgstr "メタデータを除去する"
 
 #: ../src/yumexgui/__init__.py:837
-#, fuzzy
 msgid "Clean Packages"
-msgstr "パッケージ"
+msgstr "パッケージを除去"
 
 #: ../src/yumexgui/__init__.py:838
 msgid "Clean DbCache"
-msgstr ""
+msgstr "DB キャッシュを除去する"
 
 #: ../src/yumexgui/__init__.py:839
 msgid "Clean All"
-msgstr ""
+msgstr "全てを除去する"
 
 #: ../src/yumexgui/__init__.py:845
-#, fuzzy
 msgid "By Repositories"
-msgstr "リポジトリー"
+msgstr "リポジトリー別"
 
 #: ../src/yumexgui/__init__.py:846
-#, fuzzy
 msgid "By Size"
-msgstr "サイズ"
+msgstr "サイズ別"
 
 #: ../src/yumexgui/__init__.py:869 ../src/yumexgui/__init__.py:870
 msgid "Getting Group information"
@@ -578,7 +574,6 @@ msgid "Transaction completed successfully"
 msgstr "トランザクションが正常に完了しました"
 
 #: ../src/yumexgui/__init__.py:945
-#, fuzzy
 msgid ""
 "\n"
 "\n"
@@ -586,7 +581,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Yum Extenderを終了しますか"
+"Yum Extenderを終了したいですか？"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:951
@@ -603,26 +598,23 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:1033
 msgid "<unset>"
-msgstr ""
+msgstr "<unset>"
 
 #: ../src/yumexgui/__init__.py:1034
 msgid "System"
-msgstr ""
+msgstr "システム"
 
 #: ../src/yumexgui/__init__.py:1057
-#, fuzzy
 msgid "Getting History Information"
-msgstr "グループ情報を取得中"
+msgstr "履歴情報を取得中"
 
 #: ../src/yumexgui/__init__.py:1059
-#, fuzzy
 msgid "Getting Latest History Information"
-msgstr "パッケージ情報を取得中"
+msgstr "最新の履歴情報を取得中"
 
 #: ../src/yumexgui/__init__.py:1061
-#, fuzzy
 msgid "Getting All History Information"
-msgstr "グループ情報を取得中"
+msgstr "全ての履歴情報を取得中"
 
 #: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:183
 msgid "Package"
@@ -667,27 +659,27 @@ msgstr "ファイル名"
 
 #: ../src/yumexgui/views.py:889
 msgid "Categories"
-msgstr ""
+msgstr "カテゴリ"
 
 #: ../src/yumexgui/views.py:935
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:936
 msgid "Login User"
-msgstr ""
+msgstr "ログインユーザー"
 
 #: ../src/yumexgui/views.py:937
 msgid "Data/Time"
-msgstr ""
+msgstr "データ/時刻"
 
 #: ../src/yumexgui/views.py:938
 msgid "Action(s)"
-msgstr ""
+msgstr "アクション"
 
 #: ../src/yumexgui/views.py:939
 msgid "Altered"
-msgstr ""
+msgstr "変更済み"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
@@ -703,7 +695,7 @@ msgstr "詳細"
 
 #: ../src/yumex.glade.h:6
 msgid "All"
-msgstr ""
+msgstr "全て"
 
 #: ../src/yumex.glade.h:7
 msgid "Availa_ble"
@@ -727,16 +719,15 @@ msgstr "キューにある全ての保留されているアクションを実行
 
 #: ../src/yumex.glade.h:12
 msgid "Get all History elements"
-msgstr ""
+msgstr "全ての履歴要素を取得"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
 msgstr "リポジトリー(_E)"
 
 #: ../src/yumex.glade.h:14
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "トランザクションを準備中"
+msgstr "履歴トランザクションを再試行"
 
 #: ../src/yumex.glade.h:15
 msgid ""
@@ -754,17 +745,15 @@ msgstr "現在表示されている全てのパッケージを選択します"
 
 #: ../src/yumex.glade.h:19
 msgid "Show Categories"
-msgstr ""
+msgstr "カテゴリを表示"
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show Groups"
-msgstr "グループ(_G)"
+msgstr "グループを表示"
 
 #: ../src/yumex.glade.h:21
-#, fuzzy
 msgid "Show all Packages"
-msgstr "利用可能なパッケージを表示します"
+msgstr "全てのパッケージを表示"
 
 #: ../src/yumex.glade.h:22
 msgid "Show available packages"
@@ -801,7 +790,7 @@ msgstr "更新(_P)"
 
 #: ../src/yumex.glade.h:32
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "履歴トランザクションを元に戻す"
 
 #: ../src/yumex.glade.h:33
 msgid "Undo all package selection"
@@ -817,7 +806,7 @@ msgstr "Yum"
 
 #: ../src/yumex.glade.h:36
 msgid "_Categories"
-msgstr ""
+msgstr "カテゴリ (_C)"
 
 #: ../src/yumex.glade.h:37
 msgid "_Edit"
@@ -837,7 +826,7 @@ msgstr "ヘルプ(_H)"
 
 #: ../src/yumex.glade.h:41
 msgid "_History"
-msgstr ""
+msgstr "履歴 (_H)"
 
 #: ../src/yumex.glade.h:42
 msgid "_Installed"
@@ -871,11 +860,3 @@ msgstr "表示(_V)"
 msgid "no GPG Check"
 msgstr "GPGを確認しない"
 
-#~ msgid "Stopping yum child process"
-#~ msgstr "yumの子プロセスを停止中"
-
-#~ msgid "Unknown Error : "
-#~ msgstr "不明なエラー: "
-
-#~ msgid "The needed media was not found"
-#~ msgstr "必要とされるメディアが見つかりませんでした"
