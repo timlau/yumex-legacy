@@ -36,7 +36,7 @@ class MediaDevice(object):
         """
         self._unmount_needed = False
         self._unlock_needed = False
-        raise NotImplemented
+        raise NotImplementedError
 
     def __del__(self):
         """
@@ -49,36 +49,36 @@ class MediaDevice(object):
             self.unlock()
 
     def is_removable(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def is_mounted(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def is_locked(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def get_mount_point(self):
         """return the mount point or None if not mounted"""
-        raise NotImplemented
+        raise NotImplementedError
 
     def lock(self):
         """return True if lock is successfully acquired."""
-        raise NotImplemented
+        raise NotImplementedError
 
     def unlock(self):
         """return True if it was able to release the lock successfully."""
-        raise NotImplemented
+        raise NotImplementedError
 
     def mount(self):
         """
         mount the device and return the mount point.
         If it's already mounted, just return the mount point.
         """
-        raise NotImplemented
+        raise NotImplementedError
 
     def unmount(self):
         """unmount the device and return True."""
-        raise NotImplemented
+        raise NotImplementedError
 
     # no need to re-implement the following methods when you derive from this class
     def acquire(self):
@@ -98,8 +98,8 @@ class MediaDevice(object):
 class MediaManager (object):
     """Just iterate over an instance of this class to get MediaDevice objects"""
     def __init__(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def __iter__(self):
-        raise NotImplemented
+        raise NotImplementedError
 
