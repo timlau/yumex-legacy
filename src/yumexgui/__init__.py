@@ -604,7 +604,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress = Progress(self.ui, self.window)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
-        self.package_cache = PackageCache(self.backend)
+        self.package_cache = PackageCache(self.backend, self.frontend)
         self._packages_loaded = False
         self.key_bindings = gtk.AccelGroup()
         self._network = NetworkCheckNetworkManager()

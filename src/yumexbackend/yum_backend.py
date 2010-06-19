@@ -548,7 +548,7 @@ class YumexTransactionYum(YumexTransactionBase):
         Get the current packages in the transaction queue
         '''
         pkgs = self.backend.list_transaction()
-        return [YumexPackageYum(p) for p in pkgs]
+        return [YumexPackageYum(p,self.frontend) for p in pkgs]
     
     
     

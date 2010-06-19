@@ -92,13 +92,14 @@ class PackageCache:
     than once.
     '''
     
-    def __init__(self, backend):
+    def __init__(self, backend, frontend):
         '''
         setup the cache
         @param backend:    backend instance
         '''
         self._cache = {}
         self.backend = backend
+        self.frontend = frontend
         
     def reset(self):
         '''
@@ -135,7 +136,7 @@ class PackageCache:
             return(target[str(po)])
         else:   
             print 'not found in cache : [%s] [%s] ' % (po, po.action)
-            return YumexPackageYum(po)
+            return YumexPackageYum(po, self.frontend )
     
 
 class PageHeader(gtk.HBox):
