@@ -1,7 +1,7 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  2.9.8
+Version:  2.9.9
 Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
@@ -75,6 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Tue Jul 6 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.9-1
+- bumped version to 2.9.9-1
 * Sat Jun 5 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.8-1
 - bumped version to 2.9.8-1
 * Mon Jan 31 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.7-1
