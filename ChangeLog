@@ -1,3 +1,40 @@
+2010-07-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.9
+
+2010-07-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py: make sure we have a default value
+
+2010-06-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: use self, not self.frontend in frontend
+	class
+
+2010-06-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yumMediaManager.py: fix pylint errors:
+	NotImplemented raised - should raise NotImplementedError
+
+2010-06-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/__init__.py,
+	src/yumexgui/gui.py: fix internal API break in YumexPackageYum (rhbz
+	#605181)
+
+2010-06-15  khasida <khasida@fedoraproject.org>
+
+	* po/ja.po: l10n: Updates to Japanese (ja) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-06-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: sort groups
+
+2010-06-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2010-06-05  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/conf.py, src/yumexbase/constants.py, yumex.spec: 
