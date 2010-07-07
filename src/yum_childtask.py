@@ -52,7 +52,7 @@ if __name__ == "__main__":
     plugins = True
     offline = False
     yum_conf = '/etc/yum.conf'
-    if len(sys.sargv) > 3:
+    if len(sys.argv) > 3:
         debuglevel = int(sys.argv[1])
         plugins = sys.argv[2] == 'True'
         offline = sys.argv[3] == 'True'
