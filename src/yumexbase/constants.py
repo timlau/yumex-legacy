@@ -133,3 +133,11 @@ SIZE_RANGES = {
 HISTORY_KEYS = ['True-Install', 'Install', 'Update', 'Erase', \
 'Dep-Install', 'Reinstall', 'Obsoleted', 'Downgrade', \
  'Updated', 'Downgraded', 'Obsoleting']
+
+PACKAGE_LOAD_MSG = {
+ 'all'          : _('Getting all packages'),
+ 'installed'    : _('Getting installed packages'),
+ 'available'    : _('Getting available packages'),
+ 'updates'      : _('Getting available updates'), 
+ 'obsoletes'    : _('Getting available obsoletes')
+ }

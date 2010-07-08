@@ -511,9 +511,9 @@ class YumServer(yum.YumBase):
         if narrow:
             show_dupes = (dupes == 'True')
             if not self._package_cache.isLoaded():
-                print "Populating Package Cache"
+                self.info(_("Populating Package Cache"))
                 self._package_cache.load(show_dupes=show_dupes)
-            print "getting packages - %s "% narrow
+            self.info(PACKAGE_LOAD_MSG[narrow])
             if narrow == "all":
                 updates = self._package_cache.updates
                 obsoletes = self._package_cache.obsoletes
