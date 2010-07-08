@@ -6,16 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-31 08:44+0100\n"
+"POT-Creation-Date: 2010-07-08 09:48+0200\n"
 "PO-Revision-Date: 2010-03-13 21:28+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
-"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -44,31 +45,35 @@ msgstr "Створення підписів GPG пакунків"
 msgid "Running RPM Test Transaction"
 msgstr "Запуск операції з перевірки RPM"
 
-#: ../src/yumexbackend/yum_backend.py:164
+#: ../src/yumexbackend/yum_backend.py:160 ../src/yumexgui/dialogs.py:253
+msgid "Running RPM Transaction"
+msgstr "Виконання операції RPM"
+
+#: ../src/yumexbackend/yum_backend.py:165
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Бажаєте імпортувати ключ GPG: %s \n"
 
-#: ../src/yumexbackend/yum_backend.py:166
+#: ../src/yumexbackend/yum_backend.py:167
 #, python-format
 msgid "Needed by %s"
 msgstr "Потрібен для %s"
 
-#: ../src/yumexbackend/yum_backend.py:181
+#: ../src/yumexbackend/yum_backend.py:182
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "Будь ласка, вставте носій з міткою %s №%d."
 
-#: ../src/yumexbackend/yum_backend.py:183
+#: ../src/yumexbackend/yum_backend.py:184
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "Будь ласка, вставте носій з міткою %s."
 
-#: ../src/yumexbackend/yum_backend.py:246
+#: ../src/yumexbackend/yum_backend.py:247
 msgid "Starting yum child process"
 msgstr "Запуск дочірнього процесу yum"
 
-#: ../src/yumexbackend/yum_backend.py:248
+#: ../src/yumexbackend/yum_backend.py:249
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -79,106 +84,116 @@ msgstr ""
 "%s\n"
 "\n"
 
-#: ../src/yumexbackend/yum_backend.py:264
+#: ../src/yumexbackend/yum_backend.py:266
 msgid "yum backend process is ended"
 msgstr "процес сервера yum завершив роботу"
 
-#: ../src/yumexbackend/yum_backend.py:500 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:513 ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Розв’язання залежностей"
 
-#: ../src/yumexbackend/yum_backend.py:517
-#: ../src/yumexbackend/yum_backend.py:518
+#: ../src/yumexbackend/yum_backend.py:530
+#: ../src/yumexbackend/yum_backend.py:531
 msgid "Dependency Resolution Failed"
 msgstr "Не вдалося розв’язати залежності"
 
-#: ../src/yumexbackend/yum_backend.py:519
+#: ../src/yumexbackend/yum_backend.py:532
 msgid "Dependency Resolution Errors:"
 msgstr "Помилки розв’зання залежностей:"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:528
+#: ../src/yumexbackend/yum_backend.py:541
 msgid "Dependency resolving completed with errors"
 msgstr "Розв’язання залежностей завершено з помилками"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:224
+#: ../src/yumexbackend/yum_client.py:225
 msgid "Yum backend did not close nicely in time"
 msgstr "Сервер Yum не зміг завершити роботу без помилок за відведений час"
 
+#: ../src/yumexbackend/yum_server.py:202
+#, python-format
+msgid "Using %s for yum configuration"
+msgstr ""
+
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:250 ../src/yumexbackend/yum_server.py:259
+#: ../src/yumexbackend/yum_server.py:257 ../src/yumexbackend/yum_server.py:266
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "Не встановлено з’єднання з мережею, нелокальне сховище %s вимкнено"
 
-#: ../src/yumexbackend/yum_server.py:274
+#: ../src/yumexbackend/yum_server.py:281
 msgid "Yum is locked : "
 msgstr "Yum заблоковано: "
 
-#: ../src/yumexbackend/yum_server.py:279
+#: ../src/yumexbackend/yum_server.py:286
 msgid "  The other application is: PackageKit"
 msgstr "  Сторонньою програмою є: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:281
+#: ../src/yumexbackend/yum_server.py:288
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  Сторонньою програмою є: %s"
 
-#: ../src/yumexbackend/yum_server.py:283
+#: ../src/yumexbackend/yum_server.py:290
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "Десятисекундне очікування і повторна спроба!!!"
 
-#: ../src/yumexbackend/yum_server.py:698
+#: ../src/yumexbackend/yum_server.py:514
+#, fuzzy
+msgid "Populating Package Cache"
+msgstr "Звантаження пакунків"
+
+#: ../src/yumexbackend/yum_server.py:708
 msgid "Installing"
 msgstr "Встановлення"
 
-#: ../src/yumexbackend/yum_server.py:750
+#: ../src/yumexbackend/yum_server.py:760
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Помилка під час операції yum: %s"
 
-#: ../src/yumexbackend/yum_server.py:792
+#: ../src/yumexbackend/yum_server.py:802
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Помилка отримання %s: "
 
-#: ../src/yumexbackend/yum_server.py:793
+#: ../src/yumexbackend/yum_server.py:803
 msgid "Trying other mirror."
 msgstr "Спроба використання іншого дзеркала."
 
-#: ../src/yumexbackend/yum_server.py:960
+#: ../src/yumexbackend/yum_server.py:972
 #, python-format
 msgid "The %s repository has been enabled permanently"
 msgstr "Сховище %s було остаточно увімкнено"
 
-#: ../src/yumexbackend/yum_server.py:963
+#: ../src/yumexbackend/yum_server.py:975
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "Сховище %s було остаточно вимкнено"
 
-#: ../src/yumexbackend/yum_server.py:1010
+#: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
 msgstr "З локального кешу вилучено метадані"
 
-#: ../src/yumexbackend/yum_server.py:1013
+#: ../src/yumexbackend/yum_server.py:1039
 msgid "Cleaned dbcache"
 msgstr "Спорожнено dbcache"
 
-#: ../src/yumexbackend/yum_server.py:1016
+#: ../src/yumexbackend/yum_server.py:1042
 msgid "Cleaned packages from local cache"
 msgstr "З локального кешу вилучено пакунки"
 
-#: ../src/yumexbackend/yum_server.py:1018
+#: ../src/yumexbackend/yum_server.py:1044
 msgid "Cleaned everything from local cache"
 msgstr "Локальний кеш повністю спорожнено"
 
-#: ../src/yumexbackend/yum_server.py:1404
+#: ../src/yumexbackend/yum_server.py:1430
 msgid "Rebuild from deltarpms completted"
 msgstr "Повторне збирання з deltarpm завершено"
 
-#: ../src/yumexbackend/yum_server.py:1406
+#: ../src/yumexbackend/yum_server.py:1432
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "Звантажено: %s ( %s )"
@@ -259,9 +274,30 @@ msgstr "30 - 90 днів"
 msgid "90+ days"
 msgstr "90+ днів"
 
-#: ../src/yumexgui/dialogs.py:253
-msgid "Running RPM Transaction"
-msgstr "Виконання операції RPM"
+#: ../src/yumexbase/constants.py:138
+#, fuzzy
+msgid "Getting all packages"
+msgstr "Отримання списку доступних пакунків"
+
+#: ../src/yumexbase/constants.py:139
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "Отримання списку встановлених пакунків"
+
+#: ../src/yumexbase/constants.py:140
+#, fuzzy
+msgid "Getting available packages"
+msgstr "Отримання списку доступних пакунків"
+
+#: ../src/yumexbase/constants.py:141
+#, fuzzy
+msgid "Getting available updates"
+msgstr "Отримання списку доступних пакунків"
+
+#: ../src/yumexbase/constants.py:142
+#, fuzzy
+msgid "Getting available obsoletes"
+msgstr "Отримання списку доступних пакунків"
 
 #: ../src/yumexgui/dialogs.py:343
 msgid "Working !!!"
@@ -275,65 +311,71 @@ msgstr "Параметри"
 msgid "Load packages on launch"
 msgstr "Завантажувати пакунки після запуску"
 
-#: ../src/yumexgui/dialogs.py:434
+#: ../src/yumexgui/dialogs.py:427
+msgid "Use sortable columns in package view (slower)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:435
 msgid "Debug Mode"
 msgstr "Діагностичний режим"
 
-#: ../src/yumexgui/dialogs.py:435
+#: ../src/yumexgui/dialogs.py:436
 msgid "Disable startup network check"
 msgstr "Вимкнути перевірку мережевого з’єднання під час запуску"
 
-#: ../src/yumexgui/dialogs.py:436
+#: ../src/yumexgui/dialogs.py:437
 msgid "Color (Installed)"
 msgstr "Колір (встановлено)"
 
-#: ../src/yumexgui/dialogs.py:437
+#: ../src/yumexgui/dialogs.py:438
 msgid "Color (Update)"
 msgstr "Колір (оновлення)"
 
-#: ../src/yumexgui/dialogs.py:438
+#: ../src/yumexgui/dialogs.py:439
 msgid "Color (Available)"
 msgstr "Колір (доступні)"
 
-#: ../src/yumexgui/dialogs.py:446
+#: ../src/yumexgui/dialogs.py:447
 msgid "Enable Yum Plugins"
 msgstr "Увімкнути додатки Yum"
 
-#: ../src/yumexgui/dialogs.py:447
+#: ../src/yumexgui/dialogs.py:448
 msgid "Proxy"
 msgstr "Проксі"
 
-#: ../src/yumexgui/dialogs.py:448
+#: ../src/yumexgui/dialogs.py:449
 msgid "Yum Debug Level"
 msgstr "Рівень діагностики Yum"
 
-#: ../src/yumexgui/dialogs.py:504 ../src/yumexgui/dialogs.py:513
+#: ../src/yumexgui/dialogs.py:505 ../src/yumexgui/dialogs.py:514
 msgid "Transaction Result"
 msgstr "Результат операції"
 
-#: ../src/yumexgui/dialogs.py:547 ../src/yumexgui/views.py:577
+#: ../src/yumexgui/dialogs.py:548 ../src/yumexgui/views.py:755
 msgid "Name"
 msgstr "Назва"
 
-#: ../src/yumexgui/dialogs.py:548
+#: ../src/yumexgui/dialogs.py:549
 msgid "Arch"
 msgstr "Арх."
 
-#: ../src/yumexgui/dialogs.py:549 ../src/yumexgui/views.py:160
+#: ../src/yumexgui/dialogs.py:550 ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:318
 msgid "Ver"
 msgstr "Вер."
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:550 ../src/yumexgui/views.py:529
-#: ../src/yumexgui/views.py:576
+#: ../src/yumexgui/dialogs.py:551 ../src/yumexgui/views.py:707
+#: ../src/yumexgui/views.py:754
 msgid "Repository"
 msgstr "Сховище"
 
-#: ../src/yumexgui/dialogs.py:551 ../src/yumexgui/views.py:160
+#: ../src/yumexgui/dialogs.py:552 ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:318
 msgid "Size"
 msgstr "Розмір"
 
-#: ../src/yumexgui/dialogs.py:585
+#: ../src/yumexgui/dialogs.py:586
 #, python-format
 msgid "Download Size : %s "
 msgstr "Розмір звантаження: %s "
@@ -350,7 +392,7 @@ msgstr "Журнал змін пакунка"
 msgid "Package Filelist"
 msgstr "Список файлів пакунка"
 
-#: ../src/yumexgui/gui.py:310
+#: ../src/yumexgui/gui.py:314
 msgid ""
 "\n"
 "Package Description"
@@ -358,130 +400,130 @@ msgstr ""
 "\n"
 "Опис пакунка"
 
-#: ../src/yumexgui/gui.py:315
+#: ../src/yumexgui/gui.py:320
 msgid "Update ID"
 msgstr "Ід. оновлення"
 
-#: ../src/yumexgui/gui.py:316
+#: ../src/yumexgui/gui.py:321
 msgid "Release"
 msgstr "Випуск"
 
-#: ../src/yumexgui/gui.py:317
+#: ../src/yumexgui/gui.py:322
 msgid "Type"
 msgstr "Тип"
 
-#: ../src/yumexgui/gui.py:318
+#: ../src/yumexgui/gui.py:323
 msgid "Status"
 msgstr "Стан"
 
-#: ../src/yumexgui/gui.py:319
+#: ../src/yumexgui/gui.py:324
 msgid "Issued"
 msgstr "Випущено"
 
-#: ../src/yumexgui/gui.py:329
+#: ../src/yumexgui/gui.py:334
 msgid "       Bugs :"
 msgstr "       Вади:"
 
-#: ../src/yumexgui/gui.py:351
+#: ../src/yumexgui/gui.py:356
 #, python-format
 msgid "Description : %s\n"
 msgstr "Опис: %s\n"
 
-#: ../src/yumexgui/__init__.py:474
+#: ../src/yumexgui/__init__.py:481
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Бажаєте вилучити %s з кешу yum"
 
-#: ../src/yumexgui/__init__.py:644
+#: ../src/yumexgui/__init__.py:655
 msgid "Fatal Error"
 msgstr "Критична помилка"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:646
+#: ../src/yumexgui/__init__.py:657
 msgid "Can't start the yum backend"
 msgstr "Не вдалося запустити сервер yum"
 
-#: ../src/yumexgui/__init__.py:647
+#: ../src/yumexgui/__init__.py:658
 msgid "Another program is locking yum"
 msgstr "Yum заблоковано сторонньою програмою"
 
-#: ../src/yumexgui/__init__.py:649
+#: ../src/yumexgui/__init__.py:660
 msgid "Message from yum backend:"
 msgstr "Повідомлення від сервера yum:"
 
-#: ../src/yumexgui/__init__.py:653
+#: ../src/yumexgui/__init__.py:664
 msgid "Error in repository setup"
 msgstr "Помилка у налаштуванні сховищ"
 
-#: ../src/yumexgui/__init__.py:656
+#: ../src/yumexgui/__init__.py:667
 msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr "Ви можете спробувати виконати команду «yumex -n» з командного рядка\n"
 
-#: ../src/yumexgui/__init__.py:657
+#: ../src/yumexgui/__init__.py:668
 msgid "and deseleting the repositories causing problems\n"
 msgstr "і зніміть позначення зі сховищ, які спричиняють проблеми\n"
 
-#: ../src/yumexgui/__init__.py:658
+#: ../src/yumexgui/__init__.py:669
 msgid "and try again.\n"
 msgstr "і повторіть спробу.\n"
 
-#: ../src/yumexgui/__init__.py:663
+#: ../src/yumexgui/__init__.py:674
 msgid "Fatal Error in backend restart"
 msgstr "Критична помилка під час спроби перезапуску сервера"
 
-#: ../src/yumexgui/__init__.py:664
+#: ../src/yumexgui/__init__.py:675
 msgid "Backend could not be closed"
 msgstr "Не вдалося завершити роботу сервера"
 
-#: ../src/yumexgui/__init__.py:668
+#: ../src/yumexgui/__init__.py:679
 msgid "Fatal Error : "
 msgstr "Критична помилка: "
 
-#: ../src/yumexgui/__init__.py:733 ../src/yumexgui/views.py:447
+#: ../src/yumexgui/__init__.py:749 ../src/yumexgui/views.py:625
 msgid "Packages"
 msgstr "Пакунки"
 
-#: ../src/yumexgui/__init__.py:734
+#: ../src/yumexgui/__init__.py:750
 msgid "Perform actions on packages"
 msgstr "Виконання дій з пакунками"
 
-#: ../src/yumexgui/__init__.py:736
+#: ../src/yumexgui/__init__.py:752
 msgid "Pending Actions"
 msgstr "Додавання дій до черги"
 
-#: ../src/yumexgui/__init__.py:737
+#: ../src/yumexgui/__init__.py:753
 msgid "Work with pending actions"
 msgstr "Робота з діями з черги"
 
-#: ../src/yumexgui/__init__.py:740
+#: ../src/yumexgui/__init__.py:756
 msgid "Repositories"
 msgstr "Сховища"
 
-#: ../src/yumexgui/__init__.py:741
+#: ../src/yumexgui/__init__.py:757
 msgid "Select active repositories"
 msgstr "Виберіть активні сховища"
 
-#: ../src/yumexgui/__init__.py:743
+#: ../src/yumexgui/__init__.py:759
 msgid "History"
 msgstr "Журнал"
 
-#: ../src/yumexgui/__init__.py:744
+#: ../src/yumexgui/__init__.py:760
 msgid "Watch yum history"
 msgstr "Переглянути журнал yum"
 
-#: ../src/yumexgui/__init__.py:746
+#: ../src/yumexgui/__init__.py:762
 msgid "Output"
 msgstr "Вивід"
 
-#: ../src/yumexgui/__init__.py:747
+#: ../src/yumexgui/__init__.py:763
 msgid "Watch output details"
 msgstr "Переглянути докладний вивід"
 
-#: ../src/yumexgui/__init__.py:786
+#: ../src/yumexgui/__init__.py:806
 msgid "Not connected to an network"
 msgstr "Не з’єднано з мережею"
 
-#: ../src/yumexgui/__init__.py:787
+#: ../src/yumexgui/__init__.py:807
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
@@ -489,87 +531,87 @@ msgstr ""
 "Не встановлено з’єднання з мережею.\n"
 "Бажаєте продовжувати "
 
-#: ../src/yumexgui/__init__.py:792
+#: ../src/yumexgui/__init__.py:812
 msgid "network connection state check is disabled"
 msgstr "визначення стану мережевого з’єднання вимкнено"
 
-#: ../src/yumexgui/__init__.py:794
+#: ../src/yumexgui/__init__.py:814
 msgid "Can't detect the network connection state"
 msgstr "Не вдалося визначити стан з’єднання з мережею"
 
-#: ../src/yumexgui/__init__.py:796
+#: ../src/yumexgui/__init__.py:816
 msgid "Connected to an network"
 msgstr "З’єднано з мережею"
 
-#: ../src/yumexgui/__init__.py:829
+#: ../src/yumexgui/__init__.py:849
 msgid "Enable Permanently"
 msgstr "Остаточно увімкнути"
 
-#: ../src/yumexgui/__init__.py:833
+#: ../src/yumexgui/__init__.py:853
 msgid "Disable Permanently"
 msgstr "Остаточно вимкнути"
 
-#: ../src/yumexgui/__init__.py:836
+#: ../src/yumexgui/__init__.py:856
 msgid "Clean Metadata"
 msgstr "Вилучити метадані"
 
-#: ../src/yumexgui/__init__.py:837
+#: ../src/yumexgui/__init__.py:857
 msgid "Clean Packages"
 msgstr "Вилучити пакунки"
 
-#: ../src/yumexgui/__init__.py:838
+#: ../src/yumexgui/__init__.py:858
 msgid "Clean DbCache"
 msgstr "Вилучити DbCache"
 
-#: ../src/yumexgui/__init__.py:839
+#: ../src/yumexgui/__init__.py:859
 msgid "Clean All"
 msgstr "Вилучити все"
 
-#: ../src/yumexgui/__init__.py:845
+#: ../src/yumexgui/__init__.py:865
 msgid "By Repositories"
 msgstr "За сховищем"
 
-#: ../src/yumexgui/__init__.py:846
+#: ../src/yumexgui/__init__.py:866
 msgid "By Size"
 msgstr "За розміром"
 
-#: ../src/yumexgui/__init__.py:869 ../src/yumexgui/__init__.py:870
+#: ../src/yumexgui/__init__.py:889 ../src/yumexgui/__init__.py:890
 msgid "Getting Group information"
 msgstr "Отримання відомостей щодо груп"
 
-#: ../src/yumexgui/__init__.py:890
+#: ../src/yumexgui/__init__.py:910
 msgid "Getting Package Lists"
 msgstr "Отримання списків пакунків"
 
-#: ../src/yumexgui/__init__.py:891
+#: ../src/yumexgui/__init__.py:911
 msgid "Getting Updated Packages"
 msgstr "Отримання списку оновлених пакунків"
 
-#: ../src/yumexgui/__init__.py:894
+#: ../src/yumexgui/__init__.py:915
 msgid "Getting Available Packages"
 msgstr "Отримання списку доступних пакунків"
 
-#: ../src/yumexgui/__init__.py:896
+#: ../src/yumexgui/__init__.py:917
 msgid "Getting installed Packages"
 msgstr "Отримання списку встановлених пакунків"
 
-#: ../src/yumexgui/__init__.py:909
+#: ../src/yumexgui/__init__.py:930
 msgid "The pending action queue is empty"
 msgstr "Черга дій порожня"
 
-#: ../src/yumexgui/__init__.py:926
+#: ../src/yumexgui/__init__.py:947
 msgid "Processing pending actions"
 msgstr "Обробка черги дій"
 
-#: ../src/yumexgui/__init__.py:927
+#: ../src/yumexgui/__init__.py:948
 msgid "Preparing the transaction"
 msgstr "Приготування до операції"
 
-#: ../src/yumexgui/__init__.py:944
+#: ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr "Операцію успішно завершено"
 
-#: ../src/yumexgui/__init__.py:945
+#: ../src/yumexgui/__init__.py:966
 msgid ""
 "\n"
 "\n"
@@ -580,11 +622,11 @@ msgstr ""
 "Бажаєте завершити роботу Yum Extender?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:951
+#: ../src/yumexgui/__init__.py:972
 msgid "Transaction Aborted by User"
 msgstr "Операцію перервано користувачем"
 
-#: ../src/yumexgui/__init__.py:954
+#: ../src/yumexgui/__init__.py:975
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -592,88 +634,90 @@ msgstr ""
 "Виконання операції завершилося з помилками,\n"
 " повідомлення наведено на сторінці виводу"
 
-#: ../src/yumexgui/__init__.py:1033
+#: ../src/yumexgui/__init__.py:1054
 msgid "<unset>"
 msgstr "<не встановлено>"
 
-#: ../src/yumexgui/__init__.py:1034
+#: ../src/yumexgui/__init__.py:1055
 msgid "System"
 msgstr "Система"
 
-#: ../src/yumexgui/__init__.py:1057
+#: ../src/yumexgui/__init__.py:1078
 msgid "Getting History Information"
 msgstr "Отримання відомостей журналу"
 
-#: ../src/yumexgui/__init__.py:1059
+#: ../src/yumexgui/__init__.py:1080
 msgid "Getting Latest History Information"
 msgstr "Отримання найсвіжіших відомостей журналу"
 
-#: ../src/yumexgui/__init__.py:1061
+#: ../src/yumexgui/__init__.py:1082
 msgid "Getting All History Information"
 msgstr "Отримання всіх відомостей журналу"
 
-#: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:183
+#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
+#: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343
 msgid "Package"
 msgstr "Пакунок"
 
-#: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:186
-#: ../src/yumexgui/views.py:452
+#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:191
+#: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:346
+#: ../src/yumexgui/views.py:630
 msgid "Summary"
 msgstr "Резюме"
 
-#: ../src/yumexgui/views.py:160
+#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:318
 msgid "Repo"
 msgstr "Сховище"
 
-#: ../src/yumexgui/views.py:160
+#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:318
 msgid "Architecture"
 msgstr "Архітектура"
 
-#: ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:189 ../src/yumexgui/views.py:344
 msgid "Ver."
 msgstr "Вер."
 
-#: ../src/yumexgui/views.py:185
+#: ../src/yumexgui/views.py:190 ../src/yumexgui/views.py:345
 msgid "Arch."
 msgstr "Арх."
 
-#: ../src/yumexgui/views.py:187
+#: ../src/yumexgui/views.py:192 ../src/yumexgui/views.py:347
 msgid "Repo."
 msgstr "Схов."
 
-#: ../src/yumexgui/views.py:188
+#: ../src/yumexgui/views.py:193 ../src/yumexgui/views.py:348
 msgid "Size."
 msgstr "Розмір"
 
-#: ../src/yumexgui/views.py:413
+#: ../src/yumexgui/views.py:591
 msgid "Package Queue:"
 msgstr "Черга пакунків:"
 
-#: ../src/yumexgui/views.py:529
+#: ../src/yumexgui/views.py:707
 msgid "Filename"
 msgstr "Назва файла"
 
-#: ../src/yumexgui/views.py:889
+#: ../src/yumexgui/views.py:1067
 msgid "Categories"
 msgstr "Категорії"
 
-#: ../src/yumexgui/views.py:935
+#: ../src/yumexgui/views.py:1113
 msgid "Id"
 msgstr "Ід"
 
-#: ../src/yumexgui/views.py:936
+#: ../src/yumexgui/views.py:1114
 msgid "Login User"
 msgstr "Користувач"
 
-#: ../src/yumexgui/views.py:937
+#: ../src/yumexgui/views.py:1115
 msgid "Data/Time"
 msgstr "Дата/Час"
 
-#: ../src/yumexgui/views.py:938
+#: ../src/yumexgui/views.py:1116
 msgid "Action(s)"
 msgstr "Дії"
 
-#: ../src/yumexgui/views.py:939
+#: ../src/yumexgui/views.py:1117
 msgid "Altered"
 msgstr "Змінено"
 
@@ -858,4 +902,3 @@ msgstr "П_ерегляд"
 #: ../src/yumex.glade.h:49
 msgid "no GPG Check"
 msgstr "без перевірки GPG"
-
