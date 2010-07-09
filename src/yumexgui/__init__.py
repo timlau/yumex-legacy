@@ -960,7 +960,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             progress.hide_tasks()
             progress.hide()        
             if rc: # Transaction ok
-                self.info("Transaction completed successfully")
+                self.info(_("Transaction completed successfully"))
                 progress.hide()        
                 msg = _("Transaction completed successfully")
                 msg += _("\n\nDo you want to exit Yum Extender ?")
@@ -1097,7 +1097,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     break
             self.history.populate(data)
         else:
-            print("History Disabled")
+            self.info(_("History Disabled"))
         progress.hide()
         self.debug("Getting History Information - END")
             

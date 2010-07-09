@@ -322,7 +322,7 @@ class YumServer(yum.YumBase):
                 break
         if not found:
             # yumRepo will catch this
-            raise yum.Errors.MediaError, "The disc was not inserted"
+            raise yum.Errors.MediaError, _("The disc was not inserted")
         return kwargs["local"]
 
     def get_process_info(self, pid):
@@ -353,7 +353,7 @@ class YumServer(yum.YumBase):
         '''
         Exit the yum backend
         '''
-        self.info("Closing rpm db and releasing yum lock  ")
+        self.info(_("Closing rpm db and releasing yum lock  "))
         self.closeRpmDB()
         self.doUnlock()
         self.ended(True)
@@ -760,7 +760,7 @@ class YumServer(yum.YumBase):
             self.error(_('Error in yum Transaction : %s') % str(e))
             self.ended(False)            
         except:    
-            self.error("Exception in run_transaction")
+            self.error(_("Exception in run_transaction"))
             etype = sys.exc_info()[0]
             evalue = sys.exc_info()[1]
             self.error(str(etype) + ' : ' + str(evalue))
@@ -983,7 +983,7 @@ class YumServer(yum.YumBase):
         on_repos = unpack(args[2])
         if hasattr(self.conf, option):
             setattr(self.conf, option, value)
-            self.info("Setting Yum Option %s = %s" % (option, value))
+            self.info(_("Setting Yum Option %s = %s") % (option, value))
             for repo in self.repos.repos.values():
                 if repo.isEnabled():
                     if hasattr(repo, option):

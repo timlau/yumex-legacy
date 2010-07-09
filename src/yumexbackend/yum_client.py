@@ -170,7 +170,7 @@ class YumClient:
             args = []
             if MAIN_PATH == '/usr/share/yumex': # Bin package
                 if os.getuid() == 0: # Root
-                    self.info('Client is running in rootmode, starting backend directly')
+                    self.info(_('Client is running in rootmode, starting backend directly'))
                     cmd = '/usr/share/yumex/yumex-yum-backend'
                 else: # Non root run using console helper wrapper
                     cmd = '/usr/bin/yumex-yum-backend'
