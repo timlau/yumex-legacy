@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 09:48+0200\n"
+"POT-Creation-Date: 2010-07-09 18:01+0200\n"
 "PO-Revision-Date: 2010-01-31 21:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -109,6 +109,12 @@ msgstr "Fouten bij oplossen van afhankelijkheden:"
 msgid "Dependency resolving completed with errors"
 msgstr "Oplossen van afhankelijkheden afgemaakt met fouten"
 
+#. Bin package
+#. Root
+#: ../src/yumexbackend/yum_client.py:173
+msgid "Client is running in rootmode, starting backend directly"
+msgstr ""
+
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:225
 msgid "Yum backend did not close nicely in time"
@@ -143,6 +149,15 @@ msgstr "  De andere toepassing is: %s"
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "10 seconden wachten en opnieuw proberen !!!"
 
+#. yumRepo will catch this
+#: ../src/yumexbackend/yum_server.py:325
+msgid "The disc was not inserted"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:356
+msgid "Closing rpm db and releasing yum lock  "
+msgstr ""
+
 #: ../src/yumexbackend/yum_server.py:514
 #, fuzzy
 msgid "Populating Package Cache"
@@ -156,6 +171,11 @@ msgstr "Installeren"
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Fout in yum transactie : %s"
+
+#: ../src/yumexbackend/yum_server.py:763
+#, fuzzy
+msgid "Exception in run_transaction"
+msgstr "De transactie voorbereiden"
 
 #: ../src/yumexbackend/yum_server.py:802
 #, python-format
@@ -175,6 +195,11 @@ msgstr "De %s repository is permanent aangezet"
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "De %s repository is permanent uitgezet"
+
+#: ../src/yumexbackend/yum_server.py:986
+#, python-format
+msgid "Setting Yum Option %s = %s"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
@@ -610,7 +635,8 @@ msgstr "Wachtende acties afwerken"
 msgid "Preparing the transaction"
 msgstr "De transactie voorbereiden"
 
-#: ../src/yumexgui/__init__.py:965
+#. Transaction ok
+#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr "Transactie met succes uitgevoerd"
 
@@ -656,6 +682,11 @@ msgstr "De laatste geschiedenis informatie ophalen"
 #: ../src/yumexgui/__init__.py:1082
 msgid "Getting All History Information"
 msgstr "Alle geschiedenis informatie ophalen"
+
+#: ../src/yumexgui/__init__.py:1100
+#, fuzzy
+msgid "History Disabled"
+msgstr "Geschiedenis"
 
 #: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
 #: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343

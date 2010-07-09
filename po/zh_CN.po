@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.nextgen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 09:48+0200\n"
+"POT-Creation-Date: 2010-07-09 18:01+0200\n"
 "PO-Revision-Date: 2009-12-08 09:35+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -111,6 +111,12 @@ msgstr "依赖解析错误:"
 msgid "Dependency resolving completed with errors"
 msgstr "依赖解决完成错误"
 
+#. Bin package
+#. Root
+#: ../src/yumexbackend/yum_client.py:173
+msgid "Client is running in rootmode, starting backend directly"
+msgstr ""
+
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:225
 msgid "Yum backend did not close nicely in time"
@@ -145,6 +151,15 @@ msgstr "  其他应用程序: %s"
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "等待10秒，再次尝试 !!!"
 
+#. yumRepo will catch this
+#: ../src/yumexbackend/yum_server.py:325
+msgid "The disc was not inserted"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:356
+msgid "Closing rpm db and releasing yum lock  "
+msgstr ""
+
 #: ../src/yumexbackend/yum_server.py:514
 #, fuzzy
 msgid "Populating Package Cache"
@@ -158,6 +173,11 @@ msgstr "安装中"
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "yum处理出错: %s"
+
+#: ../src/yumexbackend/yum_server.py:763
+#, fuzzy
+msgid "Exception in run_transaction"
+msgstr "准备处理"
 
 #: ../src/yumexbackend/yum_server.py:802
 #, python-format
@@ -177,6 +197,11 @@ msgstr "已经永久启用 %s 程序库"
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "已经永久禁用 %s 程序库"
+
+#: ../src/yumexbackend/yum_server.py:986
+#, python-format
+msgid "Setting Yum Option %s = %s"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
@@ -614,7 +639,8 @@ msgstr "处理未决的行为"
 msgid "Preparing the transaction"
 msgstr "准备处理"
 
-#: ../src/yumexgui/__init__.py:965
+#. Transaction ok
+#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr "处理成功完成"
 
@@ -661,6 +687,11 @@ msgstr "获取最新历史记录信息"
 #: ../src/yumexgui/__init__.py:1082
 msgid "Getting All History Information"
 msgstr "获取所有历史记录信息"
+
+#: ../src/yumexgui/__init__.py:1100
+#, fuzzy
+msgid "History Disabled"
+msgstr "历史记录"
 
 #: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
 #: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343

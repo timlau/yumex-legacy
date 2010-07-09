@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 09:48+0200\n"
+"POT-Creation-Date: 2010-07-09 18:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,6 +102,12 @@ msgstr ""
 msgid "Dependency resolving completed with errors"
 msgstr ""
 
+#. Bin package
+#. Root
+#: ../src/yumexbackend/yum_client.py:173
+msgid "Client is running in rootmode, starting backend directly"
+msgstr ""
+
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:225
 msgid "Yum backend did not close nicely in time"
@@ -136,6 +142,15 @@ msgstr ""
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr ""
 
+#. yumRepo will catch this
+#: ../src/yumexbackend/yum_server.py:325
+msgid "The disc was not inserted"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:356
+msgid "Closing rpm db and releasing yum lock  "
+msgstr ""
+
 #: ../src/yumexbackend/yum_server.py:514
 msgid "Populating Package Cache"
 msgstr ""
@@ -147,6 +162,10 @@ msgstr ""
 #: ../src/yumexbackend/yum_server.py:760
 #, python-format
 msgid "Error in yum Transaction : %s"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:763
+msgid "Exception in run_transaction"
 msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:802
@@ -166,6 +185,11 @@ msgstr ""
 #: ../src/yumexbackend/yum_server.py:975
 #, python-format
 msgid "The %s repository has been disabled permanently"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:986
+#, python-format
+msgid "Setting Yum Option %s = %s"
 msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1036
@@ -593,7 +617,8 @@ msgstr ""
 msgid "Preparing the transaction"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:965
+#. Transaction ok
+#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr ""
 
@@ -633,6 +658,10 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:1082
 msgid "Getting All History Information"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:1100
+msgid "History Disabled"
 msgstr ""
 
 #: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188

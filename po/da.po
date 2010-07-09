@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 09:48+0200\n"
+"POT-Creation-Date: 2010-07-09 18:01+0200\n"
 "PO-Revision-Date: 2010-03-15 19:54+0100\n"
 "Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
 "Language-Team: Danish\n"
@@ -106,6 +106,12 @@ msgstr "Fejl ved søgning af afhængigheder:"
 msgid "Dependency resolving completed with errors"
 msgstr "Løsning af afhængigheder afsluttet med fejl"
 
+#. Bin package
+#. Root
+#: ../src/yumexbackend/yum_client.py:173
+msgid "Client is running in rootmode, starting backend directly"
+msgstr ""
+
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:225
 msgid "Yum backend did not close nicely in time"
@@ -140,6 +146,16 @@ msgstr "  Det andet program er: %s"
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "Venter 10 sekunder og prøver igen !!!"
 
+#. yumRepo will catch this
+#: ../src/yumexbackend/yum_server.py:325
+#, fuzzy
+msgid "The disc was not inserted"
+msgstr "Det afspurgte medie blev ikke fundet"
+
+#: ../src/yumexbackend/yum_server.py:356
+msgid "Closing rpm db and releasing yum lock  "
+msgstr ""
+
 #: ../src/yumexbackend/yum_server.py:514
 #, fuzzy
 msgid "Populating Package Cache"
@@ -153,6 +169,11 @@ msgstr "Installerer"
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Fejl i yum-transaktion: %s"
+
+#: ../src/yumexbackend/yum_server.py:763
+#, fuzzy
+msgid "Exception in run_transaction"
+msgstr "Klargører transaktionen"
 
 #: ../src/yumexbackend/yum_server.py:802
 #, python-format
@@ -172,6 +193,11 @@ msgstr "Pakkearkivet %s er blevet aktiveret permanent"
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "Pakkearkivet %s er blevet deaktiveret permanent"
+
+#: ../src/yumexbackend/yum_server.py:986
+#, python-format
+msgid "Setting Yum Option %s = %s"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
@@ -607,7 +633,8 @@ msgstr "Udfører ventede handlinger"
 msgid "Preparing the transaction"
 msgstr "Klargører transaktionen"
 
-#: ../src/yumexgui/__init__.py:965
+#. Transaction ok
+#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr "Transaktion er afsluttet uden fejl"
 
@@ -653,6 +680,11 @@ msgstr "Henter seneste information om historik"
 #: ../src/yumexgui/__init__.py:1082
 msgid "Getting All History Information"
 msgstr "Henter al information om historik"
+
+#: ../src/yumexgui/__init__.py:1100
+#, fuzzy
+msgid "History Disabled"
+msgstr "Historik"
 
 #: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
 #: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343
@@ -908,9 +940,6 @@ msgstr "ingen kontrol af GPG-signatur"
 
 #~ msgid "Unknown Error : "
 #~ msgstr "Ukendt fejl : "
-
-#~ msgid "The needed media was not found"
-#~ msgstr "Det afspurgte medie blev ikke fundet"
 
 #~ msgid "Reset current search"
 #~ msgstr "Nulstiller nuværende søgning"

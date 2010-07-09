@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 09:48+0200\n"
+"POT-Creation-Date: 2010-07-09 18:01+0200\n"
 "PO-Revision-Date: 2010-01-31 18:13+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
@@ -104,6 +104,12 @@ msgstr "Błędy rozwiązywania zależności:"
 msgid "Dependency resolving completed with errors"
 msgstr "Zakończono rozwiązywanie zależności z błędami"
 
+#. Bin package
+#. Root
+#: ../src/yumexbackend/yum_client.py:173
+msgid "Client is running in rootmode, starting backend directly"
+msgstr ""
+
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:225
 msgid "Yum backend did not close nicely in time"
@@ -138,6 +144,15 @@ msgstr "  Inna aplikacja to: %s"
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "Oczekiwanie 10 sekund i ponowne próbowanie."
 
+#. yumRepo will catch this
+#: ../src/yumexbackend/yum_server.py:325
+msgid "The disc was not inserted"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:356
+msgid "Closing rpm db and releasing yum lock  "
+msgstr ""
+
 #: ../src/yumexbackend/yum_server.py:514
 #, fuzzy
 msgid "Populating Package Cache"
@@ -151,6 +166,11 @@ msgstr "Instalowanie"
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Błąd transakcji programu yum: %s"
+
+#: ../src/yumexbackend/yum_server.py:763
+#, fuzzy
+msgid "Exception in run_transaction"
+msgstr "Przygotowywanie transakcji"
 
 #: ../src/yumexbackend/yum_server.py:802
 #, python-format
@@ -170,6 +190,11 @@ msgstr "Repozytorium %s zostało trwale włączone"
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "Repozytorium %s zostało trwale wyłączone"
+
+#: ../src/yumexbackend/yum_server.py:986
+#, python-format
+msgid "Setting Yum Option %s = %s"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
@@ -605,7 +630,8 @@ msgstr "Przetwarzanie oczekujących działań"
 msgid "Preparing the transaction"
 msgstr "Przygotowywanie transakcji"
 
-#: ../src/yumexgui/__init__.py:965
+#. Transaction ok
+#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr "Pomyślnie zakończono transakcję"
 
@@ -651,6 +677,11 @@ msgstr "Pobieranie informacji o najnowszej historii"
 #: ../src/yumexgui/__init__.py:1082
 msgid "Getting All History Information"
 msgstr "Pobieranie informacji o całej historii"
+
+#: ../src/yumexgui/__init__.py:1100
+#, fuzzy
+msgid "History Disabled"
+msgstr "Historia"
 
 #: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
 #: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343
