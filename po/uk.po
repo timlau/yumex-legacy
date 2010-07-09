@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-08 09:48+0200\n"
-"PO-Revision-Date: 2010-03-13 21:28+0200\n"
+"PO-Revision-Date: 2010-07-09 17:53+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: uk\n"
+"X-Generator: Lokalize 1.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -114,7 +114,7 @@ msgstr "Сервер Yum не зміг завершити роботу без п
 #: ../src/yumexbackend/yum_server.py:202
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "Використання %s для налаштування yum"
 
 #. Not local disable it
 #. No, disable it
@@ -141,9 +141,8 @@ msgid "Waiting 10 seconds and tries again !!!"
 msgstr "Десятисекундне очікування і повторна спроба!!!"
 
 #: ../src/yumexbackend/yum_server.py:514
-#, fuzzy
 msgid "Populating Package Cache"
-msgstr "Звантаження пакунків"
+msgstr "Заповнення кешу пакунків"
 
 #: ../src/yumexbackend/yum_server.py:708
 msgid "Installing"
@@ -275,29 +274,24 @@ msgid "90+ days"
 msgstr "90+ днів"
 
 #: ../src/yumexbase/constants.py:138
-#, fuzzy
 msgid "Getting all packages"
-msgstr "Отримання списку доступних пакунків"
+msgstr "Отримання списку всіх пакунків"
 
 #: ../src/yumexbase/constants.py:139
-#, fuzzy
 msgid "Getting installed packages"
 msgstr "Отримання списку встановлених пакунків"
 
 #: ../src/yumexbase/constants.py:140
-#, fuzzy
 msgid "Getting available packages"
 msgstr "Отримання списку доступних пакунків"
 
 #: ../src/yumexbase/constants.py:141
-#, fuzzy
 msgid "Getting available updates"
-msgstr "Отримання списку доступних пакунків"
+msgstr "Отримання списку доступних оновлень"
 
 #: ../src/yumexbase/constants.py:142
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "Отримання списку доступних пакунків"
+msgstr "Отримання списку застарілих пакунків"
 
 #: ../src/yumexgui/dialogs.py:343
 msgid "Working !!!"
@@ -314,6 +308,7 @@ msgstr "Завантажувати пакунки після запуску"
 #: ../src/yumexgui/dialogs.py:427
 msgid "Use sortable columns in package view (slower)"
 msgstr ""
+"Стовпчики з можливістю впорядкування на панелі списку пакунків (повільніше)"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Debug Mode"
@@ -902,3 +897,4 @@ msgstr "П_ерегляд"
 #: ../src/yumex.glade.h:49
 msgid "no GPG Check"
 msgstr "без перевірки GPG"
+
