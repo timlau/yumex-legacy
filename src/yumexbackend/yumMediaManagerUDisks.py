@@ -143,7 +143,7 @@ class MediaDeviceUDisks(MediaDevice):
 class MediaManagerUDisks(MediaManager):
     """Just iterate over an instance of this class to get MediaDevice objects"""
     def __init__(self):
-        self.__dev = bus.get_object(interface, "/org/freedesktop/UDisks/Disks")
+        self.__dev = bus.get_object(interface, "/org/freedesktop/UDisks")
 
     def __iter__(self):
         #self.__close_tray_and_be_ready()
