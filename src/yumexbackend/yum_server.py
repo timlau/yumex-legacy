@@ -1319,7 +1319,7 @@ class YumexRPMCallback(RPMBaseCallback):
         '''
         if not str(package) in self._printed:
             self._printed[str(package)] = 1     
-            self.base.info("%s %s" % (self.fileaction[action], package))
+            self.base.info(RPM_ACTIONS[action] % (package))
                
         
     def scriptout(self, package, msgs):
@@ -1330,7 +1330,7 @@ class YumexRPMCallback(RPMBaseCallback):
         '''
         # Handle rpm scriptlet messages
         if msgs:
-            self.base.yum_logger('RPM Scriptlet: %s' % msgs)
+            self.base.info('RPM Scriptlet: %s' % msgs)
 
 class YumexDownloadCallback(DownloadBaseCallback):
     """ Download callback handler """

@@ -33,6 +33,8 @@ import logging
 from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
+from yum.constants import *
+
 # Constant
 
 __yumex_version__ = "2.9.9"
@@ -141,3 +143,16 @@ PACKAGE_LOAD_MSG = {
  'updates'      : _('Getting available updates'), 
  'obsoletes'    : _('Getting available obsoletes')
  }
+
+# RPM Completted action messages
+RPM_ACTIONS = { 
+    TS_UPDATE: '%s is updated', 
+    TS_ERASE: '%s is erased',
+    TS_INSTALL: '%s is installed', 
+    TS_TRUEINSTALL: '%s is installed', 
+    TS_OBSOLETED: '%s is obsoleted',
+    TS_OBSOLETING: '%s is installed',
+    TS_UPDATED: '%s is cleanup'
+}   
+
+        
