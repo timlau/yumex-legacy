@@ -539,7 +539,10 @@ class YumClient:
     def get_update_info(self,ident):  
         self._send_command('update-info', [ident])
         msgs = self._get_messages()
-        return msgs['updateinfo'][0],msgs['updated_po'][0]
+        if 'updateinfo' in msgs and 'updated_po' in msgs:
+            return msgs['updateinfo'][0],msgs['updated_po'][0]
+        else:
+            return (None,None)
               
     def add_transaction(self, ident, action):
         '''
