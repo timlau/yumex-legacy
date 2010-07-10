@@ -6,17 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-09 18:01+0200\n"
+"POT-Creation-Date: 2010-07-10 08:28+0200\n"
 "PO-Revision-Date: 2010-07-09 20:58+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: uk\n"
 "X-Generator: Lokalize 1.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
@@ -224,98 +224,98 @@ msgid "Downloaded : %s ( %s )"
 msgstr "Звантажено: %s ( %s )"
 
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:75
 msgid "updates"
 msgstr "оновлює"
 
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:75
 msgid "available"
 msgstr "доступний"
 
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:75
 msgid "installed"
 msgstr "встановлено"
 
-#: ../src/yumexbase/constants.py:93
+#: ../src/yumexbase/constants.py:95
 msgid "Downloading repository information"
 msgstr "Звантаження інформації щодо сховища"
 
-#: ../src/yumexbase/constants.py:94
+#: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Package information for the %s repository"
 msgstr "Звантаження відомостей щодо пакунків для сховища %s"
 
-#: ../src/yumexbase/constants.py:95
+#: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
 msgstr "Звантаження відомостей щодо списку файлів для сховища %s"
 
-#: ../src/yumexbase/constants.py:96
+#: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
 msgstr "Звантаження відомостей щодо журналу змін для сховища %s"
 
-#: ../src/yumexbase/constants.py:97
+#: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Group information for the %s repository"
 msgstr "Звантаження відомостей щодо груп для сховища %s"
 
-#: ../src/yumexbase/constants.py:98
+#: ../src/yumexbase/constants.py:100
 #, python-format
 msgid "Downloading metalink information for the %s repository"
 msgstr "Звантаження відомостей щодо метапосилань для сховища %s"
 
-#: ../src/yumexbase/constants.py:99
+#: ../src/yumexbase/constants.py:101
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
 msgstr "Звантаження відомостей щодо нарощувальних оновлень для сховища %s"
 
-#: ../src/yumexbase/constants.py:100
+#: ../src/yumexbase/constants.py:102
 #, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr "Звантаження відомостей щодо оновлення для сховища %s"
 
-#: ../src/yumexbase/constants.py:111
+#: ../src/yumexbase/constants.py:113
 msgid "0 - 7 Days"
 msgstr "0 - 7 днів"
 
-#: ../src/yumexbase/constants.py:112
+#: ../src/yumexbase/constants.py:114
 msgid "7 - 14 Days"
 msgstr "7 - 14 днів"
 
-#: ../src/yumexbase/constants.py:113
+#: ../src/yumexbase/constants.py:115
 msgid "14 - 21 Days"
 msgstr "14 - 21 днів"
 
-#: ../src/yumexbase/constants.py:114
+#: ../src/yumexbase/constants.py:116
 msgid "21  - 30 days"
 msgstr "21  - 30 днів"
 
-#: ../src/yumexbase/constants.py:115
+#: ../src/yumexbase/constants.py:117
 msgid "30 - 90 days"
 msgstr "30 - 90 днів"
 
-#: ../src/yumexbase/constants.py:116
+#: ../src/yumexbase/constants.py:118
 msgid "90+ days"
 msgstr "90+ днів"
 
-#: ../src/yumexbase/constants.py:138
+#: ../src/yumexbase/constants.py:140
 msgid "Getting all packages"
 msgstr "Отримання списку всіх пакунків"
 
-#: ../src/yumexbase/constants.py:139
+#: ../src/yumexbase/constants.py:141
 msgid "Getting installed packages"
 msgstr "Отримання списку встановлених пакунків"
 
-#: ../src/yumexbase/constants.py:140
+#: ../src/yumexbase/constants.py:142
 msgid "Getting available packages"
 msgstr "Отримання списку доступних пакунків"
 
-#: ../src/yumexbase/constants.py:141
+#: ../src/yumexbase/constants.py:143
 msgid "Getting available updates"
 msgstr "Отримання списку доступних оновлень"
 
-#: ../src/yumexbase/constants.py:142
+#: ../src/yumexbase/constants.py:144
 msgid "Getting available obsoletes"
 msgstr "Отримання списку застарілих пакунків"
 
@@ -928,4 +928,3 @@ msgstr "П_ерегляд"
 #: ../src/yumex.glade.h:49
 msgid "no GPG Check"
 msgstr "без перевірки GPG"
-

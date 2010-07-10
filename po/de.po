@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-09 18:01+0200\n"
+"POT-Creation-Date: 2010-07-10 08:28+0200\n"
 "PO-Revision-Date: 2010-05-20 10:17+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,103 +225,103 @@ msgid "Downloaded : %s ( %s )"
 msgstr ""
 
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:75
 msgid "updates"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:75
 msgid "available"
 msgstr "verfügbar"
 
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:75
 msgid "installed"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:93
+#: ../src/yumexbase/constants.py:95
 #, fuzzy
 msgid "Downloading repository information"
 msgstr "Aktualisiere meine Kontakt-Daten"
 
-#: ../src/yumexbase/constants.py:94
+#: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Package information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:95
+#: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:96
+#: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:97
+#: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Group information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:98
+#: ../src/yumexbase/constants.py:100
 #, python-format
 msgid "Downloading metalink information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:99
+#: ../src/yumexbase/constants.py:101
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:100
+#: ../src/yumexbase/constants.py:102
 #, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:111
+#: ../src/yumexbase/constants.py:113
 msgid "0 - 7 Days"
 msgstr "0 - 7 Tage"
 
-#: ../src/yumexbase/constants.py:112
+#: ../src/yumexbase/constants.py:114
 msgid "7 - 14 Days"
 msgstr "7 - 14 Tage"
 
-#: ../src/yumexbase/constants.py:113
+#: ../src/yumexbase/constants.py:115
 msgid "14 - 21 Days"
 msgstr "14 - 21 Tage"
 
-#: ../src/yumexbase/constants.py:114
+#: ../src/yumexbase/constants.py:116
 msgid "21  - 30 days"
 msgstr "21  - 30 Tage"
 
-#: ../src/yumexbase/constants.py:115
+#: ../src/yumexbase/constants.py:117
 msgid "30 - 90 days"
 msgstr "30 - 90 Tage"
 
-#: ../src/yumexbase/constants.py:116
+#: ../src/yumexbase/constants.py:118
 msgid "90+ days"
 msgstr "90+ Tage"
 
-#: ../src/yumexbase/constants.py:138
+#: ../src/yumexbase/constants.py:140
 #, fuzzy
 msgid "Getting all packages"
 msgstr "Darstellung %is%i-%i ist nicht vorhanden"
 
-#: ../src/yumexbase/constants.py:139
+#: ../src/yumexbase/constants.py:141
 #, fuzzy
 msgid "Getting installed packages"
 msgstr "&Kommentarfenster anzeigen"
 
-#: ../src/yumexbase/constants.py:140
+#: ../src/yumexbase/constants.py:142
 #, fuzzy
 msgid "Getting available packages"
 msgstr "Darstellung %is%i-%i ist nicht vorhanden"
 
-#: ../src/yumexbase/constants.py:141
+#: ../src/yumexbase/constants.py:143
 #, fuzzy
 msgid "Getting available updates"
 msgstr "Darstellung %is%i-%i ist nicht vorhanden"
 
-#: ../src/yumexbase/constants.py:142
+#: ../src/yumexbase/constants.py:144
 #, fuzzy
 msgid "Getting available obsoletes"
 msgstr "Darstellung %is%i-%i ist nicht vorhanden"
