@@ -85,7 +85,8 @@ class YumexFrontend(YumexFrontendBase):
     def error(self, msg, exit_pgm=False):
         ''' Write an error message to frontend '''
         self.logger.error('ERROR: %s' % msg)
-        print "ERROR:", msg
+        if sys.stderr.isatty():
+            print >> sys.stderr, 'ERROR: %s' % msg
         self.refresh()
         if exit_pgm:
             sys.exit(1)
@@ -94,7 +95,8 @@ class YumexFrontend(YumexFrontendBase):
     def warning(self, msg):
         ''' Write an warning message to frontend '''
         self.logger.warning('WARNING: %s' % msg)
-        print "WARNING:", msg
+        if sys.stdout.isatty():
+            print >> sys.stdout, 'WARNING: %s' % msg
         self.refresh()
 
     def info(self, msg):
