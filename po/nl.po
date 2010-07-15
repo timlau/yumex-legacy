@@ -1,26 +1,27 @@
 # translation of yumex.master-nl.po to Dutch
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
 # R.E. van der Luit <nippur@fedoraproject.org>, 2009.
+# Geert Warrink <geert.warrink@onsnet.nu>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex.master-nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-16 01:27+0000\n"
-"PO-Revision-Date: 2009-02-01 19:37+0100\n"
-"Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
-"Language-Team: Dutch <nippur@fedoraproject.org>\n"
+"POT-Creation-Date: 2009-01-14 13:59+0100\n"
+"PO-Revision-Date: 2010-07-15 14:30+0200\n"
+"Last-Translator: Geert Warrink <geert.warrink@onsnet.nu>\n"
+"Language-Team: Fedora\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 
 #: ../src/callbacks.py:69
 #, python-format
 msgid "Getting : %s"
-msgstr "Aan het ophalen: %s"
+msgstr "Ophalen: %s"
 
 #: ../src/callbacks.py:164 ../src/yumapi.py:232
 msgid "Removing"
@@ -42,7 +43,7 @@ msgstr "Verwerken metadata van: %s"
 
 #: ../src/callbacks.py:207
 msgid "Processing metadata"
-msgstr "Verwerken metadata"
+msgstr "Verwerken van metadata"
 
 #: ../src/callbacks.py:234
 msgid "installed"
@@ -67,43 +68,44 @@ msgstr "---> Pakket %s.%s %s:%s-%s staat klaar om %s te worden"
 
 #: ../src/callbacks.py:247
 msgid "--> Running transaction check"
-msgstr "--> Bezig transactievoorwaarden te controleren"
+msgstr "--> Bezig transactie te controleren"
 
 #: ../src/callbacks.py:251
 msgid "--> Restarting Dependency Resolution with new changes."
-msgstr "--> Herstarten Oplossen Afhankelijkheid  met de nieuwe veranderingen."
+msgstr "--> Herstarten afhankelijkheden oplossen met de nieuwe veranderingen."
 
 #: ../src/callbacks.py:255
 msgid "--> Finished Dependency Resolution"
-msgstr "--> Klaar met Oplossen Afhankelijkheid"
+msgstr "--> Klaar met afhankelijkheden oplossen"
 
 #: ../src/callbacks.py:259
 #, python-format
 msgid "--> Processing Dependency: %s for package: %s"
-msgstr "--> Verwerken Afhankelijkheid: %s voor pakket: %s"
+msgstr "--> Verwerken afhankelijkheid: %s voor pakket: %s"
 
 #: ../src/callbacks.py:264
 #, python-format
 msgid "--> Unresolved Dependency: %s"
-msgstr "--> Onopgeloste Afhankelijkheid: %s"
+msgstr "--> Onopgeloste afhankelijkheid: %s"
 
 #: ../src/callbacks.py:268
 #, python-format
 msgid "--> Processing Conflict: %s conflicts %s"
-msgstr "--> Verwerken Conflict: %s gaat niet samen met %s"
+msgstr "--> Verwerking conflict: %s gaat niet samen met %s"
 
 #: ../src/callbacks.py:271
 msgid "--> Populating transaction set with selected packages. Please wait."
-msgstr "--> Vullen van transactie set met geselecteerde pakketten. Momentje aub."
+msgstr ""
+"--> Vullen van transactie set met geselecteerde pakketten. Even wachten."
 
 #: ../src/callbacks.py:274
 #, python-format
 msgid "---> Downloading header for %s to pack into transaction set."
-msgstr "---> Downloading header voor %s om bij transactie set te voegen."
+msgstr "---> Downloaden koptekst voor %s om bij transactie set te voegen."
 
 #: ../src/dialogs.py:199
 msgid "Packages to Process"
-msgstr "Pakketten om te Verwerken"
+msgstr "Pakketten te verwerken"
 
 #: ../src/dialogs.py:215 ../src/views.py:474
 msgid "Name"
@@ -140,7 +142,7 @@ msgstr ""
 "Vernieuwen : %s\n"
 "\n"
 
-#: ../src/gui.py:73
+#: ../src/gui.py:70
 #, python-format
 msgid ""
 "Obsoleting : %s\n"
@@ -149,7 +151,7 @@ msgstr ""
 "Aanmerken als verouderd : %s\n"
 "\n"
 
-#: ../src/gui.py:88
+#: ../src/gui.py:84
 msgid ""
 "Requires:\n"
 "\n"
@@ -157,54 +159,54 @@ msgstr ""
 "Vereist:\n"
 "\n"
 
-#: ../src/gui.py:103 ../src/gui.py:113
+#: ../src/gui.py:99 ../src/gui.py:109
 #, python-format
 msgid "Can not read the %s attribute"
 msgstr "Kan het %s attribuut niet lezen"
 
-#: ../src/gui.py:371
+#: ../src/gui.py:367
 msgid "Show All Packages"
-msgstr "Toon Alle Paketten"
+msgstr "Toon alle pakketten"
 
-#: ../src/gui.py:372
+#: ../src/gui.py:368
 msgid "Show Package Updates"
-msgstr "Toon Alle Pakket Updates"
+msgstr "Toon alle pakket vernieuwingen"
 
-#: ../src/gui.py:373
+#: ../src/gui.py:369
 msgid "Show available Packages"
-msgstr "Toon Alle Beschikbare Paketten"
+msgstr "Toon alle beschikbare pakketten"
 
-#: ../src/gui.py:374
+#: ../src/gui.py:370
 msgid "Show Installed Packages"
-msgstr "Toon Alle Geïnstalleerde Paketten"
+msgstr "Toon alle geïnstalleerde pakketten"
 
 #. Setup Vertical Toolbar
-#: ../src/gui.py:383
+#: ../src/gui.py:379
 msgid "Package View"
-msgstr "Pakket View"
+msgstr "Pakket view"
+
+#: ../src/gui.py:380
+msgid "Group View"
+msgstr "Groep view"
+
+#: ../src/gui.py:381
+msgid "Package Queue View"
+msgstr "Pakket wachtrij view"
+
+#: ../src/gui.py:383
+msgid "Repository Selection View"
+msgstr "Repository selectie view"
 
 #: ../src/gui.py:384
-msgid "Group View"
-msgstr "Groep View"
-
-#: ../src/gui.py:385
-msgid "Package Queue View"
-msgstr "Wachtrij View"
-
-#: ../src/gui.py:387
-msgid "Repository Selection View"
-msgstr "Repository View"
-
-#: ../src/gui.py:388
 msgid "Output View"
-msgstr "Output View"
+msgstr "Output view"
 
 #.
 #. [1]           [2]               [3]             [4]     [5]     [6]
 #. -------------------------------------------------------------------------
 #: ../src/misc.py:94
 msgid "RPM Groups"
-msgstr "RPM Groepen"
+msgstr "RPM groepen"
 
 #: ../src/misc.py:95
 msgid "Repositories"
@@ -216,7 +218,7 @@ msgstr "Architectuur"
 
 #: ../src/misc.py:97
 msgid "Sizes"
-msgstr "Grootten"
+msgstr "Grootte"
 
 #: ../src/misc.py:98
 msgid "Age"
@@ -228,7 +230,7 @@ msgstr "Verplicht"
 
 #: ../src/misc.py:109
 msgid "Default"
-msgstr "Default"
+msgstr "Standaard"
 
 #: ../src/misc.py:110
 msgid "Optional"
@@ -248,11 +250,11 @@ msgstr "Vertaling:"
 
 #: ../src/misc.py:143
 msgid "Special Thanks To:"
-msgstr "Speciale Dank Aan:"
+msgstr "Speciale dank aan:"
 
 #: ../src/misc.py:152
 msgid "Getting update packages"
-msgstr "Ophalen update pakketten"
+msgstr "Ophalen vernieuwing pakketten"
 
 #: ../src/misc.py:153
 msgid "Getting installed packages"
@@ -265,7 +267,7 @@ msgstr "Ophalen beschikbare pakketten"
 #: ../src/misc.py:158
 #, python-format
 msgid "Found %d update packages"
-msgstr " %d update pakketten gevonden"
+msgstr "%d vernieuwing pakketten gevonden"
 
 #: ../src/misc.py:159
 #, python-format
@@ -279,36 +281,36 @@ msgstr "%d beschikbare pakketten gevonden"
 
 #: ../src/misc.py:375
 msgid "Package Queue:"
-msgstr "Pakket Wachtrij:"
+msgstr "Pakket wachtrij:"
 
 #: ../src/misc.py:380
 #, python-format
 msgid " Packages to %s"
-msgstr "Paketten om te %s"
+msgstr " Paketten om te %s"
 
 #: ../src/misc.py:387
 #, python-format
 msgid " Groups to %s"
-msgstr "Groepen om te %s"
+msgstr " Groepen om te %s"
 
 #: ../src/misc.py:451
 #, python-format
 msgid "Wrong file application (%s)"
-msgstr "Verkeerde bestandsapplicatie (%s)"
+msgstr "Verkeerde bestand toepassing (%s)"
 
 #: ../src/misc.py:453
 #, python-format
 msgid "Wrong file type (%s)"
-msgstr "Verkeerde bestandstype (%s)"
+msgstr "Verkeerd bestand type (%s)"
 
 #: ../src/misc.py:455
 #, python-format
 msgid "Wrong file version (%s)"
-msgstr "Verkeerde bestandsversie (%s)"
+msgstr "Verkeerde bestand versie (%s)"
 
 #: ../src/misc.py:639
 msgid "Current Settings :"
-msgstr "Huidige Instellingen:"
+msgstr "Huidige instellingen:"
 
 #: ../src/views.py:40
 msgid "Categories"
@@ -340,19 +342,19 @@ msgstr "Repo."
 
 #: ../src/views.py:96
 msgid "Size."
-msgstr "Grootte"
+msgstr "Grootte."
 
 #: ../src/views.py:213
 msgid "Packages"
-msgstr "Paketten"
+msgstr "Pakketten"
 
 #: ../src/views.py:255
 msgid "<b>Packages To Update</b>"
-msgstr "<b>Pakketten om te Updaten</b>"
+msgstr "<b>Pakketten om te vernieuwen</b>"
 
 #: ../src/views.py:259
 msgid "<b>Packages To Install</b>"
-msgstr "<b>Pakketten om te Installeren</b>"
+msgstr "<b>Pakketten om te installeren</b>"
 
 #: ../src/views.py:263
 msgid "<b>Packages To Remove</b>"
@@ -364,85 +366,85 @@ msgstr "Bestandsnaam"
 
 #: ../src/views.py:571
 msgid "Plugin"
-msgstr "Plugin"
+msgstr "Plug-in"
 
 #: ../src/yumapi.py:69 ../src/yumapi.py:121
 msgid "Setup Yum : Transaction Set"
-msgstr "Setup Yum : Transactie Set"
+msgstr "Instellen Yum : Transactie set"
 
 #: ../src/yumapi.py:71 ../src/yumapi.py:123
 msgid "Setup Yum : RPM Db."
-msgstr "Setup Yum : RPM Db."
+msgstr "Instellen Yum : RPM Db."
 
 #. -> Repo Setup
 #: ../src/yumapi.py:74 ../src/yumapi.py:126
 msgid "Setup Yum : Repositories."
-msgstr "Setup Yum : Repositories."
+msgstr "Instellen Yum : Repositories."
 
 #. -> Sack Setup
 #: ../src/yumapi.py:77 ../src/yumapi.py:129
 msgid "Setup Yum : Package Sacks"
-msgstr "Setup Yum : Package Sacks"
+msgstr "Instellen Yum : Package Sacks"
 
 #. -> Updates Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:80 ../src/yumapi.py:132
 msgid "Setup Yum : Updates"
-msgstr "Setup Yum : Updates"
+msgstr "Instellen Yum : Vernieuwingen"
 
 #. -> Group Setup
 #. -> Sack Setup
 #: ../src/yumapi.py:84 ../src/yumapi.py:135
 msgid "Setup Yum : Groups"
-msgstr "Setup Yum : Groepen"
+msgstr "Instellen Yum : Groepen"
 
 #: ../src/yumapi.py:86 ../src/yumapi.py:137
 msgid "Setup Yum : Base setup completed"
-msgstr "Setup Yum : Basis setup afgemaakt"
+msgstr "Instellen Yum : Basis instelling afgemaakt"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr "Setup gesigneerde metadata ondersteuning"
+msgstr "Instellen ondertekende metadata ondersteuning"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr "Repository metadata (repomd.xml) for %s"
+msgstr "Repository metadata (repomd.xml) voor %s"
 
 #: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr "Update Metadata geladen van %s "
+msgstr "Vernieuw metadata geladen van %s "
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr "Geen update Metadata gevonden voor %s "
+msgstr "Geen vernieuw metadata gevonden voor %s "
 
 #: ../src/yumapi.py:166
 #, python-format
 msgid "Error loading update metadata from %s "
-msgstr "Fout bij laden van geupdate metadata van %s "
+msgstr "Fout bij laden van vernieuw metadata van %s "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
-msgstr "Gereed maken voor installeren/verwijderen/updaten"
+msgstr "Gereed maken voor installeren/verwijderen/vernieuwen"
 
 #: ../src/yumapi.py:191
 msgid "--> Preparing for install"
-msgstr "--> Gereed maken voorinstalleeren"
+msgstr "--> Gereed maken voor installeren"
 
 #: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
-msgstr "-->  Gereed maken voor verwijderen"
+msgstr "--> Gereed maken voor verwijderen"
 
 #: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
-msgstr "-->  Gereed maken voor een volledige update"
+msgstr "--> Gereed maken voor een volledige vernieuwing"
 
 #: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
-msgstr "-->  Gereed maken voor een gedeeltelijke update"
+msgstr "--> Gereed maken voor een gedeeltelijke vernieuwing"
 
 #: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
@@ -451,83 +453,83 @@ msgstr "--> Toevoegen van alle verouderde pakketten aan transactie"
 #: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
-msgstr "Bezig met Installeren"
+msgstr "Bezig met installeren"
 
 #: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
-msgstr "Bezig met Updaten"
+msgstr "Bezig met vernieuwen"
 
 #: ../src/yumapi.py:233
 msgid "Installing for dependencies"
-msgstr "Installeren wegens afhankelijkheden"
+msgstr "Installeren voor afhankelijkheden"
 
 #: ../src/yumapi.py:234
 msgid "Updating for dependencies"
-msgstr "Updaten wegens afhankelijkheden"
+msgstr "Vernieuwen voor afhankelijkheden"
 
 #: ../src/yumapi.py:235
 msgid "Removing for dependencies"
-msgstr "Verwijderen vanwege afhankelijkheden"
+msgstr "Verwijderen voor afhankelijkheden"
 
 #: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
-msgstr "Falen bij verkrijgen %s: "
+msgstr "Falen bij verkrijgen van %s: "
 
 #: ../src/yumapi.py:303
 msgid "Downloading Packages:"
-msgstr "Downloading Pakketten:"
+msgstr "Downloaden pakketten:"
 
 #: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
-msgstr "Fout bij Downloaden Pakketten:\n"
+msgstr "Fout bij downloaden pakketten:\n"
 
 #. Check GPG signatures
 #: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
-msgstr "Checken van GPG Handtekeningen:"
+msgstr "Checken van GPG ondertekeningen:"
 
 #: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
-msgstr "Fout bij Het Checken van GPG Handtekeningen:\n"
+msgstr "Fout bij het checken van GPG ondertekeningen:\n"
 
 #: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
-msgstr "Traceback bij checken pakkethandtekeningen:\n"
+msgstr "Traceback bij checken pakket ondertekeningen:\n"
 
 #: ../src/yumapi.py:352
 msgid "Running Transaction Test"
-msgstr "Bezig met Transactie Test"
+msgstr "Bezig met transactie test"
 
 #: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
-msgstr "Klaar met Transactie Test"
+msgstr "Klaar met transactie test"
 
 #: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
-msgstr "Transactie Test Fout: "
+msgstr "Transactie test fout: "
 
 #: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
-msgstr "Transactie Test Helemaal Goed, Fijn!"
+msgstr "Transactie test geslaagd"
 
 #: ../src/yumapi.py:393
 msgid "Running Transaction"
-msgstr "Bezig met Transactie"
+msgstr "Bezig met transactie"
 
 #: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr "Wilt u de GPG Key impoteren? : %s \n"
+msgstr "Wil je de GPG sleutel importeren? : %s \n"
 
 #: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
-msgstr "Nodig door %s"
+msgstr "Nodig voor %s"
 
 #: ../src/yumex.py:65
 msgid "Cant Quit while running RPM Transactions"
-msgstr "Kan niet eindigen terwijl RPM Transacties lopen, sorry"
+msgstr "Kan niet afsluiten terwijl RPM transacties draaien"
 
 #: ../src/yumex.py:153
 msgid "Yum has not been initialized yet"
@@ -541,20 +543,20 @@ msgstr "Geen pakketten in wachtrij"
 #: ../src/yumex.py:236
 #, python-format
 msgid "You are about to add %s packages\n"
-msgstr "U staat op het punt %s pakketten toe te voegen\n"
+msgstr "Je staat op het punt %s pakketten toe te voegen\n"
 
 #: ../src/yumex.py:237 ../src/yumex.py:249
 msgid "It will take some time\n"
-msgstr "Dat kan even duren\n"
+msgstr "Dit kan even duren\n"
 
 #: ../src/yumex.py:238 ../src/yumex.py:250
 msgid "do you want to continue ?"
-msgstr "wilt u door gaan (koffie?)"
+msgstr "wil je door gaan ?"
 
 #: ../src/yumex.py:248
 #, python-format
 msgid "You are about to remove %s packages\n"
-msgstr "U staat op het punt %s pakketten te verwijderen\n"
+msgstr "Je staat op het punt %s pakketten te verwijderen\n"
 
 #: ../src/yumex.py:354
 #, python-format
@@ -564,12 +566,12 @@ msgstr "Het %s profiel is geselecteerd"
 #: ../src/yumex.py:374
 #, python-format
 msgid "Profile : %s saved ok"
-msgstr "Profiel: %s is goed opgeslagen"
+msgstr "Profiel : %s is goed opgeslagen"
 
 #: ../src/yumex.py:376
 #, python-format
 msgid "Profile : %s save failed"
-msgstr "Profiel: %s is helaas niet goed opgeslagen"
+msgstr "Profiel : %s is niet goed opgeslagen"
 
 #: ../src/yumex.py:381
 msgid "Create New Profile"
@@ -582,24 +584,24 @@ msgstr "Naam van nieuw profiel"
 #: ../src/yumex.py:385
 #, python-format
 msgid "Profile : %s created ok"
-msgstr "Profiel: %s is goed aangemaakt"
+msgstr "Profiel : %s is goed aangemaakt"
 
 #: ../src/yumex.py:388
 #, python-format
 msgid "Profile : %s creation failed"
-msgstr "Profiel : %s is helaas niet gemaakt, probeer opnieuw aub"
+msgstr "Profiel : %s is niet gemaakt"
 
 #: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
-msgstr "Alle yum metadata opruimen"
+msgstr "Alle yum metadata opschonen"
 
 #: ../src/yumex.py:419
 msgid "Yum Config Setup"
-msgstr "Yum Config Setup"
+msgstr "Yum configuratie instelling"
 
 #: ../src/yumex.py:435
 msgid "GUI Setup Completed"
-msgstr "GUI Setup is Afgerond"
+msgstr "GUI instelling is afgerond"
 
 #: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
 #: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
@@ -609,66 +611,66 @@ msgstr "Fout"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr "Foutje in Yum Setup"
+msgstr "Foutje in Yum inatelling"
 
 #. prepare package lists
 #. -> List setup
 #: ../src/yumex.py:478
 msgid "Building Package Lists"
-msgstr "Pakketlijst wordt samengesteld"
+msgstr "Pakket lijst wordt samengesteld"
 
 #: ../src/yumex.py:480
 msgid "Building Package Lists Completed"
-msgstr "Samenstellen Pakketlijst Afgerond"
+msgstr "Samenstellen pakket lijst afgerond"
 
 #: ../src/yumex.py:481
 msgid "Building Groups Lists"
-msgstr "Samenstellen Groepslijst"
+msgstr "Samenstellen groep lijst"
 
 #: ../src/yumex.py:484
 msgid "Building Group Lists Completed"
-msgstr "Samenstellen Groepslijst Afgerond"
+msgstr "Samenstellen groep lijst afgerond"
 
 #. -> Sort Lists
 #: ../src/yumex.py:523
 msgid "Sorting packages"
-msgstr "Pakketten Sorteren"
+msgstr "Pakketten sorteren"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
-msgstr "Bekijken samenstelling pakketten"
+msgstr "View opvullen met pakketten"
 
 #: ../src/yumex.py:531
 msgid "Population Completed"
-msgstr "Samenstelling Voltooid"
+msgstr "Opvullen voltooid"
 
 #: ../src/yumex.py:539
 msgid "Package View Population"
-msgstr "Package View Populatie"
+msgstr "Pakket view populatie"
 
 #: ../src/yumex.py:551
 msgid "Package View Population Completed"
-msgstr "Package View Populatie Afgerond"
+msgstr "Pakket view populatie afgerond"
 
 #: ../src/yumex.py:558
 msgid "Category View Population"
-msgstr "Categorie View Populatie"
+msgstr "Categorie view populatie"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr "Categorie View Populatie Afgerond"
+msgstr "Categorie view populatie afgerond"
 
 #: ../src/yumex.py:602
 msgid "Processing Packages in queue"
-msgstr "Verwerken Pakketten in Wachtrij"
+msgstr "Verwerken pakketten in wachtrij"
 
 #: ../src/yumex.py:608
 msgid "Error in Dependency Resolution"
-msgstr "Fout in Oplossen Afhankelijkheid"
+msgstr "Fout bij oplossen afhankelijkheden"
 
 #: ../src/yumex.py:625
 msgid "No packages selected"
-msgstr "Geen Pakketten Geselecteerd"
+msgstr "Geen pakketten geselecteerd"
 
 #: ../src/yumex.py:632
 msgid "No packages in transaction"
@@ -680,15 +682,15 @@ msgstr "Verwerken pakketten (zie output voor details)"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing"
-msgstr "Verwerking Pakketten"
+msgstr "Verwerking pakketten"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing completed ok"
-msgstr "Verwerken Pakketten goed afgerond"
+msgstr "Verwerken pakketten goed afgerond"
 
 #: ../src/yumex.py:664
 msgid "Error in Transaction"
-msgstr "Fout in Transactie"
+msgstr "Fout in transactie"
 
 #: ../src/yumex.py:669
 #, python-format
@@ -702,19 +704,19 @@ msgstr "%d pakketten gevonden, overeenkomend met: %s"
 
 #: ../src/yumex.py:743
 msgid "Yum is locked by another application"
-msgstr "Yum wordt gelocked door een andere applicatie"
+msgstr "Yum wordt geblokkeerd door een andere toepassing"
 
 #: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
-msgstr "Fout in Yumex, ongelofelijk!"
+msgstr "Fout in Yumex"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr "Fout in plugin. Yum Extender houdt het voor gezien"
+msgstr "Fout in plug-in. Yum Extender zal afsluiten"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
-msgstr "Aan het wissen"
+msgstr "Wissen"
 
 #: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
@@ -722,7 +724,7 @@ msgstr "Verouderd"
 
 #: ../src/yumgui/callbacks.py:66
 msgid "Updated"
-msgstr "Ververst"
+msgstr "Vernieuwd"
 
 #: ../src/yumgui/callbacks.py:67
 msgid "Erased"
@@ -735,7 +737,7 @@ msgstr "Geïnstalleerd"
 
 #: ../src/yumgui/callbacks.py:181
 msgid "No header - huh?"
-msgstr "Geen Header - wattuh?"
+msgstr "Geen koptekst - wattuh?"
 
 #: ../src/yumex.glade.h:1
 msgid " "
@@ -775,7 +777,7 @@ msgstr "<b>Categorie</b>"
 
 #: ../src/yumex.glade.h:10
 msgid "<b>Fonts </b>"
-msgstr "<b>Lettertypen </b>"
+msgstr "<b>Lettertypes </b>"
 
 #: ../src/yumex.glade.h:11
 msgid "<b>Packages</b>"
@@ -783,19 +785,19 @@ msgstr "<b>Pakketten</b>"
 
 #: ../src/yumex.glade.h:12
 msgid "<b>Quick add to queue</b>"
-msgstr "<b>Snel Toevoegen:</b>"
+msgstr "<b>Snel aan wachtrij toevoegen:</b>"
 
 #: ../src/yumex.glade.h:13
 msgid "<b>Repository  Exclude Filters</b>"
-msgstr "<b>Repository  Uitsluitingsfilters</b>"
+msgstr "<b>Repository  uitsluit filters</b>"
 
 #: ../src/yumex.glade.h:14
 msgid "<b>SUBACTION</b>\n"
-msgstr "<b>SUBACTIE</b>\n"
+msgstr "<b>SUB-ACTIE</b>\n"
 
 #: ../src/yumex.glade.h:16
 msgid "<b>Total Download Size</b>"
-msgstr "<b>Totale Download Grootte</b>"
+msgstr "<b>Totale download grootte</b>"
 
 #: ../src/yumex.glade.h:17
 msgid "<span size=\"large\"><b>Action</b></span>\n"
@@ -803,19 +805,19 @@ msgstr "<span size=\"large\"><b>Actie</b></span>\n"
 
 #: ../src/yumex.glade.h:19
 msgid "<span size=\"xx-large\" color=\"black\">Group View</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">Groep View</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">Groep view</span>"
 
 #: ../src/yumex.glade.h:20
 msgid "<span size=\"xx-large\" color=\"black\">Output View</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">Output View</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">Output view</span>"
 
 #: ../src/yumex.glade.h:21
 msgid "<span size=\"xx-large\" color=\"black\">Package Queue</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">Pakket Wachtrij</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">Pakket wachtrij</span>"
 
 #: ../src/yumex.glade.h:22
 msgid "<span size=\"xx-large\" color=\"black\">Select Repositories</span>"
-msgstr "<span size=\"xx-large\" color=\"black\">Selecteer Repositories</span>"
+msgstr "<span size=\"xx-large\" color=\"black\">Selecteer repositories</span>"
 
 #: ../src/yumex.glade.h:23
 msgid "All"
@@ -827,7 +829,7 @@ msgstr "Beschikbaar"
 
 #: ../src/yumex.glade.h:26
 msgid "C_hangelog"
-msgstr "C_hangelog"
+msgstr "_Verander-log"
 
 #: ../src/yumex.glade.h:27
 msgid "Console"
@@ -851,7 +853,7 @@ msgstr "Extra"
 
 #: ../src/yumex.glade.h:33
 msgid "Fi_les"
-msgstr "Fi_les"
+msgstr "_Bestanden"
 
 #: ../src/yumex.glade.h:34
 msgid "GUI"
@@ -863,11 +865,11 @@ msgstr "I_nformatie"
 
 #: ../src/yumex.glade.h:37
 msgid "Package Descriptions"
-msgstr "Pakket Beschrijvingen"
+msgstr "Pakket beschrijvingen"
 
 #: ../src/yumex.glade.h:38
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Plug-ins"
 
 #: ../src/yumex.glade.h:39
 msgid "Preferences"
@@ -875,19 +877,19 @@ msgstr "Voorkeuren"
 
 #: ../src/yumex.glade.h:40
 msgid "Process Queue Confirmation"
-msgstr "Bevestigen van Verwerken deze Wachtrij"
+msgstr "Bevestigen verwerken van wachtrij"
 
 #: ../src/yumex.glade.h:41
 msgid "Repos"
-msgstr "Repos"
+msgstr "Repo's"
 
 #: ../src/yumex.glade.h:42
 msgid "Search Options"
-msgstr "Zoek Opties"
+msgstr "Zoek opties"
 
 #: ../src/yumex.glade.h:43
 msgid "Updates"
-msgstr "Updates"
+msgstr "Vernieuwingen"
 
 #: ../src/yumex.glade.h:44
 msgid "Use _proxy"
@@ -899,11 +901,11 @@ msgstr "Yum Extender"
 
 #: ../src/yumex.glade.h:46
 msgid "Yum Extender Preferences"
-msgstr "Yum Extender Voorkeuren"
+msgstr "Yum Extender voorkeuren"
 
 #: ../src/yumex.glade.h:47
 msgid "_Add All"
-msgstr "Voeg _Alles Toe"
+msgstr "_Alles toevoegen"
 
 #: ../src/yumex.glade.h:48
 msgid "_Auto refresh on start"
@@ -915,7 +917,7 @@ msgstr "Be_schrijving"
 
 #: ../src/yumex.glade.h:50
 msgid "_Deselect All"
-msgstr "_Deselecteer Alles"
+msgstr "_De-selecteer alles"
 
 #: ../src/yumex.glade.h:51
 msgid "_Edit"
@@ -931,11 +933,11 @@ msgstr "_Hulp"
 
 #: ../src/yumex.glade.h:54
 msgid "_Other"
-msgstr "_Overig"
+msgstr "_Andere"
 
 #: ../src/yumex.glade.h:55
 msgid "_Process Queue"
-msgstr "Verwerk _Wachtrij "
+msgstr "Verwerk _wachtrij "
 
 #: ../src/yumex.glade.h:56
 msgid "_Profiles"
@@ -943,7 +945,7 @@ msgstr "_Profielen"
 
 #: ../src/yumex.glade.h:57
 msgid "_Remove All"
-msgstr "Alles Ve_rwijderen"
+msgstr "Alles ve_rwijderen"
 
 #: ../src/yumex.glade.h:58
 msgid "_Skip"
@@ -951,11 +953,11 @@ msgstr "Over_slaan"
 
 #: ../src/yumex.glade.h:59
 msgid "_Tools"
-msgstr "Ins_trumenten"
+msgstr "_Gereedschappen"
 
 #: ../src/yumex.glade.h:60
 msgid "_Yum Clean All"
-msgstr "_Yum Schonen"
+msgstr "_Yum alles opschonen"
 
 #: ../src/yumex.glade.h:61
 msgid "_Yum excludes:"
@@ -963,9 +965,8 @@ msgstr "_door Yum uit te sluiten:"
 
 #: ../src/yumex.glade.h:62
 msgid "_Yum plugins:"
-msgstr "_Yum plugins:"
+msgstr "_Yum plug-ins:"
 
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialog1"
-
