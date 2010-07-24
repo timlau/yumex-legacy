@@ -3,26 +3,28 @@
 #
 # Domingo Becker <domingobecker@gmail.com>. 2009.
 # Fernando Gonzalez Blanco <fgonz@fedoraproject.org>, 2009.
-# Héctor Daniel Cabrera <h.daniel.cabrera@gmail.com>, 2010.
+# Héctor Daniel Cabrera <logan@fedoraproject.org>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yumex-nextgen\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-10 08:28+0200\n"
-"PO-Revision-Date: 2010-02-02 12:58-0300\n"
+"PO-Revision-Date: 2010-07-24 12:49-0300\n"
 "Last-Translator: Héctor Daniel Cabrera <logan@fedoraproject.org>\n"
-"Language-Team: Spanish <fedora-trans-es@redhat.com>\n"
-"Language: es\n"
+"Language-Team: Spanish <trans-es@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: ARGENTINA\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:95
+#: ../src/yumexbackend/yum_backend.py:96
 msgid "Getting Package Information"
-msgstr "Extrayendo información del paquete"
+msgstr "Obteniendo información del paquete"
 
 #: ../src/yumexbackend/yum_backend.py:115
 #, python-format
@@ -33,20 +35,24 @@ msgstr "Tipo de Metadatos del Repo desconocido (%s) para %s"
 msgid "Buiding rpms from deltarpm"
 msgstr "Construyendo rpms desde deltarpm"
 
-#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145
+#: ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr "Descargando paquetes"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:151 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:151
+#: ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr "Chequeando las firmas GPG de los paquetes"
 
-#: ../src/yumexbackend/yum_backend.py:156 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:156
+#: ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr "Ejecutando la prueba de las Transacciones RPM"
 
-#: ../src/yumexbackend/yum_backend.py:160 ../src/yumexgui/dialogs.py:253
+#: ../src/yumexbackend/yum_backend.py:160
+#: ../src/yumexgui/dialogs.py:253
 msgid "Running RPM Transaction"
 msgstr "Ejecutando transacción RPM"
 
@@ -89,7 +95,8 @@ msgstr ""
 msgid "yum backend process is ended"
 msgstr "El proceso de subsistema yum ha finalizado"
 
-#: ../src/yumexbackend/yum_backend.py:513 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:513
+#: ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr "Resolviendo dependencias"
 
@@ -111,7 +118,7 @@ msgstr "Resolución de dependencia completa pero con errores"
 #. Root
 #: ../src/yumexbackend/yum_client.py:173
 msgid "Client is running in rootmode, starting backend directly"
-msgstr ""
+msgstr "El cliente está ejecutado en modo root, iniciando directamente el motor"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:225
@@ -121,11 +128,12 @@ msgstr "El subsistema yum no se ha cerrado en el tiempo adecuado"
 #: ../src/yumexbackend/yum_server.py:202
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "Utilizando %s para la configuración de yum"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:257 ../src/yumexbackend/yum_server.py:266
+#: ../src/yumexbackend/yum_server.py:257
+#: ../src/yumexbackend/yum_server.py:266
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "Sin conexión de red, desactivar repositorios no locales %s"
@@ -149,18 +157,16 @@ msgstr "¡¡¡ Esperando 10 segundos e intentando nuevamente !!!"
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:325
-#, fuzzy
 msgid "The disc was not inserted"
-msgstr "El medio que se necesita no fue encontrado"
+msgstr "No ha sido insertado un disco"
 
 #: ../src/yumexbackend/yum_server.py:356
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "Cerrando la base de datos rpm y liberando el bloque de yum"
 
 #: ../src/yumexbackend/yum_server.py:514
-#, fuzzy
 msgid "Populating Package Cache"
-msgstr "Descargando paquetes"
+msgstr "Poblando el caché de paquetes"
 
 #: ../src/yumexbackend/yum_server.py:708
 msgid "Installing"
@@ -172,9 +178,8 @@ msgid "Error in yum Transaction : %s"
 msgstr "Error en la transacción de yum : %s"
 
 #: ../src/yumexbackend/yum_server.py:763
-#, fuzzy
 msgid "Exception in run_transaction"
-msgstr "Preparando la transacción"
+msgstr "Excepción en ejecutar_transacción"
 
 #: ../src/yumexbackend/yum_server.py:802
 #, python-format
@@ -198,7 +203,7 @@ msgstr "El repositorio %s ha sido deshabilitado permanentemente"
 #: ../src/yumexbackend/yum_server.py:986
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "Configurando opciones de yum %s = %s"
 
 #: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
@@ -250,8 +255,7 @@ msgstr "Descargando la información de los paquetes desde el repositorio %s"
 #: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-"Descargando la información de la lista de archivos desde el repositorio %s"
+msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
@@ -303,29 +307,24 @@ msgid "90+ days"
 msgstr "90+ días"
 
 #: ../src/yumexbase/constants.py:140
-#, fuzzy
 msgid "Getting all packages"
-msgstr "Obteniendo paquetes disponibles "
+msgstr "Obteniendo todos los paquetes "
 
 #: ../src/yumexbase/constants.py:141
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Obteniendo paquetes instalados"
+msgstr "Obteniendo los paquetes instalados"
 
 #: ../src/yumexbase/constants.py:142
-#, fuzzy
 msgid "Getting available packages"
-msgstr "Obteniendo paquetes disponibles "
+msgstr "Obteniendo los paquetes disponibles "
 
 #: ../src/yumexbase/constants.py:143
-#, fuzzy
 msgid "Getting available updates"
-msgstr "Obteniendo paquetes disponibles "
+msgstr "Obteniendo las actualizaciones disponibles "
 
 #: ../src/yumexbase/constants.py:144
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "Obteniendo paquetes disponibles "
+msgstr "Obteniendo los paquetes obsoletos disponibles "
 
 #: ../src/yumexgui/dialogs.py:343
 msgid "Working !!!"
@@ -341,7 +340,7 @@ msgstr "Cargar paquetes al lanzar"
 
 #: ../src/yumexgui/dialogs.py:427
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "Utilice columnas ordenables en la visualización de los paquetes (más lento)"
 
 #: ../src/yumexgui/dialogs.py:435
 msgid "Debug Mode"
@@ -375,11 +374,13 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Nivel de depuración de Yum"
 
-#: ../src/yumexgui/dialogs.py:505 ../src/yumexgui/dialogs.py:514
+#: ../src/yumexgui/dialogs.py:505
+#: ../src/yumexgui/dialogs.py:514
 msgid "Transaction Result"
 msgstr "Resultado de la transacción"
 
-#: ../src/yumexgui/dialogs.py:548 ../src/yumexgui/views.py:755
+#: ../src/yumexgui/dialogs.py:548
+#: ../src/yumexgui/views.py:755
 msgid "Name"
 msgstr "Nombre"
 
@@ -387,18 +388,21 @@ msgstr "Nombre"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:550 ../src/yumexgui/views.py:165
+#: ../src/yumexgui/dialogs.py:550
+#: ../src/yumexgui/views.py:165
 #: ../src/yumexgui/views.py:318
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:551 ../src/yumexgui/views.py:707
+#: ../src/yumexgui/dialogs.py:551
+#: ../src/yumexgui/views.py:707
 #: ../src/yumexgui/views.py:754
 msgid "Repository"
 msgstr "Repositorio"
 
-#: ../src/yumexgui/dialogs.py:552 ../src/yumexgui/views.py:165
+#: ../src/yumexgui/dialogs.py:552
+#: ../src/yumexgui/views.py:165
 #: ../src/yumexgui/views.py:318
 msgid "Size"
 msgstr "Tamaño"
@@ -507,7 +511,8 @@ msgstr "No se ha podido cerrar el subsistema"
 msgid "Fatal Error : "
 msgstr "Error fatal :"
 
-#: ../src/yumexgui/__init__.py:749 ../src/yumexgui/views.py:625
+#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/views.py:625
 msgid "Packages"
 msgstr "Paquetes"
 
@@ -561,8 +566,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:812
 msgid "network connection state check is disabled"
-msgstr ""
-"se encuentra deshabilitada la verificación del estado de la conexión de red"
+msgstr "se encuentra deshabilitada la verificación del estado de la conexión de red"
 
 #: ../src/yumexgui/__init__.py:814
 msgid "Can't detect the network connection state"
@@ -604,7 +608,8 @@ msgstr "Por Repositorios"
 msgid "By Size"
 msgstr "Por Tamaño"
 
-#: ../src/yumexgui/__init__.py:889 ../src/yumexgui/__init__.py:890
+#: ../src/yumexgui/__init__.py:889
+#: ../src/yumexgui/__init__.py:890
 msgid "Getting Group information"
 msgstr "Obteniendo información de grupos"
 
@@ -637,7 +642,8 @@ msgid "Preparing the transaction"
 msgstr "Preparando la transacción"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
+#: ../src/yumexgui/__init__.py:963
+#: ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr "Transacción completada con éxito"
 
@@ -685,42 +691,51 @@ msgid "Getting All History Information"
 msgstr "Obteniendo toda la información del histórico"
 
 #: ../src/yumexgui/__init__.py:1100
-#, fuzzy
 msgid "History Disabled"
-msgstr "Historia"
+msgstr "Historial deshabilitado"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
-#: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:188
+#: ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:343
 msgid "Package"
 msgstr "Paquete"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:191
-#: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:346
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:191
+#: ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:346
 #: ../src/yumexgui/views.py:630
 msgid "Summary"
 msgstr "Resumen"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:318
 msgid "Repo"
 msgstr "Repo"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:318
 msgid "Architecture"
 msgstr "Arquitectura"
 
-#: ../src/yumexgui/views.py:189 ../src/yumexgui/views.py:344
+#: ../src/yumexgui/views.py:189
+#: ../src/yumexgui/views.py:344
 msgid "Ver."
 msgstr "Ver."
 
-#: ../src/yumexgui/views.py:190 ../src/yumexgui/views.py:345
+#: ../src/yumexgui/views.py:190
+#: ../src/yumexgui/views.py:345
 msgid "Arch."
 msgstr "Arch."
 
-#: ../src/yumexgui/views.py:192 ../src/yumexgui/views.py:347
+#: ../src/yumexgui/views.py:192
+#: ../src/yumexgui/views.py:347
 msgid "Repo."
 msgstr "Repo."
 
-#: ../src/yumexgui/views.py:193 ../src/yumexgui/views.py:348
+#: ../src/yumexgui/views.py:193
+#: ../src/yumexgui/views.py:348
 msgid "Size."
 msgstr "Tamaño."
 
