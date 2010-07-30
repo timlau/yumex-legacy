@@ -37,6 +37,8 @@ install:
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
+get-builddeps:
+	yum install perl-TimeDate python-devel gettext intltool
 
 archive:
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
