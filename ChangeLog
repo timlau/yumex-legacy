@@ -1,3 +1,101 @@
+2010-07-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: bumped version to 2.9.10
+
+2010-07-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Added get-builddeps Makefile target to install need deps
+	for local building of yumex RPMS
+
+2010-07-24  logan <logan@fedoraproject.org>
+
+	* po/es.po: l10n: Updates to Spanish (Castilian) (es) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-07-15  warrink <warrink@fedoraproject.org>
+
+	* po/nl.po: l10n: Updates to Dutch (Flemish) (nl) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-07-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Dont write to stdout, stderr if there is
+	no tty, we might get IO errors (rhbz #610146)
+
+2010-07-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: handle the case, where there is no
+	update metadata to get (rhbz #609724)
+
+2010-07-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fr.po, po/hu.po,
+	po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po, po/pl.po,
+	po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po: updated po files
+
+2010-07-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'future' of ssh://git.fedorahosted.org/git/yumex
+	into future
+
+2010-07-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexbase/constants.py: Better
+	rpm action complete messages there can be translated
+
+2010-07-09  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-07-09  raven <raven@fedoraproject.org>
+
+	* po/pl.po: l10n: Updates to Polish (pl) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-07-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fr.po, po/hu.po,
+	po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po, po/pl.po,
+	po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po: Updated po files
+
+2010-07-09  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-07-09  Muayyad Alsadi مؤيد السعدي <alsadi@ojuba.org>
+
+	* src/yumexbackend/yumMediaManagerUDisks.py: clean up udisks support
+
+
+2010-07-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: Make more strings translateable
+
+2010-07-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fr.po, po/hu.po,
+	po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po, po/pl.po,
+	po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po: updated po files
+
+2010-07-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexbase/constants.py: Making
+	package cache popolation messages translatable
+
+2010-07-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yum_childtask.py: fix stupid typo
+
+2010-07-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2010-07-06  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 2.9.9
@@ -2211,35 +2309,5 @@
 
 2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
 
-	* src/callbacks.py, src/dialogs.py, src/filters.py, src/gui.py,
-	src/i18n.py, src/misc.py, src/nextgen/yumexbase/__init__.py,
-	src/nextgen/yumexbase/backend_yum.py, src/old-stuff/callbacks.py,
-	src/old-stuff/dialogs.py, src/old-stuff/filters.py,
-	src/old-stuff/gui.py, src/old-stuff/i18n.py, src/old-stuff/misc.py,
-	src/old-stuff/packages.py, src/old-stuff/views.py,
-	src/old-stuff/yumapi.py, src/old-stuff/yumex.glade,
-	src/old-stuff/yumex.py, src/old-stuff/yumgui/Makefile,
-	src/old-stuff/yumgui/__init__.py,
-	src/old-stuff/yumgui/__init__.pyc,
-	src/old-stuff/yumgui/callbacks.py,
-	src/old-stuff/yumgui/callbacks.pyc,
-	src/old-stuff/yumgui/packages.py,
-	src/old-stuff/yumgui/packages.pyc, src/old-stuff/yumgui/widgets.py,
-	src/old-stuff/yumgui/widgets.pyc, src/packages.py, src/views.py,
-	src/yumapi.py, src/yumex.glade, src/yumex.py,
-	src/yumexbase/__init__.py, src/yumexbase/backend_yum.py,
-	src/yumgui/Makefile, src/yumgui/__init__.py,
-	src/yumgui/callbacks.py, src/yumgui/packages.py,
-	src/yumgui/widgets.py: cleanup the future branch
-
-2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
-
-	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex  *
-	'master' of ssh://git.fedorahosted.org/git/yumex:   Updated French
-	translation   Updated Serbian Latin translation   Updated Serbian
-	translation
-
-2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
-
-	* future: cleanup code and fix typos
+	* cleanup the future branch
 
