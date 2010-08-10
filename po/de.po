@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-10 08:28+0200\n"
-"PO-Revision-Date: 2010-05-20 10:17+0100\n"
+"PO-Revision-Date: 2010-08-10 15:52+0100\n"
 "Last-Translator: Fabian Affolter <fab@fedoraproject.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:95
+#: ../src/yumexbackend/yum_backend.py:96
 #, fuzzy
 msgid "Getting Package Information"
 msgstr "Aktualisiere meine Kontakt-Daten"
@@ -32,20 +33,24 @@ msgstr ""
 msgid "Buiding rpms from deltarpm"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:145
+#: ../src/yumexgui/dialogs.py:250
 msgid "Downloading Packages"
 msgstr ""
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:151 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:151
+#: ../src/yumexgui/dialogs.py:251
 msgid "Checking Package GPG Signatures"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:156 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:156
+#: ../src/yumexgui/dialogs.py:252
 msgid "Running RPM Test Transaction"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:160 ../src/yumexgui/dialogs.py:253
+#: ../src/yumexbackend/yum_backend.py:160
+#: ../src/yumexgui/dialogs.py:253
 #, fuzzy
 msgid "Running RPM Transaction"
 msgstr "Gast läuft nicht"
@@ -87,7 +92,8 @@ msgstr "Geben Sie folgenden Befehl ein:"
 msgid "yum backend process is ended"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:513 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:513
+#: ../src/yumexgui/dialogs.py:249
 msgid "Resolving Dependencies"
 msgstr ""
 
@@ -124,7 +130,8 @@ msgstr ""
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:257 ../src/yumexbackend/yum_server.py:266
+#: ../src/yumexbackend/yum_server.py:257
+#: ../src/yumexbackend/yum_server.py:266
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr ""
@@ -149,8 +156,9 @@ msgstr ""
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:325
+#, fuzzy
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Der benötigte Parameter '%s' wurde nicht angegeben."
 
 #: ../src/yumexbackend/yum_server.py:356
 msgid "Closing rpm db and releasing yum lock  "
@@ -162,7 +170,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:708
 msgid "Installing"
-msgstr ""
+msgstr "Installation"
 
 #: ../src/yumexbackend/yum_server.py:760
 #, fuzzy, python-format
@@ -172,7 +180,7 @@ msgstr "Fehler im Datenformat"
 #: ../src/yumexbackend/yum_server.py:763
 #, fuzzy
 msgid "Exception in run_transaction"
-msgstr "Eine Transaktion ist gescheitert."
+msgstr "Zeige Zusammenfassung des Lauf-Status"
 
 #: ../src/yumexbackend/yum_server.py:802
 #, fuzzy, python-format
@@ -195,9 +203,9 @@ msgid "The %s repository has been disabled permanently"
 msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:986
-#, python-format
+#, fuzzy, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "Option '%s' erwartet einen Wert."
 
 #: ../src/yumexbackend/yum_server.py:1036
 msgid "Cleaned metadata from local cache"
@@ -227,7 +235,7 @@ msgstr ""
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:75
 msgid "updates"
-msgstr ""
+msgstr "Aktualisierungen"
 
 #: ../src/yumexbase/constants.py:75
 msgid "available"
@@ -235,7 +243,7 @@ msgstr "verfügbar"
 
 #: ../src/yumexbase/constants.py:75
 msgid "installed"
-msgstr ""
+msgstr "installiert"
 
 #: ../src/yumexbase/constants.py:95
 #, fuzzy
@@ -304,7 +312,7 @@ msgstr "90+ Tage"
 #: ../src/yumexbase/constants.py:140
 #, fuzzy
 msgid "Getting all packages"
-msgstr "Darstellung %is%i-%i ist nicht vorhanden"
+msgstr "Ausführbare Dateien (*.exe)|*.exe|Alle Dateien (*.*)|*.*||"
 
 #: ../src/yumexbase/constants.py:141
 #, fuzzy
@@ -328,10 +336,9 @@ msgstr "Darstellung %is%i-%i ist nicht vorhanden"
 
 #: ../src/yumexgui/dialogs.py:343
 msgid "Working !!!"
-msgstr ""
+msgstr "Bearbeitung !!"
 
 #: ../src/yumexgui/dialogs.py:413
-#, fuzzy
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -380,12 +387,14 @@ msgstr "Proxy"
 msgid "Yum Debug Level"
 msgstr "Vorschau des Fehlerberichts:"
 
-#: ../src/yumexgui/dialogs.py:505 ../src/yumexgui/dialogs.py:514
+#: ../src/yumexgui/dialogs.py:505
+#: ../src/yumexgui/dialogs.py:514
 #, fuzzy
 msgid "Transaction Result"
 msgstr "Eine Transaktion ist gescheitert."
 
-#: ../src/yumexgui/dialogs.py:548 ../src/yumexgui/views.py:755
+#: ../src/yumexgui/dialogs.py:548
+#: ../src/yumexgui/views.py:755
 msgid "Name"
 msgstr "Name"
 
@@ -393,18 +402,21 @@ msgstr "Name"
 msgid "Arch"
 msgstr "Arch"
 
-#: ../src/yumexgui/dialogs.py:550 ../src/yumexgui/views.py:165
+#: ../src/yumexgui/dialogs.py:550
+#: ../src/yumexgui/views.py:165
 #: ../src/yumexgui/views.py:318
 msgid "Ver"
 msgstr "Ver"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:551 ../src/yumexgui/views.py:707
+#: ../src/yumexgui/dialogs.py:551
+#: ../src/yumexgui/views.py:707
 #: ../src/yumexgui/views.py:754
 msgid "Repository"
-msgstr ""
+msgstr "Repository"
 
-#: ../src/yumexgui/dialogs.py:552 ../src/yumexgui/views.py:165
+#: ../src/yumexgui/dialogs.py:552
+#: ../src/yumexgui/views.py:165
 #: ../src/yumexgui/views.py:318
 msgid "Size"
 msgstr "Grösse"
@@ -421,7 +433,7 @@ msgstr "Bearbeite Kontextbeschreibung."
 
 #: ../src/yumexgui/gui.py:249
 msgid "Package Changelog"
-msgstr ""
+msgstr "Paket-Changelog"
 
 #: ../src/yumexgui/gui.py:251
 msgid "Package Filelist"
@@ -435,9 +447,8 @@ msgid ""
 msgstr "Bearbeite Kontextbeschreibung."
 
 #: ../src/yumexgui/gui.py:320
-#, fuzzy
 msgid "Update ID"
-msgstr "Domain-ID"
+msgstr "Aktualisierungs-ID"
 
 #: ../src/yumexgui/gui.py:321
 msgid "Release"
@@ -470,7 +481,6 @@ msgid "Do you want to clean %s from the yum cache"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:655
-#, fuzzy
 msgid "Fatal Error"
 msgstr "Nicht-behebbarer Fehler"
 
@@ -519,9 +529,10 @@ msgstr "Die Netzwerkadresse wurde nicht verstanden"
 msgid "Fatal Error : "
 msgstr "Nicht-behebbarer Fehler"
 
-#: ../src/yumexgui/__init__.py:749 ../src/yumexgui/views.py:625
+#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/views.py:625
 msgid "Packages"
-msgstr ""
+msgstr "Pakete"
 
 #: ../src/yumexgui/__init__.py:750
 msgid "Perform actions on packages"
@@ -537,7 +548,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:756
 msgid "Repositories"
-msgstr ""
+msgstr "Repositories"
 
 #: ../src/yumexgui/__init__.py:757
 #, fuzzy
@@ -613,15 +624,15 @@ msgid "Clean All"
 msgstr "Alle aktualisieren"
 
 #: ../src/yumexgui/__init__.py:865
-#, fuzzy
 msgid "By Repositories"
-msgstr "Powered by libvirt"
+msgstr "Nach Repositories"
 
 #: ../src/yumexgui/__init__.py:866
 msgid "By Size"
 msgstr "Nach Grösse"
 
-#: ../src/yumexgui/__init__.py:889 ../src/yumexgui/__init__.py:890
+#: ../src/yumexgui/__init__.py:889
+#: ../src/yumexgui/__init__.py:890
 #, fuzzy
 msgid "Getting Group information"
 msgstr "Verwalte Gruppen-Mitgliedschaft"
@@ -657,7 +668,8 @@ msgid "Preparing the transaction"
 msgstr "Eine Transaktion ist gescheitert."
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:963 ../src/yumexgui/__init__.py:965
+#: ../src/yumexgui/__init__.py:963
+#: ../src/yumexgui/__init__.py:965
 msgid "Transaction completed successfully"
 msgstr ""
 
@@ -701,42 +713,51 @@ msgid "Getting All History Information"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:1100
-#, fuzzy
 msgid "History Disabled"
-msgstr "Verlauf"
+msgstr "Verlauf deaktiviert"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:188
-#: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:343
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:188
+#: ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:343
 msgid "Package"
 msgstr "Paket"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:191
-#: ../src/yumexgui/views.py:318 ../src/yumexgui/views.py:346
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:191
+#: ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:346
 #: ../src/yumexgui/views.py:630
 msgid "Summary"
 msgstr "Zusammenfassung"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:318
 msgid "Repo"
 msgstr "Repo"
 
-#: ../src/yumexgui/views.py:165 ../src/yumexgui/views.py:318
+#: ../src/yumexgui/views.py:165
+#: ../src/yumexgui/views.py:318
 msgid "Architecture"
 msgstr "Architektur"
 
-#: ../src/yumexgui/views.py:189 ../src/yumexgui/views.py:344
+#: ../src/yumexgui/views.py:189
+#: ../src/yumexgui/views.py:344
 msgid "Ver."
 msgstr "Ver."
 
-#: ../src/yumexgui/views.py:190 ../src/yumexgui/views.py:345
+#: ../src/yumexgui/views.py:190
+#: ../src/yumexgui/views.py:345
 msgid "Arch."
 msgstr "Arch."
 
-#: ../src/yumexgui/views.py:192 ../src/yumexgui/views.py:347
+#: ../src/yumexgui/views.py:192
+#: ../src/yumexgui/views.py:347
 msgid "Repo."
 msgstr "Repo."
 
-#: ../src/yumexgui/views.py:193 ../src/yumexgui/views.py:348
+#: ../src/yumexgui/views.py:193
+#: ../src/yumexgui/views.py:348
 msgid "Size."
 msgstr "Grösse."
 
@@ -761,9 +782,8 @@ msgid "Login User"
 msgstr "Benutzer-Anmeldung"
 
 #: ../src/yumexgui/views.py:1115
-#, fuzzy
 msgid "Data/Time"
-msgstr "bisher benötigte Zeit: "
+msgstr "Daten/Zeit "
 
 #: ../src/yumexgui/views.py:1116
 msgid "Action(s)"
@@ -839,34 +859,28 @@ msgid "Select all packages in current view"
 msgstr ""
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Categories"
-msgstr "&Verweise anzeigen"
+msgstr "Kategorien anzeigen"
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show Groups"
-msgstr "Meine Gruppen:"
+msgstr "Gruppen anzeigen"
 
 #: ../src/yumex.glade.h:21
-#, fuzzy
 msgid "Show all Packages"
-msgstr "Alle Themen im Index anzeigen"
+msgstr "Alle Pakete anzeigen"
 
 #: ../src/yumex.glade.h:22
-#, fuzzy
 msgid "Show available packages"
-msgstr "&Kommentarfenster anzeigen"
+msgstr "Verfügbare Pakete anzeigen"
 
 #: ../src/yumex.glade.h:23
-#, fuzzy
 msgid "Show installed packages"
-msgstr "&Kommentarfenster anzeigen"
+msgstr "Installierte Pakete anzeigen"
 
 #: ../src/yumex.glade.h:24
-#, fuzzy
 msgid "Show package updates"
-msgstr "&Kommentarfenster anzeigen"
+msgstr "Paket-Aktualisierungen anzeigen"
 
 #: ../src/yumex.glade.h:25
 msgid "Skip Broken"
@@ -959,3 +973,4 @@ msgstr "_Ansicht"
 #: ../src/yumex.glade.h:49
 msgid "no GPG Check"
 msgstr "Keine GPG-Prüfung"
+
