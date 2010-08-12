@@ -949,6 +949,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
             progress.show_tasks()
+            progress.show()        
             if action == "queue":
                 rc = self.process_queue()
             elif action == "history-undo":

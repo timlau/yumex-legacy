@@ -37,7 +37,7 @@ from yum.constants import *
 
 # Constant
 
-__yumex_version__ = "2.9.9"
+__yumex_version__ = "2.9.10"
 
 YUMEX_LOG = 'yumex.verbose'
 # Package Types
