@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-10 08:28+0200\n"
-"PO-Revision-Date: 2010-09-11 14:58+0200\n"
+"PO-Revision-Date: 2010-09-11 15:06+0200\n"
 "Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
 "Language-Team: Dutch <nippur@fedoraproject.org>\n"
 "Language: nl\n"
@@ -272,7 +272,7 @@ msgstr "Informatie over deltavernieuwing downloaden van de %s repository"
 #: ../src/yumexbase/constants.py:102
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "Informatie voor vernieuwingen downloaden van de %s repository"
+msgstr "Informatie over vernieuwingen downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:113
 msgid "0 - 7 Days"
