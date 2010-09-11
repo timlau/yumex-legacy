@@ -2,4 +2,4 @@
 #
 # Run yumex-updater main python program.
 #
-/usr/bin/python /usr/share/yumex/yumex-pkgupdater.pyc $*
+/usr/bin/python /usr/share/yumex/yumex-updater.pyc $*
