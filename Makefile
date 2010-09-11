@@ -28,6 +28,7 @@ install:
 	install -m644 COPYING $(DESTDIR)/usr/share/yumex/.
 	install -m755 $(MISCDIR)/yumex $(DESTDIR)/usr/bin/yumex
 	install -m755 $(MISCDIR)/yumex-pkginst $(DESTDIR)/usr/bin/yumex-pkginst
+	install -m755 $(MISCDIR)/yumex-updater $(DESTDIR)/usr/bin/yumex-updater
 	install -m644 $(PIXDIR)/*.png $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.

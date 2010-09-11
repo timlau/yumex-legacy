@@ -835,6 +835,20 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                 <property name="spacing">5</property>
                 <property name="layout_style">end</property>
                 <child>
+                  <object class="GtkButton" id="packageSelectAll">
+                    <property name="label">gtk-select-all</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="use_stock">True</property>
+                    <signal name="clicked" handler="on_packageSelectAll_clicked"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkButton" id="packageUndo">
                     <property name="label">gtk-undo</property>
                     <property name="visible">True</property>
@@ -846,7 +860,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
@@ -861,11 +875,8 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
-                </child>
-                <child>
-                  <placeholder/>
                 </child>
               </object>
               <packing>

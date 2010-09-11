@@ -200,6 +200,12 @@ class PkgInstHandlers(Controller):
         #okDialog(self.window, "This function has not been implemented yet")
         self.debug("Help -> About")
 
+    def on_packageSelectAll_clicked(self, widget=None, event=None):
+        '''
+        The Packages Select All button
+        '''
+        self.packages.selectAll()
+
         
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
@@ -561,7 +567,7 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
                 self.info(_("Transaction completed successfully"))
                 progress.hide()        
                 msg = _("Transaction completed successfully")
-                msg += _("\n\nDo you want to exit Yumex Package Installer ?")
+                msg += _("\n\nDo you want to exit Yumex ?")
                 rc = questionDialog(self.window, msg) # Ask if the user want to Quit
                 if rc:
                     self.main_quit() # Quit Yum Extender
