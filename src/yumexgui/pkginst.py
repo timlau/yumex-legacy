@@ -441,31 +441,52 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
                 self.info(_("Can't detect the network connection state"))
             else:
                 self.info(_("Connected to an network"))
-        self.backend.setup()
-        self.populate_package_cache(show_dupes=self.show_dupes) # repopulate the package cache
+        self.init_yum_backend(show_dupes=self.show_dupes) # repopulate the package cache
 
 # pylint: enable-msg=W0201
 
-    def populate_package_cache(self, repos=None, show_dupes=False):
+    def init_yum_backend(self, repos=None, show_dupes=False):
         '''
-        Get the packagelists and put them in the package cache.
+        Initialize the yum backen
         @param repos: a list of enabled repositories to use, None = use the current ones
         '''
+        self.backend.setup()
         if not repos:
             repos = self.current_repos
         progress = self.get_progress()
         progress.set_pulse(True)
-        self.debug("Getting package lists - BEGIN")
+        self.debug("Initializing the Yum Backend - BEGIN")
         self.backend.setup(self.is_offline, repos)
-        progress.set_title(_("Getting Package Lists"))
-        progress.set_header(_("Loading package information"))
+        progress.set_title(_("Initializing the Yum Backend"))
+        progress.set_header(_("Initializing the Yum Backend"))
         progress.show()
         pkgs = self.package_cache.get_packages("none")
-        self.debug("Getting package lists - END")
+        self.debug("Initializing the Yum Backend - END")
         progress.set_pulse(False)
         progress.hide()
         self._packages_loaded = True
 
+    def reload(self, repos=None):
+        '''
+        Reset current data and restart the backend 
+        @param repos: a list of enabled repositories to use, None = use the current ones
+        '''
+        try:
+            if not repos:
+                repos = self.current_repos
+            self.backend.reset()                    # close the backend
+            self.queue.queue.clear()                # clear the pending action queue
+            self.queue.refresh()                    # clear the pending action queue
+            self.ui.packageSearch.set_text('')
+            self.packageInfo.clear()
+            self.packages.clear()            
+            self.init_yum_backend(show_dupes=self.show_dupes) # repopulate the package cache
+            return True
+        except YumexBackendFatalError, e:
+            progress = self.get_progress()
+            progress.hide()
+            self.handle_error(e.err, e.msg)
+            return False
 
 
     def process_queue(self):
@@ -506,14 +527,13 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
                 self.info(_("Transaction completed successfully"))
                 progress.hide()        
                 msg = _("Transaction completed successfully")
-                msg += _("\n\nDo you want to exit Yum Extender ?")
+                msg += _("\n\nDo you want to exit Yumex Package Installer ?")
                 rc = questionDialog(self.window, msg) # Ask if the user want to Quit
                 if rc:
                     self.main_quit() # Quit Yum Extender
                 self.reload()
             elif rc == None: # Aborted by user
                 self.warning(_("Transaction Aborted by User"))
-                self.notebook.set_active("package")     # show the package page
             else:
                 msg = _("Transaction completed with errors,\n check output page for details")
                 okDialog(self.window,msg)
