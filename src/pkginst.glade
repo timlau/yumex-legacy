@@ -732,6 +732,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                   <object class="GtkEntry" id="packageSearch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Enter keyword(s) to search for</property>
                     <property name="invisible_char">&#x25CF;</property>
                     <property name="primary_icon_stock">gtk-find</property>
                     <property name="secondary_icon_stock">gtk-clear</property>
