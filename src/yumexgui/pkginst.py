@@ -160,7 +160,8 @@ class PkgInstHandlers(Controller):
         Init the signal callback Controller 
         '''
         # init the Controller Class to connect signals etc.
-        Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex')
+        Controller.__init__(self, BUILDER_PKGINST , 'pkginst', domain='yumex')
+        self.current_repos = []
                 
 # Signal handlers
       
@@ -182,22 +183,27 @@ class PkgInstHandlers(Controller):
         '''
         self.main_quit()
 
+    def on_helpAbout_activate(self, widget=None, event=None):
+        '''
+        Menu : Help -> About
+        '''
+        self.ui.About.run()
+        self.ui.About.hide()
+        #okDialog(self.window, "This function has not been implemented yet")
+        self.debug("Help -> About")
+
         
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
         Enter pressed in the search field
         '''
-        if self._packages_loaded:
-            busyCursor(self.window)
-            self.packageInfo.clear()
-            filters = ['name', 'summary', 'description']
-            keys = self.ui.packageSearch.get_text().split(' ')
-            pkgs = self.backend.search(keys, filters)
-            self.ui.packageFilterBox.hide()
-            if self._last_filter:
-                self._last_filter.set_active(True)            
-            self.packages.add_packages(pkgs)
-            normalCursor(self.window)
+        busyCursor(self.window)
+        self.packageInfo.clear()
+        filters = ['name', 'summary', 'description']
+        keys = self.ui.packageSearch.get_text().split(' ')
+        pkgs = self.backend.search(keys, filters, use_cache=False)
+        self.packages.add_packages(pkgs)
+        normalCursor(self.window)
 
     def on_packageSearch_icon_press(self, widget, icon_pos, event):
         '''
@@ -205,10 +211,8 @@ class PkgInstHandlers(Controller):
         '''
         if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
             self.ui.packageSearch.set_text('')
-            self.ui.packageFilterBox.show()
-            if self._last_filter:
-                self._last_filter.clicked()
-            
+            self.packageInfo.clear()
+            self.packages.clear()
         else:
             self.on_packageSearch_activate()
         
@@ -221,10 +225,7 @@ class PkgInstHandlers(Controller):
         if model != None and iterator != None:
             pkg = model.get_value(iterator, 0)
             if pkg:
-                if self._current_active == 'updates':
-                    self.packageInfo.update(pkg, update=True)
-                else:
-                    self.packageInfo.update(pkg)
+                self.packageInfo.update(pkg)
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -253,6 +254,33 @@ class PkgInstHandlers(Controller):
         self.debug("Starting pending actions processing")
         self.process_transaction(action="queue")
         self.debug("Ended pending actions processing")
+
+    def on_queueOpen_clicked(self, widget=None, event=None):
+        '''
+        Queue Open Button
+        '''
+        self.debug("Queue Open")
+    
+    def on_queueSave_clicked(self, widget=None, event=None):
+        '''
+        Queue Save button
+        '''
+        self.debug("Queue Save")
+    
+    def on_queueRemove_clicked(self, widget=None, event=None):
+        '''
+        Queue Remove button
+        '''
+        self.queue.deleteSelected()
+
+# Progress dialog    
+        
+    def on_progressCancel_clicked(self, widget=None, event=None):
+        '''
+        The Progress Dialog Cancel button
+        '''
+        self.debug("Progress Cancel pressed")
+                
         
 
 class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
@@ -381,6 +409,8 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         font_size = const.SMALL_FONT.get_size() / 1024
         # Setup Output console
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
+        self.queue = YumexQueueView(self.ui.queueView)
+
         if self.settings.use_sortable_view:
             self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
         else:
@@ -393,8 +423,11 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         # setup yumex log handler
         self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
         # Set saved windows size and separator position
+        if self.settings.win_height > 0 and self.settings.win_width > 0:
+            self.window.resize(self.settings.win_width,self.settings.win_height)
+            if self.settings.win_sep > 0:
+                self.ui.packageSep.set_position(self.settings.win_sep)
         self.window.show()
-        # set up the package filters ( updates, available, installed, groups)
         # check network state
         if self.is_offline:
             self.info(_("Not connected to an network"))
@@ -408,9 +441,31 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
                 self.info(_("Can't detect the network connection state"))
             else:
                 self.info(_("Connected to an network"))
-
+        self.backend.setup()
+        self.populate_package_cache(show_dupes=self.show_dupes) # repopulate the package cache
 
 # pylint: enable-msg=W0201
+
+    def populate_package_cache(self, repos=None, show_dupes=False):
+        '''
+        Get the packagelists and put them in the package cache.
+        @param repos: a list of enabled repositories to use, None = use the current ones
+        '''
+        if not repos:
+            repos = self.current_repos
+        progress = self.get_progress()
+        progress.set_pulse(True)
+        self.debug("Getting package lists - BEGIN")
+        self.backend.setup(self.is_offline, repos)
+        progress.set_title(_("Getting Package Lists"))
+        progress.set_header(_("Loading package information"))
+        progress.show()
+        pkgs = self.package_cache.get_packages("none")
+        self.debug("Getting package lists - END")
+        progress.set_pulse(False)
+        progress.hide()
+        self._packages_loaded = True
+
 
 
     def process_queue(self):
@@ -433,7 +488,6 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         '''
         rc = False
         try:
-            self.notebook.set_active("output")
             progress = self.get_progress()
             progress.set_pulse(True)        
             progress.set_title(_("Processing pending actions"))

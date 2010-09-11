@@ -513,24 +513,25 @@ class YumServer(yum.YumBase):
             if not self._package_cache.isLoaded():
                 self.info(_("Populating Package Cache"))
                 self._package_cache.load(show_dupes=show_dupes)
-            self.info(PACKAGE_LOAD_MSG[narrow])
-            if narrow == "all":
-                updates = self._package_cache.updates
-                obsoletes = self._package_cache.obsoletes
-                for pkg in self._package_cache.installed:
-                    self._show_package(pkg, 'r')
-                for pkg in self._package_cache.available:
-                    if pkg in updates:
-                        action = 'u'
-                    elif pkg in obsoletes:
-                        action = 'o'
-                    else:
-                        action = 'i'
-                    self._show_package(pkg, action)                    
-            else:
-                action = const.FILTER_ACTIONS[narrow]
-                for pkg in getattr(self._package_cache, narrow):
-                    self._show_package(pkg, action)
+            if narrow <> "none": # if none the we dont want any packages 
+                self.info(PACKAGE_LOAD_MSG[narrow])
+                if narrow == "all":
+                    updates = self._package_cache.updates
+                    obsoletes = self._package_cache.obsoletes
+                    for pkg in self._package_cache.installed:
+                        self._show_package(pkg, 'r')
+                    for pkg in self._package_cache.available:
+                        if pkg in updates:
+                            action = 'u'
+                        elif pkg in obsoletes:
+                            action = 'o'
+                        else:
+                            action = 'i'
+                        self._show_package(pkg, action)                    
+                else:
+                    action = const.FILTER_ACTIONS[narrow]
+                    for pkg in getattr(self._package_cache, narrow):
+                        self._show_package(pkg, action)
         self.ended(True)
 
     def get_packages_size(self, ndx):

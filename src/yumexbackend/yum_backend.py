@@ -331,7 +331,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.get_group_packages(self, group, grp_filter)
         return [self.frontend.package_cache.find(po) for po in pkgs]
 
-    def search(self, keys, sch_filters):
+    def search(self, keys, sch_filters,use_cache=True):
         ''' 
         get packages matching keys
         @param keys: list of keys to seach for
@@ -339,7 +339,10 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
         pkgs = YumClient.search(self, keys, sch_filters)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        if use_cache:
+            return [self.frontend.package_cache.find(po) for po in pkgs]
+        else:
+             return [YumexPackageYum(p,self.frontend) for p in pkgs]
 
 
 

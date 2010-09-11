@@ -22,7 +22,7 @@ Main Yum Extender Executable
 import sys
 import os
 import traceback
-from yumexgui.pkginst import YumexPkgInst
+from yumexgui.pkginst import PkgInstApplication
 from yumexbackend.yum_backend import YumexBackendYum as backend 
 
 if os.getuid() == 0 and not '--root' in sys.argv:
@@ -41,7 +41,7 @@ if 'YUMEX_DBG' in os.environ:
     print debug
     
 try:    
-    app = YumexPkgInst(backend)
+    app = PkgInstApplication(backend)
     app.debug_options = debug
     #app.run_test()
     app.run()

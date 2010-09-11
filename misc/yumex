@@ -1,5 +1,5 @@
 #!/bin/bash
 #
-# Run yumex main python program.
+# Run yumex-pkginst main python program.
 #
-/usr/bin/python /usr/share/yumex/yumex.pyc $*
+/usr/bin/python /usr/share/yumex/yumex-pkginst.pyc $*
