@@ -3,7 +3,8 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="outputPage">
-    <property name="title" translatable="yes">Yumex Package Installer - Output</property>
+    <property name="title" translatable="yes">Output - Yumex Package Installer</property>
+    <property name="deletable">False</property>
     <child>
       <object class="GtkVBox" id="outputMain">
         <property name="visible">True</property>
@@ -37,7 +38,8 @@
     </child>
   </object>
   <object class="GtkWindow" id="queuePage">
-    <property name="title" translatable="yes">Yumex Package Installer - Action Queue</property>
+    <property name="title" translatable="yes">Action Queue - Yumex Package Installer</property>
+    <property name="deletable">False</property>
     <child>
       <object class="GtkVBox" id="queueMain">
         <property name="visible">True</property>
