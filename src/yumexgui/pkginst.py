@@ -169,10 +169,18 @@ class PkgInstHandlers(Controller):
         ''' destroy Handler '''
         # Save the windows size and separator position
         self.backend.debug("Quiting the program !!!")
+        progress = self.get_progress()
+        progress.set_pulse(True)
+        progress.set_title(_("Terminating Yum Backend"))
+        progress.set_header(_("Terminating the Yum Backend"))
+        progress.show()
+        
         try:
             self.backend.reset()
         except:
             pass
+        progress.set_pulse(False)
+        progress.hide()
         self.backend.debug("Backend reset completted")
 
     # Menu
@@ -450,7 +458,6 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         Initialize the yum backen
         @param repos: a list of enabled repositories to use, None = use the current ones
         '''
-        self.backend.setup()
         if not repos:
             repos = self.current_repos
         progress = self.get_progress()
