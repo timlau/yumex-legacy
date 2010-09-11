@@ -498,7 +498,6 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         progress.set_title(_("Initializing the Yum Backend"))
         progress.set_header(_("Initializing the Yum Backend"))
         progress.show()
-        pkgs = self.package_cache.get_packages("none")
         self.debug("Initializing the Yum Backend - END")
         progress.set_pulse(False)
         progress.hide()
