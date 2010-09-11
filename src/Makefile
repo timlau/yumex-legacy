@@ -14,7 +14,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/yumex
 	install -m755 *.pyc $(DESTDIR)/$(PKGDIR)/.
 	install -m755 *.py $(DESTDIR)/$(PKGDIR)/.
-	install -m644 yumex.glade $(DESTDIR)/$(PKGDIR)/.
+	install -m644 *.glade $(DESTDIR)/$(PKGDIR)/.
 	chmod +x $(DESTDIR)/$(PKGDIR)/yum_childtask.py
 	ln -s  yum_childtask.py $(DESTDIR)/$(PKGDIR)/yumex-yum-backend
 
