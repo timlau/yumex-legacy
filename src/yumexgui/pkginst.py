@@ -221,6 +221,8 @@ class PkgInstHandlers(Controller):
             self.ui.packageSearch.set_text('')
             self.packageInfo.clear()
             self.packages.clear()
+            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+            
         else:
             self.on_packageSearch_activate()
         
@@ -233,7 +235,10 @@ class PkgInstHandlers(Controller):
         if model != None and iterator != None:
             pkg = model.get_value(iterator, 0)
             if pkg:
-                self.packageInfo.update(pkg)
+                if pkg.action == "u":
+                    self.packageInfo.update(pkg, update=True)
+                else:
+                    self.packageInfo.update(pkg)
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -471,6 +476,7 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         self.debug("Initializing the Yum Backend - END")
         progress.set_pulse(False)
         progress.hide()
+        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         self._packages_loaded = True
 
     def reload(self, repos=None):
