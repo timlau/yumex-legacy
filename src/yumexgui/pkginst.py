@@ -259,7 +259,24 @@ class PkgInstHandlers(Controller):
         self.packages.deselectAll()
         
         
+    def on_ShowOutput_toggled(self, widget=None, event=None):
+        self.debug("View -> Show Output")
+        enabled = widget.get_active()
+        if enabled:
+            self.ui.outputPage.show()
+        else:
+            self.ui.outputPage.hide()
+            
 
+    def on_ShowQueue_toggled(self, widget=None, event=None):
+        self.debug("View -> Show Queue")
+        enabled = widget.get_active()
+        if enabled:
+            self.ui.queuePage.show()
+        else:
+            self.ui.queuePage.hide()
+            
+            
     def on_Execute_clicked(self, widget=None, event=None):
         '''
         The Queue/Packages Execute button
@@ -440,7 +457,10 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
             self.window.resize(self.settings.win_width,self.settings.win_height)
             if self.settings.win_sep > 0:
                 self.ui.packageSep.set_position(self.settings.win_sep)
+        self.ui.outputPage.resize(self.settings.win_width,self.settings.win_height/2)
+        self.ui.queuePage.resize(self.settings.win_width,self.settings.win_height/2)
         self.window.show()
+
         # check network state
         if self.is_offline:
             self.info(_("Not connected to an network"))
@@ -522,6 +542,7 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         '''
         rc = False
         try:
+            self.window.present()  # Make the main window show on top
             progress = self.get_progress()
             progress.set_pulse(True)        
             progress.set_title(_("Processing pending actions"))

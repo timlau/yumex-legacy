@@ -3,6 +3,7 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="outputPage">
+    <property name="title" translatable="yes">Yumex Package Installer - Output</property>
     <child>
       <object class="GtkVBox" id="outputMain">
         <property name="visible">True</property>
@@ -36,6 +37,7 @@
     </child>
   </object>
   <object class="GtkWindow" id="queuePage">
+    <property name="title" translatable="yes">Yumex Package Installer - Action Queue</property>
     <child>
       <object class="GtkVBox" id="queueMain">
         <property name="visible">True</property>
@@ -658,6 +660,34 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem2">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_View</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu1">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menuitem3">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Show Output</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_ShowOutput_toggled"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menuitem5">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Show Action Queue</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_ShowQueue_toggled"/>
                       </object>
                     </child>
                   </object>
