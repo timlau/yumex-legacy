@@ -548,7 +548,7 @@ class YumexHandlers(Controller):
     
     def on_historyRefresh_clicked(self, widget=None, event=None):
         busyCursor(self.window)
-        self.setup_history()
+        self.setup_history(limit=False,force=True)
         normalCursor(self.window)
     
     
@@ -1089,7 +1089,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             if tids:
                 progress.set_pulse(True)
                 progress.set_title(_("Getting History Information"))
-                if limit:
+                if limit != False:
                     progress.set_header(_("Getting Latest History Information"))
                 else:
                     progress.set_header(_("Getting All History Information"))
