@@ -56,7 +56,9 @@ class YumClient:
         self.sending = False
         self.waiting = False
         self.end_state = None
-
+        self.launcher_is_started = False
+        self.yum_backend_is_running = False
+        
     def error(self, msg):
         """ error message (overload in child class)"""
         raise NotImplementedError()
@@ -162,26 +164,46 @@ class YumClient:
         the default timeout is .1 sec.
         """
         raise NotImplementedError()
+    
+    def _launcher_cmd(self,cmd):
+        param = pack(cmd)
+        self._send_command("#run", [param])
+    
+    def _start_launcher(self,filelog):
+        args=[]
+        if MAIN_PATH == '/usr/share/yumex': # Bin package
+            if os.getuid() == 0: # Root
+                self.info(_('Client is running in rootmode, starting backend directly'))
+                cmd = '/usr/share/yumex/yumex-yum-backend'
+            else: # Non root run using console helper wrapper
+                cmd = '/usr/bin/yumex-yum-backend'
+        else:
+            if os.getuid() != 0: # Non Root
+                self.info('Running backend with \"sudo %s\"' % (MAIN_PATH + "/yum_childtask.py"))
+                cmd ='/usr/bin/sudo'
+                args.append(MAIN_PATH + "/backend-launcher.py")
+            else: # root
+                self.info('ROOTMODE: Running backend (%s)' % (MAIN_PATH + "/yum_childtask.py"))
+                cmd = MAIN_PATH + "/backend-launcher.py"
+        self.child = pexpect.spawn(cmd,args, timeout = self._timeout_value)
+        self.child.setecho(False)
+        if filelog:
+            self.child.logfile_read = sys.stdout
+        self._wait_for_launcher_started()
+        self.launcher_is_started = True
 
     def setup(self, debuglevel = 2, plugins = True, filelog = False, offline = False, repos = None, proxy = None, yum_conf = '/etc/yum.conf'):
         ''' Setup the client and spawn the server'''
-        if not self.child:
+        if not self.yum_backend_is_running:
+            self.debug("YUM_CLIENT: Setup START")
             prefix = ""
             args = []
+            if not self.launcher_is_started:
+                self._start_launcher(filelog)
             if MAIN_PATH == '/usr/share/yumex': # Bin package
-                if os.getuid() == 0: # Root
-                    self.info(_('Client is running in rootmode, starting backend directly'))
-                    cmd = '/usr/share/yumex/yumex-yum-backend'
-                else: # Non root run using console helper wrapper
-                    cmd = '/usr/bin/yumex-yum-backend'
+                cmd = MAIN_PATH + "/yum_childtask.pyc "
             else:
-                if os.getuid() != 0: # Non Root
-                    self.info('Running backend with \"sudo %s\"' % (MAIN_PATH + "/yum_childtask.py"))
-                    cmd ='/usr/bin/sudo'
-                    args.append(MAIN_PATH + "/yum_childtask.py")
-                else: # root
-                    self.info('ROOTMODE: Running backend (%s)' % (MAIN_PATH + "/yum_childtask.py"))
-                    cmd = MAIN_PATH + "/yum_childtask.py"
+                cmd = MAIN_PATH + "/yum_childtask.py "
             args.append(str(debuglevel)) # debuglevel
             args.append(str(plugins))    # plugins 
             args.append(str(offline))    # is offline
@@ -189,21 +211,17 @@ class YumClient:
             if repos:                    # enabled repos
                 repo_str = ";".join(repos)
                 args.append(repo_str)
-#            if proxy:
-#                prefix="HTTP_PROXY=%s " % proxy
-#                self.info("Setting : %s" % prefix)
-            self.child = pexpect.spawn(cmd,args, timeout = self._timeout_value)
-            self.child.setecho(False)
-            if filelog:
-                self.child.logfile_read = sys.stdout
+            cmd_to_run = cmd + " ".join(args)
+            print cmd_to_run
+            self._launcher_cmd(cmd_to_run)        
+            self.debug("YUM_CLIENT: Setup END")
             return self._wait_for_started()
-
         else:
             return None
 
     def reset(self):
         """ reset the client"""
-        if not self.child: # yum backend not running
+        if not self.yum_backend_is_running: # yum backend not running
             return True
         if not self.child.isalive():
             del self.child
@@ -219,10 +237,13 @@ class YumClient:
                 rc = self._send_command('exit', [])
                 if rc:
                     cmd, args = self._readline()
-                    self._close()
+                    #self._close()
+                    self.debug("YUM_CLIENT: Reset : " + cmd)
+                    self.yum_backend_is_running = False                
                     return True
         # The yum backend did not ended nicely               
         self.error(_("Yum backend did not close nicely in time"))
+        self.yum_backend_is_running = False                
         self._close()
         return False
 
@@ -237,7 +258,7 @@ class YumClient:
         while True:
             try:
                 cmd, args = self._readline()
-                if cmd == ':ready':
+                if cmd == ':ready' or cmd == '#ready':
                     break
                 elif cmd == None:
                     self.sending = False
@@ -261,6 +282,8 @@ class YumClient:
             else:
                 args = []
             return cmd, args
+        if line.startswith('#') or line.startswith('&'):
+            return line, []
         else:
             return None, line
     
@@ -337,6 +360,20 @@ class YumClient:
             cmd, args = self._readline()
             cnt += 1
             if cmd == ':started':
+                self.yum_backend_is_running = True
+                return True
+        return False
+
+    def _wait_for_launcher_started(self):
+        '''
+        
+        '''
+        time.sleep(2)
+        cnt = 0
+        while True and self.child.isalive():
+            cmd, args = self._readline()
+            cnt += 1
+            if cmd == '#started':
                 return True
         return False
             
@@ -463,6 +500,9 @@ class YumClient:
         if self.child:
             if self.child.isalive():
                 try:
+                    self._send_command("#exit", []) # Send exit to backend launcher
+                    cmd,args = self._readline()
+                    self.debug("YUM_CLIENT: _close() : "+cmd)
                     time.sleep(2) # Waiting a while to make sure that backend is closed
                     self.debug("Forcing backend to close")
                     self.child.close(force = True)

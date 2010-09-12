@@ -242,7 +242,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
 
     def setup(self, offline = False,repos=None):
         ''' Setup the backend'''
-        if self.child: # Check if backend is already running
+        if self.yum_backend_is_running: # Check if backend is already running
             return
         self.frontend.info(_("Starting yum child process"))
         if repos:

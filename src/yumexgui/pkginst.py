@@ -176,7 +176,8 @@ class PkgInstHandlers(Controller):
         progress.show()
         
         try:
-            self.backend.reset()
+            self.backend.reset() # Close the yum backend
+            self.backend._close() # Close the backend launcher
         except:
             pass
         progress.set_pulse(False)
@@ -489,18 +490,20 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         Initialize the yum backen
         @param repos: a list of enabled repositories to use, None = use the current ones
         '''
+        busyCursor(self.window, True)
         if not repos:
             repos = self.current_repos
         progress = self.get_progress()
         progress.set_pulse(True)
-        self.debug("Initializing the Yum Backend - BEGIN")
+        self.debug("init_yum_backend - BEGIN")
         self.backend.setup(self.is_offline, repos)
         progress.set_title(_("Initializing the Yum Backend"))
         progress.set_header(_("Initializing the Yum Backend"))
         progress.show()
-        self.debug("Initializing the Yum Backend - END")
+        self.debug("init_yum_backend - END")
         progress.set_pulse(False)
         progress.hide()
+        normalCursor(self.window)
         self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         self._packages_loaded = True
 

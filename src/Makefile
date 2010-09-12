@@ -16,7 +16,8 @@ install:
 	install -m755 *.py $(DESTDIR)/$(PKGDIR)/.
 	install -m644 *.glade $(DESTDIR)/$(PKGDIR)/.
 	chmod +x $(DESTDIR)/$(PKGDIR)/yum_childtask.py
-	ln -s  yum_childtask.py $(DESTDIR)/$(PKGDIR)/yumex-yum-backend
+	chmod +x $(DESTDIR)/$(PKGDIR)/backend-launcher.py
+	ln -s  backend-launcher.py $(DESTDIR)/$(PKGDIR)/yumex-yum-backend
 
 pylint:
 	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers 2>/dev/null
