@@ -114,11 +114,21 @@ class PackageCache:
         @param pkg_filter: package type to get 
         '''
         if not str(pkg_filter) in self._cache:
+            progress = self.frontend.get_progress()
+            progress.set_pulse(True)
+            filter = str(pkg_filter)
+            progress.set_title(PACKAGE_LOAD_MSG[filter])
+            progress.set_header(PACKAGE_LOAD_MSG[filter])
+            progress.show()
+            # Getting the packages
             pkgs = self.backend.get_packages(pkg_filter, show_dupes)
             pkgdict = {}
             for pkg in pkgs:
                 pkgdict[str(pkg)] = pkg
             self._cache[str(pkg_filter)] = pkgdict
+            progress.set_pulse(False)
+            progress.hide()
+
         return self._cache[str(pkg_filter)].values()
     
     def find(self, po):
@@ -408,8 +418,9 @@ class Notebook:
         self.notebook = notebook
         self.selector = PageSelector(selector, self, key_bindings)
         self._pages = {}
+        self._callbacks = {}
 
-    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True, accel=None ):
+    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True, accel=None, callback=None ):
         ''' 
         Add a new page and selector button to notebook
         @param key: the page key (name) used by reference the page
@@ -435,6 +446,8 @@ class Notebook:
         self.notebook.append_page(container)
         # Add selector button
         self.selector.add_button(key, icon=icon, tooltip=tooltip, accel=accel)
+        if callback:
+            self._callbacks[key] = callback
         
     def set_active(self, key):
         '''
@@ -450,5 +463,9 @@ class Notebook:
         if key in self._pages:
             num, widget = self._pages[key]
             self.notebook.set_current_page(num)
+            if key in self._callbacks:
+                print "running callback for : ",key
+                callback = self._callbacks[key]
+                callback()
 
                     

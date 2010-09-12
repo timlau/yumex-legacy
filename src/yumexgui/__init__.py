@@ -346,6 +346,7 @@ class YumexHandlers(Controller):
         @param active: the button number 0 = Updates, 1 = Available, 2 = Installed, 3 = Groups, 4 = Category
         '''
         if widget.get_active():
+            busyCursor(self.window, True)
             self._last_filter = widget
             self._current_active = active
             self.packageInfo.clear()
@@ -362,23 +363,20 @@ class YumexHandlers(Controller):
                     width, height = self.window.get_size()
                     self.window.resize(width - 150, height)
                     self._resized = False
-                if self._packages_loaded: # Only refresh packages if they are loaded
-                    self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-                    self.debug('START: Getting %s packages' % active)
-                    busyCursor(self.window)
-                    self.backend.setup()
-                    label = active
-                    pkgs = self.package_cache.get_packages(getattr(FILTER,active))
-                    # if Updates, then add obsoletes too
-                    if active == 'updates':
-                        obs = self.package_cache.get_packages(getattr(FILTER,'obsoletes'))
-                        pkgs.extend(obs)
-                        label = "updates & obsoletes"
-                    self.debug('START: Adding %s packages to view' % label)
-                    self.packages.add_packages(pkgs, progress=self.progress)
-                        
-                    normalCursor(self.window)
-                    self.debug('END: Getting %s packages' % active)
+                self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+                self.debug('START: Getting %s packages' % active)
+                self.backend.setup()
+                label = active
+                pkgs = self.package_cache.get_packages(getattr(FILTER,active))
+                # if Updates, then add obsoletes too
+                if active == 'updates':
+                    obs = self.package_cache.get_packages(getattr(FILTER,'obsoletes'))
+                    pkgs.extend(obs)
+                    label = "updates & obsoletes"
+                self.debug('START: Adding %s packages to view' % label)
+                self.packages.add_packages(pkgs, progress=self.progress)
+                    
+                self.debug('END: Getting %s packages' % active)
             else:
                 if not self._resized:
                     width, height = self.window.get_size()
@@ -387,9 +385,11 @@ class YumexHandlers(Controller):
                 self.ui.leftBox.show()
                 self.packages.clear()
                 if active == 'groups': # Groups
+                    self.setup_groups()
                     self.ui.groupVBox.show_all()
                 elif active == 'categories': # Categories
                     self.ui.categoryWindow.show_all()
+            normalCursor(self.window)
 
     def on_categoryContent_cursor_changed(self, widget):
         '''
@@ -613,6 +613,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._network = NetworkCheckNetworkManager()
         self.repo_popup = None # Repo page popup menu 
         self.show_dupes = True # show duplicate available packages
+        self.groups_is_loaded = False
+        self.history_is_loaded = False
+        
 
     @property
     def is_offline(self):
@@ -761,7 +764,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                                 accel = '<Ctrl>3')
         self.notebook.add_page("history", _("History"), self.ui.historyMain, 
                                icon=ICON_HISTORY, tooltip=_("Watch yum history"),
-                                accel = '<Ctrl>4')
+                                accel = '<Ctrl>4', callback=self.setup_history)
         self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
                                icon=ICON_OUTPUT, tooltip=_("Watch output details"),
                                 accel = '<Ctrl>5')
@@ -822,8 +825,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # We cant disable both repo page and auto refresh
         if self.settings.autorefresh or self.settings.disable_repo_page: 
             self.populate_package_cache()
-            self.setup_groups()
-            self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")
         else:
             self.backend.setup(repos=self.current_repos)
@@ -883,21 +884,23 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             rb.connect('clicked', self.on_packageFilter_changed, attr.lower()) 
             rb.child.modify_font(SMALL_FONT)
             
-    def setup_groups(self):
+    def setup_groups(self,force=False):
         '''
         Get Group information and populate the group view
         '''
-        progress = self.get_progress()
-        self.debug("Getting Group information - BEGIN")
-        progress.set_title(_("Getting Group information"))
-        progress.set_header(_("Getting Group information"))
-        progress.set_pulse(True)
-        progress.show()
-        groups = self.backend.get_groups()
-        self.groups.populate(groups)
-        progress.hide()
-        progress.set_pulse(False)
-        self.debug("Getting Group information - END")
+        if not self.groups_is_loaded or force:
+            progress = self.get_progress()
+            self.debug("Getting Group information - BEGIN")
+            progress.set_title(_("Getting Group information"))
+            progress.set_header(_("Getting Group information"))
+            progress.set_pulse(True)
+            progress.show()
+            groups = self.backend.get_groups()
+            self.groups.populate(groups)
+            progress.hide()
+            progress.set_pulse(False)
+            self.debug("Getting Group information - END")
+            self.groups_is_loaded = True
         
     def populate_package_cache(self, repos=None, show_dupes=False):
         '''
@@ -910,15 +913,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
         self.backend.setup(self.is_offline, repos)
-        progress.set_title(_("Getting Package Lists"))
-        progress.set_header(_("Getting Updated Packages"))
-        progress.show()
-        pkgs = self.package_cache.get_packages(FILTER.updates)
-        pkgs = self.package_cache.get_packages(FILTER.obsoletes)
-        progress.set_header(_("Getting Available Packages"))
-        pkgs = self.package_cache.get_packages(FILTER.available, show_dupes)
-        progress.set_header(_("Getting installed Packages"))
-        pkgs = self.package_cache.get_packages(FILTER.installed)
+#        progress.set_title(_("Getting Package Lists"))
+#        progress.set_header(_("Getting Updated Packages"))
+#        progress.show()
+#        pkgs = self.package_cache.get_packages(FILTER.updates)
+#        pkgs = self.package_cache.get_packages(FILTER.obsoletes)
+#        progress.set_header(_("Getting Available Packages"))
+#        pkgs = self.package_cache.get_packages(FILTER.available, show_dupes)
+#        progress.set_header(_("Getting installed Packages"))
+#        pkgs = self.package_cache.get_packages(FILTER.installed)
         self.debug("Getting package lists - END")
         progress.set_pulse(False)
         progress.hide()
@@ -1013,8 +1016,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.queue.queue.clear()                # clear the pending action queue
             self.queue.refresh()                    # clear the pending action queue
             self.populate_package_cache(repos=repos, show_dupes=self.show_dupes) # repopulate the package cache
-            self.setup_groups()
-            self.setup_history(limit=self.settings.history_limit)
+            self.groups_is_loaded = False
+            self.history_is_loaded = False
+#            self.setup_groups()
+#            self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")     # show the package page
             self.ui.packageSearch.set_text('')      # Reset search entry
             self.ui.packageFilterBox.show()         # Show the filter selector
@@ -1073,35 +1078,41 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except KeyError:
             return str(uid)
                 
-    def setup_history(self,limit = None):        
-        self.debug("Getting History Information - BEGIN")
-        tids = self.backend.get_history()
-        progress = self.get_progress()
-        if tids:
-            progress.set_pulse(True)
-            progress.set_title(_("Getting History Information"))
-            if limit:
-                progress.set_header(_("Getting Latest History Information"))
+    def setup_history(self, limit = None, force = False):       
+        if not self.history_is_loaded or force:
+ 
+            self.debug("Getting History Information - BEGIN")
+            tids = self.backend.get_history()
+            progress = self.get_progress()
+            if limit == None:
+                limit = self.settings.history_limit
+            if tids:
+                progress.set_pulse(True)
+                progress.set_title(_("Getting History Information"))
+                if limit:
+                    progress.set_header(_("Getting Latest History Information"))
+                else:
+                    progress.set_header(_("Getting All History Information"))
+    
+                progress.show()
+                data = []
+                num_elem = 0
+                for tid in tids:
+                    self.refresh()
+                    name = self._pwd_ui_username(tid.loginuid, 22)
+                    tm = time.strftime("%Y-%m-%d %H:%M",
+                                   time.localtime(tid.beg_timestamp))
+                    pkgs = self.backend.get_history_packages(tid.tid)
+                    num, uiacts = self._history_uiactions(pkgs)
+                    data.append([tid.tid, name, tm, uiacts, num])
+                    num_elem +=1
+                    if limit and num_elem > limit: # Show only a limited number of history elements (SPEED)
+                        break
+                self.history.populate(data)
             else:
-                progress.set_header(_("Getting All History Information"))
+                self.info(_("History Disabled"))
+            progress.hide()
+            self.debug("Getting History Information - END")
+            self.history_is_loaded = True
 
-            progress.show()
-            data = []
-            num_elem = 0
-            for tid in tids:
-                self.refresh()
-                name = self._pwd_ui_username(tid.loginuid, 22)
-                tm = time.strftime("%Y-%m-%d %H:%M",
-                               time.localtime(tid.beg_timestamp))
-                pkgs = self.backend.get_history_packages(tid.tid)
-                num, uiacts = self._history_uiactions(pkgs)
-                data.append([tid.tid, name, tm, uiacts, num])
-                num_elem +=1
-                if limit and num_elem > limit: # Show only a limited number of history elements (SPEED)
-                    break
-            self.history.populate(data)
-        else:
-            self.info(_("History Disabled"))
-        progress.hide()
-        self.debug("Getting History Information - END")
             
