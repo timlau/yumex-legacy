@@ -200,10 +200,7 @@ class YumClient:
             args = []
             if not self.launcher_is_started:
                 self._start_launcher(filelog)
-            if MAIN_PATH == '/usr/share/yumex': # Bin package
-                cmd = MAIN_PATH + "/yum_childtask.pyc "
-            else:
-                cmd = MAIN_PATH + "/yum_childtask.py "
+            cmd = MAIN_PATH + "/yum_childtask.py "
             args.append(str(debuglevel)) # debuglevel
             args.append(str(plugins))    # plugins 
             args.append(str(offline))    # is offline
