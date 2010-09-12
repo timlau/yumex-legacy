@@ -188,7 +188,8 @@ class YumexHandlers(Controller):
             self.backend.info("Error in saving window size")
         self.backend.debug("Quiting the program !!!")
         try:
-            self.backend.reset()
+            self.backend.reset() # Close the yum backend
+            self.backend._close() # Close the backend launcher
         except:
             pass
         self.backend.debug("Backend reset completted")
