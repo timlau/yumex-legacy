@@ -29,8 +29,6 @@ if os.getuid() == 0 and not '--root' in sys.argv:
     print "Don't run yumex as root it is unsafe (Use --root to force)"
     sys.exit(1)
 
-print "running"
-
 import gettext
 gettext.bindtextdomain("yumex", "/usr/share/locale")
 gettext.textdomain("yumex")

@@ -84,8 +84,6 @@ class PkgInstFrontend(YumexFrontendBase):
     def error(self, msg, exit_pgm=False):
         ''' Write an error message to frontend '''
         self.logger.error('ERROR: %s' % msg)
-        if sys.stderr.isatty():
-            print >> sys.stderr, 'ERROR: %s' % msg
         self.refresh()
         if exit_pgm:
             sys.exit(1)
@@ -94,21 +92,16 @@ class PkgInstFrontend(YumexFrontendBase):
     def warning(self, msg):
         ''' Write an warning message to frontend '''
         self.logger.warning('WARNING: %s' % msg)
-        if sys.stdout.isatty():
-            print >> sys.stdout, 'WARNING: %s' % msg
         self.refresh()
 
     def info(self, msg):
         ''' Write an info message to frontend '''
-        if sys.stdout.isatty():
-            print >> sys.stdout, msg
         self.logger.info(msg)
         self.refresh()
 
     def debug(self, msg):
         ''' Write an debug message to frontend '''
         if self.settings.debug:
-            print "DEBUG:", msg
             self.logger.debug('DEBUG: %s' % msg)
         self.refresh()
 
@@ -335,6 +328,9 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
         self.cfg.dump()
         self.progress = None
         self.logger = logging.getLogger(YUMEX_LOG)
+        if sys.stderr.isatty():
+            self.doTextLoggerSetup( YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
+
         self.debug_options = []        
         #(self.cmd_options, self.cmd_args) = self.cfg.get_cmd_options()
         self.backend = backend(self)
@@ -382,6 +378,20 @@ class PkgInstApplication(PkgInstHandlers, PkgInstFrontend):
             gtk.main()
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
+
+    def doTextLoggerSetup( self, logroot, logfmt = '%(message)s', loglvl = logging.DEBUG):
+        ''' Setup Python logging using a TextViewLogHandler '''
+        logger = logging.getLogger(logroot)
+        logger.setLevel(loglvl)
+        formatter = logging.Formatter(logfmt, "%H:%M:%S")
+        handler = logging.StreamHandler()
+        handler.setFormatter(formatter)
+        # shut up pylint whinning about attributes declared outside __init__ (false positive)
+        # pylint: disable-msg=W0201
+        handler.propagate = False
+        # pylint: enable-msg=W0201    
+        logger.addHandler(handler)
+        return handler
 
     def handle_error(self, err, msg):        
         '''

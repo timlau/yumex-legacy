@@ -464,7 +464,6 @@ class Notebook:
             num, widget = self._pages[key]
             self.notebook.set_current_page(num)
             if key in self._callbacks:
-                print "running callback for : ",key
                 callback = self._callbacks[key]
                 callback()
 

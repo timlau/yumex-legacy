@@ -173,17 +173,17 @@ class YumClient:
         args=[]
         if MAIN_PATH == '/usr/share/yumex': # Bin package
             if os.getuid() == 0: # Root
-                self.info(_('Client is running in rootmode, starting backend directly'))
+                self.info(_('Client is running in rootmode, starting backend launcher directly'))
                 cmd = '/usr/share/yumex/yumex-yum-backend'
             else: # Non root run using console helper wrapper
                 cmd = '/usr/bin/yumex-yum-backend'
         else:
             if os.getuid() != 0: # Non Root
-                self.info('Running backend with \"sudo %s\"' % (MAIN_PATH + "/yum_childtask.py"))
+                self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
                 cmd ='/usr/bin/sudo'
                 args.append(MAIN_PATH + "/backend-launcher.py")
             else: # root
-                self.info('ROOTMODE: Running backend (%s)' % (MAIN_PATH + "/yum_childtask.py"))
+                self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
                 cmd = MAIN_PATH + "/backend-launcher.py"
         self.child = pexpect.spawn(cmd,args, timeout = self._timeout_value)
         self.child.setecho(False)
@@ -209,7 +209,7 @@ class YumClient:
                 repo_str = ";".join(repos)
                 args.append('"'+repo_str+'"')
             cmd_to_run = cmd + " ".join(args)
-            print cmd_to_run
+            self.debug("yum_client: setup: Command to run : "+ cmd_to_run)
             self._launcher_cmd(cmd_to_run)        
             self.debug("YUM_CLIENT: Setup END")
             return self._wait_for_started()

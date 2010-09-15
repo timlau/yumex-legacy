@@ -22,6 +22,8 @@
 import logging
 import os
 import shutil
+from yumexbase.constants import *
+
 #from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
@@ -59,7 +61,7 @@ class YumexConf( BaseConfig ):
 class YumexOptions:
 
     def __init__(self):
-        self.logger = logging.getLogger('yumex.YumexOptions')
+        self.logger = logging.getLogger(YUMEX_LOG)
         self.conf_settings = self.get_yumex_config()
         self.settings = self.get_yumex_config()
         self._optparser = OptionParser()
@@ -118,11 +120,11 @@ class YumexOptions:
         return parser.parse_args()
 
     def dump(self):
-        print("Current Settings")
+        self.logger.debug("Current Yumex Settings:")
         settings = str( self.settings ).split( '\n' )
         for s in settings:
             if not s.startswith( '[' ):
-                print("    %s" % s )
+                self.logger.debug("    %s" % s )
         
     def update_settings( self ):
         """ update setting with commandline options """
