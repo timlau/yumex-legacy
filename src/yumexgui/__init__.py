@@ -350,6 +350,7 @@ class YumexHandlers(Controller):
             self._last_filter = widget
             self._current_active = active
             self.packageInfo.clear()
+            self.packages.clear()
             self.ui.packageSearch.set_text('')        
             self.ui.groupVBox.hide()
             self.ui.categoryWindow.hide()
