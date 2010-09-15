@@ -100,10 +100,13 @@ class YumexFrontend(YumexFrontendBase):
         self.logger.info(msg)
         self.refresh()
 
-    def debug(self, msg):
+    def debug(self, msg, name=None):
         ''' Write an debug message to frontend '''
         if self.settings.debug:
-            self.logger.debug('DEBUG: %s' % msg)
+            if name:
+                self.logger.debug(msg+"   <%s>" % name)
+            else:
+                self.logger.debug(msg)
         self.refresh()
 
     def exception(self, msg):
@@ -589,7 +592,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         self.logger = logging.getLogger(YUMEX_LOG)
         if sys.stderr.isatty():
-            self.doTextLoggerSetup( YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
+            self.doTextLoggerSetup( YUMEX_LOG, logfmt='%(asctime)s : %(levelname)s - %(message)s')
         self._network = NetworkCheckNetworkManager()
         self.cfg = YumexOptions()
         if self.settings.debug:

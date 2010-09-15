@@ -119,7 +119,7 @@ class YumexFrontendBase:
         ''' write an info message '''
         raise NotImplementedError()
 
-    def debug(self, msg):
+    def debug(self, msg, name=None):
         ''' write an debug message '''
         raise NotImplementedError()
 

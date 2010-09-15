@@ -77,37 +77,7 @@ def catchYumException(func):
     newFunc.__doc__ = func.__doc__
     newFunc.__dict__.update(func.__dict__)
     return newFunc
-
-class YumPackageCache:
-    
-    def __init__(self,base):
-        self.base = base
-        self._loaded = False
-        self.updates = []
-        self.obsoletes = []
-        self.available = []
-        self.installed = []
-
-    def load(self,show_dupes = False):
-        self.updates = []
-        self.available = []
-        self.installed = []
-        # Get Updates & obsoletes
-        ygh = self.base.doPackageLists(pkgnarrow='updates')
-        self.updates.extend(ygh.updates)
-        ygh = self.base.doPackageLists(pkgnarrow='obsoletes')
-        self.obsoletes.extend(ygh.obsoletes)
-        
-        # Get installed and available packages
-        ygh = self.base.doPackageLists(showdups=show_dupes)
-        self.available.extend(ygh.available)
-        self.installed.extend(ygh.installed)
-        self._loaded = True
-        
-    def isLoaded(self):
-        return self._loaded
-
-        
+       
 class _YumPreBaseConf:
     """This is the configuration interface for the YumBase configuration.
        So if you want to change if plugins are on/off, or debuglevel/etc.
@@ -425,9 +395,9 @@ class YumServer(yum.YumBase):
         ''' write an error message '''
         self.write(":error\t%s" % msg)
 
-    def debug(self, msg):
+    def debug(self, msg, name=None):
         ''' write an debug message '''
-        self.write(":debug\t%s" % msg)
+        self.write(":debug\t%s\t%s" % (msg,name))
     
     def warning(self, msg):
         ''' write an warning message '''
@@ -502,6 +472,7 @@ class YumServer(yum.YumBase):
         state = pack(state)
         self.write(":end\t%s" % state)
         
+
     @catchYumException
     def get_packages(self, narrow, dupes):
         '''
@@ -510,28 +481,25 @@ class YumServer(yum.YumBase):
         '''
         if narrow:
             show_dupes = (dupes == 'True')
-            if not self._package_cache.isLoaded():
-                self.info(_("Populating Package Cache"))
-                self._package_cache.load(show_dupes=show_dupes)
-            if narrow <> "none": # if none the we dont want any packages 
-                self.info(PACKAGE_LOAD_MSG[narrow])
-                if narrow == "all":
-                    updates = self._package_cache.updates
-                    obsoletes = self._package_cache.obsoletes
-                    for pkg in self._package_cache.installed:
-                        self._show_package(pkg, 'r')
-                    for pkg in self._package_cache.available:
-                        if pkg in updates:
-                            action = 'u'
-                        elif pkg in obsoletes:
-                            action = 'o'
-                        else:
-                            action = 'i'
-                        self._show_package(pkg, action)                    
-                else:
-                    action = const.FILTER_ACTIONS[narrow]
-                    for pkg in getattr(self._package_cache, narrow):
-                        self._show_package(pkg, action)
+            self.info(PACKAGE_LOAD_MSG[narrow])
+            ygh = self.doPackageLists(pkgnarrow=narrow,showdups=show_dupes)
+            if narrow == "all":
+                updates = ygh.updates
+                obsoletes = ygh.obsoletes
+                for pkg in ygh.installed:
+                    self._show_package(pkg, 'r')
+                for pkg in ygh.available:
+                    if pkg in updates:
+                        action = 'u'
+                    elif pkg in obsoletes:
+                        action = 'o'
+                    else:
+                        action = 'i'
+                    self._show_package(pkg, action)                    
+            else:
+                action = const.FILTER_ACTIONS[narrow]
+                for pkg in getattr(ygh, narrow):
+                    self._show_package(pkg, action)
         self.ended(True)
 
     def get_packages_size(self, ndx):
@@ -651,7 +619,7 @@ class YumServer(yum.YumBase):
             txmbrs = self.remove(po)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
-            self.debug("Added : " + str(txmbr))            
+            self.debug("Added : " + str(txmbr), __name__)            
         self.ended(True)
             
     def remove_transaction(self, args):
@@ -784,17 +752,17 @@ class YumServer(yum.YumBase):
         Ask for media change 
         '''
         if media_num:
-            self.debug("media : %s #%d is needed" % (media_name, media_num))
+            self.debug("media : %s #%d is needed" % (media_name, media_num), __name__)
         else:
-            self.debug("media : %s is needed" % (media_name,))
+            self.debug("media : %s is needed" % (media_name,), __name__)
         self.media_change(prompt_first, media_id, media_name, media_num)
         line = sys.stdin.readline().strip('\n')
         if line.startswith(':mountpoint'):
             mountpoint = unpack(line.split('\t')[1])
-            self.debug("media mount point : %s" % mountpoint)
+            self.debug("media mount point : %s" % mountpoint, __name__)
             return mountpoint
         else:
-            self.debug("no media mount point returned")
+            self.debug("no media mount point returned", __name__)
             return None
 
     def _failureReport(self, errobj):
@@ -948,7 +916,7 @@ class YumServer(yum.YumBase):
         '''
         ident = args[0]
         state = (args[1] == 'True')
-        self.debug("Repo : %s Enabled : %s" % (ident, state))
+        self.debug("Repo : %s Enabled : %s" % (ident, state), __name__)
         repo = self.repos.getRepo(ident)
         if repo:
             if state:
@@ -989,7 +957,7 @@ class YumServer(yum.YumBase):
                 if repo.isEnabled():
                     if hasattr(repo, option):
                         setattr(repo, option, value)
-                        self.debug("Setting Yum Option %s = %s (%s)" % (option, value, repo.id))
+                        self.debug("Setting Yum Option %s = %s (%s)" % (option, value, repo.id), __name__)
                     
         self.ended(True)
             
@@ -1164,7 +1132,7 @@ class YumServer(yum.YumBase):
                 ts = time.time()
                 self.parse_command(args[0], args[1:])
                 t = time.time() - ts
-                self.debug("Yum Child Task: Command %s took %.2f s to complete" % (args[0], t))
+                self.debug("%s Args: %s  took %.2f s to complete" % (args[0],args[1:], t), __name__)
         except YumexBackendFatalError,e:
             self.ended(True)
             self.quit()

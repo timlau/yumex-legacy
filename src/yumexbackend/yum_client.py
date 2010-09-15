@@ -71,7 +71,7 @@ class YumClient:
         """ info message (overload in child class)"""
         raise NotImplementedError()
     
-    def debug(self, msg):
+    def debug(self, msg, name=None):
         """ debug message (overload in child class)"""
         raise NotImplementedError()
 
@@ -195,7 +195,7 @@ class YumClient:
     def setup(self, debuglevel = 2, plugins = True, filelog = False, offline = False, repos = None, proxy = None, yum_conf = '/etc/yum.conf'):
         ''' Setup the client and spawn the server'''
         if not self.yum_backend_is_running:
-            self.debug("YUM_CLIENT: Setup START")
+            self.debug("Setup START", __name__)
             prefix = ""
             args = []
             if not self.launcher_is_started:
@@ -209,9 +209,9 @@ class YumClient:
                 repo_str = ";".join(repos)
                 args.append('"'+repo_str+'"')
             cmd_to_run = cmd + " ".join(args)
-            self.debug("yum_client: setup: Command to run : "+ cmd_to_run)
+            self.debug("Command to run : "+ cmd_to_run, __name__)
             self._launcher_cmd(cmd_to_run)        
-            self.debug("YUM_CLIENT: Setup END")
+            self.debug("Setup END", __name__)
             return self._wait_for_started()
         else:
             return None
@@ -227,7 +227,7 @@ class YumClient:
         else:
             cnt = 0
             while self.waiting and cnt < 5:
-                self.debug("Trying to close the yum backend")
+                self.debug("Trying to close the yum backend", __name__)
                 time.sleep(1)
                 cnt += 1
             if cnt < 10:
@@ -235,7 +235,7 @@ class YumClient:
                 if rc:
                     cmd, args = self._readline()
                     #self._close()
-                    self.debug("YUM_CLIENT: Reset : " + cmd)
+                    self.debug( cmd, __name__)
                     self.yum_backend_is_running = False                
                     return True
         # The yum backend did not ended nicely               
@@ -248,7 +248,7 @@ class YumClient:
     def _send_command(self, cmd, args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd, "\t".join(args))
-        debug_msg = 'Sending command: %s args: %s' % (cmd, str(args))
+        debug_msg = 'Sending: %s args: %s' % (cmd, str(args))
         timeouts = 0
         self.sending = True
         self.end_state = None        
@@ -263,7 +263,7 @@ class YumClient:
             except pexpect.TIMEOUT, e:
                 self._timeout()
                 continue
-        self.debug(debug_msg)
+        self.debug(debug_msg, __name__)
         self.child.sendline(line)
         self.sending = False
         return True
@@ -324,7 +324,10 @@ class YumClient:
         elif cmd == ':info':
             self.info(args[0])    
         elif cmd == ':debug':
-            self.debug(args[0])    
+            if len(args)>1 and args[1] <> 'None':
+                self.debug(args[0], args[1])    
+            else:
+                self.debug(args[0])
         elif cmd == ':warning':
             self.warning(args[0])
         elif cmd == ':exception':
@@ -499,9 +502,9 @@ class YumClient:
                 try:
                     self._send_command("#exit", []) # Send exit to backend launcher
                     cmd,args = self._readline()
-                    self.debug("YUM_CLIENT: _close() : "+cmd)
+                    self.debug(cmd, __name__)
                     time.sleep(2) # Waiting a while to make sure that backend is closed
-                    self.debug("Forcing backend to close")
+                    self.debug("Forcing backend to close", __name__)
                     self.child.close(force = True)
                 except pexpect.ExceptionPexpect,e:
                     del self.child

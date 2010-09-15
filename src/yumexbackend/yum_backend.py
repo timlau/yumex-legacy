@@ -68,9 +68,9 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         """ info message """
         self.frontend.info(msg)
     
-    def debug(self, msg):
+    def debug(self, msg, name=None):
         """ debug message """
-        self.frontend.debug(msg)
+        self.frontend.debug(msg, name)
 
     def yum_logger(self, msg):
         """ yum logger message """
@@ -119,11 +119,11 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                     break
             if repo:    
                 markup = "<b>%s</b>" % repo
-                self.frontend.debug(msg % repo)
+                self.debug(msg % repo, __name__)
                 progress.set_action(msg % markup)
                 
             else:            
-                self.frontend.debug(msg)
+                self.debug(msg, __name__)
                 progress.set_action(msg)
         elif ftype == 'REBUILD':
             progress.set_action(_('Buiding rpms from deltarpm'))
@@ -132,7 +132,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             if name:
                 progress.set_action(name)
             else:
-                self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype, name, percent))
+                self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype, name, percent), __name__)
             
 
     def yum_state(self, state):
@@ -254,9 +254,9 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
             filelog = True      
-        self.debug('Initialize yum backend - BEGIN')    
+        self.debug('Initialize yum backend - BEGIN', __name__)    
         rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, offline=offline, repos=repos, proxy=proxy, yum_conf=yum_conf)
-        self.debug('Initialize yum backend - END')    
+        self.debug('Initialize yum backend - END', __name__)    
         return rc    
         
     def reset(self):
@@ -272,7 +272,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
-        self.frontend.debug("got %i packages" % len(pkgs))
+        self.debug("got %i packages" % len(pkgs), __name__)
         return [YumexPackageYum(p,self.frontend) for p in pkgs]
 
     def get_packages_size(self, ndx):
@@ -308,7 +308,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param repoid: repo id to change
         @param enabled: repo enable state
         '''
-        self.frontend.debug('Setting repository %s (Enabled = %s)' % (repoid, enabled))
+        self.frontend.debug('Setting repository %s (Enabled = %s)' % (repoid, enabled), __name__)
         repo = YumClient.enable_repo(self, repoid, enabled)
         return repo
 
@@ -317,7 +317,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         get groups 
         @return: a list of groups
         '''
-        self.frontend.debug('Getting Group information')
+        self.frontend.debug('Getting Group information', __name__)
         grps = YumClient.get_groups(self)
         return grps
 
@@ -327,7 +327,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
-        self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
+        self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter), __name__)
         pkgs = YumClient.get_group_packages(self, group, grp_filter)
         return [self.frontend.package_cache.find(po) for po in pkgs]
 
@@ -337,7 +337,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param keys: list of keys to seach for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
-        self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
+        self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters), __name__)
         pkgs = YumClient.search(self, keys, sch_filters)
         if use_cache:
             return [self.frontend.package_cache.find(po) for po in pkgs]
@@ -518,7 +518,7 @@ class YumexTransactionYum(YumexTransactionBase):
         progress.tasks.run_current()
         rc, msgs, trans, size = self.backend.build_transaction()
         if rc == 2:
-            self.frontend.debug('Dependency resolving completed without error')
+            self.frontend.debug('Dependency resolving completed without error', __name__)
             progress.hide()
             if self.frontend.confirm_transaction(trans,size[0]): # Let the user confirm the transaction
                 progress.show()
