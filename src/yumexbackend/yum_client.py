@@ -207,7 +207,7 @@ class YumClient:
             args.append(str(yum_conf))    # is offline
             if repos:                    # enabled repos
                 repo_str = ";".join(repos)
-                args.append(repo_str)
+                args.append('"'+repo_str+'"')
             cmd_to_run = cmd + " ".join(args)
             print cmd_to_run
             self._launcher_cmd(cmd_to_run)        
