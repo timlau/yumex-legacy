@@ -286,6 +286,8 @@ class YumexHandlers(Controller):
                 if self._last_filter:
                     self._last_filter.set_active(True)            
             self.packages.add_packages(pkgs)
+            progress = self.get_progress()
+            progress.hide()
             normalCursor(self.window)
 
     def on_packageSearch_icon_press(self, widget, icon_pos, event):
@@ -845,6 +847,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.current_repos = active_repos
         if self.settings.search:            # Search only mode
            self.ui.packageFilterBox.hide()
+           self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         elif self.settings.update_only:     # Update only mode
            self.ui.packageFilterBox.hide()
            self.ui.packageSearch.hide()
