@@ -108,12 +108,15 @@ class PackageCache:
         del self._cache
         self._cache = {}
 
+    def _get(self, pkg_filter): 
+        return self._cache[str(pkg_filter)].values()
+           
     def get_packages(self, pkg_filter, show_dupes = False):
         '''
         get packages from baqckend and put them in the cache
         @param pkg_filter: package type to get 
         '''
-        if not str(pkg_filter) in self._cache:
+        if not self.is_cached(pkg_filter):
             progress = self.frontend.get_progress()
             progress.set_pulse(True)
             filter = str(pkg_filter)
@@ -128,8 +131,22 @@ class PackageCache:
             self._cache[str(pkg_filter)] = pkgdict
             progress.set_pulse(False)
             progress.hide()
+        return self._get(pkg_filter)
 
-        return self._cache[str(pkg_filter)].values()
+    
+    def is_cached(self, pkg_filter):
+        '''
+        Check if package of an given type is in the cache
+        @param pkg_filter: package type to check for (updates,installed, available)
+        '''
+        return str(pkg_filter) in self._cache
+        
+    
+    def get_from_cache(self,pkg_filter):
+        if self.is_cached(pkg_filter):
+            return self._cache[str(pkg_filter)].values()
+        else:
+            return None
     
     def find(self, po):
         '''
@@ -137,15 +154,15 @@ class PackageCache:
         @param po:
         '''
         if po.action == 'u':
-            target = self._cache[str(FILTER.updates)]
+            target = self.get_from_cache(FILTER.updates)
         elif po.action == 'i':
-            target = self._cache[str(FILTER.available)]
+            target = self.get_from_cache(FILTER.available)
         else:
-            target = self._cache[str(FILTER.installed)]
-        if str(po) in target:
+            target = self.get_from_cache(FILTER.installed)
+        if target and str(po) in target:
             return(target[str(po)])
         else:   
-            print 'not found in cache : [%s] [%s] ' % (po, po.action)
+            #self.frontend.debug('not found in cache : [%s] [%s] ' % (po, po.action), __name__)
             return YumexPackageYum(po, self.frontend )
     
 
