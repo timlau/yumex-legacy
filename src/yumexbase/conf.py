@@ -95,6 +95,12 @@ class YumexOptions:
         parser.add_option("", "--root",
                         action="store_true", dest="root", default=False,
                         help="Run as root")
+        parser.add_option("", "--search-only",
+                        action="store_true", dest="search", default=False,
+                        help="Search only mode, faster startup")
+        parser.add_option("", "--update-only",
+                        action="store_true", dest="update_only", default=False,
+                        help="Search only mode, faster startup")
         parser.add_option("", "--disable-netcheck",
                         action="store_true", dest="disable_netcheck", default=False,
                         help="Disable the automatic network connection check")
@@ -129,7 +135,7 @@ class YumexOptions:
     def update_settings( self ):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh','disable_netcheck','yum_conf']
+        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh','disable_netcheck','yum_conf','search','update_only']
         for opt in options:
             self._calcOption(opt)
         self._check_win_size()

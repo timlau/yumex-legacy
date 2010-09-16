@@ -281,9 +281,10 @@ class YumexHandlers(Controller):
             filters = ['name', 'summary', 'description']
             keys = self.ui.packageSearch.get_text().split(' ')
             pkgs = self.backend.search(keys, filters)
-            self.ui.packageFilterBox.hide()
-            if self._last_filter:
-                self._last_filter.set_active(True)            
+            if not self.settings.search:
+                self.ui.packageFilterBox.hide()
+                if self._last_filter:
+                    self._last_filter.set_active(True)            
             self.packages.add_packages(pkgs)
             normalCursor(self.window)
 
@@ -293,9 +294,10 @@ class YumexHandlers(Controller):
         '''
         if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
             self.ui.packageSearch.set_text('')
-            self.ui.packageFilterBox.show()
-            if self._last_filter:
-                self._last_filter.clicked()
+            if not self.settings.search:
+                self.ui.packageFilterBox.show()
+                if self._last_filter:
+                    self._last_filter.clicked()
             
         else:
             self.on_packageSearch_activate()
@@ -751,7 +753,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.output = TextViewConsole(self.ui.outputText, font_size=font_size)
         # Setup main page notebook
         self.notebook = Notebook(self.ui.mainNotebook, self.ui.MainLeftContent, self.key_bindings)
-        self.notebook.add_page("package", _("Packages"), self.ui.packageMain, 
+        if self.settings.update_only:
+            pkg_title = _("Available Updates")
+        elif self.settings.search:
+            pkg_title = _("Search for packages")
+        else:
+            pkg_title = _("Packages")            
+        self.notebook.add_page("package", pkg_title , self.ui.packageMain, 
                                 icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"),
                                 accel = '<Ctrl>1')
         self.notebook.add_page("queue", _("Pending Actions"), self.ui.queueMain, 
@@ -761,7 +769,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.notebook.add_page("repo", _("Repositories"), self.ui.repoMain, 
                                    icon=ICON_REPOS, tooltip=_("Select active repositories"),
                                 accel = '<Ctrl>3')
-        self.notebook.add_page("history", _("History"), self.ui.historyMain, 
+        if not self.settings.search and not self.settings.update_only:
+            self.notebook.add_page("history", _("History"), self.ui.historyMain, 
                                icon=ICON_HISTORY, tooltip=_("Watch yum history"),
                                 accel = '<Ctrl>4', callback=self.setup_history)
         self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
@@ -834,8 +843,14 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.default_repos = repos
         active_repos = self.repos.get_selected()
         self.current_repos = active_repos
-        # setup default package filter (updates)
-        self.ui.packageRadioUpdates.clicked()
+        if self.settings.search:            # Search only mode
+           self.ui.packageFilterBox.hide()
+        elif self.settings.update_only:     # Update only mode
+           self.ui.packageFilterBox.hide()
+           self.ui.packageSearch.hide()
+        else:
+            # setup default package filter (updates)
+            self.ui.packageRadioUpdates.clicked()
 
 
 # pylint: enable-msg=W0201
@@ -1035,10 +1050,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 #            self.setup_groups()
 #            self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")     # show the package page
+            if not self.settings.update_only and not self.settings.search:
+                self.ui.packageFilterBox.show()         # Show the filter selector
             self.ui.packageSearch.set_text('')      # Reset search entry
-            self.ui.packageFilterBox.show()         # Show the filter selector
             self._set_options(options)
-            self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
+            if not self.settings.search:
+                self.ui.packageRadioUpdates.clicked()   # Select the updates package filter
             return True
         except YumexBackendFatalError, e:
             progress = self.get_progress()
