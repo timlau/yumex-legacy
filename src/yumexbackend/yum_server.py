@@ -191,7 +191,6 @@ class YumServer(yum.YumBase):
         freport = (self._failureReport, (), {})
         self.repos.setFailureCallback(freport)       
         self._updateMetadata = None # Update metadata cache 
-        self._package_cache = YumPackageCache(self)
         self.write(':started') # Let the front end know that we are up and running
 
     def _is_local_repo(self, repo):
@@ -364,13 +363,8 @@ class YumServer(yum.YumBase):
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
         action = pack(action)
-        repo = pkg.repoid
-        # get from_repo from yumdb_info if it exist
-        if repo == 'installed':
-            if hasattr(pkg, 'yumdb_info') and hasattr(pkg.yumdb_info, 'from_repo'):
-                repo = "@%s" % pkg.yumdb_info.from_repo
         self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % 
-                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, repo,
+                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
                     summary, action, pkg.size, recent))
         
     def _show_group(self, grp):

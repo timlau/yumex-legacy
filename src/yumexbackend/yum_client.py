@@ -354,7 +354,11 @@ class YumClient:
         '''
         
         '''
-        time.sleep(2)
+        beg = time.time()
+        while not self.child.isalive():
+            time.sleep(0.1)
+            if time.time() - beg > 2:
+                break
         cnt = 0
         while True and self.child.isalive():
             cmd, args = self._readline()
@@ -368,7 +372,11 @@ class YumClient:
         '''
         
         '''
-        time.sleep(2)
+        beg = time.time()
+        while not self.child.isalive():
+            time.sleep(0.1)
+            if time.time() - beg > 2:
+                break
         cnt = 0
         while True and self.child.isalive():
             cmd, args = self._readline()
