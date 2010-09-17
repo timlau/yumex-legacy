@@ -86,14 +86,13 @@ Fixed / implemented:
 	* Make the exception handling more solid and show exception in a dialog
 	* BUG: Processing an empty queue
 	* RFE: Add Preferences dialog and functionality
-	. BUG: Undo in group unselect packages, but don't undo group selection changes
-	. Dont ask for root password more than one
+	* BUG: Undo in group unselect packages, but don't undo group selection changes
+	. Don't ask for root password more than one
 	. Make load of metadata more dynamic, first load packages lists, history, groups etc. when we need it.
 	. Added '--update-only' option to start yumex in update only mode 
 	. Added '--search-only' option to start yumex in search only mode 
     . Updateinfo in separate view like changelog / filelist
     . Show updateinfo for all packages, not just updates
     . Show all updateinfo records, not just the last one
-         - show previous updateinfo records
 
 ( * = Released, . = Upstream )	

@@ -270,6 +270,9 @@ class YumexHandlers(Controller):
         '''
         self.notebook.set_active("history")
     # Package Page    
+    
+    def on_searchOptions_clicked(self, widget=None, event=None):
+        self.info('Search Options Clicked')
         
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
