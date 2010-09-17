@@ -426,6 +426,7 @@ class Preferences:
         vbox = self.ui.prefBasicVBox
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))       
         self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))       
+        self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Use type ahead search on package name'))       
         vbox.show_all()
 
     def setup_advanced(self):

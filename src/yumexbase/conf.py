@@ -56,6 +56,7 @@ class YumexConf( BaseConfig ):
     disable_netcheck = BoolOption( False )
     yum_conf = Option( '/etc/yum.conf' )
     use_sortable_view = BoolOption( False )
+    typeahead_search = BoolOption( False )
     
 
 class YumexOptions:

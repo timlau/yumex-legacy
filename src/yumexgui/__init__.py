@@ -102,6 +102,9 @@ class YumexFrontend(YumexFrontendBase):
 
     def debug(self, msg, name=None):
         ''' Write an debug message to frontend '''
+        if not name:
+            classname = __name__.split('.')[-1]
+            name = classname + "."+sys._getframe(1).f_code.co_name                
         if self.settings.debug:
             if name:
                 self.logger.debug(msg+"   <%s>" % name)
@@ -275,6 +278,28 @@ class YumexHandlers(Controller):
         self.search_options.run()
         self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         
+    def on_packageSearch_changed(self, widget=None, event=None):
+        keys = self.ui.packageSearch.get_text().split(' ')
+        if not self.settings.typeahead_search or len(keys) > 1:
+            return
+        txt = keys[0]
+        if len(txt) >= 3:
+            self.ui.packageSearch.set_sensitive(False)
+            busyCursor(self.window)
+            self.debug("SEARCH : %s" % txt)
+            pkgs = self.backend.search_prefix(txt)
+            self.debug("SEARCH : got %i packages" % len(pkgs))
+            if not self.settings.search:
+                self.ui.packageFilterBox.hide()
+                if self._last_filter:
+                    self._last_filter.set_active(True)            
+            self.packages.add_packages(pkgs)
+            progress = self.get_progress()
+            progress.hide()
+            self.ui.packageSearch.set_sensitive(True)
+            normalCursor(self.window)
+            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+            
         
     def on_packageSearch_activate(self, widget=None, event=None):
         '''

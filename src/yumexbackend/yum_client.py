@@ -195,7 +195,7 @@ class YumClient:
     def setup(self, debuglevel = 2, plugins = True, filelog = False, offline = False, repos = None, proxy = None, yum_conf = '/etc/yum.conf'):
         ''' Setup the client and spawn the server'''
         if not self.yum_backend_is_running:
-            self.debug("Setup START", __name__)
+            self.debug("Setup START")
             prefix = ""
             args = []
             if not self.launcher_is_started:
@@ -209,9 +209,9 @@ class YumClient:
                 repo_str = ";".join(repos)
                 args.append('"'+repo_str+'"')
             cmd_to_run = cmd + " ".join(args)
-            self.debug("Command to run : "+ cmd_to_run, __name__)
+            self.debug("Command to run : "+ cmd_to_run)
             self._launcher_cmd(cmd_to_run)        
-            self.debug("Setup END", __name__)
+            self.debug("Setup END")
             return self._wait_for_started()
         else:
             return None
@@ -227,7 +227,7 @@ class YumClient:
         else:
             cnt = 0
             while self.waiting and cnt < 5:
-                self.debug("Trying to close the yum backend", __name__)
+                self.debug("Trying to close the yum backend")
                 time.sleep(1)
                 cnt += 1
             if cnt < 10:
@@ -235,7 +235,7 @@ class YumClient:
                 if rc:
                     cmd, args = self._readline()
                     #self._close()
-                    self.debug( cmd, __name__)
+                    self.debug( cmd)
                     self.yum_backend_is_running = False                
                     return True
         # The yum backend did not ended nicely               
@@ -263,7 +263,7 @@ class YumClient:
             except pexpect.TIMEOUT, e:
                 self._timeout()
                 continue
-        self.debug(debug_msg, __name__)
+        self.debug(debug_msg)
         self.child.sendline(line)
         self.sending = False
         return True
@@ -510,9 +510,9 @@ class YumClient:
                 try:
                     self._send_command("#exit", []) # Send exit to backend launcher
                     cmd,args = self._readline()
-                    self.debug(cmd, __name__)
+                    self.debug(cmd)
                     time.sleep(2) # Waiting a while to make sure that backend is closed
-                    self.debug("Forcing backend to close", __name__)
+                    self.debug("Forcing backend to close")
                     self.child.close(force = True)
                 except pexpect.ExceptionPexpect,e:
                     del self.child
@@ -705,6 +705,16 @@ class YumClient:
         self._send_command('search', [bKeys, bFilters])
         pkgs = self._get_list()
         return pkgs
+
+    def search_prefix(self, prefix):
+        '''
+        Search for packages with prefix
+        @param prefix prefix to search for
+        '''
+        self._send_command('search-prefix', [prefix])
+        pkgs = self._get_list()
+        return pkgs
+
 
     def clean(self, what):
         '''

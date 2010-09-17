@@ -191,6 +191,7 @@ class YumServer(yum.YumBase):
         freport = (self._failureReport, (), {})
         self.repos.setFailureCallback(freport)       
         self._updateMetadata = None # Update metadata cache 
+        self._updates_list = None
         self.write(':started') # Let the front end know that we are up and running
 
     def _is_local_repo(self, repo):
@@ -391,6 +392,9 @@ class YumServer(yum.YumBase):
 
     def debug(self, msg, name=None):
         ''' write an debug message '''
+        if not name:
+            classname = __name__.split('.')[-1]
+            name = classname + "."+sys._getframe(1).f_code.co_name
         self.write(":debug\t%s\t%s" % (msg,name))
     
     def warning(self, msg):
@@ -857,7 +861,35 @@ class YumServer(yum.YumBase):
             pkg = apkg or ipkg
             ret.setdefault(pkg.name, []).append((apkg, ipkg))
         return ret
+    
+    def _get_updates(self):
+        if not self._updates_list:
+            ygh = self.doPackageLists(pkgnarrow='updates')
+            self._updates_list = ygh.updates
+        return self._updates_list
+        
+    def _return_packages(self, pkgs):
+        updates = self._get_updates()
+        for po in pkgs:
+            if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
+                (n, a, e, v, r) = po.pkgtup
+                po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
+                action = 'r'
+            else:
+                if po in updates:
+                    action = 'u'
+                else:
+                    action = 'i'
+            self._show_package(po, action)    
             
+            
+    def search_prefix(self, prefix):
+        prefix += '*'
+        self.debug("prefix: %s " % prefix)
+        pkgs = self.pkgSack.returnPackages(patterns=[prefix])
+        best = packagesNewestByNameArch(pkgs)
+        self._return_packages(best)
+        self.ended(True)
 
     def search(self, args):
         '''
@@ -880,17 +912,7 @@ class YumServer(yum.YumBase):
                 pkgs[na].append(pkg)
         for na in pkgs:
             best = packagesNewestByNameArch(pkgs[na])
-            for po in best:           
-                if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
-                    (n, a, e, v, r) = po.pkgtup
-                    po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
-                    action = 'r'
-                else:
-                    if po in ygh.updates:
-                        action = 'u'
-                    else:
-                        action = 'i'
-                self._show_package(po, action)    
+            self._return_packages(best)
         self.ended(True)
     
     def get_repos(self, args):
@@ -1098,6 +1120,8 @@ class YumServer(yum.YumBase):
             self.enable_repo_persistent(args)
         elif cmd == 'search':
             self.search(args)
+        elif cmd == 'search-prefix':
+            self.search_prefix(args[0])
         elif cmd == 'update-info':
             self.get_update_info(args)
         elif cmd == 'set-option':
