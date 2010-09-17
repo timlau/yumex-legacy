@@ -280,20 +280,18 @@ class PackageInfo(SelectorBase):
         self.console = PackageInfoTextView(console, font_size=font_size)
         self.main_window = main
         self.frontend = frontend
-        self.add_button('update', stock='gtk-info', 
-                        tooltip=_('Update information'), accel = '<Shift>u')
         self.add_button('description', stock='gtk-about', 
                         tooltip=_('Package Description'), accel = '<Shift>d')
+        self.add_button('update', stock='gtk-info', 
+                        tooltip=_('Update information'), accel = '<Shift>u')
         self.add_button('changelog', stock='gtk-edit', 
                         tooltip=_('Package Changelog'), accel = '<Shift>c')
         self.add_button('filelist', stock='gtk-harddisk', 
                         tooltip=_('Package Filelist'), accel = '<Shift>f')
         self.pkg = None
         self._selected = 'description'
-        self._is_update = False
-        self.hide_button('update')
 
-    def update(self, pkg, update=False):
+    def update(self, pkg):
         '''
         update the package info with a new package
         @param pkg: package to show info for
@@ -301,16 +299,6 @@ class PackageInfo(SelectorBase):
         '''
         self.widget.grab_add() # lock everything but then TextView widget, until we have updated
         self.pkg = pkg
-        if update:
-            self.show_button('update')
-            if not self._is_update: # if last select was not an update, then set updateinfo active
-                self._selected = 'update'
-                
-        else:
-            self.hide_button('update')
-            if self._selected == 'update':
-                self._selected = 'description'
-        self._is_update = update
         self.set_active(self._selected)
         self.widget.grab_remove()
         
@@ -353,13 +341,22 @@ class PackageInfo(SelectorBase):
         '''
         upd_info = None
         updated_po = None
-        upd_info, updated_po = self.pkg.updateinfo
+        upd_info_list, updated_po_list = self.pkg.updateinfo
         progress = self.frontend.get_progress()
         progress.hide()
-        msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size,  updated_po)                
-        self.console.write(msg,"changelog-header")   
-        if upd_info:
-            self.show_update_info(upd_info)
+        if not upd_info_list:
+            return
+        for i in xrange(0,len(upd_info_list)):
+            ndx = (len(upd_info_list)-1) - i 
+            upd_info = upd_info_list[ndx]
+            updated_po = updated_po_list[ndx]
+            if updated_po and updated_po <> 'None':
+                msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size,  updated_po)                
+                self.console.write(msg,"changelog-header")   
+            if upd_info:
+                msg = "%s\n\n" % upd_info['update_id'] 
+                self.console.write(msg,"changelog-header")   
+                self.show_update_info(upd_info)
         
     def show_description(self):
         '''
@@ -369,11 +366,10 @@ class PackageInfo(SelectorBase):
 
     def show_update_info(self,upd_info):
         head = ""
-        head += ("%12s " % _("Update ID")) + ": %(update_id)s\n"
-        head += ("%12s " % _("Release"))   + ": %(release)s\n" 
-        head += ("%12s " % _("Type"))      + ": %(type)s\n"
-        head += ("%12s " % _("Status"))    + ": %(status)s\n"
-        head += ("%12s " % _("Issued"))    + ": %(issued)s\n"
+        head += ("%14s " % _("Release"))   + ": %(release)s\n" 
+        head += ("%14s " % _("Type"))      + ": %(type)s\n"
+        head += ("%14s " % _("Status"))    + ": %(status)s\n"
+        head += ("%14s " % _("Issued"))    + ": %(issued)s\n"
         head = head  % upd_info
 
         if upd_info['updated'] and upd_info['updated'] != upd_info['issued']:
@@ -383,29 +379,35 @@ class PackageInfo(SelectorBase):
         if upd_info['references']:
             bzs = [ r for r in upd_info['references'] if r and r['type'] == 'bugzilla']
             if len(bzs):
-                buglist = _("       Bugs :")
+                header = "Bugzilla"
+                buglist =""
                 for bz in bzs:
                     if 'title' in bz and bz['title']:
                         bug_msg = ' - %s' % bz['title']
                     else:
                         bug_msg = ' - %s' % 'https://bugzilla.redhat.com/show_bug.cgi?id='+bz['id']
                         
-                    buglist += " %s%s\n\t    :" % (bz['id'], bug_msg)
-                head += buglist[: - 1].rstrip() + '\n'
+                    buglist += "%14s : %s%s\n" % (header, bz['id'], bug_msg)
+                    header = " "
+                head += buglist[: - 1].rstrip() + '\n\n'
 
         # Add our CVE references
         if upd_info['references']:
             cves = [ r for r in upd_info['references'] if r and r['type'] == 'cve']
             if len(cves):
-                cvelist = "       CVEs :"
+                cvelist = ""
+                header = "CVE"
                 for cve in cves:
-                    cvelist += " %s\n\t    :" % cve['id']
-                head += cvelist[: - 1].rstrip() + '\n'
+                    cvelist += "%14s : %s\n" % (header, cve['id'])
+                    header = " "
+                head += cvelist[: - 1].rstrip() + '\n\n'
 
         if upd_info['description'] is not None:
             desc = utf8_text_wrap(upd_info['description'], width=64,
-                                  subsequent_indent=' ' * 12 + ': ')
-            head += _("Description : %s\n") % '\n'.join(desc)
+                                  subsequent_indent=' ' * 14 + ' : ')
+            head += "%14s : %s\n" % (_("Description"), '\n'.join(desc))
+            
+        head += "\n"
         self.console.write(head)
         
     def show_changelog(self):

@@ -588,7 +588,7 @@ class YumClient:
         self._send_command('update-info', [ident])
         msgs = self._get_messages()
         if 'updateinfo' in msgs and 'updated_po' in msgs:
-            return msgs['updateinfo'][0],msgs['updated_po'][0]
+            return msgs['updateinfo'],msgs['updated_po']
         else:
             return (None,None)
               

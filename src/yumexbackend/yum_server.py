@@ -974,10 +974,11 @@ class YumServer(yum.YumBase):
         if pkg:
             md = self.update_metadata
             nvr = (pkg.name, pkg.ver, pkg.rel)
-            ret = md.get_notice(nvr)
-            self.message("updateinfo", ret)
-            po = self._get_updated_po(pkg)
-            self.message("updated_po", str(po))
+            notices = md.get_notices(pkg.name)
+            for ret in notices:
+                self.message("updateinfo", ret)
+                po = self._get_updated_po(pkg)
+                self.message("updated_po", str(po))
         self.ended(True)
         
     def _get_updated_po(self,pkg):
