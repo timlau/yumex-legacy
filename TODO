@@ -31,8 +31,6 @@ TODO:
     	 - packages should be shown in a more packageview like way
     	 - possibillity to interact with packages in a history transaction
     RFE: Update info improvements
-         - separate view like changelog / filelist
-         - show previous updateinfo records
          - bugzilla records should be links
     RFE: Auto resolve deps when a package is added to queue
     	- Speed might be an issue here
@@ -42,7 +40,7 @@ TODO:
     	  downloading is completted.
     	  
    	RFE: Show multiple packages types and version
-   	     - show if there is an availble update for a package it is shown, but the installed one is not
+   	     - show if there is an availible update for a package it is shown, but the installed one is not
    	     - show old version packages too (like kernels)
    	     
    	RFE: Reinstall, Downgrade
