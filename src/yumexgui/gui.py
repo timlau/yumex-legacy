@@ -248,6 +248,16 @@ class SelectorBase:
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self._selected = key
+            
+    def hide_button(self, key):
+        if key in self._buttons:
+            button = self._buttons[key]
+            button.hide()
+
+    def show_button(self, key):
+        if key in self._buttons:
+            button = self._buttons[key]
+            button.show()
 
 class PackageInfo(SelectorBase):
     '''
@@ -270,6 +280,8 @@ class PackageInfo(SelectorBase):
         self.console = PackageInfoTextView(console, font_size=font_size)
         self.main_window = main
         self.frontend = frontend
+        self.add_button('update', stock='gtk-info', 
+                        tooltip=_('Update information'), accel = '<Shift>u')
         self.add_button('description', stock='gtk-about', 
                         tooltip=_('Package Description'), accel = '<Shift>d')
         self.add_button('changelog', stock='gtk-edit', 
@@ -279,6 +291,7 @@ class PackageInfo(SelectorBase):
         self.pkg = None
         self._selected = 'description'
         self._is_update = False
+        self.hide_button('update')
 
     def update(self, pkg, update=False):
         '''
@@ -288,6 +301,15 @@ class PackageInfo(SelectorBase):
         '''
         self.widget.grab_add() # lock everything but then TextView widget, until we have updated
         self.pkg = pkg
+        if update:
+            self.show_button('update')
+            if not self._is_update: # if last select was not an update, then set updateinfo active
+                self._selected = 'update'
+                
+        else:
+            self.hide_button('update')
+            if self._selected == 'update':
+                self._selected = 'description'
         self._is_update = update
         self.set_active(self._selected)
         self.widget.grab_remove()
@@ -296,6 +318,8 @@ class PackageInfo(SelectorBase):
         '''
         clear the package info console
         '''
+        
+        
         self.console.clear()
 
     def on_button_clicked(self, widget=None, key=None):
@@ -318,28 +342,29 @@ class PackageInfo(SelectorBase):
                 self.show_changelog()
             elif key == 'filelist':
                 self.show_filelist()
+            elif key == 'update':
+                self.show_update()
             self.console.goTop()
             normalCursor(self.main_window)
-        
-    def show_description(self):
+
+    def show_update(self):
         '''
         show the package description
         '''
         upd_info = None
         updated_po = None
-        if self._is_update: # Package is an update 
-            upd_info, updated_po = self.pkg.updateinfo
-            progress = self.frontend.get_progress()
-            progress.hide()
-        if updated_po:
-            msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size,  updated_po)                
-        else:        
-            msg = "%s (%s) - %s \n\n" % (self.pkg.fullname, self.pkg.size, self.pkg.repoid)                
+        upd_info, updated_po = self.pkg.updateinfo
+        progress = self.frontend.get_progress()
+        progress.hide()
+        msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size,  updated_po)                
         self.console.write(msg,"changelog-header")   
         if upd_info:
             self.show_update_info(upd_info)
-            self.console.write(_("\nPackage Description"),"changelog-header")
-            
+        
+    def show_description(self):
+        '''
+        show the package description
+        '''
         self.console.write(self.pkg.description)
 
     def show_update_info(self,upd_info):

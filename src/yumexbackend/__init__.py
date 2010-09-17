@@ -178,9 +178,9 @@ class YumexPackageBase:
     def fullname(self):
         ''' Package fullname  '''        
         if self.epoch and self.epoch != '0':
-            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.version, self.release, self.arch)
+            return "%s-%s:%s-%s.%s" % (self.name, self.epoch, self.version, self.release, self.arch)
         else:   
-            return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
+            return "%s-%s-%s.%s" % (self.name, self.version, self.release, self.arch)
     
     @property
     def fullver (self):
@@ -392,9 +392,9 @@ class YumPackage:
     def fullname(self):
         ''' Package fullname  '''        
         if self.epoch and self.epoch != '0':
-            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
+            return "%s-%s:%s-%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
         else:   
-            return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
+            return "%s-%s-%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
     @property        
     def id(self):        
