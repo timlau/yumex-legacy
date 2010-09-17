@@ -3,30 +3,6 @@ TODO:
   	RFE: Add Test cases (partly done)
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
-    RFE: typeahead search when only searching for packagenames
-    
-         <snip mail from James Antil>
-			 Yeh, I was thinking of just package names ... and we'll probably need
-			to add an API for that (or tweak searchNames()/returnPackages() to do
-			just the prefix name search under certain conditions).
-			 I'm pretty sure we are good speedwise though, doing a quick test here,
-			with:
-			
-			       def _tst(pat):
-			         tb = time.time()
-			         ret = yb.pkgSack.returnPackages(patterns=[pat])
-			         te = time.time()
-			         print "time:", te - tb, "len:", len(ret)
-			
-			...I get:
-			
-			In [2]: _tst('yum*')
-			Loaded plugins: presto
-			time: 0.269106864929 len: 70
-			
-			In [3]: _tst('yum*')
-			time: 0.0622339248657 len: 70
-    	</snip>
     RFE: History improvements
     	 - packages should be shown in a more packageview like way
     	 - possibillity to interact with packages in a history transaction
@@ -91,5 +67,5 @@ Fixed / implemented:
     . Show updateinfo for all packages, not just updates
     . Show all updateinfo records, not just the last one
 	. Added search options to select the fields to search in
-	
+	. Added search while typing on packages, if more 3 chars has been entered and there is only one word
 ( * = Released, . = Upstream )	
