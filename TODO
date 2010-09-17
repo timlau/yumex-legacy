@@ -3,7 +3,57 @@ TODO:
   	RFE: Add Test cases (partly done)
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
-  	
+  	RFE: Search options
+  		 - Specify what to search in (name, summary, description etc)
+    RFE: typeahead search when only searching for packagenames
+    
+         <snip mail from James Antil>
+			 Yeh, I was thinking of just package names ... and we'll probably need
+			to add an API for that (or tweak searchNames()/returnPackages() to do
+			just the prefix name search under certain conditions).
+			 I'm pretty sure we are good speedwise though, doing a quick test here,
+			with:
+			
+			       def _tst(pat):
+			         tb = time.time()
+			         ret = yb.pkgSack.returnPackages(patterns=[pat])
+			         te = time.time()
+			         print "time:", te - tb, "len:", len(ret)
+			
+			...I get:
+			
+			In [2]: _tst('yum*')
+			Loaded plugins: presto
+			time: 0.269106864929 len: 70
+			
+			In [3]: _tst('yum*')
+			time: 0.0622339248657 len: 70
+    	</snip>
+    RFE: History improvements
+    	 - packages should be shown in a more packageview like way
+    	 - possibillity to interact with packages in a history transaction
+    RFE: Update info improvements
+         - separate view like changelog / filelist
+         - show previous updateinfo records
+         - bugzilla records should be links
+    RFE: Auto resolve deps when a package is added to queue
+    	- Speed might be an issue here
+    	
+    RFE: Auto download packages when added to queue
+    	- need some multi threaded downloader, there can be aborted if user select 'Apply' before
+    	  downloading is completted.
+    	  
+   	RFE: Show multiple packages types and version
+   	     - show if there is an availble update for a package it is shown, but the installed one is not
+   	     - show old version packages too (like kernels)
+   	     
+   	RFE: Reinstall, Downgrade
+   	     - make it possible to reinstall package(s)
+   	     - make it possible to downgrade package(s)
+   	     
+   	RFE: Make it possible to type "install foo, remove bar" and get the packages added to the queue
+   		 - get the same results as typing 'yum install foo" on the cmd line.
+    	
   	
 BUGS:
   	
