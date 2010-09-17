@@ -709,7 +709,6 @@ class YumexRepoView(SelectionView):
         self.state = 'normal'
         self._last_selected = []
     
-    
     def on_toggled(self, widget, path):
         """ Repo select/unselect handler """
         iterator = self.store.get_iter(path)
@@ -845,6 +844,58 @@ class YumexRepoView(SelectionView):
             else:
                 self.store.set_value(iterator, 0, False)
             iterator = self.store.iter_next(iterator)
+
+class YumexSearchOptionsView(SelectionView):
+    """ 
+    This class controls the search option TreeView
+    """
+    def __init__(self, widget):
+        '''
+        
+        @param widget:
+        '''
+        SelectionView.__init__(self, widget)
+        self.view.modify_font(const.SMALL_FONT)        
+        self.store = self.setup_view()
+
+    def on_toggled(self, widget, path):
+        """ Repo select/unselect handler """
+        iterator = self.store.get_iter(path)
+        state = self.store.get_value(iterator, 0)
+        self.store.set_value(iterator, 0, not state)
+        
+
+    def get_selected(self):
+        '''
+        
+        '''
+        selected = []
+        for elem in self.store:
+            state = elem[0]
+            name = elem[1]
+            if state:
+                selected.append(name)
+        return selected
+
+    def setup_view(self):
+        """ Create models and columns for the Search Options TextView  """
+        store = gtk.ListStore('gboolean', gobject.TYPE_STRING)
+        self.view.set_model(store)
+        # Setup Selection Column
+        col = self.create_selection_column_num(0) 
+        # Setup reponame & repofile column's
+        self.create_text_column_num(_('Search Keys'), 1)
+        return store
+    
+    def populate(self, values, default_values):
+        self.store.clear()
+        for key in values:
+            if key in default_values:
+                state = True
+            else:
+                state = False
+            self.store.append([state, key])     
+        
 
 class YumexGroupView:
     '''

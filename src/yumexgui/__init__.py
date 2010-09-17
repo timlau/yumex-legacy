@@ -33,7 +33,7 @@ from datetime import date
 
 from yumexgui.gui import Notebook, PackageCache, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
-                             questionDialog, Preferences, okCancelDialog
+                             questionDialog, Preferences, okCancelDialog, SearchOptions
 from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
@@ -272,7 +272,9 @@ class YumexHandlers(Controller):
     # Package Page    
     
     def on_searchOptions_clicked(self, widget=None, event=None):
-        self.info('Search Options Clicked')
+        self.search_options.run()
+        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+        
         
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
@@ -281,7 +283,7 @@ class YumexHandlers(Controller):
         if self._packages_loaded:
             busyCursor(self.window)
             self.packageInfo.clear()
-            filters = ['name', 'summary', 'description']
+            filters = self.search_options.get_filters()
             keys = self.ui.packageSearch.get_text().split(' ')
             pkgs = self.backend.search(keys, filters)
             if not self.settings.search:
@@ -618,6 +620,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.show_dupes = True # show duplicate available packages
         self.groups_is_loaded = False
         self.history_is_loaded = False
+        self.default_search_keys = ['name', 'summary', 'description']
+        self.search_keys = ['name', 'summary', 'description', "arch"]
+
         
 
     @property
@@ -731,6 +736,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
 
+    def _add_key_binding(self,widget,event,accel):
+        keyval,mask = gtk.accelerator_parse(accel)
+        widget.add_accelerator(event, self.key_bindings, keyval, mask, 0)
+        
+
     def setup_gui(self):
         '''
         Setup the gui
@@ -784,6 +794,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.preferences = Preferences(self.ui,self.window,self.cfg)
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
+        # seach options
+        self.search_options = SearchOptions(self.ui, self.window, self.search_keys, self.default_search_keys)
+        
         # setup package and package info view
         if self.settings.use_sortable_view:
             self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
@@ -845,15 +858,18 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.default_repos = repos
         active_repos = self.repos.get_selected()
         self.current_repos = active_repos
+        self._add_key_binding(self.ui.packageSearch, 'activate', '<alt>s')
         if self.settings.search:            # Search only mode
-           self.ui.packageFilterBox.hide()
-           self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+            self.ui.packageFilterBox.hide()
+            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         elif self.settings.update_only:     # Update only mode
-           self.ui.packageFilterBox.hide()
-           self.ui.packageSearch.hide()
+            self.ui.packageFilterBox.hide()
+            self.ui.packageSearchBox.hide()
+            self.ui.packageRadioUpdates.clicked()
         else:
             # setup default package filter (updates)
             self.ui.packageRadioUpdates.clicked()
+            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
 
 
 # pylint: enable-msg=W0201

@@ -26,6 +26,7 @@ import gobject
 from guihelpers import busyCursor, normalCursor
 from yumexbase import YumexProgressBase
 from yumexbase.constants import *
+from yumexgui.views import YumexSearchOptionsView
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -487,8 +488,26 @@ class Preferences:
         hide the dialog
         '''
         self.dialog.hide()
-   
 
+class SearchOptions:
+    '''
+    Search Options Dialog
+    '''   
+    def __init__(self, ui, parent, keys, default_keys):
+        self.ui = ui
+        self.dialog = ui.searchOptionDialog
+        self.parent = parent
+        self.dialog.set_transient_for(self.parent)
+        self.view = YumexSearchOptionsView(self.ui.searchOptionView)
+        self.view.populate(keys, default_keys)
+        
+    def run(self):
+        self.dialog.run()
+        self.dialog.hide()
+        
+    def get_filters(self):
+        return self.view.get_selected()
+        
 class TransactionConfirmation:
     '''
     The Transaction Confirmation dialog, to validate the result of the current transaction result
