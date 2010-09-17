@@ -3,8 +3,6 @@ TODO:
   	RFE: Add Test cases (partly done)
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
-  	RFE: Search options
-  		 - Specify what to search in (name, summary, description etc)
     RFE: typeahead search when only searching for packagenames
     
          <snip mail from James Antil>
@@ -94,5 +92,6 @@ Fixed / implemented:
     . Updateinfo in separate view like changelog / filelist
     . Show updateinfo for all packages, not just updates
     . Show all updateinfo records, not just the last one
-
+	. Added search options to select the fields to search in
+	
 ( * = Released, . = Upstream )	
