@@ -68,4 +68,5 @@ Fixed / implemented:
     . Show all updateinfo records, not just the last one
 	. Added search options to select the fields to search in
 	. Added search while typing on packages, if more 3 chars has been entered and there is only one word
+	. Added typeahead search toggle button (left of search entry)
 ( * = Released, . = Upstream )	
