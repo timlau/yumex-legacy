@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-14 13:59+0100\n"
-"PO-Revision-Date: 2010-09-17 15:44+0200\n"
+"PO-Revision-Date: 2010-09-18 15:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -403,340 +403,340 @@ msgstr "Instellen Yum: Basisinstellingen afgerond"
 
 #: ../src/yumapi.py:147
 msgid "Setup signed metadata support"
-msgstr "Instelling "
+msgstr "Instelling gesigneerde metadata ondersteuning"
 
 #: ../src/yumapi.py:153
 #, python-format
 msgid "Repository metadata (repomd.xml) for %s"
-msgstr ""
+msgstr "Repository metadata (repomd.xml) voor %s"
 
 #: ../src/yumapi.py:162
 #, python-format
 msgid "Loaded update Metadata from %s "
-msgstr ""
+msgstr "Vernieuwde metadata geladen van %s "
 
 #: ../src/yumapi.py:164
 #, python-format
 msgid "No update Metadata found for %s "
-msgstr ""
+msgstr "Geen vernieuwde metadata gevonden voor %s "
 
 #: ../src/yumapi.py:166
 #, python-format
 msgid "Error loading update metadata from %s "
-msgstr ""
+msgstr "Fout bij laden vernieuwde metadata van %s "
 
 #: ../src/yumapi.py:187 ../src/yumex.py:594
 msgid "Preparing for install/remove/update"
-msgstr ""
+msgstr "Voorbereiden installatie/verwijderen/vernieuwen"
 
 #: ../src/yumapi.py:191
 msgid "--> Preparing for install"
-msgstr ""
+msgstr "--> Voorbereiding installatie"
 
 #: ../src/yumapi.py:196
 msgid "--> Preparing for remove"
-msgstr ""
+msgstr "--> Voorbereiden verwijdering"
 
 #: ../src/yumapi.py:203
 msgid "--> Preparing for a full update"
-msgstr ""
+msgstr "--> Voorbereiden volledige update"
 
 #: ../src/yumapi.py:206
 msgid "--> Preparing for a partial update"
-msgstr ""
+msgstr "--> Voorbereiden gedeeltelijke update"
 
 #: ../src/yumapi.py:208
 msgid "--> Adding all obsoletion to transaction"
-msgstr ""
+msgstr "--> Alle verouderde pakketten  aan transactie toevoegen"
 
 #: ../src/yumapi.py:230 ../src/yumgui/callbacks.py:62
 #: ../src/yumgui/callbacks.py:63 ../src/yumgui/callbacks.py:65
 msgid "Installing"
-msgstr ""
+msgstr "Aan het installeren"
 
 #: ../src/yumapi.py:231 ../src/yumgui/callbacks.py:60
 msgid "Updating"
-msgstr ""
+msgstr "Aan het vernieuwen"
 
 #: ../src/yumapi.py:233
 msgid "Installing for dependencies"
-msgstr ""
+msgstr "Installeren vanwege afhankelijkheden"
 
 #: ../src/yumapi.py:234
 msgid "Updating for dependencies"
-msgstr ""
+msgstr "Updaten vanwege afhankelijkheden"
 
 #: ../src/yumapi.py:235
 msgid "Removing for dependencies"
-msgstr ""
+msgstr "Verwijderen vanwege afhankelijkheden"
 
 #: ../src/yumapi.py:281
 #, python-format
 msgid "Failure getting %s: "
-msgstr ""
+msgstr "%s ophalen niet gelukt: "
 
 #: ../src/yumapi.py:303
 msgid "Downloading Packages:"
-msgstr ""
+msgstr "Downloaden pakketten:"
 
 #: ../src/yumapi.py:319 ../src/yumapi.py:327
 msgid "Error Downloading Packages:\n"
-msgstr ""
+msgstr "Fout bij downloaden pakketten:\n"
 
 #. Check GPG signatures
 #: ../src/yumapi.py:334
 msgid "Checking GPG Signatures:"
-msgstr ""
+msgstr "Checken GPG Signaturen:"
 
 #: ../src/yumapi.py:339
 msgid "Error checking package signatures:\n"
-msgstr ""
+msgstr "Fout bij checken pakketsignaturen:\n"
 
 #: ../src/yumapi.py:345
 msgid "Traceback in checking package signatures:\n"
-msgstr ""
+msgstr "Traceback in checken pakketsignaturen:\n"
 
 #: ../src/yumapi.py:352
 msgid "Running Transaction Test"
-msgstr ""
+msgstr "Transactietest loopt"
 
 #: ../src/yumapi.py:370
 msgid "Finished Transaction Test"
-msgstr ""
+msgstr "Transactietest is geëindigd"
 
 #: ../src/yumapi.py:372
 msgid "Transaction Check Error: "
-msgstr ""
+msgstr "Transactietest geeft fout:"
 
 #: ../src/yumapi.py:377
 msgid "Transaction Test Succeeded"
-msgstr ""
+msgstr "Transactietest gelukt"
 
 #: ../src/yumapi.py:393
 msgid "Running Transaction"
-msgstr ""
+msgstr "Transactie wordt uitgevoerd"
 
 #: ../src/yumapi.py:476
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr ""
+msgstr "Wilt u de GPG sleutel : %s importeren?  \n"
 
 #: ../src/yumapi.py:478
 #, python-format
 msgid "Needed by %s"
-msgstr ""
+msgstr "Benodigd door %s"
 
 #: ../src/yumex.py:65
 msgid "Cant Quit while running RPM Transactions"
-msgstr ""
+msgstr "Kan niet afsluiten terwijl RPM-transactie loopt"
 
 #: ../src/yumex.py:153
 msgid "Yum has not been initialized yet"
-msgstr ""
+msgstr "YUM is nog niet geïnitialiseerd"
 
 #. Check there are any packages in the queue
 #: ../src/yumex.py:159
 msgid "No packages in queue"
-msgstr ""
+msgstr "Geen pakketten in wachtrij"
 
 #: ../src/yumex.py:236
 #, python-format
 msgid "You are about to add %s packages\n"
-msgstr ""
+msgstr "U staat op het punt %s pakketten te downloaden\n"
 
 #: ../src/yumex.py:237 ../src/yumex.py:249
 msgid "It will take some time\n"
-msgstr ""
+msgstr "Dit zal even duren\n"
 
 #: ../src/yumex.py:238 ../src/yumex.py:250
 msgid "do you want to continue ?"
-msgstr ""
+msgstr "wilt u doorgaan?"
 
 #: ../src/yumex.py:248
 #, python-format
 msgid "You are about to remove %s packages\n"
-msgstr ""
+msgstr "U gaat zo %s pakketten verwijderen\n"
 
 #: ../src/yumex.py:354
 #, python-format
 msgid "Selected the %s profile"
-msgstr ""
+msgstr "Het %s profiel is geselecteerd"
 
 #: ../src/yumex.py:374
 #, python-format
 msgid "Profile : %s saved ok"
-msgstr ""
+msgstr "Profiel : %s goed vastgelegd"
 
 #: ../src/yumex.py:376
 #, python-format
 msgid "Profile : %s save failed"
-msgstr ""
+msgstr "Profiel : %s vastleggen mislukte"
 
 #: ../src/yumex.py:381
 msgid "Create New Profile"
-msgstr ""
+msgstr "Creëer nieuw profiel"
 
 #: ../src/yumex.py:381
 msgid "Name of new profile"
-msgstr ""
+msgstr "Naam van nieuw profiel"
 
 #: ../src/yumex.py:385
 #, python-format
 msgid "Profile : %s created ok"
-msgstr ""
+msgstr "Profiel : %s goed gecreëerd"
 
 #: ../src/yumex.py:388
 #, python-format
 msgid "Profile : %s creation failed"
-msgstr ""
+msgstr "Profiel : %s creëren mislukte"
 
 #: ../src/yumex.py:392
 msgid "Cleaning up all yum metadata"
-msgstr ""
+msgstr "Opruimen alle yum metadata"
 
 #: ../src/yumex.py:419
 msgid "Yum Config Setup"
-msgstr ""
+msgstr "Yum Config Setup"
 
 #: ../src/yumex.py:435
 msgid "GUI Setup Completed"
-msgstr ""
+msgstr "GUI Setup is klaar"
 
 #: ../src/yumex.py:473 ../src/yumex.py:609 ../src/yumex.py:664
 #: ../src/yumex.py:745 ../src/yumex.py:748 ../src/yumex.py:766
 #: ../src/yumex.glade.h:30
 msgid "Error"
-msgstr ""
+msgstr "Fout"
 
 #: ../src/yumex.py:473
 msgid "Error in Yum Setup"
-msgstr ""
+msgstr "Fout in Yum configuratie"
 
 #. prepare package lists
 #. -> List setup
 #: ../src/yumex.py:478
 msgid "Building Package Lists"
-msgstr ""
+msgstr "Opbouwen pakketlijst"
 
 #: ../src/yumex.py:480
 msgid "Building Package Lists Completed"
-msgstr ""
+msgstr "Opbouwen pakketlijst klaar"
 
 #: ../src/yumex.py:481
 msgid "Building Groups Lists"
-msgstr ""
+msgstr "Opbouwen groepslijst"
 
 #: ../src/yumex.py:484
 msgid "Building Group Lists Completed"
-msgstr ""
+msgstr "Opbouwen groepslijst klaar"
 
 #. -> Sort Lists
 #: ../src/yumex.py:523
 msgid "Sorting packages"
-msgstr ""
+msgstr "Sorteren pakketten"
 
 #: ../src/yumex.py:525
 msgid "Population view with packages"
-msgstr ""
+msgstr "Populatie inzicht pakketten"
 
 #: ../src/yumex.py:531
 msgid "Population Completed"
-msgstr ""
+msgstr "Populatie klaar"
 
 #: ../src/yumex.py:539
 msgid "Package View Population"
-msgstr ""
+msgstr "Populatie op pakket"
 
 #: ../src/yumex.py:551
 msgid "Package View Population Completed"
-msgstr ""
+msgstr "Populatie op pakket klaar"
 
 #: ../src/yumex.py:558
 msgid "Category View Population"
-msgstr ""
+msgstr "Populatie op categorie"
 
 #: ../src/yumex.py:577
 msgid "Category View Population Completed"
-msgstr ""
+msgstr "Populatie op categorie klaar"
 
 #: ../src/yumex.py:602
 msgid "Processing Packages in queue"
-msgstr ""
+msgstr "Verwerken pakketten in wachtrij"
 
 #: ../src/yumex.py:608
 msgid "Error in Dependency Resolution"
-msgstr ""
+msgstr "Fout in oplossen afhankelijkheden"
 
 #: ../src/yumex.py:625
 msgid "No packages selected"
-msgstr ""
+msgstr "Geen pakketten geselecteerd"
 
 #: ../src/yumex.py:632
 msgid "No packages in transaction"
-msgstr ""
+msgstr "Geen pakketten in transactie"
 
 #: ../src/yumex.py:642
 msgid "Processing packages (See output for details)"
-msgstr ""
+msgstr "Verwerken pakketten (zie output voor details)"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing"
-msgstr ""
+msgstr "Pakketverwerking"
 
 #: ../src/yumex.py:660
 msgid "Packages Processing completed ok"
-msgstr ""
+msgstr "Pakketverwerking goed afgesloten"
 
 #: ../src/yumex.py:664
 msgid "Error in Transaction"
-msgstr ""
+msgstr "Fout in transactie"
 
 #: ../src/yumex.py:669
 #, python-format
 msgid "Parsing packages to %s "
-msgstr ""
+msgstr "Pakketten doorleiden naar %s "
 
 #: ../src/yumex.py:703
 #, python-format
 msgid "found %d packages, matching : %s"
-msgstr ""
+msgstr "gevonden %d pakketten, passend bij : %s"
 
 #: ../src/yumex.py:743
 msgid "Yum is locked by another application"
-msgstr ""
+msgstr "Yum wordt geblokkerd door een andere applicatie"
 
 #: ../src/yumex.py:745 ../src/yumex.py:766
 msgid "Error in Yumex"
-msgstr ""
+msgstr "Fout in Yumex"
 
 #: ../src/yumex.py:748
 msgid "Error in plugin, Yum Extender will exit"
-msgstr ""
+msgstr "Fout in plugin, Yum Extender zal afsluiten"
 
 #: ../src/yumgui/callbacks.py:61
 msgid "Erasing"
-msgstr ""
+msgstr "Wissen"
 
 #: ../src/yumgui/callbacks.py:64 ../src/yumgui/callbacks.py:70
 msgid "Obsoleted"
-msgstr ""
+msgstr "Verouderd"
 
 #: ../src/yumgui/callbacks.py:66
 msgid "Updated"
-msgstr ""
+msgstr "Vernieuwd"
 
 #: ../src/yumgui/callbacks.py:67
 msgid "Erased"
-msgstr ""
+msgstr "Gewist"
 
 #: ../src/yumgui/callbacks.py:68 ../src/yumgui/callbacks.py:69
 #: ../src/yumgui/callbacks.py:71 ../src/yumex.glade.h:36
 msgid "Installed"
-msgstr ""
+msgstr "Geïnstalleerd"
 
 #: ../src/yumgui/callbacks.py:181
 msgid "No header - huh?"
-msgstr ""
+msgstr "Geen header - wattuh?"
 
 #: ../src/yumex.glade.h:1
 msgid " "
@@ -970,4 +970,5 @@ msgstr "_Yum plugins:"
 #: ../src/yumex.glade.h:63
 msgid "dialog1"
 msgstr "dialoog1"
+
 
