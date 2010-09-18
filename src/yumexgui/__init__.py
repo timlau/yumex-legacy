@@ -274,13 +274,19 @@ class YumexHandlers(Controller):
         self.notebook.set_active("history")
     # Package Page    
     
+    def on_searchTypeAhead_toggled(self, widget=None, event=None):
+        active = self.ui.searchTypeAhead.get_active()
+        self.typeahead_active = active
+        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+
+    
     def on_searchOptions_clicked(self, widget=None, event=None):
         self.search_options.run()
         self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         
     def on_packageSearch_changed(self, widget=None, event=None):
         keys = self.ui.packageSearch.get_text().split(' ')
-        if not self.settings.typeahead_search or len(keys) > 1:
+        if not self.typeahead_active or len(keys) > 1:
             return
         txt = keys[0]
         if len(txt) >= 3:
@@ -647,6 +653,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.history_is_loaded = False
         self.default_search_keys = ['name', 'summary', 'description']
         self.search_keys = ['name', 'summary', 'description', "arch"]
+        self.typeahead_active = False
 
         
 
@@ -821,7 +828,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.queue = YumexQueueView(self.ui.queueView)
         # seach options
         self.search_options = SearchOptions(self.ui, self.window, self.search_keys, self.default_search_keys)
-        
+        self.typeahead_active = self.settings.typeahead_search
+        active = self.ui.searchTypeAhead.set_active(self.typeahead_active)
+
         # setup package and package info view
         if self.settings.use_sortable_view:
             self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)

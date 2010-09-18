@@ -480,6 +480,27 @@ repositories</property>
                   <object class="GtkHBox" id="packageSearchBox">
                     <property name="visible">True</property>
                     <child>
+                      <object class="GtkToggleButton" id="searchTypeAhead">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Typeahead search on/off</property>
+                        <property name="relief">none</property>
+                        <signal name="toggled" handler="on_searchTypeAhead_toggled"/>
+                        <child>
+                          <object class="GtkImage" id="image7">
+                            <property name="visible">True</property>
+                            <property name="stock">gtk-find</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkEntry" id="packageSearch">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
@@ -487,16 +508,14 @@ repositories</property>
 to find packages containing the search
 words.
 </property>
-                        <property name="primary_icon_stock">gtk-find</property>
                         <property name="secondary_icon_stock">gtk-clear</property>
-                        <property name="primary_icon_activatable">True</property>
                         <property name="secondary_icon_activatable">True</property>
                         <signal name="changed" handler="on_packageSearch_changed"/>
                         <signal name="activate" handler="on_packageSearch_activate"/>
                         <signal name="icon_press" handler="on_packageSearch_icon_press"/>
                       </object>
                       <packing>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -517,7 +536,7 @@ words.
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
