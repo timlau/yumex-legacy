@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-17 18:21+0200\n"
-"PO-Revision-Date: 2010-07-09 20:58+0300\n"
+"PO-Revision-Date: 2010-09-18 13:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
 "X-Generator: Lokalize 1.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:98 ../src/yumexbackend/yum_backend.py:99
@@ -109,7 +109,6 @@ msgstr "Розв’язання залежностей завершено з п�
 #. Bin package
 #. Root
 #: ../src/yumexbackend/yum_client.py:176
-#, fuzzy
 msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr ""
 "Клієнтську програму запущено від імені адміністратора, виконуємо "
@@ -335,7 +334,7 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:429
 msgid "Use type ahead search on package name"
-msgstr ""
+msgstr "Використовувати випереджувальний пошук за типом для назви пакунка"
 
 #: ../src/yumexgui/dialogs.py:437
 msgid "Debug Mode"
@@ -407,9 +406,8 @@ msgid "Package Description"
 msgstr "Опис пакунка"
 
 #: ../src/yumexgui/gui.py:286
-#, fuzzy
 msgid "Update information"
-msgstr "Отримання відомостей щодо груп"
+msgstr "Відомості щодо оновлення"
 
 #: ../src/yumexgui/gui.py:288
 msgid "Package Changelog"
@@ -436,9 +434,8 @@ msgid "Issued"
 msgstr "Випущено"
 
 #: ../src/yumexgui/gui.py:408
-#, fuzzy
 msgid "Description"
-msgstr "Опис: %s\n"
+msgstr "Опис"
 
 #: ../src/yumexgui/__init__.py:510
 #, python-format
@@ -491,14 +488,12 @@ msgid "Fatal Error : "
 msgstr "Критична помилка: "
 
 #: ../src/yumexgui/__init__.py:794
-#, fuzzy
 msgid "Available Updates"
-msgstr "Отримання списку доступних оновлень"
+msgstr "Доступні оновлення"
 
 #: ../src/yumexgui/__init__.py:796
-#, fuzzy
 msgid "Search for packages"
-msgstr "Показати оновлення пакунків"
+msgstr "Пошук пакунків"
 
 #: ../src/yumexgui/__init__.py:798 ../src/yumexgui/views.py:625
 msgid "Packages"
@@ -710,7 +705,7 @@ msgstr "Назва файла"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:887
 msgid "Search Keys"
-msgstr ""
+msgstr "Ключі пошуку"
 
 #: ../src/yumexgui/views.py:1118
 msgid "Categories"
@@ -797,9 +792,8 @@ msgid "Remove selected packages from queue"
 msgstr "Вилучити позначені пакунки з черги"
 
 #: ../src/yumex.glade.h:18
-#, fuzzy
 msgid "Search Options"
-msgstr "П_араметри"
+msgstr "Параметри пошуку"
 
 #: ../src/yumex.glade.h:19
 msgid "Select all packages in current view"
