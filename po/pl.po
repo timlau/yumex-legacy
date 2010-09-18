@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-17 18:21+0200\n"
-"PO-Revision-Date: 2010-07-09 18:10+0200\n"
+"PO-Revision-Date: 2010-09-18 18:32+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -107,7 +107,6 @@ msgstr "Zakończono rozwiązywanie zależności z błędami"
 #. Bin package
 #. Root
 #: ../src/yumexbackend/yum_client.py:176
-#, fuzzy
 msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr ""
 "Klient jest uruchomiony w trybie roota, bezpośrednie uruchamianie zaplecza"
@@ -331,7 +330,7 @@ msgstr "Użycie uporządkowanych kolumn w widoku pakietów (wolniej)"
 
 #: ../src/yumexgui/dialogs.py:429
 msgid "Use type ahead search on package name"
-msgstr ""
+msgstr "Użycie wyszukiwania przyrostowego dla nazw pakietów"
 
 #: ../src/yumexgui/dialogs.py:437
 msgid "Debug Mode"
@@ -403,9 +402,8 @@ msgid "Package Description"
 msgstr "Opis pakietu"
 
 #: ../src/yumexgui/gui.py:286
-#, fuzzy
 msgid "Update information"
-msgstr "Uzyskiwanie informacji o grupach"
+msgstr "Informacje o aktualizacji"
 
 #: ../src/yumexgui/gui.py:288
 msgid "Package Changelog"
@@ -432,9 +430,8 @@ msgid "Issued"
 msgstr "Wydano"
 
 #: ../src/yumexgui/gui.py:408
-#, fuzzy
 msgid "Description"
-msgstr "Opis: %s\n"
+msgstr "Opis"
 
 #: ../src/yumexgui/__init__.py:510
 #, python-format
@@ -487,14 +484,12 @@ msgid "Fatal Error : "
 msgstr "Błąd krytyczny: "
 
 #: ../src/yumexgui/__init__.py:794
-#, fuzzy
 msgid "Available Updates"
-msgstr "Uzyskiwanie dostępnych aktualizacji"
+msgstr "Dostępne aktualizacje"
 
 #: ../src/yumexgui/__init__.py:796
-#, fuzzy
 msgid "Search for packages"
-msgstr "Wyświetla aktualizacje pakietów"
+msgstr "Wyszukiwanie pakietów"
 
 #: ../src/yumexgui/__init__.py:798 ../src/yumexgui/views.py:625
 msgid "Packages"
@@ -706,7 +701,7 @@ msgstr "Nazwa pliku"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:887
 msgid "Search Keys"
-msgstr ""
+msgstr "Klawisze wyszukiwania"
 
 #: ../src/yumexgui/views.py:1118
 msgid "Categories"
@@ -793,9 +788,8 @@ msgid "Remove selected packages from queue"
 msgstr "Usunięcie wybranych pakietów z kolejki"
 
 #: ../src/yumex.glade.h:18
-#, fuzzy
 msgid "Search Options"
-msgstr "_Opcje"
+msgstr "Opcje wyszukiwania"
 
 #: ../src/yumex.glade.h:19
 msgid "Select all packages in current view"
@@ -917,31 +911,3 @@ msgstr "_Widok"
 #: ../src/yumex.glade.h:50
 msgid "no GPG Check"
 msgstr "bez sprawdzania podpisów GPG"
-
-#~ msgid "Populating Package Cache"
-#~ msgstr "Zapełnianie pamięci podręcznej pakietów"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "Opis pakietu"
-
-#~ msgid "Update ID"
-#~ msgstr "Identyfikator aktualizacji"
-
-#~ msgid "       Bugs :"
-#~ msgstr "       Błędy:"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "Uzyskiwanie list pakietów"
-
-#~ msgid "Getting Updated Packages"
-#~ msgstr "Uzyskiwanie zaktualizowanych pakietów"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "Uzyskiwanie dostępnych pakietów"
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "Uzyskiwanie zainstalowanych pakietów"
