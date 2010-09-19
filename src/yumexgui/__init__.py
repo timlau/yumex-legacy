@@ -768,7 +768,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                             'packageRadioGroups','packageRadioCategories', 'packageRadioAll']
         for widget in toolstip_widgets:
             obj = getattr(self.ui,widget)
-            obj.set_tooltip_text(_(obj.set_tooltip_text))
+            obj.set_tooltip_text(_(obj.get_tooltip_text()))
 
             
         
