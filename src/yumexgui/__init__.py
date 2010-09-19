@@ -762,6 +762,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         for tab in tabs:
             obj = getattr(self.ui,tab)
             obj.set_label(_(obj.get_label()))
+            
+        # tool tip to fix             
+        toolstip_widgets = ['packageRadioUpdates', 'packageRadioAvailable', 'packageRadioInstalled', \
+                            'packageRadioGroups','packageRadioCategories', 'packageRadioAll']
+        for widget in toolstip_widgets:
+            obj = getattr(self.ui,widget)
+            obj.set_tooltip_text(_(obj.set_tooltip_text))
+
+            
         
         
             
