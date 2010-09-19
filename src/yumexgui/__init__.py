@@ -765,7 +765,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             
         # tool tip to fix             
         toolstip_widgets = ['packageRadioUpdates', 'packageRadioAvailable', 'packageRadioInstalled', \
-                            'packageRadioGroups','packageRadioCategories', 'packageRadioAll']
+                            'packageRadioGroups','packageRadioCategories', 'packageRadioAll',\
+                            'packageSelectAll', 'packageUndo', 'packageExecute',\
+                            'searchTypeAhead', 'searchOptions', 'packageSearch', \
+                            'queueExecute', 'queueRemove', 'repoRefresh', 'repoUndo', \
+                            'historyRefresh', 'historyUndo', 'historyRedo']
         for widget in toolstip_widgets:
             obj = getattr(self.ui,widget)
             obj.set_tooltip_text(_(obj.get_tooltip_text()))
