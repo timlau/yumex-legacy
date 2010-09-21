@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-17 18:21+0200\n"
+"POT-Creation-Date: 2010-09-21 06:59+0200\n"
 "PO-Revision-Date: 2010-06-15 10:55+0900\n"
 "Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
 "Language-Team: Japanese <jp@li.org>\n"
@@ -342,7 +342,7 @@ msgid "Use sortable columns in package view (slower)"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:429
-msgid "Use type ahead search on package name"
+msgid "Use typeahead search on package name"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:437
@@ -448,111 +448,111 @@ msgstr "発行日"
 msgid "Description"
 msgstr "説明: %s\n"
 
-#: ../src/yumexgui/__init__.py:510
+#: ../src/yumexgui/__init__.py:516
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "yum キャッシュから %s を除去したいですか"
 
-#: ../src/yumexgui/__init__.py:694
+#: ../src/yumexgui/__init__.py:701
 msgid "Fatal Error"
 msgstr "致命的ななエラー"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:696
+#: ../src/yumexgui/__init__.py:703
 msgid "Can't start the yum backend"
 msgstr "yumバックエンドを開始できません"
 
-#: ../src/yumexgui/__init__.py:697
+#: ../src/yumexgui/__init__.py:704
 msgid "Another program is locking yum"
 msgstr "別のプログラムがyumをロックしています"
 
-#: ../src/yumexgui/__init__.py:699
+#: ../src/yumexgui/__init__.py:706
 msgid "Message from yum backend:"
 msgstr "yumバックエンドからのメッセージ:"
 
-#: ../src/yumexgui/__init__.py:703
+#: ../src/yumexgui/__init__.py:710
 msgid "Error in repository setup"
 msgstr "レポジトリセットアップにエラー"
 
-#: ../src/yumexgui/__init__.py:706
+#: ../src/yumexgui/__init__.py:713
 msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr "コマンドラインから 'yumex -n' の開始を試すことができます\n"
 
-#: ../src/yumexgui/__init__.py:707
+#: ../src/yumexgui/__init__.py:714
 msgid "and deseleting the repositories causing problems\n"
 msgstr "そして、問題のあるレポジトリを選択解除します\n"
 
-#: ../src/yumexgui/__init__.py:708
+#: ../src/yumexgui/__init__.py:715
 msgid "and try again.\n"
 msgstr "それから再試行します。\n"
 
-#: ../src/yumexgui/__init__.py:713
+#: ../src/yumexgui/__init__.py:720
 msgid "Fatal Error in backend restart"
 msgstr "バックエンドの再開始に致命的なエラー"
 
-#: ../src/yumexgui/__init__.py:714
+#: ../src/yumexgui/__init__.py:721
 msgid "Backend could not be closed"
 msgstr "バックエンドを閉じることができません"
 
-#: ../src/yumexgui/__init__.py:718
+#: ../src/yumexgui/__init__.py:725
 msgid "Fatal Error : "
 msgstr "致命的ななエラー : "
 
-#: ../src/yumexgui/__init__.py:794
+#: ../src/yumexgui/__init__.py:814
 #, fuzzy
 msgid "Available Updates"
 msgstr "利用可能なパッケージを取得中"
 
-#: ../src/yumexgui/__init__.py:796
+#: ../src/yumexgui/__init__.py:816
 #, fuzzy
 msgid "Search for packages"
 msgstr "更新パッケージを表示します"
 
-#: ../src/yumexgui/__init__.py:798 ../src/yumexgui/views.py:625
+#: ../src/yumexgui/__init__.py:818 ../src/yumexgui/views.py:625
 msgid "Packages"
 msgstr "パッケージ"
 
-#: ../src/yumexgui/__init__.py:800
+#: ../src/yumexgui/__init__.py:820
 msgid "Perform actions on packages"
 msgstr "パッケージに対するアクションを実行する"
 
-#: ../src/yumexgui/__init__.py:802
+#: ../src/yumexgui/__init__.py:822
 msgid "Pending Actions"
 msgstr "保留しているアクション"
 
-#: ../src/yumexgui/__init__.py:803
+#: ../src/yumexgui/__init__.py:823
 msgid "Work with pending actions"
 msgstr "保留しているアクションと共に実行する"
 
-#: ../src/yumexgui/__init__.py:806
+#: ../src/yumexgui/__init__.py:826
 msgid "Repositories"
 msgstr "リポジトリー"
 
-#: ../src/yumexgui/__init__.py:807
+#: ../src/yumexgui/__init__.py:827
 msgid "Select active repositories"
 msgstr "有効なリポジトリーを選択する"
 
-#: ../src/yumexgui/__init__.py:810
+#: ../src/yumexgui/__init__.py:830
 msgid "History"
 msgstr "履歴"
 
-#: ../src/yumexgui/__init__.py:811
+#: ../src/yumexgui/__init__.py:831
 msgid "Watch yum history"
 msgstr "yum の履歴を見る"
 
-#: ../src/yumexgui/__init__.py:813
+#: ../src/yumexgui/__init__.py:833
 msgid "Output"
 msgstr "出力"
 
-#: ../src/yumexgui/__init__.py:814
+#: ../src/yumexgui/__init__.py:834
 msgid "Watch output details"
 msgstr "出力の詳細を見る"
 
-#: ../src/yumexgui/__init__.py:860
+#: ../src/yumexgui/__init__.py:882
 msgid "Not connected to an network"
 msgstr "ネットワークに接続されていません"
 
-#: ../src/yumexgui/__init__.py:861
+#: ../src/yumexgui/__init__.py:883
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
@@ -560,72 +560,72 @@ msgstr ""
 "ネットワークに接続されていません。\n"
 "続けますか "
 
-#: ../src/yumexgui/__init__.py:866
+#: ../src/yumexgui/__init__.py:888
 msgid "network connection state check is disabled"
 msgstr "ネットワーク接続の状態チェックは無効になっています"
 
-#: ../src/yumexgui/__init__.py:868
+#: ../src/yumexgui/__init__.py:890
 msgid "Can't detect the network connection state"
 msgstr "ネットワーク接続状態を検出できません"
 
-#: ../src/yumexgui/__init__.py:870
+#: ../src/yumexgui/__init__.py:892
 msgid "Connected to an network"
 msgstr "ネットワークに接続しました"
 
-#: ../src/yumexgui/__init__.py:926
+#: ../src/yumexgui/__init__.py:948
 msgid "Enable Permanently"
 msgstr "恒久的に有効にする"
 
-#: ../src/yumexgui/__init__.py:930
+#: ../src/yumexgui/__init__.py:952
 msgid "Disable Permanently"
 msgstr "恒久的に無効にする"
 
-#: ../src/yumexgui/__init__.py:933
+#: ../src/yumexgui/__init__.py:955
 msgid "Clean Metadata"
 msgstr "メタデータを除去する"
 
-#: ../src/yumexgui/__init__.py:934
+#: ../src/yumexgui/__init__.py:956
 msgid "Clean Packages"
 msgstr "パッケージを除去"
 
-#: ../src/yumexgui/__init__.py:935
+#: ../src/yumexgui/__init__.py:957
 msgid "Clean DbCache"
 msgstr "DB キャッシュを除去する"
 
-#: ../src/yumexgui/__init__.py:936
+#: ../src/yumexgui/__init__.py:958
 msgid "Clean All"
 msgstr "全てを除去する"
 
-#: ../src/yumexgui/__init__.py:942
+#: ../src/yumexgui/__init__.py:964
 msgid "By Repositories"
 msgstr "リポジトリー別"
 
-#: ../src/yumexgui/__init__.py:943
+#: ../src/yumexgui/__init__.py:965
 msgid "By Size"
 msgstr "サイズ別"
 
-#: ../src/yumexgui/__init__.py:967 ../src/yumexgui/__init__.py:968
+#: ../src/yumexgui/__init__.py:989 ../src/yumexgui/__init__.py:990
 msgid "Getting Group information"
 msgstr "グループ情報を取得中"
 
-#: ../src/yumexgui/__init__.py:1009
+#: ../src/yumexgui/__init__.py:1031
 msgid "The pending action queue is empty"
 msgstr "保留しているアクションのキューが空です"
 
-#: ../src/yumexgui/__init__.py:1026
+#: ../src/yumexgui/__init__.py:1048
 msgid "Processing pending actions"
 msgstr "保留しているアクションを処理中"
 
-#: ../src/yumexgui/__init__.py:1027
+#: ../src/yumexgui/__init__.py:1049
 msgid "Preparing the transaction"
 msgstr "トランザクションを準備中"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:1043 ../src/yumexgui/__init__.py:1045
+#: ../src/yumexgui/__init__.py:1065 ../src/yumexgui/__init__.py:1067
 msgid "Transaction completed successfully"
 msgstr "トランザクションが正常に完了しました"
 
-#: ../src/yumexgui/__init__.py:1046
+#: ../src/yumexgui/__init__.py:1068
 msgid ""
 "\n"
 "\n"
@@ -636,11 +636,11 @@ msgstr ""
 "Yum Extenderを終了したいですか？"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:1052
+#: ../src/yumexgui/__init__.py:1074
 msgid "Transaction Aborted by User"
 msgstr "トランザクションがユーザーによって中止されました"
 
-#: ../src/yumexgui/__init__.py:1055
+#: ../src/yumexgui/__init__.py:1077
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -648,27 +648,27 @@ msgstr ""
 "トランザクションがエラーで完了しました。\n"
 "詳細は出力をご覧ください"
 
-#: ../src/yumexgui/__init__.py:1138
+#: ../src/yumexgui/__init__.py:1160
 msgid "<unset>"
 msgstr "<unset>"
 
-#: ../src/yumexgui/__init__.py:1139
+#: ../src/yumexgui/__init__.py:1161
 msgid "System"
 msgstr "システム"
 
-#: ../src/yumexgui/__init__.py:1166
+#: ../src/yumexgui/__init__.py:1188
 msgid "Getting History Information"
 msgstr "履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:1168
+#: ../src/yumexgui/__init__.py:1190
 msgid "Getting Latest History Information"
 msgstr "最新の履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:1170
+#: ../src/yumexgui/__init__.py:1192
 msgid "Getting All History Information"
 msgstr "全ての履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:1188
+#: ../src/yumexgui/__init__.py:1210
 #, fuzzy
 msgid "History Disabled"
 msgstr "履歴"
@@ -854,78 +854,82 @@ msgstr ""
 "検索語を空白で区切って入力してください。\n"
 
 #: ../src/yumex.glade.h:32
+msgid "Typeahead search on/off"
+msgstr ""
+
+#: ../src/yumex.glade.h:33
 msgid "U_pdates"
 msgstr "更新(_P)"
 
-#: ../src/yumex.glade.h:33
+#: ../src/yumex.glade.h:34
 msgid "Undo a history transaction"
 msgstr "履歴トランザクションを元に戻す"
 
-#: ../src/yumex.glade.h:34
+#: ../src/yumex.glade.h:35
 msgid "Undo all package selection"
 msgstr "全てのパッケージ選択を元に戻します"
 
-#: ../src/yumex.glade.h:35
+#: ../src/yumex.glade.h:36
 msgid "Undo repository selection changes"
 msgstr "リポジトリー選択の変更を元に戻します"
 
-#: ../src/yumex.glade.h:36
+#: ../src/yumex.glade.h:37
 msgid "Yum"
 msgstr "Yum"
 
-#: ../src/yumex.glade.h:37
+#: ../src/yumex.glade.h:38
 msgid "_Categories"
 msgstr "カテゴリ (_C)"
 
-#: ../src/yumex.glade.h:38
+#: ../src/yumex.glade.h:39
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/yumex.glade.h:39
+#: ../src/yumex.glade.h:40
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/yumex.glade.h:40
+#: ../src/yumex.glade.h:41
 msgid "_Groups"
 msgstr "グループ(_G)"
 
-#: ../src/yumex.glade.h:41
+#: ../src/yumex.glade.h:42
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/yumex.glade.h:42
+#: ../src/yumex.glade.h:43
 msgid "_History"
 msgstr "履歴 (_H)"
 
-#: ../src/yumex.glade.h:43
+#: ../src/yumex.glade.h:44
 msgid "_Installed"
 msgstr "インストール済(_I)"
 
-#: ../src/yumex.glade.h:44
+#: ../src/yumex.glade.h:45
 msgid "_Options"
 msgstr "オプション(_O)"
 
-#: ../src/yumex.glade.h:45
+#: ../src/yumex.glade.h:46
 msgid "_Output"
 msgstr "出力(_O)"
 
-#: ../src/yumex.glade.h:46
+#: ../src/yumex.glade.h:47
 msgid "_Packages"
 msgstr "パッケージ(_P)"
 
-#: ../src/yumex.glade.h:47
+#: ../src/yumex.glade.h:48
 msgid "_Profiles"
 msgstr "プロファイル(_P)"
 
-#: ../src/yumex.glade.h:48
+#: ../src/yumex.glade.h:49
 msgid "_Queue"
 msgstr "キュー(_Q)"
 
-#: ../src/yumex.glade.h:49
+#: ../src/yumex.glade.h:50
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../src/yumex.glade.h:50
+#: ../src/yumex.glade.h:51
 msgid "no GPG Check"
 msgstr "GPGを確認しない"
 

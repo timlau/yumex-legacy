@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-17 18:21+0200\n"
+"POT-Creation-Date: 2010-09-21 06:59+0200\n"
 "PO-Revision-Date: 2010-08-23 00:08+0330\n"
 "Last-Translator: Mostafa <info@mostafadaneshvar.com>\n"
 "Language-Team: Persian <trans-fa@lists.fedoraproject.org>\n"
@@ -331,7 +331,7 @@ msgid "Use sortable columns in package view (slower)"
 msgstr "استفاده از  ستون های قابل ترتیب در نمای بسته (کندتر)"
 
 #: ../src/yumexgui/dialogs.py:429
-msgid "Use type ahead search on package name"
+msgid "Use typeahead search on package name"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:437
@@ -437,111 +437,111 @@ msgstr "صادر شده"
 msgid "Description"
 msgstr "توضیحات : %s\n"
 
-#: ../src/yumexgui/__init__.py:510
+#: ../src/yumexgui/__init__.py:516
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "آیا می خواهید %s از کش یام حذف شوند"
 
-#: ../src/yumexgui/__init__.py:694
+#: ../src/yumexgui/__init__.py:701
 msgid "Fatal Error"
 msgstr "خطای مهلک"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:696
+#: ../src/yumexgui/__init__.py:703
 msgid "Can't start the yum backend"
 msgstr "نمی تواند بخش مدیریت یام را شروع کند"
 
-#: ../src/yumexgui/__init__.py:697
+#: ../src/yumexgui/__init__.py:704
 msgid "Another program is locking yum"
 msgstr "برنامه ی دیگری بر روی یام قفل کرده است"
 
-#: ../src/yumexgui/__init__.py:699
+#: ../src/yumexgui/__init__.py:706
 msgid "Message from yum backend:"
 msgstr " پیغام از بخش مدیریت یام"
 
-#: ../src/yumexgui/__init__.py:703
+#: ../src/yumexgui/__init__.py:710
 msgid "Error in repository setup"
 msgstr "خطا در تنظیم مخزن"
 
-#: ../src/yumexgui/__init__.py:706
+#: ../src/yumexgui/__init__.py:713
 msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr "شما می توانید دستور 'yumex -n'  را از خط فرمان آزمایش کنید\n"
 
-#: ../src/yumexgui/__init__.py:707
+#: ../src/yumexgui/__init__.py:714
 msgid "and deseleting the repositories causing problems\n"
 msgstr "و انتخاب مخازن باعث مشکل می شود\n"
 
-#: ../src/yumexgui/__init__.py:708
+#: ../src/yumexgui/__init__.py:715
 msgid "and try again.\n"
 msgstr "و تلاش دوباره.\n"
 
-#: ../src/yumexgui/__init__.py:713
+#: ../src/yumexgui/__init__.py:720
 msgid "Fatal Error in backend restart"
 msgstr "خطای تجزیهٔ مهلک در شروع مجدد بخش مدیریت"
 
-#: ../src/yumexgui/__init__.py:714
+#: ../src/yumexgui/__init__.py:721
 msgid "Backend could not be closed"
 msgstr "بخش مدیریت نمی تواند بسته شود"
 
-#: ../src/yumexgui/__init__.py:718
+#: ../src/yumexgui/__init__.py:725
 msgid "Fatal Error : "
 msgstr "خطای مهلک:"
 
-#: ../src/yumexgui/__init__.py:794
+#: ../src/yumexgui/__init__.py:814
 #, fuzzy
 msgid "Available Updates"
 msgstr "گرفتن به روزرسانی های موجود"
 
-#: ../src/yumexgui/__init__.py:796
+#: ../src/yumexgui/__init__.py:816
 #, fuzzy
 msgid "Search for packages"
 msgstr "نمایش به روز رسانی های بسته"
 
-#: ../src/yumexgui/__init__.py:798 ../src/yumexgui/views.py:625
+#: ../src/yumexgui/__init__.py:818 ../src/yumexgui/views.py:625
 msgid "Packages"
 msgstr "بسته ها"
 
-#: ../src/yumexgui/__init__.py:800
+#: ../src/yumexgui/__init__.py:820
 msgid "Perform actions on packages"
 msgstr "اجرای اعمال بر روی بسته ها"
 
-#: ../src/yumexgui/__init__.py:802
+#: ../src/yumexgui/__init__.py:822
 msgid "Pending Actions"
 msgstr "کارهای معوق"
 
-#: ../src/yumexgui/__init__.py:803
+#: ../src/yumexgui/__init__.py:823
 msgid "Work with pending actions"
 msgstr "کار با کارهای معوق"
 
-#: ../src/yumexgui/__init__.py:806
+#: ../src/yumexgui/__init__.py:826
 msgid "Repositories"
 msgstr "مخازن"
 
-#: ../src/yumexgui/__init__.py:807
+#: ../src/yumexgui/__init__.py:827
 msgid "Select active repositories"
 msgstr "انتخاب مخازن فعال"
 
-#: ../src/yumexgui/__init__.py:810
+#: ../src/yumexgui/__init__.py:830
 msgid "History"
 msgstr "تاریخچه"
 
-#: ../src/yumexgui/__init__.py:811
+#: ../src/yumexgui/__init__.py:831
 msgid "Watch yum history"
 msgstr "دیدن تاریخچه یام"
 
-#: ../src/yumexgui/__init__.py:813
+#: ../src/yumexgui/__init__.py:833
 msgid "Output"
 msgstr "خروجی"
 
-#: ../src/yumexgui/__init__.py:814
+#: ../src/yumexgui/__init__.py:834
 msgid "Watch output details"
 msgstr "دیدن جزییات خروجی"
 
-#: ../src/yumexgui/__init__.py:860
+#: ../src/yumexgui/__init__.py:882
 msgid "Not connected to an network"
 msgstr "به شبکه ای وصل نیست"
 
-#: ../src/yumexgui/__init__.py:861
+#: ../src/yumexgui/__init__.py:883
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
@@ -549,72 +549,72 @@ msgstr ""
 "به شبکه ای وصل نیست.\n"
 "آیا می خواهید ادامه دهید"
 
-#: ../src/yumexgui/__init__.py:866
+#: ../src/yumexgui/__init__.py:888
 msgid "network connection state check is disabled"
 msgstr "کنترل وضعیت شبکه غیرفعال است"
 
-#: ../src/yumexgui/__init__.py:868
+#: ../src/yumexgui/__init__.py:890
 msgid "Can't detect the network connection state"
 msgstr "نمی توان وضعیت اتصال شبکه را پیدا کند"
 
-#: ../src/yumexgui/__init__.py:870
+#: ../src/yumexgui/__init__.py:892
 msgid "Connected to an network"
 msgstr "متصل به یک شبکه"
 
-#: ../src/yumexgui/__init__.py:926
+#: ../src/yumexgui/__init__.py:948
 msgid "Enable Permanently"
 msgstr "فعالسازی دایمی"
 
-#: ../src/yumexgui/__init__.py:930
+#: ../src/yumexgui/__init__.py:952
 msgid "Disable Permanently"
 msgstr "از کار انداختن دایمی"
 
-#: ../src/yumexgui/__init__.py:933
+#: ../src/yumexgui/__init__.py:955
 msgid "Clean Metadata"
 msgstr "حذف متاداده"
 
-#: ../src/yumexgui/__init__.py:934
+#: ../src/yumexgui/__init__.py:956
 msgid "Clean Packages"
 msgstr "پاکسازی بسته ها"
 
-#: ../src/yumexgui/__init__.py:935
+#: ../src/yumexgui/__init__.py:957
 msgid "Clean DbCache"
 msgstr "پاک‌سازی DbCache"
 
-#: ../src/yumexgui/__init__.py:936
+#: ../src/yumexgui/__init__.py:958
 msgid "Clean All"
 msgstr "پاکسازی همه"
 
-#: ../src/yumexgui/__init__.py:942
+#: ../src/yumexgui/__init__.py:964
 msgid "By Repositories"
 msgstr "با مخازن"
 
-#: ../src/yumexgui/__init__.py:943
+#: ../src/yumexgui/__init__.py:965
 msgid "By Size"
 msgstr "از روی اندازه"
 
-#: ../src/yumexgui/__init__.py:967 ../src/yumexgui/__init__.py:968
+#: ../src/yumexgui/__init__.py:989 ../src/yumexgui/__init__.py:990
 msgid "Getting Group information"
 msgstr "بازخوانی اطلاعات گروه"
 
-#: ../src/yumexgui/__init__.py:1009
+#: ../src/yumexgui/__init__.py:1031
 msgid "The pending action queue is empty"
 msgstr "صف کار معوق تهی است"
 
-#: ../src/yumexgui/__init__.py:1026
+#: ../src/yumexgui/__init__.py:1048
 msgid "Processing pending actions"
 msgstr "پردازش کارهای معوق"
 
-#: ../src/yumexgui/__init__.py:1027
+#: ../src/yumexgui/__init__.py:1049
 msgid "Preparing the transaction"
 msgstr "آماده سازی تراکنش"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:1043 ../src/yumexgui/__init__.py:1045
+#: ../src/yumexgui/__init__.py:1065 ../src/yumexgui/__init__.py:1067
 msgid "Transaction completed successfully"
 msgstr "تراکنش موفقیت‌آمیز انجام شد!"
 
-#: ../src/yumexgui/__init__.py:1046
+#: ../src/yumexgui/__init__.py:1068
 msgid ""
 "\n"
 "\n"
@@ -625,11 +625,11 @@ msgstr ""
 "آیا می خواهید از یام اکستندر خارج شوید؟"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:1052
+#: ../src/yumexgui/__init__.py:1074
 msgid "Transaction Aborted by User"
 msgstr "تراکنش به وسیله ی کاربر متوقف شد"
 
-#: ../src/yumexgui/__init__.py:1055
+#: ../src/yumexgui/__init__.py:1077
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -637,27 +637,27 @@ msgstr ""
 "تراکنش با خطاهایی کامل شد\n"
 "برای جزییات بیشتر صفحه خروجی را چک کنید"
 
-#: ../src/yumexgui/__init__.py:1138
+#: ../src/yumexgui/__init__.py:1160
 msgid "<unset>"
 msgstr "<باز نشاندن>"
 
-#: ../src/yumexgui/__init__.py:1139
+#: ../src/yumexgui/__init__.py:1161
 msgid "System"
 msgstr "سیستم"
 
-#: ../src/yumexgui/__init__.py:1166
+#: ../src/yumexgui/__init__.py:1188
 msgid "Getting History Information"
 msgstr "بازخوانی اطلاعات تاریخچه"
 
-#: ../src/yumexgui/__init__.py:1168
+#: ../src/yumexgui/__init__.py:1190
 msgid "Getting Latest History Information"
 msgstr "گرفتن آخرین اطلاعات تاریخچه "
 
-#: ../src/yumexgui/__init__.py:1170
+#: ../src/yumexgui/__init__.py:1192
 msgid "Getting All History Information"
 msgstr "همه اطلاعات تاریخچه"
 
-#: ../src/yumexgui/__init__.py:1188
+#: ../src/yumexgui/__init__.py:1210
 msgid "History Disabled"
 msgstr "تاریخچه غیرفعال"
 
@@ -845,78 +845,82 @@ msgstr ""
 "کلمات است.\n"
 
 #: ../src/yumex.glade.h:32
+msgid "Typeahead search on/off"
+msgstr ""
+
+#: ../src/yumex.glade.h:33
 msgid "U_pdates"
 msgstr "به روزرسانی ها"
 
-#: ../src/yumex.glade.h:33
+#: ../src/yumex.glade.h:34
 msgid "Undo a history transaction"
 msgstr "بازگردادن یک تراکنش تاریخچه"
 
-#: ../src/yumex.glade.h:34
+#: ../src/yumex.glade.h:35
 msgid "Undo all package selection"
 msgstr "برداشت انتخاب کل بسته"
 
-#: ../src/yumex.glade.h:35
+#: ../src/yumex.glade.h:36
 msgid "Undo repository selection changes"
 msgstr "بازگشت تغییرات انتخاب مخزن"
 
-#: ../src/yumex.glade.h:36
+#: ../src/yumex.glade.h:37
 msgid "Yum"
 msgstr "یام"
 
-#: ../src/yumex.glade.h:37
+#: ../src/yumex.glade.h:38
 msgid "_Categories"
 msgstr "دسته ها"
 
-#: ../src/yumex.glade.h:38
+#: ../src/yumex.glade.h:39
 msgid "_Edit"
 msgstr "اصلاح"
 
-#: ../src/yumex.glade.h:39
+#: ../src/yumex.glade.h:40
 msgid "_File"
 msgstr "فایل"
 
-#: ../src/yumex.glade.h:40
+#: ../src/yumex.glade.h:41
 msgid "_Groups"
 msgstr "_گروه‌ها"
 
-#: ../src/yumex.glade.h:41
+#: ../src/yumex.glade.h:42
 msgid "_Help"
 msgstr "کمک"
 
-#: ../src/yumex.glade.h:42
+#: ../src/yumex.glade.h:43
 msgid "_History"
 msgstr "تاریخچه"
 
-#: ../src/yumex.glade.h:43
+#: ../src/yumex.glade.h:44
 msgid "_Installed"
 msgstr "نصب شده"
 
-#: ../src/yumex.glade.h:44
+#: ../src/yumex.glade.h:45
 msgid "_Options"
 msgstr "گزینه‌ها"
 
-#: ../src/yumex.glade.h:45
+#: ../src/yumex.glade.h:46
 msgid "_Output"
 msgstr "خروجی"
 
-#: ../src/yumex.glade.h:46
+#: ../src/yumex.glade.h:47
 msgid "_Packages"
 msgstr "بسته ها"
 
-#: ../src/yumex.glade.h:47
+#: ../src/yumex.glade.h:48
 msgid "_Profiles"
 msgstr "نمایه ها"
 
-#: ../src/yumex.glade.h:48
+#: ../src/yumex.glade.h:49
 msgid "_Queue"
 msgstr "صف"
 
-#: ../src/yumex.glade.h:49
+#: ../src/yumex.glade.h:50
 msgid "_View"
 msgstr "دیدن"
 
-#: ../src/yumex.glade.h:50
+#: ../src/yumex.glade.h:51
 msgid "no GPG Check"
 msgstr "کنترل نکردن امضای GPG"
 
