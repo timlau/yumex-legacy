@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-21 06:59+0200\n"
-"PO-Revision-Date: 2010-09-18 18:32+0200\n"
+"PO-Revision-Date: 2010-09-21 10:47+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -329,7 +329,6 @@ msgid "Use sortable columns in package view (slower)"
 msgstr "Użycie uporządkowanych kolumn w widoku pakietów (wolniej)"
 
 #: ../src/yumexgui/dialogs.py:429
-#, fuzzy
 msgid "Use typeahead search on package name"
 msgstr "Użycie wyszukiwania przyrostowego dla nazw pakietów"
 
@@ -838,9 +837,8 @@ msgstr ""
 "spacjami, aby odnaleźć pakiety je zawierające.\n"
 
 #: ../src/yumex.glade.h:32
-#, fuzzy
 msgid "Typeahead search on/off"
-msgstr "Użycie wyszukiwania przyrostowego dla nazw pakietów"
+msgstr "Włączenie/wyłączenie wyszukiwania przyrostowego"
 
 #: ../src/yumex.glade.h:33
 msgid "U_pdates"
