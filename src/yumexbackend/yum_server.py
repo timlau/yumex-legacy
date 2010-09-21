@@ -1045,14 +1045,29 @@ class YumServer(yum.YumBase):
             self.cleanSqlite()
         self.info(msg)    
         self.ended(True)
+
+    def search_history(self, pattern):
+        """
+        Get the yum history elements
+        """
+        if hasattr(self,"_history"): # Yum supports history
+            if pattern[-1] != '*':
+                pattern += '*'
+            tids = self.history.search(pattern)
+            yhts = self.history.old(tids)
+            for yht in yhts:
+                self._show_history_item(yht)
+            self.ended(True)
+        else:
+            self.ended(False)
             
     def get_history(self,args):
         """
         Get the yum history elements
         """
         if hasattr(self,"_history"): # Yum supports history
-            tids = self.history.old()
-            for yht in tids:
+            yhts = self.history.old()
+            for yht in yhts:
                 self._show_history_item(yht)
             self.ended(True)
         else:
@@ -1147,6 +1162,8 @@ class YumServer(yum.YumBase):
             self.history_undo(args)
         elif cmd == 'history-redo':
             self.history_redo(args)
+        elif cmd == 'search-history':
+            self.search_history(args[0])
         else:
             self.error('Unknown command : %s' % cmd)
 

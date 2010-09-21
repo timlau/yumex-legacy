@@ -563,6 +563,11 @@ class YumexHandlers(Controller):
         
         
 # History Page
+
+    def on_historySearch_activate(self, widget=None, event=None):
+        pat = self.ui.historySearch.get_text()
+        self.info("History Search : "+pat)
+        self.search_history(pat)
         
     def on_historyUndo_clicked(self, widget=None, event=None):
         (model, iterator) = self.ui.historyView.get_selection().get_selected()
@@ -1171,7 +1176,23 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             return name
         except KeyError:
             return str(uid)
-                
+        
+    def _get_history_info(self, tids, limit=None):        
+        data = []
+        num_elem = 0
+        for tid in tids:
+            self.refresh()
+            name = self._pwd_ui_username(tid.loginuid, 22)
+            tm = time.strftime("%Y-%m-%d %H:%M",
+                           time.localtime(tid.beg_timestamp))
+            pkgs = self.backend.get_history_packages(tid.tid)
+            num, uiacts = self._history_uiactions(pkgs)
+            data.append([tid.tid, name, tm, uiacts, num])
+            num_elem +=1
+            if limit and num_elem > limit: # Show only a limited number of history elements (SPEED)
+                break
+        return data
+    
     def setup_history(self, limit = None, force = False):       
         if not self.history_is_loaded or force:
  
@@ -1189,25 +1210,29 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     progress.set_header(_("Getting All History Information"))
     
                 progress.show()
-                data = []
-                num_elem = 0
-                for tid in tids:
-                    self.refresh()
-                    name = self._pwd_ui_username(tid.loginuid, 22)
-                    tm = time.strftime("%Y-%m-%d %H:%M",
-                                   time.localtime(tid.beg_timestamp))
-                    pkgs = self.backend.get_history_packages(tid.tid)
-                    num, uiacts = self._history_uiactions(pkgs)
-                    data.append([tid.tid, name, tm, uiacts, num])
-                    num_elem +=1
-                    if limit and num_elem > limit: # Show only a limited number of history elements (SPEED)
-                        break
+                data = self._get_history_info(tids, limit)
                 self.history.populate(data)
             else:
                 self.info(_("History Disabled"))
             progress.hide()
             self.debug("Getting History Information - END")
             self.history_is_loaded = True
+
+    def search_history(self, pattern):       
+        self.debug("Searching History Information - BEGIN")
+        tids = self.backend.search_history(pattern)
+        progress = self.get_progress()
+        if tids:
+            progress.set_pulse(True)
+            progress.set_title(_("Searching History Information"))
+            progress.set_header(_("Searching History Information"))
+            progress.show()
+            data = self._get_history_info(tids)
+            self.history.populate(data)
+        else:
+            self.info(_("History Disabled"))
+        progress.hide()
+        self.debug("Searching History Information - END")
 
     def _get_relations(self, data):
         names = {}

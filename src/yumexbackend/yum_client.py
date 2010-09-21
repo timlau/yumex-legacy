@@ -551,6 +551,12 @@ class YumClient:
         tids = self._get_packed_list(result_cmd = ':hist')
         return tids
 
+    def search_history(self, pattern):    
+        ''' get a list of packages based on pkg_filter '''
+        self._send_command('search-history', [pattern])
+        tids = self._get_packed_list(result_cmd = ':hist')
+        return tids
+
     def history_redo(self, tid):    
         ''' reodo a history transaction '''
         self._send_command('history-redo', [str(tid)])
