@@ -539,9 +539,9 @@ class YumClient:
         pkgs = self._get_list()
         return pkgs
 
-    def get_history_packages(self, tid):    
+    def get_history_packages(self, tid, data_set='trans_data'):    
         ''' get a list of packages based on pkg_filter '''
-        self._send_command('get-history-packages', [str(tid)])
+        self._send_command('get-history-packages', [str(tid), data_set])
         pkgs = self._get_packed_list(result_cmd = ':histpkg')
         return pkgs
 

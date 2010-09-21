@@ -156,4 +156,19 @@ RPM_ACTIONS = {
     TS_UPDATED: '%s is cleanup'
 }   
 
+HISTORY_UPDATE_STATES = {
+     'Update' : _('Updated packages'),
+     'Updated' : _('Updated packages'), 
+     'Downgrade' : _('Downgraded packages'),
+     'Downgraded' : _('Downgraded packages'),
+     'Obsoleted' : _('Obsoleted packages'),
+     'Obsoleting' : _('Obsoleted packages')}
+
+HISTORY_OTHER_STATES = {
+     'Erase' : _('Erased packages'),
+     'Install' : _('Installed packages'), 
+     'True-Install' : _('Installed packages'),
+     'Dep-Install' : _('Installed for dependencies'),
+     'Reinstall' : _('Reinstalled packages')}
+
         

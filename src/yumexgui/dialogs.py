@@ -677,6 +677,23 @@ class ErrorDialog:
         '''
         self.dialog.hide()
 
+class TestWindow:
+    """
+    Test Window with Treeview, only used for testing of new views
+    """
+
+    def __init__(self,ui,backend,frontend):
+        self.ui = ui
+        self.backend = backend
+        self.frontend = frontend
+        self.window = self.ui.testWindow
+        self.setup_gui()
+        
+        
+    def setup_gui(self):
+        self.window.show()
+        
+
 def okDialog(parent, msg):
     '''
     Open an OK message dialog

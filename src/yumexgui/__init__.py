@@ -33,11 +33,13 @@ from datetime import date
 
 from yumexgui.gui import Notebook, PackageCache, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
-                             questionDialog, Preferences, okCancelDialog, SearchOptions
+                             questionDialog, Preferences, okCancelDialog, SearchOptions, \
+                             TestWindow
 from yumexbase.network import NetworkCheckNetworkManager                             
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
-                           YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView, YumexPackageViewSorted
+                           YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView, \
+                           YumexPackageViewSorted, YumexHistoryPackageView
 from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError
 import yumexbase.constants as const
@@ -591,22 +593,7 @@ class YumexHandlers(Controller):
         (model, iterator) = widget.get_selection().get_selected()
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
-            self.histInfo.clear()
-            pkgs = self.backend.get_history_packages(tid)
-            dict = {}
-            for pkg in pkgs:
-                if pkg.state in dict:
-                    dict[pkg.state].append(pkg)
-                else:
-                    dict[pkg.state] = [pkg]
-            for key in HISTORY_KEYS:
-                if not key in dict:
-                    continue
-                self.histInfo.write("%s" % (key),'error')
-                pkgs = dict[key]
-                for pkg in pkgs:
-                    self.histInfo.write("   %s\n" % (pkg))
-            
+            self.show_history_packages(tid)
     
 # Progress dialog    
         
@@ -830,6 +817,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.notebook.add_page("history", _("History"), self.ui.historyMain, 
                                icon=ICON_HISTORY, tooltip=_("Watch yum history"),
                                 accel = '<Ctrl>4', callback=self.setup_history)
+            self.history_pkg_view = YumexHistoryPackageView(self.ui.historyPkgView, \
+                                            self.settings.color_install, \
+                                            self.settings.color_normal )
+
         self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
                                icon=ICON_OUTPUT, tooltip=_("Watch output details"),
                                 accel = '<Ctrl>5')
@@ -857,7 +848,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.groupInfo = TextViewConsole(self.ui.groupDesc, font_size=font_size)
         # setup history page
         self.history = YumexHistoryView(self.ui.historyView)
-        self.histInfo = TextViewConsole(self.ui.historyInfo, font_size=font_size)
         
         # setup category views
         self.category_types = YumexCategoryTypesView(self.ui.categoryTypes)
@@ -917,9 +907,16 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             # setup default package filter (updates)
             self.ui.packageRadioUpdates.clicked()
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-
+        #self.testing()
 
 # pylint: enable-msg=W0201
+
+
+    def testing(self):
+        """
+        Test func for lauching a TestWindow for testing new views 
+        """
+        tw = TestWindow(self.ui,self.backend, self)
 
     def doTextLoggerSetup( self, logroot, logfmt = '%(message)s', loglvl = logging.INFO):
         ''' Setup Python logging using a TextViewLogHandler '''
@@ -1212,4 +1209,53 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.debug("Getting History Information - END")
             self.history_is_loaded = True
 
+    def _get_relations(self, data):
+        names = {}
+        for hpo in data:
+            if hpo.name in names:
+                names[hpo.name].append(hpo)
+            else:
+                names[hpo.name] = [hpo]
+        relations = {}
+        for name in names:
+            pkgs = names[name]
+            if pkgs[0] < pkgs[1]:
+                tup = (pkgs[0],pkgs[1])
+                state = pkgs[1].state
+            else:    
+                tup = (pkgs[1],pkgs[0])
+                state = pkgs[0].state
+            if state in relations:                
+                relations[state].append(tup)    
+            else:
+                relations[state] = [tup]    
+        return relations
             
+
+    def show_history_packages(self,tid):
+        main = {}
+        pkgs = self.backend.get_history_packages(tid, 'trans_with')
+        main[_('Transaction Performed with')] = pkgs
+        pkgs = self.backend.get_history_packages(tid, 'trans_skip')
+        if pkgs:
+            main[_('Skipped packages')] = pkgs
+        pkgs = self.backend.get_history_packages(tid)
+        values = {}
+        for pkg in pkgs:
+            if pkg.state in values:
+                values[pkg.state].append(pkg)
+            else:
+                values[pkg.state] = [pkg]
+        packages = {}                
+        data = []
+        for state in HISTORY_UPDATE_STATES:
+            if state in values:
+                data.extend(values[state])
+        relations = self._get_relations(data)   
+        for state in relations:
+            main[HISTORY_UPDATE_STATES[state]] = relations[state]                
+        for state in HISTORY_OTHER_STATES:
+            if state in values:
+                main[HISTORY_OTHER_STATES[state]] = values[state]
+        self.history_pkg_view.populate(main)
+        

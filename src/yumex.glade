@@ -1590,9 +1590,11 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                 <property name="hscrollbar_policy">automatic</property>
                 <property name="vscrollbar_policy">automatic</property>
                 <child>
-                  <object class="GtkTextView" id="historyInfo">
+                  <object class="GtkTreeView" id="historyPkgView">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="rules_hint">True</property>
+                    <property name="enable_grid_lines">vertical</property>
                   </object>
                 </child>
               </object>
@@ -1963,5 +1965,21 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
     <action-widgets>
       <action-widget response="0">button1</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkWindow" id="testWindow">
+    <property name="width_request">600</property>
+    <property name="height_request">400</property>
+    <property name="title" translatable="yes">Testing Stuff</property>
+    <child>
+      <object class="GtkScrolledWindow" id="testSW">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="hscrollbar_policy">automatic</property>
+        <property name="vscrollbar_policy">automatic</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
   </object>
 </interface>

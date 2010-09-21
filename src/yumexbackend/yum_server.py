@@ -348,10 +348,22 @@ class YumServer(yum.YumBase):
         else:
             return 0
                     
+    def _is_installed(self, po):
+        '''
+        Check if a package is installed
+        @param po: package to check for 
+        '''
+        (n, a, e, v, r) = po.pkgtup
+        po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)
+        if po:
+            return True
+        else:
+            return False   
+                    
     
     def _show_history_package(self, pkg):
         ''' write history package result'''
-        yhp = pack(YumHistoryPackage(pkg))
+        yhp = pack(YumHistoryPackage(pkg, self._is_installed(pkg)))
         self.write(":histpkg\t%s" % yhp) 
 
     def _show_history_item(self, yht):
@@ -1046,11 +1058,10 @@ class YumServer(yum.YumBase):
         else:
             self.ended(False)
             
-    def get_history_packages(self,args):
-        tid = int(args[0])
+    def get_history_packages(self, tid, data_set='trans_data'):
         tids = self.history.old([tid])
         for yht in tids:
-            yhp = yht.trans_data
+            yhp = getattr(yht,data_set)
             for pkg in yhp:
                 self._show_history_package(pkg)
         self.ended(True)
@@ -1131,7 +1142,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'get-history':
             self.get_history(args)
         elif cmd == 'get-history-packages':
-            self.get_history_packages(args)
+            self.get_history_packages(args[0],args[1])
         elif cmd == 'history-undo':
             self.history_undo(args)
         elif cmd == 'history-redo':

@@ -44,16 +44,22 @@ class SelectionView:
         self.view = widget
         self.store = None
 
-    def create_text_column_num(self, hdr, colno, resize=True):
+    def create_text_column_num(self, hdr, colno, resize=True, size=None, markup=False):
         '''
         Create a TreeViewColumn with data from a TreeStore column
         @param hdr: column header text
         @param colno: TreeStore column to get the data from
         @param resize: is resizable
         '''
-        cell = gtk.CellRendererText()    # Size Column
-        column = gtk.TreeViewColumn(hdr, cell, text=colno)
+        cell = gtk.CellRendererText()
+        if markup:    
+            column = gtk.TreeViewColumn(hdr, cell, markup=colno)
+        else:
+            column = gtk.TreeViewColumn(hdr, cell, text=colno)
         column.set_resizable(resize)
+        if size:
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+            column.set_fixed_width(size)
         self.view.append_column(column)      
         return column  
 
@@ -94,21 +100,50 @@ class SelectionView:
         cell1.connect("toggled", self.on_toggled)            
         column1.set_clickable(True)
 
-    def create_selection_column_num(self, num):
+    def create_selection_column_num(self, num, data_func=None):
         '''
         Create an selection column, there get data an TreeStore Column        
         @param num: TreeStore column to get data from
         '''
         # Setup a selection column using a column num
-        cell1 = gtk.CellRendererToggle()    # Selection
-        cell1.set_property('activatable', True)
-        column1 = gtk.TreeViewColumn("    ", cell1)
-        column1.add_attribute(cell1, "active", num)
-        column1.set_resizable(True)
-        column1.set_sort_column_id(-1)            
-        self.view.append_column(column1)
-        cell1.connect("toggled", self.on_toggled)   
-        return column1
+        
+        column = gtk.TreeViewColumn(None, None)
+        # Selection checkbox
+        selection = gtk.CellRendererToggle()    # Selection
+        selection.set_property('activatable', True)
+        column.pack_start(selection, False)
+        if data_func:
+            column.set_cell_data_func(selection, data_func)
+        else:
+            column.add_attribute(selection, "active", num)
+        column.set_resizable(True)
+        column.set_sort_column_id(-1)            
+        self.view.append_column(column)
+        selection.connect("toggled", self.on_toggled)   
+        return column
+
+    def create_selection_text_column(self, hdr, select_func, text_attr, size=200):
+        '''
+        Create an selection column, there get data an TreeStore Column        
+        @param num: TreeStore column to get data from
+        '''
+        # Setup a selection column using a column num
+        
+        column = gtk.TreeViewColumn(hdr, None)
+        # Selection checkbox
+        selection = gtk.CellRendererToggle()    # Selection
+        selection.set_property('activatable', True)
+        selection.connect("toggled", self.on_toggled)   
+        column.pack_start(selection, False)
+        column.set_cell_data_func(selection, select_func)
+        text = gtk.CellRendererText()
+        column.pack_start(text, False)
+        column.set_cell_data_func(text, self.get_data_text, text_attr)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
+        column.set_fixed_width(size)        
+        column.set_sort_column_id(-1)            
+        self.view.append_column(column)
+        return column
         
     def get_data_text(self, column, cell, model, iterator, prop):
         '''
@@ -1171,5 +1206,120 @@ class YumexHistoryView(SelectionView):
     def populate(self,data):
         self.model.clear()
         for (id,user,dt,action,alt) in data:
-            self.model.append([id,user,dt,action,alt])          
+            self.model.append([id,user,dt,action,alt])       
+
+class HistoryLabel:
+    """
+    Fake History Package class contain a category label
+    """
+    def __init__(self,label):
+        self.name = "<b>%s</b>" % label
+        self.installed = False
+        self.fullver = ""
+        self.arch = ""
+               
+
+class YumexHistoryPackageView(SelectionView):
+    """ 
+    This class controls the history package
+    """
+    def __init__(self, widget, install_color, other_color):
+        '''
+        
+        @param widget:
+        '''
+        SelectionView.__init__(self, widget)
+        self.view.modify_font(const.SMALL_FONT)        
+        self.store = self.setup_view()
+        self.install_color = install_color
+        self.other_color = other_color
+
+    def get_data_bool(self, column, cell, model, iterator, prop):
+        '''
+        Show a checkbox is selection column is not None
+        
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        '''
+        state = model.get_value(iterator, 0)
+        category = model.get_value(iterator, 1)
+        if category:
+            cell.set_property('visible', False)
+        else:
+            cell.set_property('visible', True)
+            cell.set_property('active', state)
+
+    def get_data_text(self, column, cell, model, iterator, prop):
+        '''
+        a property function to get string data from a object in the TreeStore based on
+        an attributes key
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        @param prop: attribute key
+        '''
+        category = model.get_value(iterator, 1)
+        color = self.other_color
+        if category:
+            if prop == 'name':
+                cell.set_property('markup', category)
+            else:            
+                cell.set_property('markup', '')
+        else:
+            obj = model.get_value(iterator, 2)
+            if obj:
+                cell.set_property('markup', getattr(obj, prop))
+                if obj.installed:
+                    color = self.install_color
+        cell.set_property('foreground', color)
+
+
+    def on_toggled(self, widget, path):
+        """ Repo select/unselect handler """
+        iterator = self.store.get_iter(path)
+        state = self.store.get_value(iterator, 0)
+        self.store.set_value(iterator, 0, not state)
+        
+
+    def get_selected(self):
+        '''
+        
+        '''
+        selected = []
+        for elem in self.store:
+            state = elem[0]
+            name = elem[1]
+            if state:
+                selected.append(name)
+        return selected
+
+    def setup_view(self):
+        """ Create models and columns for the Search Options TextView  """
+        store = gtk.TreeStore('gboolean',gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
+        self.view.set_model(store)
+        # Setup Selection Column
+        #self.create_selection_colunm('')
+        # Setup Actions and pacakges
+        col = self.create_text_column(_("Package"), 'name', size=250)
+        self.view.set_expander_column(col)
+        self.create_text_column(_("Ver."), 'fullver', size=120)
+        self.create_text_column(_("Arch."), 'arch' , size=60)
+        return store
     
+    def populate(self, values):
+        self.store.clear()
+        # Main Categories
+        for cat in sorted(values):
+            elements = values[cat]
+            main_label = "<b>%s</b>" % cat
+            parent = self.store.append(None,[False,main_label,HistoryLabel(cat)])
+            # history packages
+            for elem in elements:
+                if isinstance(elem, tuple):
+                    new = self.store.append(parent,[False,"",elem[1]])
+                    self.store.append(new,[False,"",elem[0]])
+                else:
+                    self.store.append(parent,[False,"",elem])

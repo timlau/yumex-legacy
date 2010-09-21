@@ -326,13 +326,17 @@ class YumHistoryTransaction:
 
 class YumHistoryPackage:
 
-    def __init__(self,yhp):
+    def __init__(self, yhp, installed):
         self.name   = yhp.name
         self.epoch  = yhp.epoch
         self.ver    = yhp.version
         self.rel    = yhp.release
         self.arch   = yhp.arch
-        self.state  = yhp.state
+        if hasattr(yhp,"state"):
+            self.state  = yhp.state
+        else:
+            self.state = ""
+        self.installed = installed
         
     @property
     def version(self):
@@ -341,6 +345,12 @@ class YumHistoryPackage:
     @property
     def release(self):
         return self.rel
+
+
+    @property
+    def pkgtup(self):
+        return (self.name, self.arch, self.epoch, self.ver, self.rel)
+        
 
     def __str__(self):
         '''
@@ -356,11 +366,20 @@ class YumHistoryPackage:
         else:   
             return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
+    @property
+    def fullver(self):
+        ''' Package full ver  '''        
+        if self.epoch and self.epoch != '0':
+            return "%s:%s.%s" % ( self.epoch, self.ver, self.rel)
+        else:   
+            return "%s.%s" % ( self.ver, self.rel)
+
   
     @property
     def id(self):
         return ":histpkg\t%s\t%s\t%s\t%s\t%s" % \
                (self.name, self.epoch, self.ver, self.rel, self.arch)
+
 
 class YumPackage:
     ''' Simple object to store yum package information '''
