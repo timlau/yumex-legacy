@@ -4,7 +4,6 @@ TODO:
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
     RFE: History improvements
-    	 - packages should be shown in a more packageview like way
     	 - possibillity to interact with packages in a history transaction
     RFE: Update info improvements
          - bugzilla records should be links
@@ -69,4 +68,5 @@ Fixed / implemented:
 	. Added search options to select the fields to search in
 	. Added search while typing on packages, if more 3 chars has been entered and there is only one word
 	. Added typeahead search toggle button (left of search entry)
+	. Added better history transaction package view.
 ( * = Released, . = Upstream )	

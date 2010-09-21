@@ -1,5 +1,4 @@
 src/backend-launcher.py
-src/test.py
 src/yum_childtask.py
 src/yumex.py
 src/yumexbackend/__init__.py
