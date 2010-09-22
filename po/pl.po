@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-21 17:37+0200\n"
-"PO-Revision-Date: 2010-09-21 10:47+0200\n"
+"PO-Revision-Date: 2010-09-22 15:33+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:98 ../src/yumexbackend/yum_backend.py:99
@@ -313,38 +313,32 @@ msgid "Getting available obsoletes"
 msgstr "Uzyskiwanie dostępnych przestarzałych pakietów"
 
 #: ../src/yumexbase/constants.py:160 ../src/yumexbase/constants.py:161
-#, fuzzy
 msgid "Updated packages"
-msgstr "Wyświetla zainstalowane pakiety"
+msgstr "Zaktualizowane pakiety"
 
 #: ../src/yumexbase/constants.py:162 ../src/yumexbase/constants.py:163
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "Pobieranie pakietów"
+msgstr "Zainstalowane poprzednie wersje pakietów"
 
 #: ../src/yumexbase/constants.py:164 ../src/yumexbase/constants.py:165
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "Wyświetla zainstalowane pakiety"
+msgstr "Zastąpione pakiety"
 
 #: ../src/yumexbase/constants.py:168
-#, fuzzy
 msgid "Erased packages"
-msgstr "Wyświetla zainstalowane pakiety"
+msgstr "Usunięte pakiety"
 
 #: ../src/yumexbase/constants.py:169 ../src/yumexbase/constants.py:170
-#, fuzzy
 msgid "Installed packages"
-msgstr "Wyświetla zainstalowane pakiety"
+msgstr "Zainstalowane pakiety"
 
 #: ../src/yumexbase/constants.py:171
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Zainstalowane zależności"
 
 #: ../src/yumexbase/constants.py:172
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "Wyświetla zainstalowane pakiety"
+msgstr "Ponownie zainstalowane pakiety"
 
 #: ../src/yumexgui/dialogs.py:344
 msgid "Working !!!"
@@ -690,14 +684,12 @@ msgid "History Disabled"
 msgstr "Historia jest wyłączona"
 
 #: ../src/yumexgui/__init__.py:1238
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "Transakcja została przerwana przez użytkownika"
+msgstr "Transakcja została wykonana za pomocą"
 
 #: ../src/yumexgui/__init__.py:1241
-#, fuzzy
 msgid "Skipped packages"
-msgstr "Wyświetla zainstalowane pakiety"
+msgstr "Pominięte pakiety"
 
 #. Setup Selection Column
 #. self.create_selection_colunm('')
@@ -879,7 +871,7 @@ msgstr "Pomija pakiety, wobec których występują błędy rozwiązywania zależ
 
 #: ../src/yumex.glade.h:28
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Testowanie"
 
 #: ../src/yumex.glade.h:29
 msgid ""
