@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-21 17:37+0200\n"
-"PO-Revision-Date: 2010-09-18 13:50+0300\n"
+"PO-Revision-Date: 2010-09-23 11:48+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: uk\n"
 "X-Generator: Lokalize 1.1\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:98 ../src/yumexbackend/yum_backend.py:99
@@ -316,38 +316,32 @@ msgid "Getting available obsoletes"
 msgstr "Отримання списку застарілих пакунків"
 
 #: ../src/yumexbase/constants.py:160 ../src/yumexbase/constants.py:161
-#, fuzzy
 msgid "Updated packages"
-msgstr "Отримання списку оновлених пакунків"
+msgstr "Оновлені пакунки"
 
 #: ../src/yumexbase/constants.py:162 ../src/yumexbase/constants.py:163
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "Звантаження пакунків"
+msgstr "Пакунки, версію яких понижено"
 
 #: ../src/yumexbase/constants.py:164 ../src/yumexbase/constants.py:165
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "Показати встановлені пакунки"
+msgstr "Застарілі пакунки"
 
 #: ../src/yumexbase/constants.py:168
-#, fuzzy
 msgid "Erased packages"
-msgstr "Показати встановлені пакунки"
+msgstr "Вилучені пакунки"
 
 #: ../src/yumexbase/constants.py:169 ../src/yumexbase/constants.py:170
-#, fuzzy
 msgid "Installed packages"
-msgstr "Показати встановлені пакунки"
+msgstr "Встановлені пакунки"
 
 #: ../src/yumexbase/constants.py:171
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Встановлено як залежність"
 
 #: ../src/yumexbase/constants.py:172
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "Показати встановлені пакунки"
+msgstr "Повторно встановлені пакунки"
 
 #: ../src/yumexgui/dialogs.py:344
 msgid "Working !!!"
@@ -367,7 +361,6 @@ msgstr ""
 "Стовпчики з можливістю впорядкування на панелі списку пакунків (повільніше)"
 
 #: ../src/yumexgui/dialogs.py:429
-#, fuzzy
 msgid "Use typeahead search on package name"
 msgstr "Використовувати випереджувальний пошук за типом для назви пакунка"
 
@@ -695,14 +688,12 @@ msgid "History Disabled"
 msgstr "Журнал вимкнено"
 
 #: ../src/yumexgui/__init__.py:1238
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "Операцію перервано користувачем"
+msgstr "Дія, виконана з"
 
 #: ../src/yumexgui/__init__.py:1241
-#, fuzzy
 msgid "Skipped packages"
-msgstr "Показати встановлені пакунки"
+msgstr "Пропущені пакунки"
 
 #. Setup Selection Column
 #. self.create_selection_colunm('')
@@ -884,7 +875,7 @@ msgstr "Пропустити пакунки з помилками розв’я�
 
 #: ../src/yumex.glade.h:28
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Тестове програмне забезпечення"
 
 #: ../src/yumex.glade.h:29
 msgid ""
@@ -897,9 +888,8 @@ msgstr ""
 "ключовим словам.\n"
 
 #: ../src/yumex.glade.h:33
-#, fuzzy
 msgid "Typeahead search on/off"
-msgstr "Використовувати випереджувальний пошук за типом для назви пакунка"
+msgstr "Увімкнути/Вимкнути випереджувальний пошук за типом"
 
 #: ../src/yumex.glade.h:34
 msgid "U_pdates"
