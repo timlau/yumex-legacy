@@ -1565,9 +1565,11 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
               <object class="GtkEntry" id="historySearch">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="tooltip_text" translatable="yes">Type package names to seach for</property>
                 <property name="invisible_char">&#x25CF;</property>
                 <property name="secondary_icon_stock">gtk-clear</property>
                 <property name="secondary_icon_activatable">True</property>
+                <property name="secondary_icon_tooltip_text">Clear the current search</property>
                 <signal name="activate" handler="on_historySearch_activate"/>
                 <signal name="icon_press" handler="on_historySearch_icon_press"/>
               </object>

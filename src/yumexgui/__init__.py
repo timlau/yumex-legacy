@@ -773,7 +773,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                             'packageSelectAll', 'packageUndo', 'packageExecute',\
                             'searchTypeAhead', 'searchOptions', 'packageSearch', \
                             'queueExecute', 'queueRemove', 'repoRefresh', 'repoUndo', \
-                            'historyRefresh', 'historyUndo', 'historyRedo']
+                            'historyRefresh', 'historyUndo', 'historyRedo', 'historySearch']
         for widget in toolstip_widgets:
             obj = getattr(self.ui,widget)
             obj.set_tooltip_text(_(obj.get_tooltip_text()))
