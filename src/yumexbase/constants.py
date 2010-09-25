@@ -156,6 +156,9 @@ RPM_ACTIONS = {
     TS_UPDATED: '%s is cleanup'
 }   
 
+HISTORY_NEW_STATES = ['Update','Downgrade','Obsoleting']
+HISTORY_OLD_STATES = ['Updated','Downgraded', 'Obsoleted']
+
 HISTORY_UPDATE_STATES = {
      'Update' : _('Updated packages'),
      'Updated' : _('Updated packages'), 

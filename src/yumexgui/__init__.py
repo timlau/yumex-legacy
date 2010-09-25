@@ -1245,6 +1245,15 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.hide()
         self.debug("Searching History Information - END")
 
+    def _order_packages(self, pkgs):
+        if pkgs[0].state in HISTORY_NEW_STATES:
+            tup = (pkgs[1],pkgs[0])
+            state = pkgs[0].state
+        else:    
+            tup = (pkgs[0],pkgs[1])
+            state = pkgs[1].state
+        return tup,state
+    
     def _get_relations(self, data):
         names = {}
         for hpo in data:
@@ -1255,12 +1264,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         relations = {}
         for name in names:
             pkgs = names[name]
-            if pkgs[0] < pkgs[1]:
-                tup = (pkgs[0],pkgs[1])
-                state = pkgs[1].state
-            else:    
-                tup = (pkgs[1],pkgs[0])
-                state = pkgs[0].state
+            tup, state = self._order_packages(pkgs)
             if state in relations:                
                 relations[state].append(tup)    
             else:
