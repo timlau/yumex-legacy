@@ -1292,11 +1292,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         for state in HISTORY_UPDATE_STATES:
             if state in values:
                 data.extend(values[state])
-        relations = self._get_relations(data)   
-        for state in relations:
-            main[HISTORY_UPDATE_STATES[state]] = relations[state]                
-        for state in HISTORY_OTHER_STATES:
-            if state in values:
-                main[HISTORY_OTHER_STATES[state]] = values[state]
+        relations = self._get_relations(data)  
+        for state in HISTORY_SORT_ORDER:
+            if state in relations:
+                main[state] = relations[state] 
+            elif state in values:
+                main[state] = values[state]
         self.history_pkg_view.populate(main, secondary)
         

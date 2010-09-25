@@ -1309,21 +1309,25 @@ class YumexHistoryPackageView(SelectionView):
         self.create_text_column(_("Arch."), 'arch' , size=60)
         return store
     
-    def _add_values(self, values):
-        for cat in sorted(values):
-            elements = values[cat]
-            main_label = "<b>%s</b>" % cat
-            parent = self.store.append(None,[False,main_label,HistoryLabel(cat)])
-            # history packages
-            for elem in elements:
-                if isinstance(elem, tuple):
-                    new = self.store.append(parent,[False,"",elem[1]])
-                    self.store.append(new,[False,"",elem[0]])
-                else:
-                    self.store.append(parent,[False,"",elem])
+    def _add_values(self, cat, elements):
+        main_label = "<b>%s</b>" % cat
+        parent = self.store.append(None,[False,main_label,HistoryLabel(cat)])
+        # history packages
+        for elem in elements:
+            if isinstance(elem, tuple):
+                new = self.store.append(parent,[False,"",elem[1]])
+                self.store.append(new,[False,"",elem[0]])
+            else:
+                self.store.append(parent,[False,"",elem])
                         
     def populate(self, main, secondary):
         self.store.clear()
         # Main Categories
-        self._add_values(main)
-        self._add_values(secondary)        
+        for state in const.HISTORY_SORT_ORDER:
+            if state in main:
+                elements = main[state]
+                cat = const.HISTORY_STATE_LABLES[state]
+                self._add_values(cat, elements)            
+        for cat in secondary:
+            elements = secondary[cat]
+            self._add_values(cat, elements)        

@@ -159,15 +159,14 @@ RPM_ACTIONS = {
 HISTORY_NEW_STATES = ['Update','Downgrade','Obsoleting']
 HISTORY_OLD_STATES = ['Updated','Downgraded', 'Obsoleted']
 
-HISTORY_UPDATE_STATES = {
-     'Update' : _('Updated packages'),
-     'Updated' : _('Updated packages'), 
-     'Downgrade' : _('Downgraded packages'),
-     'Downgraded' : _('Downgraded packages'),
-     'Obsoleted' : _('Obsoleted packages'),
-     'Obsoleting' : _('Obsoleted packages')}
+HISTORY_UPDATE_STATES = ['Update','Downgrade','Obsoleting', 'Updated','Downgraded', 'Obsoleted']
 
-HISTORY_OTHER_STATES = {
+HISTORY_SORT_ORDER = ['Install', 'True-Install', 'Reinstall', 'Update', 'Downgrade', 'Obsoleting', 'Erase', 'Dep-Install' ]
+
+HISTORY_STATE_LABLES = {
+     'Update' : _('Updated packages'),
+     'Downgrade' : _('Downgraded packages'),
+     'Obsoleting' : _('Obsoleted packages'),
      'Erase' : _('Erased packages'),
      'Install' : _('Installed packages'), 
      'True-Install' : _('Installed packages'),
