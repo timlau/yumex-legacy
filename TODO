@@ -69,4 +69,5 @@ Fixed / implemented:
 	. Added search while typing on packages, if more 3 chars has been entered and there is only one word
 	. Added typeahead search toggle button (left of search entry)
 	. Added better history transaction package view.
+	. Added History transaction search
 ( * = Released, . = Upstream )	

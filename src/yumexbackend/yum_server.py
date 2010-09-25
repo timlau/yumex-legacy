@@ -1053,7 +1053,7 @@ class YumServer(yum.YumBase):
         Get the yum history elements
         """
         if hasattr(self,"_history"): # Yum supports history
-            tids = self.history.search([pattern])
+            tids = self.history.search(pattern)
             yhts = self.history.old(tids)
             for yht in yhts:
                 self._show_history_item(yht)
@@ -1163,7 +1163,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'history-redo':
             self.history_redo(args)
         elif cmd == 'search-history':
-            self.search_history(args[0])
+            self.search_history(unpack(args[0]))
         else:
             self.error('Unknown command : %s' % cmd)
 

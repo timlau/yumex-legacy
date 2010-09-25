@@ -574,8 +574,9 @@ class YumexHandlers(Controller):
 
         
     def on_historySearch_activate(self, widget=None, event=None):
-        pat = self.ui.historySearch.get_text()
-        if pat == "":
+        txt = self.ui.historySearch.get_text()
+        pat = txt.split(' ')
+        if not pat:
             self.setup_history(force=True)
         else:
             self.search_history(pat)
