@@ -1262,7 +1262,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             else:
                 names[hpo.name] = [hpo]
         relations = {}
-        for name in names:
+        for name in sorted(names):
             pkgs = names[name]
             tup, state = self._order_packages(pkgs)
             if state in relations:                
@@ -1295,7 +1295,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         relations = self._get_relations(data)  
         for state in HISTORY_SORT_ORDER:
             if state in relations:
-                main[state] = relations[state] 
+                main[state] = relations[state]
             elif state in values:
                 main[state] = values[state]
         self.history_pkg_view.populate(main, secondary)
