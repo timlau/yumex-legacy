@@ -326,7 +326,7 @@ class YumHistoryTransaction:
 
 class YumHistoryPackage:
 
-    def __init__(self, yhp, installed):
+    def __init__(self, yhp):
         self.name   = yhp.name
         self.epoch  = yhp.epoch
         self.ver    = yhp.version
@@ -336,7 +336,7 @@ class YumHistoryPackage:
             self.state  = yhp.state
         else:
             self.state = ""
-        self.installed = installed
+        self.installed  = yhp.state_installed
         
     @property
     def version(self):

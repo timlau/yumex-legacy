@@ -363,7 +363,9 @@ class YumServer(yum.YumBase):
     
     def _show_history_package(self, pkg):
         ''' write history package result'''
-        yhp = pack(YumHistoryPackage(pkg, self._is_installed(pkg)))
+        if not hasattr(pkg,'state_installed'):
+            pkg.state_installed = self._is_installed(pkg)
+        yhp = pack(YumHistoryPackage(pkg))
         self.write(":histpkg\t%s" % yhp) 
 
     def _show_history_item(self, yht):

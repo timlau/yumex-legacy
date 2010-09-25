@@ -1262,8 +1262,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             else:
                 names[hpo.name] = [hpo]
         relations = {}
-        for name in sorted(names):
+        for name in sorted(names.keys()):
             pkgs = names[name]
+            if len(pkgs) != 2:
+                self.info("no releation found: "+str([p.name+":"+p.ver+p.rel+":"+p.state for p in pkgs]))
+                continue
             tup, state = self._order_packages(pkgs)
             if state in relations:                
                 relations[state].append(tup)    
