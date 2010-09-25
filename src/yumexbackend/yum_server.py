@@ -1051,9 +1051,7 @@ class YumServer(yum.YumBase):
         Get the yum history elements
         """
         if hasattr(self,"_history"): # Yum supports history
-            if pattern[-1] != '*':
-                pattern += '*'
-            tids = self.history.search(pattern)
+            tids = self.history.search([pattern])
             yhts = self.history.old(tids)
             for yht in yhts:
                 self._show_history_item(yht)

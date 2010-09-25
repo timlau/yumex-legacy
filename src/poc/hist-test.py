@@ -34,17 +34,14 @@ def is_installed(po):
     else:
         return None   
 
-yb = yum.YumBase()
-ygh = yb.doPackageLists(pkgnarrow='installed')
-hist=yb.history
-tids=hist.old()
-for i in xrange(0,5):
-    tid = tids[i]
-    print "Transaction : # ",tid.tid
-    # show packages perfoming the transaction : rpm, yum, yumex etc
-    print "with:"
-    for hpo in tid.trans_with:
-        print "  %s" % hpo
+def get_history_trans(tid):
+    trans  = hist.old([i])
+    if trans:
+        return trans[0]
+    else:
+        return None
+
+def show_hist_packages(tid):
     # show packages included in the transaction
     print "Packages in Transaction"
     names = get_name_dict(tid.trans_data)
@@ -59,6 +56,21 @@ for i in xrange(0,5):
                     print " +(%s) : %s" % (hpo.state,hpo.pkgtup)
                 else:
                     print "  (%s) : %s" % (hpo.state,hpo.pkgtup)
+
+yb = yum.YumBase()
+ygh = yb.doPackageLists(pkgnarrow='installed')
+hist=yb.history
+tids=hist.old()
+for i in xrange(10,15):
+    tid = get_history_trans(i)
+    print "Transaction : # ",tid.tid
+    # show packages perfoming the transaction : rpm, yum, yumex etc
+    print "with:"
+    for hpo in tid.trans_with:
+        print "  %s" % hpo
+    # show packages included in the transaction
+    print "Packages in Transaction"
+    show_hist_packages(tid)
     # show skipped packages
     print "Skipped Packages in Transaction"
     for hpo in tid.trans_skip:
@@ -75,3 +87,9 @@ for i in xrange(0,5):
     for err in tid.rpmdb_problems:
         print err
 
+    print "History Search"
+    tids = yb.history.search(['yumex'])
+    print tids
+    for i in tids:
+        tid = get_history_trans(i)
+        show_hist_packages(tid)

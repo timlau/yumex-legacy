@@ -564,10 +564,21 @@ class YumexHandlers(Controller):
         
 # History Page
 
+    def on_historySearch_icon_press(self, widget, icon_pos, event):
+        '''
+        icon pressed in the search field
+        '''
+        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
+            self.ui.historySearch.set_text('')
+            self.setup_history(force=True)
+
+        
     def on_historySearch_activate(self, widget=None, event=None):
         pat = self.ui.historySearch.get_text()
-        self.info("History Search : "+pat)
-        self.search_history(pat)
+        if pat == "":
+            self.setup_history(force=True)
+        else:
+            self.search_history(pat)
         
     def on_historyUndo_clicked(self, widget=None, event=None):
         (model, iterator) = self.ui.historyView.get_selection().get_selected()
