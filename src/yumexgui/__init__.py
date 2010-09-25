@@ -1270,11 +1270,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
     def show_history_packages(self,tid):
         main = {}
+        secondary = {}
         pkgs = self.backend.get_history_packages(tid, 'trans_with')
-        main[_('Transaction Performed with')] = pkgs
+        secondary[_('Transaction Performed with')] = pkgs
         pkgs = self.backend.get_history_packages(tid, 'trans_skip')
         if pkgs:
-            main[_('Skipped packages')] = pkgs
+            secondary[_('Skipped packages')] = pkgs
         pkgs = self.backend.get_history_packages(tid)
         values = {}
         for pkg in pkgs:
@@ -1293,5 +1294,5 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         for state in HISTORY_OTHER_STATES:
             if state in values:
                 main[HISTORY_OTHER_STATES[state]] = values[state]
-        self.history_pkg_view.populate(main)
+        self.history_pkg_view.populate(main, secondary)
         

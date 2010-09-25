@@ -1309,9 +1309,7 @@ class YumexHistoryPackageView(SelectionView):
         self.create_text_column(_("Arch."), 'arch' , size=60)
         return store
     
-    def populate(self, values):
-        self.store.clear()
-        # Main Categories
+    def _add_values(self, values):
         for cat in sorted(values):
             elements = values[cat]
             main_label = "<b>%s</b>" % cat
@@ -1323,3 +1321,9 @@ class YumexHistoryPackageView(SelectionView):
                     self.store.append(new,[False,"",elem[0]])
                 else:
                     self.store.append(parent,[False,"",elem])
+                        
+    def populate(self, main, secondary):
+        self.store.clear()
+        # Main Categories
+        self._add_values(main)
+        self._add_values(secondary)        
