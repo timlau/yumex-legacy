@@ -4,6 +4,8 @@
 
 import pickle
 import base64
+from urlgrabber.progress import format_number
+
 
 class YumexBackendBase(object):
     '''
@@ -90,7 +92,7 @@ class YumexPackageBase:
         '''
         string representation of the package object
         '''
-        return self.fullname
+        return str(self._pkg)
       
 
     @property
@@ -109,6 +111,20 @@ class YumexPackageBase:
 
     @property
     def release(self):
+        '''
+        
+        '''
+        return self._pkg.rel
+
+    @property
+    def ver(self):
+        '''
+        
+        '''
+        return self._pkg.ver
+
+    @property
+    def rel(self):
         '''
         
         '''
@@ -167,7 +183,7 @@ class YumexPackageBase:
     @property        
     def id(self):
         ''' Return the package id '''        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.version, self.release, self.arch, self.repoid)
+        return self._pkg.id
 
     @property
     def filename(self):
@@ -177,11 +193,8 @@ class YumexPackageBase:
     @property
     def fullname(self):
         ''' Package fullname  '''        
-        if self.epoch and self.epoch != '0':
-            return "%s-%s:%s-%s.%s" % (self.name, self.epoch, self.version, self.release, self.arch)
-        else:   
-            return "%s-%s-%s.%s" % (self.name, self.version, self.release, self.arch)
-    
+        self._pkg.fullname
+            
     @property
     def fullver (self):
         '''
@@ -191,6 +204,20 @@ class YumexPackageBase:
  
     def is_installed(self):
         return self.repoid[0] == '@' or self.repoid == 'installed'
+
+    @property
+    def sizeBytes(self):
+        '''
+        
+        '''
+        return long(self._pkg.size)
+
+    @property
+    def size(self):
+        '''
+        
+        '''
+        return format_number(self.sizeBytes)
    
 
 class YumexGroupBase:

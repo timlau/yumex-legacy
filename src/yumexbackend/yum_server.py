@@ -657,6 +657,32 @@ class YumServer(yum.YumBase):
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po, txmbr.ts_state)
         self.ended(True)
+
+    def _show_packages_in_transaction(self, action):
+        '''
+        
+        '''
+        for txmbr in self.tsInfo:
+            self._show_package(txmbr.po, action)
+        self.ended(True)
+        
+    def run_command(self, cmd, userlist):
+        self.reset_transaction()
+        cmd = cmd[:2]
+        try:
+            if cmd == 'in':
+                action = 'i'
+                for pat in userlist:
+                    self.install(pattern=pat)
+            elif cmd == 're' or cmd == 'er':
+                action = 'r'
+                for pat in userlist:
+                    self.remove(pattern=pat)
+        except Errors.InstallError,e:
+            pass
+        self._show_packages_in_transaction(action)
+        self.reset_transaction()
+                
             
     def build_transaction(self):
         '''
@@ -1164,6 +1190,8 @@ class YumServer(yum.YumBase):
             self.history_redo(args)
         elif cmd == 'search-history':
             self.search_history(unpack(args[0]))
+        elif cmd == 'run-command':
+            self.run_command(args[0], unpack(args[1]))
         else:
             self.error('Unknown command : %s' % cmd)
 

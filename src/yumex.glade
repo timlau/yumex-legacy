@@ -828,14 +828,15 @@ words.
             <property name="visible">True</property>
             <child>
               <object class="GtkEntry" id="QueueEntry">
+                <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="secondary_icon_stock">gtk-clear</property>
+                <signal name="activate" handler="on_QueueEntry_activate"/>
+                <signal name="icon_press" handler="on_QueueEntry_icon_press"/>
               </object>
               <packing>
                 <property name="position">0</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>

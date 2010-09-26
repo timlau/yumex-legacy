@@ -51,6 +51,7 @@ GROUP = Enum('all', 'default')
 # State
 STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
 FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r', str(FILTER.obsoletes) : 'o' }
+ACTIONS_FILTER = { 'u' : str(FILTER.updates), 'i' : str(FILTER.available), 'r' : str(FILTER.installed) , 'o' : str(FILTER.obsoletes)  }
 
 # Paths
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))

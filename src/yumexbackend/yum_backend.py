@@ -36,6 +36,77 @@ import logging
 from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
+class PackageCache:
+    '''
+    Package cache to contain packages from backend, so we dont have get them more
+    than once.
+    '''
+    
+    def __init__(self, backend, frontend):
+        '''
+        setup the cache
+        @param backend:    backend instance
+        '''
+        self._cache = {}
+        self._cache_populated = []
+        self.backend = backend
+        self.frontend = frontend
+        
+    def reset(self):
+        '''
+        reset the cache
+        '''
+        del self._cache
+        self._cache = {}
+        self._cache_populated = []
+
+    def _get(self, pkg_filter): 
+        '''
+        get a list of packages from the cache
+        @param pkg_filter: the type of packages to get
+        '''
+        if str(pkg_filter) in self._cache:
+            return self._cache[str(pkg_filter)].values()
+        else:
+            return []
+
+    def is_populated(self, pkg_filter):
+        '''
+        '''
+        return str(pkg_filter) in self._cache_populated
+        
+    def populate(self, pkg_filter, pkgs):
+        '''
+        '''
+        for po in pkgs:
+            self._add(po)
+        self._cache_populated.append(str(pkg_filter))
+            
+    
+    def _add(self, po):
+        pkg_filter = ACTIONS_FILTER[po.action]
+        if not pkg_filter in self._cache:
+            self._cache[pkg_filter] = {}
+        if str(po) in self._cache[pkg_filter]:
+            return self._cache[pkg_filter][str(po)]
+        else:
+            pkg = YumexPackageYum(po, self.frontend )
+            self._cache[pkg_filter][str(pkg)] = pkg
+            return pkg
+        
+    def find(self, po):
+        '''
+        if a package in the cache
+        @param po:
+        '''
+        pkgfilter = ACTIONS_FILTER[po.action]
+        target = self._get(pkgfilter)
+        if str(po) in target:
+            return target[str(po)]
+        else:   
+            #self.frontend.debug('not found in cache : [%s] [%s] ' % (po, po.action), __name__)
+            return self._add(po)
+    
 
                
 class YumexBackendYum(YumexBackendBase, YumClient):
@@ -53,6 +124,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         YumexBackendBase.__init__(self, frontend, transaction)
         YumClient.__init__(self)
         self.dont_abort = False
+        self.package_cache = PackageCache(self,frontend)
 
     # Overload the YumClient message methods
         
@@ -264,6 +336,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
+        self.package_cache.reset()
         rc = YumClient.reset(self)
         if rc:
             self.frontend.info(_("yum backend process is ended"))
@@ -274,9 +347,20 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
-        self.debug("got %i packages" % len(pkgs))
-        return [YumexPackageYum(p,self.frontend) for p in pkgs]
+        if not self.package_cache.is_populated(pkg_filter):
+            progress = self.frontend.get_progress()
+            progress.set_pulse(True)
+            filter = str(pkg_filter)
+            progress.set_title(PACKAGE_LOAD_MSG[filter])
+            progress.set_header(PACKAGE_LOAD_MSG[filter])
+            progress.show()
+            # Getting the packages
+            pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
+            self.debug("got %i packages" % len(pkgs))
+            self.package_cache.populate(pkg_filter, pkgs)
+            progress.set_pulse(False)
+            progress.hide()
+        return self.package_cache._get(pkg_filter)
 
     def get_packages_size(self, ndx):
         ''' 
@@ -285,7 +369,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages_size(self, ndx)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return [self.package_cache.find(po) for po in pkgs]
 
     def get_packages_repo(self, repoid):
         ''' 
@@ -294,7 +378,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages_repo(self, repoid)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return [self.package_cache.find(po) for po in pkgs]
 
     def get_repositories(self):
         ''' 
@@ -332,7 +416,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
         pkgs = YumClient.get_group_packages(self, group, grp_filter)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return [self.package_cache.find(po) for po in pkgs]
 
     def search(self, keys, sch_filters,use_cache=True):
         ''' 
@@ -342,10 +426,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
         pkgs = YumClient.search(self, keys, sch_filters)
-        if use_cache:
-            return [self.frontend.package_cache.find(po) for po in pkgs]
-        else:
-             return [YumexPackageYum(p,self.frontend) for p in pkgs]
+        return [self.package_cache.find(po) for po in pkgs]
 
     def search_prefix(self, prefix, use_cache=True):
         '''
@@ -353,11 +434,15 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param prefix prefix to search for
         '''
         pkgs = YumClient.search_prefix(self, prefix)
-        if use_cache:
-            return [self.frontend.package_cache.find(po) for po in pkgs]
-        else:
-             return [YumexPackageYum(p,self.frontend) for p in pkgs]
+        return [self.package_cache.find(po) for po in pkgs]
 
+    def run_command(self, cmd, userlist, use_cache=True):
+        '''
+        Search for packages with prefix
+        @param prefix prefix to search for
+        '''
+        pkgs = YumClient.run_command(self, cmd, userlist)
+        return [self.package_cache.find(po) for po in pkgs]
 
 class YumexPackageYum(YumexPackageBase):
     '''
@@ -390,21 +475,6 @@ class YumexPackageYum(YumexPackageBase):
         @param state:
         '''
         self.visible = state
-        
-
-    @property
-    def sizeBytes(self):
-        '''
-        
-        '''
-        return long(self._pkg.size)
-
-    @property
-    def size(self):
-        '''
-        
-        '''
-        return format_number(long(self._pkg.size))
 
     @property
     def description(self):

@@ -626,6 +626,14 @@ class YumClient:
         pkgs = self._get_list()
         return pkgs
 
+    def run_command(self, cmd, userlist):        
+        '''
+        
+        '''
+        self._send_command('run-command', [cmd, pack(userlist)])
+        pkgs = self._get_list()
+        return pkgs
+
     def reset_transaction(self):        
         '''
         

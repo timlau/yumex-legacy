@@ -31,7 +31,7 @@ import pwd
 
 from datetime import date
 
-from yumexgui.gui import Notebook, PackageCache, PackageInfo
+from yumexgui.gui import Notebook, PackageInfo
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions, \
                              TestWindow
@@ -403,10 +403,10 @@ class YumexHandlers(Controller):
                 self.debug('START: Getting %s packages' % active)
                 self.backend.setup()
                 label = active
-                pkgs = self.package_cache.get_packages(getattr(FILTER,active))
+                pkgs = self.backend.get_packages(getattr(FILTER,active))
                 # if Updates, then add obsoletes too
                 if active == 'updates':
-                    obs = self.package_cache.get_packages(getattr(FILTER,'obsoletes'))
+                    obs = self.backend.get_packages(getattr(FILTER,'obsoletes'))
                     pkgs.extend(obs)
                     label = "updates & obsoletes"
                 self.debug('START: Adding %s packages to view' % label)
@@ -534,6 +534,31 @@ class YumexHandlers(Controller):
         self.backend.enable_repo_persistent( id, enable)
         
     # Queue Page    
+    
+    def on_QueueEntry_icon_press(self, widget, icon_pos, event):
+        '''
+        icon pressed in the search field
+        '''
+        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
+            pass
+    
+    
+    def on_QueueEntry_activate(self, widget=None, event=None):
+        txt = self.ui.QueueEntry.get_text()
+        if txt:
+            words = txt.split()
+            if len(words) > 1:
+                cmd = words[0]
+                userlist = words[1:]
+                print cmd,userlist
+                pkgs = self.backend.run_command(cmd,userlist)
+                print [str(p)+":"+p.action for p in pkgs]
+                for pkg in pkgs:
+                    self.queue.queue.add(pkg)
+                    pkg.queued = pkg.action      
+                    
+                self.queue.refresh()
+        self.ui.QueueEntry.set_text("")    
 
     def on_queueOpen_clicked(self, widget=None, event=None):
         '''
@@ -647,7 +672,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress = Progress(self.ui, self.window)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
-        self.package_cache = PackageCache(self.backend, self)
         self._packages_loaded = False
         self.key_bindings = gtk.AccelGroup()
         self._network = NetworkCheckNetworkManager()
@@ -1022,15 +1046,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
         self.backend.setup(self.is_offline, repos)
-#        progress.set_title(_("Getting Package Lists"))
-#        progress.set_header(_("Getting Updated Packages"))
-#        progress.show()
-#        pkgs = self.package_cache.get_packages(FILTER.updates)
-#        pkgs = self.package_cache.get_packages(FILTER.obsoletes)
-#        progress.set_header(_("Getting Available Packages"))
-#        pkgs = self.package_cache.get_packages(FILTER.available, show_dupes)
-#        progress.set_header(_("Getting installed Packages"))
-#        pkgs = self.package_cache.get_packages(FILTER.installed)
         self.debug("Getting package lists - END")
         progress.set_pulse(False)
         progress.hide()
@@ -1121,7 +1136,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 repos = self.current_repos
             options = self._get_options()
             self.backend.reset()                    # close the backend
-            self.package_cache.reset()              # clear the package cache
             self.queue.queue.clear()                # clear the pending action queue
             self.queue.refresh()                    # clear the pending action queue
             self.populate_package_cache(repos=repos, show_dupes=self.show_dupes) # repopulate the package cache
