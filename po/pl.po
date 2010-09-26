@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-25 15:49+0200\n"
-"PO-Revision-Date: 2010-09-22 15:33+0200\n"
+"PO-Revision-Date: 2010-09-26 16:22+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -321,9 +321,8 @@ msgid "Downgraded packages"
 msgstr "Zainstalowane poprzednie wersje pakietów"
 
 #: ../src/yumexbase/constants.py:169
-#, fuzzy
 msgid "Obsoleting packages"
-msgstr "Zastąpione pakiety"
+msgstr "Zastępowanie pakietów"
 
 #: ../src/yumexbase/constants.py:170
 msgid "Obsoleted packages"
@@ -689,9 +688,8 @@ msgid "History Disabled"
 msgstr "Historia jest wyłączona"
 
 #: ../src/yumexgui/__init__.py:1239 ../src/yumexgui/__init__.py:1240
-#, fuzzy
 msgid "Searching History Information"
-msgstr "Uzyskiwanie informacji o historii"
+msgstr "Wyszukiwanie informacji o historii"
 
 #: ../src/yumexgui/__init__.py:1283
 msgid "Transaction Performed with"
@@ -885,7 +883,7 @@ msgstr "Testowanie"
 
 #: ../src/yumex.glade.h:29
 msgid "Type package names to seach for"
-msgstr ""
+msgstr "Tutaj można wpisać nazwy pakietów do wyszukania"
 
 #: ../src/yumex.glade.h:30
 msgid ""
