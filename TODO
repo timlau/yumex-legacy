@@ -25,6 +25,7 @@ TODO:
    	RFE: Make it possible to type "install foo, remove bar" and get the packages added to the queue
    		 - get the same results as typing 'yum install foo" on the cmd line.
     	
+    RFE: Show RPM URL in the package info.
   	
 BUGS:
   	
