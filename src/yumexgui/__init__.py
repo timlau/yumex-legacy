@@ -27,7 +27,7 @@ import sys
 import gtk
 import pango
 import pwd
-#import time
+import time
 
 from datetime import date
 
@@ -169,6 +169,8 @@ class YumexHandlers(Controller):
         self._resized = False
         self._current_active = None
         self.current_category = None
+        self.last_queue_text = ""
+        
                 
 # Signal handlers
       
@@ -351,7 +353,11 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             pkg = model.get_value(iterator, 0)
             if pkg:
+                print "Starting pkgInfo :", str(pkg)
+                start = time.time()                
                 self.packageInfo.update(pkg)
+                end = time.time()
+                print "Ending pkgInfo : %.2f " % (end-start)
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -403,15 +409,23 @@ class YumexHandlers(Controller):
                 self.debug('START: Getting %s packages' % active)
                 self.backend.setup()
                 label = active
+                progress = self.get_progress()
+                progress.set_pulse(True)
+                filter = active
+                progress.set_title(PACKAGE_LOAD_MSG[filter])
+                progress.set_header(PACKAGE_LOAD_MSG[filter])
+                progress.show()
                 pkgs = self.backend.get_packages(getattr(FILTER,active))
                 # if Updates, then add obsoletes too
                 if active == 'updates':
                     obs = self.backend.get_packages(getattr(FILTER,'obsoletes'))
                     pkgs.extend(obs)
                     label = "updates & obsoletes"
+                progress.set_header(_('Adding Packages to view'))
                 self.debug('START: Adding %s packages to view' % label)
-                self.packages.add_packages(pkgs, progress=self.progress)
-                    
+                self.packages.add_packages(pkgs, progress=progress)                    
+                progress.set_pulse(False)
+                progress.hide()
                 self.debug('END: Getting %s packages' % active)
             else:
                 if not self._resized:
@@ -541,8 +555,18 @@ class YumexHandlers(Controller):
         '''
         if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
             pass
-    
-    
+
+    def on_QueueEntry_changed(self, widget=None, event=None):
+        txt = self.ui.QueueEntry.get_text()
+        self.ui.QueueEntry.set_position(-1)
+        print "QUEUE_ENTRY",txt, self.ui.QueueEntry.get_position()
+        if len(txt) == 2 and len(txt) > len(self.last_queue_text):
+            if txt in QUEUE_COMMANDS:
+                cmd = QUEUE_COMMANDS[txt]+" "
+                self.last_queue_text = cmd
+                self.ui.QueueEntry.set_text(cmd)
+        self.last_queue_text = txt
+   
     def on_QueueEntry_activate(self, widget=None, event=None):
         txt = self.ui.QueueEntry.get_text()
         if txt:
@@ -559,6 +583,7 @@ class YumexHandlers(Controller):
                     
                 self.queue.refresh()
         self.ui.QueueEntry.set_text("")    
+        self.last_queue_text = ""
 
     def on_queueOpen_clicked(self, widget=None, event=None):
         '''
@@ -880,7 +905,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         if self.settings.use_sortable_view:
             self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
         else:
-            self.packages = YumexPackageView(self.ui.packageView, self.queue)
+            self.packages = YumexPackageView(self.ui.packageView, self.queue, self.window)
             
         self.packageInfo = PackageInfo(self.window, self.ui.packageInfo,
                                        self.ui.packageInfoSelector, self, font_size=font_size)

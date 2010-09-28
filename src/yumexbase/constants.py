@@ -175,4 +175,12 @@ HISTORY_STATE_LABLES = {
      'Dep-Install' : _('Installed for dependencies'),
      'Reinstall' : _('Reinstalled packages')}
 
-        
+
+# Queue autocomplete lookup
+QUEUE_COMMANDS = {
+'in' : 'install',
+'er' : 'erase',
+'up' : 'update',
+'re' : 'remove'
+
+}        

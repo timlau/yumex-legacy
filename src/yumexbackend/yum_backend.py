@@ -348,18 +348,10 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         if not self.package_cache.is_populated(pkg_filter):
-            progress = self.frontend.get_progress()
-            progress.set_pulse(True)
-            filter = str(pkg_filter)
-            progress.set_title(PACKAGE_LOAD_MSG[filter])
-            progress.set_header(PACKAGE_LOAD_MSG[filter])
-            progress.show()
             # Getting the packages
             pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
             self.debug("got %i packages" % len(pkgs))
             self.package_cache.populate(pkg_filter, pkgs)
-            progress.set_pulse(False)
-            progress.hide()
         return self.package_cache._get(pkg_filter)
 
     def get_packages_size(self, ndx):

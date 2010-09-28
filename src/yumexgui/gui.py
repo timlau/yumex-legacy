@@ -220,7 +220,9 @@ class PackageInfo(SelectorBase):
         '''
         self.widget.grab_add() # lock everything but then TextView widget, until we have updated
         self.pkg = pkg
-        self.set_active(self._selected)
+        #self.set_active(self._selected)
+        key = self._selected
+        self.update_console(key)
         self.widget.grab_remove()
         
     def clear(self):        
@@ -242,6 +244,7 @@ class PackageInfo(SelectorBase):
         update the console with information
         @param key: information to show (description,changelog,filelist)
         '''
+        print('start')
         if self.pkg:
             busyCursor(self.main_window)
             self.console.clear()
@@ -255,6 +258,7 @@ class PackageInfo(SelectorBase):
                 self.show_update()
             self.console.goTop()
             normalCursor(self.main_window)
+        print('end')
 
     def show_update(self):
         '''
@@ -283,7 +287,9 @@ class PackageInfo(SelectorBase):
         '''
         show the package description
         '''
+        print "start - show_desc"
         self.console.write(self.pkg.description)
+        print "end - show_desc"
 
     def show_update_info(self,upd_info):
         head = ""

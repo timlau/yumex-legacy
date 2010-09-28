@@ -24,10 +24,13 @@ import gtk
 import gobject
 import logging
 import os
+import time
 
 from yumexbase.i18n import _, P_
 #from yumexbase.constants import *
 import yumexbase.constants as const
+from guihelpers import  doGtkEvents, busyCursor, normalCursor
+
 
 from yum.misc import sortPkgObj
 
@@ -189,7 +192,7 @@ class YumexPackageView(SelectionView):
     Yum Extender Package View
     '''
     
-    def __init__(self, widget, qview):
+    def __init__(self, widget, qview, win):
         '''
         Init the view
         @param widget: the gtk TreeView widget
@@ -201,6 +204,7 @@ class YumexPackageView(SelectionView):
         self.store = self.setupView()
         self.queue = qview.queue
         self.queueView = qview
+        self.main_window = win
         
     def setupView(self):
         '''
@@ -329,6 +333,9 @@ class YumexPackageView(SelectionView):
         queued = self.queue.get()
         if pkgs:
             pkgs.sort(sortPkgObj)
+            print "Starting population"
+            start = time.time()
+            self.view.freeze_child_notify()            
             self.view.set_model(None)
             for po in pkgs:
                 self.store.append([po, str(po)])
@@ -336,6 +343,66 @@ class YumexPackageView(SelectionView):
                     po.queued = po.action
                     po.set_select(True)
             self.view.set_model(self.store)
+            self.view.thaw_child_notify()   
+            self.doGtkEvents(progress)            
+            end = time.time()
+            print "Ending population : %.2f " % (end-start)
+            
+    def doGtkEvents(self, progress):
+        '''
+        
+        '''
+        i = 0 
+        while gtk.events_pending():      # process gtk events
+            i += 1
+            if (i % 5) == 0:
+                if progress:
+                    progress.pulse()
+            gtk.main_iteration()
+
+#    def add_packages(self, pkgs, progress=None):
+#        '''
+#        Populate the via with package objects
+#        @param pkgs: list of package object to add
+#        @param progress:
+#        '''
+#        self.store.clear()
+#        queued = self.queue.get()
+#        if pkgs:
+#            pkgs.sort(sortPkgObj)
+#            loader = self.fill_tree(pkgs)
+#            #gobject.idle_add(loader.next)
+#            gobject.timeout_add(20, loader.next)
+
+            
+    def fill_tree(self, pkgs, step=20):
+        '''Generator to fill the listmodel of a treeview progressively.'''
+        print "Starting population"
+        start = time.time()
+        n = 0
+        queued = self.queue.get()
+        
+        self.view.freeze_child_notify()
+        for po in pkgs:
+            self.store.append([po, str(po)])
+            if po in queued[po.action]:
+                po.queued = po.action
+                po.set_select(True)
+            
+            # yield to gtk main loop once awhile
+            n += 1
+            if (n % step) == 0:
+                self.view.thaw_child_notify()
+                yield True
+                self.view.freeze_child_notify()
+            
+        self.view.thaw_child_notify()
+        # stop idle_add()
+        end = time.time()
+        print "Ending population : %.2f " % (end-start)
+        yield False
+
+      
         
 class YumexPackageViewSorted(SelectionView):
     '''
