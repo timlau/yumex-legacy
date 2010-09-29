@@ -313,6 +313,9 @@ class PackageInfo(SelectorBase):
         if upd_info['updated'] and upd_info['updated'] != upd_info['issued']:
             head += "    Updated : %s" % upd_info['updated']
 
+        self.console.write(head)
+        head = ""
+
         # Add our bugzilla references
         if upd_info['references']:
             bzs = [ r for r in upd_info['references'] if r and r['type'] == 'bugzilla']
@@ -323,11 +326,11 @@ class PackageInfo(SelectorBase):
                     if 'title' in bz and bz['title']:
                         bug_msg = ' - %s' % bz['title']
                     else:
-                        bug_msg = ' - %s' % 'https://bugzilla.redhat.com/show_bug.cgi?id='+bz['id']
-                        
-                    buglist += "%14s : %s%s\n" % (header, bz['id'], bug_msg)
+                        bug_msg = ''
+                    self.console.write("%14s : " % header, newline = False)   
+                    self.console.add_url(bz['id'],self.frontend.settings.bugzilla_url+bz['id']) 
+                    self.console.write(bug_msg)
                     header = " "
-                head += buglist[: - 1].rstrip() + '\n\n'
 
         # Add our CVE references
         if upd_info['references']:

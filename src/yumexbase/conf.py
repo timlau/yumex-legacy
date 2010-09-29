@@ -57,6 +57,7 @@ class YumexConf( BaseConfig ):
     yum_conf = Option( '/etc/yum.conf' )
     use_sortable_view = BoolOption( False )
     typeahead_search = BoolOption( False )
+    bugzilla_url = Option('https://bugzilla.redhat.com/show_bug.cgi?id=')
     
 
 class YumexOptions:

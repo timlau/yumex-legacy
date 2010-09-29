@@ -87,11 +87,14 @@ class TextViewBase:
 
     def add_url(self, text,url, newline = False):
         """ Append URL to textbuffer and connect an event """
-        tag = gtk.TextTag(url)
-        tag.set_property("foreground","blue")
-        tag.connect("event", self.on_url_event)
-        self.url_tags.append(tag)
-        self.add_style(tag.get_property("name"), tag)
+        # Try to see if we already got the current url as a tag
+        tag = self.get_style(url)
+        if not tag: 
+            tag = gtk.TextTag(url)
+            tag.set_property("foreground","blue")
+            tag.connect("event", self.on_url_event)
+            self.url_tags.append(tag)
+            self.add_style(tag.get_property("name"), tag)
         self.write(text, style=tag.get_property("name"), newline=newline)
         
             
