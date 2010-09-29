@@ -353,11 +353,7 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             pkg = model.get_value(iterator, 0)
             if pkg:
-                print "Starting pkgInfo :", str(pkg)
-                start = time.time()                
                 self.packageInfo.update(pkg)
-                end = time.time()
-                print "Ending pkgInfo : %.2f " % (end-start)
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
