@@ -31,7 +31,7 @@ import gettext
 
 class TextViewBase:
     '''  Encapsulate a gtk.TextView with support for adding and using pango styles'''
-    def __init__(self, textview):
+    def __init__(self, textview, window=None, url_handler=None):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
@@ -42,6 +42,58 @@ class TextViewBase:
         self.startMark = self.buffer.create_mark("Start", self.buffer.get_start_iter(), False)
         self._styles = {}
         self.default_style = None # the default style (text tag)
+        self.window = window
+        if window:
+            self.textview.connect("motion_notify_event", self.on_mouse_motion)
+        self.url_handler = url_handler
+
+        # List of active URLs in the tab
+        self.url_tags = []
+        self.underlined_url = False
+        
+    def on_url_event(self, tag, widget, event, iter):
+        """ Catch when the user clicks the URL """
+        if event.type == gtk.gdk.BUTTON_RELEASE:
+            if self.url_handler:
+                self.url_handler(tag.get_property("name"))
+
+    def on_mouse_motion(self, widget, event, data = None):
+        '''
+        Mouse movement handler for TextView
+        @param widget:
+        @param event:
+        @param data:
+        '''
+        pointer = widget.window.get_pointer()
+        # Get x,y pos for widget
+        x, y, mask   = widget.window.get_pointer()
+        # convert coords to TextBuffer coords
+        x, y = widget.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, x, y)   
+        # Get the tags on current pointer location     
+        tags = widget.get_iter_at_location(x, y).get_tags()
+        # Remove underline and hand mouse pointer
+        if self.underlined_url:
+            self.underlined_url.set_property("underline",pango.UNDERLINE_NONE)
+            widget.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(None)
+            self.underlined_url = None
+        for tag in tags:
+            if tag in self.url_tags:
+                # underline the tags and change mouse pointer to hand
+                tag.set_property("underline",pango.UNDERLINE_SINGLE)
+                widget.get_window(gtk.TEXT_WINDOW_TEXT).set_cursor(gtk.gdk.Cursor(gtk.gdk.HAND2))
+                self.underlined_url = tag
+        return False
+
+
+    def add_url(self, text,url, newline = False):
+        """ Append URL to textbuffer and connect an event """
+        tag = gtk.TextTag(url)
+        tag.set_property("foreground","blue")
+        tag.connect("event", self.on_url_event)
+        self.url_tags.append(tag)
+        self.add_style(tag.get_property("name"), tag)
+        self.write(text, style=tag.get_property("name"), newline=newline)
+        
             
     def add_style(self, tag, style):
         '''
@@ -119,13 +171,13 @@ class TextViewConsole(TextViewBase):
     @param textview: the gtk.TextView widget to use
     @param text_size: Optional text_size for the styles (default = 8)  
     '''
-    def __init__(self, textview, font_size = 8):
+    def __init__(self, textview, font_size = 8, window=None, url_handler=None):
         '''
         
         @param textview:
         @param font_size:
         '''
-        TextViewBase.__init__(self, textview)
+        TextViewBase.__init__(self, textview, window, url_handler)
         # info style
         style = gtk.TextTag("info")
         style.set_property("foreground", "midnight blue")

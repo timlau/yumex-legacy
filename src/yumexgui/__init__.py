@@ -979,12 +979,18 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
 # pylint: enable-msg=W0201
 
+    def url_handler(self, url):
+        print "Url activated : ",url
+
 
     def testing(self):
         """
-        Test func for lauching a TestWindow for testing new views 
+        Test func for lauching a TestWindow for testing ui stuff
         """
         tw = TestWindow(self.ui,self.backend, self)
+        text = TextViewConsole(self.ui.testText, window=self.ui.testWindow, url_handler=self.url_handler)
+        text.add_url('Yum Extender','http://www.yum-extender.org')
+        text.write(' : Link to the Yum Extender Homepage')
 
     def doTextLoggerSetup( self, logroot, logfmt = '%(message)s', loglvl = logging.INFO):
         ''' Setup Python logging using a TextViewLogHandler '''

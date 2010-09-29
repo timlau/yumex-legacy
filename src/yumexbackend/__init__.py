@@ -218,6 +218,11 @@ class YumexPackageBase:
         
         '''
         return format_number(self.sizeBytes)
+    
+    @property
+    def URL(self):
+        return self._pkg.get_attribute('url')
+    
    
 
 class YumexGroupBase:

@@ -2005,7 +2005,10 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
         <property name="hscrollbar_policy">automatic</property>
         <property name="vscrollbar_policy">automatic</property>
         <child>
-          <placeholder/>
+          <object class="GtkTextView" id="testText">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+          </object>
         </child>
       </object>
     </child>

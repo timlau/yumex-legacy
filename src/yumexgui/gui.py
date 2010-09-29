@@ -23,6 +23,9 @@
 '''
 
 import gtk
+
+import gconf, subprocess
+
 from datetime import date
 from yumexbase.constants import *
 from yumexbackend.yum_backend import YumexPackageYum
@@ -45,13 +48,13 @@ class PackageInfoTextView(TextViewBase):
     TextView handler for showing package information
     '''
     
-    def __init__(self, textview, font_size=8):
+    def __init__(self, textview, font_size=8, window=None, url_handler=None):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
         @param font_size: default text size
         '''
-        TextViewBase.__init__(self, textview)        
+        TextViewBase.__init__(self, textview, window, url_handler)        
 
         # description style
         tag = "description"
@@ -198,7 +201,7 @@ class PackageInfo(SelectorBase):
         '''
         SelectorBase.__init__(self, selector, key_bindings = frontend.key_bindings)
         self.widget = console
-        self.console = PackageInfoTextView(console, font_size=font_size)
+        self.console = PackageInfoTextView(console, font_size=font_size, window=main, url_handler = self._url_handler )
         self.main_window = main
         self.frontend = frontend
         self.add_button('description', stock='gtk-about', 
@@ -212,6 +215,14 @@ class PackageInfo(SelectorBase):
         self.pkg = None
         self._selected = 'description'
 
+    def _url_handler(self, url):
+        self.frontend.info('Url activated : ' + url)
+        client = gconf.client_get_default()
+        browser = client.get_string("/desktop/gnome/url-handlers/http/command") or "firefox %s"
+        # Because URLs contain & it needs to be quoted
+        browser = browser % '"' + url + '"'
+        subprocess.Popen(args=browser, shell=True)
+        
     def update(self, pkg):
         '''
         update the package info with a new package
@@ -244,7 +255,6 @@ class PackageInfo(SelectorBase):
         update the console with information
         @param key: information to show (description,changelog,filelist)
         '''
-        print('start')
         if self.pkg:
             busyCursor(self.main_window)
             self.console.clear()
@@ -258,7 +268,6 @@ class PackageInfo(SelectorBase):
                 self.show_update()
             self.console.goTop()
             normalCursor(self.main_window)
-        print('end')
 
     def show_update(self):
         '''
@@ -287,9 +296,11 @@ class PackageInfo(SelectorBase):
         '''
         show the package description
         '''
-        print "start - show_desc"
+        url = self.pkg.URL
+        self.console.write(_("Project URL : "), "changelog-header", newline = False)
+        self.console.add_url(url,url, newline = True)
+        self.console.write('\n')
         self.console.write(self.pkg.description)
-        print "end - show_desc"
 
     def show_update_info(self,upd_info):
         head = ""
