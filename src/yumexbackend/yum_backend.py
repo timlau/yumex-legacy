@@ -350,7 +350,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         if not self.package_cache.is_populated(pkg_filter):
             # Getting the packages
             pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
-            self.debug("got %i packages" % len(pkgs))
+            self.info(_("%i packages returned") % len(pkgs))
             self.package_cache.populate(pkg_filter, pkgs)
         return self.package_cache._get(pkg_filter)
 

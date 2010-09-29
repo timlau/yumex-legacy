@@ -422,8 +422,10 @@ class YumexHandlers(Controller):
                     pkgs.extend(obs)
                     label = "updates & obsoletes"
                 progress.set_header(_('Adding Packages to view'))
+                self.info(_('Adding Packages to view'))
                 self.debug('START: Adding %s packages to view' % label)
                 self.packages.add_packages(pkgs, progress=progress)                    
+                self.info(_('Added %i Packages to view') % len(pkgs))
                 progress.set_pulse(False)
                 progress.hide()
                 self.debug('END: Getting %s packages' % active)
@@ -905,7 +907,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         if self.settings.use_sortable_view:
             self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
         else:
-            self.packages = YumexPackageView(self.ui.packageView, self.queue, self.window)
+            self.packages = YumexPackageView(self.ui.packageView, self.queue, self)
             
         self.packageInfo = PackageInfo(self.window, self.ui.packageInfo,
                                        self.ui.packageInfoSelector, self, font_size=font_size)

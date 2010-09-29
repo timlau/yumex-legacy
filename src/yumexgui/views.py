@@ -192,7 +192,7 @@ class YumexPackageView(SelectionView):
     Yum Extender Package View
     '''
     
-    def __init__(self, widget, qview, win):
+    def __init__(self, widget, qview, frontend):
         '''
         Init the view
         @param widget: the gtk TreeView widget
@@ -204,7 +204,7 @@ class YumexPackageView(SelectionView):
         self.store = self.setupView()
         self.queue = qview.queue
         self.queueView = qview
-        self.main_window = win
+        self.frontend = frontend
         
     def setupView(self):
         '''
@@ -333,7 +333,7 @@ class YumexPackageView(SelectionView):
         queued = self.queue.get()
         if pkgs:
             pkgs.sort(sortPkgObj)
-            print "Starting population"
+            self.frontend.debug("Starting package view population")
             start = time.time()
             self.view.freeze_child_notify()            
             self.view.set_model(None)
@@ -346,7 +346,7 @@ class YumexPackageView(SelectionView):
             self.view.thaw_child_notify()   
             self.doGtkEvents(progress)            
             end = time.time()
-            print "Ending population : %.2f " % (end-start)
+            self.frontend.debug("Ended package view population. time : %.2f " % (end-start))
             
     def doGtkEvents(self, progress):
         '''
