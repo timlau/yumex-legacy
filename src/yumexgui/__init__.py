@@ -553,12 +553,18 @@ class YumexHandlers(Controller):
     
     def on_QueueEntry_icon_press(self, widget, icon_pos, event):
         '''
-        icon pressed in the search field
+        icon pressed in the search field in queue view entry
         '''
         if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
-            pass
+            self.ui.QueueEntry.set_text("")    
+            self.last_queue_text = ""
 
     def on_QueueEntry_changed(self, widget=None, event=None):
+        '''
+        Queue command autocomplete, DO WORK YET, because cursor position is not updated :(
+        @param widget:
+        @param event:
+        '''
         txt = self.ui.QueueEntry.get_text()
         self.ui.QueueEntry.set_position(-1)
         print "QUEUE_ENTRY",txt, self.ui.QueueEntry.get_position()
@@ -570,15 +576,18 @@ class YumexHandlers(Controller):
         self.last_queue_text = txt
    
     def on_QueueEntry_activate(self, widget=None, event=None):
+        '''
+        Enter is pressed in Queue View Quick command entry
+        @param widget:
+        @param event:
+        '''
         txt = self.ui.QueueEntry.get_text()
         if txt:
             words = txt.split()
             if len(words) > 1:
                 cmd = words[0]
                 userlist = words[1:]
-                print cmd,userlist
                 pkgs = self.backend.run_command(cmd,userlist)
-                print [str(p)+":"+p.action for p in pkgs]
                 for pkg in pkgs:
                     self.queue.queue.add(pkg)
                     pkg.queued = pkg.action      

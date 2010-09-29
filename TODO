@@ -5,8 +5,6 @@ TODO:
   	RFE: Key bindings, all functionality should reachable by the keyboard
     RFE: History improvements
     	 - possibillity to interact with packages in a history transaction
-    RFE: Update info improvements
-         - bugzilla records should be links
     RFE: Auto resolve deps when a package is added to queue
     	- Speed might be an issue here
     	
@@ -25,7 +23,6 @@ TODO:
    	RFE: Make it possible to type "install foo, remove bar" and get the packages added to the queue
    		 - get the same results as typing 'yum install foo" on the cmd line.
     	
-    RFE: Show RPM URL in the package info.
   	
 BUGS:
   	
@@ -71,4 +68,9 @@ Fixed / implemented:
 	. Added typeahead search toggle button (left of search entry)
 	. Added better history transaction package view.
 	. Added History transaction search
+	. RFE: Add Click-able Project URL on package Description view to open project homepage in a browser
+	. Added Click-able Bugzilla links to open bugzilla reports in a browser
+	. Better progress and more info when getting packages and populate the package view
+	. Added 'install xxx' and 'remove yyy' commands on queue page. it gives the same result as
+	    yum install xxx and yum remove yyy
 ( * = Released, . = Upstream )	
