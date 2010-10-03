@@ -102,7 +102,7 @@ rpm:
 test-builds:
 	@$(MAKE) test-release
 	@ssh timlau.fedorapeople.org rm public_html/files/yumex/*
-	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${NEW_VER}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/.
+	@scp ${PKGNAME}-${NEW_VER}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/.
 	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 		
