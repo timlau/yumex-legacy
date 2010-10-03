@@ -102,9 +102,9 @@ gittest:
 	@git commit -a -m "updated ChangeLog"
     	# Make archive
 	@rm -rf ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
-	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION)-${GITDATE}.tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).tar.gz
 	# Build RPMS
-	@rpmbuild -ta  ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
+	@rpmbuild -ta  ${PKGNAME}-${VERSION}.tar.gz
 	@$(MAKE) test-cleanup
 	
 rpm:
