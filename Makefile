@@ -68,22 +68,6 @@ release:
 	@$(MAKE) archive
 	@$(MAKE) upload
 
-test-release:
-	@git checkout -b release-test
-	# Add '.test' to Version in spec file
-	@cat yumex.spec | sed  's/^Version:.*/&${GITDATE}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
-	@git commit -a -m "bumped yumex version to $(VERSION)-$(VERSION)"
-	# Make Changelog
-	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
-	@git commit -a -m "updated ChangeLog"
-    	# Make archive
-	@rm -rf ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
-	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)-${GITDATE}/ HEAD | gzip -9v >${PKGNAME}-$(VERSION)-${GITDATE}.tar.gz
-	# Build RPMS
-	@rpmbuild -ta  ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
-	@$(MAKE) test-cleanup
-    
-
 test-cleanup:	
 	@rm -rf ${PKGNAME}-${VERSION}.test.tar.gz
 	@echo "Cleanup the git release-test local branch"
@@ -96,7 +80,7 @@ show-vars:
 	@echo ${BUMPED_MINOR}
 	@echo ${NEW_VER}-${NEW_REL}
 	
-gittest:
+test-release:
 	@git checkout -b release-test
 	# +1 Minor version and add 0.1-gitYYYYMMDD release
 	@cat yumex.spec | sed  -e 's/${VER_REGEX}/\1${BUMPED_MINOR}/' -e 's/\(^Release:\s*\)\([0-9]*\)\(.*\)./\10.1.${GITDATE}%{?dist}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
@@ -116,11 +100,11 @@ rpm:
 	@rpmbuild -ba yumex.spec
 	
 test-builds:
-	@$(MAKE) rpm
+	@$(MAKE) test-release
 	@ssh timlau.fedorapeople.org rm public_html/files/yumex/*
-	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/.
-	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${VERSION}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
-	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${VERSION}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
+	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${NEW_VER}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/.
+	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
+	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 		
 FORCE:
     
