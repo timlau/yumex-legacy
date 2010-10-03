@@ -94,7 +94,7 @@ gittest:
 	@echo ${GITDATE}
 	@echo ${BUMPED_MINOR}
 	# +1 Minor version and add 0.1-gitYYYYMMDD release
-	@cat yumex.spec | sed  -e 's/${VER_REGEX}/\1${BUMPED_MINOR}/' -e 's/\(^Release:\s*\)\([0-9]*\)\(.*\)./\10.1-${GITDATE}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
+	@cat yumex.spec | sed  -e 's/${VER_REGEX}/\1${BUMPED_MINOR}/' -e 's/\(^Release:\s*\)\([0-9]*\)\(.*\)./\10.1.${GITDATE}%{?dist}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
 	@git commit -a -m "bumped yumex version"
 	# Make Changelog
 	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
