@@ -10,6 +10,8 @@ ALLDIRS=$(SUBDIRS) gfx misc tools
 GITDATE=git$(shell date +%Y%m%d)
 VER_REGEX=\(^Version:\s*[0-9]*\.[0-9]*\.\)\(.*\)
 BUMPED_MINOR=${shell VN=`cat yumex.spec | grep Version| sed  's/${VER_REGEX}/\2/'`; echo $$(($$VN + 1))}
+NEW_VER=${shell cat yumex.spec | grep Version| sed  's/\(^Version:\s*\)\([0-9]*\.[0-9]*\.\)\(.*\)/\2${BUMPED_MINOR}/'}
+NEW_REL=0.1.${GITDATE}
 all: subdirs
 	
 subdirs:
@@ -88,23 +90,25 @@ test-cleanup:
 	@git checkout -f
 	@git checkout future
 	@git branch -D release-test
+
+show-vars:
+	@echo ${GITDATE}
+	@echo ${BUMPED_MINOR}
+	@echo ${NEW_VER}-${NEW_REL}
 	
 gittest:
 	@git checkout -b release-test
-	@echo ${GITDATE}
-	@echo ${BUMPED_MINOR}
 	# +1 Minor version and add 0.1-gitYYYYMMDD release
 	@cat yumex.spec | sed  -e 's/${VER_REGEX}/\1${BUMPED_MINOR}/' -e 's/\(^Release:\s*\)\([0-9]*\)\(.*\)./\10.1.${GITDATE}%{?dist}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
-	@git commit -a -m "bumped yumex version"
-	VERSION=$(shell awk '/Version:/ { print $$2 }' ${PKGNAME}.spec)
+	@git commit -a -m "bumped yumex version ${NEW_VER}-${NEW_REL}"
 	# Make Changelog
 	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
 	@git commit -a -m "updated ChangeLog"
     	# Make archive
-	@rm -rf ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
-	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).tar.gz
+	@rm -rf ${PKGNAME}-${NEW_VER}.tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(NEW_VER)/ HEAD | gzip -9v >${PKGNAME}-$(NEW_VER).tar.gz
 	# Build RPMS
-	@rpmbuild -ta  ${PKGNAME}-${VERSION}.tar.gz
+	@rpmbuild -ta  ${PKGNAME}-${NEW_VER}.tar.gz
 	@$(MAKE) test-cleanup
 	
 rpm:
