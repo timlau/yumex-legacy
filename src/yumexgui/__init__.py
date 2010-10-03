@@ -170,7 +170,8 @@ class YumexHandlers(Controller):
         self._current_active = None
         self.current_category = None
         self.last_queue_text = ""
-        
+        self.last_search_text = ""
+       
                 
 # Signal handlers
       
@@ -293,7 +294,7 @@ class YumexHandlers(Controller):
         if not self.typeahead_active or len(keys) > 1:
             return
         txt = keys[0]
-        if len(txt) >= 3:
+        if len(txt) >= 3 and len(txt) > len(self.last_search_text):
             self.ui.packageSearch.set_sensitive(False)
             busyCursor(self.window)
             self.debug("SEARCH : %s" % txt)
@@ -309,7 +310,7 @@ class YumexHandlers(Controller):
             self.ui.packageSearch.set_sensitive(True)
             normalCursor(self.window)
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-            
+        self.last_search_text = txt
         
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
