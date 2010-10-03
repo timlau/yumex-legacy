@@ -7,7 +7,9 @@ SRCDIR=src
 MISCDIR=misc
 PIXDIR=gfx
 ALLDIRS=$(SUBDIRS) gfx misc tools
-
+GITDATE=git$(shell date +%Y%m%d)
+VER_REGEX=\(^Version:\s*[0-9]*\.[0-9]*\.\)\(.*\)
+BUMPED_MINOR=${shell VN=`cat yumex.spec | grep Version| sed  's/${VER_REGEX}/\2/'`; echo $$(($$VN + 1))}
 all: subdirs
 	
 subdirs:
@@ -67,16 +69,16 @@ release:
 test-release:
 	@git checkout -b release-test
 	# Add '.test' to Version in spec file
-	@cat yumex.spec | sed  's/^Version:.*/&.test/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
-	@git commit -a -m "bumped yumex version to $(VERSION).test"
+	@cat yumex.spec | sed  's/^Version:.*/&${GITDATE}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
+	@git commit -a -m "bumped yumex version to $(VERSION)-$(VERSION)"
 	# Make Changelog
 	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
 	@git commit -a -m "updated ChangeLog"
     	# Make archive
-	@rm -rf ${PKGNAME}-${VERSION}.test.tar.gz
-	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION).test/ HEAD | gzip -9v >${PKGNAME}-$(VERSION).test.tar.gz
+	@rm -rf ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)-${GITDATE}/ HEAD | gzip -9v >${PKGNAME}-$(VERSION)-${GITDATE}.tar.gz
 	# Build RPMS
-	@rpmbuild -ta  ${PKGNAME}-${VERSION}.test.tar.gz
+	@rpmbuild -ta  ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
 	@$(MAKE) test-cleanup
     
 
@@ -86,7 +88,24 @@ test-cleanup:
 	@git checkout -f
 	@git checkout future
 	@git branch -D release-test
-
+	
+gittest:
+	@git checkout -b release-test
+	@echo ${GITDATE}
+	@echo ${BUMPED_MINOR}
+	# +1 Minor version and add 0.1-gitYYYYMMDD release
+	@cat yumex.spec | sed  -e 's/${VER_REGEX}/\1${BUMPED_MINOR}/' -e 's/\(^Release:\s*\)\([0-9]*\)\(.*\)./\1$0.1-{GITDATE}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
+	@git commit -a -m "bumped yumex version"
+	# Make Changelog
+	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
+	@git commit -a -m "updated ChangeLog"
+    	# Make archive
+	@rm -rf ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)-${GITDATE}/ HEAD | gzip -9v >${PKGNAME}-$(VERSION)-${GITDATE}.tar.gz
+	# Build RPMS
+	@rpmbuild -ta  ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
+	@$(MAKE) test-cleanup
+	
 rpm:
 	@$(MAKE) archive
 	@rpmbuild -ba yumex.spec
