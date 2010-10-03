@@ -96,12 +96,13 @@ gittest:
 	# +1 Minor version and add 0.1-gitYYYYMMDD release
 	@cat yumex.spec | sed  -e 's/${VER_REGEX}/\1${BUMPED_MINOR}/' -e 's/\(^Release:\s*\)\([0-9]*\)\(.*\)./\10.1.${GITDATE}%{?dist}/' > yumex-test.spec ; mv yumex-test.spec yumex.spec
 	@git commit -a -m "bumped yumex version"
+	VERSION=$(shell awk '/Version:/ { print $$2 }' ${PKGNAME}.spec)
 	# Make Changelog
 	@git log --pretty --numstat --summary | ./tools/git2cl > ChangeLog
 	@git commit -a -m "updated ChangeLog"
     	# Make archive
 	@rm -rf ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
-	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)-${GITDATE}/ HEAD | gzip -9v >${PKGNAME}-$(VERSION)-${GITDATE}.tar.gz
+	@git archive --format=tar --prefix=$(PKGNAME)-$(VERSION)/ HEAD | gzip -9v >${PKGNAME}-$(VERSION)-${GITDATE}.tar.gz
 	# Build RPMS
 	@rpmbuild -ta  ${PKGNAME}-${VERSION}-${GITDATE}.tar.gz
 	@$(MAKE) test-cleanup
