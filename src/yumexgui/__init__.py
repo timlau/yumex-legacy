@@ -956,6 +956,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._add_key_binding(self.ui.packageSearch, 'activate', '<alt>s')
         if self.settings.search:            # Search only mode
             self.ui.packageFilterBox.hide()
+            self.ui.packageSelectAll.hide()            
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         elif self.settings.update_only:     # Update only mode
             self.ui.packageFilterBox.hide()
