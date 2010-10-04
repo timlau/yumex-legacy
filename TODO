@@ -73,4 +73,7 @@ Fixed / implemented:
 	. Better progress and more info when getting packages and populate the package view
 	. Added 'install xxx' and 'remove yyy' commands on queue page. it gives the same result as
 	    yum install xxx and yum remove yyy
+	. Add completion entry for queue commands.
+	. Fix translation issues with gtkbuilder strings.
+	. Pressing Esc will clear the package search entry and undo current search
 ( * = Released, . = Upstream )	
