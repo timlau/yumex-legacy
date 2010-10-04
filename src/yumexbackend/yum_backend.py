@@ -434,6 +434,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param prefix prefix to search for
         '''
         pkgs = YumClient.run_command(self, cmd, userlist)
+        self.frontend.get_progress().hide()
         return [self.package_cache.find(po) for po in pkgs]
 
 class YumexPackageYum(YumexPackageBase):

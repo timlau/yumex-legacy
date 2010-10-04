@@ -1303,6 +1303,7 @@ words.
                         <property name="secondary_icon_stock">gtk-clear</property>
                         <property name="secondary_icon_activatable">True</property>
                         <signal name="changed" handler="on_packageSearch_changed" swapped="no"/>
+                        <signal name="key-press-event" handler="on_packageSearch_key_press_event" swapped="no"/>
                         <signal name="activate" handler="on_packageSearch_activate" swapped="no"/>
                         <signal name="icon-press" handler="on_packageSearch_icon_press" swapped="no"/>
                       </object>

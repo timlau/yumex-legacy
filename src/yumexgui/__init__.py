@@ -311,7 +311,13 @@ class YumexHandlers(Controller):
             normalCursor(self.window)
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         self.last_search_text = txt
-        
+
+    def on_packageSearch_key_press_event(self, widget, event):
+        keyname = gtk.gdk.keyval_name(event.keyval)
+        # print "Key %s (%d) was pressed" % (keyname, event.keyval)
+        if keyname == 'Escape': # Esc pressed
+            self._packageSearch_right_icon()
+                
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
         Enter pressed in the search field
@@ -330,18 +336,22 @@ class YumexHandlers(Controller):
             progress = self.get_progress()
             progress.hide()
             normalCursor(self.window)
+            
+    def _packageSearch_right_icon(self):        
+        self.ui.packageSearch.set_text('')
+        if not self.settings.search:
+            self.ui.packageFilterBox.show()
+            if self._last_filter:
+                self._last_filter.clicked()
+        self.ui.packageSearch.grab_focus()
+
 
     def on_packageSearch_icon_press(self, widget, icon_pos, event):
         '''
         icon pressed in the search field
         '''
         if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
-            self.ui.packageSearch.set_text('')
-            if not self.settings.search:
-                self.ui.packageFilterBox.show()
-                if self._last_filter:
-                    self._last_filter.clicked()
-            
+            self._packageSearch_right_icon()
         else:
             self.on_packageSearch_activate()
         
