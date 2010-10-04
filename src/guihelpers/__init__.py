@@ -251,10 +251,11 @@ class UI(gtk.Builder):
         
         gtk.Builder.__init__(self)
         self.filename = filename
-        self.add_from_file(filename)
-        self.root = self.get_object(rootname)
+        # set the translation domain 
         if domain:
             self.set_translation_domain(domain)
+        self.add_from_file(filename)
+        self.root = self.get_object(rootname)
             
             
 

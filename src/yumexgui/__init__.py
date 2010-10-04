@@ -815,39 +815,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._add_key_to_menu(self.ui.viewRepo,'3')
         self._add_key_to_menu(self.ui.viewOutput,'4')
         
-    def fix_gtkbuilder_translations(self):
-        '''
-        fix stuff, that don't get translated in the gtk.builder xml file
-        '''
-        # Fix main menues
-        menus = ['fileMenu','editMenu','viewMenu','optionsMenu','helpMenu','viewPackages','viewQueue',\
-                 'viewRepo','viewOutput','option_skipbroken','option_nogpgcheck','packageRadioUpdates',\
-                'packageRadioAvailable','packageRadioInstalled','packageRadioGroups','packageRadioCategories',\
-                'packageRadioAll','viewHistory']
-        for menu in menus:
-            obj = getattr(self.ui,menu)
-            label = obj.get_child()
-            label.set_label(_(label.get_label()))
-            
-        tabs = ['prefBasic', 'prefAdvanced']
-        for tab in tabs:
-            obj = getattr(self.ui,tab)
-            obj.set_label(_(obj.get_label()))
-            
-        # tool tip to fix             
-        toolstip_widgets = ['packageRadioUpdates', 'packageRadioAvailable', 'packageRadioInstalled', \
-                            'packageRadioGroups','packageRadioCategories', 'packageRadioAll',\
-                            'packageSelectAll', 'packageUndo', 'packageExecute',\
-                            'searchTypeAhead', 'searchOptions', 'packageSearch', \
-                            'queueExecute', 'queueRemove', 'repoRefresh', 'repoUndo', \
-                            'historyRefresh', 'historyUndo', 'historyRedo', 'historySearch']
-        for widget in toolstip_widgets:
-            obj = getattr(self.ui,widget)
-            obj.set_tooltip_text(_(obj.get_tooltip_text()))
-
-            
-        
-        
             
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
@@ -869,7 +836,6 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Setup the gui
         '''
         # Fix the translations in gtk.Builder object
-        self.fix_gtkbuilder_translations()
         # setup
         self.window.set_title(self.settings.branding_title)
         self.window.add_accel_group(self.key_bindings)
