@@ -31,7 +31,7 @@ import time
 
 from datetime import date
 
-from yumexgui.gui import Notebook, PackageInfo
+from yumexgui.gui import Notebook, PackageInfo, CompletedEntry
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions, \
                              TestWindow
@@ -578,7 +578,7 @@ class YumexHandlers(Controller):
         @param widget:
         @param event:
         '''
-        txt = self.ui.QueueEntry.get_text()
+        txt = self.queue_entry.get_text()
         if txt:
             words = txt.split()
             if len(words) > 1:
@@ -590,8 +590,7 @@ class YumexHandlers(Controller):
                     pkg.queued = pkg.action      
                     
                 self.queue.refresh()
-        self.ui.QueueEntry.set_text("")    
-        self.last_queue_text = ""
+        self.queue_entry.set_text("")    
 
     def on_queueOpen_clicked(self, widget=None, event=None):
         '''
@@ -715,6 +714,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.default_search_keys = ['name', 'summary', 'description']
         self.search_keys = ['name', 'summary', 'description', "arch"]
         self.typeahead_active = False
+        self.queue_entry = None
 
         
 
@@ -845,6 +845,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
     def _add_key_binding(self,widget,event,accel):
         keyval,mask = gtk.accelerator_parse(accel)
         widget.add_accelerator(event, self.key_bindings, keyval, mask, 0)
+
+    def _setup_queue_entry(self):
+        self.queue_entry = CompletedEntry()
+        self.ui.queueEntryBox.pack_start(self.queue_entry)
+        self.queue_entry.connect("activate",  self.on_QueueEntry_activate)
+        self.queue_entry.add_words(['install ','erase ','remove '])
+        self.queue_entry.show()
         
 
     def setup_gui(self):
@@ -904,6 +911,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.preferences = Preferences(self.ui,self.window,self.cfg)
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
+        self._setup_queue_entry()
         # seach options
         self.search_options = SearchOptions(self.ui, self.window, self.search_keys, self.default_search_keys)
         self.typeahead_active = self.settings.typeahead_search
