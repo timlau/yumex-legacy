@@ -56,7 +56,7 @@ import dbus
 import dbus.service
 from dbus.mainloop.glib import DBusGMainLoop
 from yumexbackend.yumMediaManager import MediaManager, MediaDevice
-dbus_loop = DBusGMainLoop(set_as_default = True)
+dbus_loop = DBusGMainLoop(set_as_default=True)
 bus = dbus.SystemBus()
 interface = 'org.freedesktop.UDisks'
 
@@ -82,14 +82,14 @@ class MediaDeviceUDisks(MediaDevice):
         self.__dev = bus.get_object(interface, media_id)
 
     def get_device_property(self, key):
-        return self.__dev.Get(interface+'.Device', key, dbus_interface="org.freedesktop.DBus.Properties")
+        return self.__dev.Get(interface + '.Device', key, dbus_interface="org.freedesktop.DBus.Properties")
 
     def is_removable(self):
         return bool(self.get_device_property('device-is-removable'))
 
     def is_mounted(self):
         return bool(self.get_device_property('device-is-mounted'))
- 
+
     def is_locked(self):
         return False
 
@@ -99,7 +99,7 @@ class MediaDeviceUDisks(MediaDevice):
         """
         if not self.is_mounted():
             return None
-        l=self.get_device_property('device-mount-paths')
+        l = self.get_device_property('device-mount-paths')
         if l: return str(l[0]) or None
         return None
 
@@ -122,9 +122,9 @@ class MediaDeviceUDisks(MediaDevice):
         """
         if self.is_mounted():
             return self.get_mount_point()
-        r=None
+        r = None
         try:
-            r = str(self.__dev.FilesystemMount('auto', dbus.Array(dbus.String()), dbus_interface = interface+".Device")) or None
+            r = str(self.__dev.FilesystemMount('auto', dbus.Array(dbus.String()), dbus_interface=interface + ".Device")) or None
         except dbus.exceptions.DBusException:
             pass
         return r
@@ -134,7 +134,7 @@ class MediaDeviceUDisks(MediaDevice):
         unmount the device and return True.
         """
         try:
-            self.__dev.FilesystemUnmount(dbus.Array(dbus.String()), dbus_interface = interface+".Device")
+            self.__dev.FilesystemUnmount(dbus.Array(dbus.String()), dbus_interface=interface + ".Device")
         except dbus.exceptions.DBusException:
             pass
         return not self.is_mounted()
@@ -148,7 +148,7 @@ class MediaManagerUDisks(MediaManager):
     def __iter__(self):
         #self.__close_tray_and_be_ready()
         # use volume.disc to restrict that to optical discs
-        for i in self.__dev.EnumerateDevices(dbus_interface = interface):
+        for i in self.__dev.EnumerateDevices(dbus_interface=interface):
             o = MediaDeviceUDisks(i)
             if o.is_removable():
                 yield o

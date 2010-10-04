@@ -35,9 +35,9 @@ from yumexgui.gui import Notebook, PackageInfo, CompletedEntry
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions, \
                              TestWindow
-from yumexbase.network import NetworkCheckNetworkManager                             
+from yumexbase.network import NetworkCheckNetworkManager
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
-from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView,\
+from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView, \
                            YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView, \
                            YumexPackageViewSorted, YumexHistoryPackageView
 from yumexbase.constants import *
@@ -63,7 +63,7 @@ class YumexFrontend(YumexFrontendBase):
         ''' Setup the frontend callbacks '''
         self.logger = logging.getLogger(YUMEX_LOG)
         YumexFrontendBase.__init__(self, backend, progress)
-        
+
     def set_state(self, state):
         ''' set the state of work '''
         pass
@@ -79,7 +79,7 @@ class YumexFrontend(YumexFrontendBase):
     def confirm_transaction(self, transaction, size):
         ''' confirm the current transaction'''
         dialog = self.transactionConfirm
-        dialog.populate(transaction,size)
+        dialog.populate(transaction, size)
         ok = dialog.run()
         dialog.destroy()
         return ok
@@ -90,7 +90,7 @@ class YumexFrontend(YumexFrontendBase):
         self.refresh()
         if exit_pgm:
             sys.exit(1)
-            
+
 
     def warning(self, msg):
         ''' Write an warning message to frontend '''
@@ -106,10 +106,10 @@ class YumexFrontend(YumexFrontendBase):
         ''' Write an debug message to frontend '''
         if not name:
             classname = __name__.split('.')[-1]
-            name = classname + "."+sys._getframe(1).f_code.co_name                
+            name = classname + "." + sys._getframe(1).f_code.co_name
         if self.settings.debug:
             if name:
-                self.logger.debug(msg+"   <%s>" % name)
+                self.logger.debug(msg + "   <%s>" % name)
             else:
                 self.logger.debug(msg)
         self.refresh()
@@ -120,7 +120,7 @@ class YumexFrontend(YumexFrontendBase):
         print "Exception:", msg
         title = "Exception in Yum Extender"
         text = "An exception was triggered "
-        longtext = msg            
+        longtext = msg
         # Show error dialog    
         dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
         dialog.run()
@@ -142,21 +142,21 @@ class YumexFrontend(YumexFrontendBase):
         if (count > 0 and count % 600 == 0):
             self.debug('Current backend action has been running for %i min' % int(count / 600))
         self.refresh()
-        
-    def refresh(self):     
+
+    def refresh(self):
         '''
         Refresh the gui and pulse the progress if enabled and in pulse mode
         '''
-        progress = self.get_progress()  
-        if progress:        
+        progress = self.get_progress()
+        if progress:
             if progress.is_active() and progress.is_pulse():
                 progress.pulse()
         doGtkEvents()
-        
+
 class YumexHandlers(Controller):
     ''' This class contains all signal callbacks '''
-    
-    
+
+
     def __init__(self):
         '''
         Init the signal callback Controller 
@@ -171,10 +171,10 @@ class YumexHandlers(Controller):
         self.current_category = None
         self.last_queue_text = ""
         self.last_search_text = ""
-       
-                
+
+
 # Signal handlers
-      
+
     def quit(self):
         ''' destroy Handler '''
         # Save the windows size and separator position
@@ -182,12 +182,12 @@ class YumexHandlers(Controller):
             width, height = self.window.get_size()
             if self._resized:
                 width = width - 150
-            setattr( self.cfg.conf_settings, 'win_width',width)
-            setattr( self.cfg.conf_settings, 'win_height',height)
+            setattr(self.cfg.conf_settings, 'win_width', width)
+            setattr(self.cfg.conf_settings, 'win_height', height)
             pos = self.ui.packageSep.get_position()
-            setattr( self.cfg.conf_settings, 'win_sep',pos)
+            setattr(self.cfg.conf_settings, 'win_sep', pos)
             self.cfg.save()
-            
+
         except:
             self.backend.info("Error in saving window size")
         self.backend.debug("Quiting the program !!!")
@@ -199,7 +199,7 @@ class YumexHandlers(Controller):
         self.backend.debug("Backend reset completted")
 
     # Menu
-        
+
     def on_fileQuit_activate(self, widget=None, event=None):
         '''
         Menu : File -> Quit
@@ -228,7 +228,7 @@ class YumexHandlers(Controller):
         '''
         okDialog(self.window, "This function has not been implemented yet")
         self.debug("Profiles -> Save")
-        
+
     def on_helpAbout_activate(self, widget=None, event=None):
         '''
         Menu : Help -> About
@@ -237,13 +237,13 @@ class YumexHandlers(Controller):
         self.ui.About.hide()
         #okDialog(self.window, "This function has not been implemented yet")
         self.debug("Help -> About")
-        
-        
+
+
 # Options
 
     def on_option_nogpgcheck_toggled(self, widget=None, event=None):
-        self.backend.set_option('gpgcheck',not widget.get_active(),on_repos=True)
-        
+        self.backend.set_option('gpgcheck', not widget.get_active(), on_repos=True)
+
     def on_option_skipbroken_toggled(self, widget=None, event=None):
         self.backend.set_option('skip_broken', widget.get_active())
 
@@ -265,30 +265,30 @@ class YumexHandlers(Controller):
         Menu : View -> Repo
         '''
         self.notebook.set_active("repo")
-        
+
     def on_viewOutput_activate(self, widget=None, event=None):
         '''
         Menu : View -> Output
         '''
         self.notebook.set_active("output")
-        
+
     def on_viewHistory_activate(self, widget=None, event=None):
         '''
         Menu : View -> History
         '''
         self.notebook.set_active("history")
     # Package Page    
-    
+
     def on_searchTypeAhead_toggled(self, widget=None, event=None):
         active = self.ui.searchTypeAhead.get_active()
         self.typeahead_active = active
         self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
 
-    
+
     def on_searchOptions_clicked(self, widget=None, event=None):
         self.search_options.run()
         self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-        
+
     def on_packageSearch_changed(self, widget=None, event=None):
         keys = self.ui.packageSearch.get_text().split(' ')
         if not self.typeahead_active or len(keys) > 1:
@@ -303,7 +303,7 @@ class YumexHandlers(Controller):
             if not self.settings.search:
                 self.ui.packageFilterBox.hide()
                 if self._last_filter:
-                    self._last_filter.set_active(True)            
+                    self._last_filter.set_active(True)
             self.packages.add_packages(pkgs)
             progress = self.get_progress()
             progress.hide()
@@ -317,7 +317,7 @@ class YumexHandlers(Controller):
         # print "Key %s (%d) was pressed" % (keyname, event.keyval)
         if keyname == 'Escape': # Esc pressed
             self._packageSearch_right_icon()
-                
+
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
         Enter pressed in the search field
@@ -331,13 +331,13 @@ class YumexHandlers(Controller):
             if not self.settings.search:
                 self.ui.packageFilterBox.hide()
                 if self._last_filter:
-                    self._last_filter.set_active(True)            
+                    self._last_filter.set_active(True)
             self.packages.add_packages(pkgs)
             progress = self.get_progress()
             progress.hide()
             normalCursor(self.window)
-            
-    def _packageSearch_right_icon(self):        
+
+    def _packageSearch_right_icon(self):
         self.ui.packageSearch.set_text('')
         if not self.settings.search:
             self.ui.packageFilterBox.show()
@@ -354,8 +354,8 @@ class YumexHandlers(Controller):
             self._packageSearch_right_icon()
         else:
             self.on_packageSearch_activate()
-        
-    def on_packageView_cursor_changed(self, widget):    
+
+    def on_packageView_cursor_changed(self, widget):
         '''
         package selected in the view 
         @param widget: the view widget
@@ -370,7 +370,7 @@ class YumexHandlers(Controller):
         '''
         The clear search button 
         '''
-            
+
 
     def on_packageSelectAll_clicked(self, widget=None, event=None):
         '''
@@ -385,8 +385,8 @@ class YumexHandlers(Controller):
         self.packages.deselectAll()
         self.queue.queue.remove_all_groups()
         self.groups.reset_queued()
-        
-        
+
+
     def on_packageFilter_changed(self, widget, active):
         '''
         Package filter radiobuttons
@@ -399,7 +399,7 @@ class YumexHandlers(Controller):
             self._current_active = active
             self.packageInfo.clear()
             self.packages.clear()
-            self.ui.packageSearch.set_text('')        
+            self.ui.packageSearch.set_text('')
             self.ui.groupVBox.hide()
             self.ui.categoryWindow.hide()
             self.ui.leftBox.hide()
@@ -422,16 +422,16 @@ class YumexHandlers(Controller):
                 progress.set_title(PACKAGE_LOAD_MSG[filter])
                 progress.set_header(PACKAGE_LOAD_MSG[filter])
                 progress.show()
-                pkgs = self.backend.get_packages(getattr(FILTER,active))
+                pkgs = self.backend.get_packages(getattr(FILTER, active))
                 # if Updates, then add obsoletes too
                 if active == 'updates':
-                    obs = self.backend.get_packages(getattr(FILTER,'obsoletes'))
+                    obs = self.backend.get_packages(getattr(FILTER, 'obsoletes'))
                     pkgs.extend(obs)
                     label = "updates & obsoletes"
                 progress.set_header(_('Adding Packages to view'))
                 self.info(_('Adding Packages to view'))
                 self.debug('START: Adding %s packages to view' % label)
-                self.packages.add_packages(pkgs, progress=progress)                    
+                self.packages.add_packages(pkgs, progress=progress)
                 self.info(_('Added %i Packages to view') % len(pkgs))
                 progress.set_pulse(False)
                 progress.hide()
@@ -464,8 +464,8 @@ class YumexHandlers(Controller):
             elif self.current_category == 'repo':
                 pkgs = self.backend.get_packages_repo(id)
                 self.packages.add_packages(pkgs)
-                
-            
+
+
     def on_categoryTypes_cursor_changed(self, widget):
         '''
         Category Type element selected
@@ -476,13 +476,13 @@ class YumexHandlers(Controller):
             self.current_category = id
             self.packages.clear()
             if id == 'repo':
-                data = [(repo,repo) for repo in sorted(self.current_repos)]
+                data = [(repo, repo) for repo in sorted(self.current_repos)]
                 self.category_content.populate(data)
             #elif id == 'age':
             #    self.category_content.populate(const.CATEGORY_AGE)
             elif id == 'size':
                 self.category_content.populate(const.CATEGORY_SIZE)
-        
+
     def on_groupView_cursor_changed(self, widget):
         '''
         Group/Category selected in groupView
@@ -499,9 +499,9 @@ class YumexHandlers(Controller):
                 grpid = model.get_value(iterator, 2)
                 pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
                 self.packages.add_packages(pkgs)
-            
+
     # Repo Page    
-        
+
     def on_repoRefresh_clicked(self, widget=None, event=None):
         '''
         Repo refresh button
@@ -510,13 +510,13 @@ class YumexHandlers(Controller):
         self.current_repos = repos
         rc = self.reload(repos)
         return rc
-        
+
     def on_repoUndo_clicked(self, widget=None, event=None):
         '''
         Repo undo button
         '''
         self.repos.populate(self.default_repos)
-        
+
     def on_repoView_button_press_event(self, treeview, event):
         if event.button == 3: # Right Click
             x = int(event.x)
@@ -526,24 +526,24 @@ class YumexHandlers(Controller):
             if pthinfo is not None:
                 path, col, cellx, celly = pthinfo
                 treeview.grab_focus()
-                treeview.set_cursor( path, col, 0)
-                store = treeview.get_model() 
-                iter = store.get_iter( path )
-                state = store.get_value(iter,0)
-                popup = self.get_repo_popup(state,path)
-                popup.popup( None, None, None, event.button, t)
+                treeview.set_cursor(path, col, 0)
+                store = treeview.get_model()
+                iter = store.get_iter(path)
+                state = store.get_value(iter, 0)
+                popup = self.get_repo_popup(state, path)
+                popup.popup(None, None, None, event.button, t)
             return True
 
 
-    def on_repo_popup_other(self,widget,action_id,path):
+    def on_repo_popup_other(self, widget, action_id, path):
         if action_id.startswith('clean-'):
             what = action_id.split("-")[1]
-            rc = okCancelDialog(self.window,_("Do you want to clean %s from the yum cache") % what)
+            rc = okCancelDialog(self.window, _("Do you want to clean %s from the yum cache") % what)
             if rc:
                 self.backend.clean(what)
-                
-        
-    def on_repo_popup_enabled(self,widget,enable,path):
+
+
+    def on_repo_popup_enabled(self, widget, enable, path):
         '''
         
         @param widget:
@@ -551,19 +551,19 @@ class YumexHandlers(Controller):
         @param path: treeview path for current item
         '''
         store = self.ui.repoView.get_model()
-        iter = store.get_iter( path )
-        id = store.get_value(iter,1)
-        store.set_value(iter,0,enable)
-        self.backend.enable_repo_persistent( id, enable)
-        
+        iter = store.get_iter(path)
+        id = store.get_value(iter, 1)
+        store.set_value(iter, 0, enable)
+        self.backend.enable_repo_persistent(id, enable)
+
     # Queue Page    
-    
+
     def on_QueueEntry_icon_press(self, widget, icon_pos, event):
         '''
         icon pressed in the search field in queue view entry
         '''
         if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
-            self.ui.QueueEntry.set_text("")    
+            self.ui.QueueEntry.set_text("")
             self.last_queue_text = ""
 
     def on_QueueEntry_changed(self, widget=None, event=None):
@@ -574,14 +574,14 @@ class YumexHandlers(Controller):
         '''
         txt = self.ui.QueueEntry.get_text()
         self.ui.QueueEntry.set_position(-1)
-        print "QUEUE_ENTRY",txt, self.ui.QueueEntry.get_position()
+        print "QUEUE_ENTRY", txt, self.ui.QueueEntry.get_position()
         if len(txt) == 2 and len(txt) > len(self.last_queue_text):
             if txt in QUEUE_COMMANDS:
-                cmd = QUEUE_COMMANDS[txt]+" "
+                cmd = QUEUE_COMMANDS[txt] + " "
                 self.last_queue_text = cmd
                 self.ui.QueueEntry.set_text(cmd)
         self.last_queue_text = txt
-   
+
     def on_QueueEntry_activate(self, widget=None, event=None):
         '''
         Enter is pressed in Queue View Quick command entry
@@ -594,32 +594,32 @@ class YumexHandlers(Controller):
             if len(words) > 1:
                 cmd = words[0]
                 userlist = words[1:]
-                pkgs = self.backend.run_command(cmd,userlist)
+                pkgs = self.backend.run_command(cmd, userlist)
                 for pkg in pkgs:
                     self.queue.queue.add(pkg)
-                    pkg.queued = pkg.action      
-                    
+                    pkg.queued = pkg.action
+
                 self.queue.refresh()
-        self.queue_entry.set_text("")    
+        self.queue_entry.set_text("")
 
     def on_queueOpen_clicked(self, widget=None, event=None):
         '''
         Queue Open Button
         '''
         self.debug("Queue Open")
-    
+
     def on_queueSave_clicked(self, widget=None, event=None):
         '''
         Queue Save button
         '''
         self.debug("Queue Save")
-    
+
     def on_queueRemove_clicked(self, widget=None, event=None):
         '''
         Queue Remove button
         '''
         self.queue.deleteSelected()
-        
+
     def on_Execute_clicked(self, widget=None, event=None):
         '''
         The Queue/Packages Execute button
@@ -627,8 +627,8 @@ class YumexHandlers(Controller):
         self.debug("Starting pending actions processing")
         self.process_transaction(action="queue")
         self.debug("Ended pending actions processing")
-        
-        
+
+
 # History Page
 
     def on_historySearch_icon_press(self, widget, icon_pos, event):
@@ -639,7 +639,7 @@ class YumexHandlers(Controller):
             self.ui.historySearch.set_text('')
             self.setup_history(force=True)
 
-        
+
     def on_historySearch_activate(self, widget=None, event=None):
         txt = self.ui.historySearch.get_text()
         pat = txt.split(' ')
@@ -647,29 +647,29 @@ class YumexHandlers(Controller):
             self.setup_history(force=True)
         else:
             self.search_history(pat)
-        
+
     def on_historyUndo_clicked(self, widget=None, event=None):
         (model, iterator) = self.ui.historyView.get_selection().get_selected()
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
             self.debug("Starting history undo")
-            self.process_transaction(action="history-undo",tid=tid)
+            self.process_transaction(action="history-undo", tid=tid)
             self.debug("Ended History undo")
-    
+
     def on_historyRedo_clicked(self, widget=None, event=None):
         (model, iterator) = self.ui.historyView.get_selection().get_selected()
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
             self.debug("Starting history redo")
-            self.process_transaction(action="history-redo",tid=tid)
+            self.process_transaction(action="history-redo", tid=tid)
             self.debug("Ended History redo")
-    
+
     def on_historyRefresh_clicked(self, widget=None, event=None):
         busyCursor(self.window)
-        self.setup_history(limit=False,force=True)
+        self.setup_history(limit=False, force=True)
         normalCursor(self.window)
-    
-    
+
+
     def on_historyView_cursor_changed(self, widget):
         '''
         a new History element is selected in history view
@@ -678,21 +678,21 @@ class YumexHandlers(Controller):
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
             self.show_history_packages(tid)
-    
+
 # Progress dialog    
-        
+
     def on_progressCancel_clicked(self, widget=None, event=None):
         '''
         The Progress Dialog Cancel button
         '''
         self.debug("Progress Cancel pressed")
-                
+
 
 class YumexApplication(YumexHandlers, YumexFrontend):
     """
     The Yum Extender main application class 
     """
-    
+
     def __init__(self, backend):
         '''
         Init the Yumex Application
@@ -700,14 +700,14 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         self.logger = logging.getLogger(YUMEX_LOG)
         if sys.stderr.isatty():
-            self.doTextLoggerSetup( YUMEX_LOG, logfmt='%(asctime)s : %(levelname)s - %(message)s')
+            self.doTextLoggerSetup(YUMEX_LOG, logfmt='%(asctime)s : %(levelname)s - %(message)s')
         self._network = NetworkCheckNetworkManager()
         self.cfg = YumexOptions()
         if self.settings.debug:
             self.logger.setLevel(logging.DEBUG)
         self.cfg.dump()
         self.progress = None
-        self.debug_options = []        
+        self.debug_options = []
         #(self.cmd_options, self.cmd_args) = self.cfg.get_cmd_options()
         self.backend = backend(self)
         YumexHandlers.__init__(self)
@@ -726,7 +726,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.typeahead_active = False
         self.queue_entry = None
 
-        
+
 
     @property
     def is_offline(self):
@@ -740,8 +740,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 return False
         else: # Network connection can't be checked, so act as online  
             return False
-        
-    
+
+
     @property
     def settings(self):
         '''
@@ -749,7 +749,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         return self.cfg.settings
 
-    
+
     def run(self):
         '''
         Run the application
@@ -762,7 +762,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
 
-    def handle_error(self, err, msg):        
+    def handle_error(self, err, msg):
         '''
         Error message handler
         @param err: error type
@@ -773,10 +773,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         if err == 'lock-error': # Cant get the yum lock
             text = _("Can't start the yum backend")
             longtext = _("Another program is locking yum")
-            longtext += '\n\n'            
-            longtext += _('Message from yum backend:')            
-            longtext += '\n\n'            
-            longtext += msg            
+            longtext += '\n\n'
+            longtext += _('Message from yum backend:')
+            longtext += '\n\n'
+            longtext += msg
         elif err == "repo-error":
             text = _("Error in repository setup")
             longtext = msg
@@ -788,7 +788,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             progress.hide()
             #quit = False
         elif err == "backend-error":
-            text= _('Fatal Error in backend restart')
+            text = _('Fatal Error in backend restart')
             longtext = _("Backend could not be closed")
             longtext += '\n\n'
             longtext += msg
@@ -803,33 +803,33 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.error(longtext)
         if quit:
             self.main_quit()
-                    
+
     def _add_key_to_menu(self, widget, key, mask=gtk.gdk.CONTROL_MASK):
         widget.add_accelerator("activate", self.key_bindings,
                                ord(key), gtk.gdk.CONTROL_MASK, 0)
 
     def add_keybindings(self):
         self.window.add_accel_group(self.key_bindings)
-        self._add_key_to_menu(self.ui.viewPackages,'1')
-        self._add_key_to_menu(self.ui.viewQueue,'2')
-        self._add_key_to_menu(self.ui.viewRepo,'3')
-        self._add_key_to_menu(self.ui.viewOutput,'4')
-        
-            
+        self._add_key_to_menu(self.ui.viewPackages, '1')
+        self._add_key_to_menu(self.ui.viewQueue, '2')
+        self._add_key_to_menu(self.ui.viewRepo, '3')
+        self._add_key_to_menu(self.ui.viewOutput, '4')
+
+
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
 
-    def _add_key_binding(self,widget,event,accel):
-        keyval,mask = gtk.accelerator_parse(accel)
+    def _add_key_binding(self, widget, event, accel):
+        keyval, mask = gtk.accelerator_parse(accel)
         widget.add_accelerator(event, self.key_bindings, keyval, mask, 0)
 
     def _setup_queue_entry(self):
         self.queue_entry = CompletedEntry()
         self.ui.queueEntryBox.pack_start(self.queue_entry)
-        self.queue_entry.connect("activate",  self.on_QueueEntry_activate)
-        self.queue_entry.add_words(['install ','erase ','remove '])
+        self.queue_entry.connect("activate", self.on_QueueEntry_activate)
+        self.queue_entry.add_words(['install ', 'erase ', 'remove '])
         self.queue_entry.show()
-        
+
 
     def setup_gui(self):
         '''
@@ -839,8 +839,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # setup
         self.window.set_title(self.settings.branding_title)
         self.window.add_accel_group(self.key_bindings)
-        
-        
+
+
         #Setup About dialog
         self.ui.About.set_version(const.__yumex_version__)
 
@@ -859,32 +859,32 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         elif self.settings.search:
             pkg_title = _("Search for packages")
         else:
-            pkg_title = _("Packages")            
-        self.notebook.add_page("package", pkg_title , self.ui.packageMain, 
+            pkg_title = _("Packages")
+        self.notebook.add_page("package", pkg_title , self.ui.packageMain,
                                 icon=ICON_PACKAGES, tooltip=_("Perform actions on packages"),
-                                accel = '<Ctrl>1')
-        self.notebook.add_page("queue", _("Pending Actions"), self.ui.queueMain, 
+                                accel='<Ctrl>1')
+        self.notebook.add_page("queue", _("Pending Actions"), self.ui.queueMain,
                                icon=ICON_QUEUE, tooltip=_("Work with pending actions"),
-                                accel = '<Ctrl>2')
+                                accel='<Ctrl>2')
         if not self.settings.disable_repo_page:
-            self.notebook.add_page("repo", _("Repositories"), self.ui.repoMain, 
+            self.notebook.add_page("repo", _("Repositories"), self.ui.repoMain,
                                    icon=ICON_REPOS, tooltip=_("Select active repositories"),
-                                accel = '<Ctrl>3')
+                                accel='<Ctrl>3')
         if not self.settings.search and not self.settings.update_only:
-            self.notebook.add_page("history", _("History"), self.ui.historyMain, 
+            self.notebook.add_page("history", _("History"), self.ui.historyMain,
                                icon=ICON_HISTORY, tooltip=_("Watch yum history"),
-                                accel = '<Ctrl>4', callback=self.setup_history)
+                                accel='<Ctrl>4', callback=self.setup_history)
             self.history_pkg_view = YumexHistoryPackageView(self.ui.historyPkgView, \
                                             self.settings.color_install, \
-                                            self.settings.color_normal )
+                                            self.settings.color_normal)
 
-        self.notebook.add_page("output", _("Output"), self.ui.outputMain, 
+        self.notebook.add_page("output", _("Output"), self.ui.outputMain,
                                icon=ICON_OUTPUT, tooltip=_("Watch output details"),
-                                accel = '<Ctrl>5')
+                                accel='<Ctrl>5')
         self.ui.groupView.hide()
         self.notebook.set_active("output")
         # Preferences
-        self.preferences = Preferences(self.ui,self.window,self.cfg)
+        self.preferences = Preferences(self.ui, self.window, self.cfg)
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
         self._setup_queue_entry()
@@ -898,7 +898,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
         else:
             self.packages = YumexPackageView(self.ui.packageView, self.queue, self)
-            
+
         self.packageInfo = PackageInfo(self.window, self.ui.packageInfo,
                                        self.ui.packageInfoSelector, self, font_size=font_size)
         # setup group and group description views
@@ -906,7 +906,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.groupInfo = TextViewConsole(self.ui.groupDesc, font_size=font_size)
         # setup history page
         self.history = YumexHistoryView(self.ui.historyView)
-        
+
         # setup category views
         self.category_types = YumexCategoryTypesView(self.ui.categoryTypes)
         self.category_content = YumexCategoryContentView(self.ui.categoryContent)
@@ -919,7 +919,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
         # Set saved windows size and separator position
         if self.settings.win_height > 0 and self.settings.win_width > 0:
-            self.window.resize(self.settings.win_width,self.settings.win_height)
+            self.window.resize(self.settings.win_width, self.settings.win_height)
             if self.settings.win_sep > 0:
                 self.ui.packageSep.set_position(self.settings.win_sep)
         self.window.show()
@@ -928,7 +928,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         # check network state
         if self.is_offline:
             self.info(_("Not connected to an network"))
-            rc = questionDialog(self.window,_("Not connected to an network.\nDo you want to continue "))
+            rc = questionDialog(self.window, _("Not connected to an network.\nDo you want to continue "))
             if not rc:
                 self.main_quit()
         else:
@@ -941,7 +941,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
         # load packages and groups 
         # We cant disable both repo page and auto refresh
-        if self.settings.autorefresh or self.settings.disable_repo_page: 
+        if self.settings.autorefresh or self.settings.disable_repo_page:
             self.populate_package_cache()
             self.notebook.set_active("package")
         else:
@@ -956,7 +956,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self._add_key_binding(self.ui.packageSearch, 'activate', '<alt>s')
         if self.settings.search:            # Search only mode
             self.ui.packageFilterBox.hide()
-            self.ui.packageSelectAll.hide()            
+            self.ui.packageSelectAll.hide()
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         elif self.settings.update_only:     # Update only mode
             self.ui.packageFilterBox.hide()
@@ -971,19 +971,19 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 # pylint: enable-msg=W0201
 
     def url_handler(self, url):
-        print "Url activated : ",url
+        print "Url activated : ", url
 
 
     def testing(self):
         """
         Test func for lauching a TestWindow for testing ui stuff
         """
-        tw = TestWindow(self.ui,self.backend, self)
+        tw = TestWindow(self.ui, self.backend, self)
         text = TextViewConsole(self.ui.testText, window=self.ui.testWindow, url_handler=self.url_handler)
-        text.add_url('Yum Extender','http://www.yum-extender.org')
+        text.add_url('Yum Extender', 'http://www.yum-extender.org')
         text.write(' : Link to the Yum Extender Homepage')
 
-    def doTextLoggerSetup( self, logroot, logfmt = '%(message)s', loglvl = logging.INFO):
+    def doTextLoggerSetup(self, logroot, logfmt='%(message)s', loglvl=logging.INFO):
         ''' Setup Python logging using a TextViewLogHandler '''
         logger = logging.getLogger(logroot)
         logger.setLevel(loglvl)
@@ -998,19 +998,19 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         return handler
 
 
-    def _add_menu(self,menu,label,action_id,path):
+    def _add_menu(self, menu, label, action_id, path):
         mi = gtk.MenuItem (label)
         mi.connect('activate', self.on_repo_popup_other, action_id, path)
         menu.add(mi)
-        
 
-    def get_repo_popup(self,enabled,path):
+
+    def get_repo_popup(self, enabled, path):
         repo_popup = gtk.Menu()
         if not enabled:
             mi = gtk.MenuItem (_("Enable Permanently"))
             mi.connect('activate', self.on_repo_popup_enabled, True, path)
             repo_popup.add(mi)
-        else: 
+        else:
             mi = gtk.MenuItem (_("Disable Permanently"))
             mi.connect('activate', self.on_repo_popup_enabled, False, path)
             repo_popup.add(mi)
@@ -1023,11 +1023,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
 
     def setup_categories(self):
-        cats = [('repo',_('By Repositories')),
-                ('size',_('By Size'))
+        cats = [('repo', _('By Repositories')),
+                ('size', _('By Size'))
                 #('age' ,_('By Age') ))
                 ]
-                        
+
         self.category_types.populate(cats)
 
     def setup_filters(self, filters=None):
@@ -1035,13 +1035,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Populate Package Filter radiobuttons
         '''
         if not filters:
-            filters = ('Updates', 'Available', 'Installed', 'Groups','Categories','All')
+            filters = ('Updates', 'Available', 'Installed', 'Groups', 'Categories', 'All')
         for attr in filters:
             rb = getattr(self.ui, 'packageRadio' + attr)
-            rb.connect('clicked', self.on_packageFilter_changed, attr.lower()) 
+            rb.connect('clicked', self.on_packageFilter_changed, attr.lower())
             rb.child.modify_font(SMALL_FONT)
-            
-    def setup_groups(self,force=False):
+
+    def setup_groups(self, force=False):
         '''
         Get Group information and populate the group view
         '''
@@ -1058,7 +1058,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             progress.set_pulse(False)
             self.debug("Getting Group information - END")
             self.groups_is_loaded = True
-        
+
     def populate_package_cache(self, repos=None, show_dupes=False):
         '''
         Get the packagelists and put them in the package cache.
@@ -1081,10 +1081,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         '''
         queue = self.queue.queue
         if queue.total() == 0:
-            okDialog(self.window,_("The pending action queue is empty")) 
-            return False        
+            okDialog(self.window, _("The pending action queue is empty"))
+            return False
         self.backend.transaction.reset()
-        for action in ('install', 'update', 'remove','obsolete'):
+        for action in ('install', 'update', 'remove', 'obsolete'):
             pkgs = queue.get(action[0])
             for po in pkgs:
                 self.backend.transaction.add(po, action)
@@ -1097,11 +1097,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         try:
             self.notebook.set_active("output")
             progress = self.get_progress()
-            progress.set_pulse(True)        
+            progress.set_pulse(True)
             progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
             progress.show_tasks()
-            progress.show()        
+            progress.show()
             if action == "queue":
                 rc = self.process_queue()
             elif action == "history-undo":
@@ -1111,12 +1111,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             if not rc: # the transaction population failed
                 return
 
-            rc = self.backend.transaction.process_transaction()   
+            rc = self.backend.transaction.process_transaction()
             progress.hide_tasks()
-            progress.hide()        
+            progress.hide()
             if rc: # Transaction ok
                 self.info(_("Transaction completed successfully"))
-                progress.hide()        
+                progress.hide()
                 msg = _("Transaction completed successfully")
                 msg += _("\n\nDo you want to exit Yum Extender ?")
                 rc = questionDialog(self.window, msg) # Ask if the user want to Quit
@@ -1128,9 +1128,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 self.notebook.set_active("package")     # show the package page
             else:
                 msg = _("Transaction completed with errors,\n check output page for details")
-                okDialog(self.window,msg)
-                
-            progress.set_pulse(False)        
+                okDialog(self.window, msg)
+
+            progress.set_pulse(False)
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
 
@@ -1139,14 +1139,14 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         Store the session based options in the Options menu
         '''
         options = []
-        options.append( (self.ui.option_nogpgcheck,self.ui.option_nogpgcheck.get_active()) )
+        options.append((self.ui.option_nogpgcheck, self.ui.option_nogpgcheck.get_active()))
         return options
-    
-    def _set_options(self,options):
+
+    def _set_options(self, options):
         '''
         Reset the session based options in the Options menu
         '''
-        for (option,state) in options:
+        for (option, state) in options:
             option.set_active(state)
 
     def reload(self, repos=None):
@@ -1192,7 +1192,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 st = 'Install'
             if st == 'Dep-Install': # Mask these at the higher levels
                 st = 'Install'
-            if st == 'Obsoleted': 
+            if st == 'Obsoleted':
                 st = 'Obsoleting'
             if st in ('Install', 'Update', 'Erase', 'Reinstall', 'Downgrade',
                       'Obsoleting'):
@@ -1226,8 +1226,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             return name
         except KeyError:
             return str(uid)
-        
-    def _get_history_info(self, tids, limit=None):        
+
+    def _get_history_info(self, tids, limit=None):
         data = []
         num_elem = 0
         for tid in tids:
@@ -1238,14 +1238,14 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             pkgs = self.backend.get_history_packages(tid.tid)
             num, uiacts = self._history_uiactions(pkgs)
             data.append([tid.tid, name, tm, uiacts, num])
-            num_elem +=1
+            num_elem += 1
             if limit and num_elem > limit: # Show only a limited number of history elements (SPEED)
                 break
         return data
-    
-    def setup_history(self, limit = None, force = False):       
+
+    def setup_history(self, limit=None, force=False):
         if not self.history_is_loaded or force:
- 
+
             self.debug("Getting History Information - BEGIN")
             tids = self.backend.get_history()
             progress = self.get_progress()
@@ -1258,7 +1258,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                     progress.set_header(_("Getting Latest History Information"))
                 else:
                     progress.set_header(_("Getting All History Information"))
-    
+
                 progress.show()
                 data = self._get_history_info(tids, limit)
                 self.history.populate(data)
@@ -1268,7 +1268,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             self.debug("Getting History Information - END")
             self.history_is_loaded = True
 
-    def search_history(self, pattern):       
+    def search_history(self, pattern):
         self.debug("Searching History Information - BEGIN")
         tids = self.backend.search_history(pattern)
         progress = self.get_progress()
@@ -1286,13 +1286,13 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
     def _order_packages(self, pkgs):
         if pkgs[0].state in HISTORY_NEW_STATES:
-            tup = (pkgs[1],pkgs[0])
+            tup = (pkgs[1], pkgs[0])
             state = pkgs[0].state
-        else:    
-            tup = (pkgs[0],pkgs[1])
+        else:
+            tup = (pkgs[0], pkgs[1])
             state = pkgs[1].state
-        return tup,state
-    
+        return tup, state
+
     def _get_relations(self, data):
         names = {}
         for hpo in data:
@@ -1304,17 +1304,17 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         for name in sorted(names.keys()):
             pkgs = names[name]
             if len(pkgs) != 2:
-                self.info("no releation found: "+str([p.name+":"+p.ver+p.rel+":"+p.state for p in pkgs]))
+                self.info("no releation found: " + str([p.name + ":" + p.ver + p.rel + ":" + p.state for p in pkgs]))
                 continue
             tup, state = self._order_packages(pkgs)
-            if state in relations:                
-                relations[state].append(tup)    
+            if state in relations:
+                relations[state].append(tup)
             else:
-                relations[state] = [tup]    
+                relations[state] = [tup]
         return relations
-            
 
-    def show_history_packages(self,tid):
+
+    def show_history_packages(self, tid):
         main = {}
         secondary = {}
         pkgs = self.backend.get_history_packages(tid, 'trans_with')
@@ -1329,16 +1329,16 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 values[pkg.state].append(pkg)
             else:
                 values[pkg.state] = [pkg]
-        packages = {}                
+        packages = {}
         data = []
         for state in HISTORY_UPDATE_STATES:
             if state in values:
                 data.extend(values[state])
-        relations = self._get_relations(data)  
+        relations = self._get_relations(data)
         for state in HISTORY_SORT_ORDER:
             if state in relations:
                 main[state] = relations[state]
             elif state in values:
                 main[state] = values[state]
         self.history_pkg_view.populate(main, secondary)
-        
+

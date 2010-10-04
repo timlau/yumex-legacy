@@ -33,7 +33,7 @@ from yum.packageSack import packagesNewestByNameArch
 from yum.update_md import UpdateMetadata
 
 from yumexbase.constants import *
-from yumexbackend import YumHistoryTransaction, YumHistoryPackage,  pack, unpack
+from yumexbackend import YumHistoryTransaction, YumHistoryPackage, pack, unpack
 from yumexbase import YumexBackendFatalError
 
 
@@ -52,7 +52,7 @@ import yumexbase.constants as const
 import yum.plugins
 from urlgrabber.grabber import URLGrabber, URLGrabError
 
-from yum.i18n import _ as yum_translated 
+from yum.i18n import _ as yum_translated
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -77,7 +77,7 @@ def catchYumException(func):
     newFunc.__doc__ = func.__doc__
     newFunc.__dict__.update(func.__dict__)
     return newFunc
-       
+
 class _YumPreBaseConf:
     """This is the configuration interface for the YumBase configuration.
        So if you want to change if plugins are on/off, or debuglevel/etc.
@@ -158,8 +158,8 @@ class YumServer(yum.YumBase):
       
     
     """
-    
-    def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None,yum_conf='/etc/yum.conf'):
+
+    def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None, yum_conf='/etc/yum.conf'):
         '''  Setup the spawned server '''
         yum.YumBase.__init__(self)
         self.mediagrabber = self.mediaGrabber
@@ -189,7 +189,7 @@ class YumServer(yum.YumBase):
         self._setup_repos(enabled_repos)
         # Setup failure callback
         freport = (self._failureReport, (), {})
-        self.repos.setFailureCallback(freport)       
+        self.repos.setFailureCallback(freport)
         self._updateMetadata = None # Update metadata cache 
         self._updates_list = None
         self.write(':started') # Let the front end know that we are up and running
@@ -225,7 +225,7 @@ class YumServer(yum.YumBase):
                             self.repos.enableRepo(repo.id)
                         else: # Not local disable it
                             self.info(_("No network connection, disable non local repo %s") % repo.id)
-                            self.repos.disableRepo(repo.id)                            
+                            self.repos.disableRepo(repo.id)
                     else: # not in positive list, disable it
                         self.repos.disableRepo(repo.id)
             else: # Use the default enabled ones
@@ -261,8 +261,8 @@ class YumServer(yum.YumBase):
                 cnt += 1
                 time.sleep(10)
         msg = e.msg + "\n" + nmsg
-        self.fatal("lock-error", msg)        
-        
+        self.fatal("lock-error", msg)
+
     def mediaGrabber(self, *args, **kwargs):
         '''
         Media handler
@@ -311,14 +311,14 @@ class YumServer(yum.YumBase):
 
         ps = {}
         for line in open("/proc/%d/status" % pid):
-            if line[ - 1] != '\n':
+            if line[ -1] != '\n':
                 continue
-            data = line[: - 1].split(':\t', 1)
+            data = line[:-1].split(':\t', 1)
             if data[1].endswith(' kB'):
-                data[1] = data[1][: - 3]
+                data[1] = data[1][:-3]
             ps[data[0].strip().lower()] = data[1].strip()
         return ps
-                
+
     def quit(self):
         '''
         Exit the yum backend
@@ -332,8 +332,8 @@ class YumServer(yum.YumBase):
     def write(self, msg):
         ''' write an message to stdout, to be read by the client'''
         msg.replace("\n", ";")
-        sys.stdout.write("%s\n" % msg)    
-        
+        sys.stdout.write("%s\n" % msg)
+
     def _get_recent(self, po):
         '''
         get the recent state of a package
@@ -347,7 +347,7 @@ class YumServer(yum.YumBase):
             return 1
         else:
             return 0
-                    
+
     def _is_installed(self, po):
         '''
         Check if a package is installed
@@ -358,30 +358,30 @@ class YumServer(yum.YumBase):
         if po:
             return True
         else:
-            return False   
-                    
-    
+            return False
+
+
     def _show_history_package(self, pkg):
         ''' write history package result'''
-        if not hasattr(pkg,'state_installed'):
+        if not hasattr(pkg, 'state_installed'):
             pkg.state_installed = self._is_installed(pkg)
         yhp = pack(YumHistoryPackage(pkg))
-        self.write(":histpkg\t%s" % yhp) 
+        self.write(":histpkg\t%s" % yhp)
 
     def _show_history_item(self, yht):
         ''' write package result'''
         item = pack(YumHistoryTransaction(yht))
-        self.write(":hist\t%s" % item) 
+        self.write(":hist\t%s" % item)
 
-    def _show_package(self, pkg, action = None):
+    def _show_package(self, pkg, action=None):
         ''' write history package result'''
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
         action = pack(action)
-        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % 
+        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" %
                    (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
                     summary, action, pkg.size, recent))
-        
+
     def _show_group(self, grp):
         '''
         send a group message to the frontend
@@ -408,9 +408,9 @@ class YumServer(yum.YumBase):
         ''' write an debug message '''
         if not name:
             classname = __name__.split('.')[-1]
-            name = classname + "."+sys._getframe(1).f_code.co_name
-        self.write(":debug\t%s\t%s" % (msg,name))
-    
+            name = classname + "." + sys._getframe(1).f_code.co_name
+        self.write(":debug\t%s\t%s" % (msg, name))
+
     def warning(self, msg):
         ''' write an warning message '''
         self.write(":warning\t%s" % msg)
@@ -419,8 +419,8 @@ class YumServer(yum.YumBase):
         ''' write an fatal message '''
         pmsg = pack(msg)
         self.write(":fatal\t%s\t%s" % (err, pmsg))
-        raise YumexBackendFatalError(err,msg)
-        
+        raise YumexBackendFatalError(err, msg)
+
     def gpg_check(self, po, userid, hexkeyid):
         ''' write an fatal message '''
         value = (str(po), userid, hexkeyid)
@@ -448,7 +448,7 @@ class YumServer(yum.YumBase):
         value = (action, package, frac, ts_current, ts_total)
         value = pack(value)
         self.write(":yum-rpm\t%s" % value)
-        
+
     def yum_dnl(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         '''
         send an yum download progress message to the frontend
@@ -463,18 +463,18 @@ class YumServer(yum.YumBase):
         value = (ftype, name, percent, cur, tot, fread, ftotal, ftime)
         value = pack(value)
         self.write(":yum-dnl\t%s" % value)
-        
+
     def yum_state(self, state):
         '''
         Send an yum transaction state message
         @param state: 
         '''
         self.write(":yum-state\t%s" % state)
-       
+
     def yum_logger(self, msg):
         ''' write an yum logger message '''
         self.write(":yum\t%s" % msg)
-        
+
     def ended(self, state):
         '''
         Send and ended message
@@ -483,7 +483,7 @@ class YumServer(yum.YumBase):
         '''
         state = pack(state)
         self.write(":end\t%s" % state)
-        
+
 
     @catchYumException
     def get_packages(self, narrow, dupes):
@@ -494,7 +494,7 @@ class YumServer(yum.YumBase):
         if narrow:
             show_dupes = (dupes == 'True')
             self.info(PACKAGE_LOAD_MSG[narrow])
-            ygh = self.doPackageLists(pkgnarrow=narrow,showdups=show_dupes)
+            ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
             if narrow == "all":
                 updates = ygh.updates
                 obsoletes = ygh.obsoletes
@@ -507,7 +507,7 @@ class YumServer(yum.YumBase):
                         action = 'o'
                     else:
                         action = 'i'
-                    self._show_package(pkg, action)                    
+                    self._show_package(pkg, action)
             else:
                 action = const.FILTER_ACTIONS[narrow]
                 for pkg in getattr(ygh, narrow):
@@ -520,17 +520,17 @@ class YumServer(yum.YumBase):
         @param ndx: Size range index
         '''
         ygh = self.doPackageLists()
-        action = const.FILTER_ACTIONS['available']        
+        action = const.FILTER_ACTIONS['available']
         for pkg in ygh.available:
             if self._in_size_range(pkg, ndx):
                 self._show_package(pkg, action)
-        action = const.FILTER_ACTIONS['installed']        
+        action = const.FILTER_ACTIONS['installed']
         for pkg in ygh.installed:
             if self._in_size_range(pkg, ndx):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
-        
+
     def _in_size_range(self, pkg, ndx):
         min, max = SIZE_RANGES[ndx]
         if pkg.size >= min and pkg.size < max:
@@ -544,11 +544,11 @@ class YumServer(yum.YumBase):
         @param ndx: Size range index
         '''
         ygh = self.doPackageLists()
-        action = const.FILTER_ACTIONS['available']        
+        action = const.FILTER_ACTIONS['available']
         for pkg in ygh.available:
             if self._in_a_repo(pkg, repoid):
                 self._show_package(pkg, action)
-        action = const.FILTER_ACTIONS['installed']     
+        action = const.FILTER_ACTIONS['installed']
         for pkg in ygh.installed:
             if self._in_a_repo(pkg, repoid, inst=True):
                 self._show_package(pkg, action)
@@ -565,7 +565,7 @@ class YumServer(yum.YumBase):
                 return False
         else:
             return False
-        
+
     def _getPackage(self, para):
         ''' find the real package from an package id'''
         n, e, v, r, a, ident = para
@@ -581,11 +581,11 @@ class YumServer(yum.YumBase):
             return pkgs[0]
         else:
             return None
-        
+
     def get_attribute(self, args):
         ''' get a package attribute and send the result '''
-        pkgstr = args[: - 1]
-        attr = args[ - 1]
+        pkgstr = args[:-1]
+        attr = args[ -1]
         po = self._getPackage(pkgstr)
         res = pack(None)
         if po:
@@ -595,8 +595,8 @@ class YumServer(yum.YumBase):
 
     def get_changelog(self, args):
         ''' get a given number of changelog lines '''
-        pkgstr = args[: - 1]
-        num = int(args[ - 1])
+        pkgstr = args[:-1]
+        num = int(args[ -1])
         po = self._getPackage(pkgstr)
         res = []
         if po:
@@ -607,20 +607,20 @@ class YumServer(yum.YumBase):
                     i += 1
                     elem = (c_date, c_ver, msg)
                     res.append(elem)
-                    if i == num: 
+                    if i == num:
                         break
             else:
-                res = clog    
+                res = clog
             res = pack(res)
         self.write(':attr\t%s' % res)
-        
+
     def add_transaction(self, args):
         '''
         
         @param args:
         '''
-        pkgstr = args[: - 1]
-        action = args[ - 1]
+        pkgstr = args[:-1]
+        action = args[ -1]
         po = self._getPackage(pkgstr)
         txmbrs = []
         if action == "install":
@@ -631,9 +631,9 @@ class YumServer(yum.YumBase):
             txmbrs = self.remove(po)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
-            self.debug("Added : " + str(txmbr), __name__)            
+            self.debug("Added : " + str(txmbr), __name__)
         self.ended(True)
-            
+
     def remove_transaction(self, args):
         '''
         
@@ -648,7 +648,7 @@ class YumServer(yum.YumBase):
         reset tsInfo for a new run
         '''
         self._tsInfo = None
-        
+
 
     def list_transaction(self):
         '''
@@ -665,7 +665,7 @@ class YumServer(yum.YumBase):
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po, action)
         self.ended(True)
-        
+
     def run_command(self, cmd, userlist):
         self.reset_transaction()
         cmd = cmd[:2]
@@ -678,12 +678,12 @@ class YumServer(yum.YumBase):
                 action = 'r'
                 for pat in userlist:
                     self.remove(pattern=pat)
-        except Errors.InstallError,e:
+        except Errors.InstallError, e:
             pass
         self._show_packages_in_transaction(action)
         self.reset_transaction()
-                
-            
+
+
     def build_transaction(self):
         '''
         
@@ -701,8 +701,8 @@ class YumServer(yum.YumBase):
         dlpkgs = [x.po for x in self.tsInfo.getMembers() if x.ts_state in ("i", "u")]
         for po in dlpkgs:
             total += po.size
-        return format_number(total)    
-        
+        return format_number(total)
+
     def _get_transaction_list(self):
         ''' 
         Generate a list of the current transaction to show in at TreeView
@@ -711,7 +711,7 @@ class YumServer(yum.YumBase):
         '''
         out_list = []
         sublist = []
-        self.tsInfo.makelists()        
+        self.tsInfo.makelists()
         for (action, pkglist) in [(yum.i18n._('Installing'), self.tsInfo.installed),
                             (yum_translated('Updating'), self.tsInfo.updated),
                             (yum_translated('Removing'), self.tsInfo.removed),
@@ -750,10 +750,10 @@ class YumServer(yum.YumBase):
             if pkglist:
                 out_list.append([action, sublist])
                 sublist = []
-                
-        return out_list        
-        
-                    
+
+        return out_list
+
+
     def run_transaction(self):
         '''
         
@@ -765,8 +765,8 @@ class YumServer(yum.YumBase):
             self.ended(True)
         except Errors.YumBaseError, e:
             self.error(_('Error in yum Transaction : %s') % str(e))
-            self.ended(False)            
-        except:    
+            self.ended(False)
+        except:
             self.error(_("Exception in run_transaction"))
             etype = sys.exc_info()[0]
             evalue = sys.exc_info()[1]
@@ -805,7 +805,7 @@ class YumServer(yum.YumBase):
 
     def _failureReport(self, errobj):
         """failure output for failovers from urlgrabber"""
-        
+
         self.warning(_('Failure getting %s: ') % errobj.url)
         self.warning(_('Trying other mirror.'))
         raise errobj.exception
@@ -820,8 +820,8 @@ class YumServer(yum.YumBase):
         '''
         # Go to next mirror
         raise URLGrabError(15, 'user interrupt')
-            
-    
+
+
     def get_groups(self, args):
         '''
         get category/group list
@@ -842,14 +842,14 @@ class YumServer(yum.YumBase):
                         fn = "/usr/share/pixmaps/comps/%s.png" % category.categoryid
                         if os.access(fn, os.R_OK):
                             icon = fn
-    
+
                     elem = (grp.groupid, grp.ui_name, grp.ui_description, grp.installed, icon)
                     cat_grps.append(elem)
                 cat_grps.sort()
                 all_groups.append((cat, cat_grps))
         except Errors.GroupsError, e:
             print str(e)
-        all_groups.sort()    
+        all_groups.sort()
         self.message('groups', pack(all_groups))
         self.ended(True)
 
@@ -901,13 +901,13 @@ class YumServer(yum.YumBase):
             pkg = apkg or ipkg
             ret.setdefault(pkg.name, []).append((apkg, ipkg))
         return ret
-    
+
     def _get_updates(self):
         if not self._updates_list:
             ygh = self.doPackageLists(pkgnarrow='updates')
             self._updates_list = ygh.updates
         return self._updates_list
-        
+
     def _return_packages(self, pkgs):
         updates = self._get_updates()
         for po in pkgs:
@@ -920,9 +920,9 @@ class YumServer(yum.YumBase):
                     action = 'u'
                 else:
                     action = 'i'
-            self._show_package(po, action)    
-            
-            
+            self._show_package(po, action)
+
+
     def search_prefix(self, prefix):
         prefix += '*'
         self.debug("prefix: %s " % prefix)
@@ -954,7 +954,7 @@ class YumServer(yum.YumBase):
             best = packagesNewestByNameArch(pkgs[na])
             self._return_packages(best)
         self.ended(True)
-    
+
     def get_repos(self, args):
         '''
         
@@ -963,8 +963,8 @@ class YumServer(yum.YumBase):
         for repo in self.repos.repos:
             self._show_repo(self.repos.getRepo(repo))
         self.ended(True)
-            
-    
+
+
     def enable_repo(self, args):
         '''
         
@@ -1001,7 +1001,7 @@ class YumServer(yum.YumBase):
         else:
             self.error("Repo : %s not found" % ident)
         self.ended(True)
-            
+
     def set_option(self, args):
         option = args[0]
         value = unpack(args[1])
@@ -1014,10 +1014,10 @@ class YumServer(yum.YumBase):
                     if hasattr(repo, option):
                         setattr(repo, option, value)
                         self.debug("Setting Yum Option %s = %s (%s)" % (option, value, repo.id), __name__)
-                    
+
         self.ended(True)
-            
-    @property            
+
+    @property
     def update_metadata(self):
         if not self._updateMetadata:
             self._updateMetadata = UpdateMetadata()
@@ -1042,26 +1042,26 @@ class YumServer(yum.YumBase):
                 po = self._get_updated_po(pkg)
                 self.message("updated_po", str(po))
         self.ended(True)
-        
-    def _get_updated_po(self,pkg):
+
+    def _get_updated_po(self, pkg):
         po = None
         tuples = self._getUpdates().getUpdatesTuples(name=pkg.name)
         if not tuples:
             tuples = self._getUpdates().getObsoletersTuples(name=pkg.name)
-        if tuples:            
+        if tuples:
             tup = tuples[0]
             if tup:
-                new,old  = tup
+                new, old = tup
                 po = self.getInstalledPackageObject(old)
         return po
-        
+
     def clean(self, args):
         what = args[0]
         if what == 'metadata':
             self.cleanMetadata()
             msg = _("Cleaned metadata from local cache")
         elif what == 'dbcache':
-            self.cleanSqlite()                
+            self.cleanSqlite()
             msg = _("Cleaned dbcache")
         elif what == 'packages':
             self.cleanPackages()
@@ -1071,14 +1071,14 @@ class YumServer(yum.YumBase):
             self.cleanMetadata()
             self.cleanPackages()
             self.cleanSqlite()
-        self.info(msg)    
+        self.info(msg)
         self.ended(True)
 
     def search_history(self, pattern):
         """
         Get the yum history elements
         """
-        if hasattr(self,"_history"): # Yum supports history
+        if hasattr(self, "_history"): # Yum supports history
             tids = self.history.search(pattern)
             yhts = self.history.old(tids)
             for yht in yhts:
@@ -1086,28 +1086,28 @@ class YumServer(yum.YumBase):
             self.ended(True)
         else:
             self.ended(False)
-            
-    def get_history(self,args):
+
+    def get_history(self, args):
         """
         Get the yum history elements
         """
-        if hasattr(self,"_history"): # Yum supports history
+        if hasattr(self, "_history"): # Yum supports history
             yhts = self.history.old()
             for yht in yhts:
                 self._show_history_item(yht)
             self.ended(True)
         else:
             self.ended(False)
-            
+
     def get_history_packages(self, tid, data_set='trans_data'):
         tids = self.history.old([tid])
         for yht in tids:
-            yhp = getattr(yht,data_set)
+            yhp = getattr(yht, data_set)
             for pkg in yhp:
                 self._show_history_package(pkg)
         self.ended(True)
 
-    def history_undo(self,args):    
+    def history_undo(self, args):
         '''
         Undo a history transaction
         '''
@@ -1115,7 +1115,7 @@ class YumServer(yum.YumBase):
         tids = self.history.old([tid])
         if tids:
             yum.YumBase.history_undo(self, tids[0])
-        print "Transaction after undo"    
+        print "Transaction after undo"
         for txmbr in self.tsInfo:
             print txmbr.po
         if len(self.tsInfo) > 0:
@@ -1123,7 +1123,7 @@ class YumServer(yum.YumBase):
         else:
             self.ended(False)
 
-    def history_redo(self,args):    
+    def history_redo(self, args):
         '''
         Redo a history transaction
         '''
@@ -1135,11 +1135,11 @@ class YumServer(yum.YumBase):
             self.ended(True)
         else:
             self.ended(False)
-            
+
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
         if cmd == 'get-packages':       # get-packages <Package filter
-            self.get_packages(args[0],args[1])
+            self.get_packages(args[0], args[1])
         elif cmd == 'get-attribute':
             self.get_attribute(args)
         elif cmd == 'get-changelog':
@@ -1183,7 +1183,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'get-history':
             self.get_history(args)
         elif cmd == 'get-history-packages':
-            self.get_history_packages(args[0],args[1])
+            self.get_history_packages(args[0], args[1])
         elif cmd == 'history-undo':
             self.history_undo(args)
         elif cmd == 'history-redo':
@@ -1196,7 +1196,7 @@ class YumServer(yum.YumBase):
             self.error('Unknown command : %s' % cmd)
 
     def dispatcher(self):
-        ''' receive commands and parameter from stdin (from the client) '''        
+        ''' receive commands and parameter from stdin (from the client) '''
         try:
             while True:
                 self.write(':ready')
@@ -1207,8 +1207,8 @@ class YumServer(yum.YumBase):
                 ts = time.time()
                 self.parse_command(args[0], args[1:])
                 t = time.time() - ts
-                self.debug("%s Args: %s  took %.2f s to complete" % (args[0],args[1:], t), __name__)
-        except YumexBackendFatalError,e:
+                self.debug("%s Args: %s  took %.2f s to complete" % (args[0], args[1:], t), __name__)
+        except YumexBackendFatalError, e:
             self.ended(True)
             self.quit()
         except:
@@ -1221,7 +1221,7 @@ class YumServer(yum.YumBase):
 class YumexTransCallback:
     '''
     '''
-    
+
     def __init__(self, base):
         '''
         
@@ -1251,7 +1251,7 @@ class YumexTransCallback:
 class YumexRPMCallback(RPMBaseCallback):
     '''
     '''
-    
+
     def __init__(self, base):
         '''
         
@@ -1268,49 +1268,49 @@ class YumexRPMCallback(RPMBaseCallback):
         """ Get more information on a simple pkgname, if we can. We need to search
             packages that we are dealing with atm. and installed packages (if the
             transaction isn't complete). """
-    
+
         if ts_states is None:
             #  Note 'd' is a placeholder for downgrade, and
             # 'r' is a placeholder for reinstall. Neither exist atm.
             ts_states = ('d', 'e', 'i', 'r', 'u')
-    
+
         matches = []
         def _cond_add(po):
             if matches and matches[0].arch == po.arch and matches[0].verEQ(po):
                 return
             matches.append(po)
-    
+
         for txmbr in self.base.tsInfo.matchNaevr(name=pkgname):
             if txmbr.ts_state not in ts_states:
                 continue
             _cond_add(txmbr.po)
-    
+
         if not matches:
             return pkgname
         fmatch = matches.pop(0)
         if not matches:
             return str(fmatch)
-    
-        show_ver  = True
+
+        show_ver = True
         show_arch = True
         for match in matches:
             if not fmatch.verEQ(match):
-                show_ver  = False
+                show_ver = False
             if fmatch.arch != match.arch:
                 show_arch = False
-    
+
         if show_ver: # Multilib. *sigh*
             if fmatch.epoch == '0':
                 return '%s-%s-%s' % (fmatch.name, fmatch.version, fmatch.release)
             else:
                 return '%s:%s-%s-%s' % (fmatch.epoch, fmatch.name,
                                         fmatch.version, fmatch.release)
-    
+
         if show_arch:
             return '%s.%s' % (fmatch.name, fmatch.arch)
-    
+
         return pkgname
-        
+
 
     def event(self, package, action, te_current, te_total, ts_current, ts_total):
         '''g
@@ -1329,7 +1329,7 @@ class YumexRPMCallback(RPMBaseCallback):
                 pkgname = str(package)
             else:
                 pkgname = self.pkgname_ui(package)
-                
+
             if action in (TS_UPDATE, TS_INSTALL, TS_TRUEINSTALL): # only show progress when something is installed
                 if self._last_pkg != package:
                     self._last_pkg = package
@@ -1346,8 +1346,8 @@ class YumexRPMCallback(RPMBaseCallback):
             else:
                 self.base.yum_rpm(self.action[action], pkgname, 1.0, ts_current, ts_total)
                 self.show_action(pkgname, action)
-            
-                
+
+
         except:
             self.base.error('RPM Callback error : %s - %s ' % (self.action[action], str(package)))
             errmsg = traceback.format_exc()
@@ -1362,10 +1362,10 @@ class YumexRPMCallback(RPMBaseCallback):
         @param action: TS Action enum
         '''
         if not str(package) in self._printed:
-            self._printed[str(package)] = 1     
+            self._printed[str(package)] = 1
             self.base.info(RPM_ACTIONS[action] % (package))
-               
-        
+
+
     def scriptout(self, package, msgs):
         '''
         
@@ -1422,7 +1422,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
                 if rpmfn == name:
                     return pkg
         return None
-        
+
     def updateProgress(self, name, frac, fread, ftime):
         '''
          Update the progressbar (Overload in child class)
@@ -1440,7 +1440,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
             if ':' in name:
                 cnt, fn = name.split(':')
                 name = fn.strip()
-                cur, tot = cnt[1: - 1].split('/') 
+                cur, tot = cnt[1:-1].split('/')
                 self._cur = cur
                 self._tot = tot
             pkg = self._getPackage(name)
@@ -1450,17 +1450,17 @@ class YumexDownloadCallback(DownloadBaseCallback):
                 self.current_type = 'PKG'
             elif name == '<delta rebuild>': # Presto rebuilding rpm
                 self.current_name = self.text
-                self.current_type = 'REBUILD'            
+                self.current_type = 'REBUILD'
             elif name.endswith('.drpm'): # Presto delta rpm
                 self.current_name = name
-                self.current_type = 'PKG'                
+                self.current_type = 'PKG'
             elif not name.endswith('.rpm'):
                 self.current_name = name
                 self.current_type = 'REPO'
             else:
                 self.current_name = name
                 self.current_type = 'PKG'
-                
+
 
         self.base.yum_dnl(self.current_type, self.current_name, val, self._cur, self._tot, fread, self.totSize, ftime)
 

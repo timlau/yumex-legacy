@@ -12,7 +12,7 @@ def get_name_dict(data):
         else:
             names[hpo.name] = [hpo]
     return names
-    
+
 def show_update(hpkgs):
     if hpkgs[0] > hpkgs[1]:
         new_pkg = hpkgs[0]
@@ -21,9 +21,9 @@ def show_update(hpkgs):
         new_pkg = hpkgs[1]
         old_pkg = hpkgs[0]
     if is_installed(new_pkg):
-        print "   %s \n    --> + %s" % (old_pkg,new_pkg)
+        print "   %s \n    --> + %s" % (old_pkg, new_pkg)
     else:
-        print "   %s \n    -->   %s" % (old_pkg,new_pkg)
+        print "   %s \n    -->   %s" % (old_pkg, new_pkg)
 
 
 def is_installed(po):
@@ -32,10 +32,10 @@ def is_installed(po):
     if po:
         return po[0]
     else:
-        return None   
+        return None
 
 def get_history_trans(tid):
-    trans  = hist.old([i])
+    trans = hist.old([i])
     if trans:
         return trans[0]
     else:
@@ -51,19 +51,19 @@ def show_hist_packages(tid):
             show_update(hpkgs)
         else:
             print name
-            for hpo in names[name]:        
+            for hpo in names[name]:
                 if is_installed(hpo):
-                    print " +(%s) : %s" % (hpo.state,hpo.pkgtup)
+                    print " +(%s) : %s" % (hpo.state, hpo.pkgtup)
                 else:
-                    print "  (%s) : %s" % (hpo.state,hpo.pkgtup)
+                    print "  (%s) : %s" % (hpo.state, hpo.pkgtup)
 
 yb = yum.YumBase()
 ygh = yb.doPackageLists(pkgnarrow='installed')
-hist=yb.history
-tids=hist.old()
-for i in xrange(10,15):
+hist = yb.history
+tids = hist.old()
+for i in xrange(10, 15):
     tid = get_history_trans(i)
-    print "Transaction : # ",tid.tid
+    print "Transaction : # ", tid.tid
     # show packages perfoming the transaction : rpm, yum, yumex etc
     print "with:"
     for hpo in tid.trans_with:

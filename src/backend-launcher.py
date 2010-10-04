@@ -28,22 +28,22 @@ def dispatcher():
     line = sys.stdin.readline().strip('\n')
     if not line or line.startswith('#exit'):
         return False
-    cmd,param = line.split('\t')
-    rc = parse_command(cmd,param)
+    cmd, param = line.split('\t')
+    rc = parse_command(cmd, param)
     return rc
 
-def run(parameters):   
+def run(parameters):
     try:
         retcode = call(parameters, shell=True)
         rc = True
     except OSError, e:
-        err,msg = (e.err, e.msg)       
-        print ":error\texception : %s %s " % (err,msg)
+        err, msg = (e.err, e.msg)
+        print ":error\texception : %s %s " % (err, msg)
         rc = False
     return rc
 
 if __name__ == "__main__":
-    loop=True
+    loop = True
     print "#started"
     while loop:
         loop = False
@@ -51,4 +51,3 @@ if __name__ == "__main__":
         loop = rc
     print ":debug\tLAUNCHER : Terminating"
     print '&exit'
-        

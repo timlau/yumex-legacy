@@ -47,14 +47,14 @@ class PackageInfoTextView(TextViewBase):
     '''
     TextView handler for showing package information
     '''
-    
+
     def __init__(self, textview, font_size=8, window=None, url_handler=None):
         '''
         Setup the textview
         @param textview: the gtk.TextView widget to use 
         @param font_size: default text size
         '''
-        TextViewBase.__init__(self, textview, window, url_handler)        
+        TextViewBase.__init__(self, textview, window, url_handler)
 
         # description style
         tag = "description"
@@ -80,7 +80,7 @@ class PackageInfoTextView(TextViewBase):
         style.set_property("family", "Monospace")
         style.set_property("size_points", font_size)
         self.add_style(tag, style)
-        
+
         # changelog style
         tag = "changelog-header"
         style = gtk.TextTag(tag)
@@ -88,11 +88,11 @@ class PackageInfoTextView(TextViewBase):
         style.set_property("family", "Monospace")
         style.set_property("size_points", font_size)
         self.add_style(tag, style)
-        
+
 
 class PageHeader(gtk.HBox):
     ''' Page header to show in top of Notebook Page'''
-    
+
     def __init__(self, text, icon=None):
         ''' 
         setup the notebook page header
@@ -117,7 +117,7 @@ class PageHeader(gtk.HBox):
 
 class SelectorBase:
     ''' Button selector base '''
-    
+
     def __init__(self, content, key_bindings=None):
         '''
         Setup the selector
@@ -128,7 +128,7 @@ class SelectorBase:
         self._first = None
         self._selected = None
         self.key_bindings = key_bindings
-        
+
     def add_button(self, key, icon=None, stock=None, tooltip=None, accel=None):
         ''' Add a new selector button '''
         if len(self._buttons) == 0:
@@ -138,20 +138,20 @@ class SelectorBase:
             button = gtk.RadioButton(self._first)
         button.connect("clicked", self.on_button_clicked, key)
         if accel:
-            keyval,mask = gtk.accelerator_parse(accel)
+            keyval, mask = gtk.accelerator_parse(accel)
             button.add_accelerator("clicked", self.key_bindings, keyval, mask, 0)
-    
+
         button.set_relief(gtk.RELIEF_NONE)
         button.set_mode(False)
         if stock:
             pix = gtk.image_new_from_stock(stock, gtk.ICON_SIZE_MENU)
-        else: 
-            pb = gtk.gdk.pixbuf_new_from_file(icon)            
+        else:
+            pb = gtk.gdk.pixbuf_new_from_file(icon)
             pix = gtk.Image()
             pix.set_from_pixbuf(pb)
         pix.show()
         button.add(pix)
-    
+
         if tooltip:
             button.set_tooltip_text(tooltip)
         button.show()
@@ -163,16 +163,16 @@ class SelectorBase:
         if key in self._buttons:
             button = self._buttons[key]
             button.clicked()
-            
+
     def get_active(self):
         ''' get the active selector button'''
-        return self._selected            
-            
+        return self._selected
+
     def on_button_clicked(self, widget=None, key=None):
         ''' button clicked callback handler'''
         if widget.get_active(): # only work on the active button
             self._selected = key
-            
+
     def hide_button(self, key):
         if key in self._buttons:
             button = self._buttons[key]
@@ -189,7 +189,7 @@ class PackageInfo(SelectorBase):
     controls the package info Textview and the buttons to show
     description, changelog and filelist.
     '''
-    
+
     def __init__(self, main, console, selector, frontend, font_size=8):
         '''
         Setup the package info
@@ -199,19 +199,19 @@ class PackageInfo(SelectorBase):
         @param frontend: the frontend instance
         @param font_size: the fontsize in the console
         '''
-        SelectorBase.__init__(self, selector, key_bindings = frontend.key_bindings)
+        SelectorBase.__init__(self, selector, key_bindings=frontend.key_bindings)
         self.widget = console
-        self.console = PackageInfoTextView(console, font_size=font_size, window=main, url_handler = self._url_handler )
+        self.console = PackageInfoTextView(console, font_size=font_size, window=main, url_handler=self._url_handler)
         self.main_window = main
         self.frontend = frontend
-        self.add_button('description', stock='gtk-about', 
-                        tooltip=_('Package Description'), accel = '<Shift>d')
-        self.add_button('update', stock='gtk-info', 
-                        tooltip=_('Update information'), accel = '<Shift>u')
-        self.add_button('changelog', stock='gtk-edit', 
-                        tooltip=_('Package Changelog'), accel = '<Shift>c')
-        self.add_button('filelist', stock='gtk-harddisk', 
-                        tooltip=_('Package Filelist'), accel = '<Shift>f')
+        self.add_button('description', stock='gtk-about',
+                        tooltip=_('Package Description'), accel='<Shift>d')
+        self.add_button('update', stock='gtk-info',
+                        tooltip=_('Update information'), accel='<Shift>u')
+        self.add_button('changelog', stock='gtk-edit',
+                        tooltip=_('Package Changelog'), accel='<Shift>c')
+        self.add_button('filelist', stock='gtk-harddisk',
+                        tooltip=_('Package Filelist'), accel='<Shift>f')
         self.pkg = None
         self._selected = 'description'
 
@@ -222,7 +222,7 @@ class PackageInfo(SelectorBase):
         # Because URLs contain & it needs to be quoted
         browser = browser % '"' + url + '"'
         subprocess.Popen(args=browser, shell=True)
-        
+
     def update(self, pkg):
         '''
         update the package info with a new package
@@ -235,13 +235,13 @@ class PackageInfo(SelectorBase):
         key = self._selected
         self.update_console(key)
         self.widget.grab_remove()
-        
-    def clear(self):        
+
+    def clear(self):
         '''
         clear the package info console
         '''
-        
-        
+
+
         self.console.clear()
 
     def on_button_clicked(self, widget=None, key=None):
@@ -249,7 +249,7 @@ class PackageInfo(SelectorBase):
         if widget.get_active(): # only work on the active button
             self._selected = key
             self.update_console(key)
-    
+
     def update_console(self, key):
         '''
         update the console with information
@@ -280,35 +280,35 @@ class PackageInfo(SelectorBase):
         progress.hide()
         if not upd_info_list:
             return
-        for i in xrange(0,len(upd_info_list)):
-            ndx = (len(upd_info_list)-1) - i 
+        for i in xrange(0, len(upd_info_list)):
+            ndx = (len(upd_info_list) - 1) - i
             upd_info = upd_info_list[ndx]
             updated_po = updated_po_list[ndx]
             if updated_po and updated_po <> 'None':
-                msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size,  updated_po)                
-                self.console.write(msg,"changelog-header")   
+                msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size, updated_po)
+                self.console.write(msg, "changelog-header")
             if upd_info:
-                msg = "%s\n\n" % upd_info['update_id'] 
-                self.console.write(msg,"changelog-header")   
+                msg = "%s\n\n" % upd_info['update_id']
+                self.console.write(msg, "changelog-header")
                 self.show_update_info(upd_info)
-        
+
     def show_description(self):
         '''
         show the package description
         '''
         url = self.pkg.URL
-        self.console.write(_("Project URL : "), "changelog-header", newline = False)
-        self.console.add_url(url,url, newline = True)
+        self.console.write(_("Project URL : "), "changelog-header", newline=False)
+        self.console.add_url(url, url, newline=True)
         self.console.write('\n')
         self.console.write(self.pkg.description)
 
-    def show_update_info(self,upd_info):
+    def show_update_info(self, upd_info):
         head = ""
-        head += ("%14s " % _("Release"))   + ": %(release)s\n" 
-        head += ("%14s " % _("Type"))      + ": %(type)s\n"
-        head += ("%14s " % _("Status"))    + ": %(status)s\n"
-        head += ("%14s " % _("Issued"))    + ": %(issued)s\n"
-        head = head  % upd_info
+        head += ("%14s " % _("Release")) + ": %(release)s\n"
+        head += ("%14s " % _("Type")) + ": %(type)s\n"
+        head += ("%14s " % _("Status")) + ": %(status)s\n"
+        head += ("%14s " % _("Issued")) + ": %(issued)s\n"
+        head = head % upd_info
 
         if upd_info['updated'] and upd_info['updated'] != upd_info['issued']:
             head += "    Updated : %s" % upd_info['updated']
@@ -321,14 +321,14 @@ class PackageInfo(SelectorBase):
             bzs = [ r for r in upd_info['references'] if r and r['type'] == 'bugzilla']
             if len(bzs):
                 header = "Bugzilla"
-                buglist =""
+                buglist = ""
                 for bz in bzs:
                     if 'title' in bz and bz['title']:
                         bug_msg = ' - %s' % bz['title']
                     else:
                         bug_msg = ''
-                    self.console.write("%14s : " % header, newline = False)   
-                    self.console.add_url(bz['id'],self.frontend.settings.bugzilla_url+bz['id']) 
+                    self.console.write("%14s : " % header, newline=False)
+                    self.console.add_url(bz['id'], self.frontend.settings.bugzilla_url + bz['id'])
                     self.console.write(bug_msg)
                     header = " "
 
@@ -341,29 +341,29 @@ class PackageInfo(SelectorBase):
                 for cve in cves:
                     cvelist += "%14s : %s\n" % (header, cve['id'])
                     header = " "
-                head += cvelist[: - 1].rstrip() + '\n\n'
+                head += cvelist[:-1].rstrip() + '\n\n'
 
         if upd_info['description'] is not None:
             desc = utf8_text_wrap(upd_info['description'], width=64,
                                   subsequent_indent=' ' * 14 + ' : ')
             head += "%14s : %s\n" % (_("Description"), '\n'.join(desc))
-            
+
         head += "\n"
         self.console.write(head)
-        
+
     def show_changelog(self):
         '''
         show the package changelog 
         '''
         changelog = self.pkg.changelog
         progress = self.frontend.get_progress()
-        progress.hide()        
+        progress.hide()
         if changelog:
             for (c_date, c_ver, msg) in changelog:
                 self.console.write("* %s %s" % (date.fromtimestamp(c_date).isoformat(), c_ver), "changelog-header")
                 for line in msg.split('\n'):
                     self.console.write("%s" % line, "changelog")
-                self.console.write('\n')              
+                self.console.write('\n')
 
     def show_filelist(self):
         '''
@@ -371,20 +371,20 @@ class PackageInfo(SelectorBase):
         '''
         files = self.pkg.filelist
         progress = self.frontend.get_progress()
-        progress.hide()     
+        progress.hide()
         if files: # files can be None   
             files.sort()
             for fn in files:
                 self.console.write(fn, "filelist")
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
 class PageSelector(SelectorBase):
     ''' Button notebook selector '''
-    
+
     def __init__(self, content, notebook, key_bindings=None):
         ''' setup the selector '''
         SelectorBase.__init__(self, content, key_bindings)
@@ -394,10 +394,10 @@ class PageSelector(SelectorBase):
         if widget.get_active(): # only work on the active button
             self.notebook.set_page(key) # set the new notebook page
             self._selected = key
-            
+
 class Notebook:
     ''' Notebook with button selector '''
-    
+
     def __init__(self, notebook, selector, key_bindings=None):
         ''' setup the notebook and the selector '''
         self.notebook = notebook
@@ -405,7 +405,7 @@ class Notebook:
         self._pages = {}
         self._callbacks = {}
 
-    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True, accel=None, callback=None ):
+    def add_page(self, key, title, widget, icon=None, tooltip=None, header=True, accel=None, callback=None):
         ''' 
         Add a new page and selector button to notebook
         @param key: the page key (name) used by reference the page
@@ -433,14 +433,14 @@ class Notebook:
         self.selector.add_button(key, icon=icon, tooltip=tooltip, accel=accel)
         if callback:
             self._callbacks[key] = callback
-        
+
     def set_active(self, key):
         '''
         set the active page in notebook and selector
         @param key: the page key (name) used by reference the page
         '''
         self.selector.set_active(key)
-        
+
     def set_page(self, key):
         '''
         set the current notebook page

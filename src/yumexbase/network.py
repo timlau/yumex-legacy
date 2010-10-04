@@ -27,11 +27,11 @@ class NetworkCheckBase:
     '''
     Network Check Base Class
     '''
-    
+
     def __init__(self):
         self._connected = None
         self.logger = logging.getLogger(YUMEX_LOG)
-       
+
     @property
     def is_connected(self):
         '''
@@ -41,30 +41,30 @@ class NetworkCheckBase:
                 False : Network Disconnected
         '''
         return self._connected
-    
+
     def check_network_connection(self):
         '''
         Update the network connection status
         @return True, if network connection  state could be detected
         '''
         raise NotImplementedError()
-    
-    
+
+
 class NetworkCheckNetworkManager(NetworkCheckBase):
     '''
     Network Check Base Class
     '''
-    
+
     def __init__(self):
         NetworkCheckBase.__init__(self)
-    
+
     def check_network_connection(self):
         '''
         Update the network connection status
         @return True, if network connection  state could be detected
         '''
         try:
-            bus = dbus.SystemBus()        
+            bus = dbus.SystemBus()
             self._connected = None
             nm = bus.get_object('org.freedesktop.NetworkManager', '/org/freedesktop/NetworkManager')
             dev = nm.GetDevices()
@@ -73,7 +73,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
                 net_props = dbus.Interface(net, 'org.freedesktop.DBus.Properties')
                 props = net_props.GetAll('org.freedesktop.NetworkManager.Device')
                 state = props['State']
-                interface = "%s (%s)" % (props['Interface'],props['Driver'])
+                interface = "%s (%s)" % (props['Interface'], props['Driver'])
                 if state == 8: # 8 = connected
                     #self.logger.info("network interface %s is connected" % interface)
                     self._connected = True
@@ -81,7 +81,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
                     if self._connected == None:
                         self._connected = False
             return True
-        except dbus.exceptions.DBusException,e: 
+        except dbus.exceptions.DBusException, e:
             # Could not get the state from NetworkManager
             # It might not be running
             return False
@@ -96,5 +96,5 @@ if __name__ == '__main__':
             print("Network is connected")
         else:
             print("Network is disconnected")
-            
-        
+
+

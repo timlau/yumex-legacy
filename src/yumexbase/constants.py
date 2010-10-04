@@ -55,9 +55,9 @@ ACTIONS_FILTER = { 'u' : str(FILTER.updates), 'i' : str(FILTER.available), 'r' :
 
 # Paths
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
-BUILDER_FILE = MAIN_PATH + '/yumex.glade'  
-BUILDER_PKGINST = MAIN_PATH + '/pkginst.glade'  
-if MAIN_PATH == '/usr/share/yumex':    
+BUILDER_FILE = MAIN_PATH + '/yumex.glade'
+BUILDER_PKGINST = MAIN_PATH + '/pkginst.glade'
+if MAIN_PATH == '/usr/share/yumex':
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
 else:
     PIXMAPS_PATH = MAIN_PATH + '/../gfx'
@@ -72,7 +72,7 @@ ICON_REPOS = PIXMAPS_PATH + '/button-repo.png'
 ICON_HISTORY = PIXMAPS_PATH + '/button-history.png'
 ICON_SPINNER = PIXMAPS_PATH + '/spinner.gif'
 ICON_SMALL_SPINNER = PIXMAPS_PATH + '/spinner-small.gif'
-    
+
 # NOTE: The package filter radio buttons in the top of the package page
 PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))
 PKG_FILTERS_ENUMS = (FILTER.updates, FILTER.available, FILTER.installed)
@@ -87,9 +87,9 @@ RECENT_LIMIT = time.time() - (3600 * 24 * 14)
 #DEFAULT_FONT = gdkRootWindow.get_pango_context().get_font_description()
 
 # Fonts
-XSMALL_FONT = pango.FontDescription("sans 6")    
-SMALL_FONT = pango.FontDescription("sans 8")    
-BIG_FONT = pango.FontDescription("sans 12")    
+XSMALL_FONT = pango.FontDescription("sans 6")
+SMALL_FONT = pango.FontDescription("sans 8")
+BIG_FONT = pango.FontDescription("sans 12")
 
 # STRINGS
 
@@ -111,27 +111,27 @@ TASK_ICONS = {TASK_PENDING  : 'gtk-media-stop',
               TASK_RUNNING  : 'gtk-refresh',
               TASK_COMPLETE : 'gtk-yes' }
 
-CATEGORY_AGE= [
-            ('1', _('0 - 7 Days')), 
-            ('2', _('7 - 14 Days')), 
-            ('3', _('14 - 21 Days')), 
-            ('4', _('21  - 30 days')), 
-            ('5', _('30 - 90 days')), 
+CATEGORY_AGE = [
+            ('1', _('0 - 7 Days')),
+            ('2', _('7 - 14 Days')),
+            ('3', _('14 - 21 Days')),
+            ('4', _('21  - 30 days')),
+            ('5', _('30 - 90 days')),
             ('6', _('90+ days'))]
 
 CATEGORY_SIZE = [
-    ('1','0 KB - 100 KB'),
-    ('2','100 KB - 1 MB'),
-    ('3','1 MB - 10 MB'), 
-    ('4','10 MB - 50 MB'),
-    ('5','50+ MB')]
+    ('1', '0 KB - 100 KB'),
+    ('2', '100 KB - 1 MB'),
+    ('3', '1 MB - 10 MB'),
+    ('4', '10 MB - 50 MB'),
+    ('5', '50+ MB')]
 
 SIZE_RANGES = {
-   '1' : (0,100*1024),
-   '2' : (100*1024,1024*1024),
-   '3' : (1024*1024,10*1024*1024),
-   '4' : (10*1024*1024,50*1024*1024),
-   '5' : (50*1024*1024,1024*1024*1024)
+   '1' : (0, 100 * 1024),
+   '2' : (100 * 1024, 1024 * 1024),
+   '3' : (1024 * 1024, 10 * 1024 * 1024),
+   '4' : (10 * 1024 * 1024, 50 * 1024 * 1024),
+   '5' : (50 * 1024 * 1024, 1024 * 1024 * 1024)
 }
 
 HISTORY_KEYS = ['True-Install', 'Install', 'Update', 'Erase', \
@@ -142,27 +142,27 @@ PACKAGE_LOAD_MSG = {
  'all'          : _('Getting all packages'),
  'installed'    : _('Getting installed packages'),
  'available'    : _('Getting available packages'),
- 'updates'      : _('Getting available updates'), 
+ 'updates'      : _('Getting available updates'),
  'obsoletes'    : _('Getting available obsoletes')
  }
 
 # RPM Completted action messages
-RPM_ACTIONS = { 
-    TS_UPDATE: '%s is updated', 
+RPM_ACTIONS = {
+    TS_UPDATE: '%s is updated',
     TS_ERASE: '%s is erased',
-    TS_INSTALL: '%s is installed', 
-    TS_TRUEINSTALL: '%s is installed', 
+    TS_INSTALL: '%s is installed',
+    TS_TRUEINSTALL: '%s is installed',
     TS_OBSOLETED: '%s is obsoleted',
     TS_OBSOLETING: '%s is installed',
     TS_UPDATED: '%s is cleanup'
-}   
+}
 
-HISTORY_NEW_STATES = ['Update','Downgrade','Obsoleting']
-HISTORY_OLD_STATES = ['Updated','Downgraded', 'Obsoleted']
+HISTORY_NEW_STATES = ['Update', 'Downgrade', 'Obsoleting']
+HISTORY_OLD_STATES = ['Updated', 'Downgraded', 'Obsoleted']
 
-HISTORY_UPDATE_STATES = ['Update','Downgrade', 'Updated','Downgraded']
+HISTORY_UPDATE_STATES = ['Update', 'Downgrade', 'Updated', 'Downgraded']
 
-HISTORY_SORT_ORDER = ['Install', 'True-Install', 'Reinstall', 'Update', 'Downgrade', 'Obsoleting',  'Obsoleted', 'Erase', 'Dep-Install' ]
+HISTORY_SORT_ORDER = ['Install', 'True-Install', 'Reinstall', 'Update', 'Downgrade', 'Obsoleting', 'Obsoleted', 'Erase', 'Dep-Install' ]
 
 HISTORY_STATE_LABLES = {
      'Update' : _('Updated packages'),
@@ -170,7 +170,7 @@ HISTORY_STATE_LABLES = {
      'Obsoleting' : _('Obsoleting packages'),
      'Obsoleted' : _('Obsoleted packages'),
      'Erase' : _('Erased packages'),
-     'Install' : _('Installed packages'), 
+     'Install' : _('Installed packages'),
      'True-Install' : _('Installed packages'),
      'Dep-Install' : _('Installed for dependencies'),
      'Reinstall' : _('Reinstalled packages')}
@@ -183,4 +183,4 @@ QUEUE_COMMANDS = {
 'up' : 'update',
 're' : 'remove'
 
-}        
+}

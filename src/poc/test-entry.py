@@ -32,7 +32,7 @@ if __name__ == "__main__":
     win.connect('delete-event', gtk.main_quit)
 
     entry = CompletedEntry()
-    entry.add_words(['install','remove','erase'])
+    entry.add_words(['install', 'remove', 'erase'])
     win.add(entry)
     win.show_all()
 

@@ -34,31 +34,31 @@ from optparse import OptionParser
 from iniparse.compat import ConfigParser
 
 
-class YumexConf( BaseConfig ):
+class YumexConf(BaseConfig):
     """ Yum Extender Config Setting"""
-    autorefresh = BoolOption( True )
-    recentdays = IntOption( 14 )
-    debug = BoolOption( False )
-    plugins = BoolOption( True)
+    autorefresh = BoolOption(True)
+    recentdays = IntOption(14)
+    debug = BoolOption(False)
+    plugins = BoolOption(True)
     proxy = Option('')
-    repo_exclude = ListOption(['debug','source'])
-    yumdebuglevel = IntOption( 2 )
-    color_install = Option( 'darkgreen' )
-    color_update = Option( 'red' )
-    color_normal = Option( 'black' )
-    color_obsolete = Option( 'blue' )
-    disable_repo_page = BoolOption( False )
+    repo_exclude = ListOption(['debug', 'source'])
+    yumdebuglevel = IntOption(2)
+    color_install = Option('darkgreen')
+    color_update = Option('red')
+    color_normal = Option('black')
+    color_obsolete = Option('blue')
+    disable_repo_page = BoolOption(False)
     branding_title = Option('Yum Extender')
-    win_width = IntOption( 1000)
-    win_height = IntOption( 600 ) 
-    win_sep = IntOption( 300 ) 
+    win_width = IntOption(1000)
+    win_height = IntOption(600)
+    win_sep = IntOption(300)
     history_limit = IntOption(15)
-    disable_netcheck = BoolOption( False )
-    yum_conf = Option( '/etc/yum.conf' )
-    use_sortable_view = BoolOption( False )
-    typeahead_search = BoolOption( False )
+    disable_netcheck = BoolOption(False)
+    yum_conf = Option('/etc/yum.conf')
+    use_sortable_view = BoolOption(False)
+    typeahead_search = BoolOption(False)
     bugzilla_url = Option('https://bugzilla.redhat.com/show_bug.cgi?id=')
-    
+
 
 class YumexOptions:
 
@@ -70,23 +70,23 @@ class YumexOptions:
         (self.cmd_options, self.cmd_args) = self.setupParser()
         self.update_settings()
 
-    def get_cmd_options(self):    
+    def get_cmd_options(self):
         return (self.cmd_options, self.cmd_args)
 
-    def get_yumex_config(self,configfile='.yumex.conf', sec='yumex' ):
+    def get_yumex_config(self, configfile='.yumex.conf', sec='yumex'):
         conf = YumexConf()
-        parser = ConfigParser()    
-        configfile=os.environ['HOME']+"/"+configfile
+        parser = ConfigParser()
+        configfile = os.environ['HOME'] + "/" + configfile
         if not os.path.exists(configfile):
             # if /etc/yumex.conf exists and is readable the copy it to homedir
             if os.path.exists('/etc/yumex.conf') and os.access("/etc/yumex.conf", os.R_OK):
                 shutil.copyfile('/etc/yumex.conf', configfile)
-        parser.read( configfile )
+        parser.read(configfile)
         if not parser.has_section('yumex'):
             parser.add_section('yumex')
-        conf.populate( parser, sec )
+        conf.populate(parser, sec)
         return conf
-    
+
     def reload(self):
         self.conf_settings = self.get_yumex_config()
         self.settings = self.get_yumex_config()
@@ -120,29 +120,29 @@ class YumexOptions:
                         help="No automatic refresh af program start")
         parser.add_option("", "--debuglevel", dest="yumdebuglevel", action="store",
                 default=self.settings.yumdebuglevel, help="yum debugging output level", type='int',
-                metavar='[level]')      
-        parser.add_option("-c", "", dest="yum_conf", action="store", 
+                metavar='[level]')
+        parser.add_option("-c", "", dest="yum_conf", action="store",
                 default='/etc/yum.conf', help="yum config file to use default = /etc/yum.conf",
                 metavar=' [config file]')
-        
+
         return parser.parse_args()
 
     def dump(self):
         self.logger.debug("Current Yumex Settings:")
-        settings = str( self.settings ).split( '\n' )
+        settings = str(self.settings).split('\n')
         for s in settings:
-            if not s.startswith( '[' ):
-                self.logger.debug("    %s" % s )
-        
-    def update_settings( self ):
+            if not s.startswith('['):
+                self.logger.debug("    %s" % s)
+
+    def update_settings(self):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel','autorefresh','disable_netcheck','yum_conf','search','update_only']
+        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'disable_netcheck', 'yum_conf', 'search', 'update_only']
         for opt in options:
             self._calcOption(opt)
         self._check_win_size()
-            
-    def _check_win_size(self):        
+
+    def _check_win_size(self):
         if self.cmd_options.win_size:
             size = self.cmd_options.win_size
             if 'x' in size:
@@ -152,9 +152,9 @@ class YumexOptions:
                 if w > 635 and h > 351: # Check for min size 
                     self.settings.win_width = w
                     self.settings.win_height = h
-                
-        
-    def _calcOption(self,option):
+
+
+    def _calcOption(self, option):
         '''
         Check if a command line option has a diffent value, than
         the default value for the setting.
@@ -162,15 +162,15 @@ class YumexOptions:
         commandline option.
         '''
         default = None
-        cmdopt = getattr( self.cmd_options, option )
+        cmdopt = getattr(self.cmd_options, option)
         if self.settings.isoption(option):
             optobj = self.settings.optionobj(option)
             default = optobj.default
         if cmdopt != default:
-            setattr( self.settings, option,cmdopt)
-        
+            setattr(self.settings, option, cmdopt)
+
     def save(self, configfile='.yumex.conf'):
-        configfile=os.environ['HOME']+"/"+configfile
-        fn = open(configfile,"w")
+        configfile = os.environ['HOME'] + "/" + configfile
+        fn = open(configfile, "w")
         self.conf_settings.write(fn)
         fn.close()

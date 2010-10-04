@@ -20,7 +20,7 @@ class YumexBackendBase(object):
         self.frontend = frontend
         self.transaction = transaction
 
-    def setup(self, offline = False,repos=None):
+    def setup(self, offline=False, repos=None):
         ''' Setup the backend'''
         raise NotImplementedError()
 
@@ -44,7 +44,7 @@ class YumexBackendBase(object):
         '''
         raise NotImplementedError()
 
-    def enable_repository(self, repoid, enabled = True):
+    def enable_repository(self, repoid, enabled=True):
         ''' 
         set repository enable state
         @param repoid: repo id to change
@@ -93,7 +93,7 @@ class YumexPackageBase:
         string representation of the package object
         '''
         return str(self._pkg)
-      
+
 
     @property
     def name(self):
@@ -177,31 +177,31 @@ class YumexPackageBase:
 
     @property
     def filelist(self):
-        ''' Package filelist '''        
+        ''' Package filelist '''
         raise NotImplementedError()
 
-    @property        
+    @property
     def id(self):
-        ''' Return the package id '''        
+        ''' Return the package id '''
         return self._pkg.id
 
     @property
     def filename(self):
-        ''' Package id (the full package filename) '''     
+        ''' Package id (the full package filename) '''
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
     @property
     def fullname(self):
-        ''' Package fullname  '''        
+        ''' Package fullname  '''
         self._pkg.fullname
-            
+
     @property
     def fullver (self):
         '''
         Package full version-release
         '''
         return "%s-%s" % (self.version, self.release)
- 
+
     def is_installed(self):
         return self.repoid[0] == '@' or self.repoid == 'installed'
 
@@ -218,12 +218,12 @@ class YumexPackageBase:
         
         '''
         return format_number(self.sizeBytes)
-    
+
     @property
     def URL(self):
         return self._pkg.get_attribute('url')
-    
-   
+
+
 
 class YumexGroupBase:
     '''
@@ -259,12 +259,12 @@ class YumexGroupBase:
     def description(self):
         ''' Group description '''
         pass
-    
+
     @property
     def category(self):
         ''' Group category '''
         pass
-    
+
 
 class YumexTransactionBase:
     '''
@@ -327,7 +327,7 @@ class YumexTransactionBase:
         @param grp: group to check for
         '''
         pass
-    
+
     def process_transaction(self):
         '''
         Process the packages and groups in the queue
@@ -342,38 +342,38 @@ class YumHistoryTransaction:
     """ Holder for a history transaction. """
 
     def __init__(self, yht):
-        self.tid              = yht.tid
-        self.beg_timestamp    = yht.beg_timestamp
+        self.tid = yht.tid
+        self.beg_timestamp = yht.beg_timestamp
         self.beg_rpmdbversion = yht.beg_rpmdbversion
-        self.end_timestamp    = yht.end_timestamp
+        self.end_timestamp = yht.end_timestamp
         self.end_rpmdbversion = yht.end_rpmdbversion
-        self.loginuid         = yht.loginuid
-        self.return_code      = yht.return_code
+        self.loginuid = yht.loginuid
+        self.return_code = yht.return_code
 
     @property
     def id(self):
         return ":hist\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % \
-               (self.tid, self.beg_timestamp, self.beg_rpmdbversion,\
-                self.end_timestamp, self.end_rpmdbversion, self.loginuid, self.return_code )
+               (self.tid, self.beg_timestamp, self.beg_rpmdbversion, \
+                self.end_timestamp, self.end_rpmdbversion, self.loginuid, self.return_code)
 
 class YumHistoryPackage:
 
     def __init__(self, yhp):
-        self.name   = yhp.name
-        self.epoch  = yhp.epoch
-        self.ver    = yhp.version
-        self.rel    = yhp.release
-        self.arch   = yhp.arch
-        if hasattr(yhp,"state"):
-            self.state  = yhp.state
+        self.name = yhp.name
+        self.epoch = yhp.epoch
+        self.ver = yhp.version
+        self.rel = yhp.release
+        self.arch = yhp.arch
+        if hasattr(yhp, "state"):
+            self.state = yhp.state
         else:
             self.state = ""
-        self.installed  = yhp.state_installed
-        
+        self.installed = yhp.state_installed
+
     @property
     def version(self):
         return self.ver
-    
+
     @property
     def release(self):
         return self.rel
@@ -382,31 +382,31 @@ class YumHistoryPackage:
     @property
     def pkgtup(self):
         return (self.name, self.arch, self.epoch, self.ver, self.rel)
-        
+
 
     def __str__(self):
         '''
         string representation of the package object
         '''
         return self.fullname
-        
+
     @property
     def fullname(self):
-        ''' Package fullname  '''        
+        ''' Package fullname  '''
         if self.epoch and self.epoch != '0':
             return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
-        else:   
+        else:
             return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
     @property
     def fullver(self):
-        ''' Package full ver  '''        
+        ''' Package full ver  '''
         if self.epoch and self.epoch != '0':
-            return "%s:%s.%s" % ( self.epoch, self.ver, self.rel)
-        else:   
-            return "%s.%s" % ( self.ver, self.rel)
+            return "%s:%s.%s" % (self.epoch, self.ver, self.rel)
+        else:
+            return "%s.%s" % (self.ver, self.rel)
 
-  
+
     @property
     def id(self):
         return ":histpkg\t%s\t%s\t%s\t%s\t%s" % \
@@ -438,17 +438,17 @@ class YumPackage:
         string representation of the package object
         '''
         return self.fullname
-        
+
     @property
     def fullname(self):
-        ''' Package fullname  '''        
+        ''' Package fullname  '''
         if self.epoch and self.epoch != '0':
             return "%s-%s:%s-%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
-        else:   
+        else:
             return "%s-%s-%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
-    @property        
-    def id(self):        
+    @property
+    def id(self):
         '''
         
         '''
@@ -460,25 +460,25 @@ class YumPackage:
         @param attr:
         '''
         return self.base.get_attribute(self.id, attr)
-    
+
     def get_changelog(self, num):
         '''
         
         @param num:
         '''
         return self.base.get_changelog(self.id, num)
-    
+
     def get_update_info(self):
         return self.base.get_update_info(self.id)
-    
+
     # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
 def pack(value):
     '''  Pickle and base64 encode an python object'''
     return base64.b64encode(pickle.dumps(value))
-    
+
 def unpack(value):
     '''  base64 decode and unpickle an python object'''
     return pickle.loads(base64.b64decode(value))
 
-    
+
 

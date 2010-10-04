@@ -27,30 +27,30 @@ from guihelpers import Controller, doGtkEvents
 from yumexgui.dialogs import Progress
 #from yumexbase.constants import *
 
-BUILDER_FILE = '../yumex.glade'  
+BUILDER_FILE = '../yumex.glade'
 TASK_PENDING = 1
 TASK_RUNNING = 2
 TASK_COMPLETE = 3
 
 class TestProgress(Controller):
     ''' This class contains all signal callbacks '''
-    
-    
+
+
     def __init__(self):
         '''
         Init the signal callback Controller 
         '''
         # init the Controller Class to connect signals etc.
-        Controller.__init__(self, BUILDER_FILE , 'main', domain = 'yumex', connect=False)
+        Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex', connect=False)
         self.window.set_title("Testing Progress")
         self.window.show()
         self.progress = Progress(self.ui, self.window)
         self.progress.show()
         doGtkEvents()
         self.run_tests()
-        
+
     def run_tests(self):
-        w,h = self.ui.Progress.get_size() # get the default size
+        w, h = self.ui.Progress.get_size() # get the default size
         self.progress.set_title("Testing Progress - Title")
         doGtkEvents()
         time.sleep(1)
@@ -63,33 +63,33 @@ class TestProgress(Controller):
         self.test_bar()
         self.test_tasks()
         doGtkEvents()
-        self.ui.Progress.resize(w,h) # shrink to the default size again
+        self.ui.Progress.resize(w, h) # shrink to the default size again
         self.test_bar()
         time.sleep(3)
         self.main_quit()
-        
+
     def test_tasks(self):
         self.progress.show_tasks()
-        for task_id in ('depsolve','download','gpg-check','test-trans','run-trans'):
-            self.progress.tasks.set_state(task_id,TASK_RUNNING)
+        for task_id in ('depsolve', 'download', 'gpg-check', 'test-trans', 'run-trans'):
+            self.progress.tasks.set_state(task_id, TASK_RUNNING)
             self.test_bar(task_id)
-            self.progress.tasks.set_state(task_id,TASK_COMPLETE)
+            self.progress.tasks.set_state(task_id, TASK_COMPLETE)
         doGtkEvents()
         time.sleep(1)
         self.progress.hide_tasks()
-        
-    def test_bar(self,task_id=None):
+
+    def test_bar(self, task_id=None):
         frac = 0.0
         while True:
             if frac > 0.99:
                 percent = 100
                 frac = 1.0
             else:
-                percent = int(frac*100)
-            self.progress.set_fraction(frac,"%i %%" % percent)
-            self.progress.set_action("Processed %i %% of the action" % percent )
+                percent = int(frac * 100)
+            self.progress.set_fraction(frac, "%i %%" % percent)
+            self.progress.set_action("Processed %i %% of the action" % percent)
             if task_id:
-                self.progress.tasks.set_extra_label(task_id,"%i %%" % percent)
+                self.progress.tasks.set_extra_label(task_id, "%i %%" % percent)
             doGtkEvents()
             frac += 0.01
             time.sleep(0.05)
@@ -97,7 +97,7 @@ class TestProgress(Controller):
                 break
         self.progress.set_action("Action Completted")
         doGtkEvents()
-        
+
 
 if __name__ == "__main__":
-    tp = TestProgress()        
+    tp = TestProgress()

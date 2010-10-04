@@ -23,7 +23,7 @@ import sys
 import os
 import traceback
 from yumexgui import YumexApplication
-from yumexbackend.yum_backend import YumexBackendYum as backend 
+from yumexbackend.yum_backend import YumexBackendYum as backend
 
 if os.getuid() == 0 and not '--root' in sys.argv:
     print "Don't run yumex as root it is unsafe (Use --root to force)"
@@ -35,16 +35,16 @@ gettext.textdomain("yumex")
 
 debug = []
 if 'YUMEX_DBG' in os.environ:
-    debug = os.environ['YUMEX_DBG'].lower().split(',') 
+    debug = os.environ['YUMEX_DBG'].lower().split(',')
     print debug
-    
-try:    
+
+try:
     app = YumexApplication(backend)
     app.debug_options = debug
     #app.run_test()
     app.run()
-except SystemExit,e:
-    print "Program Terminated"    
+except SystemExit, e:
+    print "Program Terminated"
     sys.exit(1)
 except: # catch other exception and write it to the logger.
     errmsg = traceback.format_exc()
