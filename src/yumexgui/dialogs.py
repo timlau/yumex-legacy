@@ -67,6 +67,7 @@ class TaskList:
         self.num_current = 0
         self.is_hidden = True
         self.current_running = None
+        self.extra_label = ""
         self.hide()
 
     def show(self):
@@ -215,6 +216,7 @@ class TaskList:
         @param task_id:
         @param text:
         '''
+        self.extra_label = text
         if task_id in self._tasks:
             (state, icon, task_label, extra_label) = self._get_task(task_id)
             extra_label.set_markup(text)
@@ -226,18 +228,19 @@ class Progress(YumexProgressBase):
     The Progress Dialog
     '''
 
-    def __init__(self, ui, parent):
+    def __init__(self, frontend):
         '''
         Setup the progress dialog
         @param ui: the UI class containing the dialog
         @param parent: the parent window widget
         '''
         YumexProgressBase.__init__(self)
-        self.ui = ui
+        self.frontend = frontend
+        self.ui = frontend.ui
         self.dialog = self.ui.Progress
         self.dialog.set_title("Working....")
-        self.parent = parent
-        self.dialog.set_transient_for(parent)
+        self.parent = frontend.window
+        self.dialog.set_transient_for(self.parent)
         style = self.ui.packageView.get_style()
         self.ui.progressEvent.modify_bg(gtk.STATE_NORMAL, style.base[0])
         self.progressbar = self.ui.progressBar
@@ -257,6 +260,10 @@ class Progress(YumexProgressBase):
         self.default_w = None
         self.default_h = None
         self.ui.progressImage.set_from_file(ICON_SPINNER)
+        self._active = False
+        
+    def is_active(self):
+        return self._active
 
     def show(self):
         '''
@@ -281,6 +288,9 @@ class Progress(YumexProgressBase):
         '''
         self._active = False
         normalCursor(self.parent)
+        # clear the status icon tooltip text
+        if self.frontend.status_icon:
+            self.frontend.status_icon.set_tooltip("")
         self.dialog.hide()
 
     def show_tasks(self):
@@ -319,6 +329,8 @@ class Progress(YumexProgressBase):
         '''
         self.header.set_text(text)
         self.set_action("")
+        if self.frontend.status_icon:
+            self.frontend.status_icon.set_tooltip(text+" "+self.tasks.extra_label)
 
     def set_action(self, text):
         '''
@@ -533,11 +545,16 @@ class TransactionConfirmation:
         self.header.modify_font(BIG_FONT)
         self.set_header(_("Transaction Result"))
         self.store = self.setup_view(self.view)
+        self._active = False
+        
+    def is_active(self):
+        return self._active
 
     def run(self):
         '''
         run the dialog
         '''
+        self._active = True
         self.dialog.show_all()
         self.view.expand_all()
         rc = self.dialog.run()
@@ -547,6 +564,7 @@ class TransactionConfirmation:
         '''
         hide the dialog
         '''
+        self._active = False
         self.dialog.hide()
 
 

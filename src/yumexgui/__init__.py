@@ -31,7 +31,7 @@ import time
 
 from datetime import date
 
-from yumexgui.gui import Notebook, PackageInfo, CompletedEntry
+from yumexgui.gui import Notebook, PackageInfo, CompletedEntry, YumexStatusIcon
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions, \
                              TestWindow
@@ -63,6 +63,19 @@ class YumexFrontend(YumexFrontendBase):
         ''' Setup the frontend callbacks '''
         self.logger = logging.getLogger(YUMEX_LOG)
         YumexFrontendBase.__init__(self, backend, progress)
+
+    def hide(self):
+        self.window.set_visible(False)
+        progress = self.get_progress()
+        if progress.is_active():
+            progress.dialog.set_visible(False)
+
+
+    def show(self):
+        self.window.set_visible(True)
+        progress = self.get_progress()
+        if progress.is_active():
+            progress.dialog.set_visible(True)
 
     def set_state(self, state):
         ''' set the state of work '''
@@ -180,6 +193,7 @@ class YumexHandlers(Controller):
         # Save the windows size and separator position
         try:
             width, height = self.window.get_size()
+            self.window.set_visible(False)
             if self._resized:
                 width = width - 150
             setattr(self.cfg.conf_settings, 'win_width', width)
@@ -696,7 +710,7 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         #(self.cmd_options, self.cmd_args) = self.cfg.get_cmd_options()
         self.backend = backend(self)
         YumexHandlers.__init__(self)
-        progress = Progress(self.ui, self.window)
+        progress = Progress(self)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
         self._packages_loaded = False
@@ -828,6 +842,9 @@ class YumexApplication(YumexHandlers, YumexFrontend):
 
         #Setup About dialog
         self.ui.About.set_version(const.__yumex_version__)
+
+        # Status Icon
+        self.status_icon = YumexStatusIcon(self)
 
         # Calc font constants based on default font 
         DEFAULT_FONT = self.window.get_pango_context().get_font_description()
