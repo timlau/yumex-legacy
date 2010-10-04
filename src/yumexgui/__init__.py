@@ -566,21 +566,6 @@ class YumexHandlers(Controller):
             self.ui.QueueEntry.set_text("")
             self.last_queue_text = ""
 
-    def on_QueueEntry_changed(self, widget=None, event=None):
-        '''
-        Queue command autocomplete, DO WORK YET, because cursor position is not updated :(
-        @param widget:
-        @param event:
-        '''
-        txt = self.ui.QueueEntry.get_text()
-        self.ui.QueueEntry.set_position(-1)
-        print "QUEUE_ENTRY", txt, self.ui.QueueEntry.get_position()
-        if len(txt) == 2 and len(txt) > len(self.last_queue_text):
-            if txt in QUEUE_COMMANDS:
-                cmd = QUEUE_COMMANDS[txt] + " "
-                self.last_queue_text = cmd
-                self.ui.QueueEntry.set_text(cmd)
-        self.last_queue_text = txt
 
     def on_QueueEntry_activate(self, widget=None, event=None):
         '''
