@@ -76,4 +76,9 @@ Fixed / implemented:
 	. Add completion entry for queue commands.
 	. Fix translation issues with gtkbuilder strings.
 	. Pressing Esc will clear the package search entry and undo current search
+	. Added status icon in notification error.  
+		- Clicking on it will hide/show window  
+		- Right Click show a menu with an quit option  
+		- Tooltip show current action from progress dialog
+	
 ( * = Released, . = Upstream )	
