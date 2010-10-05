@@ -1,6 +1,4 @@
 TODO:
-	RFE: Add Repo profile functionality
-  	RFE: Add Test cases (partly done)
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
     RFE: History improvements
@@ -20,9 +18,6 @@ TODO:
    	     - make it possible to reinstall package(s)
    	     - make it possible to downgrade package(s)
    	     
-   	RFE: Make it possible to type "install foo, remove bar" and get the packages added to the queue
-   		 - get the same results as typing 'yum install foo" on the cmd line.
-    	
   	
 BUGS:
   	
