@@ -325,6 +325,16 @@ class YumexHandlers(Controller):
             normalCursor(self.window)
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         self.last_search_text = txt
+        
+    def on_package_popup(self, widget, action, pkg):
+        pkg.action = action
+        self.queue.queue.add(pkg)
+        pkg.queued = action
+        pkg.selected = True
+        self.queue.refresh()
+        
+        
+
 
     def on_packageSearch_key_press_event(self, widget, event):
         keyname = gtk.gdk.keyval_name(event.keyval)
@@ -379,6 +389,27 @@ class YumexHandlers(Controller):
             pkg = model.get_value(iterator, 0)
             if pkg:
                 self.packageInfo.update(pkg)
+                
+    def on_packageView_button_press_event(self, treeview, event):
+         if event.button == 3: # Right Click
+            x = int(event.x)
+            y = int(event.y)
+            t = event.time
+            pthinfo = treeview.get_path_at_pos(x, y)
+            if pthinfo is not None:
+                path, col, cellx, celly = pthinfo
+                treeview.grab_focus()
+                treeview.set_cursor(path, col, 0)
+                store = treeview.get_model()
+                iter = store.get_iter(path)
+                pkg = store.get_value(iter, 0)
+                if not pkg.is_installed(): # Only open popup menu for installed packages
+                    return
+                popup = self.get_package_popup(pkg, path)
+                popup.popup(None, None, None, event.button, t)
+            return True
+   
+                        
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -1005,6 +1036,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         mi.connect('activate', self.on_repo_popup_other, action_id, path)
         menu.add(mi)
 
+    def _add_menu_package(self, menu, label, action, pkg):
+        mi = gtk.MenuItem (label)
+        mi.connect('activate', self.on_package_popup,action, pkg)
+        menu.add(mi)
+        
 
     def get_repo_popup(self, enabled, path):
         repo_popup = gtk.Menu()
@@ -1023,6 +1059,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         repo_popup.show_all()
         return repo_popup
 
+    def get_package_popup(self, pkg, path):
+        popup = gtk.Menu()
+        self._add_menu_package(popup, _("Reinstall Package"), "ri", pkg)
+        self._add_menu_package(popup, _("Downgrade Package"), "do", pkg)
+        popup.show_all()
+        return popup
 
     def setup_categories(self):
         cats = [('repo', _('By Repositories')),
@@ -1086,10 +1128,10 @@ class YumexApplication(YumexHandlers, YumexFrontend):
             okDialog(self.window, _("The pending action queue is empty"))
             return False
         self.backend.transaction.reset()
-        for action in ('install', 'update', 'remove', 'obsolete'):
-            pkgs = queue.get(action[0])
+        for action in QUEUE_PACKAGE_TYPES:
+            pkgs = queue.get(action)
             for po in pkgs:
-                self.backend.transaction.add(po, action)
+                self.backend.transaction.add(po, QUEUE_PACKAGE_TYPES[action])
         return True
 
     def process_transaction(self, action="queue", tid=None):

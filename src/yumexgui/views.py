@@ -295,6 +295,10 @@ class YumexPackageView(SelectionView):
             if action:
                 if action in ('u', 'i', 'o'):
                     icon = 'network-server'
+                elif action == 'ri':
+                    icon = 'gtk-refresh'
+                elif action == 'do':
+                    icon = 'gtk-go-down'
                 else:
                     icon = 'edit-delete'
                 cell.set_property('visible', True)
@@ -587,24 +591,22 @@ class YumexQueue:
         '''
         self.logger = logging.getLogger('yumex.YumexQueue')
         self.packages = {}
-        self.packages['i'] = []
-        self.packages['u'] = []
-        self.packages['o'] = []
-        self.packages['r'] = []
+        self._setup_packages()
         self.groups = {}
         self.groups['i'] = []
         self.groups['r'] = []
-
+        
+    def _setup_packages(self):    
+        for key in const.QUEUE_PACKAGE_TYPES:
+            self.packages[key] = []
+            
     def clear(self):
         '''
         
         '''
         del self.packages
         self.packages = {}
-        self.packages['i'] = []
-        self.packages['u'] = []
-        self.packages['o'] = []
-        self.packages['r'] = []
+        self._setup_packages()
         self.groups = {}
         self.groups['i'] = []
         self.groups['r'] = []
@@ -623,27 +625,26 @@ class YumexQueue:
         '''
         
         '''
-        return len(self.packages['i']) + len(self.packages['u']) + len(self.packages['o']) + len(self.packages['r'])
-
+        num = 0
+        for key in const.QUEUE_PACKAGE_TYPES:
+            num += len(self.packages[key])
+        return num
+    
     def add(self, pkg):
         '''
         
         @param pkg:
         '''
-        pkg_list = self.packages[pkg.action]
-        if not pkg in pkg_list:
-            pkg_list.append(pkg)
-        self.packages[pkg.action] = pkg_list
+        if not pkg in self.packages[pkg.action]:
+            self.packages[pkg.action].append(pkg)
 
     def remove(self, pkg):
         '''
         
         @param pkg:
         '''
-        pkg_list = self.packages[pkg.action]
-        if pkg in pkg_list:
-            pkg_list.remove(pkg)
-        self.packages[pkg.action] = pkg_list
+        if pkg in self.packages[pkg.action]:
+            self.packages[pkg.action].remove(pkg)
 
     def addGroup(self, grp, action):
         '''
@@ -749,7 +750,7 @@ class YumexQueueView:
         for pkg in self.getPkgsFromList(rmvlist):
             pkg.queued = None
             pkg.set_select(not pkg.selected)
-        for action in ['u', 'i', 'r', 'o']:
+        for action in const.QUEUE_PACKAGE_TYPES:
             pkg_list = self.queue.get(action)
             if pkg_list:
                 self.queue.packages[action] = [x for x in pkg_list if str(x) not in rmvlist]
@@ -762,7 +763,7 @@ class YumexQueueView:
         @param rlist:
         '''
         rclist = []
-        for action in ['u', 'i', 'r', 'o']:
+        for action in const.QUEUE_PACKAGE_TYPES:
             pkg_list = self.queue.packages[action]
             if pkg_list:
                 rclist.extend([x for x in pkg_list if str(x) in rlist])
@@ -781,6 +782,14 @@ class YumexQueueView:
             self.populate_list(label, pkg_list)
         pkg_list = self.queue.packages['r']
         label = "<b>%s</b>" % P_("Package to remove", "Packages to remove", len(pkg_list))
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
+        pkg_list = self.queue.packages['ri']
+        label = "<b>%s</b>" % P_("Package to reinstall", "Packages to reinstall", len(pkg_list))
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
+        pkg_list = self.queue.packages['do']
+        label = "<b>%s</b>" % P_("Package to downgrade", "Packages to downgrade", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
         self.view.expand_all()

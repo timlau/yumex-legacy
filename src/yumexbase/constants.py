@@ -178,9 +178,19 @@ HISTORY_STATE_LABLES = {
 
 # Queue autocomplete lookup
 QUEUE_COMMANDS = {
-'in' : 'install',
-'er' : 'erase',
-'up' : 'update',
-'re' : 'remove'
+'ins' : 'install',
+'era' : 'erase',
+'upd' : 'update',
+'rem' : 'remove',
+'rei' : 'reinstall',
+'dow' : 'downgrade'  
+}
 
+QUEUE_PACKAGE_TYPES = {
+'i' : 'install',
+'u' : 'update',
+'r' : 'remove',
+'o' : 'obsolete',
+'ri' : 'reinstall',
+'do' : 'downgrade'                        
 }
