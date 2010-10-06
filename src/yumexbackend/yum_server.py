@@ -632,7 +632,7 @@ class YumServer(yum.YumBase):
         elif action == "reinstall":
             txmbrs = self.reinstall(po)
         elif action == "downgrade":
-            txmbrs = self.downgrade(po)
+            txmbrs = self.downgrade(pattern=po.name)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
             self.debug("Added : " + str(txmbr), __name__)
