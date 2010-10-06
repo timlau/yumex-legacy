@@ -24,11 +24,12 @@
 
 from yumexbase.constants import *
 from urlgrabber.progress import format_number
-
+from yumexbase import TimeFunction
 
 from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
+from guihelpers import doGtkEvents
 from yumexbackend.yumMediaManagerUDisks import MediaManagerUDisks as MediaManager
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -107,7 +108,19 @@ class PackageCache:
             #self.frontend.debug('not found in cache : [%s] [%s] ' % (po, po.action), __name__)
             return self._add(po)
 
-
+    #@TimeFunction
+    def find_packages(self, packages):
+        pkgs = []
+        i = 0
+        progress = self.frontend.get_progress()
+        for po in packages:
+            i += 1
+            if (i % 25) == 0:
+                progress.pulse()
+                doGtkEvents()
+            pkgs.append(self.find(po))
+        return pkgs
+        
 
 class YumexBackendYum(YumexBackendBase, YumClient):
     ''' Yumex Backend Yume class
@@ -361,7 +374,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages_size(self, ndx)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def get_packages_repo(self, repoid):
         ''' 
@@ -370,7 +383,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages_repo(self, repoid)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def get_repositories(self):
         ''' 
@@ -408,15 +421,15 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
         pkgs = YumClient.get_group_packages(self, group, grp_filter)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def get_available_by_name(self, name):
         pkgs = YumClient.get_available_by_name(self, name)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def get_available_downgrades(self, po):
         pkgs = YumClient.get_available_downgrades(self, po)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def search(self, keys, sch_filters, use_cache=True):
         ''' 
@@ -426,7 +439,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
         pkgs = YumClient.search(self, keys, sch_filters)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def search_prefix(self, prefix, use_cache=True):
         '''
@@ -434,7 +447,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param prefix prefix to search for
         '''
         pkgs = YumClient.search_prefix(self, prefix)
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def run_command(self, cmd, userlist, use_cache=True):
         '''
@@ -443,7 +456,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         pkgs = YumClient.run_command(self, cmd, userlist)
         self.frontend.get_progress().hide()
-        return [self.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
 class YumexPackageYum(YumexPackageBase):
     '''

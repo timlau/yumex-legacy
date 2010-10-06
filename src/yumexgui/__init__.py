@@ -166,568 +166,8 @@ class YumexFrontend(YumexFrontendBase):
                 progress.pulse()
         doGtkEvents()
 
-class YumexHandlers(Controller):
-    ''' This class contains all signal callbacks '''
 
-
-    def __init__(self):
-        '''
-        Init the signal callback Controller 
-        '''
-        # init the Controller Class to connect signals etc.
-        Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex')
-        self._last_filter = None
-        self.default_repos = []
-        self.current_repos = []
-        self._resized = False
-        self._current_active = None
-        self.current_category = None
-        self.last_queue_text = ""
-        self.last_search_text = ""
-
-
-# Signal handlers
-
-    def quit(self):
-        ''' destroy Handler '''
-        # Save the windows size and separator position
-        try:
-            width, height = self.window.get_size()
-            self.window.set_visible(False)
-            if self._resized:
-                width = width - 150
-            setattr(self.cfg.conf_settings, 'win_width', width)
-            setattr(self.cfg.conf_settings, 'win_height', height)
-            pos = self.ui.packageSep.get_position()
-            setattr(self.cfg.conf_settings, 'win_sep', pos)
-            self.cfg.save()
-
-        except:
-            self.backend.info("Error in saving window size")
-        self.backend.debug("Quiting the program !!!")
-        try:
-            self.backend.reset() # Close the yum backend
-            self.backend._close() # Close the backend launcher
-        except:
-            pass
-        self.backend.debug("Backend reset completted")
-
-    # Menu
-
-    def on_fileQuit_activate(self, widget=None, event=None):
-        '''
-        Menu : File -> Quit
-        '''
-        self.main_quit()
-
-    def on_editPref_activate(self, widget=None, event=None):
-        '''
-        Menu : Edit -> Preferences
-        '''
-        #okDialog(self.window, "This function has not been implemented yet")
-        self.debug("Edit -> Preferences")
-        self.preferences.run()
-        self.preferences.destroy()
-
-    def on_proNew_activate(self, widget=None, event=None):
-        '''
-        Menu : Profile -> New
-        '''
-        okDialog(self.window, "This function has not been implemented yet")
-        self.debug("Profiles -> New")
-
-    def on_proSave_activate(self, widget=None, event=None):
-        '''
-        Menu : Profile -> Save
-        '''
-        okDialog(self.window, "This function has not been implemented yet")
-        self.debug("Profiles -> Save")
-
-    def on_helpAbout_activate(self, widget=None, event=None):
-        '''
-        Menu : Help -> About
-        '''
-        self.ui.About.run()
-        self.ui.About.hide()
-        #okDialog(self.window, "This function has not been implemented yet")
-        self.debug("Help -> About")
-
-
-# Options
-
-    def on_option_nogpgcheck_toggled(self, widget=None, event=None):
-        self.backend.set_option('gpgcheck', not widget.get_active(), on_repos=True)
-
-    def on_option_skipbroken_toggled(self, widget=None, event=None):
-        self.backend.set_option('skip_broken', widget.get_active())
-
-
-    def on_viewPackages_activate(self, widget=None, event=None):
-        '''
-        Menu : View -> Packages
-        '''
-        self.notebook.set_active("package")
-
-    def on_viewQueue_activate(self, widget=None, event=None):
-        '''
-        Menu : View -> Queue
-        '''
-        self.notebook.set_active("queue")
-
-    def on_viewRepo_activate(self, widget=None, event=None):
-        '''
-        Menu : View -> Repo
-        '''
-        self.notebook.set_active("repo")
-
-    def on_viewOutput_activate(self, widget=None, event=None):
-        '''
-        Menu : View -> Output
-        '''
-        self.notebook.set_active("output")
-
-    def on_viewHistory_activate(self, widget=None, event=None):
-        '''
-        Menu : View -> History
-        '''
-        self.notebook.set_active("history")
-    # Package Page    
-
-    def on_searchTypeAhead_toggled(self, widget=None, event=None):
-        active = self.ui.searchTypeAhead.get_active()
-        self.typeahead_active = active
-        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-
-
-    def on_searchOptions_clicked(self, widget=None, event=None):
-        self.search_options.run()
-        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-
-    def on_packageSearch_changed(self, widget=None, event=None):
-        keys = self.ui.packageSearch.get_text().split(' ')
-        if not self.typeahead_active or len(keys) > 1:
-            return
-        txt = keys[0]
-        if len(txt) >= 3 and len(txt) > len(self.last_search_text):
-            self.ui.packageSearch.set_sensitive(False)
-            busyCursor(self.window)
-            self.debug("SEARCH : %s" % txt)
-            pkgs = self.backend.search_prefix(txt)
-            self.debug("SEARCH : got %i packages" % len(pkgs))
-            if not self.settings.search:
-                self.ui.packageFilterBox.hide()
-                if self._last_filter:
-                    self._last_filter.set_active(True)
-            self.packages.add_packages(pkgs)
-            progress = self.get_progress()
-            progress.hide()
-            self.ui.packageSearch.set_sensitive(True)
-            normalCursor(self.window)
-            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-        self.last_search_text = txt
-        
-    def on_package_popup(self, widget, action, pkg):
-        print "POPUP", action, pkg
-        pkg.action = action
-        self.queue.queue.add(pkg)
-        pkg.queued = action
-        pkg.selected = True
-        self.queue.refresh()
-        
-    def on_package_downgrade(self, widget, event, pkg, down_pkg):
-        if event.button == 1: # Left Click    
-            pkg.action = 'do'
-            self.queue.queue.add(pkg)
-            pkg.queued = 'do'
-            pkg.selected = True
-            pkg.downgrade_po = down_pkg
-            self.queue.refresh()
-        
-
-
-    def on_packageSearch_key_press_event(self, widget, event):
-        keyname = gtk.gdk.keyval_name(event.keyval)
-        # print "Key %s (%d) was pressed" % (keyname, event.keyval)
-        if keyname == 'Escape': # Esc pressed
-            self._packageSearch_right_icon()
-
-    def on_packageSearch_activate(self, widget=None, event=None):
-        '''
-        Enter pressed in the search field
-        '''
-        if self._packages_loaded:
-            busyCursor(self.window)
-            self.packageInfo.clear()
-            filters = self.search_options.get_filters()
-            keys = self.ui.packageSearch.get_text().split(' ')
-            pkgs = self.backend.search(keys, filters)
-            if not self.settings.search:
-                self.ui.packageFilterBox.hide()
-                if self._last_filter:
-                    self._last_filter.set_active(True)
-            self.packages.add_packages(pkgs)
-            progress = self.get_progress()
-            progress.hide()
-            normalCursor(self.window)
-
-    def _packageSearch_right_icon(self):
-        self.ui.packageSearch.set_text('')
-        if not self.settings.search:
-            self.ui.packageFilterBox.show()
-            if self._last_filter:
-                self._last_filter.clicked()
-        self.ui.packageSearch.grab_focus()
-
-
-    def on_packageSearch_icon_press(self, widget, icon_pos, event):
-        '''
-        icon pressed in the search field
-        '''
-        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
-            self._packageSearch_right_icon()
-        else:
-            self.on_packageSearch_activate()
-
-    def on_packageView_cursor_changed(self, widget):
-        '''
-        package selected in the view 
-        @param widget: the view widget
-        '''
-        (model, iterator) = widget.get_selection().get_selected()
-        if model != None and iterator != None:
-            pkg = model.get_value(iterator, 0)
-            if pkg:
-                self.packageInfo.update(pkg)
-                
-    def on_packageView_button_press_event(self, treeview, event):
-         if event.button == 3: # Right Click
-            x = int(event.x)
-            y = int(event.y)
-            t = event.time
-            pthinfo = treeview.get_path_at_pos(x, y)
-            if pthinfo is not None:
-                path, col, cellx, celly = pthinfo
-                treeview.grab_focus()
-                treeview.set_cursor(path, col, 0)
-                store = treeview.get_model()
-                iter = store.get_iter(path)
-                pkg = store.get_value(iter, 0)
-                if not pkg.is_installed() or pkg.queued: # Only open popup menu for installed packages
-                    return
-                popup = self.get_package_popup(pkg, path)
-                popup.popup(None, None, None, event.button, t)
-            return True
-   
-                        
-
-    def on_packageClear_clicked(self, widget=None, event=None):
-        '''
-        The clear search button 
-        '''
-
-
-    def on_packageSelectAll_clicked(self, widget=None, event=None):
-        '''
-        The Packages Select All button
-        '''
-        self.packages.selectAll()
-
-    def on_packageUndo_clicked(self, widget=None, event=None):
-        '''
-        The Package Undo Button
-        '''
-        self.packages.deselectAll()
-        self.queue.queue.remove_all_groups()
-        self.groups.reset_queued()
-
-
-    def on_packageFilter_changed(self, widget, active):
-        '''
-        Package filter radiobuttons
-        @param widget: The radiobutton there is changed
-        @param active: the button number 0 = Updates, 1 = Available, 2 = Installed, 3 = Groups, 4 = Category
-        '''
-        if widget.get_active():
-            busyCursor(self.window, True)
-            self._last_filter = widget
-            self._current_active = active
-            self.packageInfo.clear()
-            self.packages.clear()
-            self.ui.packageSearch.set_text('')
-            self.ui.groupVBox.hide()
-            self.ui.categoryWindow.hide()
-            self.ui.leftBox.hide()
-            if active in ['updates', 'available', 'installed', 'all']: # Updates,Available,Installed
-                if active == 'updates': # Show only SelectAll when viewing updates
-                    self.ui.packageSelectAll.show()
-                else:
-                    self.ui.packageSelectAll.hide()
-                if self._resized:
-                    width, height = self.window.get_size()
-                    self.window.resize(width - 150, height)
-                    self._resized = False
-                self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-                self.debug('START: Getting %s packages' % active)
-                self.backend.setup()
-                label = active
-                progress = self.get_progress()
-                progress.set_pulse(True)
-                filter = active
-                progress.set_title(PACKAGE_LOAD_MSG[filter])
-                progress.set_header(PACKAGE_LOAD_MSG[filter])
-                progress.show()
-                pkgs = self.backend.get_packages(getattr(FILTER, active))
-                # if Updates, then add obsoletes too
-                if active == 'updates':
-                    obs = self.backend.get_packages(getattr(FILTER, 'obsoletes'))
-                    pkgs.extend(obs)
-                    label = "updates & obsoletes"
-                progress.set_header(_('Adding Packages to view'))
-                self.info(_('Adding Packages to view'))
-                self.debug('START: Adding %s packages to view' % label)
-                self.packages.add_packages(pkgs, progress=progress)
-                self.info(_('Added %i Packages to view') % len(pkgs))
-                progress.set_pulse(False)
-                progress.hide()
-                self.debug('END: Getting %s packages' % active)
-            else:
-                if not self._resized:
-                    width, height = self.window.get_size()
-                    self.window.resize(width + 150, height)
-                    self._resized = True
-                self.ui.leftBox.show()
-                self.packages.clear()
-                if active == 'groups': # Groups
-                    self.setup_groups()
-                    self.ui.groupVBox.show_all()
-                elif active == 'categories': # Categories
-                    self.ui.categoryWindow.show_all()
-            normalCursor(self.window)
-
-    def on_categoryContent_cursor_changed(self, widget):
-        '''
-        Category Content element selected
-        '''
-        (model, iterator) = widget.get_selection().get_selected()
-        if model != None and iterator != None:
-            id = model.get_value(iterator, 0)
-            self.packages.clear()
-            if self.current_category == 'size':
-                pkgs = self.backend.get_packages_size(id)
-                self.packages.add_packages(pkgs)
-            elif self.current_category == 'repo':
-                pkgs = self.backend.get_packages_repo(id)
-                self.packages.add_packages(pkgs)
-
-
-    def on_categoryTypes_cursor_changed(self, widget):
-        '''
-        Category Type element selected
-        '''
-        (model, iterator) = widget.get_selection().get_selected()
-        if model != None and iterator != None:
-            id = model.get_value(iterator, 0)
-            self.current_category = id
-            self.packages.clear()
-            if id == 'repo':
-                data = [(repo, repo) for repo in sorted(self.current_repos)]
-                self.category_content.populate(data)
-            #elif id == 'age':
-            #    self.category_content.populate(const.CATEGORY_AGE)
-            elif id == 'size':
-                self.category_content.populate(const.CATEGORY_SIZE)
-
-    def on_groupView_cursor_changed(self, widget):
-        '''
-        Group/Category selected in groupView
-        @param widget: the group view widget
-        '''
-        (model, iterator) = widget.get_selection().get_selected()
-        if model != None and iterator != None:
-            desc = model.get_value(iterator, 5)
-            self.groupInfo.clear()
-            self.groupInfo.write(desc)
-            self.groupInfo.goTop()
-            isCategory = model.get_value(iterator, 4)
-            if not isCategory:
-                grpid = model.get_value(iterator, 2)
-                pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
-                self.packages.add_packages(pkgs)
-
-    # Repo Page    
-
-    def on_repoRefresh_clicked(self, widget=None, event=None):
-        '''
-        Repo refresh button
-        '''
-        repos = self.repos.get_selected()
-        self.current_repos = repos
-        rc = self.reload(repos)
-        return rc
-
-    def on_repoUndo_clicked(self, widget=None, event=None):
-        '''
-        Repo undo button
-        '''
-        self.repos.populate(self.default_repos)
-
-    def on_repoView_button_press_event(self, treeview, event):
-        if event.button == 3: # Right Click
-            x = int(event.x)
-            y = int(event.y)
-            t = event.time
-            pthinfo = treeview.get_path_at_pos(x, y)
-            if pthinfo is not None:
-                path, col, cellx, celly = pthinfo
-                treeview.grab_focus()
-                treeview.set_cursor(path, col, 0)
-                store = treeview.get_model()
-                iter = store.get_iter(path)
-                state = store.get_value(iter, 0)
-                popup = self.get_repo_popup(state, path)
-                popup.popup(None, None, None, event.button, t)
-            return True
-
-
-    def on_repo_popup_other(self, widget, action_id, path):
-        if action_id.startswith('clean-'):
-            what = action_id.split("-")[1]
-            rc = okCancelDialog(self.window, _("Do you want to clean %s from the yum cache") % what)
-            if rc:
-                self.backend.clean(what)
-
-
-    def on_repo_popup_enabled(self, widget, enable, path):
-        '''
-        
-        @param widget:
-        @param enable: repo persistent enable state (True = enable, False = disable)
-        @param path: treeview path for current item
-        '''
-        store = self.ui.repoView.get_model()
-        iter = store.get_iter(path)
-        id = store.get_value(iter, 1)
-        store.set_value(iter, 0, enable)
-        self.backend.enable_repo_persistent(id, enable)
-
-    # Queue Page    
-
-    def on_QueueEntry_icon_press(self, widget, icon_pos, event):
-        '''
-        icon pressed in the search field in queue view entry
-        '''
-        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
-            self.ui.QueueEntry.set_text("")
-            self.last_queue_text = ""
-
-
-    def on_QueueEntry_activate(self, widget=None, event=None):
-        '''
-        Enter is pressed in Queue View Quick command entry
-        @param widget:
-        @param event:
-        '''
-        txt = self.queue_entry.get_text()
-        if txt:
-            words = txt.split()
-            if len(words) > 1:
-                cmd = words[0]
-                userlist = words[1:]
-                pkgs = self.backend.run_command(cmd, userlist)
-                for pkg in pkgs:
-                    self.queue.queue.add(pkg)
-                    pkg.queued = pkg.action
-
-                self.queue.refresh()
-        self.queue_entry.set_text("")
-
-    def on_queueOpen_clicked(self, widget=None, event=None):
-        '''
-        Queue Open Button
-        '''
-        self.debug("Queue Open")
-
-    def on_queueSave_clicked(self, widget=None, event=None):
-        '''
-        Queue Save button
-        '''
-        self.debug("Queue Save")
-
-    def on_queueRemove_clicked(self, widget=None, event=None):
-        '''
-        Queue Remove button
-        '''
-        self.queue.deleteSelected()
-
-    def on_Execute_clicked(self, widget=None, event=None):
-        '''
-        The Queue/Packages Execute button
-        '''
-        self.debug("Starting pending actions processing")
-        self.process_transaction(action="queue")
-        self.debug("Ended pending actions processing")
-
-
-# History Page
-
-    def on_historySearch_icon_press(self, widget, icon_pos, event):
-        '''
-        icon pressed in the search field
-        '''
-        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
-            self.ui.historySearch.set_text('')
-            self.setup_history(force=True)
-
-
-    def on_historySearch_activate(self, widget=None, event=None):
-        txt = self.ui.historySearch.get_text()
-        pat = txt.split(' ')
-        if not pat:
-            self.setup_history(force=True)
-        else:
-            self.search_history(pat)
-
-    def on_historyUndo_clicked(self, widget=None, event=None):
-        (model, iterator) = self.ui.historyView.get_selection().get_selected()
-        if model != None and iterator != None:
-            tid = model.get_value(iterator, 0)
-            self.debug("Starting history undo")
-            self.process_transaction(action="history-undo", tid=tid)
-            self.debug("Ended History undo")
-
-    def on_historyRedo_clicked(self, widget=None, event=None):
-        (model, iterator) = self.ui.historyView.get_selection().get_selected()
-        if model != None and iterator != None:
-            tid = model.get_value(iterator, 0)
-            self.debug("Starting history redo")
-            self.process_transaction(action="history-redo", tid=tid)
-            self.debug("Ended History redo")
-
-    def on_historyRefresh_clicked(self, widget=None, event=None):
-        busyCursor(self.window)
-        self.setup_history(limit=False, force=True)
-        normalCursor(self.window)
-
-
-    def on_historyView_cursor_changed(self, widget):
-        '''
-        a new History element is selected in history view
-        '''
-        (model, iterator) = widget.get_selection().get_selected()
-        if model != None and iterator != None:
-            tid = model.get_value(iterator, 0)
-            self.show_history_packages(tid)
-
-# Progress dialog    
-
-    def on_progressCancel_clicked(self, widget=None, event=None):
-        '''
-        The Progress Dialog Cancel button
-        '''
-        self.debug("Progress Cancel pressed")
-
-
-class YumexApplication(YumexHandlers, YumexFrontend):
+class YumexApplication(Controller, YumexFrontend):
     """
     The Yum Extender main application class 
     """
@@ -749,7 +189,8 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.debug_options = []
         #(self.cmd_options, self.cmd_args) = self.cfg.get_cmd_options()
         self.backend = backend(self)
-        YumexHandlers.__init__(self)
+        # init the Controller Class to connect signals etc.
+        Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex')
         progress = Progress(self)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']        
@@ -764,6 +205,14 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.search_keys = ['name', 'summary', 'description', "arch"]
         self.typeahead_active = False
         self.queue_entry = None
+        self._last_filter = None
+        self.default_repos = []
+        self.current_repos = []
+        self._resized = False
+        self._current_active = None
+        self.current_category = None
+        self.last_queue_text = ""
+        self.last_search_text = ""
 
 
 
@@ -1414,3 +863,556 @@ class YumexApplication(YumexHandlers, YumexFrontend):
                 main[state] = values[state]
         self.history_pkg_view.populate(main, secondary)
 
+    def _add_packages(self, pkgs, label=""):
+        progress = self.get_progress()
+        progress.show()
+        progress.set_pulse(True)
+        progress.set_header(_('Adding Packages to view'))
+        self.info(_('Adding Packages to view'))
+        self.debug('START: Adding %s packages to view' % label)
+        self.packages.add_packages(pkgs, progress=progress)
+        self.info(_('Added %i Packages to view') % len(pkgs))
+        progress.set_pulse(False)
+        progress.hide()
+
+# Signal handlers
+
+    def quit(self):
+        ''' destroy Handler '''
+        # Save the windows size and separator position
+        try:
+            width, height = self.window.get_size()
+            self.window.set_visible(False)
+            if self._resized:
+                width = width - 150
+            setattr(self.cfg.conf_settings, 'win_width', width)
+            setattr(self.cfg.conf_settings, 'win_height', height)
+            pos = self.ui.packageSep.get_position()
+            setattr(self.cfg.conf_settings, 'win_sep', pos)
+            self.cfg.save()
+
+        except:
+            self.backend.info("Error in saving window size")
+        self.backend.debug("Quiting the program !!!")
+        try:
+            self.backend.reset() # Close the yum backend
+            self.backend._close() # Close the backend launcher
+        except:
+            pass
+        self.backend.debug("Backend reset completted")
+
+    # Menu
+
+    def on_fileQuit_activate(self, widget=None, event=None):
+        '''
+        Menu : File -> Quit
+        '''
+        self.main_quit()
+
+    def on_editPref_activate(self, widget=None, event=None):
+        '''
+        Menu : Edit -> Preferences
+        '''
+        #okDialog(self.window, "This function has not been implemented yet")
+        self.debug("Edit -> Preferences")
+        self.preferences.run()
+        self.preferences.destroy()
+
+    def on_proNew_activate(self, widget=None, event=None):
+        '''
+        Menu : Profile -> New
+        '''
+        okDialog(self.window, "This function has not been implemented yet")
+        self.debug("Profiles -> New")
+
+    def on_proSave_activate(self, widget=None, event=None):
+        '''
+        Menu : Profile -> Save
+        '''
+        okDialog(self.window, "This function has not been implemented yet")
+        self.debug("Profiles -> Save")
+
+    def on_helpAbout_activate(self, widget=None, event=None):
+        '''
+        Menu : Help -> About
+        '''
+        self.ui.About.run()
+        self.ui.About.hide()
+        #okDialog(self.window, "This function has not been implemented yet")
+        self.debug("Help -> About")
+
+
+# Options
+
+    def on_option_nogpgcheck_toggled(self, widget=None, event=None):
+        self.backend.set_option('gpgcheck', not widget.get_active(), on_repos=True)
+
+    def on_option_skipbroken_toggled(self, widget=None, event=None):
+        self.backend.set_option('skip_broken', widget.get_active())
+
+
+    def on_viewPackages_activate(self, widget=None, event=None):
+        '''
+        Menu : View -> Packages
+        '''
+        self.notebook.set_active("package")
+
+    def on_viewQueue_activate(self, widget=None, event=None):
+        '''
+        Menu : View -> Queue
+        '''
+        self.notebook.set_active("queue")
+
+    def on_viewRepo_activate(self, widget=None, event=None):
+        '''
+        Menu : View -> Repo
+        '''
+        self.notebook.set_active("repo")
+
+    def on_viewOutput_activate(self, widget=None, event=None):
+        '''
+        Menu : View -> Output
+        '''
+        self.notebook.set_active("output")
+
+    def on_viewHistory_activate(self, widget=None, event=None):
+        '''
+        Menu : View -> History
+        '''
+        self.notebook.set_active("history")
+    # Package Page    
+
+    def on_searchTypeAhead_toggled(self, widget=None, event=None):
+        active = self.ui.searchTypeAhead.get_active()
+        self.typeahead_active = active
+        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+
+
+    def on_searchOptions_clicked(self, widget=None, event=None):
+        self.search_options.run()
+        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+
+    def on_packageSearch_changed(self, widget=None, event=None):
+        keys = self.ui.packageSearch.get_text().split(' ')
+        if not self.typeahead_active or len(keys) > 1:
+            return
+        txt = keys[0]
+        if len(txt) >= 3 and len(txt) > len(self.last_search_text):
+            self.ui.packageSearch.set_sensitive(False)
+            busyCursor(self.window)
+            self.debug("SEARCH : %s" % txt)
+            pkgs = self.backend.search_prefix(txt)
+            self.debug("SEARCH : got %i packages" % len(pkgs))
+            if not self.settings.search:
+                self.ui.packageFilterBox.hide()
+                if self._last_filter:
+                    self._last_filter.set_active(True)
+            self.packages.add_packages(pkgs)
+            progress = self.get_progress()
+            progress.hide()
+            self.ui.packageSearch.set_sensitive(True)
+            normalCursor(self.window)
+            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+        self.last_search_text = txt
+        
+    def on_package_popup(self, widget, action, pkg):
+        print "POPUP", action, pkg
+        pkg.action = action
+        self.queue.queue.add(pkg)
+        pkg.queued = action
+        pkg.selected = True
+        self.queue.refresh()
+        
+    def on_package_downgrade(self, widget, event, pkg, down_pkg):
+        if event.button == 1: # Left Click    
+            pkg.action = 'do'
+            self.queue.queue.add(pkg)
+            pkg.queued = 'do'
+            pkg.selected = True
+            pkg.downgrade_po = down_pkg
+            self.queue.refresh()
+        
+
+
+    def on_packageSearch_key_press_event(self, widget, event):
+        keyname = gtk.gdk.keyval_name(event.keyval)
+        # print "Key %s (%d) was pressed" % (keyname, event.keyval)
+        if keyname == 'Escape': # Esc pressed
+            self._packageSearch_right_icon()
+
+    def on_packageSearch_activate(self, widget=None, event=None):
+        '''
+        Enter pressed in the search field
+        '''
+        if self._packages_loaded:
+            busyCursor(self.window)
+            self.packageInfo.clear()
+            filters = self.search_options.get_filters()
+            keys = self.ui.packageSearch.get_text().split(' ')
+            pkgs = self.backend.search(keys, filters)
+            if not self.settings.search:
+                self.ui.packageFilterBox.hide()
+                if self._last_filter:
+                    self._last_filter.set_active(True)
+            self.packages.add_packages(pkgs)
+            progress = self.get_progress()
+            progress.hide()
+            normalCursor(self.window)
+
+    def _packageSearch_right_icon(self):
+        self.ui.packageSearch.set_text('')
+        if not self.settings.search:
+            self.ui.packageFilterBox.show()
+            if self._last_filter:
+                self._last_filter.clicked()
+        self.ui.packageSearch.grab_focus()
+
+
+    def on_packageSearch_icon_press(self, widget, icon_pos, event):
+        '''
+        icon pressed in the search field
+        '''
+        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
+            self._packageSearch_right_icon()
+        else:
+            self.on_packageSearch_activate()
+
+    def on_packageView_cursor_changed(self, widget):
+        '''
+        package selected in the view 
+        @param widget: the view widget
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            pkg = model.get_value(iterator, 0)
+            if pkg:
+                self.packageInfo.update(pkg)
+                
+    def on_packageView_button_press_event(self, treeview, event):
+         if event.button == 3: # Right Click
+            x = int(event.x)
+            y = int(event.y)
+            t = event.time
+            pthinfo = treeview.get_path_at_pos(x, y)
+            if pthinfo is not None:
+                path, col, cellx, celly = pthinfo
+                treeview.grab_focus()
+                treeview.set_cursor(path, col, 0)
+                store = treeview.get_model()
+                iter = store.get_iter(path)
+                pkg = store.get_value(iter, 0)
+                if not pkg.is_installed() or pkg.queued: # Only open popup menu for installed packages
+                    return
+                popup = self.get_package_popup(pkg, path)
+                popup.popup(None, None, None, event.button, t)
+            return True
+   
+                        
+
+    def on_packageClear_clicked(self, widget=None, event=None):
+        '''
+        The clear search button 
+        '''
+
+
+    def on_packageSelectAll_clicked(self, widget=None, event=None):
+        '''
+        The Packages Select All button
+        '''
+        self.packages.selectAll()
+
+    def on_packageUndo_clicked(self, widget=None, event=None):
+        '''
+        The Package Undo Button
+        '''
+        self.packages.deselectAll()
+        self.queue.queue.remove_all_groups()
+        self.groups.reset_queued()
+
+
+    def on_packageFilter_changed(self, widget, active):
+        '''
+        Package filter radiobuttons
+        @param widget: The radiobutton there is changed
+        @param active: the button number 0 = Updates, 1 = Available, 2 = Installed, 3 = Groups, 4 = Category
+        '''
+        if widget.get_active():
+            busyCursor(self.window, True)
+            self._last_filter = widget
+            self._current_active = active
+            self.packageInfo.clear()
+            self.packages.clear()
+            self.ui.packageSearch.set_text('')
+            self.ui.groupVBox.hide()
+            self.ui.categoryWindow.hide()
+            self.ui.leftBox.hide()
+            if active in ['updates', 'available', 'installed', 'all']: # Updates,Available,Installed
+                if active == 'updates': # Show only SelectAll when viewing updates
+                    self.ui.packageSelectAll.show()
+                else:
+                    self.ui.packageSelectAll.hide()
+                if self._resized:
+                    width, height = self.window.get_size()
+                    self.window.resize(width - 150, height)
+                    self._resized = False
+                self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+                self.debug('START: Getting %s packages' % active)
+                self.backend.setup()
+                label = active
+                progress = self.get_progress()
+                progress.set_pulse(True)
+                filter = active
+                progress.set_title(PACKAGE_LOAD_MSG[filter])
+                progress.set_header(PACKAGE_LOAD_MSG[filter])
+                progress.show()
+                pkgs = self.backend.get_packages(getattr(FILTER, active))
+                # if Updates, then add obsoletes too
+                if active == 'updates':
+                    obs = self.backend.get_packages(getattr(FILTER, 'obsoletes'))
+                    pkgs.extend(obs)
+                    label = "updates & obsoletes"
+                self._add_packages(pkgs, label)
+                self.debug('END: Getting %s packages' % active)
+            else:
+                if not self._resized:
+                    width, height = self.window.get_size()
+                    self.window.resize(width + 150, height)
+                    self._resized = True
+                self.ui.leftBox.show()
+                self.packages.clear()
+                if active == 'groups': # Groups
+                    self.setup_groups()
+                    self.ui.groupVBox.show_all()
+                elif active == 'categories': # Categories
+                    self.ui.categoryWindow.show_all()
+            normalCursor(self.window)
+
+    def on_categoryContent_cursor_changed(self, widget):
+        '''
+        Category Content element selected
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            id = model.get_value(iterator, 0)
+            progress = self.get_progress()
+            progress.set_pulse(True)
+            msg = _('Getting Category Packages')
+            self.info(msg)
+            progress.set_title(msg)
+            progress.set_header(msg)
+            progress.set_pulse(True)
+            progress.show()
+            if self.current_category == 'size':
+                pkgs = self.backend.get_packages_size(id)
+            elif self.current_category == 'repo':
+                pkgs = self.backend.get_packages_repo(id)
+            self.packages.clear()
+            self._add_packages(pkgs)    
+
+
+    def on_categoryTypes_cursor_changed(self, widget):
+        '''
+        Category Type element selected
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            id = model.get_value(iterator, 0)
+            self.current_category = id
+            self.packages.clear()
+            if id == 'repo':
+                data = [(repo, repo) for repo in sorted(self.current_repos)]
+                self.category_content.populate(data)
+            #elif id == 'age':
+            #    self.category_content.populate(const.CATEGORY_AGE)
+            elif id == 'size':
+                self.category_content.populate(const.CATEGORY_SIZE)
+
+    def on_groupView_cursor_changed(self, widget):
+        '''
+        Group/Category selected in groupView
+        @param widget: the group view widget
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            desc = model.get_value(iterator, 5)
+            self.groupInfo.clear()
+            self.groupInfo.write(desc)
+            self.groupInfo.goTop()
+            isCategory = model.get_value(iterator, 4)
+            if not isCategory:
+                grpid = model.get_value(iterator, 2)
+                pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
+                self.packages.add_packages(pkgs)
+
+    # Repo Page    
+
+    def on_repoRefresh_clicked(self, widget=None, event=None):
+        '''
+        Repo refresh button
+        '''
+        repos = self.repos.get_selected()
+        self.current_repos = repos
+        rc = self.reload(repos)
+        return rc
+
+    def on_repoUndo_clicked(self, widget=None, event=None):
+        '''
+        Repo undo button
+        '''
+        self.repos.populate(self.default_repos)
+
+    def on_repoView_button_press_event(self, treeview, event):
+        if event.button == 3: # Right Click
+            x = int(event.x)
+            y = int(event.y)
+            t = event.time
+            pthinfo = treeview.get_path_at_pos(x, y)
+            if pthinfo is not None:
+                path, col, cellx, celly = pthinfo
+                treeview.grab_focus()
+                treeview.set_cursor(path, col, 0)
+                store = treeview.get_model()
+                iter = store.get_iter(path)
+                state = store.get_value(iter, 0)
+                popup = self.get_repo_popup(state, path)
+                popup.popup(None, None, None, event.button, t)
+            return True
+
+
+    def on_repo_popup_other(self, widget, action_id, path):
+        if action_id.startswith('clean-'):
+            what = action_id.split("-")[1]
+            rc = okCancelDialog(self.window, _("Do you want to clean %s from the yum cache") % what)
+            if rc:
+                self.backend.clean(what)
+
+
+    def on_repo_popup_enabled(self, widget, enable, path):
+        '''
+        
+        @param widget:
+        @param enable: repo persistent enable state (True = enable, False = disable)
+        @param path: treeview path for current item
+        '''
+        store = self.ui.repoView.get_model()
+        iter = store.get_iter(path)
+        id = store.get_value(iter, 1)
+        store.set_value(iter, 0, enable)
+        self.backend.enable_repo_persistent(id, enable)
+
+    # Queue Page    
+
+    def on_QueueEntry_icon_press(self, widget, icon_pos, event):
+        '''
+        icon pressed in the search field in queue view entry
+        '''
+        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
+            self.ui.QueueEntry.set_text("")
+            self.last_queue_text = ""
+
+
+    def on_QueueEntry_activate(self, widget=None, event=None):
+        '''
+        Enter is pressed in Queue View Quick command entry
+        @param widget:
+        @param event:
+        '''
+        txt = self.queue_entry.get_text()
+        if txt:
+            words = txt.split()
+            if len(words) > 1:
+                cmd = words[0]
+                userlist = words[1:]
+                pkgs = self.backend.run_command(cmd, userlist)
+                for pkg in pkgs:
+                    self.queue.queue.add(pkg)
+                    pkg.queued = pkg.action
+
+                self.queue.refresh()
+        self.queue_entry.set_text("")
+
+    def on_queueOpen_clicked(self, widget=None, event=None):
+        '''
+        Queue Open Button
+        '''
+        self.debug("Queue Open")
+
+    def on_queueSave_clicked(self, widget=None, event=None):
+        '''
+        Queue Save button
+        '''
+        self.debug("Queue Save")
+
+    def on_queueRemove_clicked(self, widget=None, event=None):
+        '''
+        Queue Remove button
+        '''
+        self.queue.deleteSelected()
+
+    def on_Execute_clicked(self, widget=None, event=None):
+        '''
+        The Queue/Packages Execute button
+        '''
+        self.debug("Starting pending actions processing")
+        self.process_transaction(action="queue")
+        self.debug("Ended pending actions processing")
+
+
+# History Page
+
+    def on_historySearch_icon_press(self, widget, icon_pos, event):
+        '''
+        icon pressed in the search field
+        '''
+        if 'GTK_ENTRY_ICON_SECONDARY' in str(icon_pos):
+            self.ui.historySearch.set_text('')
+            self.setup_history(force=True)
+
+
+    def on_historySearch_activate(self, widget=None, event=None):
+        txt = self.ui.historySearch.get_text()
+        pat = txt.split(' ')
+        if not pat:
+            self.setup_history(force=True)
+        else:
+            self.search_history(pat)
+
+    def on_historyUndo_clicked(self, widget=None, event=None):
+        (model, iterator) = self.ui.historyView.get_selection().get_selected()
+        if model != None and iterator != None:
+            tid = model.get_value(iterator, 0)
+            self.debug("Starting history undo")
+            self.process_transaction(action="history-undo", tid=tid)
+            self.debug("Ended History undo")
+
+    def on_historyRedo_clicked(self, widget=None, event=None):
+        (model, iterator) = self.ui.historyView.get_selection().get_selected()
+        if model != None and iterator != None:
+            tid = model.get_value(iterator, 0)
+            self.debug("Starting history redo")
+            self.process_transaction(action="history-redo", tid=tid)
+            self.debug("Ended History redo")
+
+    def on_historyRefresh_clicked(self, widget=None, event=None):
+        busyCursor(self.window)
+        self.setup_history(limit=False, force=True)
+        normalCursor(self.window)
+
+
+    def on_historyView_cursor_changed(self, widget):
+        '''
+        a new History element is selected in history view
+        '''
+        (model, iterator) = widget.get_selection().get_selected()
+        if model != None and iterator != None:
+            tid = model.get_value(iterator, 0)
+            self.show_history_packages(tid)
+
+# Progress dialog    
+
+    def on_progressCancel_clicked(self, widget=None, event=None):
+        '''
+        The Progress Dialog Cancel button
+        '''
+        self.debug("Progress Cancel pressed")
+            

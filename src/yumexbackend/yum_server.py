@@ -579,13 +579,15 @@ class YumServer(yum.YumBase):
         get list of packages in a size range
         @param ndx: Size range index
         '''
-        ygh = self.doPackageLists()
+        ygh = self.doPackageLists('installed')
         action = const.FILTER_ACTIONS['available']
-        for pkg in ygh.available:
-            if self._in_a_repo(pkg, repoid):
+        pkgs = self.pkgSack.returnPackages(repoid=repoid)
+        for pkg in pkgs:
+            if not self._is_installed(pkg):
                 self._show_package(pkg, action)
         action = const.FILTER_ACTIONS['installed']
-        for pkg in ygh.installed:
+        ipkgs = self.rpmdb.returnPackages()
+        for pkg in ipkgs:
             if self._in_a_repo(pkg, repoid, inst=True):
                 self._show_package(pkg, action)
         del ygh

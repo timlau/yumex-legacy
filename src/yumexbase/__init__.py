@@ -22,6 +22,9 @@
 Yumex Backend Base Classes
 '''
 
+import time
+import sys
+
 class YumexProgressBase:
     '''
     A Virtual Progress class
@@ -172,5 +175,22 @@ class YumexBackendFatalError(YumexBaseError):
         self.err = err
         self.msg = msg
 
+
+def TimeFunction(func):
+    """
+    This decorator catch yum exceptions and send fatal signal to frontend 
+    """
+    def newFunc(*args, **kwargs):
+        t_start = time.time()
+        rc = func(*args, **kwargs)
+        t_end = time.time()
+        name = func.__name__        
+        print("%s took %.2f sec" % (name, t_end - t_start) )
+        return rc
+    
+    newFunc.__name__ = func.__name__
+    newFunc.__doc__ = func.__doc__
+    newFunc.__dict__.update(func.__dict__)
+    return newFunc
 
 
