@@ -963,13 +963,29 @@ class YumServer(yum.YumBase):
             if filter and action not in filter: # Check if action is in filter
                 continue                    
             self._show_package(po, action)
-
+            
+    def _limit_package_list(self,pkgs):
+        good_pkgs = set()
+        good_tups = {}
+        for po in pkgs:
+            valid = True
+            if po.pkgtup in good_tups: # dont process the same po twice
+                continue
+            ipkgs = self.rpmdb.searchNevra(name=po.name)
+            if ipkgs:
+                ipkg = ipkgs[0]
+                if ipkg.verGT(po) and not self.allowedMultipleInstalls(po): # inst > po
+                    valid = False
+            if valid:
+                good_pkgs.add(po)
+                good_tups[po.pkgtup] = 1    
+        return good_pkgs    
 
     def search_prefix(self, prefix):
         prefix += '*'
         self.debug("prefix: %s " % prefix)
         pkgs = self.pkgSack.returnPackages(patterns=[prefix])
-        best = packagesNewestByNameArch(pkgs)
+        best = self._limit_package_list(pkgs)
         self._return_packages(best)
         self.ended(True)
 
@@ -993,7 +1009,7 @@ class YumServer(yum.YumBase):
             else:
                 pkgs[na].append(pkg)
         for na in pkgs:
-            best = packagesNewestByNameArch(pkgs[na])
+            best = self._limit_package_list(pkgs[na])
             self._return_packages(best)
         self.ended(True)
 
