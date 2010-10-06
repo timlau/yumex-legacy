@@ -327,12 +327,23 @@ class YumexHandlers(Controller):
         self.last_search_text = txt
         
     def on_package_popup(self, widget, action, pkg):
+        print "POPUP", action, pkg
         pkg.action = action
         self.queue.queue.add(pkg)
         pkg.queued = action
         pkg.selected = True
         self.queue.refresh()
         
+    def on_package_downgrade(self, widget, event, pkg, down_pkg):
+        print event.button
+        if event.button == 1: # Left Click    
+            print "DOWNGRADE", pkg, down_pkg
+            pkg.action = 'do'
+            self.queue.queue.add(pkg)
+            pkg.queued = 'do'
+            pkg.selected = True
+            pkg.downgrade_po = down_pkg
+            self.queue.refresh()
         
 
 
@@ -403,7 +414,7 @@ class YumexHandlers(Controller):
                 store = treeview.get_model()
                 iter = store.get_iter(path)
                 pkg = store.get_value(iter, 0)
-                if not pkg.is_installed(): # Only open popup menu for installed packages
+                if not pkg.is_installed() or pkg.queued: # Only open popup menu for installed packages
                     return
                 popup = self.get_package_popup(pkg, path)
                 popup.popup(None, None, None, event.button, t)
@@ -1041,6 +1052,11 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         mi.connect('activate', self.on_package_popup,action, pkg)
         menu.add(mi)
         
+    def _add_menu_downgrade(self, menu, label, pkg, down_pkg):
+        mi = gtk.MenuItem (label)
+        mi.set_use_underline(False)
+        mi.connect('button-press-event', self.on_package_downgrade, pkg, down_pkg)
+        menu.add(mi)
 
     def get_repo_popup(self, enabled, path):
         repo_popup = gtk.Menu()
@@ -1060,9 +1076,19 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         return repo_popup
 
     def get_package_popup(self, pkg, path):
+        # get available downgrades
+        pkgs = self.backend.get_available_downgrades(pkg)
         popup = gtk.Menu()
         self._add_menu_package(popup, _("Reinstall Package"), "ri", pkg)
-        self._add_menu_package(popup, _("Downgrade Package"), "do", pkg)
+        # Show downgrade menu only if there is any avaliable downgrades
+        if pkgs:
+            dmenu = gtk.Menu()
+            for down_po in pkgs:
+                self._add_menu_downgrade(dmenu, str(down_po), pkg,  down_po)
+            dmenu.show_all()
+            mi = gtk.MenuItem(_("Downgrade Package"))
+            mi.set_submenu(dmenu)    
+            popup.add(mi)
         popup.show_all()
         return popup
 
@@ -1130,8 +1156,12 @@ class YumexApplication(YumexHandlers, YumexFrontend):
         self.backend.transaction.reset()
         for action in QUEUE_PACKAGE_TYPES:
             pkgs = queue.get(action)
-            for po in pkgs:
-                self.backend.transaction.add(po, QUEUE_PACKAGE_TYPES[action])
+            if action == 'do':
+                for po in pkgs:
+                    self.backend.transaction.add(po.downgrade_po, QUEUE_PACKAGE_TYPES[action])
+            else:
+                for po in pkgs:
+                    self.backend.transaction.add(po, QUEUE_PACKAGE_TYPES[action])
         return True
 
     def process_transaction(self, action="queue", tid=None):

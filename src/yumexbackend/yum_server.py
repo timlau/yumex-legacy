@@ -51,6 +51,7 @@ from yum.callbacks import *
 import yumexbase.constants as const
 import yum.plugins
 from urlgrabber.grabber import URLGrabber, URLGrabError
+from rpmUtils.arch import canCoinstall
 
 from yum.i18n import _ as yum_translated
 
@@ -530,6 +531,41 @@ class YumServer(yum.YumBase):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
+        
+    def get_available_by_name(self, name):
+        pkgs = self.pkgSack.returnPackages(patterns=[name], ignore_case=False)
+        self._return_packages(pkgs)
+        self.ended(True)
+        
+    def _is_valid_downgrade(self,po, down_po):
+        '''
+        Check if down_po is a valid downgrade to po
+        @param po:
+        @param down_po:
+        '''
+        valid = True
+        if not po.verGT(down_po):   # po must be > down_po
+            valid = False
+        elif canCoinstall(po.arch, down_po.arch): # po must not be coinstallable with down_po
+            valid = False
+        elif self.allowedMultipleInstalls(po): # po must not be a multiple installable (ex. kernels )
+            valid = False
+        return valid
+    
+    def get_available_downgrades(self, pkgstr):
+        '''
+        Return valid available downgrades for a given package id
+        @param pkgstr: package id
+        '''
+        pkg = self._getPackage(pkgstr)
+        apkgs = self.pkgSack.returnPackages(patterns=[pkg.name], ignore_case=False)
+        pkgs = []
+        for po in apkgs:
+            if self._is_valid_downgrade(pkg, po):
+                pkgs.append(po)
+        self._return_packages(pkgs)
+        self.ended(True)
+        
 
     def _in_size_range(self, pkg, ndx):
         min, max = SIZE_RANGES[ndx]
@@ -632,7 +668,7 @@ class YumServer(yum.YumBase):
         elif action == "reinstall":
             txmbrs = self.reinstall(po)
         elif action == "downgrade":
-            txmbrs = self.downgrade(pattern=po.name)
+            txmbrs = self.downgrade(po)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
             self.debug("Added : " + str(txmbr), __name__)
@@ -912,7 +948,7 @@ class YumServer(yum.YumBase):
             self._updates_list = ygh.updates
         return self._updates_list
 
-    def _return_packages(self, pkgs):
+    def _return_packages(self, pkgs, filter = None):
         updates = self._get_updates()
         for po in pkgs:
             if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
@@ -924,6 +960,8 @@ class YumServer(yum.YumBase):
                     action = 'u'
                 else:
                     action = 'i'
+            if filter and action not in filter: # Check if action is in filter
+                continue                    
             self._show_package(po, action)
 
 
@@ -1196,6 +1234,10 @@ class YumServer(yum.YumBase):
             self.search_history(unpack(args[0]))
         elif cmd == 'run-command':
             self.run_command(args[0], unpack(args[1]))
+        elif cmd == 'get-available-by-name':
+            self.get_available_by_name(args[0])
+        elif cmd == 'get-available-downgrades':
+            self.get_available_downgrades(args)
         else:
             self.error('Unknown command : %s' % cmd)
 

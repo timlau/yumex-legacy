@@ -526,6 +526,16 @@ class YumClient:
         self._send_command('get-packages', [str(pkg_filter), str(show_dupes)])
         pkgs = self._get_list()
         return pkgs
+    
+    def get_available_by_name(self, name):
+        self._send_command('get-available-by-name', [name])
+        pkgs = self._get_list()
+        return pkgs
+    
+    def get_available_downgrades(self, po):
+        self._send_command('get-available-downgrades', [po.id])
+        pkgs = self._get_list()
+        return pkgs
 
     def get_packages_size(self, ndx):
         ''' get a list of packages based on size range '''

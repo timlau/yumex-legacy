@@ -410,6 +410,14 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.get_group_packages(self, group, grp_filter)
         return [self.package_cache.find(po) for po in pkgs]
 
+    def get_available_by_name(self, name):
+        pkgs = YumClient.get_available_by_name(self, name)
+        return [self.package_cache.find(po) for po in pkgs]
+
+    def get_available_downgrades(self, po):
+        pkgs = YumClient.get_available_downgrades(self, po)
+        return [self.package_cache.find(po) for po in pkgs]
+
     def search(self, keys, sch_filters, use_cache=True):
         ''' 
         get packages matching keys
@@ -454,6 +462,7 @@ class YumexPackageYum(YumexPackageBase):
         self.selected = False
         self.visible = True
         self.frontend = frontend
+        self.downgrade_po = None
 
     def set_select(self, state):
         '''
