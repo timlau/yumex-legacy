@@ -335,9 +335,7 @@ class YumexHandlers(Controller):
         self.queue.refresh()
         
     def on_package_downgrade(self, widget, event, pkg, down_pkg):
-        print event.button
         if event.button == 1: # Left Click    
-            print "DOWNGRADE", pkg, down_pkg
             pkg.action = 'do'
             self.queue.queue.add(pkg)
             pkg.queued = 'do'

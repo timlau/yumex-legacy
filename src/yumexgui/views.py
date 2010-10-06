@@ -788,10 +788,7 @@ class YumexQueueView:
         label = "<b>%s</b>" % P_("Package to reinstall", "Packages to reinstall", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
-        pkg_list = self.queue.packages['do']
-        label = "<b>%s</b>" % P_("Package to downgrade", "Packages to downgrade", len(pkg_list))
-        if len(pkg_list) > 0:
-            self.populate_list(label, pkg_list)
+        self.populate_list_downgrade()
         self.view.expand_all()
 
     def populate_list(self, label, pkg_list):
@@ -803,6 +800,18 @@ class YumexQueueView:
         parent = self.model.append(None, [label, ""])
         for pkg in pkg_list:
             self.model.append(parent, [str(pkg), pkg.summary])
+
+    def populate_list_downgrade(self):
+        '''
+        
+        '''
+        pkg_list = self.queue.packages['do']
+        label = "<b>%s</b>" % P_("Package to downgrade", "Packages to downgrade", len(pkg_list))
+        if len(pkg_list) > 0:
+            parent = self.model.append(None, [label, ""])
+            for pkg in pkg_list:
+                item = self.model.append(parent, [str(pkg), pkg.summary])
+                self.model.append(item, [_("<b>Downgrade to</b> %s ") % str(pkg.downgrade_po), ""])
 
 class YumexRepoView(SelectionView):
     """ 
