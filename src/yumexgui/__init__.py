@@ -65,6 +65,9 @@ class YumexFrontend(YumexFrontendBase):
         YumexFrontendBase.__init__(self, backend, progress)
 
     def hide(self):
+        '''
+        hide the main window and progress (if visible)
+        '''
         self.window.set_visible(False)
         progress = self.get_progress()
         if progress.is_active():
@@ -72,6 +75,9 @@ class YumexFrontend(YumexFrontendBase):
 
 
     def show(self):
+        '''
+        show the main window again and progress (if active)
+        '''
         self.window.set_visible(True)
         progress = self.get_progress()
         if progress.is_active():
@@ -218,6 +224,9 @@ class YumexApplication(Controller, YumexFrontend):
 
     @property
     def is_offline(self):
+        '''
+        check if local system is network connected
+        '''
         if self.settings.disable_netcheck: # we are not offline if diaable-netcheck is enabled
             return False
         rc = self._network.check_network_connection()
@@ -292,26 +301,36 @@ class YumexApplication(Controller, YumexFrontend):
         if quit:
             self.main_quit()
 
-    def _add_key_to_menu(self, widget, key, mask=gtk.gdk.CONTROL_MASK):
-        widget.add_accelerator("activate", self.key_bindings,
-                               ord(key), gtk.gdk.CONTROL_MASK, 0)
+    def _add_key_binding(self, widget, accel, event = 'clicked'):
+        '''
+        Added key bindings to widget
+        @param widget: widget
+        @param accel: key binding to map (ex. <ctrl>1 )
+        @param event: key event (default = clicked)
+        '''
+        keyval, mask = gtk.accelerator_parse(accel)
+        widget.add_accelerator(event, self.key_bindings, keyval, mask, 0)
 
     def add_keybindings(self):
+        '''
+        Add key binding to ui pages
+        '''
         self.window.add_accel_group(self.key_bindings)
-        self._add_key_to_menu(self.ui.viewPackages, '1')
-        self._add_key_to_menu(self.ui.viewQueue, '2')
-        self._add_key_to_menu(self.ui.viewRepo, '3')
-        self._add_key_to_menu(self.ui.viewOutput, '4')
+        self._add_key_binding(self.ui.viewPackages, '<ctrl>1')
+        self._add_key_binding(self.ui.viewQueue, '<ctrl>2')
+        self._add_key_binding(self.ui.viewRepo, '<ctrl>3')
+        self._add_key_binding(self.ui.viewHistory, '<ctrl>4')
+        self._add_key_binding(self.ui.viewOutput, '<ctrl>5')
 
 
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
 
-    def _add_key_binding(self, widget, event, accel):
-        keyval, mask = gtk.accelerator_parse(accel)
-        widget.add_accelerator(event, self.key_bindings, keyval, mask, 0)
 
     def _setup_queue_entry(self):
+        '''
+        Setup the queue auto complete entry field
+        '''
         self.queue_entry = CompletedEntry()
         self.ui.queueEntryBox.pack_start(self.queue_entry)
         self.queue_entry.connect("activate", self.on_QueueEntry_activate)
@@ -321,7 +340,7 @@ class YumexApplication(Controller, YumexFrontend):
 
     def setup_gui(self):
         '''
-        Setup the gui
+        Main gui setup 
         '''
         # Fix the translations in gtk.Builder object
         # setup
@@ -444,7 +463,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.default_repos = repos
         active_repos = self.repos.get_selected()
         self.current_repos = active_repos
-        self._add_key_binding(self.ui.packageSearch, 'activate', '<alt>s')
+        self._add_key_binding(self.ui.packageSearch, '<alt>s', event='activate')
         if self.settings.search:            # Search only mode
             self.ui.packageFilterBox.hide()
             self.ui.packageSelectAll.hide()
@@ -489,23 +508,49 @@ class YumexApplication(Controller, YumexFrontend):
         return handler
 
 
-    def _add_menu(self, menu, label, action_id, path):
+    def _add_menu_repo(self, menu, label, action_id, path):
+        '''
+        Add MenuItem to repo right click popup
+        @param menu: gtk.Menu widget to add to
+        @param label: Menu label
+        @param action_id: 
+        @param path:
+        '''
         mi = gtk.MenuItem (label)
         mi.connect('activate', self.on_repo_popup_other, action_id, path)
         menu.add(mi)
 
     def _add_menu_package(self, menu, label, action, pkg):
+        '''
+        Add MenuItem to main package right click popup
+        @param menu:
+        @param label:
+        @param action:
+        @param pkg:
+        '''
         mi = gtk.MenuItem (label)
         mi.connect('activate', self.on_package_popup,action, pkg)
         menu.add(mi)
         
     def _add_menu_downgrade(self, menu, label, pkg, down_pkg):
+        '''
+        Add MenuItem to downgrade submenu
+        @param menu:
+        @param label:
+        @param pkg:
+        @param down_pkg:
+        '''
         mi = gtk.MenuItem (label)
         mi.set_use_underline(False)
         mi.connect('button-press-event', self.on_package_downgrade, pkg, down_pkg)
         menu.add(mi)
 
     def get_repo_popup(self, enabled, path):
+        '''
+        build the repo popup menu
+        @param enabled:
+        @param path:
+        '''
         repo_popup = gtk.Menu()
         if not enabled:
             mi = gtk.MenuItem (_("Enable Permanently"))
@@ -515,14 +560,19 @@ class YumexApplication(Controller, YumexFrontend):
             mi = gtk.MenuItem (_("Disable Permanently"))
             mi.connect('activate', self.on_repo_popup_enabled, False, path)
             repo_popup.add(mi)
-        self._add_menu(repo_popup, _("Clean Metadata"), "clean-metadata", path)
-        self._add_menu(repo_popup, _("Clean Packages"), "clean-packages", path)
-        self._add_menu(repo_popup, _("Clean DbCache"), "clean-dbcache", path)
-        self._add_menu(repo_popup, _("Clean All"), "clean-all", path)
+        self._add_menu_repo(repo_popup, _("Clean Metadata"), "clean-metadata", path)
+        self._add_menu_repo(repo_popup, _("Clean Packages"), "clean-packages", path)
+        self._add_menu_repo(repo_popup, _("Clean DbCache"), "clean-dbcache", path)
+        self._add_menu_repo(repo_popup, _("Clean All"), "clean-all", path)
         repo_popup.show_all()
         return repo_popup
 
     def get_package_popup(self, pkg, path):
+        '''
+        Build the package popup menu
+        @param pkg:
+        @param path:
+        '''
         # get available downgrades
         pkgs = self.backend.get_available_downgrades(pkg)
         popup = gtk.Menu()
@@ -540,6 +590,9 @@ class YumexApplication(Controller, YumexFrontend):
         return popup
 
     def setup_categories(self):
+        '''
+        Set up the categories 
+        '''
         cats = [('repo', _('By Repositories')),
                 ('size', _('By Size'))
                 #('age' ,_('By Age') ))
@@ -548,8 +601,9 @@ class YumexApplication(Controller, YumexFrontend):
         self.category_types.populate(cats)
 
     def setup_filters(self, filters=None):
-        ''' 
-        Populate Package Filter radiobuttons
+        '''
+        Setup package filters
+        @param filters:
         '''
         if not filters:
             filters = ('Updates', 'Available', 'Installed', 'Groups', 'Categories', 'All')
@@ -613,6 +667,9 @@ class YumexApplication(Controller, YumexFrontend):
 
     def process_transaction(self, action="queue", tid=None):
         '''
+        Process the active transaction
+        @param action:
+        @param tid:
         '''
         rc = False
         try:
@@ -1262,6 +1319,11 @@ class YumexApplication(Controller, YumexFrontend):
         self.repos.populate(self.default_repos)
 
     def on_repoView_button_press_event(self, treeview, event):
+        '''
+        handle mouse clicks in repo view
+        @param treeview:
+        @param event:
+        '''
         if event.button == 3: # Right Click
             x = int(event.x)
             y = int(event.y)
@@ -1280,6 +1342,12 @@ class YumexApplication(Controller, YumexFrontend):
 
 
     def on_repo_popup_other(self, widget, action_id, path):
+        '''
+        callback for clean action in repo popup
+        @param widget:
+        @param action_id:
+        @param path:
+        '''
         if action_id.startswith('clean-'):
             what = action_id.split("-")[1]
             rc = okCancelDialog(self.window, _("Do you want to clean %s from the yum cache") % what)
@@ -1289,7 +1357,7 @@ class YumexApplication(Controller, YumexFrontend):
 
     def on_repo_popup_enabled(self, widget, enable, path):
         '''
-        
+        callback for repo popup (enable/disable)
         @param widget:
         @param enable: repo persistent enable state (True = enable, False = disable)
         @param path: treeview path for current item
@@ -1370,6 +1438,11 @@ class YumexApplication(Controller, YumexFrontend):
 
 
     def on_historySearch_activate(self, widget=None, event=None):
+        '''
+        History search callback (Enter pressed)
+        @param widget:
+        @param event:
+        '''
         txt = self.ui.historySearch.get_text()
         pat = txt.split(' ')
         if not pat:
@@ -1378,6 +1451,11 @@ class YumexApplication(Controller, YumexFrontend):
             self.search_history(pat)
 
     def on_historyUndo_clicked(self, widget=None, event=None):
+        '''
+        history undo button callback
+        @param widget:
+        @param event:
+        '''
         (model, iterator) = self.ui.historyView.get_selection().get_selected()
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
@@ -1386,6 +1464,11 @@ class YumexApplication(Controller, YumexFrontend):
             self.debug("Ended History undo")
 
     def on_historyRedo_clicked(self, widget=None, event=None):
+        '''
+        History Redo button callback
+        @param widget:
+        @param event:
+        '''
         (model, iterator) = self.ui.historyView.get_selection().get_selected()
         if model != None and iterator != None:
             tid = model.get_value(iterator, 0)
@@ -1394,6 +1477,11 @@ class YumexApplication(Controller, YumexFrontend):
             self.debug("Ended History redo")
 
     def on_historyRefresh_clicked(self, widget=None, event=None):
+        '''
+        History Refresh button callback
+        @param widget:
+        @param event:
+        '''
         busyCursor(self.window)
         self.setup_history(limit=False, force=True)
         normalCursor(self.window)
