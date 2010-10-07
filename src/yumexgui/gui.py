@@ -28,7 +28,6 @@ import gconf, subprocess
 
 from datetime import date
 from yumexbase.constants import *
-from yumexbackend.yum_backend import YumexPackageYum
 from guihelpers import TextViewBase, busyCursor, normalCursor
 from yum.i18n import utf8_text_wrap
 
@@ -495,18 +494,18 @@ class YumexStatusIcon(gtk.StatusIcon):
 
     def show(self):
         self.set_visible(True)
-        
+
 
     def _on_right_click(self, data, event_button, event_time):
         self._show_menu(event_button, event_time, data)
-        
+
     def _on_left_click(self, event):
         if self._hide:
             self.frontend.show()
         else:
             self.frontend.hide()
-        self._hide = not self._hide    
-        
+        self._hide = not self._hide
+
     def _quit(self, data):
         self.hide()
         self.frontend.hide()
@@ -519,7 +518,7 @@ class YumexStatusIcon(gtk.StatusIcon):
         #add callbacks
         item.connect_object("activate", callback, None)
         item.show()
-        
+
 
     def _show_menu(self, event_button, event_time, data=None):
         #Popup the menu   

@@ -26,7 +26,7 @@ from yumexbase.constants import *
 from urlgrabber.progress import format_number
 from yumexbase import TimeFunction
 
-from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
+from yumexbackend import YumexBackendBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
 from guihelpers import doGtkEvents
@@ -91,9 +91,8 @@ class PackageCache:
         if str(po) in self._cache[pkg_filter]:
             return self._cache[pkg_filter][str(po)]
         else:
-            pkg = YumexPackageYum(po, self.frontend)
-            self._cache[pkg_filter][str(pkg)] = pkg
-            return pkg
+            self._cache[pkg_filter][str(po)] = po
+            return po
 
     def find(self, po):
         '''
@@ -120,7 +119,7 @@ class PackageCache:
                 doGtkEvents()
             pkgs.append(self.find(po))
         return pkgs
-        
+
 
 class YumexBackendYum(YumexBackendBase, YumClient):
     ''' Yumex Backend Yume class
@@ -135,7 +134,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         transaction = YumexTransactionYum(self, frontend)
         YumexBackendBase.__init__(self, frontend, transaction)
-        YumClient.__init__(self)
+        YumClient.__init__(self, frontend)
         self.dont_abort = False
         self.package_cache = PackageCache(self, frontend)
 
@@ -457,88 +456,6 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.run_command(self, cmd, userlist)
         self.frontend.get_progress().hide()
         return self.package_cache.find_packages(pkgs)
-
-class YumexPackageYum(YumexPackageBase):
-    '''
-    Yumex Package Base class
-
-    This is an abstract package object for a package in the package system
-    '''
-
-    def __init__(self, pkg, frontend):
-        '''
-        
-        @param pkg:
-        '''
-        YumexPackageBase.__init__(self, pkg)
-        self.queued = False
-        self.selected = False
-        self.visible = True
-        self.frontend = frontend
-        self.downgrade_po = None
-
-    def set_select(self, state):
-        '''
-        
-        @param state:
-        '''
-        self.selected = state
-
-    def set_visible(self, state):
-        '''
-        
-        @param state:
-        '''
-        self.visible = state
-
-    @property
-    def description(self):
-        '''
-        
-        '''
-        return self._pkg.get_attribute('description')
-
-    @property
-    def changelog(self):
-        '''
-        
-        '''
-        return self._pkg.get_changelog(4)
-
-    @property
-    def filelist(self):
-        '''
-        get package filelist
-        '''
-        return self._pkg.get_attribute('filelist')
-
-    @property
-    def recent(self):
-        '''
-        get package recent state
-        '''
-        return self._pkg.recent == '1'
-
-    @property
-    def color(self):
-        '''
-        get package color to show in view
-        '''
-        color = self.frontend.settings.color_normal
-        if self.repoid == 'installed' or self.repoid.startswith('@'):
-            color = self.frontend.settings.color_install
-        elif self.action == 'u':
-            color = self.frontend.settings.color_update
-        elif self.action == 'o':
-            color = self.frontend.settings.color_obsolete
-        return color
-
-    @property
-    def updateinfo(self):
-        '''
-        get update info for package
-        '''
-        return self._pkg.get_update_info()
 
 
 class YumexTransactionYum(YumexTransactionBase):

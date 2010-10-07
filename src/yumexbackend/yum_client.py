@@ -27,7 +27,7 @@ import pexpect
 
 from yumexbase.constants import *
 from yumexbase import YumexBackendFatalError
-from yumexbackend import  YumPackage, pack, unpack
+from yumexbackend import  YumexPackage, pack, unpack
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -44,12 +44,13 @@ from yumexbase.i18n import _, P_
 class YumClient:
     """ Client part of a the yum client/server """
 
-    def __init__(self, timeout=.1):
+    def __init__(self, frontend, timeout=.1):
         '''
         
         @param timeout:
         '''
         self.child = None
+        self.frontend = frontend
         self._timeout_value = timeout
         self._timeout_last = 0
         self._timeout_count = 0
@@ -416,7 +417,7 @@ class YumClient:
             elif not cmd == result_cmd:
                 self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
             elif cmd == ':pkg':
-                po = YumPackage(self, args)
+                po = YumexPackage(args, self.frontend, self)
                 data.append(po)
             else:
                 data.append(args)
@@ -526,12 +527,12 @@ class YumClient:
         self._send_command('get-packages', [str(pkg_filter), str(show_dupes)])
         pkgs = self._get_list()
         return pkgs
-    
+
     def get_available_by_name(self, name):
         self._send_command('get-available-by-name', [name])
         pkgs = self._get_list()
         return pkgs
-    
+
     def get_available_downgrades(self, po):
         self._send_command('get-available-downgrades', [po.id])
         pkgs = self._get_list()
