@@ -67,6 +67,7 @@ class TestTooptip:
         win.add(fancy_label)
         win.show_all()
         self.window = win
+        self.progress_step = 0.1
         gobject.timeout_add(250, self.update)
         gtk.main()
 
@@ -74,7 +75,7 @@ class TestTooptip:
     def _setup_tooltip(self):
         vbox = gtk.VBox()
         vbox.set_spacing(5)
-        label = gtk.Label('Fancy Tooltip with an Image')
+        label = gtk.Label('Fancy Tooltip with an progress bar')
         vbox.pack_start(label, False, False, 5)
         vbox.pack_start(self.progress, False, False, 5)
         vbox.show_all()
@@ -85,10 +86,13 @@ class TestTooptip:
         return True
 
     def update(self):
-        print "pulse"
-        self.fraction += 0.1
-        if self.fraction > 1.0:
-            self.fraction = 0.0
+        '''
+        bump the progressbar (triggered by gobject.timeout_add)
+        '''
+        self.fraction += self.progress_step
+        if self.fraction > 1.0 or self.fraction < 0.0:
+            self.progress_step = self.progress_step * -1
+            return True
         self.progress.set_fraction(self.fraction)
         return True
 

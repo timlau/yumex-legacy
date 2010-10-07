@@ -71,7 +71,8 @@ class YumexNotification(pynotify.Notification):
 
 def on_botton_clicked(widget, status=None):
     n = YumexNotification("Yum Extender", "Some information to the user", status)
-    n.add_button('Ok')
+    #n.add_button('Yes')
+    #n.add_button('No')
     n.show()
 
 if __name__ == "__main__":
