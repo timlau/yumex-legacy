@@ -41,7 +41,7 @@ from yumexbase.i18n import _, P_
 #logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
 
-class YumClient:
+class YumClientBase:
     """ Client part of a the yum client/server """
 
     def __init__(self, frontend, timeout=.1):
@@ -522,33 +522,47 @@ class YumClient:
             del self.child
         self.child = None
 
+    def execute_command(self, cmd , args=[]):
+        '''
+        Send a command to the backend and get a list of packages 
+        @param cmd:
+        @param args:
+        '''
+        self._send_command(cmd, args)
+        pkgs = self._get_list()
+        return pkgs
+
+
+class YumClient(YumClientBase):
+    """ 
+    Client part of a the yum client/server
+    
+    """
+
+    def __init__(self, frontend, timeout=.1):
+        '''
+        
+        @param timeout:
+        '''
+        YumClientBase.__init__(self, frontend, timeout)
+
     def get_packages(self, pkg_filter, show_dupes=False):
         ''' get a list of packages based on pkg_filter '''
-        self._send_command('get-packages', [str(pkg_filter), str(show_dupes)])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-packages', [str(pkg_filter), str(show_dupes)])
 
     def get_available_by_name(self, name):
-        self._send_command('get-available-by-name', [name])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-available-by-name', [name])
 
     def get_available_downgrades(self, po):
-        self._send_command('get-available-downgrades', [po.id])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-available-downgrades', [po.id])
 
     def get_packages_size(self, ndx):
         ''' get a list of packages based on size range '''
-        self._send_command('get-packages-size', [str(ndx)])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-packages-size', [str(ndx)])
 
     def get_packages_repo(self, repoid):
         ''' get a list of packages based on repo '''
-        self._send_command('get-packages-repo', [repoid])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-packages-repo', [repoid])
 
     def get_history_packages(self, tid, data_set='trans_data'):
         ''' get a list of packages based on pkg_filter '''
@@ -615,9 +629,7 @@ class YumClient:
         @param ident:
         @param action:
         '''
-        self._send_command('add-transaction', [ident, action])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('add-transaction', [ident, action])
 
     def remove_transaction(self, ident, action):
         '''
@@ -625,25 +637,19 @@ class YumClient:
         @param ident:
         @param action:
         '''
-        self._send_command('remove-transaction', [ident])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('remove-transaction', [ident])
 
     def list_transaction(self):
         '''
         
         '''
-        self._send_command('list-transaction', [])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('list-transaction', [])
 
     def run_command(self, cmd, userlist):
         '''
         
         '''
-        self._send_command('run-command', [cmd, pack(userlist)])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('run-command', [cmd, pack(userlist)])
 
     def reset_transaction(self):
         '''
@@ -681,9 +687,7 @@ class YumClient:
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
-        self._send_command('get-group-packages', [group, str(grp_filter)])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-group-packages', [group, str(grp_filter)])
 
 
     def get_repos(self):
@@ -727,18 +731,14 @@ class YumClient:
         '''
         bKeys = pack(keys)
         bFilters = pack(filters)
-        self._send_command('search', [bKeys, bFilters])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('search', [bKeys, bFilters])
 
     def search_prefix(self, prefix):
         '''
         Search for packages with prefix
         @param prefix prefix to search for
         '''
-        self._send_command('search-prefix', [prefix])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('search-prefix', [prefix])
 
 
     def clean(self, what):
