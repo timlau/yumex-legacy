@@ -54,7 +54,7 @@ class YumexStatusIcon(gtk.StatusIcon):
 
 
 class YumexNotification(pynotify.Notification):
-    def __init__(self, title, body, status_icon=None):
+    def __init__(self, title, body, status_icon):
         pynotify.init("Yum Extender")
         pynotify.Notification.__init__(self, title, body, imageURI)
         self.set_urgency(pynotify.URGENCY_NORMAL)
@@ -69,7 +69,7 @@ class YumexNotification(pynotify.Notification):
          print "Notification Action: %s clicked" % data
 
 
-def on_botton_clicked(widget, event=None):
+def on_botton_clicked(widget, status=None):
     n = YumexNotification("Yum Extender", "Some information to the user", status)
     n.add_button('Ok')
     n.show()
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     win.connect('delete-event', gtk.main_quit)
     win.set_size_request(200, 50)
     button = gtk.Button("Python Notification Test")
-    button.connect('clicked', on_botton_clicked)
+    button.connect('clicked', on_botton_clicked, status)
     win.add(button)
     win.show_all()
     gtk.main()
