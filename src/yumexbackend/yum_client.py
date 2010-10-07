@@ -537,6 +537,8 @@ class YumClient(YumClientBase):
     """ 
     Client part of a the yum client/server
     
+    This class contains the actions used by the frontend
+    
     """
 
     def __init__(self, frontend, timeout=.1):

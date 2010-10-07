@@ -71,4 +71,5 @@ Fixed / implemented:
 	. Added right click popup on installed packages with options to reinstall or downgrade to a selected package
 	. Show both installed and update for same package in a search
 	. Show old version of a installonly packages in a search
+	. Added progress dialog when getting category packages (by repository)
 ( * = Released, . = Upstream )	
