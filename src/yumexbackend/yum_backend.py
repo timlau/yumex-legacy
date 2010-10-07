@@ -343,7 +343,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        if pkg_filter == 'all':
+        if str(pkg_filter) == 'all':
             filters = ['installed','available']
         else:
             filters = [pkg_filter]

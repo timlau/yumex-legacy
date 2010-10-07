@@ -417,8 +417,11 @@ class YumClientBase:
             elif not cmd == result_cmd:
                 self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
             elif cmd == ':pkg':
+                cnt += 1
                 po = YumexPackage(args, self.frontend, self)
                 data.append(po)
+                if (cnt % 250) == 0:
+                    self.frontend.refresh()
             else:
                 data.append(args)
         return data

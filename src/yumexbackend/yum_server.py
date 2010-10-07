@@ -496,23 +496,9 @@ class YumServer(yum.YumBase):
             show_dupes = (dupes == 'True')
             self.info(PACKAGE_LOAD_MSG[narrow])
             ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
-            if narrow == "all":
-                updates = ygh.updates
-                obsoletes = ygh.obsoletes
-                for pkg in ygh.installed:
-                    self._show_package(pkg, 'r')
-                for pkg in ygh.available:
-                    if pkg in updates:
-                        action = 'u'
-                    elif pkg in obsoletes:
-                        action = 'o'
-                    else:
-                        action = 'i'
-                    self._show_package(pkg, action)
-            else:
-                action = const.FILTER_ACTIONS[narrow]
-                for pkg in getattr(ygh, narrow):
-                    self._show_package(pkg, action)
+            action = const.FILTER_ACTIONS[narrow]
+            for pkg in getattr(ygh, narrow):
+                self._show_package(pkg, action)
         self.ended(True)
 
     def get_packages_size(self, ndx):
