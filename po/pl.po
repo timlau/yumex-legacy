@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-05 17:27+0200\n"
-"PO-Revision-Date: 2010-09-26 16:22+0200\n"
+"PO-Revision-Date: 2010-10-06 12:55+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -90,7 +90,7 @@ msgstr "proces zaplecza yum został zakończony"
 #: ../src/yumexbackend/yum_backend.py:353
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "Zwrócono %i pakietów"
 
 #: ../src/yumexbackend/yum_backend.py:592 ../src/yumexgui/dialogs.py:253
 msgid "Resolving Dependencies"
@@ -453,7 +453,7 @@ msgstr "Lista plików pakietu"
 
 #: ../src/yumexgui/gui.py:300
 msgid "Project URL : "
-msgstr ""
+msgstr "Adres URL projektu: "
 
 #: ../src/yumexgui/gui.py:307
 msgid "Release"
@@ -477,17 +477,16 @@ msgstr "Opis"
 
 #: ../src/yumexgui/gui.py:489
 msgid "Quit"
-msgstr ""
+msgstr "Zakończ"
 
 #: ../src/yumexgui/__init__.py:445 ../src/yumexgui/__init__.py:446
-#, fuzzy
 msgid "Adding Packages to view"
-msgstr "Pobieranie pakietów"
+msgstr "Dodawanie pakietów do wyświetlenia"
 
 #: ../src/yumexgui/__init__.py:449
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "Dodano %i pakietów do wyświetlenia"
 
 #: ../src/yumexgui/__init__.py:555
 #, python-format
@@ -940,7 +939,7 @@ msgstr "Cofnięcie zmian wyboru repozytoriów"
 
 #: ../src/yumex.glade.h:39
 msgid "Undo the current search"
-msgstr ""
+msgstr "Cofnięcie bieżącego wyszukiwania"
 
 #: ../src/yumex.glade.h:40
 msgid "Yum"
