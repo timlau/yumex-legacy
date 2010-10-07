@@ -10,7 +10,7 @@ TODO:
     	- need some multi threaded downloader, there can be aborted if user select 'Apply' before
     	  downloading is completted.
     	  
-   	     
+   	RFE: Add progress in tooltip on status icon     
   	
 BUGS:
   	
