@@ -41,9 +41,10 @@ from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, Yume
                            YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView, \
                            YumexPackageViewSorted, YumexHistoryPackageView
 from yumexbase.constants import *
-from yumexbase import YumexFrontendBase, YumexBackendFatalError
+from yumexbase import YumexFrontendBase, YumexBackendFatalError, TimeFunction
 import yumexbase.constants as const
 from yumexbase.conf import YumexOptions
+
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -919,7 +920,8 @@ class YumexApplication(Controller, YumexFrontend):
             elif state in values:
                 main[state] = values[state]
         self.history_pkg_view.populate(main, secondary)
-
+    
+    #@TimeFunction
     def _add_packages(self, pkgs, label=""):
         progress = self.get_progress()
         progress.show()
