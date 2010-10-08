@@ -27,7 +27,7 @@ import os
 import time
 
 from yumexbase.i18n import _, P_
-#from yumexbase.constants import *
+from yumexbase import TimeFunction
 import yumexbase.constants as const
 from guihelpers import  doGtkEvents, busyCursor, normalCursor
 
@@ -357,7 +357,7 @@ class YumexPackageView(YumexPackageBase):
         return store
 
 
-
+    #@TimeFunction
     def add_packages(self, pkgs):
         '''
         Populate the via with package objects
@@ -473,8 +473,8 @@ class YumexPackageViewSorted(YumexPackageBase):
         self.view.set_reorderable(False)
         return store
 
-
-    def add_packages(self, pkgs, progress=None):
+    #@TimeFunction
+    def add_packages(self, pkgs):
         '''
         Populate the via with package objects
         @param pkgs: list of package object to add
@@ -483,19 +483,35 @@ class YumexPackageViewSorted(YumexPackageBase):
         self.store.clear()
         queued = self.queue.get()
         if pkgs:
-            #pkgs.sort(sortPkgObj)
-            self.frontend.debug("Starting package view population")
+            self.frontend.debug("Starting package view population - sorted view")
             start = time.time()
-            self.view.freeze_child_notify()
+            pkgs.sort(sortPkgObj)        
+            #self.view.freeze_child_notify()
             self.view.set_model(None)
+            del self.store
+            self.store = gtk.ListStore(gobject.TYPE_PYOBJECT, str, str, str, str, str, long)
+            self.sort_store = gtk.TreeModelSort(self.store)
+            self.frontend.debug("package view population - start adding to store")
+            
+            i = 0
             for po in pkgs:
+                # bump the progress bar
+                i += 1
+                if (i % 200) == 0: # Refresh gui + progressbar
+                    self.frontend.refresh()
                 self.store.append([po, po.fullname, po.fullver, po.arch, po.summary, po.repoid, po.sizeBytes])
                 if po in queued[po.action]:
                     po.queued = po.action
                     po.set_select(True)
+            self.frontend.debug("package view population - end adding to store")            
+            self.sort_store.set_sort_column_id(1, gtk.SORT_ASCENDING)
+            self.frontend.debug("package view population - sort column set")
             self.view.set_model(self.sort_store)
-            self.view.thaw_child_notify()            
+            self.frontend.debug("package view population - store is applied to TreeView")
+            #self.view.thaw_child_notify()            
+            self.frontend.debug("package view population - start GtkEvent Processing")
             self.doGtkEvents()
+            self.frontend.debug("package view population - end GtkEvent Processing")
 
 
 class YumexQueue:

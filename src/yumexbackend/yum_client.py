@@ -44,7 +44,7 @@ from yumexbase.i18n import _, P_
 class YumClientBase:
     """ Client part of a the yum client/server """
 
-    def __init__(self, frontend, timeout=.1):
+    def __init__(self, frontend, timeout):
         '''
         
         @param timeout:
