@@ -406,7 +406,7 @@ class YumexApplication(Controller, YumexFrontend):
 
         # setup package and package info view
         if self.settings.use_sortable_view:
-            self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue)
+            self.packages = YumexPackageViewSorted(self.ui.packageView, self.queue, self)
         else:
             self.packages = YumexPackageView(self.ui.packageView, self.queue, self)
 

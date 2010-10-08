@@ -92,12 +92,10 @@ class PackageCache:
     def find_packages(self, packages):
         pkgs = []
         i = 0
-        progress = self.frontend.get_progress()
         for po in packages:
             i += 1
-            if (i % 500) == 0:
-                progress.pulse()
-                doGtkEvents()
+            if (i % 500) == 0: # Refresh gui + progressbar
+                self.frontend.refresh()
             pkgs.append(self._add(po))
         return pkgs
 
