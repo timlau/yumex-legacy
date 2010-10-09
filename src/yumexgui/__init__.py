@@ -302,7 +302,7 @@ class YumexApplication(Controller, YumexFrontend):
         if quit:
             self.main_quit()
 
-    def _add_key_binding(self, widget, accel, event = 'clicked'):
+    def _add_key_binding(self, widget, accel, event='clicked'):
         '''
         Added key bindings to widget
         @param widget: widget
@@ -475,8 +475,9 @@ class YumexApplication(Controller, YumexFrontend):
             self.ui.packageRadioUpdates.clicked()
         else:
             # setup default package filter (updates)
-            self.ui.packageRadioUpdates.clicked()
-            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+            if self.settings.autorefresh:
+                self.ui.packageRadioUpdates.clicked()
+                self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         #self.testing()
 
 # pylint: enable-msg=W0201
@@ -530,9 +531,9 @@ class YumexApplication(Controller, YumexFrontend):
         @param pkg:
         '''
         mi = gtk.MenuItem (label)
-        mi.connect('activate', self.on_package_popup,action, pkg)
+        mi.connect('activate', self.on_package_popup, action, pkg)
         menu.add(mi)
-        
+
     def _add_menu_downgrade(self, menu, label, pkg, down_pkg):
         '''
         Add MenuItem to downgrade submenu
@@ -582,10 +583,10 @@ class YumexApplication(Controller, YumexFrontend):
         if pkgs:
             dmenu = gtk.Menu()
             for down_po in pkgs:
-                self._add_menu_downgrade(dmenu, str(down_po), pkg,  down_po)
+                self._add_menu_downgrade(dmenu, str(down_po), pkg, down_po)
             dmenu.show_all()
             mi = gtk.MenuItem(_("Downgrade Package"))
-            mi.set_submenu(dmenu)    
+            mi.set_submenu(dmenu)
             popup.add(mi)
         popup.show_all()
         return popup
@@ -920,7 +921,7 @@ class YumexApplication(Controller, YumexFrontend):
             elif state in values:
                 main[state] = values[state]
         self.history_pkg_view.populate(main, secondary)
-    
+
     #@TimeFunction
     def _add_packages(self, pkgs, label=""):
         progress = self.get_progress()
@@ -1074,7 +1075,7 @@ class YumexApplication(Controller, YumexFrontend):
             normalCursor(self.window)
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         self.last_search_text = txt
-        
+
     def on_package_popup(self, widget, action, pkg):
         print "POPUP", action, pkg
         pkg.action = action
@@ -1082,7 +1083,7 @@ class YumexApplication(Controller, YumexFrontend):
         pkg.queued = action
         pkg.selected = True
         self.queue.refresh()
-        
+
     def on_package_downgrade(self, widget, event, pkg, down_pkg):
         if event.button == 1: # Left Click    
             pkg.action = 'do'
@@ -1091,7 +1092,7 @@ class YumexApplication(Controller, YumexFrontend):
             pkg.selected = True
             pkg.downgrade_po = down_pkg
             self.queue.refresh()
-        
+
 
 
     def on_packageSearch_key_press_event(self, widget, event):
@@ -1147,7 +1148,7 @@ class YumexApplication(Controller, YumexFrontend):
             pkg = model.get_value(iterator, 0)
             if pkg:
                 self.packageInfo.update(pkg)
-                
+
     def on_packageView_button_press_event(self, treeview, event):
          if event.button == 3: # Right Click
             x = int(event.x)
@@ -1166,8 +1167,8 @@ class YumexApplication(Controller, YumexFrontend):
                 popup = self.get_package_popup(pkg, path)
                 popup.popup(None, None, None, event.button, t)
             return True
-   
-                        
+
+
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -1267,7 +1268,7 @@ class YumexApplication(Controller, YumexFrontend):
             elif self.current_category == 'repo':
                 pkgs = self.backend.get_packages_repo(id)
             self.packages.clear()
-            self._add_packages(pkgs)    
+            self._add_packages(pkgs)
 
 
     def on_categoryTypes_cursor_changed(self, widget):
@@ -1506,4 +1507,3 @@ class YumexApplication(Controller, YumexFrontend):
         The Progress Dialog Cancel button
         '''
         self.debug("Progress Cancel pressed")
-            
