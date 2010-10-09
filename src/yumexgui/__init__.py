@@ -661,6 +661,10 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         queue = self.queue.queue
         if queue.total() == 0:
+            progress = self.get_progress()
+            progress.hide_tasks()
+            progress.hide()
+            progress.set_pulse(False)
             okDialog(self.window, _("The pending action queue is empty"))
             return False
         self.backend.transaction.reset()
@@ -696,6 +700,7 @@ class YumexApplication(Controller, YumexFrontend):
             elif action == "history-redo":
                 rc = self.backend.history_redo(tid)
             if not rc: # the transaction population failed
+                self.notebook.set_active("package")     # show the package page
                 return
 
             rc = self.backend.transaction.process_transaction()
