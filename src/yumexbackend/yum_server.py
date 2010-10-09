@@ -973,6 +973,8 @@ class YumServer(yum.YumBase):
         prefix += '*'
         self.debug("prefix: %s " % prefix)
         pkgs = self.pkgSack.returnPackages(patterns=[prefix])
+        ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
+        pkgs.extend(ipkgs)
         best = self._limit_package_list(pkgs)
         self._return_packages(best)
         self.ended(True)
