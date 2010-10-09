@@ -224,11 +224,11 @@ class YumexPackageBase(SelectionView):
         if obj.queued == obj.action:
             obj.queued = None
             self.queue.remove(obj)
-        else:
+            obj.set_select(not obj.selected)
+        elif not self.queue.has_pkg_with_name_arch(obj):
             obj.queued = obj.action
             self.queue.add(obj)
-        obj.set_select(not obj.selected)
-
+            obj.set_select(not obj.selected)
 
     def selectAll(self):
         '''
@@ -529,6 +529,7 @@ class YumexQueue:
         self.groups = {}
         self.groups['i'] = []
         self.groups['r'] = []
+        self._name_arch_index = {}
 
     def _setup_packages(self):
         for key in const.QUEUE_PACKAGE_TYPES:
@@ -544,6 +545,7 @@ class YumexQueue:
         self.groups = {}
         self.groups['i'] = []
         self.groups['r'] = []
+        self._name_arch_index = {}
 
     def get(self, action=None):
         '''
@@ -569,16 +571,25 @@ class YumexQueue:
         
         @param pkg:
         '''
-        if not pkg in self.packages[pkg.action]:
+        na = "%s.%s" % (pkg.name, pkg.arch)
+        if not pkg in self.packages[pkg.action] and not na in self._name_arch_index :
             self.packages[pkg.action].append(pkg)
+            na = "%s.%s" % (pkg.name, pkg.arch)
+            self._name_arch_index[na] = 1
 
     def remove(self, pkg):
         '''
         
         @param pkg:
         '''
+        na = "%s.%s" % (pkg.name, pkg.arch)
         if pkg in self.packages[pkg.action]:
             self.packages[pkg.action].remove(pkg)
+            del self._name_arch_index[na]
+
+    def has_pkg_with_name_arch(self, pkg):
+        na = "%s.%s" % (pkg.name, pkg.arch)
+        return na in self._name_arch_index
 
     def addGroup(self, grp, action):
         '''
