@@ -194,3 +194,5 @@ QUEUE_PACKAGE_TYPES = {
 'ri' : 'reinstall',
 'do' : 'downgrade'
 }
+
+YUMEX_CMDLINE_CMDS = ['search', 'install', 'remove', 'update']

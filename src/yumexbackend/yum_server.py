@@ -697,6 +697,7 @@ class YumServer(yum.YumBase):
     def run_command(self, cmd, userlist):
         self.reset_transaction()
         cmd = cmd[:2]
+        action = None
         try:
             if cmd == 'in':
                 action = 'i'
@@ -706,6 +707,10 @@ class YumServer(yum.YumBase):
                 action = 'r'
                 for pat in userlist:
                     self.remove(pattern=pat)
+            elif cmd == 'up':
+                action = 'u'
+                for pat in userlist:
+                    self.update(pattern=pat)
         except Errors.InstallError, e:
             pass
         self._show_packages_in_transaction(action)

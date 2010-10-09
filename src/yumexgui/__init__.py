@@ -465,13 +465,10 @@ class YumexApplication(Controller, YumexFrontend):
         active_repos = self.repos.get_selected()
         self.current_repos = active_repos
         self._add_key_binding(self.ui.packageSearch, '<alt>s', event='activate')
+        rc = True
         if self.cfg.cmd_args:
-            self._last_filter = self.ui.packageRadioUpdates  # Make sure we can get back to updates
-            search_text = " ".join(self.cfg.cmd_args)
-            self.info(_('Searching for %s') % search_text)
-            self.ui.packageSearch.set_text(search_text)
-            self.ui.packageSearch.activate()
-        else:
+            rc = self.do_commands(self.cfg.cmd_args)
+        if rc:
             if self.settings.search:            # Search only mode
                 self.ui.packageFilterBox.hide()
                 self.ui.packageSelectAll.hide()
@@ -488,6 +485,37 @@ class YumexApplication(Controller, YumexFrontend):
         #self.testing()
 
 # pylint: enable-msg=W0201
+
+    def do_commands(self, cmdline):
+        rc = True
+        cmd = cmdline[0]
+        if cmd in YUMEX_CMDLINE_CMDS:
+            args = cmdline[1:]
+        else: # if no command the default to search
+            cmd = 'search'
+            args = cmdline
+        self.info("Command line command : %s (%s)" % (cmd, args))
+        if cmd == 'search': # Search command
+            self._last_filter = self.ui.packageRadioUpdates  # Make sure we can get back to updates
+            search_text = " ".join(args)
+            if search_text[0] == '+': # Do typeahead search
+                search_text = search_text[1:]
+                self.ui.searchTypeAhead.set_active(True)
+                self.ui.packageSearch.set_text(search_text)
+            else: # do normal search
+                self.ui.searchTypeAhead.set_active(True)
+                self.ui.packageSearch.set_text(search_text)
+                self.ui.packageSearch.activate()
+            rc = False
+        elif cmd in ['install', 'update', 'remove']: # Install Command
+            self.notebook.set_active("queue")
+            cline = "%s %s" % (cmd, " ".join(args))
+            self.queue_entry.set_text(cline)
+            self.queue_entry.activate()
+            rc = False
+        return rc
+
+
 
     def url_handler(self, url):
         print "Url activated : ", url
@@ -1407,7 +1435,16 @@ class YumexApplication(Controller, YumexFrontend):
             if len(words) > 1:
                 cmd = words[0]
                 userlist = words[1:]
+                progress = self.get_progress()
+                progress.show()
+                progress.set_pulse(True)
+                msg = _('Executing : %s %s') % (cmd, " ".join(userlist))
+                progress.set_title(_("Processing Queue Command"))
+                progress.set_header(msg)
+                self.info(msg)
                 pkgs = self.backend.run_command(cmd, userlist)
+                progress.set_pulse(False)
+                progress.hide()
                 for pkg in pkgs:
                     self.queue.queue.add(pkg)
                     pkg.queued = pkg.action
