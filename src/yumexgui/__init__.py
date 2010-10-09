@@ -465,19 +465,26 @@ class YumexApplication(Controller, YumexFrontend):
         active_repos = self.repos.get_selected()
         self.current_repos = active_repos
         self._add_key_binding(self.ui.packageSearch, '<alt>s', event='activate')
-        if self.settings.search:            # Search only mode
-            self.ui.packageFilterBox.hide()
-            self.ui.packageSelectAll.hide()
-            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-        elif self.settings.update_only:     # Update only mode
-            self.ui.packageFilterBox.hide()
-            self.ui.packageSearchBox.hide()
-            self.ui.packageRadioUpdates.clicked()
+        if self.cfg.cmd_args:
+            self._last_filter = self.ui.packageRadioUpdates  # Make sure we can get back to updates
+            search_text = " ".join(self.cfg.cmd_args)
+            self.info(_('Searching for %s') % search_text)
+            self.ui.packageSearch.set_text(search_text)
+            self.ui.packageSearch.activate()
         else:
-            # setup default package filter (updates)
-            if self.settings.autorefresh:
-                self.ui.packageRadioUpdates.clicked()
+            if self.settings.search:            # Search only mode
+                self.ui.packageFilterBox.hide()
+                self.ui.packageSelectAll.hide()
                 self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+            elif self.settings.update_only:     # Update only mode
+                self.ui.packageFilterBox.hide()
+                self.ui.packageSearchBox.hide()
+                self.ui.packageRadioUpdates.clicked()
+            else:
+                # setup default package filter (updates)
+                if self.settings.autorefresh:
+                    self.ui.packageRadioUpdates.clicked()
+                    self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         #self.testing()
 
 # pylint: enable-msg=W0201
