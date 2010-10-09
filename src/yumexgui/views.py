@@ -208,7 +208,7 @@ class YumexPackageBase(SelectionView):
         Setup the TreeView
         '''
         raise NotImplementedError
-    
+
     def on_toggled(self, widget, path):
         """ Package selection handler """
         iterator = self.store.get_iter(path)
@@ -485,14 +485,14 @@ class YumexPackageViewSorted(YumexPackageBase):
         if pkgs:
             self.frontend.debug("Starting package view population - sorted view")
             start = time.time()
-            pkgs.sort(sortPkgObj)        
+            pkgs.sort(sortPkgObj)
             #self.view.freeze_child_notify()
             self.view.set_model(None)
             del self.store
             self.store = gtk.ListStore(gobject.TYPE_PYOBJECT, str, str, str, str, str, long)
             self.sort_store = gtk.TreeModelSort(self.store)
             self.frontend.debug("package view population - start adding to store")
-            
+
             i = 0
             for po in pkgs:
                 # bump the progress bar
@@ -503,7 +503,7 @@ class YumexPackageViewSorted(YumexPackageBase):
                 if po in queued[po.action]:
                     po.queued = po.action
                     po.set_select(True)
-            self.frontend.debug("package view population - end adding to store")            
+            self.frontend.debug("package view population - end adding to store")
             self.sort_store.set_sort_column_id(1, gtk.SORT_ASCENDING)
             self.frontend.debug("package view population - sort column set")
             self.view.set_model(self.sort_store)
@@ -529,11 +529,11 @@ class YumexQueue:
         self.groups = {}
         self.groups['i'] = []
         self.groups['r'] = []
-        
-    def _setup_packages(self):    
+
+    def _setup_packages(self):
         for key in const.QUEUE_PACKAGE_TYPES:
             self.packages[key] = []
-            
+
     def clear(self):
         '''
         
@@ -563,7 +563,7 @@ class YumexQueue:
         for key in const.QUEUE_PACKAGE_TYPES:
             num += len(self.packages[key])
         return num
-    
+
     def add(self, pkg):
         '''
         

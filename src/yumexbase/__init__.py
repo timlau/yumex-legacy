@@ -184,10 +184,10 @@ def TimeFunction(func):
         t_start = time.time()
         rc = func(*args, **kwargs)
         t_end = time.time()
-        name = func.__name__        
-        print("%s took %.2f sec" % (name, t_end - t_start) )
+        name = func.__name__
+        print("%s took %.2f sec" % (name, t_end - t_start))
         return rc
-    
+
     newFunc.__name__ = func.__name__
     newFunc.__doc__ = func.__doc__
     newFunc.__dict__.update(func.__dict__)

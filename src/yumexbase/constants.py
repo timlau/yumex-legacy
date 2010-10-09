@@ -183,7 +183,7 @@ QUEUE_COMMANDS = {
 'upd' : 'update',
 'rem' : 'remove',
 'rei' : 'reinstall',
-'dow' : 'downgrade'  
+'dow' : 'downgrade'
 }
 
 QUEUE_PACKAGE_TYPES = {
@@ -192,5 +192,5 @@ QUEUE_PACKAGE_TYPES = {
 'r' : 'remove',
 'o' : 'obsolete',
 'ri' : 'reinstall',
-'do' : 'downgrade'                        
+'do' : 'downgrade'
 }

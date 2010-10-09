@@ -50,7 +50,7 @@ class PackageCache:
         '''
         for filter in ACTIONS_FILTER.values():
             setattr(self, filter, set())
-        self._populated = []    
+        self._populated = []
         self._index = {}
         self.backend = backend
         self.frontend = frontend
@@ -61,17 +61,19 @@ class PackageCache:
         '''
         for filter in ACTIONS_FILTER.values():
             setattr(self, filter, set())
+        self._populated = []
+        self._index = {}
 
     def _get_packages(self, pkg_filter):
         '''
         get a list of packages from the cache
         @param pkg_filter: the type of packages to get
         '''
-        return list(getattr(self,str(pkg_filter)))
-    
+        return list(getattr(self, str(pkg_filter)))
+
     def is_populated(self, pkg_filter):
         return str(pkg_filter) in self._populated
- 
+
     def populate(self, pkg_filter, pkgs):
         '''
         '''
@@ -83,7 +85,7 @@ class PackageCache:
         if str(po) in self._index: # package is in cache
             return self._index[str(po)]
         else:
-            target = getattr(self,ACTIONS_FILTER[po.action])
+            target = getattr(self, ACTIONS_FILTER[po.action])
             self._index[str(po)] = po
             target.add(po)
             return po
@@ -333,7 +335,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         rc = YumClient.reset(self)
         if rc:
             self.frontend.info(_("yum backend process is ended"))
-    
+
     #@TimeFunction
     def get_packages(self, pkg_filter, show_dupes=False):
         ''' 
@@ -342,20 +344,22 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         if str(pkg_filter) == 'all':
-            filters = ['installed','available']
+            filters = ['installed', 'available']
         else:
             filters = [pkg_filter]
-        rc = []            
+        rc = []
         # Getting the packages
         for flt in filters:
             if not self.package_cache.is_populated(pkg_filter):
                 pkgs = YumClient.get_packages(self, flt, show_dupes)
+                self.debug('got %i packages from yum backend' % (len(pkgs)))
                 self.package_cache.populate(flt, pkgs)
             else:
-               pkgs= self.package_cache._get_packages(pkg_filter)
+               pkgs = self.package_cache._get_packages(pkg_filter)
+               self.debug('got %i packages from cache' % (len(pkgs)))
             rc.extend(pkgs)
         self.info(_("%i packages returned") % len(rc))
-        return rc 
+        return rc
 
     def get_packages_size(self, ndx):
         ''' 

@@ -517,13 +517,13 @@ class YumServer(yum.YumBase):
                 self._show_package(pkg, action)
         del ygh
         self.ended(True)
-        
+
     def get_available_by_name(self, name):
         pkgs = self.pkgSack.returnPackages(patterns=[name], ignore_case=False)
         self._return_packages(pkgs)
         self.ended(True)
-        
-    def _is_valid_downgrade(self,po, down_po):
+
+    def _is_valid_downgrade(self, po, down_po):
         '''
         Check if down_po is a valid downgrade to po
         @param po:
@@ -537,7 +537,7 @@ class YumServer(yum.YumBase):
         elif self.allowedMultipleInstalls(po): # po must not be a multiple installable (ex. kernels )
             valid = False
         return valid
-    
+
     def get_available_downgrades(self, pkgstr):
         '''
         Return valid available downgrades for a given package id
@@ -551,7 +551,7 @@ class YumServer(yum.YumBase):
                 pkgs.append(po)
         self._return_packages(pkgs)
         self.ended(True)
-        
+
 
     def _in_size_range(self, pkg, ndx):
         min, max = SIZE_RANGES[ndx]
@@ -936,7 +936,7 @@ class YumServer(yum.YumBase):
             self._updates_list = ygh.updates
         return self._updates_list
 
-    def _return_packages(self, pkgs, filter = None):
+    def _return_packages(self, pkgs, filter=None):
         updates = self._get_updates()
         for po in pkgs:
             if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
@@ -949,10 +949,10 @@ class YumServer(yum.YumBase):
                 else:
                     action = 'i'
             if filter and action not in filter: # Check if action is in filter
-                continue                    
+                continue
             self._show_package(po, action)
-            
-    def _limit_package_list(self,pkgs):
+
+    def _limit_package_list(self, pkgs):
         good_pkgs = set()
         good_tups = {}
         for po in pkgs:
@@ -966,8 +966,8 @@ class YumServer(yum.YumBase):
                     valid = False
             if valid:
                 good_pkgs.add(po)
-                good_tups[po.pkgtup] = 1    
-        return good_pkgs    
+                good_tups[po.pkgtup] = 1
+        return good_pkgs
 
     def search_prefix(self, prefix):
         prefix += '*'

@@ -261,7 +261,7 @@ class Progress(YumexProgressBase):
         self.default_h = None
         self.ui.progressImage.set_from_file(ICON_SPINNER)
         self._active = False
-        
+
     def is_active(self):
         return self._active
 
@@ -330,7 +330,7 @@ class Progress(YumexProgressBase):
         self.header.set_text(text)
         self.set_action("")
         if self.frontend.status_icon:
-            self.frontend.status_icon.set_tooltip(text+" "+self.tasks.extra_label)
+            self.frontend.status_icon.set_tooltip(text + " " + self.tasks.extra_label)
 
     def set_action(self, text):
         '''
@@ -546,7 +546,7 @@ class TransactionConfirmation:
         self.set_header(_("Transaction Result"))
         self.store = self.setup_view(self.view)
         self._active = False
-        
+
     def is_active(self):
         return self._active
 
