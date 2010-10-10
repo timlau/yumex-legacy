@@ -251,7 +251,6 @@
     <property name="modal">True</property>
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox5">
         <property name="visible">True</property>
@@ -379,7 +378,6 @@
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">normal</property>
     <property name="transient_for">main</property>
-    <property name="has_separator">False</property>
     <property name="program_name">Yum Extender</property>
     <property name="copyright">(C) 2009 Tim Lauridsen</property>
     <property name="website">http://www.yum-extender.org</property>
@@ -426,7 +424,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="type_hint">dialog</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox11">
         <property name="visible">True</property>
@@ -691,7 +688,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
     <property name="transient_for">main</property>
-    <property name="has_separator">False</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -1283,23 +1279,48 @@ words.
                       <object class="GtkHBox" id="hbox1">
                         <property name="visible">True</property>
                         <child>
-                          <object class="GtkScrolledWindow" id="scrolledwindow5">
+                          <object class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="hscrollbar_policy">automatic</property>
-                            <property name="vscrollbar_policy">automatic</property>
                             <child>
-                              <object class="GtkTextView" id="packageInfo">
+                              <object class="GtkScrolledWindow" id="packageInfoSW">
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
-                                <property name="editable">False</property>
-                                <property name="left_margin">5</property>
-                                <property name="cursor_visible">False</property>
+                                <property name="hscrollbar_policy">automatic</property>
+                                <property name="vscrollbar_policy">automatic</property>
+                                <child>
+                                  <object class="GtkTextView" id="packageInfo">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="editable">False</property>
+                                    <property name="left_margin">5</property>
+                                    <property name="cursor_visible">False</property>
+                                  </object>
+                                </child>
                               </object>
+                              <packing>
+                                <property name="padding">5</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkScrolledWindow" id="packageDepsSW">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="hscrollbar_policy">automatic</property>
+                                <property name="vscrollbar_policy">automatic</property>
+                                <child>
+                                  <object class="GtkTreeView" id="packageDeps">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="position">1</property>
+                              </packing>
                             </child>
                           </object>
                           <packing>
-                            <property name="padding">5</property>
                             <property name="position">0</property>
                           </packing>
                         </child>

@@ -158,6 +158,10 @@ class YumexPackage:
         '''
         return "%s-%s" % (self.version, self.release)
 
+    @property
+    def installed(self):
+        return self.is_installed()
+
     def is_installed(self):
         return self.repoid[0] == '@' or self.repoid == 'installed'
 

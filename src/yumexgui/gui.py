@@ -30,6 +30,7 @@ from datetime import date
 from yumexbase.constants import *
 from guihelpers import TextViewBase, busyCursor, normalCursor
 from yum.i18n import utf8_text_wrap
+from yumexgui.views import YumexDepsPackageView
 
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -200,19 +201,26 @@ class PackageInfo(SelectorBase):
         '''
         SelectorBase.__init__(self, selector, key_bindings=frontend.key_bindings)
         self.widget = console
-        self.console = PackageInfoTextView(console, font_size=font_size, window=main, url_handler=self._url_handler)
         self.main_window = main
         self.frontend = frontend
+        self.console = PackageInfoTextView(console, font_size=font_size, window=main, \
+                                            url_handler=self._url_handler)
+        self.deps_view = YumexDepsPackageView(self.frontend.ui.packageDeps, \
+                                              self.frontend.settings.color_install, \
+                                              self.frontend.settings.color_normal)
         self.add_button('description', stock='gtk-about',
-                        tooltip=_('Package Description'), accel='<Shift>d')
+                        tooltip=_('Package Description'), accel='<alt>i')
         self.add_button('update', stock='gtk-info',
-                        tooltip=_('Update information'), accel='<Shift>u')
+                        tooltip=_('Update information'), accel='<alt>u')
         self.add_button('changelog', stock='gtk-edit',
-                        tooltip=_('Package Changelog'), accel='<Shift>c')
+                        tooltip=_('Package Changelog'), accel='<alt>c')
         self.add_button('filelist', stock='gtk-harddisk',
-                        tooltip=_('Package Filelist'), accel='<Shift>f')
+                        tooltip=_('Package Filelist'), accel='<alt>f')
+        self.add_button('deps', stock='gtk-convert',
+                        tooltip=_('Package Dependencies'), accel='<alt>d')
         self.pkg = None
         self._selected = 'description'
+        self._set_output_view('description')
 
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
@@ -252,6 +260,14 @@ class PackageInfo(SelectorBase):
             self._selected = key
             self.update_console(key)
 
+    def _set_output_view(self, key):
+        if key == 'deps':
+            self.frontend.ui.packageInfoSW.set_visible(False)
+            self.frontend.ui.packageDepsSW.set_visible(True)
+        else:
+            self.frontend.ui.packageInfoSW.set_visible(True)
+            self.frontend.ui.packageDepsSW.set_visible(False)
+
     def update_console(self, key):
         '''
         update the console with information
@@ -260,6 +276,7 @@ class PackageInfo(SelectorBase):
         if self.pkg:
             busyCursor(self.main_window)
             self.console.clear()
+            self._set_output_view(key)
             if key == 'description':
                 self.show_description()
             elif key == 'changelog':
@@ -268,6 +285,8 @@ class PackageInfo(SelectorBase):
                 self.show_filelist()
             elif key == 'update':
                 self.show_update()
+            elif key == 'deps':
+                self.show_dependencies()
             self.console.goTop()
             normalCursor(self.main_window)
 
@@ -296,10 +315,7 @@ class PackageInfo(SelectorBase):
 
     def show_dependencies(self):
         deps = self.pkg.dependencies
-        for req in deps:
-            print " Req: %s " % str(req)
-            for provider in deps[req]:
-                print "         Provider : %s" % str(provider)
+        self.deps_view.populate(deps)
 
     def show_description(self):
         '''

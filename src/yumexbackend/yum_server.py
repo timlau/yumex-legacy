@@ -652,7 +652,6 @@ class YumServer(yum.YumBase):
         po = self._getPackage(args)
         deps = self.findDeps([po])
         for po in deps:
-            print str(po)
             requirements = deps[po]
             for req in requirements:
                 provides = requirements[req]

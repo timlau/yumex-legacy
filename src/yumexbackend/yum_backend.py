@@ -25,6 +25,7 @@
 from yumexbase.constants import *
 from urlgrabber.progress import format_number
 from yumexbase import TimeFunction
+from yum.misc import prco_tuple_to_string
 
 from yumexbackend import YumexBackendBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
@@ -373,7 +374,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def get_dependencies(self, po):
         reqs = YumClient.get_dependencies(self, po)
         rc = {}
-        for req, po in reqs:
+        for req_tup, po in reqs:
+            req = prco_tuple_to_string(req_tup)
             cpo = self.package_cache._add(po)
             if req in rc:
                 rc[req].append(cpo)

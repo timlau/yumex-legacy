@@ -1361,3 +1361,112 @@ class YumexHistoryPackageView(SelectionView):
         for cat in secondary:
             elements = secondary[cat]
             self._add_values(cat, elements)
+
+class YumexDepsPackageView(SelectionView):
+    """ 
+    This class controls the history package
+    """
+    def __init__(self, widget, install_color, other_color):
+        '''
+        
+        @param widget:
+        '''
+        SelectionView.__init__(self, widget)
+        self.view.modify_font(const.SMALL_FONT)
+        self.store = self.setup_view()
+        self.install_color = install_color
+        self.other_color = other_color
+
+    def get_data_bool(self, column, cell, model, iterator, prop):
+        '''
+        Show a checkbox is selection column is not None
+        
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        '''
+        state = model.get_value(iterator, 0)
+        category = model.get_value(iterator, 1)
+        if category:
+            cell.set_property('visible', False)
+        else:
+            cell.set_property('visible', True)
+            cell.set_property('active', state)
+
+    def get_data_text(self, column, cell, model, iterator, prop):
+        '''
+        a property function to get string data from a object in the TreeStore based on
+        an attributes key
+        @param column:
+        @param cell:
+        @param model:
+        @param iterator:
+        @param prop: attribute key
+        '''
+        category = model.get_value(iterator, 1)
+        color = self.other_color
+        if category:
+            if prop == 'name':
+                cell.set_property('markup', category)
+            else:
+                cell.set_property('markup', '')
+        else:
+            obj = model.get_value(iterator, 2)
+            if obj:
+                cell.set_property('markup', getattr(obj, prop))
+                if obj.installed:
+                    color = self.install_color
+        cell.set_property('foreground', color)
+
+
+    def on_toggled(self, widget, path):
+        """ Repo select/unselect handler """
+        iterator = self.store.get_iter(path)
+        state = self.store.get_value(iterator, 0)
+        self.store.set_value(iterator, 0, not state)
+
+
+    def get_selected(self):
+        '''
+        
+        '''
+        selected = []
+        for elem in self.store:
+            state = elem[0]
+            name = elem[1]
+            if state:
+                selected.append(name)
+        return selected
+
+    def setup_view(self):
+        """ Create models and columns for the Search Options TextView  """
+        store = gtk.TreeStore('gboolean', gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
+        self.view.set_model(store)
+        # Setup Selection Column
+        #self.create_selection_colunm('')
+        # Setup Actions and pacakges
+        col = self.create_text_column(_("Package"), 'name', size=350)
+        self.view.set_expander_column(col)
+        self.create_text_column(_("Ver."), 'fullver', size=120)
+        self.create_text_column(_("Arch."), 'arch' , size=60)
+        return store
+
+
+    def populate(self, deps):
+        self.store.clear()
+        for req in sorted(deps):
+            parent = self.store.append(None, [False, "<b>%s</b>" % str(req), None])
+            for provider in deps[req]:
+                self.store.append(parent, [False, "", provider])
+
+
+
+
+
+
+
+
+
+
+
