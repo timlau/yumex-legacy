@@ -72,4 +72,9 @@ Fixed / implemented:
 	. Show both installed and update for same package in a search
 	. Show old version of a installonly packages in a search
 	. Added progress dialog when getting category packages (by repository)
+	. Optimized frontend package caching
+	. add support for command line commands.
+		- 'yumex foobar' will search for 'foobar'
+		- 'yumex <action> foobar' : (<action> = [install, remove, update, downgrade, reinstall]
+		   it will populate the pending action queue, based on the action 
 ( * = Released, . = Upstream )	
