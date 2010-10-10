@@ -696,21 +696,29 @@ class YumServer(yum.YumBase):
 
     def run_command(self, cmd, userlist):
         self.reset_transaction()
-        cmd = cmd[:2]
+        cmd = cmd[:3]
         action = None
         try:
-            if cmd == 'in':
+            if cmd == 'ins':
                 action = 'i'
                 for pat in userlist:
                     self.install(pattern=pat)
-            elif cmd == 're' or cmd == 'er':
+            elif cmd == 'rem' or cmd == 'era':
                 action = 'r'
                 for pat in userlist:
                     self.remove(pattern=pat)
-            elif cmd == 'up':
+            elif cmd == 'upd':
                 action = 'u'
                 for pat in userlist:
                     self.update(pattern=pat)
+            elif cmd == 'dow':
+                action = 'do'
+                for pat in userlist:
+                    self.downgrade(pattern=pat)
+            elif cmd == 'rei':
+                action = 'ri'
+                for pat in userlist:
+                    self.reinstall(pattern=pat)
         except Errors.InstallError, e:
             pass
         self._show_packages_in_transaction(action)

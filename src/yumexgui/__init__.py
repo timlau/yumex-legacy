@@ -44,6 +44,7 @@ from yumexbase.constants import *
 from yumexbase import YumexFrontendBase, YumexBackendFatalError, TimeFunction
 import yumexbase.constants as const
 from yumexbase.conf import YumexOptions
+from yum.packages import comparePoEVR
 
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -507,7 +508,7 @@ class YumexApplication(Controller, YumexFrontend):
                 self.ui.packageSearch.set_text(search_text)
                 self.ui.packageSearch.activate()
             rc = False
-        elif cmd in ['install', 'update', 'remove']: # Install Command
+        elif cmd in QUEUE_COMMANDS.values(): # Install Command
             self.notebook.set_active("queue")
             cline = "%s %s" % (cmd, " ".join(args))
             self.queue_entry.set_text(cline)
@@ -1422,6 +1423,31 @@ class YumexApplication(Controller, YumexFrontend):
             self.ui.QueueEntry.set_text("")
             self.last_queue_text = ""
 
+    def _pair_downgrades(self, pkgs):
+        names = {}
+        for hpo in pkgs:
+            if hpo.name in names:
+                names[hpo.name].append(hpo)
+            else:
+                names[hpo.name] = [hpo]
+        packages = []
+        for name in names:
+            pair = names[name]
+            if len(pair) == 2:
+                po1 = pair[0]
+                po2 = pair[1]
+                if comparePoEVR(po1, po2) > 0: # po1 > po2
+                    po1.downgrade_po = po2
+                    packages.append(po1)
+                else:
+                    po2.downgrade_po = po1
+                    packages.append(po2)
+            else: # not a pair, just add to return list
+                packages.extend(pair)
+        return packages
+
+
+
 
     def on_QueueEntry_activate(self, widget=None, event=None):
         '''
@@ -1443,6 +1469,10 @@ class YumexApplication(Controller, YumexFrontend):
                 progress.set_header(msg)
                 self.info(msg)
                 pkgs = self.backend.run_command(cmd, userlist)
+                print pkgs
+                if cmd == 'downgrade':
+                    pkgs = self._pair_downgrades(pkgs)
+                    print pkgs
                 progress.set_pulse(False)
                 progress.hide()
                 for pkg in pkgs:

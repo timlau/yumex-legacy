@@ -43,15 +43,19 @@ YUMEX_LOG = 'yumex.verbose'
 # Package Types
 PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
 # Package list filters
-FILTER = Enum('all', 'installed', 'available', 'updates', 'obsoletes')
+FILTER = Enum('all', 'installed', 'available', 'updates', 'obsoletes', 'downgrade', 'reinstall')
 # Search filters
 SEARCH = Enum('name', 'summary', 'description', 'ver', 'arch', 'repoid')
 # Group Package filters
 GROUP = Enum('all', 'default')
 # State
 STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
-FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r', str(FILTER.obsoletes) : 'o' }
-ACTIONS_FILTER = { 'u' : str(FILTER.updates), 'i' : str(FILTER.available), 'r' : str(FILTER.installed) , 'o' : str(FILTER.obsoletes)  }
+FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r', \
+                   str(FILTER.obsoletes) : 'o', str(FILTER.downgrade)  : 'do', str(FILTER.reinstall) : 'ri'}
+
+ACTIONS_FILTER = { 'u' : str(FILTER.updates), 'i' : str(FILTER.available), \
+                   'r' : str(FILTER.installed) , 'o' : str(FILTER.obsoletes), \
+                    'do' : str(FILTER.downgrade), 'ri' : str(FILTER.reinstall)  }
 
 # Paths
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -195,4 +199,4 @@ QUEUE_PACKAGE_TYPES = {
 'do' : 'downgrade'
 }
 
-YUMEX_CMDLINE_CMDS = ['search', 'install', 'remove', 'update']
+YUMEX_CMDLINE_CMDS = ['search', 'install', 'remove', 'update', 'downgrade', 'reinstall']
