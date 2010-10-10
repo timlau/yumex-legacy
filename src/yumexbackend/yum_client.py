@@ -678,6 +678,14 @@ class YumClient(YumClientBase):
         lst = self._get_list()
         return self.end_state
 
+    def get_dependencies(self):
+        '''
+        
+        '''
+        self._send_command('get-depencencies', [])
+        msgs = self._get_messages()
+        return unpack(msgs['deps'][0])
+
     def get_groups(self):
         '''
         

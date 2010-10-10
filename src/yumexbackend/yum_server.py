@@ -638,6 +638,13 @@ class YumServer(yum.YumBase):
             res = pack(res)
         self.write(':attr\t%s' % res)
 
+    def get_dependencies(self, args):
+        po = self._getPackage(args)
+        deps = self.findDeps([po])
+        self.message('deps', pack(deps))
+        self.ended(True)
+
+
     def add_transaction(self, args):
         '''
         
@@ -1257,6 +1264,8 @@ class YumServer(yum.YumBase):
             self.get_available_by_name(args[0])
         elif cmd == 'get-available-downgrades':
             self.get_available_downgrades(args)
+        elif cmd == 'get-dependencies':
+            self.get_dependencies(args)
         else:
             self.error('Unknown command : %s' % cmd)
 

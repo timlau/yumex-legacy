@@ -232,6 +232,7 @@ class PackageInfo(SelectorBase):
             return
         self.widget.grab_add() # lock everything but then TextView widget, until we have updated
         self.pkg = pkg
+        print self.backend.get_dependencies(pkg)
         #self.set_active(self._selected)
         key = self._selected
         self.update_console(key)
