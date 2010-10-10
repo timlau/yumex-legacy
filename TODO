@@ -11,6 +11,7 @@ TODO:
     	  downloading is completted.
     	  
    	RFE: Add progress in tooltip on status icon     
+   	RFE: Show dep tree in package info.
   	
 BUGS:
   	
