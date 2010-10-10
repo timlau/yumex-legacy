@@ -193,6 +193,7 @@ class YumServer(yum.YumBase):
         self.repos.setFailureCallback(freport)
         self._updateMetadata = None # Update metadata cache 
         self._updates_list = None
+        self._obsoletes_list = None
         self.write(':started') # Let the front end know that we are up and running
 
     def _is_local_repo(self, repo):
@@ -374,14 +375,23 @@ class YumServer(yum.YumBase):
         item = pack(YumHistoryTransaction(yht))
         self.write(":hist\t%s" % item)
 
-    def _show_package(self, pkg, action=None):
-        ''' write history package result'''
+    def _get_package_id(self, pkg, action=None):
         summary = pack(pkg.summary)
         recent = self._get_recent(pkg)
+        if not action:
+            pkg, action = self._get_action(pkg)
         action = pack(action)
-        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" %
-                   (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
-                    summary, action, pkg.size, recent))
+        return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
+                    summary, action, pkg.size, recent)
+
+    def _show_requirement(self, req, pkg):
+        ''' write history package result'''
+        tup = pack((req, self._get_package_id(pkg)))
+        self.write(":req\t%s" % tup)
+
+    def _show_package(self, pkg, action=None):
+        ''' write history package result'''
+        self.write(":pkg\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % self._get_package_id(pkg, action))
 
     def _show_group(self, grp):
         '''
@@ -641,7 +651,15 @@ class YumServer(yum.YumBase):
     def get_dependencies(self, args):
         po = self._getPackage(args)
         deps = self.findDeps([po])
-        self.message('deps', pack(deps))
+        for po in deps:
+            print str(po)
+            requirements = deps[po]
+            for req in requirements:
+                provides = requirements[req]
+                print req
+                for prov in self.bestPackagesFromList(provides, single_name=True):
+                    self._show_requirement(req, prov)
+                #print " Dep : %s -> %s " % (req, po)
         self.ended(True)
 
 
@@ -956,18 +974,32 @@ class YumServer(yum.YumBase):
             self._updates_list = ygh.updates
         return self._updates_list
 
+    def _get_obsoletes(self):
+        if not self._obsoletes_list:
+            ygh = self.doPackageLists(pkgnarrow='obsoletes')
+            self._obsoletes_list = ygh.obsoletes
+        return self._obsoletes_list
+
+    def _get_action(self, po):
+        updates = self._get_updates()
+        obsoletes = self._get_obsoletes()
+        if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
+            (n, a, e, v, r) = po.pkgtup
+            po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
+            action = 'r'
+        else:
+            if po in updates:
+                action = 'u'
+            elif po in obsoletes:
+                action = 'o'
+            else:
+                action = 'i'
+        return po, action
+
     def _return_packages(self, pkgs, filter=None):
         updates = self._get_updates()
         for po in pkgs:
-            if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
-                (n, a, e, v, r) = po.pkgtup
-                po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
-                action = 'r'
-            else:
-                if po in updates:
-                    action = 'u'
-                else:
-                    action = 'i'
+            po, action = self._get_action(po)
             if filter and action not in filter: # Check if action is in filter
                 continue
             self._show_package(po, action)

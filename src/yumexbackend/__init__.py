@@ -232,6 +232,14 @@ class YumexPackage:
         return self.backend.get_update_info(self.id)
 
 
+    @property
+    def dependencies(self):
+        '''
+        get update info for package
+        '''
+        return self.backend.get_dependencies(self.id)
+
+
 
 
 class YumexGroupBase:

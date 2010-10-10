@@ -370,6 +370,17 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.get_packages_size(self, ndx)
         return self.package_cache.find_packages(pkgs)
 
+    def get_dependencies(self, po):
+        reqs = YumClient.get_dependencies(self, po)
+        rc = {}
+        for req, po in reqs:
+            cpo = self.package_cache._add(po)
+            if req in rc:
+                rc[req].append(cpo)
+            else:
+                rc[req] = [cpo]
+        return rc
+
     def get_packages_repo(self, repoid):
         ''' 
         get packages based on repoid

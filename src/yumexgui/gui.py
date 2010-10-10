@@ -232,7 +232,7 @@ class PackageInfo(SelectorBase):
             return
         self.widget.grab_add() # lock everything but then TextView widget, until we have updated
         self.pkg = pkg
-        print self.backend.get_dependencies(pkg)
+        #self.show_dependencies()
         #self.set_active(self._selected)
         key = self._selected
         self.update_console(key)
@@ -293,6 +293,13 @@ class PackageInfo(SelectorBase):
                 msg = "%s\n\n" % upd_info['update_id']
                 self.console.write(msg, "changelog-header")
                 self.show_update_info(upd_info)
+
+    def show_dependencies(self):
+        deps = self.pkg.dependencies
+        for req in deps:
+            print " Req: %s " % str(req)
+            for provider in deps[req]:
+                print "         Provider : %s" % str(provider)
 
     def show_description(self):
         '''

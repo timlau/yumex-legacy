@@ -678,13 +678,17 @@ class YumClient(YumClientBase):
         lst = self._get_list()
         return self.end_state
 
-    def get_dependencies(self):
+    def get_dependencies(self, po):
         '''
         
         '''
-        self._send_command('get-depencencies', [])
-        msgs = self._get_messages()
-        return unpack(msgs['deps'][0])
+        rc = []
+        self._send_command('get-dependencies', [po])
+        reqs = self._get_packed_list(result_cmd=':req')
+        for req, pkg_id in reqs:
+            po = YumexPackage(pkg_id, self.frontend, self)
+            rc.append((req, po))
+        return rc
 
     def get_groups(self):
         '''
