@@ -580,9 +580,7 @@ class YumexQueue:
         @param pkg:
         '''
         na = "%s.%s" % (pkg.name, pkg.arch)
-        print "Queue: ", pkg, na
         if not pkg in self.packages[pkg.action] and not na in self._name_arch_index :
-            print "Queue Added"
             self.packages[pkg.action].append(pkg)
             na = "%s.%s" % (pkg.name, pkg.arch)
             self._name_arch_index[na] = 1
