@@ -513,6 +513,14 @@ class YumexPackageViewSorted(YumexPackageBase):
             self.doGtkEvents()
             self.frontend.debug("package view population - end GtkEvent Processing")
 
+    def on_toggled(self, widget, spath):
+        """ Package selection handler """
+        path = self.sort_store.convert_path_to_child_path(spath)
+        iterator = self.store.get_iter(path)
+        obj = self.store.get_value(iterator, 0)
+        self.togglePackage(obj)
+        self.queueView.refresh()
+
 
 class YumexQueue:
     '''
@@ -572,7 +580,9 @@ class YumexQueue:
         @param pkg:
         '''
         na = "%s.%s" % (pkg.name, pkg.arch)
+        print "Queue: ", pkg, na
         if not pkg in self.packages[pkg.action] and not na in self._name_arch_index :
+            print "Queue Added"
             self.packages[pkg.action].append(pkg)
             na = "%s.%s" % (pkg.name, pkg.arch)
             self._name_arch_index[na] = 1
