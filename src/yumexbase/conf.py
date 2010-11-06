@@ -124,7 +124,13 @@ class YumexOptions:
         parser.add_option("-c", "", dest="yum_conf", action="store",
                 default='/etc/yum.conf', help="yum config file to use default = /etc/yum.conf",
                 metavar=' [config file]')
-
+        parser.add_option("-X", "--execute",
+                        action="store_true", dest="execute", default=False,
+                        help="Execute command line commands ")
+        parser.add_option("-y", "--yes",
+                        action="store_true", dest="always_yes", default=False,
+                        help="Answer yes or OK to all questions")
+ 
         return parser.parse_args()
 
     def dump(self):
@@ -137,7 +143,7 @@ class YumexOptions:
     def update_settings(self):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'disable_netcheck', 'yum_conf', 'search', 'update_only']
+        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'disable_netcheck', 'yum_conf', 'search', 'update_only', 'always_yes', 'execute']
         for opt in options:
             self._calcOption(opt)
         self._check_win_size()

@@ -99,6 +99,8 @@ class YumexFrontend(YumexFrontendBase):
 
     def confirm_transaction(self, transaction, size):
         ''' confirm the current transaction'''
+        if self.settings.always_yes: # No dialog just go on adding the transaction
+            return True
         dialog = self.transactionConfirm
         dialog.populate(transaction, size)
         ok = dialog.run()
@@ -469,7 +471,7 @@ class YumexApplication(Controller, YumexFrontend):
         rc = True
         if self.cfg.cmd_args:
             rc = self.do_commands(self.cfg.cmd_args)
-        if rc:
+        if rc: # No commands executed
             if self.settings.search:            # Search only mode
                 self.ui.packageFilterBox.hide()
                 self.ui.packageSelectAll.hide()
@@ -483,6 +485,9 @@ class YumexApplication(Controller, YumexFrontend):
                 if self.settings.autorefresh:
                     self.ui.packageRadioUpdates.clicked()
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+        elif self.settings.execute or self.settings.run: # Auto execute
+            self.process_transaction()
+            
         #self.testing()
 
 # pylint: enable-msg=W0201
@@ -738,9 +743,12 @@ class YumexApplication(Controller, YumexFrontend):
             if rc: # Transaction ok
                 self.info(_("Transaction completed successfully"))
                 progress.hide()
-                msg = _("Transaction completed successfully")
-                msg += _("\n\nDo you want to exit Yum Extender ?")
-                rc = questionDialog(self.window, msg) # Ask if the user want to Quit
+                if self.settings.always_yes:
+                    rc = True
+                else:
+                    msg = _("Transaction completed successfully")
+                    msg += _("\n\nDo you want to exit Yum Extender ?")
+                    rc = questionDialog(self.window, msg) # Ask if the user want to Quit
                 if rc:
                     self.main_quit() # Quit Yum Extender
                 self.reload()
