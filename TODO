@@ -11,11 +11,7 @@ TODO:
     	  downloading is completted.
     	  
    	RFE: Add progress in tooltip on status icon     
-   	RFE: Add command line option to execute the commands
-   	     Ex.
-   	     yumex upgrade --execute (or -x)
-   	     yumex install foo -x
-   	     yumex erase bar -x
+
    	RFE: Add option to disable the 'do you want to exit' dialog, maybe a do not show me again check mark in 
    	     dialog.
    	     
@@ -86,4 +82,6 @@ Fixed / implemented:
 		- 'yumex <action> foobar' : (<action> = [install, remove, update, downgrade, reinstall]
 		   it will populate the pending action queue, based on the action 
     . Added package info page with package dependency informations
+    . Added -X (--execute) to automatic process actions from command line commands.
+    . Added -y (--yes) to disable transaction dialog and "Do you want to exit" dialog (to be used with -X)
 ( * = Released, . = Upstream )	
