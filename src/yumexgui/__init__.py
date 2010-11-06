@@ -521,6 +521,8 @@ class YumexApplication(Controller, YumexFrontend):
             rc = False
         elif cmd in QUEUE_COMMANDS.values(): # Install Command
             self.notebook.set_active("queue")
+            if cmd == 'update' and len(args) == 0:
+                args = ['*']
             cline = "%s %s" % (cmd, " ".join(args))
             self.queue_entry.set_text(cline)
             self.queue_entry.activate()
