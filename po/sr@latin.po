@@ -8,68 +8,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-31 08:44+0100\n"
+"POT-Creation-Date: 2010-10-05 17:27+0200\n"
 "PO-Revision-Date: 2009-11-08 21:36+0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:95 ../src/yumexbackend/yum_backend.py:96
+#: ../src/yumexbackend/yum_backend.py:170
+#: ../src/yumexbackend/yum_backend.py:171
 msgid "Getting Package Information"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:115
+#: ../src/yumexbackend/yum_backend.py:190
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:129
+#: ../src/yumexbackend/yum_backend.py:204
 msgid "Buiding rpms from deltarpm"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:145 ../src/yumexgui/dialogs.py:250
+#: ../src/yumexbackend/yum_backend.py:220 ../src/yumexgui/dialogs.py:254
 msgid "Downloading Packages"
 msgstr "Preuzimanje paketa"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:151 ../src/yumexgui/dialogs.py:251
+#: ../src/yumexbackend/yum_backend.py:226 ../src/yumexgui/dialogs.py:255
 msgid "Checking Package GPG Signatures"
 msgstr "Proveravam GPG potpise paketa"
 
-#: ../src/yumexbackend/yum_backend.py:156 ../src/yumexgui/dialogs.py:252
+#: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:256
 msgid "Running RPM Test Transaction"
 msgstr "Izvršavam probnu RPM transakciju"
 
-#: ../src/yumexbackend/yum_backend.py:164
+#: ../src/yumexbackend/yum_backend.py:235 ../src/yumexgui/dialogs.py:257
+msgid "Running RPM Transaction"
+msgstr "Izvršavam RPM transakciju"
+
+#: ../src/yumexbackend/yum_backend.py:240
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Želite li da uvezete GPG ključ : %s \n"
 
-#: ../src/yumexbackend/yum_backend.py:166
+#: ../src/yumexbackend/yum_backend.py:242
 #, python-format
 msgid "Needed by %s"
 msgstr "Potreban za %s"
 
-#: ../src/yumexbackend/yum_backend.py:181
+#: ../src/yumexbackend/yum_backend.py:257
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:183
+#: ../src/yumexbackend/yum_backend.py:259
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:246
+#: ../src/yumexbackend/yum_backend.py:322
 msgid "Starting yum child process"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:248
+#: ../src/yumexbackend/yum_backend.py:324
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -77,410 +83,531 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:264
+#: ../src/yumexbackend/yum_backend.py:342
 msgid "yum backend process is ended"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:500 ../src/yumexgui/dialogs.py:249
+#: ../src/yumexbackend/yum_backend.py:353
+#, python-format
+msgid "%i packages returned"
+msgstr ""
+
+#: ../src/yumexbackend/yum_backend.py:592 ../src/yumexgui/dialogs.py:253
 msgid "Resolving Dependencies"
 msgstr "Razrešavanje zavisnosti"
 
-#: ../src/yumexbackend/yum_backend.py:517
-#: ../src/yumexbackend/yum_backend.py:518
+#: ../src/yumexbackend/yum_backend.py:609
+#: ../src/yumexbackend/yum_backend.py:610
 msgid "Dependency Resolution Failed"
 msgstr "Neuspelo razrešavanje zavisnosti"
 
-#: ../src/yumexbackend/yum_backend.py:519
+#: ../src/yumexbackend/yum_backend.py:611
 msgid "Dependency Resolution Errors:"
 msgstr "Greške pri razrešavanju zavisnosti:"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:528
+#: ../src/yumexbackend/yum_backend.py:620
 msgid "Dependency resolving completed with errors"
 msgstr ""
 
+#. Bin package
+#. Root
+#: ../src/yumexbackend/yum_client.py:176
+msgid "Client is running in rootmode, starting backend launcher directly"
+msgstr ""
+
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:224
+#: ../src/yumexbackend/yum_client.py:242
 msgid "Yum backend did not close nicely in time"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:172
+#, python-format
+msgid "Using %s for yum configuration"
 msgstr ""
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:250 ../src/yumexbackend/yum_server.py:259
+#: ../src/yumexbackend/yum_server.py:227 ../src/yumexbackend/yum_server.py:236
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:274
+#: ../src/yumexbackend/yum_server.py:251
 msgid "Yum is locked : "
 msgstr "Yum je zaključan : "
 
-#: ../src/yumexbackend/yum_server.py:279
+#: ../src/yumexbackend/yum_server.py:256
 msgid "  The other application is: PackageKit"
 msgstr "  Drugi program je: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:281
+#: ../src/yumexbackend/yum_server.py:258
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  Drugi program je: %s"
 
-#: ../src/yumexbackend/yum_server.py:283
+#: ../src/yumexbackend/yum_server.py:260
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:698
+#. yumRepo will catch this
+#: ../src/yumexbackend/yum_server.py:295
+msgid "The disc was not inserted"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:326
+msgid "Closing rpm db and releasing yum lock  "
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:715
 msgid "Installing"
 msgstr "Instaliranje"
 
-#: ../src/yumexbackend/yum_server.py:750
+#: ../src/yumexbackend/yum_server.py:767
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Greška pri yum transakciji : %s"
 
-#: ../src/yumexbackend/yum_server.py:792
+#: ../src/yumexbackend/yum_server.py:770
+#, fuzzy
+msgid "Exception in run_transaction"
+msgstr "Pripremam transakciju"
+
+#: ../src/yumexbackend/yum_server.py:809
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Neuspelo dobavljanje %s: "
 
-#: ../src/yumexbackend/yum_server.py:793
+#: ../src/yumexbackend/yum_server.py:810
 msgid "Trying other mirror."
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:960
+#: ../src/yumexbackend/yum_server.py:997
 #, python-format
 msgid "The %s repository has been enabled permanently"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:963
+#: ../src/yumexbackend/yum_server.py:1000
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1010
+#: ../src/yumexbackend/yum_server.py:1011
+#, python-format
+msgid "Setting Yum Option %s = %s"
+msgstr ""
+
+#: ../src/yumexbackend/yum_server.py:1062
 msgid "Cleaned metadata from local cache"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1013
+#: ../src/yumexbackend/yum_server.py:1065
 msgid "Cleaned dbcache"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1016
+#: ../src/yumexbackend/yum_server.py:1068
 msgid "Cleaned packages from local cache"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1018
+#: ../src/yumexbackend/yum_server.py:1070
 msgid "Cleaned everything from local cache"
 msgstr ""
 
-#: ../src/yumexbackend/yum_server.py:1404
+#: ../src/yumexbackend/yum_server.py:1474
 msgid "Rebuild from deltarpms completted"
 msgstr "Ponovna izgradnja iz deltarpm paketa je završena"
 
-#: ../src/yumexbackend/yum_server.py:1406
+#: ../src/yumexbackend/yum_server.py:1476
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr ""
 
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:77
 msgid "updates"
 msgstr "ažuriranja"
 
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:77
 msgid "available"
 msgstr "dostupno"
 
-#: ../src/yumexbase/constants.py:73
+#: ../src/yumexbase/constants.py:77
 msgid "installed"
 msgstr "instalirano"
 
-#: ../src/yumexbase/constants.py:93
-msgid "Downloading repository information"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:94
-#, python-format
-msgid "Downloading Package information for the %s repository"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:95
-#, python-format
-msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:96
-#, python-format
-msgid "Downloading Changelog information for the %s repository"
-msgstr ""
-
 #: ../src/yumexbase/constants.py:97
-#, python-format
-msgid "Downloading Group information for the %s repository"
+msgid "Downloading repository information"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
-msgid "Downloading metalink information for the %s repository"
+msgid "Downloading Package information for the %s repository"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
-msgid "Downloading Delta update information for the %s repository"
+msgid "Downloading Filelist information for the %s repository"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:100
 #, python-format
+msgid "Downloading Changelog information for the %s repository"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:101
+#, python-format
+msgid "Downloading Group information for the %s repository"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:102
+#, python-format
+msgid "Downloading metalink information for the %s repository"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:103
+#, python-format
+msgid "Downloading Delta update information for the %s repository"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:104
+#, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:111
+#: ../src/yumexbase/constants.py:115
 msgid "0 - 7 Days"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:112
+#: ../src/yumexbase/constants.py:116
 msgid "7 - 14 Days"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:113
+#: ../src/yumexbase/constants.py:117
 msgid "14 - 21 Days"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:114
+#: ../src/yumexbase/constants.py:118
 msgid "21  - 30 days"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:115
+#: ../src/yumexbase/constants.py:119
 msgid "30 - 90 days"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:116
+#: ../src/yumexbase/constants.py:120
 msgid "90+ days"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:253
-msgid "Running RPM Transaction"
-msgstr "Izvršavam RPM transakciju"
+#: ../src/yumexbase/constants.py:142
+#, fuzzy
+msgid "Getting all packages"
+msgstr "Dobavljam dostupne pakete"
 
-#: ../src/yumexgui/dialogs.py:343
+#: ../src/yumexbase/constants.py:143
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "Dobavljam instalirane pakete"
+
+#: ../src/yumexbase/constants.py:144
+#, fuzzy
+msgid "Getting available packages"
+msgstr "Dobavljam dostupne pakete"
+
+#: ../src/yumexbase/constants.py:145
+#, fuzzy
+msgid "Getting available updates"
+msgstr "Dobavljam dostupne pakete"
+
+#: ../src/yumexbase/constants.py:146
+#, fuzzy
+msgid "Getting available obsoletes"
+msgstr "Dobavljam dostupne pakete"
+
+#: ../src/yumexbase/constants.py:168
+#, fuzzy
+msgid "Updated packages"
+msgstr "Dobavljam ažurirane pakete"
+
+#: ../src/yumexbase/constants.py:169
+#, fuzzy
+msgid "Downgraded packages"
+msgstr "Preuzimanje paketa"
+
+#: ../src/yumexbase/constants.py:170
+#, fuzzy
+msgid "Obsoleting packages"
+msgstr "Prikaži instalirane pakete"
+
+#: ../src/yumexbase/constants.py:171
+#, fuzzy
+msgid "Obsoleted packages"
+msgstr "Prikaži instalirane pakete"
+
+#: ../src/yumexbase/constants.py:172
+#, fuzzy
+msgid "Erased packages"
+msgstr "Prikaži instalirane pakete"
+
+#: ../src/yumexbase/constants.py:173 ../src/yumexbase/constants.py:174
+#, fuzzy
+msgid "Installed packages"
+msgstr "Prikaži instalirane pakete"
+
+#: ../src/yumexbase/constants.py:175
+msgid "Installed for dependencies"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:176
+#, fuzzy
+msgid "Reinstalled packages"
+msgstr "Prikaži instalirane pakete"
+
+#: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:413
+#: ../src/yumexgui/dialogs.py:426
 msgid "Preferences"
 msgstr "Postavke"
 
-#: ../src/yumexgui/dialogs.py:426
+#: ../src/yumexgui/dialogs.py:439
 msgid "Load packages on launch"
 msgstr "Učitaj pakete po pokretanju"
 
-#: ../src/yumexgui/dialogs.py:434
+#: ../src/yumexgui/dialogs.py:440
+msgid "Use sortable columns in package view (slower)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:441
+msgid "Use typeahead search on package name"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:449
 msgid "Debug Mode"
 msgstr "Režim pronalaženja grešaka"
 
-#: ../src/yumexgui/dialogs.py:435
+#: ../src/yumexgui/dialogs.py:450
 msgid "Disable startup network check"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:436
+#: ../src/yumexgui/dialogs.py:451
 msgid "Color (Installed)"
 msgstr "Boja (instalirani)"
 
-#: ../src/yumexgui/dialogs.py:437
+#: ../src/yumexgui/dialogs.py:452
 msgid "Color (Update)"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:438
+#: ../src/yumexgui/dialogs.py:453
 msgid "Color (Available)"
 msgstr "Boja (dostupni)"
 
-#: ../src/yumexgui/dialogs.py:446
+#: ../src/yumexgui/dialogs.py:461
 msgid "Enable Yum Plugins"
 msgstr "Uključi Yum dodatke"
 
-#: ../src/yumexgui/dialogs.py:447
+#: ../src/yumexgui/dialogs.py:462
 msgid "Proxy"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:448
+#: ../src/yumexgui/dialogs.py:463
 msgid "Yum Debug Level"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:504 ../src/yumexgui/dialogs.py:513
+#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "Ishod transakcije"
 
-#: ../src/yumexgui/dialogs.py:547 ../src/yumexgui/views.py:577
+#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:856
 msgid "Name"
 msgstr "Ime"
 
-#: ../src/yumexgui/dialogs.py:548
+#: ../src/yumexgui/dialogs.py:587
 msgid "Arch"
 msgstr "Arhitektura"
 
-#: ../src/yumexgui/dialogs.py:549 ../src/yumexgui/views.py:160
+#: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:203
+#: ../src/yumexgui/views.py:420
 msgid "Ver"
 msgstr "Verzija"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:550 ../src/yumexgui/views.py:529
-#: ../src/yumexgui/views.py:576
+#: ../src/yumexgui/dialogs.py:589 ../src/yumexgui/views.py:809
+#: ../src/yumexgui/views.py:855
 msgid "Repository"
 msgstr "Repozitorijum"
 
-#: ../src/yumexgui/dialogs.py:551 ../src/yumexgui/views.py:160
+#: ../src/yumexgui/dialogs.py:590 ../src/yumexgui/views.py:203
+#: ../src/yumexgui/views.py:420
 msgid "Size"
 msgstr "Veličina"
 
-#: ../src/yumexgui/dialogs.py:585
+#: ../src/yumexgui/dialogs.py:624
 #, python-format
 msgid "Download Size : %s "
 msgstr ""
 
-#: ../src/yumexgui/gui.py:247
+#: ../src/yumexgui/gui.py:208
 msgid "Package Description"
 msgstr "Opis paketa"
 
-#: ../src/yumexgui/gui.py:249
+#: ../src/yumexgui/gui.py:210
+msgid "Update information"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:212
 msgid "Package Changelog"
 msgstr "Dnevnik promena paketa"
 
-#: ../src/yumexgui/gui.py:251
+#: ../src/yumexgui/gui.py:214
 msgid "Package Filelist"
 msgstr "Spisak datoteka paketa"
 
-#: ../src/yumexgui/gui.py:310
-msgid ""
-"\n"
-"Package Description"
+#: ../src/yumexgui/gui.py:300
+msgid "Project URL : "
 msgstr ""
-"\n"
-"Opis paketa"
 
-#: ../src/yumexgui/gui.py:315
-msgid "Update ID"
-msgstr "IB ažuriranja"
-
-#: ../src/yumexgui/gui.py:316
+#: ../src/yumexgui/gui.py:307
 msgid "Release"
 msgstr "Izdanje"
 
-#: ../src/yumexgui/gui.py:317
+#: ../src/yumexgui/gui.py:308
 msgid "Type"
 msgstr ""
 
-#: ../src/yumexgui/gui.py:318
+#: ../src/yumexgui/gui.py:309
 msgid "Status"
 msgstr ""
 
-#: ../src/yumexgui/gui.py:319
+#: ../src/yumexgui/gui.py:310
 msgid "Issued"
 msgstr ""
 
-#: ../src/yumexgui/gui.py:329
-msgid "       Bugs :"
-msgstr ""
-
-#: ../src/yumexgui/gui.py:351
-#, python-format
-msgid "Description : %s\n"
+#: ../src/yumexgui/gui.py:349
+#, fuzzy
+msgid "Description"
 msgstr "Opis : %s\n"
 
-#: ../src/yumexgui/__init__.py:474
+#: ../src/yumexgui/gui.py:489
+msgid "Quit"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:445 ../src/yumexgui/__init__.py:446
+#, fuzzy
+msgid "Adding Packages to view"
+msgstr "Preuzimanje paketa"
+
+#: ../src/yumexgui/__init__.py:449
+#, python-format
+msgid "Added %i Packages to view"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:555
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:644
+#: ../src/yumexgui/__init__.py:771
 msgid "Fatal Error"
 msgstr "Kobna greška"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:646
+#: ../src/yumexgui/__init__.py:773
 msgid "Can't start the yum backend"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:647
+#: ../src/yumexgui/__init__.py:774
 msgid "Another program is locking yum"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:649
+#: ../src/yumexgui/__init__.py:776
 msgid "Message from yum backend:"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:653
+#: ../src/yumexgui/__init__.py:780
 msgid "Error in repository setup"
 msgstr "Greška u postavci repozitorijuma"
 
-#: ../src/yumexgui/__init__.py:656
+#: ../src/yumexgui/__init__.py:783
 msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:657
+#: ../src/yumexgui/__init__.py:784
 msgid "and deseleting the repositories causing problems\n"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:658
+#: ../src/yumexgui/__init__.py:785
 msgid "and try again.\n"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:663
+#: ../src/yumexgui/__init__.py:790
 msgid "Fatal Error in backend restart"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:664
+#: ../src/yumexgui/__init__.py:791
 msgid "Backend could not be closed"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:668
+#: ../src/yumexgui/__init__.py:795
 #, fuzzy
 msgid "Fatal Error : "
 msgstr "Kobna greška"
 
-#: ../src/yumexgui/__init__.py:733 ../src/yumexgui/views.py:447
+#: ../src/yumexgui/__init__.py:860
+#, fuzzy
+msgid "Available Updates"
+msgstr "Dobavljam dostupne pakete"
+
+#: ../src/yumexgui/__init__.py:862
+#, fuzzy
+msgid "Search for packages"
+msgstr "Prikaži ažuriranja paketa"
+
+#: ../src/yumexgui/__init__.py:864 ../src/yumexgui/views.py:727
 msgid "Packages"
 msgstr "Paketi"
 
-#: ../src/yumexgui/__init__.py:734
+#: ../src/yumexgui/__init__.py:866
 msgid "Perform actions on packages"
 msgstr "Izvedi akcije nad paketima"
 
-#: ../src/yumexgui/__init__.py:736
+#: ../src/yumexgui/__init__.py:868
 msgid "Pending Actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:737
+#: ../src/yumexgui/__init__.py:869
 msgid "Work with pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:740
+#: ../src/yumexgui/__init__.py:872
 msgid "Repositories"
 msgstr "Repozitorijumi"
 
-#: ../src/yumexgui/__init__.py:741
+#: ../src/yumexgui/__init__.py:873
 msgid "Select active repositories"
 msgstr "Izaberite aktivne repozitorijume"
 
-#: ../src/yumexgui/__init__.py:743
+#: ../src/yumexgui/__init__.py:876
 msgid "History"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:744
+#: ../src/yumexgui/__init__.py:877
 msgid "Watch yum history"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:746
+#: ../src/yumexgui/__init__.py:883
 msgid "Output"
 msgstr "Izlaz"
 
-#: ../src/yumexgui/__init__.py:747
+#: ../src/yumexgui/__init__.py:884
 msgid "Watch output details"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:786
+#: ../src/yumexgui/__init__.py:932
 msgid "Not connected to an network"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:787
+#: ../src/yumexgui/__init__.py:933
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
@@ -488,87 +615,72 @@ msgstr ""
 "Nema veze ka nijednoj mreži.\n"
 "Želite li da nastavite?"
 
-#: ../src/yumexgui/__init__.py:792
+#: ../src/yumexgui/__init__.py:938
 msgid "network connection state check is disabled"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:794
+#: ../src/yumexgui/__init__.py:940
 msgid "Can't detect the network connection state"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:796
+#: ../src/yumexgui/__init__.py:942
 msgid "Connected to an network"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:829
+#: ../src/yumexgui/__init__.py:1012
 msgid "Enable Permanently"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:833
+#: ../src/yumexgui/__init__.py:1016
 msgid "Disable Permanently"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:836
+#: ../src/yumexgui/__init__.py:1019
 msgid "Clean Metadata"
 msgstr "Očisti metapodatke"
 
-#: ../src/yumexgui/__init__.py:837
+#: ../src/yumexgui/__init__.py:1020
 msgid "Clean Packages"
 msgstr "Očisti pakete"
 
-#: ../src/yumexgui/__init__.py:838
+#: ../src/yumexgui/__init__.py:1021
 msgid "Clean DbCache"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:839
+#: ../src/yumexgui/__init__.py:1022
 msgid "Clean All"
 msgstr "Očisti sve"
 
-#: ../src/yumexgui/__init__.py:845
+#: ../src/yumexgui/__init__.py:1028
 msgid "By Repositories"
 msgstr "Po ropozitorijumima"
 
-#: ../src/yumexgui/__init__.py:846
+#: ../src/yumexgui/__init__.py:1029
 msgid "By Size"
 msgstr "Po veličini"
 
-#: ../src/yumexgui/__init__.py:869 ../src/yumexgui/__init__.py:870
+#: ../src/yumexgui/__init__.py:1053 ../src/yumexgui/__init__.py:1054
 msgid "Getting Group information"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:890
-msgid "Getting Package Lists"
-msgstr "Dobavljam spiskove paketa"
-
-#: ../src/yumexgui/__init__.py:891
-msgid "Getting Updated Packages"
-msgstr "Dobavljam ažurirane pakete"
-
-#: ../src/yumexgui/__init__.py:894
-msgid "Getting Available Packages"
-msgstr "Dobavljam dostupne pakete"
-
-#: ../src/yumexgui/__init__.py:896
-msgid "Getting installed Packages"
-msgstr "Dobavljam instalirane pakete"
-
-#: ../src/yumexgui/__init__.py:909
+#: ../src/yumexgui/__init__.py:1086
 msgid "The pending action queue is empty"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:926
+#: ../src/yumexgui/__init__.py:1103
 msgid "Processing pending actions"
 msgstr "Obrađujem akcije na čekanju"
 
-#: ../src/yumexgui/__init__.py:927
+#: ../src/yumexgui/__init__.py:1104
 msgid "Preparing the transaction"
 msgstr "Pripremam transakciju"
 
-#: ../src/yumexgui/__init__.py:944
+#. Transaction ok
+#: ../src/yumexgui/__init__.py:1120 ../src/yumexgui/__init__.py:1122
 msgid "Transaction completed successfully"
 msgstr "Transakcija je uspešno završena"
 
-#: ../src/yumexgui/__init__.py:945
+#: ../src/yumexgui/__init__.py:1123
 msgid ""
 "\n"
 "\n"
@@ -576,98 +688,129 @@ msgid ""
 msgstr ""
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:951
+#: ../src/yumexgui/__init__.py:1129
 msgid "Transaction Aborted by User"
 msgstr "Transakciju je prekinuo korisnik"
 
-#: ../src/yumexgui/__init__.py:954
+#: ../src/yumexgui/__init__.py:1132
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1033
+#: ../src/yumexgui/__init__.py:1214
 msgid "<unset>"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1034
+#: ../src/yumexgui/__init__.py:1215
 msgid "System"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1057
+#: ../src/yumexgui/__init__.py:1258
 msgid "Getting History Information"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1059
+#: ../src/yumexgui/__init__.py:1260
 msgid "Getting Latest History Information"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1061
+#: ../src/yumexgui/__init__.py:1262
 msgid "Getting All History Information"
 msgstr ""
 
-#: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:183
+#: ../src/yumexgui/__init__.py:1268 ../src/yumexgui/__init__.py:1285
+msgid "History Disabled"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:1279 ../src/yumexgui/__init__.py:1280
+msgid "Searching History Information"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:1323
+#, fuzzy
+msgid "Transaction Performed with"
+msgstr "Transakciju je prekinuo korisnik"
+
+#: ../src/yumexgui/__init__.py:1326
+#, fuzzy
+msgid "Skipped packages"
+msgstr "Prikaži instalirane pakete"
+
+#. Setup Selection Column
+#. self.create_selection_colunm('')
+#. Setup Actions and pacakges
+#: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:227
+#: ../src/yumexgui/views.py:420 ../src/yumexgui/views.py:445
+#: ../src/yumexgui/views.py:1373
 msgid "Package"
 msgstr "Paket"
 
-#: ../src/yumexgui/views.py:160 ../src/yumexgui/views.py:186
-#: ../src/yumexgui/views.py:452
+#: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:230
+#: ../src/yumexgui/views.py:420 ../src/yumexgui/views.py:448
+#: ../src/yumexgui/views.py:732
 msgid "Summary"
 msgstr "Sažetak"
 
-#: ../src/yumexgui/views.py:160
+#: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:420
 msgid "Repo"
 msgstr "Repo"
 
-#: ../src/yumexgui/views.py:160
+#: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:420
 msgid "Architecture"
 msgstr "Arhitektura"
 
-#: ../src/yumexgui/views.py:184
+#: ../src/yumexgui/views.py:228 ../src/yumexgui/views.py:446
+#: ../src/yumexgui/views.py:1375
 msgid "Ver."
 msgstr "Ver."
 
-#: ../src/yumexgui/views.py:185
+#: ../src/yumexgui/views.py:229 ../src/yumexgui/views.py:447
+#: ../src/yumexgui/views.py:1376
 msgid "Arch."
 msgstr "Arh."
 
-#: ../src/yumexgui/views.py:187
+#: ../src/yumexgui/views.py:231 ../src/yumexgui/views.py:449
 msgid "Repo."
 msgstr "Repo."
 
-#: ../src/yumexgui/views.py:188
+#: ../src/yumexgui/views.py:232 ../src/yumexgui/views.py:450
 msgid "Size."
 msgstr "Vel."
 
-#: ../src/yumexgui/views.py:413
+#: ../src/yumexgui/views.py:693
 msgid "Package Queue:"
 msgstr "Red paketa:"
 
-#: ../src/yumexgui/views.py:529
+#: ../src/yumexgui/views.py:809
 msgid "Filename"
 msgstr "Ime datoteke"
 
-#: ../src/yumexgui/views.py:889
+#. Setup reponame & repofile column's
+#: ../src/yumexgui/views.py:989
+msgid "Search Keys"
+msgstr ""
+
+#: ../src/yumexgui/views.py:1220
 msgid "Categories"
 msgstr "Kategorije"
 
-#: ../src/yumexgui/views.py:935
+#: ../src/yumexgui/views.py:1266
 msgid "Id"
 msgstr ""
 
-#: ../src/yumexgui/views.py:936
+#: ../src/yumexgui/views.py:1267
 msgid "Login User"
 msgstr ""
 
-#: ../src/yumexgui/views.py:937
+#: ../src/yumexgui/views.py:1268
 msgid "Data/Time"
 msgstr ""
 
-#: ../src/yumexgui/views.py:938
+#: ../src/yumexgui/views.py:1269
 msgid "Action(s)"
 msgstr ""
 
-#: ../src/yumexgui/views.py:939
+#: ../src/yumexgui/views.py:1270
 msgid "Altered"
 msgstr ""
 
@@ -732,125 +875,169 @@ msgid "Remove selected packages from queue"
 msgstr "Ukloni izabrane pakete iz reda"
 
 #: ../src/yumex.glade.h:18
+#, fuzzy
+msgid "Search Options"
+msgstr "_Opcije"
+
+#: ../src/yumex.glade.h:19
 msgid "Select all packages in current view"
 msgstr ""
 
-#: ../src/yumex.glade.h:19
+#: ../src/yumex.glade.h:20
 #, fuzzy
 msgid "Show Categories"
 msgstr "Kategorije"
 
-#: ../src/yumex.glade.h:20
+#: ../src/yumex.glade.h:21
 #, fuzzy
 msgid "Show Groups"
 msgstr "_Grupe"
 
-#: ../src/yumex.glade.h:21
+#: ../src/yumex.glade.h:22
 #, fuzzy
 msgid "Show all Packages"
 msgstr "Prikaži dostupne pakete"
 
-#: ../src/yumex.glade.h:22
+#: ../src/yumex.glade.h:23
 msgid "Show available packages"
 msgstr "Prikaži dostupne pakete"
 
-#: ../src/yumex.glade.h:23
+#: ../src/yumex.glade.h:24
 msgid "Show installed packages"
 msgstr "Prikaži instalirane pakete"
 
-#: ../src/yumex.glade.h:24
+#: ../src/yumex.glade.h:25
 msgid "Show package updates"
 msgstr "Prikaži ažuriranja paketa"
 
-#: ../src/yumex.glade.h:25
+#: ../src/yumex.glade.h:26
 msgid "Skip Broken"
 msgstr ""
 
-#: ../src/yumex.glade.h:26
+#: ../src/yumex.glade.h:27
 msgid "Skip packages there get depsolve errors"
 msgstr ""
 
-#: ../src/yumex.glade.h:27
+#: ../src/yumex.glade.h:28
+msgid "Testing Stuff"
+msgstr ""
+
+#: ../src/yumex.glade.h:29
+msgid "Type package names to seach for"
+msgstr ""
+
+#: ../src/yumex.glade.h:30
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
 
-#: ../src/yumex.glade.h:31
+#: ../src/yumex.glade.h:34
+msgid "Typeahead search on/off"
+msgstr ""
+
+#: ../src/yumex.glade.h:35
 msgid "U_pdates"
 msgstr "_Ažuriranja"
 
-#: ../src/yumex.glade.h:32
+#: ../src/yumex.glade.h:36
 msgid "Undo a history transaction"
 msgstr ""
 
-#: ../src/yumex.glade.h:33
+#: ../src/yumex.glade.h:37
 #, fuzzy
 msgid "Undo all package selection"
 msgstr "Nema izabranih paketa"
 
-#: ../src/yumex.glade.h:34
+#: ../src/yumex.glade.h:38
 #, fuzzy
 msgid "Undo repository selection changes"
 msgstr "Prikaz za izbor repozitorijuma"
 
-#: ../src/yumex.glade.h:35
+#: ../src/yumex.glade.h:39
+msgid "Undo the current search"
+msgstr ""
+
+#: ../src/yumex.glade.h:40
 msgid "Yum"
 msgstr ""
 
-#: ../src/yumex.glade.h:36
+#: ../src/yumex.glade.h:41
 msgid "_Categories"
 msgstr "_Kategorije"
 
-#: ../src/yumex.glade.h:37
+#: ../src/yumex.glade.h:42
 msgid "_Edit"
 msgstr "_Uređivanje"
 
-#: ../src/yumex.glade.h:38
+#: ../src/yumex.glade.h:43
 msgid "_File"
 msgstr "_Datoteka"
 
-#: ../src/yumex.glade.h:39
+#: ../src/yumex.glade.h:44
 msgid "_Groups"
 msgstr "_Grupe"
 
-#: ../src/yumex.glade.h:40
+#: ../src/yumex.glade.h:45
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: ../src/yumex.glade.h:41
+#: ../src/yumex.glade.h:46
 msgid "_History"
 msgstr ""
 
-#: ../src/yumex.glade.h:42
+#: ../src/yumex.glade.h:47
 msgid "_Installed"
 msgstr "_Instalirani"
 
-#: ../src/yumex.glade.h:43
+#: ../src/yumex.glade.h:48
 msgid "_Options"
 msgstr "_Opcije"
 
-#: ../src/yumex.glade.h:44
+#: ../src/yumex.glade.h:49
 msgid "_Output"
 msgstr "_Izlaz"
 
-#: ../src/yumex.glade.h:45
+#: ../src/yumex.glade.h:50
 msgid "_Packages"
 msgstr "_Paketi"
 
-#: ../src/yumex.glade.h:46
+#: ../src/yumex.glade.h:51
 msgid "_Profiles"
 msgstr "_Profili"
 
-#: ../src/yumex.glade.h:47
+#: ../src/yumex.glade.h:52
 msgid "_Queue"
 msgstr "_Red"
 
-#: ../src/yumex.glade.h:48
+#: ../src/yumex.glade.h:53
 msgid "_View"
 msgstr "Preg_led"
 
-#: ../src/yumex.glade.h:49
+#: ../src/yumex.glade.h:54
 msgid "no GPG Check"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Populating Package Cache"
+#~ msgstr "Preuzimanje paketa"
+
+#~ msgid ""
+#~ "\n"
+#~ "Package Description"
+#~ msgstr ""
+#~ "\n"
+#~ "Opis paketa"
+
+#~ msgid "Update ID"
+#~ msgstr "IB ažuriranja"
+
+#~ msgid "Getting Package Lists"
+#~ msgstr "Dobavljam spiskove paketa"
+
+#~ msgid "Getting Available Packages"
+#~ msgstr "Dobavljam dostupne pakete"
+
+#~ msgid "Getting installed Packages"
+#~ msgstr "Dobavljam instalirane pakete"

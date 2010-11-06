@@ -1,78 +1,78 @@
-# Danish translation of yumex.
-# Copyright (C) 2009 yumex
-# This file is distributed under the same license as the yumex package.
-# Tim Lauridsen <tla@rasmil.dl>, 2009.
-# Kris Thomsen <lakristho@gmail.com>, 2009, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex\n"
+"Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-05 17:27+0200\n"
-"PO-Revision-Date: 2010-03-15 19:54+0100\n"
-"Last-Translator: Kris Thomsen <lakristho@gmail.com>\n"
-"Language-Team: Danish\n"
-"Language: da\n"
+"PO-Revision-Date: 2010-08-23 00:08+0330\n"
+"Last-Translator: Mostafa <info@mostafadaneshvar.com>\n"
+"Language-Team: Persian <trans-fa@lists.fedoraproject.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Persian\n"
+"X-Poedit-Country: Iran\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:170
 #: ../src/yumexbackend/yum_backend.py:171
 msgid "Getting Package Information"
-msgstr "Henter pakkeinformation"
+msgstr "بازخوانی اطلاعات بسته"
 
 #: ../src/yumexbackend/yum_backend.py:190
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
-msgstr "Ukendt pakkearkiv-metadatatype (%s) for %s"
+msgstr "نوع مدتادیتای ناشناس  (%s) برای %s"
 
 #: ../src/yumexbackend/yum_backend.py:204
 msgid "Buiding rpms from deltarpm"
-msgstr "Bygger rpm'er fra deltarpm-pakker"
+msgstr "ساختن ار‌پی‌ام ها از دلتا‌ار‌پی‌ام"
 
 #: ../src/yumexbackend/yum_backend.py:220 ../src/yumexgui/dialogs.py:254
 msgid "Downloading Packages"
-msgstr "Henter Pakker"
+msgstr "دانلود بسته ها"
 
 #. Don't allow Cancel any more
 #: ../src/yumexbackend/yum_backend.py:226 ../src/yumexgui/dialogs.py:255
 msgid "Checking Package GPG Signatures"
-msgstr "Checker Pakkernes GPG-signaturer"
+msgstr "کنترل کردن امضاهای GPG بسته"
 
 #: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:256
 msgid "Running RPM Test Transaction"
-msgstr "Kører RPM Test Transaktion"
+msgstr "اجرای آزمایش تراکنش آر‌پی‌ام"
 
 #: ../src/yumexbackend/yum_backend.py:235 ../src/yumexgui/dialogs.py:257
 msgid "Running RPM Transaction"
-msgstr "Kører RPM-transaktion"
+msgstr "اجرای تراکنش ار‌پی‌ام"
 
 #: ../src/yumexbackend/yum_backend.py:240
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr "Vil du at importere følgende GPG-nøgle: %s \n"
+msgstr "آیا می خواهید کلید GPG وارد شود:  %s \n"
 
 #: ../src/yumexbackend/yum_backend.py:242
 #, python-format
 msgid "Needed by %s"
-msgstr "Behøves af %s"
+msgstr "خواسته شده توسط %s"
 
 #: ../src/yumexbackend/yum_backend.py:257
 #, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr "Indsæt venligst mediet mærket %s #%d."
+msgstr "لطفا رسانه ی  %s را وارد کنید #%d."
 
 #: ../src/yumexbackend/yum_backend.py:259
 #, python-format
 msgid "Please insert media labeled %s."
-msgstr "Indsæt venligst mediet mærket %s."
+msgstr "لطفا رسانه ی  %s را وارد کنید."
 
 #: ../src/yumexbackend/yum_backend.py:322
 msgid "Starting yum child process"
-msgstr "Starter yum-baggrundsprocess"
+msgstr "آغاز پروسه ی پیروی یام"
 
 #: ../src/yumexbackend/yum_backend.py:324
 #, python-format
@@ -81,13 +81,13 @@ msgid ""
 "%s\n"
 "\n"
 msgstr ""
-"Bruger følgende pakkearkiver:\n"
+"استفاده از مخازن ذیل:\n"
 "%s\n"
 "\n"
 
 #: ../src/yumexbackend/yum_backend.py:342
 msgid "yum backend process is ended"
-msgstr "yum-backendproces er afsluttet"
+msgstr "پروسه ی مدیریت یام خاتمه یافت"
 
 #: ../src/yumexbackend/yum_backend.py:353
 #, python-format
@@ -96,265 +96,259 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:592 ../src/yumexgui/dialogs.py:253
 msgid "Resolving Dependencies"
-msgstr "Finder afhængigheder"
+msgstr "در حال حل وابستگی ها"
 
 #: ../src/yumexbackend/yum_backend.py:609
 #: ../src/yumexbackend/yum_backend.py:610
 msgid "Dependency Resolution Failed"
-msgstr "Afhængighedssøgning fejlede"
+msgstr "خطا در حل وابستگی ها"
 
 #: ../src/yumexbackend/yum_backend.py:611
 msgid "Dependency Resolution Errors:"
-msgstr "Fejl ved søgning af afhængigheder:"
+msgstr "خطاهای حل وابستگی ها:"
 
 #. Write errors to output page
 #: ../src/yumexbackend/yum_backend.py:620
 msgid "Dependency resolving completed with errors"
-msgstr "Løsning af afhængigheder afsluttet med fejl"
+msgstr "حل وابستگی با خطاهایی کامل شد"
 
 #. Bin package
 #. Root
 #: ../src/yumexbackend/yum_client.py:176
+#, fuzzy
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
+msgstr "کلاینت در حالت رووت اجرا می شود، اجرا مدیریت به صورت مستقیم"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:242
 msgid "Yum backend did not close nicely in time"
-msgstr "Yum-backenden lukkede ikke pænt i tide"
+msgstr "مدیریت یام به درستی بسته نشد"
 
 #: ../src/yumexbackend/yum_server.py:172
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "استفاده ی %s برای پیکره بندی یام"
 
 #. Not local disable it
 #. No, disable it
 #: ../src/yumexbackend/yum_server.py:227 ../src/yumexbackend/yum_server.py:236
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr "Ingen netværksforbindelse, deaktivér ikke-lokalt pakkearkiv %s"
+msgstr "بدون اتصال شبکه، غیرفعال سازی مخازن غیر داخلی %s"
 
 #: ../src/yumexbackend/yum_server.py:251
 msgid "Yum is locked : "
-msgstr "Yum er Låst: "
+msgstr "یام قفل شده است:"
 
 #: ../src/yumexbackend/yum_server.py:256
 msgid "  The other application is: PackageKit"
-msgstr "  Den anden applikation er: PackageKit"
+msgstr "برنامه دیگر:PackageKit  است"
 
 #: ../src/yumexbackend/yum_server.py:258
 #, python-format
 msgid "  The other application is: %s"
-msgstr "  Det andet program er: %s"
+msgstr "برنامه دیگر: %s"
 
 #: ../src/yumexbackend/yum_server.py:260
 msgid "Waiting 10 seconds and tries again !!!"
-msgstr "Venter 10 sekunder og prøver igen !!!"
+msgstr "صبر ۱۰ دقیقه ای و تلاش مجدد!!!"
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:295
-#, fuzzy
 msgid "The disc was not inserted"
-msgstr "Det afspurgte medie blev ikke fundet"
+msgstr "دیسک وارد نشده است"
 
 #: ../src/yumexbackend/yum_server.py:326
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "بستن db ار‌پی‌ام و رهاسازی قفل یام"
 
 #: ../src/yumexbackend/yum_server.py:715
 msgid "Installing"
-msgstr "Installerer"
+msgstr "درحال نصب"
 
 #: ../src/yumexbackend/yum_server.py:767
 #, python-format
 msgid "Error in yum Transaction : %s"
-msgstr "Fejl i yum-transaktion: %s"
+msgstr "خطا در تراکنش یام : %s"
 
 #: ../src/yumexbackend/yum_server.py:770
-#, fuzzy
 msgid "Exception in run_transaction"
-msgstr "Klargører transaktionen"
+msgstr "استثنا در اجرای تراکنش"
 
 #: ../src/yumexbackend/yum_server.py:809
 #, python-format
 msgid "Failure getting %s: "
-msgstr "Fejl ved henting af %s: "
+msgstr "خطا در گرفتن %s: "
 
 #: ../src/yumexbackend/yum_server.py:810
 msgid "Trying other mirror."
-msgstr "Prøver et andet filspejl."
+msgstr "آزمایش آیینه ای دیگر"
 
 #: ../src/yumexbackend/yum_server.py:997
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr "Pakkearkivet %s er blevet aktiveret permanent"
+msgstr "مخزن %s به طور دایمی فعال شد"
 
 #: ../src/yumexbackend/yum_server.py:1000
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr "Pakkearkivet %s er blevet deaktiveret permanent"
+msgstr "مخزن %s به طور دایمی فعال شد"
 
 #: ../src/yumexbackend/yum_server.py:1011
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "تنظیمات گزینه یام %s = %s"
 
 #: ../src/yumexbackend/yum_server.py:1062
 msgid "Cleaned metadata from local cache"
-msgstr "Ryddede metadata op fra lokal cache"
+msgstr "حذف متادیتا از کش داخلی"
 
 #: ../src/yumexbackend/yum_server.py:1065
 msgid "Cleaned dbcache"
-msgstr "Ryddede dbcache op"
+msgstr "پاک‌سازی DbCache"
 
 #: ../src/yumexbackend/yum_server.py:1068
 msgid "Cleaned packages from local cache"
-msgstr "Ryddede pakker op fra lokal cache"
+msgstr "حذف بسته ها از کش داخلی"
 
 #: ../src/yumexbackend/yum_server.py:1070
 msgid "Cleaned everything from local cache"
-msgstr "Ryddede alt op fra lokal cache"
+msgstr "حذف همه چیز از کش داخلی"
 
 #: ../src/yumexbackend/yum_server.py:1474
 msgid "Rebuild from deltarpms completted"
-msgstr "Generering af deltarpms afsluttet"
+msgstr "بازسازی از دلتا‌ار‌پی‌ام ها کامل شد"
 
 #: ../src/yumexbackend/yum_server.py:1476
 #, python-format
 msgid "Downloaded : %s ( %s )"
-msgstr "Hentet: %s ( %s )"
+msgstr "بارگیری شد:  %s ( %s )"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:77
 msgid "updates"
-msgstr "opdateringer"
+msgstr "به‌هنگام‌سازی ها"
 
 #: ../src/yumexbase/constants.py:77
 msgid "available"
-msgstr "tilgængelige"
+msgstr "موجود"
 
 #: ../src/yumexbase/constants.py:77
 msgid "installed"
-msgstr "installerede"
+msgstr "نصب شده"
 
 #: ../src/yumexbase/constants.py:97
 msgid "Downloading repository information"
-msgstr "Henter information om pakkearkiv"
+msgstr "دانلود اطلاعات  مخزن"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Package information for the %s repository"
-msgstr "Henter information om pakker for pakkearkivet %s"
+msgstr "دانلود اطلاعات بسته برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr "Henter fillisten for pakkearkivet %s"
+msgstr "دانلود اطلاعات لیست فایل برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:100
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr "Henter information om ændringslog for pakkearkivet %s"
+msgstr "دانلود اطلاعات سیاهه ی تغییر برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:101
 #, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr "Henter information om grupper for pakkearkivet %s"
+msgstr "دانلود اطلاعات گروه برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:102
 #, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr "Henter information om metalink for pakkearkivet %s"
+msgstr "دانلود اطلاعات متالینک برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:103
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr "Henter information om deltaopdateringer for pakkearkivet %s"
+msgstr "دانلود اطلاعات به هنگام سازی دلتا برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:104
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "Henter information om opdateringer for pakkearkivet %s"
+msgstr "دانلود اطلاعات به هنگام سازی  برای مخزن  %s"
 
 #: ../src/yumexbase/constants.py:115
 msgid "0 - 7 Days"
-msgstr "0-7 dage"
+msgstr "۰-۷ روز"
 
 #: ../src/yumexbase/constants.py:116
 msgid "7 - 14 Days"
-msgstr "7-14 dage"
+msgstr "۷-۱۴ روز"
 
 #: ../src/yumexbase/constants.py:117
 msgid "14 - 21 Days"
-msgstr "14-21 dage"
+msgstr "۱۴-۲۱ روز"
 
 #: ../src/yumexbase/constants.py:118
 msgid "21  - 30 days"
-msgstr "21-30 dage"
+msgstr "۲۱-۳۰ روز"
 
 #: ../src/yumexbase/constants.py:119
 msgid "30 - 90 days"
-msgstr "30-90 dage"
+msgstr "۳۰-۹۰ روز"
 
 #: ../src/yumexbase/constants.py:120
 msgid "90+ days"
-msgstr "90+ dage"
+msgstr "+۹۰ روز"
 
 #: ../src/yumexbase/constants.py:142
-#, fuzzy
 msgid "Getting all packages"
-msgstr "Henter tilgængelige pakker"
+msgstr "گرفتن همهٔ بسته ها"
 
 #: ../src/yumexbase/constants.py:143
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Henter installerede pakker"
+msgstr "گرفتن همهٔ بسته ها نصب شده"
 
 #: ../src/yumexbase/constants.py:144
-#, fuzzy
 msgid "Getting available packages"
-msgstr "Henter tilgængelige pakker"
+msgstr "گرفتن بسته های موجود"
 
 #: ../src/yumexbase/constants.py:145
-#, fuzzy
 msgid "Getting available updates"
-msgstr "Henter tilgængelige pakker"
+msgstr "گرفتن به روزرسانی های موجود"
 
 #: ../src/yumexbase/constants.py:146
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "Henter tilgængelige pakker"
+msgstr "گرفتن بمنوسخ شده ها موجود"
 
 #: ../src/yumexbase/constants.py:168
 #, fuzzy
 msgid "Updated packages"
-msgstr "Henter opdaterede pakker"
+msgstr "گرفتن بسته های به روزشده"
 
 #: ../src/yumexbase/constants.py:169
 #, fuzzy
 msgid "Downgraded packages"
-msgstr "Henter Pakker"
+msgstr "دانلود بسته ها"
 
 #: ../src/yumexbase/constants.py:170
 #, fuzzy
 msgid "Obsoleting packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #: ../src/yumexbase/constants.py:171
 #, fuzzy
 msgid "Obsoleted packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #: ../src/yumexbase/constants.py:172
 #, fuzzy
 msgid "Erased packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #: ../src/yumexbase/constants.py:173 ../src/yumexbase/constants.py:174
 #, fuzzy
 msgid "Installed packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #: ../src/yumexbase/constants.py:175
 msgid "Installed for dependencies"
@@ -363,23 +357,23 @@ msgstr ""
 #: ../src/yumexbase/constants.py:176
 #, fuzzy
 msgid "Reinstalled packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
-msgstr "Arbejder !!!"
+msgstr "مشغول به کار!!!"
 
 #: ../src/yumexgui/dialogs.py:426
 msgid "Preferences"
-msgstr "Egenskaber"
+msgstr "ترجیحات"
 
 #: ../src/yumexgui/dialogs.py:439
 msgid "Load packages on launch"
-msgstr "Indlæs pakker ved programstart"
+msgstr "بارگذاری بسته در آغاز"
 
 #: ../src/yumexgui/dialogs.py:440
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "استفاده از  ستون های قابل ترتیب در نمای بسته (کندتر)"
 
 #: ../src/yumexgui/dialogs.py:441
 msgid "Use typeahead search on package name"
@@ -387,85 +381,85 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:449
 msgid "Debug Mode"
-msgstr "Fejlsøgningstilstand"
+msgstr "حالت اشکال‌ زدایی"
 
 #: ../src/yumexgui/dialogs.py:450
 msgid "Disable startup network check"
-msgstr "Deaktivér opstart af netværkskontrol"
+msgstr "غیرفعالسازی کنترل شبکه در آغاز"
 
 #: ../src/yumexgui/dialogs.py:451
 msgid "Color (Installed)"
-msgstr "Farve (Installerede)"
+msgstr "رنگ (نصب شده)"
 
 #: ../src/yumexgui/dialogs.py:452
 msgid "Color (Update)"
-msgstr "Farve (Opdateringer)"
+msgstr "رنگ (به روز رسانی)"
 
 #: ../src/yumexgui/dialogs.py:453
 msgid "Color (Available)"
-msgstr "Farve (Tilgængelige)"
+msgstr "رنگ (موجود)"
 
 #: ../src/yumexgui/dialogs.py:461
 msgid "Enable Yum Plugins"
-msgstr "Aktiver Yum-udvidelsesmoduler"
+msgstr "به کار انداختن افزونه های یام"
 
 #: ../src/yumexgui/dialogs.py:462
 msgid "Proxy"
-msgstr "Proxy"
+msgstr "پروکسی"
 
 #: ../src/yumexgui/dialogs.py:463
 msgid "Yum Debug Level"
-msgstr "Yum-fejlsøgningsniveau"
+msgstr "سطح دیباگری یام"
 
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
-msgstr "Resultat af transaktionen"
+msgstr "نتیجه ی تراکنش"
 
 #: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:856
 msgid "Name"
-msgstr "Navn"
+msgstr "نام"
 
 #: ../src/yumexgui/dialogs.py:587
 msgid "Arch"
-msgstr "Arkitektur"
+msgstr "معماری."
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:203
 #: ../src/yumexgui/views.py:420
 msgid "Ver"
-msgstr "Version"
+msgstr "نسخه"
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/dialogs.py:589 ../src/yumexgui/views.py:809
 #: ../src/yumexgui/views.py:855
 msgid "Repository"
-msgstr "Pakkearkiv"
+msgstr "مخزن"
 
 #: ../src/yumexgui/dialogs.py:590 ../src/yumexgui/views.py:203
 #: ../src/yumexgui/views.py:420
 msgid "Size"
-msgstr "Størrelse"
+msgstr "اندازه"
 
 #: ../src/yumexgui/dialogs.py:624
 #, python-format
 msgid "Download Size : %s "
-msgstr "Nedhentningsstørrelse: %s "
+msgstr "اندازه دانلود:  %s "
 
 #: ../src/yumexgui/gui.py:208
 msgid "Package Description"
-msgstr "Pakkebeskrivelse"
+msgstr "توضیح بسته"
 
 #: ../src/yumexgui/gui.py:210
 #, fuzzy
 msgid "Update information"
-msgstr "Henter gruppeinformation"
+msgstr "بازخوانی اطلاعات گروه"
 
 #: ../src/yumexgui/gui.py:212
 msgid "Package Changelog"
-msgstr "Pakkeændringslog"
+msgstr "بستهٔ سیاهه ی تغییر"
 
 #: ../src/yumexgui/gui.py:214
 msgid "Package Filelist"
-msgstr "Filliste for pakke"
+msgstr "لیست فایل بسته"
 
 #: ../src/yumexgui/gui.py:300
 msgid "Project URL : "
@@ -473,24 +467,24 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:307
 msgid "Release"
-msgstr "Udgave"
+msgstr "انتشار"
 
 #: ../src/yumexgui/gui.py:308
 msgid "Type"
-msgstr "Type"
+msgstr "نوع"
 
 #: ../src/yumexgui/gui.py:309
 msgid "Status"
-msgstr "Status"
+msgstr "وضعیت"
 
 #: ../src/yumexgui/gui.py:310
 msgid "Issued"
-msgstr "Udgivet"
+msgstr "صادر شده"
 
 #: ../src/yumexgui/gui.py:349
 #, fuzzy
 msgid "Description"
-msgstr "Beskrivelse: %s\n"
+msgstr "توضیحات : %s\n"
 
 #: ../src/yumexgui/gui.py:489
 msgid "Quit"
@@ -499,7 +493,7 @@ msgstr ""
 #: ../src/yumexgui/__init__.py:445 ../src/yumexgui/__init__.py:446
 #, fuzzy
 msgid "Adding Packages to view"
-msgstr "Henter Pakker"
+msgstr "دانلود بسته ها"
 
 #: ../src/yumexgui/__init__.py:449
 #, python-format
@@ -509,179 +503,179 @@ msgstr ""
 #: ../src/yumexgui/__init__.py:555
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr "Vil du rydde %s op fra yum-cache"
+msgstr "آیا می خواهید %s از کش یام حذف شوند"
 
 #: ../src/yumexgui/__init__.py:771
 msgid "Fatal Error"
-msgstr "Fatal fejl"
+msgstr "خطای مهلک"
 
 #. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:773
 msgid "Can't start the yum backend"
-msgstr "Kan ikke starte yum-backend"
+msgstr "نمی تواند بخش مدیریت یام را شروع کند"
 
 #: ../src/yumexgui/__init__.py:774
 msgid "Another program is locking yum"
-msgstr "Et andet program låser yum"
+msgstr "برنامه ی دیگری بر روی یام قفل کرده است"
 
 #: ../src/yumexgui/__init__.py:776
 msgid "Message from yum backend:"
-msgstr "Besked fra yum-backend:"
+msgstr " پیغام از بخش مدیریت یام"
 
 #: ../src/yumexgui/__init__.py:780
 msgid "Error in repository setup"
-msgstr "Fejl i pakkearkivsopsætningen"
+msgstr "خطا در تنظیم مخزن"
 
 #: ../src/yumexgui/__init__.py:783
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr "Du kan prøve at starte \"yumex -n\" fra en kommandolinje\n"
+msgstr "شما می توانید دستور 'yumex -n'  را از خط فرمان آزمایش کنید\n"
 
 #: ../src/yumexgui/__init__.py:784
 msgid "and deseleting the repositories causing problems\n"
-msgstr "og fravælge pakkearkiverne som giver problemer\n"
+msgstr "و انتخاب مخازن باعث مشکل می شود\n"
 
 #: ../src/yumexgui/__init__.py:785
 msgid "and try again.\n"
-msgstr "og prøve igen.\n"
+msgstr "و تلاش دوباره.\n"
 
 #: ../src/yumexgui/__init__.py:790
 msgid "Fatal Error in backend restart"
-msgstr "Fatal fejl i genstart af backend"
+msgstr "خطای تجزیهٔ مهلک در شروع مجدد بخش مدیریت"
 
 #: ../src/yumexgui/__init__.py:791
 msgid "Backend could not be closed"
-msgstr "Backenden kunne ikke blive lukket"
+msgstr "بخش مدیریت نمی تواند بسته شود"
 
 #: ../src/yumexgui/__init__.py:795
 msgid "Fatal Error : "
-msgstr "Fatal fejl: "
+msgstr "خطای مهلک:"
 
 #: ../src/yumexgui/__init__.py:860
 #, fuzzy
 msgid "Available Updates"
-msgstr "Henter tilgængelige pakker"
+msgstr "گرفتن به روزرسانی های موجود"
 
 #: ../src/yumexgui/__init__.py:862
 #, fuzzy
 msgid "Search for packages"
-msgstr "Vis pakkeopdateringer"
+msgstr "نمایش به روز رسانی های بسته"
 
 #: ../src/yumexgui/__init__.py:864 ../src/yumexgui/views.py:727
 msgid "Packages"
-msgstr "Pakker"
+msgstr "بسته ها"
 
 #: ../src/yumexgui/__init__.py:866
 msgid "Perform actions on packages"
-msgstr "Udfør handlinger på pakker"
+msgstr "اجرای اعمال بر روی بسته ها"
 
 #: ../src/yumexgui/__init__.py:868
 msgid "Pending Actions"
-msgstr "Ventende handlinger"
+msgstr "کارهای معوق"
 
 #: ../src/yumexgui/__init__.py:869
 msgid "Work with pending actions"
-msgstr "Udfører ventende handlinger"
+msgstr "کار با کارهای معوق"
 
 #: ../src/yumexgui/__init__.py:872
 msgid "Repositories"
-msgstr "Pakkearkiver"
+msgstr "مخازن"
 
 #: ../src/yumexgui/__init__.py:873
 msgid "Select active repositories"
-msgstr "Vælg aktive pakkearkiver"
+msgstr "انتخاب مخازن فعال"
 
 #: ../src/yumexgui/__init__.py:876
 msgid "History"
-msgstr "Historik"
+msgstr "تاریخچه"
 
 #: ../src/yumexgui/__init__.py:877
 msgid "Watch yum history"
-msgstr "Se historik for Yum"
+msgstr "دیدن تاریخچه یام"
 
 #: ../src/yumexgui/__init__.py:883
 msgid "Output"
-msgstr "Output"
+msgstr "خروجی"
 
 #: ../src/yumexgui/__init__.py:884
 msgid "Watch output details"
-msgstr "Vis detaljeret output"
+msgstr "دیدن جزییات خروجی"
 
 #: ../src/yumexgui/__init__.py:932
 msgid "Not connected to an network"
-msgstr "Ikke forbundet til et netværk"
+msgstr "به شبکه ای وصل نیست"
 
 #: ../src/yumexgui/__init__.py:933
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
 msgstr ""
-"Ikke forbundet til et netværk.\n"
-"Vil du fortsætte? "
+"به شبکه ای وصل نیست.\n"
+"آیا می خواهید ادامه دهید"
 
 #: ../src/yumexgui/__init__.py:938
 msgid "network connection state check is disabled"
-msgstr "statuskontrol af netværksforbindelse er deaktiveret"
+msgstr "کنترل وضعیت شبکه غیرفعال است"
 
 #: ../src/yumexgui/__init__.py:940
 msgid "Can't detect the network connection state"
-msgstr "Kan ikke detektere status for netværksforbindelsen"
+msgstr "نمی توان وضعیت اتصال شبکه را پیدا کند"
 
 #: ../src/yumexgui/__init__.py:942
 msgid "Connected to an network"
-msgstr "Forbundet til et netværk"
+msgstr "متصل به یک شبکه"
 
 #: ../src/yumexgui/__init__.py:1012
 msgid "Enable Permanently"
-msgstr "Aktivér permanent"
+msgstr "فعالسازی دایمی"
 
 #: ../src/yumexgui/__init__.py:1016
 msgid "Disable Permanently"
-msgstr "Deaktivér permanent"
+msgstr "از کار انداختن دایمی"
 
 #: ../src/yumexgui/__init__.py:1019
 msgid "Clean Metadata"
-msgstr "Ryd metadata op"
+msgstr "حذف متاداده"
 
 #: ../src/yumexgui/__init__.py:1020
 msgid "Clean Packages"
-msgstr "Ryd pakker op"
+msgstr "پاکسازی بسته ها"
 
 #: ../src/yumexgui/__init__.py:1021
 msgid "Clean DbCache"
-msgstr "Ryd DbCache op"
+msgstr "پاک‌سازی DbCache"
 
 #: ../src/yumexgui/__init__.py:1022
 msgid "Clean All"
-msgstr "Ryd alt op"
+msgstr "پاکسازی همه"
 
 #: ../src/yumexgui/__init__.py:1028
 msgid "By Repositories"
-msgstr "Efter pakkearkiver"
+msgstr "با مخازن"
 
 #: ../src/yumexgui/__init__.py:1029
 msgid "By Size"
-msgstr "Efter størrelse"
+msgstr "از روی اندازه"
 
 #: ../src/yumexgui/__init__.py:1053 ../src/yumexgui/__init__.py:1054
 msgid "Getting Group information"
-msgstr "Henter gruppeinformation"
+msgstr "بازخوانی اطلاعات گروه"
 
 #: ../src/yumexgui/__init__.py:1086
 msgid "The pending action queue is empty"
-msgstr "Der er ingen ventende handlinger i køen"
+msgstr "صف کار معوق تهی است"
 
 #: ../src/yumexgui/__init__.py:1103
 msgid "Processing pending actions"
-msgstr "Udfører ventede handlinger"
+msgstr "پردازش کارهای معوق"
 
 #: ../src/yumexgui/__init__.py:1104
 msgid "Preparing the transaction"
-msgstr "Klargører transaktionen"
+msgstr "آماده سازی تراکنش"
 
 #. Transaction ok
 #: ../src/yumexgui/__init__.py:1120 ../src/yumexgui/__init__.py:1122
 msgid "Transaction completed successfully"
-msgstr "Transaktion er afsluttet uden fejl"
+msgstr "تراکنش موفقیت‌آمیز انجام شد!"
 
 #: ../src/yumexgui/__init__.py:1123
 msgid ""
@@ -691,60 +685,59 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Vil du afslutte Yum Extender?"
+"آیا می خواهید از یام اکستندر خارج شوید؟"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:1129
 msgid "Transaction Aborted by User"
-msgstr "Transaktionen er afbrudt af brugeren"
+msgstr "تراکنش به وسیله ی کاربر متوقف شد"
 
 #: ../src/yumexgui/__init__.py:1132
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr ""
-"Der opstod fejl under transaktionen,\n"
-" kontrollér outputsiden for detaljer"
+"تراکنش با خطاهایی کامل شد\n"
+"برای جزییات بیشتر صفحه خروجی را چک کنید"
 
 #: ../src/yumexgui/__init__.py:1214
 msgid "<unset>"
-msgstr "<ikke sat>"
+msgstr "<باز نشاندن>"
 
 #: ../src/yumexgui/__init__.py:1215
 msgid "System"
-msgstr "System"
+msgstr "سیستم"
 
 #: ../src/yumexgui/__init__.py:1258
 msgid "Getting History Information"
-msgstr "Henter information om historik"
+msgstr "بازخوانی اطلاعات تاریخچه"
 
 #: ../src/yumexgui/__init__.py:1260
 msgid "Getting Latest History Information"
-msgstr "Henter seneste information om historik"
+msgstr "گرفتن آخرین اطلاعات تاریخچه "
 
 #: ../src/yumexgui/__init__.py:1262
 msgid "Getting All History Information"
-msgstr "Henter al information om historik"
+msgstr "همه اطلاعات تاریخچه"
 
 #: ../src/yumexgui/__init__.py:1268 ../src/yumexgui/__init__.py:1285
-#, fuzzy
 msgid "History Disabled"
-msgstr "Historik"
+msgstr "تاریخچه غیرفعال"
 
 #: ../src/yumexgui/__init__.py:1279 ../src/yumexgui/__init__.py:1280
 #, fuzzy
 msgid "Searching History Information"
-msgstr "Henter information om historik"
+msgstr "بازخوانی اطلاعات تاریخچه"
 
 #: ../src/yumexgui/__init__.py:1323
 #, fuzzy
 msgid "Transaction Performed with"
-msgstr "Transaktionen er afbrudt af brugeren"
+msgstr "تراکنش به وسیله ی کاربر متوقف شد"
 
 #: ../src/yumexgui/__init__.py:1326
 #, fuzzy
 msgid "Skipped packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #. Setup Selection Column
 #. self.create_selection_colunm('')
@@ -753,47 +746,47 @@ msgstr "Vis installerede pakker"
 #: ../src/yumexgui/views.py:420 ../src/yumexgui/views.py:445
 #: ../src/yumexgui/views.py:1373
 msgid "Package"
-msgstr "Pakke"
+msgstr "بسته"
 
 #: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:230
 #: ../src/yumexgui/views.py:420 ../src/yumexgui/views.py:448
 #: ../src/yumexgui/views.py:732
 msgid "Summary"
-msgstr "Resumé"
+msgstr "خلاصه"
 
 #: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:420
 msgid "Repo"
-msgstr "Pakkearkiv"
+msgstr "مخزن"
 
 #: ../src/yumexgui/views.py:203 ../src/yumexgui/views.py:420
 msgid "Architecture"
-msgstr "Arkitektur"
+msgstr "معماری"
 
 #: ../src/yumexgui/views.py:228 ../src/yumexgui/views.py:446
 #: ../src/yumexgui/views.py:1375
 msgid "Ver."
-msgstr "Version"
+msgstr "نسخه."
 
 #: ../src/yumexgui/views.py:229 ../src/yumexgui/views.py:447
 #: ../src/yumexgui/views.py:1376
 msgid "Arch."
-msgstr "Arkitektur"
+msgstr "معماری."
 
 #: ../src/yumexgui/views.py:231 ../src/yumexgui/views.py:449
 msgid "Repo."
-msgstr "Pakkearkiv"
+msgstr "مخزن."
 
 #: ../src/yumexgui/views.py:232 ../src/yumexgui/views.py:450
 msgid "Size."
-msgstr "Størrelse"
+msgstr "اندازه."
 
 #: ../src/yumexgui/views.py:693
 msgid "Package Queue:"
-msgstr "Pakkekø:"
+msgstr "صف بسته:"
 
 #: ../src/yumexgui/views.py:809
 msgid "Filename"
-msgstr "Filnavn"
+msgstr "نام پرونده"
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:989
@@ -802,128 +795,128 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:1220
 msgid "Categories"
-msgstr "Kategorier"
+msgstr "دسته ها"
 
 #: ../src/yumexgui/views.py:1266
 msgid "Id"
-msgstr "Id"
+msgstr "شناسه"
 
 #: ../src/yumexgui/views.py:1267
 msgid "Login User"
-msgstr "Brugerlogind"
+msgstr "ورود کاربر"
 
 #: ../src/yumexgui/views.py:1268
 msgid "Data/Time"
-msgstr "Data/Tid"
+msgstr "تاریخ/ساعت"
 
 #: ../src/yumexgui/views.py:1269
 msgid "Action(s)"
-msgstr "Handling(er)"
+msgstr "عمل(ها)"
 
 #: ../src/yumexgui/views.py:1270
 msgid "Altered"
-msgstr "Ændret"
+msgstr "تغییر یافته"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"
-msgstr "<span size=\"x-large\">Transaktion</span>\n"
+msgstr "<span size=\"x-large\">تراکنش</span>\n"
 
 #: ../src/yumex.glade.h:3
 msgid "<span size=\"x-large\">Working ....</span>\n"
-msgstr "<span size=\"x-large\">Arbejder ....</span>\n"
+msgstr "<span size=\"x-large\">درحال کار ....</span>\n"
 
 #: ../src/yumex.glade.h:5
 msgid "Advanced"
-msgstr "Avanceret"
+msgstr "پیشرفته"
 
 #: ../src/yumex.glade.h:6
 msgid "All"
-msgstr "Alle"
+msgstr "همگی"
 
 #: ../src/yumex.glade.h:7
 msgid "Availa_ble"
-msgstr "_Tilgængelge"
+msgstr "موجود"
 
 #: ../src/yumex.glade.h:8
 msgid "Basic"
-msgstr "Grundlæggende"
+msgstr "ساده"
 
 #: ../src/yumex.glade.h:9
 msgid "Dont  check signatures for packages"
-msgstr "Kontrollér ikke pakkesignaturer"
+msgstr "امضای بسته های را کنترل نکن"
 
 #: ../src/yumex.glade.h:10
 msgid "Error"
-msgstr "Fejl"
+msgstr "خطا"
 
 #: ../src/yumex.glade.h:11
 msgid "Execute all pending actions in queue"
-msgstr "Udfører alle ventende handlinger i køen"
+msgstr "اجرای همه کارهای معوق "
 
 #: ../src/yumex.glade.h:12
 msgid "Get all History elements"
-msgstr "Hent alle historikelementer"
+msgstr "گرفتن همه اجزای تاریخچه"
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
-msgstr "P_akkearkiver"
+msgstr "مخازن"
 
 #: ../src/yumex.glade.h:14
 msgid "Redo a history transaction"
-msgstr "Omgør en historiktransaktion"
+msgstr "انجام مجدد یک تراکنش تاریخچه"
 
 #: ../src/yumex.glade.h:15
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
 msgstr ""
-"Genopfrisk pakker med nuværende valgte\n"
-"pakkearkiver"
+"نوسازی بسته ها با انتخاب کنونی\n"
+"مخازن"
 
 #: ../src/yumex.glade.h:17
 msgid "Remove selected packages from queue"
-msgstr "Sletter valgte pakker fra køen"
+msgstr "حذف بسته های انتخاب شده‌ از صف کاری"
 
 #: ../src/yumex.glade.h:18
 #, fuzzy
 msgid "Search Options"
-msgstr "_Indstillinger"
+msgstr "گزینه‌ها"
 
 #: ../src/yumex.glade.h:19
 msgid "Select all packages in current view"
-msgstr "Vælg alle pakker i den nuværende oversigt"
+msgstr "انتخاب همه بسته در نمای کنونی"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Categories"
-msgstr "Vis kategorier"
+msgstr "نمایش گروه ها"
 
 #: ../src/yumex.glade.h:21
 msgid "Show Groups"
-msgstr "Vis grupper"
+msgstr "نمایش گروه‌ها"
 
 #: ../src/yumex.glade.h:22
 msgid "Show all Packages"
-msgstr "Vis alle pakker"
+msgstr "نمایش همهٔ بسته ها"
 
 #: ../src/yumex.glade.h:23
 msgid "Show available packages"
-msgstr "Vis tilgængelige pakker"
+msgstr "نمایش همهٔ بسته های موجود"
 
 #: ../src/yumex.glade.h:24
 msgid "Show installed packages"
-msgstr "Vis installerede pakker"
+msgstr "نمایش همهٔ بسته ها نصب شده"
 
 #: ../src/yumex.glade.h:25
 msgid "Show package updates"
-msgstr "Vis pakkeopdateringer"
+msgstr "نمایش به روز رسانی های بسته"
 
 #: ../src/yumex.glade.h:26
 msgid "Skip Broken"
-msgstr "Spring ødelagte over"
+msgstr "نادیده گرفتن شکسته ها"
 
 #: ../src/yumex.glade.h:27
 msgid "Skip packages there get depsolve errors"
-msgstr "Spring pakker som har problemmer med afhænginger over"
+msgstr "نادیده گرفتن بسته هایی که خطای وابستگی دارند"
 
 #: ../src/yumex.glade.h:28
 msgid "Testing Stuff"
@@ -939,9 +932,9 @@ msgid ""
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
-"Indtast søgeord adskilt af mellemrum\n"
-"for at finde pakker som indeholder\n"
-"disse ord.\n"
+"نوشتن کلمات جستجو با فضای جدا شده\n"
+"برای یافتن بسته هایی که شامل\n"
+"کلمات است.\n"
 
 #: ../src/yumex.glade.h:34
 msgid "Typeahead search on/off"
@@ -949,116 +942,105 @@ msgstr ""
 
 #: ../src/yumex.glade.h:35
 msgid "U_pdates"
-msgstr "_Opdateringer"
+msgstr "به روزرسانی ها"
 
 #: ../src/yumex.glade.h:36
 msgid "Undo a history transaction"
-msgstr "Omgør en historiktransaktion"
+msgstr "بازگردادن یک تراکنش تاریخچه"
 
 #: ../src/yumex.glade.h:37
 msgid "Undo all package selection"
-msgstr "Omgør alle valgte pakker"
+msgstr "برداشت انتخاب کل بسته"
 
 #: ../src/yumex.glade.h:38
 msgid "Undo repository selection changes"
-msgstr "Omgør ændringer af valgte pakkearkiver"
+msgstr "بازگشت تغییرات انتخاب مخزن"
 
 #: ../src/yumex.glade.h:39
-#, fuzzy
 msgid "Undo the current search"
-msgstr "Nulstiller nuværende søgning"
+msgstr ""
 
 #: ../src/yumex.glade.h:40
 msgid "Yum"
-msgstr "Yum"
+msgstr "یام"
 
 #: ../src/yumex.glade.h:41
 msgid "_Categories"
-msgstr "_Kategorier"
+msgstr "دسته ها"
 
 #: ../src/yumex.glade.h:42
 msgid "_Edit"
-msgstr "_Redigér"
+msgstr "اصلاح"
 
 #: ../src/yumex.glade.h:43
 msgid "_File"
-msgstr "_Fil"
+msgstr "فایل"
 
 #: ../src/yumex.glade.h:44
 msgid "_Groups"
-msgstr "_Grupper"
+msgstr "_گروه‌ها"
 
 #: ../src/yumex.glade.h:45
 msgid "_Help"
-msgstr "_Hjælp"
+msgstr "کمک"
 
 #: ../src/yumex.glade.h:46
 msgid "_History"
-msgstr "_Historik"
+msgstr "تاریخچه"
 
 #: ../src/yumex.glade.h:47
 msgid "_Installed"
-msgstr "_Installerede"
+msgstr "نصب شده"
 
 #: ../src/yumex.glade.h:48
 msgid "_Options"
-msgstr "_Indstillinger"
+msgstr "گزینه‌ها"
 
 #: ../src/yumex.glade.h:49
 msgid "_Output"
-msgstr "_Output"
+msgstr "خروجی"
 
 #: ../src/yumex.glade.h:50
 msgid "_Packages"
-msgstr "_Pakker"
+msgstr "بسته ها"
 
 #: ../src/yumex.glade.h:51
 msgid "_Profiles"
-msgstr "_Profiler"
+msgstr "نمایه ها"
 
 #: ../src/yumex.glade.h:52
 msgid "_Queue"
-msgstr "_Kø"
+msgstr "صف"
 
 #: ../src/yumex.glade.h:53
 msgid "_View"
-msgstr "_Vis"
+msgstr "دیدن"
 
 #: ../src/yumex.glade.h:54
 msgid "no GPG Check"
-msgstr "ingen kontrol af GPG-signatur"
+msgstr "کنترل نکردن امضای GPG"
 
-#, fuzzy
 #~ msgid "Populating Package Cache"
-#~ msgstr "Henter Pakker"
+#~ msgstr "جمع آوری کش بسته"
 
 #~ msgid ""
 #~ "\n"
 #~ "Package Description"
 #~ msgstr ""
 #~ "\n"
-#~ "Pakkebeskrivelse"
+#~ "توضیح بسته"
 
 #~ msgid "Update ID"
-#~ msgstr "Opdaterings-id"
+#~ msgstr "به روزرسانی برچسب"
 
 #~ msgid "       Bugs :"
-#~ msgstr "       Fejl:"
+#~ msgstr "باگ ها:"
 
 #~ msgid "Getting Package Lists"
-#~ msgstr "Henter pakkelister"
+#~ msgstr "گرفتن لیست همه بسته ها"
 
 #~ msgid "Getting Available Packages"
-#~ msgstr "Henter tilgængelige pakker"
+#~ msgstr "گرفتن بسته های موجود"
 
 #~ msgid "Getting installed Packages"
-#~ msgstr "Henter installerede pakker"
-
-#~ msgid "Stopping yum child process"
-#~ msgstr "Stopper yum-baggrundsprocess"
-
-#~ msgid "Unknown Error : "
-#~ msgstr "Ukendt fejl : "
-
-#~ msgid "_Tools"
-#~ msgstr "_Værktøj"
+#~ msgstr "گرفتن همهٔ بسته ها نصب شده"

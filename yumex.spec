@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  2.9.7
-Release:  1%{?dist}
+Version:  2.9.11
+Release:  12%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -18,12 +18,14 @@ BuildRequires: gettext
 BuildRequires: intltool
 
 
-Requires: yum >= 3.2.21
+Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
 Requires: usermode
 Requires: pexpect
 Requires: python-enum
 Requires: python-iniparse
+Requires: dbus-python
+Requires: udisks
 
 %description
 Graphical User Interface for Yum.
@@ -73,6 +75,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Sat Sep 11 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.11-1
+- bumped version to 2.9.11-1
+* Fri Jul 30 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.10-1
+- bumped version to 2.9.10-1
+* Tue Jul 6 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.9-1
+- bumped version to 2.9.9-1
+* Sat Jun 5 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.8-1
+- bumped version to 2.9.8-1
 * Mon Jan 31 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.7-1
 - bumped version to 2.9.7-1
 * Mon Jan 11 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.6-1

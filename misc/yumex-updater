@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# Run yumex-updater main python program.
+#
+/usr/bin/python /usr/share/yumex/yumex-updater.pyc $*

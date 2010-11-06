@@ -4,6 +4,8 @@
 
 import pickle
 import base64
+from urlgrabber.progress import format_number
+
 
 class YumexBackendBase(object):
     '''
@@ -18,7 +20,7 @@ class YumexBackendBase(object):
         self.frontend = frontend
         self.transaction = transaction
 
-    def setup(self, offline = False,repos=None):
+    def setup(self, offline=False, repos=None):
         ''' Setup the backend'''
         raise NotImplementedError()
 
@@ -42,7 +44,7 @@ class YumexBackendBase(object):
         '''
         raise NotImplementedError()
 
-    def enable_repository(self, repoid, enabled = True):
+    def enable_repository(self, repoid, enabled=True):
         ''' 
         set repository enable state
         @param repoid: repo id to change
@@ -73,125 +75,176 @@ class YumexBackendBase(object):
         '''
         raise NotImplementedError()
 
-class YumexPackageBase:
+class YumexPackage:
     '''
     This is an abstract package object for a package in the package system
    '''
 
-    def __init__(self, pkg):
-        '''
-        
-        @param pkg:
-        '''
-        self._pkg = pkg
+    def __init__(self, args, frontend, backend):
+
+        self.frontend = frontend
+        self.backend = backend
+        self.name = args[0]
+        self.epoch = args[1]
+        self.ver = args[2]
+        self.rel = args[3]
+        self.arch = args[4]
+        self.repoid = args[5]
+        self.summary = unpack(args[6])
+        self.action = unpack(args[7])
+        self.sizeBytes = long(args[8])
+        self.recent = args[9] == '1'
         self.selected = False
+        self.queued = False
+        self.selected = False
+        self.visible = True
+        self.frontend = frontend
+        self.downgrade_po = None
 
     def __str__(self):
         '''
         string representation of the package object
         '''
         return self.fullname
-      
 
     @property
-    def name(self):
+    def fullname(self):
+        ''' Package fullname  '''
+        if self.epoch and self.epoch != '0':
+            return "%s-%s:%s-%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
+        else:
+            return "%s-%s-%s.%s" % (self.name, self.ver, self.rel, self.arch)
+
+    @property
+    def id(self):
         '''
         
         '''
-        return self._pkg.name
+        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.ver, self.rel, self.arch, self.repoid)
+
+    def get_attribute(self, attr):
+        '''
+        
+        @param attr:
+        '''
+        return self.backend.get_attribute(self.id, attr)
+
+
 
     @property
     def version(self):
         '''
         
         '''
-        return self._pkg.ver
+        return self.ver
 
     @property
     def release(self):
         '''
         
         '''
-        return self._pkg.rel
+        return self.rel
 
-    @property
-    def epoch(self):
-        '''
-        
-        '''
-        return self._pkg.epoch
-
-    @property
-    def arch(self):
-        '''
-        
-        '''
-        return self._pkg.arch
-
-    @property
-    def repoid(self):
-        '''
-        
-        '''
-        return self._pkg.repoid
-
-    @property
-    def action(self):
-        '''
-        
-        '''
-        return self._pkg.action
-
-    @property
-    def summary(self):
-        '''
-        
-        '''
-        return self._pkg.summary
-
-    @property
-    def description(self):
-        ''' Package description '''
-        raise NotImplementedError()
-
-    @property
-    def changelog(self):
-        ''' Package changelog '''
-        raise NotImplementedError()
-
-    @property
-    def filelist(self):
-        ''' Package filelist '''        
-        raise NotImplementedError()
-
-    @property        
-    def id(self):
-        ''' Return the package id '''        
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.version, self.release, self.arch, self.repoid)
 
     @property
     def filename(self):
-        ''' Package id (the full package filename) '''     
+        ''' Package id (the full package filename) '''
         return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
-    @property
-    def fullname(self):
-        ''' Package fullname  '''        
-        if self.epoch and self.epoch != '0':
-            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.version, self.release, self.arch)
-        else:   
-            return "%s-%s.%s.%s" % (self.name, self.version, self.release, self.arch)
-    
     @property
     def fullver (self):
         '''
         Package full version-release
         '''
         return "%s-%s" % (self.version, self.release)
- 
+
+    @property
+    def installed(self):
+        return self.is_installed()
+
     def is_installed(self):
         return self.repoid[0] == '@' or self.repoid == 'installed'
-   
+
+
+    @property
+    def size(self):
+        '''
+        
+        '''
+        return format_number(self.sizeBytes)
+
+    @property
+    def URL(self):
+        return self.get_attribute('url')
+
+
+    def set_select(self, state):
+        '''
+        
+        @param state:
+        '''
+        self.selected = state
+
+    def set_visible(self, state):
+        '''
+        
+        @param state:
+        '''
+        self.visible = state
+
+    @property
+    def description(self):
+        '''
+        
+        '''
+        return self.get_attribute('description')
+
+    @property
+    def changelog(self):
+        '''
+        
+        '''
+        return self.backend.get_changelog(self.id, 4)
+
+    @property
+    def filelist(self):
+        '''
+        get package filelist
+        '''
+        return self.get_attribute('filelist')
+
+
+    @property
+    def color(self):
+        '''
+        get package color to show in view
+        '''
+        color = self.frontend.settings.color_normal
+        if self.repoid == 'installed' or self.repoid.startswith('@'):
+            color = self.frontend.settings.color_install
+        elif self.action == 'u':
+            color = self.frontend.settings.color_update
+        elif self.action == 'o':
+            color = self.frontend.settings.color_obsolete
+        return color
+
+    @property
+    def updateinfo(self):
+        '''
+        get update info for package
+        '''
+        return self.backend.get_update_info(self.id)
+
+
+    @property
+    def dependencies(self):
+        '''
+        get update info for package
+        '''
+        return self.backend.get_dependencies(self.id)
+
+
+
 
 class YumexGroupBase:
     '''
@@ -227,12 +280,12 @@ class YumexGroupBase:
     def description(self):
         ''' Group description '''
         pass
-    
+
     @property
     def category(self):
         ''' Group category '''
         pass
-    
+
 
 class YumexTransactionBase:
     '''
@@ -295,7 +348,7 @@ class YumexTransactionBase:
         @param grp: group to check for
         '''
         pass
-    
+
     def process_transaction(self):
         '''
         Process the packages and groups in the queue
@@ -310,124 +363,85 @@ class YumHistoryTransaction:
     """ Holder for a history transaction. """
 
     def __init__(self, yht):
-        self.tid              = yht.tid
-        self.beg_timestamp    = yht.beg_timestamp
+        self.tid = yht.tid
+        self.beg_timestamp = yht.beg_timestamp
         self.beg_rpmdbversion = yht.beg_rpmdbversion
-        self.end_timestamp    = yht.end_timestamp
+        self.end_timestamp = yht.end_timestamp
         self.end_rpmdbversion = yht.end_rpmdbversion
-        self.loginuid         = yht.loginuid
-        self.return_code      = yht.return_code
+        self.loginuid = yht.loginuid
+        self.return_code = yht.return_code
 
     @property
     def id(self):
         return ":hist\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % \
-               (self.tid, self.beg_timestamp, self.beg_rpmdbversion,\
-                self.end_timestamp, self.end_rpmdbversion, self.loginuid, self.return_code )
+               (self.tid, self.beg_timestamp, self.beg_rpmdbversion, \
+                self.end_timestamp, self.end_rpmdbversion, self.loginuid, self.return_code)
 
 class YumHistoryPackage:
 
-    def __init__(self,yhp):
-        self.name   = yhp.name
-        self.epoch  = yhp.epoch
-        self.ver    = yhp.version
-        self.rel    = yhp.release
-        self.arch   = yhp.arch
-        self.state  = yhp.state
-        
+    def __init__(self, yhp):
+        self.name = yhp.name
+        self.epoch = yhp.epoch
+        self.ver = yhp.version
+        self.rel = yhp.release
+        self.arch = yhp.arch
+        if hasattr(yhp, "state"):
+            self.state = yhp.state
+        else:
+            self.state = ""
+        self.installed = yhp.state_installed
+
     @property
     def version(self):
         return self.ver
-    
+
     @property
     def release(self):
         return self.rel
+
+
+    @property
+    def pkgtup(self):
+        return (self.name, self.arch, self.epoch, self.ver, self.rel)
+
 
     def __str__(self):
         '''
         string representation of the package object
         '''
         return self.fullname
-        
+
     @property
     def fullname(self):
-        ''' Package fullname  '''        
+        ''' Package fullname  '''
         if self.epoch and self.epoch != '0':
             return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
-        else:   
+        else:
             return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
-  
+    @property
+    def fullver(self):
+        ''' Package full ver  '''
+        if self.epoch and self.epoch != '0':
+            return "%s:%s.%s" % (self.epoch, self.ver, self.rel)
+        else:
+            return "%s.%s" % (self.ver, self.rel)
+
+
     @property
     def id(self):
         return ":histpkg\t%s\t%s\t%s\t%s\t%s" % \
                (self.name, self.epoch, self.ver, self.rel, self.arch)
 
-class YumPackage:
-    ''' Simple object to store yum package information '''
-    def __init__(self, base, args):
-        '''
-        
-        @param base:
-        @param args:
-        '''
-        self.base = base
-        self.name = args[0]
-        self.epoch = args[1]
-        self.ver = args[2]
-        self.rel = args[3]
-        self.arch = args[4]
-        self.repoid = args[5]
-        self.summary = unpack(args[6])
-        self.action = unpack(args[7])
-        self.size = args[8]
-        self.recent = args[9]
 
-    def __str__(self):
-        '''
-        string representation of the package object
-        '''
-        return self.fullname
-        
-    @property
-    def fullname(self):
-        ''' Package fullname  '''        
-        if self.epoch and self.epoch != '0':
-            return "%s-%s:%s.%s.%s" % (self.name, self.epoch, self.ver, self.rel, self.arch)
-        else:   
-            return "%s-%s.%s.%s" % (self.name, self.ver, self.rel, self.arch)
 
-    @property        
-    def id(self):        
-        '''
-        
-        '''
-        return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.ver, self.rel, self.arch, self.repoid)
-
-    def get_attribute(self, attr):
-        '''
-        
-        @param attr:
-        '''
-        return self.base.get_attribute(self.id, attr)
-    
-    def get_changelog(self, num):
-        '''
-        
-        @param num:
-        '''
-        return self.base.get_changelog(self.id, num)
-    
-    def get_update_info(self):
-        return self.base.get_update_info(self.id)
-    
     # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
 def pack(value):
     '''  Pickle and base64 encode an python object'''
     return base64.b64encode(pickle.dumps(value))
-    
+
 def unpack(value):
     '''  base64 decode and unpickle an python object'''
     return pickle.loads(base64.b64decode(value))
 
-    
 

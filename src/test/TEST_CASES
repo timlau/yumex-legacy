@@ -3,29 +3,52 @@ Test Cases:
 Some testcases to test yumex functionality
 
 	* Check Package Filter
-		1. Press the 'updates','available' and 'installed' radio buttons 
+		- Press the 'updates','available' and 'installed' radio buttons 
 			[ ] Check that the view is populated
 	* Check Package Details
-		1. Select a package in the package view
+	    - Activate typeahead search and type sudo to show the sudo package
+		- Select the sudo package in the package view
 			[ ] Check the description is shown
-		2. Select the Changelog button
+		- Select the Update info button
+			[ ] Check the update info is shown
+		- Select the Changelog button
 			[ ] Check the changelog is shown
-		3. Select the filelist butgton
+		- Select the filelist butgton
 			[ ] Check the file list is shown
-		4. run 'yum clean all' before starting yumex and repeat 1-3
+		- run 'yum clean all' before starting yumex and repeat 1-3
 			[ ] Check that a dialog with metadata download are shown when selecting changelog and filelist
 	* Check Queue
-	* Check Install of a single package	
-	* Check update of a single package
-	* Check remove of a single package		
+		- Add '0xFFFF' to be installed
+			[ ] 0xFFFF appears in the Queue view
+		- Remove '0xFFFF' from the queue view
+		- Type 'install 0xFFFF' in queue view 
+			[ ] 0xFFFF appears in the Queue view
+	* Check Install of a single package	( 0xFFFF )
+			[ ] 0xFFFF is installed
+	* Check update of a single package  ( use yum downgrade on a package and update it)
+			[ ] package is updated
+	* Check remove of a single package	( 0xFFFF )	
+			[ ] 0xFFFF is removed
 	* Check Install of a multiple packages
+			[ ] packages is installed
 	* Check update of a multiple packages
+			[ ] packages is updated
 	* Check remove of a multiple packages
+			[ ] packages is removed
 	* Check a mixed transaction (update,install and remove) in same transaction		
+			[ ] packages is removed, installed and updated
 	* Check GPG Key import
-		1. remove the Fedora 10 updates-testing gpg key
+		- remove the Fedora 10 updates-testing gpg key
 			sudo rpm -e gpg-pubkey-0b86274e-48b5dd6f
-		2. enable the 'updates-testing' repo on the repo page and press the refresh key
-		3. try to install something from this repo and se if you get and gpg key import dialog
-		4. press the 'Yes' button in the dialog and see that the transaction completes
-		5. retry 1-4 and press 'No' in the dialog
+		- enable the 'updates-testing' repo on the repo page and press the refresh key
+		- try to install something from this repo and se if you get and gpg key import dialog
+		- press the 'Yes' button in the dialog and see that the transaction completes
+		- retry 1-4 and press 'No' in the dialog
+	* Check History
+		- Click on a history transaction.
+			[ ] Check that history info is shown.
+		- Type 'yumex' in history search entry 
+		    [ ] Transactions with yumex should be shown.
+		- Install '0xFFFF' and undo the transaction
+		- redo the '0xFFFF' install transaction
+	

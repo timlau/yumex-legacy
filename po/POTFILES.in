@@ -1,11 +1,11 @@
-src/test.py
+src/backend-launcher.py
 src/yum_childtask.py
 src/yumex.py
 src/yumexbackend/__init__.py
 src/yumexbackend/yum_backend.py
 src/yumexbackend/yum_client.py
-src/yumexbackend/yumMediaManagerDeviceKit.py
 src/yumexbackend/yumMediaManager.py
+src/yumexbackend/yumMediaManagerUDisks.py
 src/yumexbackend/yum_server.py
 src/yumexbase/conf.py
 src/yumexbase/constants.py

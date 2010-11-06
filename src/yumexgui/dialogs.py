@@ -26,6 +26,7 @@ import gobject
 from guihelpers import busyCursor, normalCursor
 from yumexbase import YumexProgressBase
 from yumexbase.constants import *
+from yumexgui.views import YumexSearchOptionsView
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -52,7 +53,7 @@ class TaskList:
     tasks.complete_current() # task3 is complete
     tasks.hide()
     '''
-    
+
     def __init__(self, container, parent):
         '''
         Init the task list
@@ -66,6 +67,7 @@ class TaskList:
         self.num_current = 0
         self.is_hidden = True
         self.current_running = None
+        self.extra_label = ""
         self.hide()
 
     def show(self):
@@ -82,7 +84,7 @@ class TaskList:
         self.is_hidden = True
         self.container.hide()
         self.reset()
-        
+
     def reset(self):
         '''
         reset the task list by setting all tasks to TASK_PENDING
@@ -90,14 +92,14 @@ class TaskList:
         for task_id in self._tasks:
             self._set_state(task_id, TASK_PENDING)
         self.num_current = 0
-        
+
     def add_task(self, task_id, description):
         '''
         Add a new task to the list
         @param task_id:
         @param description:
         '''
-        self._task_no.append(task_id)   
+        self._task_no.append(task_id)
         self.num_tasks += 1
         hbox = gtk.HBox()
         icon = gtk.Image()
@@ -107,7 +109,7 @@ class TaskList:
         sep = gtk.VSeparator()
         hbox.pack_start(sep, expand=False, fill=False, padding=0)
         task_label = gtk.Label(description)
-        task_label.set_size_request(400, - 1)
+        task_label.set_size_request(400, -1)
         task_label.set_alignment(0.0, 0.5)
         task_label.set_padding(5, 0)
         hbox.pack_start(task_label, expand=False, fill=False, padding=0)
@@ -116,23 +118,23 @@ class TaskList:
         hbox.pack_start(extra_label, expand=False, fill=False, padding=0)
         self.container.pack_start(hbox)
         self._set_task(task_id, TASK_PENDING, icon, task_label, extra_label)
-        
-    def run_current(self):       
+
+    def run_current(self):
         '''
         Run the current task
-        ''' 
-        cur = self._task_no[self.num_current] 
+        '''
+        cur = self._task_no[self.num_current]
         self._set_state(cur, TASK_RUNNING)
 
-    def complete_current(self):        
+    def complete_current(self):
         '''
         Complete the current task
         '''
-        cur = self._task_no[self.num_current] 
+        cur = self._task_no[self.num_current]
         self._set_state(cur, TASK_COMPLETE)
         return cur
-    
-    def next(self,task_id = None):
+
+    def next(self, task_id=None):
         '''
         Complete the current task and set the next to running
         if a task_id is given, all task before this task will be completted too
@@ -146,7 +148,7 @@ class TaskList:
             self.num_current += 1
         if self.num_current < self.num_tasks:
             self.run_current()
-        
+
     def _set_task(self, task_id, state=None, icon=None, task_label=None, extra_label=None):
         '''
         set the task internals
@@ -197,7 +199,7 @@ class TaskList:
                 self.current_running = task_id
         else:
             print "Error in set_state(%s) task_id not definded"
-            
+
     def set_task_label(self, task_id, text):
         '''
         set the task label
@@ -214,31 +216,33 @@ class TaskList:
         @param task_id:
         @param text:
         '''
+        self.extra_label = text
         if task_id in self._tasks:
             (state, icon, task_label, extra_label) = self._get_task(task_id)
-            extra_label.set_markup(text)    
-            
+            extra_label.set_markup(text)
+
 
 
 class Progress(YumexProgressBase):
     '''
     The Progress Dialog
     '''
-    
-    def __init__(self, ui, parent):
+
+    def __init__(self, frontend):
         '''
         Setup the progress dialog
         @param ui: the UI class containing the dialog
         @param parent: the parent window widget
         '''
         YumexProgressBase.__init__(self)
-        self.ui = ui
+        self.frontend = frontend
+        self.ui = frontend.ui
         self.dialog = self.ui.Progress
         self.dialog.set_title("Working....")
-        self.parent = parent
-        self.dialog.set_transient_for(parent)        
+        self.parent = frontend.window
+        self.dialog.set_transient_for(self.parent)
         style = self.ui.packageView.get_style()
-        self.ui.progressEvent.modify_bg(gtk.STATE_NORMAL, style.base[0])        
+        self.ui.progressEvent.modify_bg(gtk.STATE_NORMAL, style.base[0])
         self.progressbar = self.ui.progressBar
         self.progressbar.modify_font(SMALL_FONT)
         self.header = self.ui.progressHeader
@@ -256,7 +260,11 @@ class Progress(YumexProgressBase):
         self.default_w = None
         self.default_h = None
         self.ui.progressImage.set_from_file(ICON_SPINNER)
-        
+        self._active = False
+
+    def is_active(self):
+        return self._active
+
     def show(self):
         '''
         Show the progress dialog
@@ -269,19 +277,22 @@ class Progress(YumexProgressBase):
             self.default_w, self.default_h = self.dialog.get_size()
         elif self.tasks.is_hidden:
             # Shrink dialog to the default size
-            self.dialog.resize(self.default_w, self.default_h) 
+            self.dialog.resize(self.default_w, self.default_h)
             self.dialog.queue_draw()
-            
-            
-        
+
+
+
     def hide(self):
         '''
         Hide the progress dialog
         '''
         self._active = False
         normalCursor(self.parent)
+        # clear the status icon tooltip text
+        if self.frontend.status_icon:
+            self.frontend.status_icon.set_tooltip("")
         self.dialog.hide()
-        
+
     def show_tasks(self):
         '''
         Show the tasks in the progress dialog
@@ -297,20 +308,20 @@ class Progress(YumexProgressBase):
         self.show_cancel(False)
         self.tasks.hide()
 
-    def show_cancel(self,state=True):
+    def show_cancel(self, state=True):
         if state:
             self.ui.progressAction.show()
         else:
             self.ui.progressAction.hide()
 
-        
+
     def set_title(self, text):
         '''
         Set the title of the dialog
         @param text: the title to set
         '''
         self.dialog.set_title(text)
-        
+
     def set_header(self, text):
         '''
         Set the dialog header text, it will also blank the action text
@@ -318,14 +329,16 @@ class Progress(YumexProgressBase):
         '''
         self.header.set_text(text)
         self.set_action("")
-        
+        if self.frontend.status_icon:
+            self.frontend.status_icon.set_tooltip(text + " " + self.tasks.extra_label)
+
     def set_action(self, text):
         '''
         set the action text 
         @param text: the action text
         '''
         self.label.set_markup(text)
-        
+
     def set_fraction(self, frac, text=None):
         '''
         Set the progress bar fraction and text
@@ -335,23 +348,23 @@ class Progress(YumexProgressBase):
         self.progressbar.set_fraction(frac)
         if text:
             self.progressbar.set_text(text)
-            
+
     def pulse(self):
         '''
         Pulse the progressbar and set the text to Working (translated)
         '''
         self.progressbar.set_text(_("Working !!!"))
         self.progressbar.pulse()
-        
+
     def reset(self):
         '''
         Reset the progressbar and progressbar text
         '''
         self.progressbar.set_fraction(0.0)
         self.progressbar.set_text("")
-            
+
 class PrefBoolean(gtk.HBox):
-    def __init__(self,text):
+    def __init__(self, text):
         gtk.HBox.__init__(self)
         # Setup CheckButton
         self._checkbutton = gtk.CheckButton(text)
@@ -360,15 +373,15 @@ class PrefBoolean(gtk.HBox):
         #self._checkbutton.set_padding(5, 0)
         self.pack_start(self._checkbutton, expand=False, padding=5)
         self.show_all()
-    
+
     def get_value(self):
         return self._checkbutton.get_active()
 
-    def set_value(self,state):
+    def set_value(self, state):
         self._checkbutton.set_active(state)
 
 class PrefInt(gtk.HBox):
-    def __init__(self,text,width=10):
+    def __init__(self, text, width=10):
         gtk.HBox.__init__(self)
         self._label = gtk.Label(text)
         self._label.modify_font(SMALL_FONT)
@@ -380,21 +393,21 @@ class PrefInt(gtk.HBox):
         self.pack_start(self._label, expand=False, padding=5)
         self.pack_end(self._entry, expand=False, padding=5)
         self.show_all()
-    
+
     def get_value(self):
         return int(self._entry.get_text())
 
-    def set_value(self,value):
+    def set_value(self, value):
         self._entry.set_text(str(value))
 
 class PrefStr(PrefInt):
-    def __init__(self,text,width=40):
-        PrefInt.__init__(self,text,width)
-    
+    def __init__(self, text, width=40):
+        PrefInt.__init__(self, text, width)
+
     def get_value(self):
         return self._entry.get_text()
 
-    def set_value(self,text):
+    def set_value(self, text):
         self._entry.set_text(text)
 
 class Preferences:
@@ -412,8 +425,8 @@ class Preferences:
         self.dialog = self.ui.preferences
         self.dialog.set_title(_("Preferences"))
         self.parent = parent
-        self.dialog.set_transient_for(parent)    
-        self._options = {}    
+        self.dialog.set_transient_for(parent)
+        self._options = {}
         self.setup_basic()
         self.setup_advanced()
         self.setup_yum()
@@ -423,8 +436,9 @@ class Preferences:
         setup the basic options
         '''
         vbox = self.ui.prefBasicVBox
-        self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))       
-        self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))       
+        self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
+        self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))
+        self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Use typeahead search on package name'))
         vbox.show_all()
 
     def setup_advanced(self):
@@ -434,9 +448,9 @@ class Preferences:
         vbox = self.ui.prefAdvVBox
         self._add_option(PrefBoolean, vbox, 'debug', _('Debug Mode'))
         self._add_option(PrefBoolean, vbox, 'disable_netcheck', _('Disable startup network check'))
-        self._add_option(PrefStr, vbox, 'color_install', _('Color (Installed)'))       
-        self._add_option(PrefStr, vbox, 'color_update', _('Color (Update)'))       
-        self._add_option(PrefStr, vbox, 'color_normal', _('Color (Available)'))       
+        self._add_option(PrefStr, vbox, 'color_install', _('Color (Installed)'))
+        self._add_option(PrefStr, vbox, 'color_update', _('Color (Update)'))
+        self._add_option(PrefStr, vbox, 'color_normal', _('Color (Available)'))
         vbox.show_all()
 
     def setup_yum(self):
@@ -445,11 +459,11 @@ class Preferences:
         '''
         vbox = self.ui.prefYumVBox
         self._add_option(PrefBoolean, vbox, 'plugins', _('Enable Yum Plugins'))
-        self._add_option(PrefStr, vbox, 'proxy', _('Proxy'))       
+        self._add_option(PrefStr, vbox, 'proxy', _('Proxy'))
         self._add_option(PrefInt, vbox, 'yumdebuglevel', _('Yum Debug Level'))
         vbox.show_all()
-    
-    def _add_option(self,obj,vbox,id,text):
+
+    def _add_option(self, obj, vbox, id, text):
         '''
         Add an boolean option (CheckButton)
         @param vbox: the option page VBox widget
@@ -457,16 +471,16 @@ class Preferences:
         @param text: the option description text
         '''
         opt = obj(text)
-        vbox.pack_start(opt ,expand=False, padding=5)
+        vbox.pack_start(opt , expand=False, padding=5)
         self._options[id] = opt
-        opt.set_value(getattr(self.settings,id))
+        opt.set_value(getattr(self.settings, id))
 
     def _refresh(self):
         for id in self._options:
             opt = self._options[id]
-            opt.set_value(getattr(self.settings,id))
+            opt.set_value(getattr(self.settings, id))
 
-                
+
     def run(self):
         '''
         run the dialog
@@ -477,23 +491,41 @@ class Preferences:
         if rc == 1: # OK, save the options
             for id in self._options:
                 opt = self._options[id]
-                setattr(self.settings,id,opt.get_value())
+                setattr(self.settings, id, opt.get_value())
             self.cfg.save()
             self.cfg.reload()
         self.destroy()
-            
+
     def destroy(self):
         '''
         hide the dialog
         '''
         self.dialog.hide()
-   
+
+class SearchOptions:
+    '''
+    Search Options Dialog
+    '''
+    def __init__(self, ui, parent, keys, default_keys):
+        self.ui = ui
+        self.dialog = ui.searchOptionDialog
+        self.parent = parent
+        self.dialog.set_transient_for(self.parent)
+        self.view = YumexSearchOptionsView(self.ui.searchOptionView)
+        self.view.populate(keys, default_keys)
+
+    def run(self):
+        self.dialog.run()
+        self.dialog.hide()
+
+    def get_filters(self):
+        return self.view.get_selected()
 
 class TransactionConfirmation:
     '''
     The Transaction Confirmation dialog, to validate the result of the current transaction result
     '''
-    
+
     def __init__(self, ui, parent):
         '''
         Init the dialog   
@@ -504,20 +536,25 @@ class TransactionConfirmation:
         self.dialog = self.ui.Transaction
         self.dialog.set_title(_("Transaction Result"))
         self.parent = parent
-        self.dialog.set_transient_for(parent)        
+        self.dialog.set_transient_for(parent)
         self.view = self.ui.transactionView
-        self.view.modify_font(SMALL_FONT)        
+        self.view.modify_font(SMALL_FONT)
         style = self.view.get_style()
         #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
         self.header = self.ui.transactionHeader
         self.header.modify_font(BIG_FONT)
         self.set_header(_("Transaction Result"))
         self.store = self.setup_view(self.view)
+        self._active = False
+
+    def is_active(self):
+        return self._active
 
     def run(self):
         '''
         run the dialog
         '''
+        self._active = True
         self.dialog.show_all()
         self.view.expand_all()
         rc = self.dialog.run()
@@ -527,16 +564,17 @@ class TransactionConfirmation:
         '''
         hide the dialog
         '''
+        self._active = False
         self.dialog.hide()
 
-        
+
     def set_header(self, text):
         '''
         The the header text
         @param text: the header text
         '''
         self.header.set_text(text)
-        
+
     def setup_view(self, view):
         '''
         Setup the TreeView
@@ -545,7 +583,7 @@ class TransactionConfirmation:
         model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                               gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
         view.set_model(model)
-        self.create_text_column(_("Name"), view, 0, size = 250)
+        self.create_text_column(_("Name"), view, 0, size=250)
         self.create_text_column(_("Arch"), view, 1)
         self.create_text_column(_("Ver"), view, 2)
         self.create_text_column(_("Repository"), view, 3)
@@ -566,23 +604,23 @@ class TransactionConfirmation:
         if size:
             column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
             column.set_fixed_width(size)
-        view.append_column(column)        
-             
-             
-    def populate(self, pkglist,dnl_size):
+        view.append_column(column)
+
+
+    def populate(self, pkglist, dnl_size):
         '''
         Populate the TreeView with data
         @param pkglist: list containing view data 
         '''
         model = self.store
-        self.store.clear()       
+        self.store.clear()
         for sub, lvl1 in pkglist:
             label = "<b>%s</b>" % sub
             level1 = model.append(None, [label, "", "", "", ""])
             for name, arch, ver, repo, size, replaces in lvl1:
                 level2 = model.append(level1, [name, arch, ver, repo, size])
                 for r in replaces:
-                    level3 = model.append(level2, [ r, "", "", "", ""])            
+                    level3 = model.append(level2, [ r, "", "", "", ""])
         self.ui.transactionLabel.set_text(_("Download Size : %s ") % dnl_size)
 
 
@@ -590,7 +628,7 @@ class ErrorDialog:
     '''
     The Error Message Dialog
     '''
-    
+
     def __init__(self, ui, parent, title, text, longtext, modal):
         '''
         Setup the Error Message Dialog
@@ -614,27 +652,27 @@ class ErrorDialog:
         # make sure we only add the error tag once
         self.style_err = tag_table.lookup("error")
         if not self.style_err:
-            self.style_err = gtk.TextTag("error") 
+            self.style_err = gtk.TextTag("error")
             self.style_err.set_property("style", pango.STYLE_ITALIC)
             self.style_err.set_property("foreground", "red")
             self.style_err.set_property("family", "Monospace")
             self.style_err.set_property("size_points", 8)
             tag_table.add(self.style_err)
-        
+
         if modal:
             self.dialog.set_modal(True)
         if text != "":
             self.set_text(text)
         if longtext != "" and longtext != None:
             self.set_long_text(longtext)
-        
+
     def set_text(self, text):
         '''
         Set the dialog header text
         @param text: the header text
         '''
         self.text.set_markup(text)
-    
+
     def set_long_text(self, longtext):
         '''
         Set the main dialog text
@@ -643,7 +681,7 @@ class ErrorDialog:
         buf = self.longtext.get_buffer()
         start, end = buf.get_bounds()
         buf.insert_with_tags(end, longtext, self.style_err)
-        
+
     def run(self):
         '''
         Run the dialog
@@ -656,6 +694,23 @@ class ErrorDialog:
         Hide the dialog
         '''
         self.dialog.hide()
+
+class TestWindow:
+    """
+    Test Window with Treeview, only used for testing of new views
+    """
+
+    def __init__(self, ui, backend, frontend):
+        self.ui = ui
+        self.backend = backend
+        self.frontend = frontend
+        self.window = self.ui.testWindow
+        self.setup_gui()
+
+
+    def setup_gui(self):
+        self.window.show()
+
 
 def okDialog(parent, msg):
     '''
@@ -703,7 +758,7 @@ def okCancelDialog(parent, msg):
         return True
     else:
         return False
-    
+
 def cleanMarkupSting(msg):
     '''
     Make the sting legal to use as Markup 
@@ -712,4 +767,3 @@ def cleanMarkupSting(msg):
     msg = str(msg) # make sure it is a string
     msg = gobject.markup_escape_text(msg)
     return msg
-            

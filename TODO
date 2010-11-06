@@ -1,9 +1,20 @@
 TODO:
-	RFE: Add Repo profile functionality
-  	RFE: Add Test cases (partly done)
   	RFE: Documentation
   	RFE: Key bindings, all functionality should reachable by the keyboard
-  	
+    RFE: History improvements
+    	 - possibillity to interact with packages in a history transaction
+    RFE: Auto resolve deps when a package is added to queue
+    	- Speed might be an issue here
+    	
+    RFE: Auto download packages when added to queue
+    	- need some multi threaded downloader, there can be aborted if user select 'Apply' before
+    	  downloading is completted.
+    	  
+   	RFE: Add progress in tooltip on status icon     
+
+   	RFE: Add option to disable the 'do you want to exit' dialog, maybe a do not show me again check mark in 
+   	     dialog.
+   	     
   	
 BUGS:
   	
@@ -36,6 +47,41 @@ Fixed / implemented:
 	* Make the exception handling more solid and show exception in a dialog
 	* BUG: Processing an empty queue
 	* RFE: Add Preferences dialog and functionality
-	. BUG: Undo in group unselect packages, but don't undo group selection changes
-
+	* BUG: Undo in group unselect packages, but don't undo group selection changes
+	. Don't ask for root password more than one
+	. Make load of metadata more dynamic, first load packages lists, history, groups etc. when we need it.
+	. Added '--update-only' option to start yumex in update only mode 
+	. Added '--search-only' option to start yumex in search only mode 
+    . Updateinfo in separate view like changelog / filelist
+    . Show updateinfo for all packages, not just updates
+    . Show all updateinfo records, not just the last one
+	. Added search options to select the fields to search in
+	. Added search while typing on packages, if more 3 chars has been entered and there is only one word
+	. Added typeahead search toggle button (left of search entry)
+	. Added better history transaction package view.
+	. Added History transaction search
+	. RFE: Add Click-able Project URL on package Description view to open project homepage in a browser
+	. Added Click-able Bugzilla links to open bugzilla reports in a browser
+	. Better progress and more info when getting packages and populate the package view
+	. Added 'install xxx' and 'remove yyy' commands on queue page. it gives the same result as
+	    yum install xxx and yum remove yyy
+	. Add completion entry for queue commands.
+	. Fix translation issues with gtkbuilder strings.
+	. Pressing Esc will clear the package search entry and undo current search
+	. Added status icon in notification error.  
+		- Clicking on it will hide/show window  
+		- Right Click show a menu with an quit option  
+		- Tooltip show current action from progress dialog
+	. Added right click popup on installed packages with options to reinstall or downgrade to a selected package
+	. Show both installed and update for same package in a search
+	. Show old version of a installonly packages in a search
+	. Added progress dialog when getting category packages (by repository)
+	. Optimized frontend package caching
+	. add support for command line commands.
+		- 'yumex foobar' will search for 'foobar'
+		- 'yumex <action> foobar' : (<action> = [install, remove, update, downgrade, reinstall]
+		   it will populate the pending action queue, based on the action 
+    . Added package info page with package dependency informations
+    . Added -X (--execute) to automatic process actions from command line commands.
+    . Added -y (--yes) to disable transaction dialog and "Do you want to exit" dialog (to be used with -X)
 ( * = Released, . = Upstream )	

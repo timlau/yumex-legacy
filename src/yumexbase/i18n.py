@@ -34,21 +34,21 @@ def dummyP_wrapper(str1, str2, n):
         return str1
     else:
         return str2
-    
-def to_unicode(obj, encoding = 'utf-8', errors = 'replace'):
+
+def to_unicode(obj, encoding='utf-8', errors='replace'):
     ''' convert a 'str' to 'unicode' '''
     if isinstance(obj, basestring):
         if not isinstance(obj, unicode):
             obj = unicode(obj, encoding, errors)
     return obj
 
-    
-try: 
+
+try:
     # Setup the yum translation domain and make _() and P_() translation wrappers
     # available.
     # using ugettext to make sure translated strings are in Unicode.
     import gettext
-    t = gettext.translation('yumex', fallback = True)
+    t = gettext.translation('yumex', fallback=True)
     _ = t.ugettext
     P_ = t.ungettext
 except:

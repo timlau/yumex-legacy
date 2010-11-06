@@ -24,20 +24,87 @@
 
 from yumexbase.constants import *
 from urlgrabber.progress import format_number
+from yumexbase import TimeFunction
+from yum.misc import prco_tuple_to_string
 
-
-from yumexbackend import YumexBackendBase, YumexPackageBase, YumexTransactionBase
+from yumexbackend import YumexBackendBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
-from yumexbackend.yumMediaManagerDeviceKit import MediaManagerDeviceKit as MediaManager
+from guihelpers import doGtkEvents
+from yumexbackend.yumMediaManagerUDisks import MediaManagerUDisks as MediaManager
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
 from yumexbase.i18n import _, P_
 # pylint: enable-msg=W0611
 
+class PackageCache:
+    '''
+    Package cache to contain packages from backend, so we dont have get them more
+    than once.
+    '''
 
-               
+    def __init__(self, backend, frontend):
+        '''
+        setup the cache
+        @param backend:    backend instance
+        '''
+        for filter in ACTIONS_FILTER.values():
+            setattr(self, filter, set())
+        self._populated = []
+        self._index = {}
+        self.backend = backend
+        self.frontend = frontend
+
+    def reset(self):
+        '''
+        reset the cache
+        '''
+        for filter in ACTIONS_FILTER.values():
+            setattr(self, filter, set())
+        self._populated = []
+        self._index = {}
+
+    def _get_packages(self, pkg_filter):
+        '''
+        get a list of packages from the cache
+        @param pkg_filter: the type of packages to get
+        '''
+        return list(getattr(self, str(pkg_filter)))
+
+    def is_populated(self, pkg_filter):
+        return str(pkg_filter) in self._populated
+
+    def populate(self, pkg_filter, pkgs):
+        '''
+        '''
+        self.find_packages(pkgs)
+        self._populated.append(str(pkg_filter))
+
+
+    def _add(self, po):
+        if str(po) in self._index: # package is in cache
+            return self._index[str(po)]
+        else:
+            target = getattr(self, ACTIONS_FILTER[po.action])
+            self._index[str(po)] = po
+            target.add(po)
+            return po
+
+    #@TimeFunction
+    def find_packages(self, packages):
+        pkgs = []
+        i = 0
+        for po in packages:
+            i += 1
+            if (i % 500) == 0: # Refresh gui + progressbar
+                self.frontend.refresh()
+            pkgs.append(self._add(po))
+        return pkgs
+
+
+
+
 class YumexBackendYum(YumexBackendBase, YumClient):
     ''' Yumex Backend Yume class
 
@@ -51,11 +118,12 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         transaction = YumexTransactionYum(self, frontend)
         YumexBackendBase.__init__(self, frontend, transaction)
-        YumClient.__init__(self)
+        YumClient.__init__(self, frontend)
         self.dont_abort = False
+        self.package_cache = PackageCache(self, frontend)
 
     # Overload the YumClient message methods
-        
+
     def error(self, msg):
         """ error message """
         self.frontend.error(msg)
@@ -67,27 +135,30 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def info(self, msg):
         """ info message """
         self.frontend.info(msg)
-    
-    def debug(self, msg):
+
+    def debug(self, msg, name=None):
         """ debug message """
-        self.frontend.debug(msg)
+        if not name:
+            classname = __name__.split('.')[-1]
+            name = classname + "." + sys._getframe(1).f_code.co_name
+        self.frontend.debug(msg, name)
 
     def yum_logger(self, msg):
         """ yum logger message """
         if len(msg.strip()) > 0:
             # skip the bogus gtk error
-            if 'gdk_x11_atom_to_xatom_for_display' in msg: 
+            if 'gdk_x11_atom_to_xatom_for_display' in msg:
                 return
             self.frontend.info("YUM: " + msg)
 
-    def yum_rpm_progress(self, action, package, frac, ts_current, ts_total):   
+    def yum_rpm_progress(self, action, package, frac, ts_current, ts_total):
         """ yum rpm action progress handler """
         progress = self.frontend.get_progress()
         progress.set_action("%s %s" % (action, package))
         progress.set_fraction(frac, "%3i %%" % int(frac * 100))
-        width = len("%s" % ts_total)            
+        width = len("%s" % ts_total)
         progress.tasks.set_extra_label('run-trans', "<b>( %*s / %*s )</b>" % (width, ts_current, width, ts_total))
-        
+
     def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
         """ yum download progress handler """
         progress = self.frontend.get_progress()
@@ -99,8 +170,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_pulse(True)
         elif percent == 0:
             progress.set_pulse(False)
-        if progress.tasks.current_running == 'download':    
-            width = len("%s" % tot)    
+        if progress.tasks.current_running == 'download':
+            width = len("%s" % tot)
             progress.tasks.set_extra_label('download', "<b>( %*s / %*s )</b>" % (width, cur, width, tot))
         progress.set_fraction(float(percent) / 100.0, "%3i %% ( %s / %s ) - %s" % (percent, fread, ftotal, ftime))
         #self.frontend.debug("Progress: %s - %s - %s - %s - %s" %  (cur, tot, fread, ftotal, ftime))
@@ -117,13 +188,13 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 if key in mdtype:
                     msg = REPO_INFO_MAP[key]
                     break
-            if repo:    
+            if repo:
                 markup = "<b>%s</b>" % repo
-                self.frontend.debug(msg % repo)
+                self.debug(msg % repo)
                 progress.set_action(msg % markup)
-                
-            else:            
-                self.frontend.debug(msg)
+
+            else:
+                self.debug(msg)
                 progress.set_action(msg)
         elif ftype == 'REBUILD':
             progress.set_action(_('Buiding rpms from deltarpm'))
@@ -133,7 +204,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 progress.set_action(name)
             else:
                 self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype, name, percent))
-            
+
 
     def yum_state(self, state):
         '''
@@ -157,11 +228,12 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.tasks.next('gpg-check')
         elif state == 'transaction':
             progress.set_pulse(False)
+            progress.set_header(_("Running RPM Transaction"))
             progress.tasks.next()
 
     def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key  """
-        msg = _('Do you want to import GPG Key : %s \n') % hexkeyid 
+        msg = _('Do you want to import GPG Key : %s \n') % hexkeyid
         msg += "  %s \n" % userid
         msg += _("Needed by %s") % str(po)
         return questionDialog(self.frontend.window, msg)
@@ -178,16 +250,16 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         prompt = prompt_first
         if media_num:
-            msg = _("Please insert media labeled %s #%d.") %(media_name,media_num)
+            msg = _("Please insert media labeled %s #%d.") % (media_name, media_num)
         else:
-            msg = _("Please insert media labeled %s.") %(media_name,)
+            msg = _("Please insert media labeled %s.") % (media_name,)
         while(1): # breaks if the user cancels it or if we found the needed media
             if prompt:
                 rc = okCancelDialog(self.frontend.window, msg)
                 if not rc: return None
-            mp=self._get_mount_point(media_id, media_num)
+            mp = self._get_mount_point(media_id, media_num)
             if mp: return mp
-            prompt=True
+            prompt = True
 
     def _get_mount_point(self, media_id, media_num):
         '''
@@ -208,8 +280,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             if not mnt:
                 continue
             # load ".discinfo" from the media and parse it
-            if os.path.exists("%s/.discinfo" %(mnt,)):
-                f = open("%s/.discinfo" %(mnt,), "r")
+            if os.path.exists("%s/.discinfo" % (mnt,)):
+                f = open("%s/.discinfo" % (mnt,), "r")
                 lines = f.readlines()
                 f.close()
                 theid = lines[0].strip()
@@ -234,45 +306,61 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         the default timeout is .5 sec.
         """
         self.frontend.timeout(count)
-        
+
     def exception(self, msg):
         """ debug message """
         self.frontend.exception(unpack(msg))
 
-    def setup(self, offline = False,repos=None):
+    def setup(self, offline=False, repos=None):
         ''' Setup the backend'''
-        if self.child: # Check if backend is already running
+        if self.yum_backend_is_running: # Check if backend is already running
             return
         self.frontend.info(_("Starting yum child process"))
         if repos:
             self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
         plugins = self.frontend.settings.plugins
         yumdebuglevel = self.frontend.settings.yumdebuglevel
-        proxy=self.frontend.settings.proxy.strip()
+        proxy = self.frontend.settings.proxy.strip()
         yum_conf = self.frontend.settings.yum_conf
         filelog = False
         if 'show_backend' in self.frontend.debug_options:
-            filelog = True      
-        self.debug('Initialize yum backend - BEGIN')    
+            filelog = True
+        self.debug('Initialize yum backend - BEGIN')
         rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, offline=offline, repos=repos, proxy=proxy, yum_conf=yum_conf)
-        self.debug('Initialize yum backend - END')    
-        return rc    
-        
+        self.debug('Initialize yum backend - END')
+        return rc
+
     def reset(self):
         ''' Reset the backend, so it can be setup again'''
+        self.package_cache.reset()
         rc = YumClient.reset(self)
         if rc:
             self.frontend.info(_("yum backend process is ended"))
 
+    #@TimeFunction
     def get_packages(self, pkg_filter, show_dupes=False):
         ''' 
         get packages based on filter 
         @param pkg_filer: package list filter (Enum FILTER)
         @return: a list of packages
         '''
-        pkgs = YumClient.get_packages(self, pkg_filter, show_dupes)
-        self.frontend.debug("got %i packages" % len(pkgs))
-        return [YumexPackageYum(p,self.frontend) for p in pkgs]
+        if str(pkg_filter) == 'all':
+            filters = ['installed', 'available']
+        else:
+            filters = [pkg_filter]
+        rc = []
+        # Getting the packages
+        for flt in filters:
+            if not self.package_cache.is_populated(pkg_filter):
+                pkgs = YumClient.get_packages(self, flt, show_dupes)
+                self.debug('got %i packages from yum backend' % (len(pkgs)))
+                self.package_cache.populate(flt, pkgs)
+            else:
+               pkgs = self.package_cache._get_packages(pkg_filter)
+               self.debug('got %i packages from cache' % (len(pkgs)))
+            rc.extend(pkgs)
+        self.info(_("%i packages returned") % len(rc))
+        return rc
 
     def get_packages_size(self, ndx):
         ''' 
@@ -281,7 +369,19 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages_size(self, ndx)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
+
+    def get_dependencies(self, po):
+        reqs = YumClient.get_dependencies(self, po)
+        rc = {}
+        for req_tup, po in reqs:
+            req = prco_tuple_to_string(req_tup)
+            cpo = self.package_cache._add(po)
+            if req in rc:
+                rc[req].append(cpo)
+            else:
+                rc[req] = [cpo]
+        return rc
 
     def get_packages_repo(self, repoid):
         ''' 
@@ -290,7 +390,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @return: a list of packages
         '''
         pkgs = YumClient.get_packages_repo(self, repoid)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
     def get_repositories(self):
         ''' 
@@ -328,9 +428,17 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Getting packages in group : %s (FILTER = %s)' % (group, grp_filter))
         pkgs = YumClient.get_group_packages(self, group, grp_filter)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
-    def search(self, keys, sch_filters):
+    def get_available_by_name(self, name):
+        pkgs = YumClient.get_available_by_name(self, name)
+        return self.package_cache.find_packages(pkgs)
+
+    def get_available_downgrades(self, po):
+        pkgs = YumClient.get_available_downgrades(self, po)
+        return self.package_cache.find_packages(pkgs)
+
+    def search(self, keys, sch_filters, use_cache=True):
         ''' 
         get packages matching keys
         @param keys: list of keys to seach for
@@ -338,104 +446,25 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
         pkgs = YumClient.search(self, keys, sch_filters)
-        return [self.frontend.package_cache.find(po) for po in pkgs]
+        return self.package_cache.find_packages(pkgs)
 
+    def search_prefix(self, prefix, use_cache=True):
+        '''
+        Search for packages with prefix
+        @param prefix prefix to search for
+        '''
+        pkgs = YumClient.search_prefix(self, prefix)
+        return self.package_cache.find_packages(pkgs)
 
+    def run_command(self, cmd, userlist, use_cache=True):
+        '''
+        Search for packages with prefix
+        @param prefix prefix to search for
+        '''
+        pkgs = YumClient.run_command(self, cmd, userlist)
+        self.frontend.get_progress().hide()
+        return self.package_cache.find_packages(pkgs)
 
-class YumexPackageYum(YumexPackageBase):
-    '''
-    Yumex Package Base class
-
-    This is an abstract package object for a package in the package system
-    '''
-
-    def __init__(self, pkg, frontend):
-        '''
-        
-        @param pkg:
-        '''
-        YumexPackageBase.__init__(self, pkg)
-        self.queued = False
-        self.selected = False
-        self.visible = True
-        self.frontend = frontend
-
-    def set_select(self, state):
-        '''
-        
-        @param state:
-        '''
-        self.selected = state
-
-    def set_visible(self, state):
-        '''
-        
-        @param state:
-        '''
-        self.visible = state
-        
-
-    @property
-    def sizeBytes(self):
-        '''
-        
-        '''
-        return long(self._pkg.size)
-
-    @property
-    def size(self):
-        '''
-        
-        '''
-        return format_number(long(self._pkg.size))
-
-    @property
-    def description(self):
-        '''
-        
-        '''
-        return self._pkg.get_attribute('description')
-
-    @property
-    def changelog(self):
-        '''
-        
-        '''
-        return self._pkg.get_changelog(4)
-
-    @property
-    def filelist(self):
-        '''
-        get package filelist
-        '''
-        return self._pkg.get_attribute('filelist') 
-
-    @property
-    def recent(self):
-        '''
-        get package recent state
-        '''
-        return self._pkg.recent == '1'
-
-    @property
-    def color(self):
-        '''
-        get package color to show in view
-        '''
-        color = self.frontend.settings.color_normal
-        if self.repoid == 'installed' or self.repoid.startswith('@'):
-            color = self.frontend.settings.color_install
-        elif self.action == 'u':
-            color = self.frontend.settings.color_update
-        return color    
-
-    @property
-    def updateinfo(self):
-        '''
-        get update info for package
-        '''
-        return self._pkg.get_update_info()
-        
 
 class YumexTransactionYum(YumexTransactionBase):
     '''
@@ -501,7 +530,7 @@ class YumexTransactionYum(YumexTransactionBase):
         @param grp: group to check for
         '''
         pass
-    
+
     def process_transaction(self):
         '''
         Process the packages and groups in the queue
@@ -514,7 +543,7 @@ class YumexTransactionYum(YumexTransactionBase):
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
             progress.hide()
-            if self.frontend.confirm_transaction(trans,size[0]): # Let the user confirm the transaction
+            if self.frontend.confirm_transaction(trans, size[0]): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()
                 progress.tasks.complete_current()
@@ -527,9 +556,9 @@ class YumexTransactionYum(YumexTransactionBase):
             title = _("Dependency Resolution Failed")
             text = _("Dependency Resolution Failed")
             longtext = _("Dependency Resolution Errors:")
-            longtext += '\n\n'            
+            longtext += '\n\n'
             for msg in msgs:
-                longtext += msg            
+                longtext += msg
             # Show error dialog    
             dialog = ErrorDialog(self.frontend.ui, self.frontend.window, title, text, longtext, modal=True)
             dialog.run()
@@ -539,13 +568,13 @@ class YumexTransactionYum(YumexTransactionBase):
             for msg in msgs:
                 self.frontend.error("  %s" % msg)
             return False
-        
+
     def get_transaction_packages(self):
         '''
         Get the current packages in the transaction queue
         '''
         pkgs = self.backend.list_transaction()
-        return [YumexPackageYum(p) for p in pkgs]
-    
-    
-    
+        return [YumexPackageYum(p, self.frontend) for p in pkgs]
+
+
+

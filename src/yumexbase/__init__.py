@@ -22,6 +22,9 @@
 Yumex Backend Base Classes
 '''
 
+import time
+import sys
+
 class YumexProgressBase:
     '''
     A Virtual Progress class
@@ -32,39 +35,39 @@ class YumexProgressBase:
         '''
         self._active = False
         self._pulse = False
-    
+
     def show(self):
         ''' Show the progress '''
         self._active = True
-    
+
     def hide(self):
         ''' Hide the progress '''
         self._active = False
-    
+
     def is_active(self):
         '''
         
         '''
         return self._active
-    
+
     def is_pulse(self):
         '''
         
         '''
         return self._pulse
-    
+
     def set_pulse(self, pulse):
         '''
         
         @param pulse:
         '''
         self._pulse = pulse
-    
+
     def set_title(self, title):
         ''' set the progress dialog title '''
         raise NotImplementedError()
-    
-    def set_fraction(self, frac, text = None):
+
+    def set_fraction(self, frac, text=None):
         ''' set the progress dialog title '''
         raise NotImplementedError()
 
@@ -75,7 +78,7 @@ class YumexProgressBase:
     def set_action(self, text):
         ''' set the progress action text '''
         raise NotImplementedError()
-    
+
     def pulse(self):
         ''' pulse the progress bar '''
         raise NotImplementedError()
@@ -119,7 +122,7 @@ class YumexFrontendBase:
         ''' write an info message '''
         raise NotImplementedError()
 
-    def debug(self, msg):
+    def debug(self, msg, name=None):
         ''' write an debug message '''
         raise NotImplementedError()
 
@@ -144,14 +147,14 @@ class YumexBaseError(Exception):
     Base Yumex Error. All other Errors thrown by yum should inherit from
     this.
     """
-    def __init__(self, value = None):
+    def __init__(self, value=None):
         '''
         
         @param value:
         '''
         Exception.__init__(self)
         self.value = value
-    
+
     def __str__(self):
         '''
         
@@ -171,6 +174,23 @@ class YumexBackendFatalError(YumexBaseError):
         YumexBaseError.__init__(self)
         self.err = err
         self.msg = msg
-    
+
+
+def TimeFunction(func):
+    """
+    This decorator catch yum exceptions and send fatal signal to frontend 
+    """
+    def newFunc(*args, **kwargs):
+        t_start = time.time()
+        rc = func(*args, **kwargs)
+        t_end = time.time()
+        name = func.__name__
+        print("%s took %.2f sec" % (name, t_end - t_start))
+        return rc
+
+    newFunc.__name__ = func.__name__
+    newFunc.__doc__ = func.__doc__
+    newFunc.__dict__.update(func.__dict__)
+    return newFunc
 
 

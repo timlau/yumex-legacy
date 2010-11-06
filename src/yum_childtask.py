@@ -51,6 +51,7 @@ if __name__ == "__main__":
     repos = []
     plugins = True
     offline = False
+    yum_conf = '/etc/yum.conf'
     if len(sys.argv) > 3:
         debuglevel = int(sys.argv[1])
         plugins = sys.argv[2] == 'True'
@@ -64,7 +65,7 @@ if __name__ == "__main__":
     try:
         my = YumServer(debuglevel, plugins, offline, repos, yum_conf)
         my.dispatcher()
-    except YumexBackendFatalError,e: # Lock errors etc
-        err,msg = (e.err, e.msg)
-        print err,msg
+    except YumexBackendFatalError, e: # Lock errors etc
+        err, msg = (e.err, e.msg)
+        print err, msg
         sys.exit(200)

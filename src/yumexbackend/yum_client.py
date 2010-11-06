@@ -27,7 +27,7 @@ import pexpect
 
 from yumexbase.constants import *
 from yumexbase import YumexBackendFatalError
-from yumexbackend import  YumPackage,  pack, unpack
+from yumexbackend import  YumexPackage, pack, unpack
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -40,22 +40,25 @@ from yumexbase.i18n import _, P_
 
 #logginglevels._added_handlers = True # let yum think, that logging handlers is already added.
 
-    
-class YumClient:
+
+class YumClientBase:
     """ Client part of a the yum client/server """
 
-    def __init__(self, timeout = .1):
+    def __init__(self, frontend, timeout):
         '''
         
         @param timeout:
         '''
         self.child = None
+        self.frontend = frontend
         self._timeout_value = timeout
         self._timeout_last = 0
         self._timeout_count = 0
         self.sending = False
         self.waiting = False
         self.end_state = None
+        self.launcher_is_started = False
+        self.yum_backend_is_running = False
 
     def error(self, msg):
         """ error message (overload in child class)"""
@@ -68,8 +71,8 @@ class YumClient:
     def info(self, msg):
         """ info message (overload in child class)"""
         raise NotImplementedError()
-    
-    def debug(self, msg):
+
+    def debug(self, msg, name=None):
         """ debug message (overload in child class)"""
         raise NotImplementedError()
 
@@ -90,7 +93,7 @@ class YumClient:
         (action, package, percent, ts_current, ts_total) = unpack(value)
         self.yum_rpm_progress(action, package, percent, ts_current, ts_total)
 
-    def yum_rpm_progress(self, action, package, percent, ts_current, ts_total):   
+    def yum_rpm_progress(self, action, package, percent, ts_current, ts_total):
         """ yum rpm action progress handler (overload in child class)"""
         raise NotImplementedError()
 
@@ -100,7 +103,7 @@ class YumClient:
         self.yum_dnl_progress(ftype, name, percent, cur, tot, fread, ftotal, ftime)
 
     def yum_dnl_progress(self, ftype, name, percent, cur, tot, fread, ftotal, ftime):
-        """ yum download progress handler (overload in child class) """   
+        """ yum download progress handler (overload in child class) """
         raise NotImplementedError()
 
     def _gpg_check(self, value):
@@ -111,17 +114,17 @@ class YumClient:
             self.child.sendline(":true")
         else:
             self.child.sendline(":false")
-            
+
     def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key (overload in child class) """
         return False
-    
+
     def _media_change(self, value):
         """ media change signal """
         (prompt_first, media_id, media_name, media_num) = unpack(value)
         mp = self.media_change(prompt_first, media_id, media_name, media_num)
         self.child.sendline(":mountpoint\t%s" % pack(mp))
-            
+
     def media_change(self, prompt_first, media_id, media_name, media_num):
         """  media change (overload in child class) """
         return False
@@ -163,47 +166,60 @@ class YumClient:
         """
         raise NotImplementedError()
 
-    def setup(self, debuglevel = 2, plugins = True, filelog = False, offline = False, repos = None, proxy = None, yum_conf = '/etc/yum.conf'):
+    def _launcher_cmd(self, cmd):
+        param = pack(cmd)
+        self._send_command("#run", [param])
+
+    def _start_launcher(self, filelog):
+        args = []
+        if MAIN_PATH == '/usr/share/yumex': # Bin package
+            if os.getuid() == 0: # Root
+                self.info(_('Client is running in rootmode, starting backend launcher directly'))
+                cmd = '/usr/share/yumex/yumex-yum-backend'
+            else: # Non root run using console helper wrapper
+                cmd = '/usr/bin/yumex-yum-backend'
+        else:
+            if os.getuid() != 0: # Non Root
+                self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
+                cmd = '/usr/bin/sudo'
+                args.append(MAIN_PATH + "/backend-launcher.py")
+            else: # root
+                self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
+                cmd = MAIN_PATH + "/backend-launcher.py"
+        self.child = pexpect.spawn(cmd, args, timeout=self._timeout_value)
+        self.child.setecho(False)
+        if filelog:
+            self.child.logfile_read = sys.stdout
+        self._wait_for_launcher_started()
+        self.launcher_is_started = True
+
+    def setup(self, debuglevel=2, plugins=True, filelog=False, offline=False, repos=None, proxy=None, yum_conf='/etc/yum.conf'):
         ''' Setup the client and spawn the server'''
-        if not self.child:
+        if not self.yum_backend_is_running:
+            self.debug("Setup START")
             prefix = ""
             args = []
-            if MAIN_PATH == '/usr/share/yumex': # Bin package
-                if os.getuid() == 0: # Root
-                    self.info('Client is running in rootmode, starting backend directly')
-                    cmd = '/usr/share/yumex/yumex-yum-backend'
-                else: # Non root run using console helper wrapper
-                    cmd = '/usr/bin/yumex-yum-backend'
-            else:
-                if os.getuid() != 0: # Non Root
-                    self.info('Running backend with \"sudo %s\"' % (MAIN_PATH + "/yum_childtask.py"))
-                    cmd ='/usr/bin/sudo'
-                    args.append(MAIN_PATH + "/yum_childtask.py")
-                else: # root
-                    self.info('ROOTMODE: Running backend (%s)' % (MAIN_PATH + "/yum_childtask.py"))
-                    cmd = MAIN_PATH + "/yum_childtask.py"
+            if not self.launcher_is_started:
+                self._start_launcher(filelog)
+            cmd = MAIN_PATH + "/yum_childtask.py "
             args.append(str(debuglevel)) # debuglevel
             args.append(str(plugins))    # plugins 
             args.append(str(offline))    # is offline
             args.append(str(yum_conf))    # is offline
             if repos:                    # enabled repos
                 repo_str = ";".join(repos)
-                args.append(repo_str)
-#            if proxy:
-#                prefix="HTTP_PROXY=%s " % proxy
-#                self.info("Setting : %s" % prefix)
-            self.child = pexpect.spawn(cmd,args, timeout = self._timeout_value)
-            self.child.setecho(False)
-            if filelog:
-                self.child.logfile_read = sys.stdout
+                args.append('"' + repo_str + '"')
+            cmd_to_run = cmd + " ".join(args)
+            self.debug("Command to run : " + cmd_to_run)
+            self._launcher_cmd(cmd_to_run)
+            self.debug("Setup END")
             return self._wait_for_started()
-
         else:
             return None
 
     def reset(self):
         """ reset the client"""
-        if not self.child: # yum backend not running
+        if not self.yum_backend_is_running: # yum backend not running
             return True
         if not self.child.isalive():
             del self.child
@@ -219,25 +235,28 @@ class YumClient:
                 rc = self._send_command('exit', [])
                 if rc:
                     cmd, args = self._readline()
-                    self._close()
+                    #self._close()
+                    self.debug(cmd)
+                    self.yum_backend_is_running = False
                     return True
         # The yum backend did not ended nicely               
         self.error(_("Yum backend did not close nicely in time"))
+        self.yum_backend_is_running = False
         self._close()
         return False
 
-        
+
     def _send_command(self, cmd, args):
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd, "\t".join(args))
-        debug_msg = 'Sending command: %s args: %s' % (cmd, str(args))
+        debug_msg = 'Sending: %s args: %s' % (cmd, str(args))
         timeouts = 0
         self.sending = True
-        self.end_state = None        
+        self.end_state = None
         while True:
             try:
                 cmd, args = self._readline()
-                if cmd == ':ready':
+                if cmd == ':ready' or cmd == '#ready':
                     break
                 elif cmd == None:
                     self.sending = False
@@ -261,9 +280,11 @@ class YumClient:
             else:
                 args = []
             return cmd, args
+        if line.startswith('#') or line.startswith('&'):
+            return line, []
         else:
             return None, line
-    
+
     def _readline(self):
         ''' read a line from the server'''
         line = None
@@ -291,20 +312,23 @@ class YumClient:
                 self._timeout()
                 continue
         # Client is not running any more
-        args = ['backend-not-running',pack('backend not running as expected (yumex will close)')]
+        args = ['backend-not-running', pack('backend not running as expected (yumex will close)')]
         self.fatal(args)
-            
+
     def _check_for_message(self, cmd, args):
         ''' 
         check if the command is a message and call the
         message handler if it is
          '''
         if cmd == ':error':
-            self.error(args[0])    
+            self.error(args[0])
         elif cmd == ':info':
-            self.info(args[0])    
+            self.info(args[0])
         elif cmd == ':debug':
-            self.debug(args[0])    
+            if len(args) > 1 and args[1] <> 'None':
+                self.debug(args[0], args[1])
+            else:
+                self.debug(args[0])
         elif cmd == ':warning':
             self.warning(args[0])
         elif cmd == ':exception':
@@ -325,21 +349,43 @@ class YumClient:
             self.yum_state(args[0])
         else:
             return False # not a message
-        return True    
-    
+        return True
+
     def _wait_for_started(self):
         '''
         
         '''
-        time.sleep(2)
+        beg = time.time()
+        while not self.child.isalive():
+            time.sleep(0.1)
+            if time.time() - beg > 2:
+                break
         cnt = 0
         while True and self.child.isalive():
             cmd, args = self._readline()
             cnt += 1
             if cmd == ':started':
+                self.yum_backend_is_running = True
                 return True
         return False
-            
+
+    def _wait_for_launcher_started(self):
+        '''
+        
+        '''
+        beg = time.time()
+        while not self.child.isalive():
+            time.sleep(0.1)
+            if time.time() - beg > 2:
+                break
+        cnt = 0
+        while True and self.child.isalive():
+            cmd, args = self._readline()
+            cnt += 1
+            if cmd == '#started':
+                return True
+        return False
+
     def is_ended(self, cmd, args):
         '''
         
@@ -354,8 +400,8 @@ class YumClient:
             return True
         else:
             return False
-        
-    def _get_list(self, result_cmd = ":pkg"):
+
+    def _get_list(self, result_cmd=":pkg"):
         ''' 
         read a list of :pkg commands from the server, until and
         :end command is received
@@ -368,11 +414,14 @@ class YumClient:
                 break
             if cmd == None: # readline is locked:
                 break
-            elif not cmd == result_cmd: 
+            elif not cmd == result_cmd:
                 self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
             elif cmd == ':pkg':
-                po = YumPackage(self, args)
+                cnt += 1
+                po = YumexPackage(args, self.frontend, self)
                 data.append(po)
+                if (cnt % 250) == 0:
+                    self.frontend.refresh()
             else:
                 data.append(args)
         return data
@@ -410,7 +459,7 @@ class YumClient:
                 break
             if cmd == None: # readline is locked:
                 break
-            elif not cmd == result_cmd: 
+            elif not cmd == result_cmd:
                 self.warning("_get_list unexpected command : %s (%s)" % (cmd, args))
             else:
                 elem = unpack(args[0])
@@ -431,7 +480,7 @@ class YumClient:
                     break
                 else:
                     self.warning("_get_result unexpected command : %s (%s)" % (cmd, args))
-    
+
     def _get_messages(self):
         ''' 
         read a list of :msg commands from the server, until and
@@ -450,75 +499,110 @@ class YumClient:
                 else:
                     msgs[msg_type] = [value]
         return msgs
-            
+
     def _get_return_code(self):
         while True:
             cmd, args = self._readline()
             if self.is_ended(cmd, args):
                 break
         return self.end_state
-    
-    def _close(self):        
+
+    def _close(self):
         ''' terminate the child server process '''
         if self.child:
             if self.child.isalive():
                 try:
+                    self._send_command("#exit", []) # Send exit to backend launcher
+                    cmd, args = self._readline()
+                    self.debug(cmd)
                     time.sleep(2) # Waiting a while to make sure that backend is closed
                     self.debug("Forcing backend to close")
-                    self.child.close(force = True)
-                except pexpect.ExceptionPexpect,e:
+                    self.child.close(force=True)
+                except pexpect.ExceptionPexpect, e:
                     del self.child
                     self.child = None
                     raise YumexBackendFatalError("backend-error", str(e))
             del self.child
         self.child = None
+
+    def execute_command(self, cmd , args=[]):
+        '''
+        Send a command to the backend and get a list of packages 
+        @param cmd:
+        @param args:
+        '''
+        self._send_command(cmd, args)
+        pkgs = self._get_list()
+        return pkgs
+
+
+class YumClient(YumClientBase):
+    """ 
+    Client part of a the yum client/server
+    
+    This class contains the actions used by the frontend
+    
+    """
+
+    def __init__(self, frontend, timeout=.1):
+        '''
         
-    def get_packages(self, pkg_filter, show_dupes=False):    
-        ''' get a list of packages based on pkg_filter '''
-        self._send_command('get-packages', [str(pkg_filter),str(show_dupes)])
-        pkgs = self._get_list()
-        return pkgs
+        @param timeout:
+        '''
+        YumClientBase.__init__(self, frontend, timeout)
 
-    def get_packages_size(self, ndx):    
+    def get_packages(self, pkg_filter, show_dupes=False):
+        ''' get a list of packages based on pkg_filter '''
+        return self.execute_command('get-packages', [str(pkg_filter), str(show_dupes)])
+
+    def get_available_by_name(self, name):
+        return self.execute_command('get-available-by-name', [name])
+
+    def get_available_downgrades(self, po):
+        return self.execute_command('get-available-downgrades', [po.id])
+
+    def get_packages_size(self, ndx):
         ''' get a list of packages based on size range '''
-        self._send_command('get-packages-size', [str(ndx)])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-packages-size', [str(ndx)])
 
-    def get_packages_repo(self, repoid):    
+    def get_packages_repo(self, repoid):
         ''' get a list of packages based on repo '''
-        self._send_command('get-packages-repo', [repoid])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('get-packages-repo', [repoid])
 
-    def get_history_packages(self, tid):    
+    def get_history_packages(self, tid, data_set='trans_data'):
         ''' get a list of packages based on pkg_filter '''
-        self._send_command('get-history-packages', [str(tid)])
-        pkgs = self._get_packed_list(result_cmd = ':histpkg')
+        self._send_command('get-history-packages', [str(tid), data_set])
+        pkgs = self._get_packed_list(result_cmd=':histpkg')
         return pkgs
 
-    def get_history(self):    
+    def get_history(self):
         ''' get a list of packages based on pkg_filter '''
         self._send_command('get-history', [])
-        tids = self._get_packed_list(result_cmd = ':hist')
+        tids = self._get_packed_list(result_cmd=':hist')
         return tids
 
-    def history_redo(self, tid):    
+    def search_history(self, pattern):
+        ''' get a list of packages based on pkg_filter '''
+        self._send_command('search-history', [pack(pattern)])
+        tids = self._get_packed_list(result_cmd=':hist')
+        return tids
+
+    def history_redo(self, tid):
         ''' reodo a history transaction '''
         self._send_command('history-redo', [str(tid)])
         return self._get_return_code()
 
-    def history_undo(self, tid):    
+    def history_undo(self, tid):
         ''' undo a history transaction '''
         self._send_command('history-undo', [str(tid)])
         return self._get_return_code()
 
-    def set_option(self, option, value, on_repos = False):    
+    def set_option(self, option, value, on_repos=False):
         ''' get a list of packages based on pkg_filter '''
-        self._send_command('set-option', [option,pack(value),pack(on_repos)])
+        self._send_command('set-option', [option, pack(value), pack(on_repos)])
         return self._get_return_code()
 
-    def get_attribute(self, ident, attr):    
+    def get_attribute(self, ident, attr):
         ''' get an attribute of an package '''
         self._send_command('get-attribute', [ident, attr])
         args = self._get_result(':attr')
@@ -527,7 +611,7 @@ class YumClient:
         else:
             return None
 
-    def get_changelog(self, ident, num):    
+    def get_changelog(self, ident, num):
         ''' get an attribute of an package '''
         self._send_command('get-changelog', [ident, str(num)])
         args = self._get_result(':attr')
@@ -536,46 +620,49 @@ class YumClient:
         else:
             return None
 
-    def get_update_info(self,ident):  
+    def get_update_info(self, ident):
         self._send_command('update-info', [ident])
         msgs = self._get_messages()
-        return msgs['updateinfo'][0],msgs['updated_po'][0]
-              
+        if 'updateinfo' in msgs and 'updated_po' in msgs:
+            return msgs['updateinfo'], msgs['updated_po']
+        else:
+            return (None, None)
+
     def add_transaction(self, ident, action):
         '''
         
         @param ident:
         @param action:
         '''
-        self._send_command('add-transaction', [ident, action])
-        pkgs = self._get_list()
-        return pkgs
-        
+        return self.execute_command('add-transaction', [ident, action])
+
     def remove_transaction(self, ident, action):
         '''
         
         @param ident:
         @param action:
         '''
-        self._send_command('remove-transaction', [ident])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('remove-transaction', [ident])
 
-    def list_transaction(self):        
+    def list_transaction(self):
         '''
         
         '''
-        self._send_command('list-transaction', [])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('list-transaction', [])
 
-    def reset_transaction(self):        
+    def run_command(self, cmd, userlist):
+        '''
+        
+        '''
+        return self.execute_command('run-command', [cmd, pack(userlist)])
+
+    def reset_transaction(self):
         '''
         
         '''
         self._send_command('reset-transaction', [])
 
-    def build_transaction(self):        
+    def build_transaction(self):
         '''
         
         '''
@@ -583,13 +670,25 @@ class YumClient:
         msgs = self._get_messages()
         return msgs['return_code'][0], msgs['messages'], unpack(msgs['transaction'][0]), msgs['size']
 
-    def run_transaction(self):        
+    def run_transaction(self):
         '''
         
         '''
         self._send_command('run-transaction', [])
         lst = self._get_list()
         return self.end_state
+
+    def get_dependencies(self, po):
+        '''
+        
+        '''
+        rc = []
+        self._send_command('get-dependencies', [po])
+        reqs = self._get_packed_list(result_cmd=':req')
+        for req, pkg_id in reqs:
+            po = YumexPackage(pkg_id, self.frontend, self)
+            rc.append((req, po))
+        return rc
 
     def get_groups(self):
         '''
@@ -599,16 +698,14 @@ class YumClient:
         msgs = self._get_messages()
         return unpack(msgs['groups'][0])
 
-    def get_group_packages(self, group, grp_filter = None):
+    def get_group_packages(self, group, grp_filter=None):
         ''' 
         get packages in a group 
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
-        self._send_command('get-group-packages', [group, str(grp_filter)])
-        pkgs = self._get_list()
-        return pkgs
-        
+        return self.execute_command('get-group-packages', [group, str(grp_filter)])
+
 
     def get_repos(self):
         '''
@@ -623,7 +720,7 @@ class YumClient:
             elem = (state, ident, name, gpg)
             repos.append(elem)
         return repos
-        
+
     def enable_repo(self, ident, state):
         '''
         
@@ -633,7 +730,7 @@ class YumClient:
         self._send_command('enable-repo', [ident, str(state)])
         args = self._get_result(':repo')
         return args
-        
+
     def enable_repo_persistent(self, ident, state):
         '''
         
@@ -642,7 +739,7 @@ class YumClient:
         '''
         self._send_command('enable-repo-persistent', [ident, str(state)])
         return self._get_return_code()
-        
+
     def search(self, keys, filters):
         '''
         
@@ -651,9 +748,15 @@ class YumClient:
         '''
         bKeys = pack(keys)
         bFilters = pack(filters)
-        self._send_command('search', [bKeys, bFilters])
-        pkgs = self._get_list()
-        return pkgs
+        return self.execute_command('search', [bKeys, bFilters])
+
+    def search_prefix(self, prefix):
+        '''
+        Search for packages with prefix
+        @param prefix prefix to search for
+        '''
+        return self.execute_command('search-prefix', [prefix])
+
 
     def clean(self, what):
         '''
@@ -663,7 +766,7 @@ class YumClient:
         '''
         self._send_command('clean', [what])
         return self._get_return_code()
-    
+
 
 if __name__ == "__main__":
     pass
