@@ -470,6 +470,8 @@ class YumexApplication(Controller, YumexFrontend):
         self._add_key_binding(self.ui.packageSearch, '<alt>s', event='activate')
         rc = True
         if self.cfg.cmd_args:
+            if self.settings.always_yes:
+                self.window.hide()
             rc = self.do_commands(self.cfg.cmd_args)
         if rc: # No commands executed
             if self.settings.search:            # Search only mode
@@ -486,8 +488,12 @@ class YumexApplication(Controller, YumexFrontend):
                     self.ui.packageRadioUpdates.clicked()
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         elif self.settings.execute or self.settings.run: # Auto execute
-            self.process_transaction()
-            
+            queue = self.queue.queue
+            if queue.total() != 0:
+                self.process_transaction()
+            else:
+                self.window.show()
+
         #self.testing()
 
 # pylint: enable-msg=W0201
@@ -746,6 +752,7 @@ class YumexApplication(Controller, YumexFrontend):
                 if self.settings.always_yes:
                     rc = True
                 else:
+                    self.window.show()
                     msg = _("Transaction completed successfully")
                     msg += _("\n\nDo you want to exit Yum Extender ?")
                     rc = questionDialog(self.window, msg) # Ask if the user want to Quit
