@@ -945,14 +945,14 @@ class YumexSearchOptionsView(SelectionView):
         selected = []
         for elem in self.store:
             state = elem[0]
-            name = elem[1]
+            name = elem[2]
             if state:
                 selected.append(name)
         return selected
 
     def setup_view(self):
         """ Create models and columns for the Search Options TextView  """
-        store = gtk.ListStore('gboolean', gobject.TYPE_STRING)
+        store = gtk.ListStore('gboolean', gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.view.set_model(store)
         # Setup Selection Column
         col = self.create_selection_column_num(0)
@@ -962,12 +962,12 @@ class YumexSearchOptionsView(SelectionView):
 
     def populate(self, values, default_values):
         self.store.clear()
-        for key in values:
+        for key in const.SEARCH_KEYS_ORDER:
             if key in default_values:
                 state = True
             else:
                 state = False
-            self.store.append([state, key])
+            self.store.append([state, values[key], key])
 
 
 class YumexGroupView:

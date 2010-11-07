@@ -200,3 +200,13 @@ QUEUE_PACKAGE_TYPES = {
 }
 
 YUMEX_CMDLINE_CMDS = ['search', 'install', 'remove', 'update', 'downgrade', 'reinstall']
+
+SEARCH_KEYS_VALUES = {
+    'name' : _("Name"),
+    'summary' : _("Summary"),
+    'description' : _("Description"),
+    'arch' : _("Arch")}
+
+SEARCH_KEYS_ORDER = ['name', 'summary', 'description', 'arch']
+
+

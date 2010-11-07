@@ -212,7 +212,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.groups_is_loaded = False
         self.history_is_loaded = False
         self.default_search_keys = ['name', 'summary', 'description']
-        self.search_keys = ['name', 'summary', 'description', "arch"]
+        self.search_keys = SEARCH_KEYS_VALUES
         self.typeahead_active = False
         self.queue_entry = None
         self._last_filter = None
