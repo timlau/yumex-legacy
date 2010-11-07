@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-10-06 22:05+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -353,6 +353,25 @@ msgstr "Встановлено як залежність"
 msgid "Reinstalled packages"
 msgstr "Повторно встановлені пакунки"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "Назва"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "Резюме"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+msgid "Description"
+msgstr "Опис"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "Арх."
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "Працюємо!!!"
@@ -409,14 +428,6 @@ msgstr "Рівень діагностики Yum"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "Результат операції"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "Назва"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "Арх."
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -477,10 +488,6 @@ msgstr "Стан"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "Випущено"
-
-#: ../src/yumexgui/gui.py:374
-msgid "Description"
-msgstr "Опис"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -762,11 +769,6 @@ msgstr "Обробка черги дій"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "Пакунок"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "Резюме"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-06-15 10:55+0900\n"
 "Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
 "Language-Team: Japanese <jp@li.org>\n"
@@ -370,6 +370,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "インストールされたパッケージを表示します"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "名前"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "概要"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "説明: %s\n"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "アーキ"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "処理中!!"
@@ -425,14 +445,6 @@ msgstr "Yumデバッグレベル"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "トランザクションの結果"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "名前"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "アーキ"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -494,11 +506,6 @@ msgstr "状態"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "発行日"
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "説明: %s\n"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -787,11 +794,6 @@ msgstr "保留しているアクションを処理中"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "パッケージ"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "概要"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

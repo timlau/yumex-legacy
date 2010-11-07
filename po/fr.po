@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yumex 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-01-24 17:31+0100\n"
 "Last-Translator: Charles-Antoine Couret cacouret@wanadoo.fr\n"
 "Language-Team: FR trans-fr@lists.fedoraproject.org\n"
@@ -367,6 +367,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "Montrer les paquets installés"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "Nom"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "Résumé"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "Description : %s\n"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "Arch"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "En cours !"
@@ -422,14 +442,6 @@ msgstr "Niveau de débogage de YUM"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "Résultat de la transaction"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "Nom"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "Arch"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -491,11 +503,6 @@ msgstr "Statut"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "Effectué"
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "Description : %s\n"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -788,11 +795,6 @@ msgstr "Traitement des actions en attente"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "Paquet"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "Résumé"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

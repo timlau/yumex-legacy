@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-05-29 01:11+0700\n"
 "Last-Translator: Dichi Al Faridi <dichi@alfaridi.info>\n"
 "Language-Team: Fedora-id\n"
@@ -361,6 +361,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "Tampilkan paket diinstal"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "Paket deskripsi"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr ""
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "Bekerja!!!"
@@ -415,14 +435,6 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
@@ -484,11 +496,6 @@ msgstr ""
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr ""
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "Paket deskripsi"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -766,11 +773,6 @@ msgstr ""
 #: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
-msgstr ""
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
 msgstr ""
 
 #: ../src/yumexgui/views.py:200

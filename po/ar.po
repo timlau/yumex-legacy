@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2009-08-23 13:10+0200\n"
 "Last-Translator: Muayyad Saleh Alsadi <alsadi@ojuba.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -364,6 +364,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "عرض الحزم المثبتة"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "الاسم"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "التفاصيل"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "الوصف : %s\n"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "المعمارية"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "يجري العمل!!!"
@@ -419,14 +439,6 @@ msgstr "مستوى تمحيص الأخطاء"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "نتيجة العملية"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "الاسم"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "المعمارية"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -488,11 +500,6 @@ msgstr "الحالة"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "أُصدر في"
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "الوصف : %s\n"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -784,11 +791,6 @@ msgstr ""
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "الحزمة"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "التفاصيل"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

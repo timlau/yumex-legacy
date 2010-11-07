@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex-nextgen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-10-01 17:25-0300\n"
 "Last-Translator: Héctor Daniel Cabrera <logan@fedoraproject.org>\n"
 "Language-Team: Spanish <trans-es@lists.fedoraproject.org>\n"
@@ -356,6 +356,25 @@ msgstr "Instalado para las dependencias"
 msgid "Reinstalled packages"
 msgstr "Paquetes reinstalados"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "Nombre"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "Resumen"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+msgid "Description"
+msgstr "Descripción"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "Arch"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "¡¡¡ Trabajando !!!"
@@ -412,14 +431,6 @@ msgstr "Nivel de depuración de Yum"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "Resultado de la transacción"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "Nombre"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "Arch"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -480,10 +491,6 @@ msgstr "Estado"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "Emitido"
-
-#: ../src/yumexgui/gui.py:374
-msgid "Description"
-msgstr "Descripción"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -767,11 +774,6 @@ msgstr "Procesando las acciones pendientes"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "Paquete"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "Resumen"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

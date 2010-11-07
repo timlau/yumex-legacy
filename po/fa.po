@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-08-23 00:08+0330\n"
 "Last-Translator: Mostafa <info@mostafadaneshvar.com>\n"
 "Language-Team: Persian <trans-fa@lists.fedoraproject.org>\n"
@@ -359,6 +359,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "نمایش همهٔ بسته ها نصب شده"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "نام"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "خلاصه"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "توضیحات : %s\n"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "معماری."
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "مشغول به کار!!!"
@@ -414,14 +434,6 @@ msgstr "سطح دیباگری یام"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "نتیجه ی تراکنش"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "نام"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "معماری."
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -483,11 +495,6 @@ msgstr "وضعیت"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "صادر شده"
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "توضیحات : %s\n"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -775,11 +782,6 @@ msgstr "پردازش کارهای معوق"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "بسته"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "خلاصه"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

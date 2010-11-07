@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2009-12-22 10:04+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: it_IT <LL@li.org>\n"
@@ -346,6 +346,25 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr ""
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+msgid "Description"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr ""
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr ""
@@ -400,14 +419,6 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
@@ -467,10 +478,6 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
-msgstr ""
-
-#: ../src/yumexgui/gui.py:374
-msgid "Description"
 msgstr ""
 
 #: ../src/yumexgui/gui.py:514
@@ -741,11 +748,6 @@ msgstr ""
 #: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
-msgstr ""
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
 msgstr ""
 
 #: ../src/yumexgui/views.py:200

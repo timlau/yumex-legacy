@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2010-10-06 12:55+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
@@ -350,6 +350,25 @@ msgstr "Zainstalowane zależności"
 msgid "Reinstalled packages"
 msgstr "Ponownie zainstalowane pakiety"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "Nazwa"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "Podsumowanie"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+msgid "Description"
+msgstr "Opis"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "Architektura"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "Praca w toku."
@@ -405,14 +424,6 @@ msgstr "Poziom debugowania programu yum"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "Wynik transakcji"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "Nazwa"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "Architektura"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -473,10 +484,6 @@ msgstr "Stan"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "Wydano"
-
-#: ../src/yumexgui/gui.py:374
-msgid "Description"
-msgstr "Opis"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -758,11 +765,6 @@ msgstr "Przetwarzanie oczekujących działań"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "Pakiet"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "Podsumowanie"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

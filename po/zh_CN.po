@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.nextgen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2009-12-08 09:35+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -369,6 +369,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "显示安装的软件包"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "名称"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "概要"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "描述: %s\n"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "结构"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr "工作!!!"
@@ -424,14 +444,6 @@ msgstr "Yum调试级别"
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "处理结果"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "名称"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "结构"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -493,11 +505,6 @@ msgstr "状态"
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr "发行"
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "描述: %s\n"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -789,11 +796,6 @@ msgstr "处理未决的行为"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "包"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "概要"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"

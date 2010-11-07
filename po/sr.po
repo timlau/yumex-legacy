@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-06 11:48+0100\n"
+"POT-Creation-Date: 2010-11-07 08:37+0100\n"
 "PO-Revision-Date: 2009-11-08 21:36+0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
@@ -362,6 +362,26 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "Прикажи инсталиране пакете"
 
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexgui/views.py:827
+msgid "Name"
+msgstr "Име"
+
+#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "Сажетак"
+
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "Опис : %s\n"
+
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+msgid "Arch"
+msgstr "Архитектура"
+
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
 msgstr ""
@@ -417,14 +437,6 @@ msgstr ""
 #: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
 msgid "Transaction Result"
 msgstr "Исход трансакције"
-
-#: ../src/yumexgui/dialogs.py:586 ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "Име"
-
-#: ../src/yumexgui/dialogs.py:587
-msgid "Arch"
-msgstr "Архитектура"
 
 #: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
 msgid "Ver"
@@ -485,11 +497,6 @@ msgstr ""
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
 msgstr ""
-
-#: ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "Опис : %s\n"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
@@ -772,11 +779,6 @@ msgstr "Обрађујем акције на чекању"
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
 msgstr "Пакет"
-
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:350
-#: ../src/yumexgui/views.py:467 ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "Сажетак"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"
