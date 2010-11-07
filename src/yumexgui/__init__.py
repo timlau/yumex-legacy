@@ -1131,6 +1131,7 @@ class YumexApplication(Controller, YumexFrontend):
             progress.hide()
             self.ui.packageSearch.set_sensitive(True)
             normalCursor(self.window)
+            self.ui.packageSelectAll.hide()           
             self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
         self.last_search_text = txt
 
@@ -1177,6 +1178,8 @@ class YumexApplication(Controller, YumexFrontend):
             progress = self.get_progress()
             progress.hide()
             normalCursor(self.window)
+            self.ui.packageSelectAll.hide()           
+            
 
     def _packageSearch_right_icon(self):
         self.ui.packageSearch.set_text('')
