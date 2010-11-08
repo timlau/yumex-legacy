@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-07 08:37+0100\n"
-"PO-Revision-Date: 2010-10-06 12:55+0200\n"
+"PO-Revision-Date: 2010-11-07 09:27+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -461,9 +461,8 @@ msgid "Package Filelist"
 msgstr "Lista plików pakietu"
 
 #: ../src/yumexgui/gui.py:220
-#, fuzzy
 msgid "Package Dependencies"
-msgstr "Rozwiązywanie zależności"
+msgstr "Zależności pakietu"
 
 #: ../src/yumexgui/gui.py:325
 msgid "Project URL : "
@@ -631,14 +630,12 @@ msgid "Clean All"
 msgstr "Wyczyść wszystko"
 
 #: ../src/yumexgui/__init__.py:630
-#, fuzzy
 msgid "Reinstall Package"
-msgstr "Ponownie zainstalowane pakiety"
+msgstr "Ponownie zainstaluj pakiet"
 
 #: ../src/yumexgui/__init__.py:637
-#, fuzzy
 msgid "Downgrade Package"
-msgstr "Zainstalowane poprzednie wersje pakietów"
+msgstr "Zainstaluj poprzednią wersję pakietu"
 
 #: ../src/yumexgui/__init__.py:647
 msgid "By Repositories"
@@ -738,9 +735,8 @@ msgid "Added %i Packages to view"
 msgstr "Dodano %i pakietów do wyświetlenia"
 
 #: ../src/yumexgui/__init__.py:1318
-#, fuzzy
 msgid "Getting Category Packages"
-msgstr "Uzyskiwanie wszystkich pakietów"
+msgstr "Uzyskiwanie pakietów kategorii"
 
 #: ../src/yumexgui/__init__.py:1415
 #, python-format
@@ -750,12 +746,11 @@ msgstr "Czy wyczyścić %s z pamięci podręcznej programu yum"
 #: ../src/yumexgui/__init__.py:1484
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Wykonywanie: %s %s"
 
 #: ../src/yumexgui/__init__.py:1485
-#, fuzzy
 msgid "Processing Queue Command"
-msgstr "Przetwarzanie oczekujących działań"
+msgstr "Przetwarzanie kolejki poleceń"
 
 #. Setup Selection Column
 #. self.create_selection_colunm('')
@@ -799,7 +794,7 @@ msgstr "Kolejka pakietów:"
 #: ../src/yumexgui/views.py:767
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Instalacja poprzedniej wersji</b> %s "
 
 #: ../src/yumexgui/views.py:780
 msgid "Filename"
