@@ -112,7 +112,7 @@
               <object class="GtkEntry" id="historySearch">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="tooltip_text" translatable="yes">Type package names to seach for</property>
+                <property name="tooltip_text" translatable="yes">Type package names to search for</property>
                 <property name="invisible_char">●</property>
                 <property name="secondary_icon_stock">gtk-clear</property>
                 <property name="secondary_icon_activatable">True</property>
@@ -1713,7 +1713,7 @@ repositories</property>
                     <child>
                       <object class="GtkCheckMenuItem" id="option_nogpgcheck">
                         <property name="visible">True</property>
-                        <property name="tooltip_text" translatable="yes">Dont  check signatures for packages</property>
+                        <property name="tooltip_text" translatable="yes">Don't check signatures for packages</property>
                         <property name="label" translatable="yes">no GPG Check</property>
                         <property name="use_underline">True</property>
                         <signal name="toggled" handler="on_option_nogpgcheck_toggled" swapped="no"/>

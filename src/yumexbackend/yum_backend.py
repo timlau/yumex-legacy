@@ -197,7 +197,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 self.debug(msg)
                 progress.set_action(msg)
         elif ftype == 'REBUILD':
-            progress.set_action(_('Buiding rpms from deltarpm'))
+            progress.set_action(_('Building rpms from deltarpm'))
         else: # this is a package being downloaded
             #self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
             if name:
@@ -441,7 +441,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def search(self, keys, sch_filters, use_cache=True):
         ''' 
         get packages matching keys
-        @param keys: list of keys to seach for
+        @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))

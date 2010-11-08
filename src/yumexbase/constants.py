@@ -150,7 +150,7 @@ PACKAGE_LOAD_MSG = {
  'obsoletes'    : _('Getting available obsoletes')
  }
 
-# RPM Completted action messages
+# RPM Completed action messages
 RPM_ACTIONS = {
     TS_UPDATE: '%s is updated',
     TS_ERASE: '%s is erased',

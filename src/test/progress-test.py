@@ -95,7 +95,7 @@ class TestProgress(Controller):
             time.sleep(0.05)
             if frac > 1.0:
                 break
-        self.progress.set_action("Action Completted")
+        self.progress.set_action("Action Completed")
         doGtkEvents()
 
 

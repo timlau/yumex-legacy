@@ -1462,7 +1462,7 @@ class YumexRPMCallback(RPMBaseCallback):
 
     def show_action(self, package, action):
         '''
-        Show action messages after trasaction is completted
+        Show action messages after trasaction is completed
         @param package: package name
         @param action: TS Action enum
         '''
@@ -1576,7 +1576,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
             if name not in self._printed:
                 # show downloaded <filename> ( <size> )
                 if name == '<delta rebuild>':
-                    self.base.info(_('Rebuild from deltarpms completted'))
+                    self.base.info(_('Rebuild from deltarpms completed'))
                 else:
                     self.base.info(_('Downloaded : %s ( %s )') % (name, self.totSize))
                 self._printed.append(name)

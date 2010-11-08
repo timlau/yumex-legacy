@@ -70,7 +70,7 @@ class YumexBackendBase(object):
     def search(self, keys, sch_filters):
         ''' 
         get packages matching keys
-        @param keys: list of keys to seach for
+        @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
         raise NotImplementedError()

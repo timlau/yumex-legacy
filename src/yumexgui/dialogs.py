@@ -137,7 +137,7 @@ class TaskList:
     def next(self, task_id=None):
         '''
         Complete the current task and set the next to running
-        if a task_id is given, all task before this task will be completted too
+        if a task_id is given, all task before this task will be completed too
         @param task_id: Optional task_id to complete
         '''
         cur = None

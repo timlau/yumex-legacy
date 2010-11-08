@@ -283,7 +283,7 @@ class YumexApplication(Controller, YumexFrontend):
             longtext = msg
             longtext += '\n\n'
             longtext += _('You can try starting \'yumex -n\' from a command line\n')
-            longtext += _('and deseleting the repositories causing problems\n')
+            longtext += _('and deselecting the repositories causing problems\n')
             longtext += _('and try again.\n')
             progress = self.get_progress()
             progress.hide()
@@ -402,7 +402,7 @@ class YumexApplication(Controller, YumexFrontend):
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
         self._setup_queue_entry()
-        # seach options
+        # search options
         self.search_options = SearchOptions(self.ui, self.window, self.search_keys, self.default_search_keys)
         self.typeahead_active = self.settings.typeahead_search
         active = self.ui.searchTypeAhead.set_active(self.typeahead_active)
@@ -1018,7 +1018,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.backend._close() # Close the backend launcher
         except:
             pass
-        self.backend.debug("Backend reset completted")
+        self.backend.debug("Backend reset completed")
 
     # Menu
 
