@@ -487,7 +487,7 @@ class YumexApplication(Controller, YumexFrontend):
                 if self.settings.autorefresh:
                     self.ui.packageRadioUpdates.clicked()
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-        elif self.settings.execute or self.settings.run: # Auto execute
+        elif self.settings.execute: # Auto execute
             queue = self.queue.queue
             if queue.total() != 0:
                 self.process_transaction()
