@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.nextgen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-07 08:37+0100\n"
+"POT-Creation-Date: 2010-11-18 07:14+0100\n"
 "PO-Revision-Date: 2009-12-08 09:35+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -35,7 +35,8 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "未知Pepo元数据类型 (%s) 时为 %s"
 
 #: ../src/yumexbackend/yum_backend.py:200
-msgid "Buiding rpms from deltarpm"
+#, fuzzy
+msgid "Building rpms from deltarpm"
 msgstr "从deltarpm建立rpms"
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:254
@@ -221,7 +222,8 @@ msgid "Cleaned everything from local cache"
 msgstr "在本地缓存中清除所有信息"
 
 #: ../src/yumexbackend/yum_server.py:1579
-msgid "Rebuild from deltarpms completted"
+#, fuzzy
+msgid "Rebuild from deltarpms completed"
 msgstr "从 deltarpms 重建完成"
 
 #: ../src/yumexbackend/yum_server.py:1581
@@ -369,7 +371,7 @@ msgstr ""
 msgid "Reinstalled packages"
 msgstr "显示安装的软件包"
 
-#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
+#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:589
 #: ../src/yumexgui/views.py:827
 msgid "Name"
 msgstr "名称"
@@ -385,7 +387,7 @@ msgstr "概要"
 msgid "Description"
 msgstr "描述: %s\n"
 
-#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
+#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:590
 msgid "Arch"
 msgstr "结构"
 
@@ -406,7 +408,7 @@ msgid "Use sortable columns in package view (slower)"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:441
-msgid "Use typeahead search on package name"
+msgid "Typeahead search is active by default"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:449
@@ -441,25 +443,25 @@ msgstr "代理"
 msgid "Yum Debug Level"
 msgstr "Yum调试级别"
 
-#: ../src/yumexgui/dialogs.py:537 ../src/yumexgui/dialogs.py:546
+#: ../src/yumexgui/dialogs.py:540 ../src/yumexgui/dialogs.py:549
 msgid "Transaction Result"
 msgstr "处理结果"
 
-#: ../src/yumexgui/dialogs.py:588 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/dialogs.py:591 ../src/yumexgui/views.py:200
 msgid "Ver"
 msgstr "版本"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:589 ../src/yumexgui/views.py:780
+#: ../src/yumexgui/dialogs.py:592 ../src/yumexgui/views.py:780
 #: ../src/yumexgui/views.py:826
 msgid "Repository"
 msgstr "仓库"
 
-#: ../src/yumexgui/dialogs.py:590 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/dialogs.py:593 ../src/yumexgui/views.py:200
 msgid "Size"
 msgstr "大小"
 
-#: ../src/yumexgui/dialogs.py:624
+#: ../src/yumexgui/dialogs.py:627
 #, python-format
 msgid "Download Size : %s "
 msgstr "下载: %s "
@@ -536,7 +538,8 @@ msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr "您可以尝试在命令行中启动‘yumex -n’\n"
 
 #: ../src/yumexgui/__init__.py:286
-msgid "and deseleting the repositories causing problems\n"
+#, fuzzy
+msgid "and deselecting the repositories causing problems\n"
 msgstr "并取消对导致问题的程序库的选择\n"
 
 #: ../src/yumexgui/__init__.py:287
@@ -631,70 +634,70 @@ msgstr "无法检测网络连接状态"
 msgid "Connected to an network"
 msgstr "连接到网络"
 
-#: ../src/yumexgui/__init__.py:607
+#: ../src/yumexgui/__init__.py:615
 msgid "Enable Permanently"
 msgstr "永久启用"
 
-#: ../src/yumexgui/__init__.py:611
+#: ../src/yumexgui/__init__.py:619
 msgid "Disable Permanently"
 msgstr "永久禁用"
 
-#: ../src/yumexgui/__init__.py:614
+#: ../src/yumexgui/__init__.py:622
 msgid "Clean Metadata"
 msgstr "清除元数据"
 
-#: ../src/yumexgui/__init__.py:615
+#: ../src/yumexgui/__init__.py:623
 msgid "Clean Packages"
 msgstr "清除软件包"
 
-#: ../src/yumexgui/__init__.py:616
+#: ../src/yumexgui/__init__.py:624
 msgid "Clean DbCache"
 msgstr "清除 DbCache"
 
-#: ../src/yumexgui/__init__.py:617
+#: ../src/yumexgui/__init__.py:625
 msgid "Clean All"
 msgstr "清除所有"
 
-#: ../src/yumexgui/__init__.py:630
+#: ../src/yumexgui/__init__.py:638
 #, fuzzy
 msgid "Reinstall Package"
 msgstr "显示安装的软件包"
 
-#: ../src/yumexgui/__init__.py:637
+#: ../src/yumexgui/__init__.py:645
 #, fuzzy
 msgid "Downgrade Package"
 msgstr "下载软件包"
 
-#: ../src/yumexgui/__init__.py:647
+#: ../src/yumexgui/__init__.py:655
 msgid "By Repositories"
 msgstr "根据程序库"
 
-#: ../src/yumexgui/__init__.py:648
+#: ../src/yumexgui/__init__.py:656
 msgid "By Size"
 msgstr "根据大小"
 
-#: ../src/yumexgui/__init__.py:673 ../src/yumexgui/__init__.py:674
+#: ../src/yumexgui/__init__.py:681 ../src/yumexgui/__init__.py:682
 msgid "Getting Group information"
 msgstr "获取组信息"
 
-#: ../src/yumexgui/__init__.py:710
+#: ../src/yumexgui/__init__.py:718
 msgid "The pending action queue is empty"
 msgstr "在等待处理队列为空"
 
-#: ../src/yumexgui/__init__.py:734
+#: ../src/yumexgui/__init__.py:742
 msgid "Processing pending actions"
 msgstr "处理未决的行为"
 
-#: ../src/yumexgui/__init__.py:735
+#: ../src/yumexgui/__init__.py:743
 msgid "Preparing the transaction"
 msgstr "准备处理"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:752 ../src/yumexgui/__init__.py:758
+#: ../src/yumexgui/__init__.py:760 ../src/yumexgui/__init__.py:766
 msgid "Transaction completed successfully"
 msgstr "处理成功完成"
 
-#: ../src/yumexgui/__init__.py:759
+#: ../src/yumexgui/__init__.py:767
 #, fuzzy
 msgid ""
 "\n"
@@ -706,11 +709,11 @@ msgstr ""
 "你要退出Yum Extender"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:765
+#: ../src/yumexgui/__init__.py:773
 msgid "Transaction Aborted by User"
 msgstr "处理终止的用户"
 
-#: ../src/yumexgui/__init__.py:768
+#: ../src/yumexgui/__init__.py:776
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -718,72 +721,72 @@ msgstr ""
 "处理完成错误，\n"
 " 查询详情输出页"
 
-#: ../src/yumexgui/__init__.py:850
+#: ../src/yumexgui/__init__.py:858
 msgid "<unset>"
 msgstr "<unset>"
 
-#: ../src/yumexgui/__init__.py:851
+#: ../src/yumexgui/__init__.py:859
 msgid "System"
 msgstr "系统"
 
-#: ../src/yumexgui/__init__.py:894
+#: ../src/yumexgui/__init__.py:902
 msgid "Getting History Information"
 msgstr "获取历史记录信息"
 
-#: ../src/yumexgui/__init__.py:896
+#: ../src/yumexgui/__init__.py:904
 msgid "Getting Latest History Information"
 msgstr "获取最新历史记录信息"
 
-#: ../src/yumexgui/__init__.py:898
+#: ../src/yumexgui/__init__.py:906
 msgid "Getting All History Information"
 msgstr "获取所有历史记录信息"
 
-#: ../src/yumexgui/__init__.py:904 ../src/yumexgui/__init__.py:921
+#: ../src/yumexgui/__init__.py:912 ../src/yumexgui/__init__.py:929
 #, fuzzy
 msgid "History Disabled"
 msgstr "历史记录"
 
-#: ../src/yumexgui/__init__.py:915 ../src/yumexgui/__init__.py:916
+#: ../src/yumexgui/__init__.py:923 ../src/yumexgui/__init__.py:924
 #, fuzzy
 msgid "Searching History Information"
 msgstr "获取历史记录信息"
 
-#: ../src/yumexgui/__init__.py:959
+#: ../src/yumexgui/__init__.py:967
 #, fuzzy
 msgid "Transaction Performed with"
 msgstr "处理终止的用户"
 
-#: ../src/yumexgui/__init__.py:962
+#: ../src/yumexgui/__init__.py:970
 #, fuzzy
 msgid "Skipped packages"
 msgstr "显示安装的软件包"
 
-#: ../src/yumexgui/__init__.py:988 ../src/yumexgui/__init__.py:989
+#: ../src/yumexgui/__init__.py:996 ../src/yumexgui/__init__.py:997
 #, fuzzy
 msgid "Adding Packages to view"
 msgstr "下载软件包"
 
-#: ../src/yumexgui/__init__.py:993
+#: ../src/yumexgui/__init__.py:1001
 #, python-format
 msgid "Added %i Packages to view"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1318
+#: ../src/yumexgui/__init__.py:1330
 #, fuzzy
 msgid "Getting Category Packages"
 msgstr "使用可用的软件包"
 
-#: ../src/yumexgui/__init__.py:1415
+#: ../src/yumexgui/__init__.py:1427
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "您要从 yum 缓存中清除 %s 吗？"
 
-#: ../src/yumexgui/__init__.py:1484
+#: ../src/yumexgui/__init__.py:1496
 #, python-format
 msgid "Executing : %s %s"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1485
+#: ../src/yumexgui/__init__.py:1497
 #, fuzzy
 msgid "Processing Queue Command"
 msgstr "处理未决的行为"
@@ -890,7 +893,8 @@ msgid "Basic"
 msgstr "基本"
 
 #: ../src/yumex.glade.h:9
-msgid "Dont  check signatures for packages"
+#, fuzzy
+msgid "Don't check signatures for packages"
 msgstr "不验证软件包的签名"
 
 #: ../src/yumex.glade.h:10
@@ -969,7 +973,7 @@ msgid "Testing Stuff"
 msgstr ""
 
 #: ../src/yumex.glade.h:29
-msgid "Type package names to seach for"
+msgid "Type package names to search for"
 msgstr ""
 
 #: ../src/yumex.glade.h:30
