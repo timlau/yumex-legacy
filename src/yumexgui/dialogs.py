@@ -438,7 +438,7 @@ class Preferences:
         vbox = self.ui.prefBasicVBox
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
         self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))
-        self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Use typeahead search on package name'))
+        self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Typeahead search is active by default'))
         vbox.show_all()
 
     def setup_advanced(self):
@@ -479,12 +479,15 @@ class Preferences:
         for id in self._options:
             opt = self._options[id]
             opt.set_value(getattr(self.settings, id))
+            
+                
 
 
     def run(self):
         '''
         run the dialog
         '''
+        self.settings = self.cfg.conf_settings
         self._refresh()
         self.dialog.show_all()
         rc = self.dialog.run()

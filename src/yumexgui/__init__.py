@@ -495,6 +495,14 @@ class YumexApplication(Controller, YumexFrontend):
                 self.window.show()
 
         #self.testing()
+        
+    def settings_updated(self):
+        '''
+        Preferences has been update, update the current session to reflect that
+        '''
+        # Typeahead seach active by default.
+        active = self.ui.searchTypeAhead.set_active(self.settings.typeahead_search)
+          
 
 # pylint: enable-msg=W0201
 
@@ -1036,6 +1044,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.debug("Edit -> Preferences")
         self.preferences.run()
         self.preferences.destroy()
+        self.settings_updated()
 
     def on_proNew_activate(self, widget=None, event=None):
         '''
