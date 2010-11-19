@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-18 07:14+0100\n"
-"PO-Revision-Date: 2010-11-07 09:27+0100\n"
+"PO-Revision-Date: 2010-11-19 09:15+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -28,7 +28,6 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "Nieznany typ metadanych repozytorium (%s) dla %s"
 
 #: ../src/yumexbackend/yum_backend.py:200
-#, fuzzy
 msgid "Building rpms from deltarpm"
 msgstr "Budowanie pakietów RPM z pakietów DeltaRPM"
 
@@ -215,7 +214,6 @@ msgid "Cleaned everything from local cache"
 msgstr "Wyczyszczono całość lokalnej pamięci podręcznej"
 
 #: ../src/yumexbackend/yum_server.py:1579
-#, fuzzy
 msgid "Rebuild from deltarpms completed"
 msgstr "Ukończono ponowne budowanie z pakietów DeltaRPM"
 
@@ -388,9 +386,8 @@ msgid "Use sortable columns in package view (slower)"
 msgstr "Użycie uporządkowanych kolumn w widoku pakietów (wolniej)"
 
 #: ../src/yumexgui/dialogs.py:441
-#, fuzzy
 msgid "Typeahead search is active by default"
-msgstr "Użycie wyszukiwania przyrostowego dla nazw pakietów"
+msgstr "Wyszukiwanie przyrostowe jest domyślnie aktywne"
 
 #: ../src/yumexgui/dialogs.py:449
 msgid "Debug Mode"
@@ -514,10 +511,9 @@ msgstr "Błąd ustawień repozytorium"
 
 #: ../src/yumexgui/__init__.py:285
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr "Można uruchomić \"yumex -n\" z wiersza poleceń,\n"
+msgstr "Można uruchomić polecenie \"yumex -n\" z wiersza poleceń,\n"
 
 #: ../src/yumexgui/__init__.py:286
-#, fuzzy
 msgid "and deselecting the repositories causing problems\n"
 msgstr "odznaczyć repozytoria sprawiające problemy\n"
 
@@ -858,7 +854,6 @@ msgid "Basic"
 msgstr "Podstawowe"
 
 #: ../src/yumex.glade.h:9
-#, fuzzy
 msgid "Don't check signatures for packages"
 msgstr "Bez sprawdzania podpisów pakietów"
 
@@ -939,7 +934,6 @@ msgid "Testing Stuff"
 msgstr "Testowanie"
 
 #: ../src/yumex.glade.h:29
-#, fuzzy
 msgid "Type package names to search for"
 msgstr "Tutaj można wpisać nazwy pakietów do wyszukania"
 
