@@ -1498,7 +1498,6 @@ class YumexApplication(Controller, YumexFrontend):
                 progress.set_header(msg)
                 self.info(msg)
                 pkgs = self.backend.run_command(cmd, userlist)
-                print pkgs
                 if cmd == 'downgrade':
                     pkgs = self._pair_downgrades(pkgs)
                     print pkgs
