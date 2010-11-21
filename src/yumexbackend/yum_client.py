@@ -180,6 +180,7 @@ class YumClientBase:
                 if self.frontend.settings.use_sudo:
                     self.info('Running backend launcher with sudo')
                     cmd = '/usr/bin/sudo'
+                    args.append('-n') # Abort sudo if password is needed
                     args.append('/usr/bin/yumex-yum-backend')
                     
                 else:
@@ -188,6 +189,7 @@ class YumClientBase:
             if os.getuid() != 0: # Non Root
                 self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
                 cmd = '/usr/bin/sudo'
+                args.append('-n') # Abort sudo if password is needed
                 args.append(MAIN_PATH + "/backend-launcher.py")
             else: # root
                 self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
