@@ -58,6 +58,7 @@ class YumexConf(BaseConfig):
     use_sortable_view = BoolOption(False)
     typeahead_search = BoolOption(False)
     bugzilla_url = Option('https://bugzilla.redhat.com/show_bug.cgi?id=')
+    use_sudo = BoolOption(False)
 
 
 class YumexOptions:
@@ -130,6 +131,10 @@ class YumexOptions:
         parser.add_option("-y", "--yes",
                         action="store_true", dest="always_yes", default=False,
                         help="Answer yes or OK to all questions")
+        parser.add_option("", "--sudo",
+                        action="store_true", dest="use_sudo", default=self.settings.use_sudo,
+                        help="use sudo to launch the backend (You need a working sudo config)")
+
  
         return parser.parse_args()
 
@@ -143,7 +148,8 @@ class YumexOptions:
     def update_settings(self):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'disable_netcheck', 'yum_conf', 'search', 'update_only', 'always_yes', 'execute']
+        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'disable_netcheck', 'yum_conf',\
+                    'search', 'update_only', 'always_yes', 'execute', 'use_sudo']
         for opt in options:
             self._calcOption(opt)
         self._check_win_size()

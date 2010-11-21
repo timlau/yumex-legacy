@@ -177,7 +177,13 @@ class YumClientBase:
                 self.info(_('Client is running in rootmode, starting backend launcher directly'))
                 cmd = '/usr/share/yumex/yumex-yum-backend'
             else: # Non root run using console helper wrapper
-                cmd = '/usr/bin/yumex-yum-backend'
+                if self.frontend.settings.use_sudo:
+                    self.info('Running backend launcher with sudo')
+                    cmd = '/usr/bin/sudo'
+                    args.append('/usr/bin/yumex-yum-backend')
+                    
+                else:
+                    cmd = '/usr/bin/yumex-yum-backend'
         else:
             if os.getuid() != 0: # Non Root
                 self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
