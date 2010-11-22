@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Yumex 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 07:14+0100\n"
-"PO-Revision-Date: 2010-01-24 17:31+0100\n"
-"Last-Translator: Charles-Antoine Couret cacouret@wanadoo.fr\n"
+"POT-Creation-Date: 2010-10-08 18:07+0200\n"
+"PO-Revision-Date: 2010-11-21 18:13+0100\n"
+"Last-Translator: Bribanick dominique <chepioq@gmail.com>\n"
 "Language-Team: FR trans-fr@lists.fedoraproject.org\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +28,6 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "Métadonnées du dépôt de type inconnu (%s) pour %s"
 
 #: ../src/yumexbackend/yum_backend.py:200
-#, fuzzy
 msgid "Building rpms from deltarpm"
 msgstr "Construction des rpms depuis les deltarpms"
 
@@ -87,12 +85,12 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "Le processus yum est terminé"
 
 #: ../src/yumexbackend/yum_backend.py:362
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i paquets renvoyés"
 
 #: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:253
 msgid "Resolving Dependencies"
@@ -116,17 +114,17 @@ msgstr "La résolution des dépendances a été effectuée avec des erreurs"
 #. Root
 #: ../src/yumexbackend/yum_client.py:177
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
+msgstr "Le programme est lancé en mode administrateur, Yumex est démarré"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:243
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Yum ne s'est pas terminé normalement"
 
 #: ../src/yumexbackend/yum_server.py:173
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "Utilisant %s pour la configuration de yum"
 
 #. Not local disable it
 #. No, disable it
@@ -155,11 +153,11 @@ msgstr "Nouvelle tentative dans 10 secondes !"
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:297
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Le disque n'est pas présent"
 
 #: ../src/yumexbackend/yum_server.py:328
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "Verrouillage de rpm-db et libération de yum"
 
 #: ../src/yumexbackend/yum_server.py:780
 msgid "Installing"
@@ -171,9 +169,8 @@ msgid "Error in yum Transaction : %s"
 msgstr "Erreur dans la transaction de yum : %s"
 
 #: ../src/yumexbackend/yum_server.py:835
-#, fuzzy
 msgid "Exception in run_transaction"
-msgstr "Préparation des transactions"
+msgstr "Erreur dans la transaction courante"
 
 #: ../src/yumexbackend/yum_server.py:874
 #, python-format
@@ -197,7 +194,7 @@ msgstr "Le dépôt %s est désactivé en permanence"
 #: ../src/yumexbackend/yum_server.py:1110
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "Réglage des options de yum %s = %s"
 
 #: ../src/yumexbackend/yum_server.py:1161
 msgid "Cleaned metadata from local cache"
@@ -216,7 +213,6 @@ msgid "Cleaned everything from local cache"
 msgstr "Nettoyage complet du cache local"
 
 #: ../src/yumexbackend/yum_server.py:1579
-#, fuzzy
 msgid "Rebuild from deltarpms completed"
 msgstr "Reconstruction depuis les deltarpms terminée"
 
@@ -306,68 +302,57 @@ msgid "90+ days"
 msgstr "+ de 90 jours"
 
 #: ../src/yumexbase/constants.py:146
-#, fuzzy
 msgid "Getting all packages"
-msgstr "Obtention des paquets disponibles"
+msgstr "Obtention de tous les paquets"
 
 #: ../src/yumexbase/constants.py:147
-#, fuzzy
 msgid "Getting installed packages"
 msgstr "Obtention des paquets installés"
 
 #: ../src/yumexbase/constants.py:148
-#, fuzzy
 msgid "Getting available packages"
 msgstr "Obtention des paquets disponibles"
 
 #: ../src/yumexbase/constants.py:149
-#, fuzzy
 msgid "Getting available updates"
-msgstr "Obtention des paquets disponibles"
+msgstr "Obtention des paquets mis à jour"
 
 #: ../src/yumexbase/constants.py:150
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "Obtention des paquets disponibles"
+msgstr "Obtention des paquets obsolètes"
 
 #: ../src/yumexbase/constants.py:172
-#, fuzzy
 msgid "Updated packages"
-msgstr "Obtention des mises à jour"
+msgstr "Paquets mis à jour"
 
 #: ../src/yumexbase/constants.py:173
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "Téléchargement des paquets"
+msgstr "Paquets déclassés"
 
 #: ../src/yumexbase/constants.py:174
-#, fuzzy
 msgid "Obsoleting packages"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets obsolètes"
 
 #: ../src/yumexbase/constants.py:175
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets obsolètes"
 
 #: ../src/yumexbase/constants.py:176
-#, fuzzy
 msgid "Erased packages"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets désinstallés"
 
-#: ../src/yumexbase/constants.py:177 ../src/yumexbase/constants.py:178
-#, fuzzy
+#: ../src/yumexbase/constants.py:177
+#: ../src/yumexbase/constants.py:178
 msgid "Installed packages"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets installés"
 
 #: ../src/yumexbase/constants.py:179
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Installée pour les dépendances"
 
 #: ../src/yumexbase/constants.py:180
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets ré-installés"
 
 #: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:589
 #: ../src/yumexgui/views.py:827
@@ -380,10 +365,10 @@ msgstr "Nom"
 msgid "Summary"
 msgstr "Résumé"
 
-#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
-#, fuzzy
+#: ../src/yumexbase/constants.py:207
+#: ../src/yumexgui/gui.py:374
 msgid "Description"
-msgstr "Description : %s\n"
+msgstr "Description"
 
 #: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:590
 msgid "Arch"
@@ -403,11 +388,11 @@ msgstr "Chargement des paquets au lancement"
 
 #: ../src/yumexgui/dialogs.py:440
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "Utiliser les colonnes triables dans la vue des paquets (plus lent)"
 
 #: ../src/yumexgui/dialogs.py:441
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "La recherche automatique est activée par défaut"
 
 #: ../src/yumexgui/dialogs.py:449
 msgid "Debug Mode"
@@ -415,7 +400,7 @@ msgstr "Mode de débogage"
 
 #: ../src/yumexgui/dialogs.py:450
 msgid "Disable startup network check"
-msgstr ""
+msgstr "Désactiver le contrôle du démarrage du réseau"
 
 #: ../src/yumexgui/dialogs.py:451
 msgid "Color (Installed)"
@@ -469,9 +454,8 @@ msgid "Package Description"
 msgstr "Description du paquet"
 
 #: ../src/yumexgui/gui.py:214
-#, fuzzy
 msgid "Update information"
-msgstr "Obtention des informations sur les groupes"
+msgstr "Mise à jour des information"
 
 #: ../src/yumexgui/gui.py:216
 msgid "Package Changelog"
@@ -482,13 +466,12 @@ msgid "Package Filelist"
 msgstr "Liste des fichiers du paquet"
 
 #: ../src/yumexgui/gui.py:220
-#, fuzzy
 msgid "Package Dependencies"
 msgstr "Résolution des dépendances"
 
 #: ../src/yumexgui/gui.py:325
 msgid "Project URL : "
-msgstr ""
+msgstr "URL du projet :"
 
 #: ../src/yumexgui/gui.py:332
 msgid "Release"
@@ -508,7 +491,7 @@ msgstr "Effectué"
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
-msgstr ""
+msgstr "Quitté"
 
 #: ../src/yumexgui/__init__.py:273
 msgid "Fatal Error"
@@ -537,7 +520,6 @@ msgstr ""
 "Vous pouvez essayer de lancer « yumex -n » depuis une ligne de commande,\n"
 
 #: ../src/yumexgui/__init__.py:286
-#, fuzzy
 msgid "and deselecting the repositories causing problems\n"
 msgstr "supprimer les dépôts causant des problèmes\n"
 
@@ -547,26 +529,23 @@ msgstr "et essayez encore.\n"
 
 #: ../src/yumexgui/__init__.py:292
 msgid "Fatal Error in backend restart"
-msgstr ""
+msgstr "Erreur dans le re-démarrage du processus"
 
 #: ../src/yumexgui/__init__.py:293
 msgid "Backend could not be closed"
-msgstr ""
+msgstr "Yum ne peut être arrêté "
 
 #: ../src/yumexgui/__init__.py:297
-#, fuzzy
 msgid "Fatal Error : "
-msgstr "Erreur fatal"
+msgstr "Erreur fatale"
 
 #: ../src/yumexgui/__init__.py:372
-#, fuzzy
 msgid "Available Updates"
-msgstr "Obtention des paquets disponibles"
+msgstr "Mises à jour disponibles"
 
 #: ../src/yumexgui/__init__.py:374
-#, fuzzy
 msgid "Search for packages"
-msgstr "Montrer les mises à jour des paquets"
+msgstr "Recherche des paquets"
 
 #: ../src/yumexgui/__init__.py:376 ../src/yumexgui/views.py:681
 msgid "Packages"
@@ -598,7 +577,7 @@ msgstr "Historique"
 
 #: ../src/yumexgui/__init__.py:389
 msgid "Watch yum history"
-msgstr "Regarder l'historique de yum"
+msgstr "Afficher l'historique de yum"
 
 #: ../src/yumexgui/__init__.py:395
 msgid "Output"
@@ -621,9 +600,8 @@ msgstr ""
 "Voulez-vous continuer "
 
 #: ../src/yumexgui/__init__.py:450
-#, fuzzy
 msgid "network connection state check is disabled"
-msgstr "Pas de connexion réseau, désactivation des dépôts non locaux %s"
+msgstr "La connexion réseau est désactivée"
 
 #: ../src/yumexgui/__init__.py:452
 msgid "Can't detect the network connection state"
@@ -658,14 +636,12 @@ msgid "Clean All"
 msgstr "Nettoyer tout"
 
 #: ../src/yumexgui/__init__.py:638
-#, fuzzy
 msgid "Reinstall Package"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets ré-installés"
 
 #: ../src/yumexgui/__init__.py:645
-#, fuzzy
 msgid "Downgrade Package"
-msgstr "Téléchargement des paquets"
+msgstr "Paquets déclassés"
 
 #: ../src/yumexgui/__init__.py:655
 msgid "By Repositories"
@@ -697,7 +673,6 @@ msgid "Transaction completed successfully"
 msgstr "Transaction complètement réussie"
 
 #: ../src/yumexgui/__init__.py:767
-#, fuzzy
 msgid ""
 "\n"
 "\n"
@@ -740,40 +715,37 @@ msgstr "Obtention du dernier historique"
 msgid "Getting All History Information"
 msgstr "Obtention de tous les historiques"
 
-#: ../src/yumexgui/__init__.py:912 ../src/yumexgui/__init__.py:929
-#, fuzzy
+#: ../src/yumexgui/__init__.py:912
+#: ../src/yumexgui/__init__.py:929
 msgid "History Disabled"
-msgstr "Historique"
+msgstr "Historique désactivé"
 
-#: ../src/yumexgui/__init__.py:923 ../src/yumexgui/__init__.py:924
-#, fuzzy
+#: ../src/yumexgui/__init__.py:923
+#: ../src/yumexgui/__init__.py:924
 msgid "Searching History Information"
 msgstr "Obtention de l'historique"
 
 #: ../src/yumexgui/__init__.py:967
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "Transaction annulée par l'utilisateur"
+msgstr "Transaction effectuée avec"
 
 #: ../src/yumexgui/__init__.py:970
-#, fuzzy
 msgid "Skipped packages"
-msgstr "Montrer les paquets installés"
+msgstr "Paquets ignorés"
 
-#: ../src/yumexgui/__init__.py:996 ../src/yumexgui/__init__.py:997
-#, fuzzy
+#: ../src/yumexgui/__init__.py:996
+#: ../src/yumexgui/__init__.py:997
 msgid "Adding Packages to view"
-msgstr "Téléchargement des paquets"
+msgstr "Ajout des paquets à la liste"
 
 #: ../src/yumexgui/__init__.py:1001
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "Ajouté %i paquets à afficher"
 
 #: ../src/yumexgui/__init__.py:1330
-#, fuzzy
 msgid "Getting Category Packages"
-msgstr "Obtention des paquets disponibles"
+msgstr "Obtention des paquets de la catégorie"
 
 #: ../src/yumexgui/__init__.py:1427
 #, python-format
@@ -783,10 +755,9 @@ msgstr "Voulez-vous nettoyer %s depuis le cache local"
 #: ../src/yumexgui/__init__.py:1496
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Exécution : %s %s"
 
 #: ../src/yumexgui/__init__.py:1497
-#, fuzzy
 msgid "Processing Queue Command"
 msgstr "Traitement des actions en attente"
 
@@ -832,7 +803,7 @@ msgstr "Liste d'attente des paquets : "
 #: ../src/yumexgui/views.py:767
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Déclassé vers</b> %s "
 
 #: ../src/yumexgui/views.py:780
 msgid "Filename"
@@ -841,7 +812,7 @@ msgstr "Nom de fichier"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:960
 msgid "Search Keys"
-msgstr ""
+msgstr "Recherche par mots clés"
 
 #: ../src/yumexgui/views.py:1191
 msgid "Categories"
@@ -881,18 +852,17 @@ msgstr "Avancé"
 
 #: ../src/yumex.glade.h:6
 msgid "All"
-msgstr "Tout"
+msgstr "Tous"
 
 #: ../src/yumex.glade.h:7
 msgid "Availa_ble"
-msgstr "Disponi_ble"
+msgstr "Disponi_bles"
 
 #: ../src/yumex.glade.h:8
 msgid "Basic"
 msgstr "Basique"
 
 #: ../src/yumex.glade.h:9
-#, fuzzy
 msgid "Don't check signatures for packages"
 msgstr "Ne pas vérifier les signatures pour les paquets"
 
@@ -929,37 +899,36 @@ msgid "Remove selected packages from queue"
 msgstr "Supprimer les paquets sélectionnés de la liste d'attente"
 
 #: ../src/yumex.glade.h:18
-#, fuzzy
 msgid "Search Options"
-msgstr "_Options"
+msgstr "Option de recherche"
 
 #: ../src/yumex.glade.h:19
 msgid "Select all packages in current view"
-msgstr "Sélectionner tous les paquets dans la vue actuelle"
+msgstr "Sélectionner tous les paquets affichés"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Categories"
-msgstr "Montrer les catégories"
+msgstr "Afficher les catégories"
 
 #: ../src/yumex.glade.h:21
 msgid "Show Groups"
-msgstr "Montrer les grouper"
+msgstr "Afficher les groupes"
 
 #: ../src/yumex.glade.h:22
 msgid "Show all Packages"
-msgstr "Montrer tous les paquets"
+msgstr "Afficher tous les paquets"
 
 #: ../src/yumex.glade.h:23
 msgid "Show available packages"
-msgstr "Montrer les paquets disponibles"
+msgstr "Afficher les paquets disponibles"
 
 #: ../src/yumex.glade.h:24
 msgid "Show installed packages"
-msgstr "Montrer les paquets installés"
+msgstr "Afficher les paquets installés"
 
 #: ../src/yumex.glade.h:25
 msgid "Show package updates"
-msgstr "Montrer les mises à jour des paquets"
+msgstr "Afficher les mises à jour des paquets"
 
 #: ../src/yumex.glade.h:26
 msgid "Skip Broken"
@@ -972,11 +941,11 @@ msgstr ""
 
 #: ../src/yumex.glade.h:28
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Test de commande"
 
 #: ../src/yumex.glade.h:29
-msgid "Type package names to search for"
-msgstr ""
+msgid "Type package names to seach for"
+msgstr "Ecrivez le nom des paquets à rechercher"
 
 #: ../src/yumex.glade.h:30
 msgid ""
@@ -984,18 +953,21 @@ msgid ""
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
+"Ecrivez les mots recherchés séparés\n"
+"par des espaces pour trouver les paquets\n"
+"contenant les mots recherchés.\n"
 
 #: ../src/yumex.glade.h:34
 msgid "Typeahead search on/off"
-msgstr ""
+msgstr "arrêt/marche de la recherche par mot-clés."
 
 #: ../src/yumex.glade.h:35
 msgid "U_pdates"
-msgstr "_Mises à jour"
+msgstr "_Mis à jour"
 
 #: ../src/yumex.glade.h:36
 msgid "Undo a history transaction"
-msgstr "Refaire la transaction de l'historique"
+msgstr "Annuler la transaction de l'historique"
 
 #: ../src/yumex.glade.h:37
 msgid "Undo all package selection"
@@ -1007,7 +979,7 @@ msgstr "Désélectionner tous les dépôts"
 
 #: ../src/yumex.glade.h:39
 msgid "Undo the current search"
-msgstr ""
+msgstr "Effacer la recherche en cours"
 
 #: ../src/yumex.glade.h:40
 msgid "Yum"
@@ -1039,7 +1011,7 @@ msgstr "_Historique"
 
 #: ../src/yumex.glade.h:47
 msgid "_Installed"
-msgstr "_Installé"
+msgstr "_Installés"
 
 #: ../src/yumex.glade.h:48
 msgid "_Options"
@@ -1069,7 +1041,6 @@ msgstr "_Affichage"
 msgid "no GPG Check"
 msgstr "pas de vérification GPG"
 
-#, fuzzy
 #~ msgid "Populating Package Cache"
 #~ msgstr "Téléchargement des paquets"
 
