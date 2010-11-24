@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yumex 2.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-08 18:07+0200\n"
+"POT-Creation-Date: 2010-11-18 07:14+0100\n"
 "PO-Revision-Date: 2010-11-21 18:13+0100\n"
 "Last-Translator: Bribanick dominique <chepioq@gmail.com>\n"
 "Language-Team: FR trans-fr@lists.fedoraproject.org\n"
@@ -341,8 +341,7 @@ msgstr "Paquets obsolètes"
 msgid "Erased packages"
 msgstr "Paquets désinstallés"
 
-#: ../src/yumexbase/constants.py:177
-#: ../src/yumexbase/constants.py:178
+#: ../src/yumexbase/constants.py:177 ../src/yumexbase/constants.py:178
 msgid "Installed packages"
 msgstr "Paquets installés"
 
@@ -365,8 +364,7 @@ msgstr "Nom"
 msgid "Summary"
 msgstr "Résumé"
 
-#: ../src/yumexbase/constants.py:207
-#: ../src/yumexgui/gui.py:374
+#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
 msgid "Description"
 msgstr "Description"
 
@@ -715,13 +713,11 @@ msgstr "Obtention du dernier historique"
 msgid "Getting All History Information"
 msgstr "Obtention de tous les historiques"
 
-#: ../src/yumexgui/__init__.py:912
-#: ../src/yumexgui/__init__.py:929
+#: ../src/yumexgui/__init__.py:912 ../src/yumexgui/__init__.py:929
 msgid "History Disabled"
 msgstr "Historique désactivé"
 
-#: ../src/yumexgui/__init__.py:923
-#: ../src/yumexgui/__init__.py:924
+#: ../src/yumexgui/__init__.py:923 ../src/yumexgui/__init__.py:924
 msgid "Searching History Information"
 msgstr "Obtention de l'historique"
 
@@ -733,8 +729,7 @@ msgstr "Transaction effectuée avec"
 msgid "Skipped packages"
 msgstr "Paquets ignorés"
 
-#: ../src/yumexgui/__init__.py:996
-#: ../src/yumexgui/__init__.py:997
+#: ../src/yumexgui/__init__.py:996 ../src/yumexgui/__init__.py:997
 msgid "Adding Packages to view"
 msgstr "Ajout des paquets à la liste"
 
@@ -944,7 +939,8 @@ msgid "Testing Stuff"
 msgstr "Test de commande"
 
 #: ../src/yumex.glade.h:29
-msgid "Type package names to seach for"
+#, fuzzy
+msgid "Type package names to search for"
 msgstr "Ecrivez le nom des paquets à rechercher"
 
 #: ../src/yumex.glade.h:30
