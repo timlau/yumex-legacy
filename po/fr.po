@@ -939,7 +939,6 @@ msgid "Testing Stuff"
 msgstr "Test de commande"
 
 #: ../src/yumex.glade.h:29
-#, fuzzy
 msgid "Type package names to search for"
 msgstr "Ecrivez le nom des paquets à rechercher"
 
