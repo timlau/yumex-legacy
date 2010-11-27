@@ -1,21 +1,23 @@
 # translation of ru.po to Russian
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Yulia Poyarkova <yulia.poyarkova@redhat.com>, 2009.
+# Olykainen Andrey <andreyjktl@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-07 08:37+0100\n"
-"PO-Revision-Date: 2009-09-18 15:36+1000\n"
-"Last-Translator: Yulia Poyarkova <yulia.poyarkova@redhat.com>\n"
-"Language-Team: Russian <fedora-trans-ru@redhat.com>\n"
+"PO-Revision-Date: 2010-11-27 21:19+0600\n"
+"Last-Translator: Olykainen Andrey <andreyjktl@gmail.com>\n"
+"Language-Team: Translation CVS Commit Group\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.5.2\n"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:166
@@ -34,12 +36,12 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:254
 msgid "Downloading Packages"
-msgstr ""
+msgstr "Загрузка пакетов"
 
 #. Don't allow Cancel any more
 #: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:255
 msgid "Checking Package GPG Signatures"
-msgstr ""
+msgstr "Проверка подписи GPG пакета"
 
 #: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:256
 msgid "Running RPM Test Transaction"
@@ -92,7 +94,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:253
 msgid "Resolving Dependencies"
-msgstr ""
+msgstr "Разрешение зависимостей"
 
 #: ../src/yumexbackend/yum_backend.py:556
 #: ../src/yumexbackend/yum_backend.py:557
@@ -159,7 +161,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:780
 msgid "Installing"
-msgstr ""
+msgstr "Установка"
 
 #: ../src/yumexbackend/yum_server.py:832
 #, python-format
@@ -177,7 +179,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:875
 msgid "Trying other mirror."
-msgstr ""
+msgstr "Попытка другого зеркала"
 
 #: ../src/yumexbackend/yum_server.py:1096
 #, python-format
@@ -222,19 +224,19 @@ msgstr ""
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:81
 msgid "updates"
-msgstr ""
+msgstr "обновления"
 
 #: ../src/yumexbase/constants.py:81
 msgid "available"
-msgstr ""
+msgstr "доступно"
 
 #: ../src/yumexbase/constants.py:81
 msgid "installed"
-msgstr ""
+msgstr "установленные"
 
 #: ../src/yumexbase/constants.py:101
 msgid "Downloading repository information"
-msgstr ""
+msgstr "Загрузка информации репозитория"
 
 #: ../src/yumexbase/constants.py:102
 #, python-format
@@ -350,7 +352,7 @@ msgstr ""
 #: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:586
 #: ../src/yumexgui/views.py:827
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
 #: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
@@ -360,7 +362,7 @@ msgstr ""
 
 #: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
 msgid "Description"
-msgstr ""
+msgstr "Описани"
 
 #: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:587
 msgid "Arch"
@@ -368,7 +370,7 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:356
 msgid "Working !!!"
-msgstr ""
+msgstr "Работает !!!"
 
 #: ../src/yumexgui/dialogs.py:426
 msgid "Preferences"
@@ -412,7 +414,7 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:462
 msgid "Proxy"
-msgstr ""
+msgstr "Прокси"
 
 #: ../src/yumexgui/dialogs.py:463
 msgid "Yum Debug Level"
@@ -467,15 +469,15 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:332
 msgid "Release"
-msgstr ""
+msgstr "Релиз"
 
 #: ../src/yumexgui/gui.py:333
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: ../src/yumexgui/gui.py:334
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: ../src/yumexgui/gui.py:335
 msgid "Issued"
@@ -483,11 +485,11 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:514
 msgid "Quit"
-msgstr ""
+msgstr "Выход"
 
 #: ../src/yumexgui/__init__.py:273
 msgid "Fatal Error"
-msgstr ""
+msgstr "Фатальная ошибка"
 
 #. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:275
@@ -528,7 +530,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:297
 msgid "Fatal Error : "
-msgstr ""
+msgstr "Фатальная ошибка:"
 
 #: ../src/yumexgui/__init__.py:372
 msgid "Available Updates"
@@ -556,7 +558,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:384
 msgid "Repositories"
-msgstr ""
+msgstr "Репозитории"
 
 #: ../src/yumexgui/__init__.py:385
 msgid "Select active repositories"
@@ -564,7 +566,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:388
 msgid "History"
-msgstr ""
+msgstr "История"
 
 #: ../src/yumexgui/__init__.py:389
 msgid "Watch yum history"
@@ -638,7 +640,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:648
 msgid "By Size"
-msgstr ""
+msgstr "По размеру"
 
 #: ../src/yumexgui/__init__.py:673 ../src/yumexgui/__init__.py:674
 msgid "Getting Group information"
@@ -685,7 +687,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:851
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: ../src/yumexgui/__init__.py:894
 #, fuzzy
@@ -717,7 +719,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:962
 msgid "Skipped packages"
-msgstr ""
+msgstr "Пропущенные пакеты"
 
 #: ../src/yumexgui/__init__.py:988 ../src/yumexgui/__init__.py:989
 msgid "Adding Packages to view"
@@ -753,11 +755,11 @@ msgstr ""
 #: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
 #: ../src/yumexgui/views.py:1457
 msgid "Package"
-msgstr ""
+msgstr "пакет"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"
-msgstr ""
+msgstr "репозиторий"
 
 #: ../src/yumexgui/views.py:200
 msgid "Architecture"
@@ -792,7 +794,7 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:780
 msgid "Filename"
-msgstr ""
+msgstr "Имя файла"
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:960
@@ -801,7 +803,7 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:1191
 msgid "Categories"
-msgstr ""
+msgstr "категории"
 
 #: ../src/yumexgui/views.py:1237
 msgid "Id"
@@ -813,7 +815,7 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:1239
 msgid "Data/Time"
-msgstr ""
+msgstr "Дата/Время"
 
 #: ../src/yumexgui/views.py:1240
 msgid "Action(s)"
@@ -837,7 +839,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:6
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 #: ../src/yumex.glade.h:7
 msgid "Availa_ble"
@@ -853,7 +855,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:10
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: ../src/yumex.glade.h:11
 msgid "Execute all pending actions in queue"
@@ -891,23 +893,23 @@ msgstr ""
 
 #: ../src/yumex.glade.h:20
 msgid "Show Categories"
-msgstr ""
+msgstr "Показать категории"
 
 #: ../src/yumex.glade.h:21
 msgid "Show Groups"
-msgstr ""
+msgstr "Показать группы"
 
 #: ../src/yumex.glade.h:22
 msgid "Show all Packages"
-msgstr ""
+msgstr "Показать все пакеты"
 
 #: ../src/yumex.glade.h:23
 msgid "Show available packages"
-msgstr ""
+msgstr "Показать доступные пакеты"
 
 #: ../src/yumex.glade.h:24
 msgid "Show installed packages"
-msgstr ""
+msgstr "Показать установленные пакеты"
 
 #: ../src/yumex.glade.h:25
 msgid "Show package updates"
@@ -962,7 +964,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:40
 msgid "Yum"
-msgstr ""
+msgstr "Yum"
 
 #: ../src/yumex.glade.h:41
 msgid "_Categories"
