@@ -262,11 +262,11 @@ class PackageInfo(SelectorBase):
 
     def _set_output_view(self, key):
         if key == 'deps':
-            self.frontend.ui.packageInfoSW.set_visible(False)
-            self.frontend.ui.packageDepsSW.set_visible(True)
+            self.frontend.ui.packageInfoSW.hide()
+            self.frontend.ui.packageDepsSW.show()
         else:
-            self.frontend.ui.packageInfoSW.set_visible(True)
-            self.frontend.ui.packageDepsSW.set_visible(False)
+            self.frontend.ui.packageInfoSW.show()
+            self.frontend.ui.packageDepsSW.hide()
 
     def update_console(self, key):
         '''
