@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 07:14+0100\n"
+"POT-Creation-Date: 2010-12-03 15:01+0100\n"
 "PO-Revision-Date: 2010-11-19 09:15+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
@@ -118,7 +118,7 @@ msgstr ""
 "Klient jest uruchomiony w trybie roota, bezpośrednie uruchamianie zaplecza"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:243
+#: ../src/yumexbackend/yum_client.py:251
 msgid "Yum backend did not close nicely in time"
 msgstr "Zaplecze yum nie zostało odpowiednio wyłączone"
 
@@ -317,6 +317,32 @@ msgstr "Uzyskiwanie dostępnych aktualizacji"
 #: ../src/yumexbase/constants.py:150
 msgid "Getting available obsoletes"
 msgstr "Uzyskiwanie dostępnych przestarzałych pakietów"
+
+#: ../src/yumexbase/constants.py:155
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "aktualizacje"
+
+#: ../src/yumexbase/constants.py:156
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
+#: ../src/yumexbase/constants.py:160
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "zainstalowane"
+
+#: ../src/yumexbase/constants.py:159
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:172
 msgid "Updated packages"

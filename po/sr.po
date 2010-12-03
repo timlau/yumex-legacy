@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 07:14+0100\n"
+"POT-Creation-Date: 2010-12-03 15:01+0100\n"
 "PO-Revision-Date: 2009-11-08 21:36+0000\n"
 "Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
 "Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
@@ -118,7 +118,7 @@ msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr ""
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:243
+#: ../src/yumexbackend/yum_client.py:251
 msgid "Yum backend did not close nicely in time"
 msgstr ""
 
@@ -324,6 +324,32 @@ msgstr "Добављам доступне пакете"
 #, fuzzy
 msgid "Getting available obsoletes"
 msgstr "Добављам доступне пакете"
+
+#: ../src/yumexbase/constants.py:155
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "ажурирања"
+
+#: ../src/yumexbase/constants.py:156
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
+#: ../src/yumexbase/constants.py:160
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "инсталирано"
+
+#: ../src/yumexbase/constants.py:159
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:172
 #, fuzzy

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex.nextgen\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 07:14+0100\n"
+"POT-Creation-Date: 2010-12-03 15:01+0100\n"
 "PO-Revision-Date: 2009-12-08 09:35+1000\n"
 "Last-Translator: Leah Liu <lliu@redhat.com>\n"
 "Language-Team: Simplified Chinese <zh@li.org>\n"
@@ -125,7 +125,7 @@ msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr ""
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:243
+#: ../src/yumexbackend/yum_client.py:251
 msgid "Yum backend did not close nicely in time"
 msgstr ""
 
@@ -331,6 +331,32 @@ msgstr "使用可用的软件包"
 #, fuzzy
 msgid "Getting available obsoletes"
 msgstr "使用可用的软件包"
+
+#: ../src/yumexbase/constants.py:155
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "更新"
+
+#: ../src/yumexbase/constants.py:156
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
+#: ../src/yumexbase/constants.py:160
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "安装"
+
+#: ../src/yumexbase/constants.py:159
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:172
 #, fuzzy

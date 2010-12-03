@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 07:14+0100\n"
+"POT-Creation-Date: 2010-12-03 15:01+0100\n"
 "PO-Revision-Date: 2010-11-20 23:14+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
@@ -121,7 +121,7 @@ msgstr ""
 "безпосередній запуск сервера"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:243
+#: ../src/yumexbackend/yum_client.py:251
 msgid "Yum backend did not close nicely in time"
 msgstr "Сервер Yum не зміг завершити роботу без помилок за відведений час"
 
@@ -320,6 +320,32 @@ msgstr "Отримання списку доступних оновлень"
 #: ../src/yumexbase/constants.py:150
 msgid "Getting available obsoletes"
 msgstr "Отримання списку застарілих пакунків"
+
+#: ../src/yumexbase/constants.py:155
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "оновлює"
+
+#: ../src/yumexbase/constants.py:156
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
+#: ../src/yumexbase/constants.py:160
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "встановлено"
+
+#: ../src/yumexbase/constants.py:159
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:172
 msgid "Updated packages"

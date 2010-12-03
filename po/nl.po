@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 07:14+0100\n"
+"POT-Creation-Date: 2010-12-03 15:01+0100\n"
 "PO-Revision-Date: 2010-09-11 15:06+0200\n"
 "Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
 "Language-Team: Dutch <nippur@fedoraproject.org>\n"
@@ -122,7 +122,7 @@ msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr "Cliënt draait in root mode, back-end rechtstreeks opstarten"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:243
+#: ../src/yumexbackend/yum_client.py:251
 msgid "Yum backend did not close nicely in time"
 msgstr "Yum achtergrondproces is niet tijdig netjes afgesloten"
 
@@ -322,6 +322,32 @@ msgstr "Beschikbare vernieuwingen ophalen"
 #: ../src/yumexbase/constants.py:150
 msgid "Getting available obsoletes"
 msgstr "Beschikbare verouderde pakketten ophalen"
+
+#: ../src/yumexbase/constants.py:155
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "vernieuwingen"
+
+#: ../src/yumexbase/constants.py:156
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
+#: ../src/yumexbase/constants.py:160
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "geïnstalleerd"
+
+#: ../src/yumexbase/constants.py:159
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:172
 #, fuzzy
