@@ -152,13 +152,13 @@ PACKAGE_LOAD_MSG = {
 
 # RPM Completed action messages
 RPM_ACTIONS = {
-    TS_UPDATE: '%s is updated',
-    TS_ERASE: '%s is erased',
-    TS_INSTALL: '%s is installed',
-    TS_TRUEINSTALL: '%s is installed',
-    TS_OBSOLETED: '%s is obsoleted',
-    TS_OBSOLETING: '%s is installed',
-    TS_UPDATED: '%s is cleanup'
+    TS_UPDATE: _('%s is updated'),
+    TS_ERASE: _('%s is erased'),
+    TS_INSTALL: _('%s is installed'),
+    TS_TRUEINSTALL: _('%s is installed'),
+    TS_OBSOLETED: _('%s is obsoleted'),
+    TS_OBSOLETING: _('%s is installed'),
+    TS_UPDATED: _('%s is cleanup')
 }
 
 HISTORY_NEW_STATES = ['Update', 'Downgrade', 'Obsoleting']
