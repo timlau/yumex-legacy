@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-03 15:01+0100\n"
-"PO-Revision-Date: 2010-11-19 09:15+0100\n"
+"PO-Revision-Date: 2010-12-04 09:02+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -319,30 +319,30 @@ msgid "Getting available obsoletes"
 msgstr "Uzyskiwanie dostępnych przestarzałych pakietów"
 
 #: ../src/yumexbase/constants.py:155
-#, fuzzy, python-format
+#, python-format
 msgid "%s is updated"
-msgstr "aktualizacje"
+msgstr "%s zostało zaktualizowane"
 
 #: ../src/yumexbase/constants.py:156
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%s zostało usunięte"
 
 #: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
 #: ../src/yumexbase/constants.py:160
-#, fuzzy, python-format
+#, python-format
 msgid "%s is installed"
-msgstr "zainstalowane"
+msgstr "%s zostało zainstalowane"
 
 #: ../src/yumexbase/constants.py:159
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%s zostało zastąpione"
 
 #: ../src/yumexbase/constants.py:161
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s zostało wyczyszczone"
 
 #: ../src/yumexbase/constants.py:172
 msgid "Updated packages"
