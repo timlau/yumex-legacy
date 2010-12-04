@@ -334,7 +334,7 @@ msgstr "%s est mis à jour"
 #: ../src/yumexbase/constants.py:156
 #, python-format
 msgid "%s is erased"
-msgstr "%s est effacé"
+msgstr "%s est supprimé"
 
 #: ../src/yumexbase/constants.py:157
 #: ../src/yumexbase/constants.py:158
