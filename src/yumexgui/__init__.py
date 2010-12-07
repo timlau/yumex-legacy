@@ -436,7 +436,8 @@ class YumexApplication(Controller, YumexFrontend):
             self.window.resize(self.settings.win_width, self.settings.win_height)
             if self.settings.win_sep > 0:
                 self.ui.packageSep.set_position(self.settings.win_sep)
-        self.window.show()
+        if not self.cfg.cmd_args or not self.settings.always_yes:        
+            self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
         # check network state
