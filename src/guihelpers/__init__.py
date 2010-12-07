@@ -354,9 +354,10 @@ def doLoggerSetup(console, logroot, logfmt='%(message)s', loglvl=logging.DEBUG):
 
 def busyCursor(mainwin, insensitive=False):
     ''' Set busy cursor in mainwin and make it insensitive if selected '''
-    mainwin.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
-    if insensitive:
-        mainwin.set_sensitive(False)
+    if mainwin.window != None:
+        mainwin.window.set_cursor(gtk.gdk.Cursor(gtk.gdk.WATCH))
+        if insensitive:
+            mainwin.set_sensitive(False)
     doGtkEvents()
 
 def normalCursor(mainwin):
