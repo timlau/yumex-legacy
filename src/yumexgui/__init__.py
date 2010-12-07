@@ -492,6 +492,8 @@ class YumexApplication(Controller, YumexFrontend):
             queue = self.queue.queue
             if queue.total() != 0:
                 self.process_transaction()
+            elif self.settings.always_yes:
+                self.main_quit()
             else:
                 self.window.show()
 
