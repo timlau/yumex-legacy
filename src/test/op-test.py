@@ -4,7 +4,7 @@
 import logging
 import os
 import shutil
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 from yum.config import *

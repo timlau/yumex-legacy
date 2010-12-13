@@ -24,6 +24,16 @@ Yumex Backend Base Classes
 
 import time
 import sys
+import os.path
+
+from kitchen.i18n import easy_gettext_setup
+
+# setup the translation wrappers
+
+_, P_  = easy_gettext_setup('yumex', localedirs=(
+        os.path.join(os.path.realpath(os.path.dirname(__file__)), 'locale'),
+        os.path.join(sys.prefix, 'lib', 'locale')
+        )) 
 
 class YumexProgressBase:
     '''

@@ -35,7 +35,7 @@ from yumexbackend.yumMediaManagerUDisks import MediaManagerUDisks as MediaManage
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 class PackageCache:

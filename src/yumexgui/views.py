@@ -26,7 +26,7 @@ import logging
 import os
 import time
 
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 from yumexbase import TimeFunction
 import yumexbase.constants as const
 from guihelpers import  doGtkEvents, busyCursor, normalCursor
