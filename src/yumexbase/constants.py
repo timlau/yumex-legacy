@@ -25,7 +25,6 @@ import os
 import sys
 import pango
 import time
-from enum import Enum
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -40,22 +39,12 @@ from yum.constants import *
 __yumex_version__ = "3.0.0"
 
 YUMEX_LOG = 'yumex.verbose'
-# Package Types
-PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
-# Package list filters
-FILTER = Enum('all', 'installed', 'available', 'updates', 'obsoletes', 'downgrade', 'reinstall')
-# Search filters
-SEARCH = Enum('name', 'summary', 'description', 'ver', 'arch', 'repoid')
-# Group Package filters
-GROUP = Enum('all', 'default')
-# State
-STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
-FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r', \
-                   str(FILTER.obsoletes) : 'o', str(FILTER.downgrade)  : 'do', str(FILTER.reinstall) : 'ri'}
+FILTER_ACTIONS = {'updates' : 'u', 'available': 'i', 'installed' : 'r', \
+                   'obsoletes' : 'o', 'downgrade'  : 'do', 'reinstall' : 'ri'}
 
-ACTIONS_FILTER = { 'u' : str(FILTER.updates), 'i' : str(FILTER.available), \
-                   'r' : str(FILTER.installed) , 'o' : str(FILTER.obsoletes), \
-                    'do' : str(FILTER.downgrade), 'ri' : str(FILTER.reinstall)  }
+ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
+                   'r' : 'installed' , 'o' : 'obsoletes', \
+                    'do' : 'downgrade', 'ri' : 'reinstall' }
 
 # Paths
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -79,7 +68,7 @@ ICON_SMALL_SPINNER = PIXMAPS_PATH + '/spinner-small.gif'
 
 # NOTE: The package filter radio buttons in the top of the package page
 PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))
-PKG_FILTERS_ENUMS = (FILTER.updates, FILTER.available, FILTER.installed)
+PKG_FILTERS_ENUMS = ('updates', 'available', 'installed')
 
 REPO_HIDE = ['source', 'debuginfo']
 

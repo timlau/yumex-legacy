@@ -1299,10 +1299,10 @@ class YumexApplication(Controller, YumexFrontend):
                 progress.set_title(PACKAGE_LOAD_MSG[filter])
                 progress.set_header(PACKAGE_LOAD_MSG[filter])
                 progress.show()
-                pkgs = self.backend.get_packages(getattr(FILTER, active))
+                pkgs = self.backend.get_packages(active)
                 # if Updates, then add obsoletes too
                 if active == 'updates':
-                    obs = self.backend.get_packages(getattr(FILTER, 'obsoletes'))
+                    obs = self.backend.get_packages('obsoletes')
                     pkgs.extend(obs)
                     label = "updates & obsoletes"
                 self._add_packages(pkgs, label)
@@ -1375,7 +1375,7 @@ class YumexApplication(Controller, YumexFrontend):
             isCategory = model.get_value(iterator, 4)
             if not isCategory:
                 grpid = model.get_value(iterator, 2)
-                pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
+                pkgs = self.backend.get_group_packages(grpid, grp_filter='all')
                 self.packages.add_packages(pkgs)
 
     # Repo Page    

@@ -1078,7 +1078,7 @@ class YumexGroupView:
         @param add:
         @param action:
         '''
-        pkgs = self.base.backend.get_group_packages(grpid, const.GROUP.default)
+        pkgs = self.base.backend.get_group_packages(grpid, 'default')
         # Add group packages to queue
         if add:
             for po in pkgs:

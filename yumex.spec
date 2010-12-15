@@ -22,7 +22,6 @@ Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
 Requires: usermode
 Requires: pexpect
-Requires: python-enum
 Requires: python-iniparse
 Requires: dbus-python
 Requires: udisks
