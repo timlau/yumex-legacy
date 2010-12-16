@@ -20,7 +20,6 @@ General purpose GUI helper classes
 '''
 
 import gtk
-import gtk.glade
 import pango
 import logging
 import types
