@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-03 15:01+0100\n"
+"POT-Creation-Date: 2010-12-16 07:57+0100\n"
 "PO-Revision-Date: 2010-06-15 10:55+0900\n"
 "Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
 "Language-Team: Japanese <jp@li.org>\n"
@@ -23,6 +23,192 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "\n"
+
+#. NOTE: The package filter radio buttons in the top of the package page
+#: ../src/yumexbase/constants.py:70
+msgid "updates"
+msgstr "更新"
+
+#: ../src/yumexbase/constants.py:70
+msgid "available"
+msgstr "利用可能"
+
+#: ../src/yumexbase/constants.py:70
+msgid "installed"
+msgstr "インストール済"
+
+#: ../src/yumexbase/constants.py:90
+msgid "Downloading repository information"
+msgstr "リポジトリ情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:91
+#, python-format
+msgid "Downloading Package information for the %s repository"
+msgstr "%sリポジトリーのパッケージ情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:92
+#, python-format
+msgid "Downloading Filelist information for the %s repository"
+msgstr "%sリポジトリーのファイルリスト情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:93
+#, python-format
+msgid "Downloading Changelog information for the %s repository"
+msgstr "%sリポジトリーの変更履歴情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:94
+#, python-format
+msgid "Downloading Group information for the %s repository"
+msgstr "%sリポジトリーのグループ情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:95
+#, python-format
+msgid "Downloading metalink information for the %s repository"
+msgstr "%sリポジトリーのメタリンク情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:96
+#, python-format
+msgid "Downloading Delta update information for the %s repository"
+msgstr "%sリポジトリーの差分更新情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:97
+#, python-format
+msgid "Downloading Update information for the %s repository"
+msgstr "%sリポジトリーの更新情報をダウンロード中"
+
+#: ../src/yumexbase/constants.py:108
+msgid "0 - 7 Days"
+msgstr "0 - 7 日"
+
+#: ../src/yumexbase/constants.py:109
+msgid "7 - 14 Days"
+msgstr "7 - 14 日"
+
+#: ../src/yumexbase/constants.py:110
+msgid "14 - 21 Days"
+msgstr "14 - 21 日"
+
+#: ../src/yumexbase/constants.py:111
+msgid "21  - 30 days"
+msgstr "21  - 30 日"
+
+#: ../src/yumexbase/constants.py:112
+msgid "30 - 90 days"
+msgstr "30 - 90 日"
+
+#: ../src/yumexbase/constants.py:113
+msgid "90+ days"
+msgstr "90+ 日"
+
+#: ../src/yumexbase/constants.py:135
+#, fuzzy
+msgid "Getting all packages"
+msgstr "利用可能なパッケージを取得中"
+
+#: ../src/yumexbase/constants.py:136
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "インストールされたパッケージを取得中"
+
+#: ../src/yumexbase/constants.py:137
+#, fuzzy
+msgid "Getting available packages"
+msgstr "利用可能なパッケージを取得中"
+
+#: ../src/yumexbase/constants.py:138
+#, fuzzy
+msgid "Getting available updates"
+msgstr "利用可能なパッケージを取得中"
+
+#: ../src/yumexbase/constants.py:139
+#, fuzzy
+msgid "Getting available obsoletes"
+msgstr "利用可能なパッケージを取得中"
+
+#: ../src/yumexbase/constants.py:144
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "更新"
+
+#: ../src/yumexbase/constants.py:145
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:146 ../src/yumexbase/constants.py:147
+#: ../src/yumexbase/constants.py:149
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "インストール済"
+
+#: ../src/yumexbase/constants.py:148
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:150
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, fuzzy
+msgid "Updated packages"
+msgstr "更新パッケージを取得中"
+
+#: ../src/yumexbase/constants.py:162
+#, fuzzy
+msgid "Downgraded packages"
+msgstr "パッケージをダウンロード中"
+
+#: ../src/yumexbase/constants.py:163
+#, fuzzy
+msgid "Obsoleting packages"
+msgstr "インストールされたパッケージを表示します"
+
+#: ../src/yumexbase/constants.py:164
+#, fuzzy
+msgid "Obsoleted packages"
+msgstr "インストールされたパッケージを表示します"
+
+#: ../src/yumexbase/constants.py:165
+#, fuzzy
+msgid "Erased packages"
+msgstr "インストールされたパッケージを表示します"
+
+#: ../src/yumexbase/constants.py:166 ../src/yumexbase/constants.py:167
+#, fuzzy
+msgid "Installed packages"
+msgstr "インストールされたパッケージを表示します"
+
+#: ../src/yumexbase/constants.py:168
+msgid "Installed for dependencies"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:169
+#, fuzzy
+msgid "Reinstalled packages"
+msgstr "インストールされたパッケージを表示します"
+
+#: ../src/yumexbase/constants.py:194 ../src/yumexgui/views.py:827
+#: ../src/yumexgui/dialogs.py:589
+msgid "Name"
+msgstr "名前"
+
+#: ../src/yumexbase/constants.py:195 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "概要"
+
+#: ../src/yumexbase/constants.py:196 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "説明: %s\n"
+
+#: ../src/yumexbase/constants.py:197 ../src/yumexgui/dialogs.py:590
+msgid "Arch"
+msgstr "アーキ"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:166
@@ -232,312 +418,100 @@ msgstr "deltarpmからの再構築が完了"
 msgid "Downloaded : %s ( %s )"
 msgstr "ダウンロード済: %s (%s)"
 
-#. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:81
-msgid "updates"
-msgstr "更新"
+#. Setup Selection Column
+#. self.create_selection_colunm('')
+#. Setup Actions and pacakges
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:347
+#: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
+#: ../src/yumexgui/views.py:1457
+msgid "Package"
+msgstr "パッケージ"
 
-#: ../src/yumexbase/constants.py:81
-msgid "available"
-msgstr "利用可能"
-
-#: ../src/yumexbase/constants.py:81
-msgid "installed"
-msgstr "インストール済"
-
-#: ../src/yumexbase/constants.py:101
-msgid "Downloading repository information"
-msgstr "リポジトリ情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:102
-#, python-format
-msgid "Downloading Package information for the %s repository"
-msgstr "%sリポジトリーのパッケージ情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:103
-#, python-format
-msgid "Downloading Filelist information for the %s repository"
-msgstr "%sリポジトリーのファイルリスト情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:104
-#, python-format
-msgid "Downloading Changelog information for the %s repository"
-msgstr "%sリポジトリーの変更履歴情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:105
-#, python-format
-msgid "Downloading Group information for the %s repository"
-msgstr "%sリポジトリーのグループ情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:106
-#, python-format
-msgid "Downloading metalink information for the %s repository"
-msgstr "%sリポジトリーのメタリンク情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:107
-#, python-format
-msgid "Downloading Delta update information for the %s repository"
-msgstr "%sリポジトリーの差分更新情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:108
-#, python-format
-msgid "Downloading Update information for the %s repository"
-msgstr "%sリポジトリーの更新情報をダウンロード中"
-
-#: ../src/yumexbase/constants.py:119
-msgid "0 - 7 Days"
-msgstr "0 - 7 日"
-
-#: ../src/yumexbase/constants.py:120
-msgid "7 - 14 Days"
-msgstr "7 - 14 日"
-
-#: ../src/yumexbase/constants.py:121
-msgid "14 - 21 Days"
-msgstr "14 - 21 日"
-
-#: ../src/yumexbase/constants.py:122
-msgid "21  - 30 days"
-msgstr "21  - 30 日"
-
-#: ../src/yumexbase/constants.py:123
-msgid "30 - 90 days"
-msgstr "30 - 90 日"
-
-#: ../src/yumexbase/constants.py:124
-msgid "90+ days"
-msgstr "90+ 日"
-
-#: ../src/yumexbase/constants.py:146
-#, fuzzy
-msgid "Getting all packages"
-msgstr "利用可能なパッケージを取得中"
-
-#: ../src/yumexbase/constants.py:147
-#, fuzzy
-msgid "Getting installed packages"
-msgstr "インストールされたパッケージを取得中"
-
-#: ../src/yumexbase/constants.py:148
-#, fuzzy
-msgid "Getting available packages"
-msgstr "利用可能なパッケージを取得中"
-
-#: ../src/yumexbase/constants.py:149
-#, fuzzy
-msgid "Getting available updates"
-msgstr "利用可能なパッケージを取得中"
-
-#: ../src/yumexbase/constants.py:150
-#, fuzzy
-msgid "Getting available obsoletes"
-msgstr "利用可能なパッケージを取得中"
-
-#: ../src/yumexbase/constants.py:155
-#, fuzzy, python-format
-msgid "%s is updated"
-msgstr "更新"
-
-#: ../src/yumexbase/constants.py:156
-#, python-format
-msgid "%s is erased"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
-#: ../src/yumexbase/constants.py:160
-#, fuzzy, python-format
-msgid "%s is installed"
-msgstr "インストール済"
-
-#: ../src/yumexbase/constants.py:159
-#, python-format
-msgid "%s is obsoleted"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:161
-#, python-format
-msgid "%s is cleanup"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:172
-#, fuzzy
-msgid "Updated packages"
-msgstr "更新パッケージを取得中"
-
-#: ../src/yumexbase/constants.py:173
-#, fuzzy
-msgid "Downgraded packages"
-msgstr "パッケージをダウンロード中"
-
-#: ../src/yumexbase/constants.py:174
-#, fuzzy
-msgid "Obsoleting packages"
-msgstr "インストールされたパッケージを表示します"
-
-#: ../src/yumexbase/constants.py:175
-#, fuzzy
-msgid "Obsoleted packages"
-msgstr "インストールされたパッケージを表示します"
-
-#: ../src/yumexbase/constants.py:176
-#, fuzzy
-msgid "Erased packages"
-msgstr "インストールされたパッケージを表示します"
-
-#: ../src/yumexbase/constants.py:177 ../src/yumexbase/constants.py:178
-#, fuzzy
-msgid "Installed packages"
-msgstr "インストールされたパッケージを表示します"
-
-#: ../src/yumexbase/constants.py:179
-msgid "Installed for dependencies"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:180
-#, fuzzy
-msgid "Reinstalled packages"
-msgstr "インストールされたパッケージを表示します"
-
-#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:589
-#: ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "名前"
-
-#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
-#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
-#: ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "概要"
-
-#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "説明: %s\n"
-
-#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:590
-msgid "Arch"
-msgstr "アーキ"
-
-#: ../src/yumexgui/dialogs.py:356
-msgid "Working !!!"
-msgstr "処理中!!"
-
-#: ../src/yumexgui/dialogs.py:426
-msgid "Preferences"
-msgstr "設定"
-
-#: ../src/yumexgui/dialogs.py:439
-msgid "Load packages on launch"
-msgstr "起動時にパッケージを読み込む"
-
-#: ../src/yumexgui/dialogs.py:440
-msgid "Use sortable columns in package view (slower)"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:441
-msgid "Typeahead search is active by default"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:449
-msgid "Debug Mode"
-msgstr "デバッグモード"
-
-#: ../src/yumexgui/dialogs.py:450
-msgid "Disable startup network check"
-msgstr "ネットワーク開始のチェックを無効にする"
-
-#: ../src/yumexgui/dialogs.py:451
-msgid "Color (Installed)"
-msgstr "色 (インストール済)"
-
-#: ../src/yumexgui/dialogs.py:452
-msgid "Color (Update)"
-msgstr "色 (更新)"
-
-#: ../src/yumexgui/dialogs.py:453
-msgid "Color (Available)"
-msgstr "色 (利用可能)"
-
-#: ../src/yumexgui/dialogs.py:461
-msgid "Enable Yum Plugins"
-msgstr "Yumプラグインを有効にする"
-
-#: ../src/yumexgui/dialogs.py:462
-msgid "Proxy"
-msgstr "プロキシー"
-
-#: ../src/yumexgui/dialogs.py:463
-msgid "Yum Debug Level"
-msgstr "Yumデバッグレベル"
-
-#: ../src/yumexgui/dialogs.py:540 ../src/yumexgui/dialogs.py:549
-msgid "Transaction Result"
-msgstr "トランザクションの結果"
-
-#: ../src/yumexgui/dialogs.py:591 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:591
 msgid "Ver"
 msgstr "バージョン"
 
-#. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:592 ../src/yumexgui/views.py:780
-#: ../src/yumexgui/views.py:826
-msgid "Repository"
-msgstr "リポジトリー"
+#: ../src/yumexgui/views.py:200
+msgid "Repo"
+msgstr "Repo"
 
-#: ../src/yumexgui/dialogs.py:593 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:200
+msgid "Architecture"
+msgstr "アーキテクチャー"
+
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:593
 msgid "Size"
 msgstr "サイズ"
 
-#: ../src/yumexgui/dialogs.py:627
+#: ../src/yumexgui/views.py:348 ../src/yumexgui/views.py:465
+#: ../src/yumexgui/views.py:1346 ../src/yumexgui/views.py:1459
+msgid "Ver."
+msgstr "バージョン"
+
+#: ../src/yumexgui/views.py:349 ../src/yumexgui/views.py:466
+#: ../src/yumexgui/views.py:1347 ../src/yumexgui/views.py:1460
+msgid "Arch."
+msgstr "アーキ."
+
+#: ../src/yumexgui/views.py:351 ../src/yumexgui/views.py:468
+msgid "Repo."
+msgstr "Repo."
+
+#: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
+msgid "Size."
+msgstr "サイズ"
+
+#: ../src/yumexgui/views.py:647
+msgid "Package Queue:"
+msgstr "パッケージキュー:"
+
+#: ../src/yumexgui/views.py:681 ../src/yumexgui/__init__.py:376
+msgid "Packages"
+msgstr "パッケージ"
+
+#: ../src/yumexgui/views.py:767
 #, python-format
-msgid "Download Size : %s "
-msgstr "ダウンロードサイズ: %s "
-
-#: ../src/yumexgui/gui.py:212
-msgid "Package Description"
-msgstr "パッケージの説明"
-
-#: ../src/yumexgui/gui.py:214
-#, fuzzy
-msgid "Update information"
-msgstr "グループ情報を取得中"
-
-#: ../src/yumexgui/gui.py:216
-msgid "Package Changelog"
-msgstr "パッケージの変更履歴"
-
-#: ../src/yumexgui/gui.py:218
-msgid "Package Filelist"
-msgstr "パッケージのファイルリスト"
-
-#: ../src/yumexgui/gui.py:220
-#, fuzzy
-msgid "Package Dependencies"
-msgstr "依存関係を解決中"
-
-#: ../src/yumexgui/gui.py:325
-msgid "Project URL : "
+msgid "<b>Downgrade to</b> %s "
 msgstr ""
 
-#: ../src/yumexgui/gui.py:332
-msgid "Release"
-msgstr "リリース"
+#. Setup reponame & repofile column's
+#: ../src/yumexgui/views.py:780 ../src/yumexgui/views.py:826
+#: ../src/yumexgui/dialogs.py:592
+msgid "Repository"
+msgstr "リポジトリー"
 
-#: ../src/yumexgui/gui.py:333
-msgid "Type"
-msgstr "種類"
+#: ../src/yumexgui/views.py:780
+msgid "Filename"
+msgstr "ファイル名"
 
-#: ../src/yumexgui/gui.py:334
-msgid "Status"
-msgstr "状態"
-
-#: ../src/yumexgui/gui.py:335
-msgid "Issued"
-msgstr "発行日"
-
-#: ../src/yumexgui/gui.py:514
-msgid "Quit"
+#. Setup reponame & repofile column's
+#: ../src/yumexgui/views.py:960
+msgid "Search Keys"
 msgstr ""
+
+#: ../src/yumexgui/views.py:1191
+msgid "Categories"
+msgstr "カテゴリ"
+
+#: ../src/yumexgui/views.py:1237
+msgid "Id"
+msgstr "Id"
+
+#: ../src/yumexgui/views.py:1238
+msgid "Login User"
+msgstr "ログインユーザー"
+
+#: ../src/yumexgui/views.py:1239
+msgid "Data/Time"
+msgstr "データ/時刻"
+
+#: ../src/yumexgui/views.py:1240
+msgid "Action(s)"
+msgstr "アクション"
+
+#: ../src/yumexgui/views.py:1241
+msgid "Altered"
+msgstr "変更済み"
 
 #: ../src/yumexgui/__init__.py:273
 msgid "Fatal Error"
@@ -595,10 +569,6 @@ msgstr "利用可能なパッケージを取得中"
 msgid "Search for packages"
 msgstr "更新パッケージを表示します"
 
-#: ../src/yumexgui/__init__.py:376 ../src/yumexgui/views.py:681
-msgid "Packages"
-msgstr "パッケージ"
-
 #: ../src/yumexgui/__init__.py:378
 msgid "Perform actions on packages"
 msgstr "パッケージに対するアクションを実行する"
@@ -635,11 +605,11 @@ msgstr "出力"
 msgid "Watch output details"
 msgstr "出力の詳細を見る"
 
-#: ../src/yumexgui/__init__.py:444
+#: ../src/yumexgui/__init__.py:445
 msgid "Not connected to an network"
 msgstr "ネットワークに接続されていません"
 
-#: ../src/yumexgui/__init__.py:445
+#: ../src/yumexgui/__init__.py:446
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
@@ -647,82 +617,82 @@ msgstr ""
 "ネットワークに接続されていません。\n"
 "続けますか "
 
-#: ../src/yumexgui/__init__.py:450
+#: ../src/yumexgui/__init__.py:451
 msgid "network connection state check is disabled"
 msgstr "ネットワーク接続の状態チェックは無効になっています"
 
-#: ../src/yumexgui/__init__.py:452
+#: ../src/yumexgui/__init__.py:453
 msgid "Can't detect the network connection state"
 msgstr "ネットワーク接続状態を検出できません"
 
-#: ../src/yumexgui/__init__.py:454
+#: ../src/yumexgui/__init__.py:455
 msgid "Connected to an network"
 msgstr "ネットワークに接続しました"
 
-#: ../src/yumexgui/__init__.py:615
+#: ../src/yumexgui/__init__.py:618
 msgid "Enable Permanently"
 msgstr "恒久的に有効にする"
 
-#: ../src/yumexgui/__init__.py:619
+#: ../src/yumexgui/__init__.py:622
 msgid "Disable Permanently"
 msgstr "恒久的に無効にする"
 
-#: ../src/yumexgui/__init__.py:622
+#: ../src/yumexgui/__init__.py:625
 msgid "Clean Metadata"
 msgstr "メタデータを除去する"
 
-#: ../src/yumexgui/__init__.py:623
+#: ../src/yumexgui/__init__.py:626
 msgid "Clean Packages"
 msgstr "パッケージを除去"
 
-#: ../src/yumexgui/__init__.py:624
+#: ../src/yumexgui/__init__.py:627
 msgid "Clean DbCache"
 msgstr "DB キャッシュを除去する"
 
-#: ../src/yumexgui/__init__.py:625
+#: ../src/yumexgui/__init__.py:628
 msgid "Clean All"
 msgstr "全てを除去する"
 
-#: ../src/yumexgui/__init__.py:638
+#: ../src/yumexgui/__init__.py:641
 #, fuzzy
 msgid "Reinstall Package"
 msgstr "インストールされたパッケージを表示します"
 
-#: ../src/yumexgui/__init__.py:645
+#: ../src/yumexgui/__init__.py:648
 #, fuzzy
 msgid "Downgrade Package"
 msgstr "パッケージをダウンロード中"
 
-#: ../src/yumexgui/__init__.py:655
+#: ../src/yumexgui/__init__.py:658
 msgid "By Repositories"
 msgstr "リポジトリー別"
 
-#: ../src/yumexgui/__init__.py:656
+#: ../src/yumexgui/__init__.py:659
 msgid "By Size"
 msgstr "サイズ別"
 
-#: ../src/yumexgui/__init__.py:681 ../src/yumexgui/__init__.py:682
+#: ../src/yumexgui/__init__.py:684 ../src/yumexgui/__init__.py:685
 msgid "Getting Group information"
 msgstr "グループ情報を取得中"
 
-#: ../src/yumexgui/__init__.py:718
+#: ../src/yumexgui/__init__.py:721
 msgid "The pending action queue is empty"
 msgstr "保留しているアクションのキューが空です"
 
-#: ../src/yumexgui/__init__.py:742
+#: ../src/yumexgui/__init__.py:745
 msgid "Processing pending actions"
 msgstr "保留しているアクションを処理中"
 
-#: ../src/yumexgui/__init__.py:743
+#: ../src/yumexgui/__init__.py:746
 msgid "Preparing the transaction"
 msgstr "トランザクションを準備中"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:760 ../src/yumexgui/__init__.py:766
+#: ../src/yumexgui/__init__.py:763 ../src/yumexgui/__init__.py:769
 msgid "Transaction completed successfully"
 msgstr "トランザクションが正常に完了しました"
 
-#: ../src/yumexgui/__init__.py:767
+#: ../src/yumexgui/__init__.py:770
 msgid ""
 "\n"
 "\n"
@@ -733,11 +703,11 @@ msgstr ""
 "Yum Extenderを終了したいですか？"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:773
+#: ../src/yumexgui/__init__.py:776
 msgid "Transaction Aborted by User"
 msgstr "トランザクションがユーザーによって中止されました"
 
-#: ../src/yumexgui/__init__.py:776
+#: ../src/yumexgui/__init__.py:779
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
@@ -745,152 +715,182 @@ msgstr ""
 "トランザクションがエラーで完了しました。\n"
 "詳細は出力をご覧ください"
 
-#: ../src/yumexgui/__init__.py:858
+#: ../src/yumexgui/__init__.py:861
 msgid "<unset>"
 msgstr "<unset>"
 
-#: ../src/yumexgui/__init__.py:859
+#: ../src/yumexgui/__init__.py:862
 msgid "System"
 msgstr "システム"
 
-#: ../src/yumexgui/__init__.py:902
+#: ../src/yumexgui/__init__.py:905
 msgid "Getting History Information"
 msgstr "履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:904
+#: ../src/yumexgui/__init__.py:907
 msgid "Getting Latest History Information"
 msgstr "最新の履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:906
+#: ../src/yumexgui/__init__.py:909
 msgid "Getting All History Information"
 msgstr "全ての履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:912 ../src/yumexgui/__init__.py:929
+#: ../src/yumexgui/__init__.py:915 ../src/yumexgui/__init__.py:932
 #, fuzzy
 msgid "History Disabled"
 msgstr "履歴"
 
-#: ../src/yumexgui/__init__.py:923 ../src/yumexgui/__init__.py:924
+#: ../src/yumexgui/__init__.py:926 ../src/yumexgui/__init__.py:927
 #, fuzzy
 msgid "Searching History Information"
 msgstr "履歴情報を取得中"
 
-#: ../src/yumexgui/__init__.py:967
+#: ../src/yumexgui/__init__.py:970
 #, fuzzy
 msgid "Transaction Performed with"
 msgstr "トランザクションがユーザーによって中止されました"
 
-#: ../src/yumexgui/__init__.py:970
+#: ../src/yumexgui/__init__.py:973
 #, fuzzy
 msgid "Skipped packages"
 msgstr "インストールされたパッケージを表示します"
 
-#: ../src/yumexgui/__init__.py:996 ../src/yumexgui/__init__.py:997
+#: ../src/yumexgui/__init__.py:999 ../src/yumexgui/__init__.py:1000
 #, fuzzy
 msgid "Adding Packages to view"
 msgstr "パッケージをダウンロード中"
 
-#: ../src/yumexgui/__init__.py:1001
+#: ../src/yumexgui/__init__.py:1004
 #, python-format
 msgid "Added %i Packages to view"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1330
+#: ../src/yumexgui/__init__.py:1333
 #, fuzzy
 msgid "Getting Category Packages"
 msgstr "利用可能なパッケージを取得中"
 
-#: ../src/yumexgui/__init__.py:1427
+#: ../src/yumexgui/__init__.py:1430
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "yum キャッシュから %s を除去したいですか"
 
-#: ../src/yumexgui/__init__.py:1496
+#: ../src/yumexgui/__init__.py:1499
 #, python-format
 msgid "Executing : %s %s"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1497
+#: ../src/yumexgui/__init__.py:1500
 #, fuzzy
 msgid "Processing Queue Command"
 msgstr "保留しているアクションを処理中"
 
-#. Setup Selection Column
-#. self.create_selection_colunm('')
-#. Setup Actions and pacakges
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:347
-#: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
-#: ../src/yumexgui/views.py:1457
-msgid "Package"
-msgstr "パッケージ"
+#: ../src/yumexgui/dialogs.py:356
+msgid "Working !!!"
+msgstr "処理中!!"
 
-#: ../src/yumexgui/views.py:200
-msgid "Repo"
-msgstr "Repo"
+#: ../src/yumexgui/dialogs.py:426
+msgid "Preferences"
+msgstr "設定"
 
-#: ../src/yumexgui/views.py:200
-msgid "Architecture"
-msgstr "アーキテクチャー"
+#: ../src/yumexgui/dialogs.py:439
+msgid "Load packages on launch"
+msgstr "起動時にパッケージを読み込む"
 
-#: ../src/yumexgui/views.py:348 ../src/yumexgui/views.py:465
-#: ../src/yumexgui/views.py:1346 ../src/yumexgui/views.py:1459
-msgid "Ver."
-msgstr "バージョン"
+#: ../src/yumexgui/dialogs.py:440
+msgid "Use sortable columns in package view (slower)"
+msgstr ""
 
-#: ../src/yumexgui/views.py:349 ../src/yumexgui/views.py:466
-#: ../src/yumexgui/views.py:1347 ../src/yumexgui/views.py:1460
-msgid "Arch."
-msgstr "アーキ."
+#: ../src/yumexgui/dialogs.py:441
+msgid "Typeahead search is active by default"
+msgstr ""
 
-#: ../src/yumexgui/views.py:351 ../src/yumexgui/views.py:468
-msgid "Repo."
-msgstr "Repo."
+#: ../src/yumexgui/dialogs.py:449
+msgid "Debug Mode"
+msgstr "デバッグモード"
 
-#: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
-msgid "Size."
-msgstr "サイズ"
+#: ../src/yumexgui/dialogs.py:450
+msgid "Disable startup network check"
+msgstr "ネットワーク開始のチェックを無効にする"
 
-#: ../src/yumexgui/views.py:647
-msgid "Package Queue:"
-msgstr "パッケージキュー:"
+#: ../src/yumexgui/dialogs.py:451
+msgid "Color (Installed)"
+msgstr "色 (インストール済)"
 
-#: ../src/yumexgui/views.py:767
+#: ../src/yumexgui/dialogs.py:452
+msgid "Color (Update)"
+msgstr "色 (更新)"
+
+#: ../src/yumexgui/dialogs.py:453
+msgid "Color (Available)"
+msgstr "色 (利用可能)"
+
+#: ../src/yumexgui/dialogs.py:461
+msgid "Enable Yum Plugins"
+msgstr "Yumプラグインを有効にする"
+
+#: ../src/yumexgui/dialogs.py:462
+msgid "Proxy"
+msgstr "プロキシー"
+
+#: ../src/yumexgui/dialogs.py:463
+msgid "Yum Debug Level"
+msgstr "Yumデバッグレベル"
+
+#: ../src/yumexgui/dialogs.py:540 ../src/yumexgui/dialogs.py:549
+msgid "Transaction Result"
+msgstr "トランザクションの結果"
+
+#: ../src/yumexgui/dialogs.py:627
 #, python-format
-msgid "<b>Downgrade to</b> %s "
+msgid "Download Size : %s "
+msgstr "ダウンロードサイズ: %s "
+
+#: ../src/yumexgui/gui.py:212
+msgid "Package Description"
+msgstr "パッケージの説明"
+
+#: ../src/yumexgui/gui.py:214
+#, fuzzy
+msgid "Update information"
+msgstr "グループ情報を取得中"
+
+#: ../src/yumexgui/gui.py:216
+msgid "Package Changelog"
+msgstr "パッケージの変更履歴"
+
+#: ../src/yumexgui/gui.py:218
+msgid "Package Filelist"
+msgstr "パッケージのファイルリスト"
+
+#: ../src/yumexgui/gui.py:220
+#, fuzzy
+msgid "Package Dependencies"
+msgstr "依存関係を解決中"
+
+#: ../src/yumexgui/gui.py:325
+msgid "Project URL : "
 msgstr ""
 
-#: ../src/yumexgui/views.py:780
-msgid "Filename"
-msgstr "ファイル名"
+#: ../src/yumexgui/gui.py:332
+msgid "Release"
+msgstr "リリース"
 
-#. Setup reponame & repofile column's
-#: ../src/yumexgui/views.py:960
-msgid "Search Keys"
+#: ../src/yumexgui/gui.py:333
+msgid "Type"
+msgstr "種類"
+
+#: ../src/yumexgui/gui.py:334
+msgid "Status"
+msgstr "状態"
+
+#: ../src/yumexgui/gui.py:335
+msgid "Issued"
+msgstr "発行日"
+
+#: ../src/yumexgui/gui.py:514
+msgid "Quit"
 msgstr ""
-
-#: ../src/yumexgui/views.py:1191
-msgid "Categories"
-msgstr "カテゴリ"
-
-#: ../src/yumexgui/views.py:1237
-msgid "Id"
-msgstr "Id"
-
-#: ../src/yumexgui/views.py:1238
-msgid "Login User"
-msgstr "ログインユーザー"
-
-#: ../src/yumexgui/views.py:1239
-msgid "Data/Time"
-msgstr "データ/時刻"
-
-#: ../src/yumexgui/views.py:1240
-msgid "Action(s)"
-msgstr "アクション"
-
-#: ../src/yumexgui/views.py:1241
-msgid "Altered"
-msgstr "変更済み"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Transaction</span>\n"

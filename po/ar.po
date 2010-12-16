@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yumex 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-03 15:01+0100\n"
+"POT-Creation-Date: 2010-12-16 07:57+0100\n"
 "PO-Revision-Date: 2009-08-23 13:10+0200\n"
 "Last-Translator: Muayyad Saleh Alsadi <alsadi@ojuba.org>\n"
 "Language-Team: Arabic <ar@li.org>\n"
@@ -16,6 +16,192 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#. NOTE: The package filter radio buttons in the top of the package page
+#: ../src/yumexbase/constants.py:70
+msgid "updates"
+msgstr "تحديثات"
+
+#: ../src/yumexbase/constants.py:70
+msgid "available"
+msgstr "متوفرة"
+
+#: ../src/yumexbase/constants.py:70
+msgid "installed"
+msgstr "مثبتة"
+
+#: ../src/yumexbase/constants.py:90
+msgid "Downloading repository information"
+msgstr "يجري تنزيل معلومات المستودع"
+
+#: ../src/yumexbase/constants.py:91
+#, python-format
+msgid "Downloading Package information for the %s repository"
+msgstr "يجري تنزيل معلومات الحزم الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:92
+#, python-format
+msgid "Downloading Filelist information for the %s repository"
+msgstr "يجري تنزيل معلومات عن قوائم الملفات الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:93
+#, python-format
+msgid "Downloading Changelog information for the %s repository"
+msgstr "يجري تنزيل معلومات التغييرات الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:94
+#, python-format
+msgid "Downloading Group information for the %s repository"
+msgstr "يجري تنزيل معلومات المجموعات الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:95
+#, python-format
+msgid "Downloading metalink information for the %s repository"
+msgstr "يجري تنزيل معلومات metalink الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:96
+#, python-format
+msgid "Downloading Delta update information for the %s repository"
+msgstr "يجري تنزيل فروقات معلومات التحديث الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:97
+#, python-format
+msgid "Downloading Update information for the %s repository"
+msgstr "يجري تنزيل معلومات التحديث الخاصة بالمستودع %s"
+
+#: ../src/yumexbase/constants.py:108
+msgid "0 - 7 Days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:109
+msgid "7 - 14 Days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:110
+msgid "14 - 21 Days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:111
+msgid "21  - 30 days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:112
+msgid "30 - 90 days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:113
+msgid "90+ days"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:135
+#, fuzzy
+msgid "Getting all packages"
+msgstr "جلب الحزم المتوفرة"
+
+#: ../src/yumexbase/constants.py:136
+#, fuzzy
+msgid "Getting installed packages"
+msgstr "جلب الحزم المثبتة"
+
+#: ../src/yumexbase/constants.py:137
+#, fuzzy
+msgid "Getting available packages"
+msgstr "جلب الحزم المتوفرة"
+
+#: ../src/yumexbase/constants.py:138
+#, fuzzy
+msgid "Getting available updates"
+msgstr "جلب الحزم المتوفرة"
+
+#: ../src/yumexbase/constants.py:139
+#, fuzzy
+msgid "Getting available obsoletes"
+msgstr "جلب الحزم المتوفرة"
+
+#: ../src/yumexbase/constants.py:144
+#, fuzzy, python-format
+msgid "%s is updated"
+msgstr "تحديثات"
+
+#: ../src/yumexbase/constants.py:145
+#, python-format
+msgid "%s is erased"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:146 ../src/yumexbase/constants.py:147
+#: ../src/yumexbase/constants.py:149
+#, fuzzy, python-format
+msgid "%s is installed"
+msgstr "مثبتة"
+
+#: ../src/yumexbase/constants.py:148
+#, python-format
+msgid "%s is obsoleted"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:150
+#, python-format
+msgid "%s is cleanup"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:161
+#, fuzzy
+msgid "Updated packages"
+msgstr "جلب الحزم المحدثة"
+
+#: ../src/yumexbase/constants.py:162
+#, fuzzy
+msgid "Downgraded packages"
+msgstr "تنزيل الحزم"
+
+#: ../src/yumexbase/constants.py:163
+#, fuzzy
+msgid "Obsoleting packages"
+msgstr "عرض الحزم المثبتة"
+
+#: ../src/yumexbase/constants.py:164
+#, fuzzy
+msgid "Obsoleted packages"
+msgstr "عرض الحزم المثبتة"
+
+#: ../src/yumexbase/constants.py:165
+#, fuzzy
+msgid "Erased packages"
+msgstr "عرض الحزم المثبتة"
+
+#: ../src/yumexbase/constants.py:166 ../src/yumexbase/constants.py:167
+#, fuzzy
+msgid "Installed packages"
+msgstr "عرض الحزم المثبتة"
+
+#: ../src/yumexbase/constants.py:168
+msgid "Installed for dependencies"
+msgstr ""
+
+#: ../src/yumexbase/constants.py:169
+#, fuzzy
+msgid "Reinstalled packages"
+msgstr "عرض الحزم المثبتة"
+
+#: ../src/yumexbase/constants.py:194 ../src/yumexgui/views.py:827
+#: ../src/yumexgui/dialogs.py:589
+msgid "Name"
+msgstr "الاسم"
+
+#: ../src/yumexbase/constants.py:195 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
+#: ../src/yumexgui/views.py:686
+msgid "Summary"
+msgstr "التفاصيل"
+
+#: ../src/yumexbase/constants.py:196 ../src/yumexgui/gui.py:374
+#, fuzzy
+msgid "Description"
+msgstr "الوصف : %s\n"
+
+#: ../src/yumexbase/constants.py:197 ../src/yumexgui/dialogs.py:590
+msgid "Arch"
+msgstr "المعمارية"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:166
@@ -226,311 +412,99 @@ msgstr "تم الانتهاء من بناء الحزمة من فروقات delta
 msgid "Downloaded : %s ( %s )"
 msgstr "تنزيل : %s ( %s )"
 
-#. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:81
-msgid "updates"
-msgstr "تحديثات"
+#. Setup Selection Column
+#. self.create_selection_colunm('')
+#. Setup Actions and pacakges
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:347
+#: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
+#: ../src/yumexgui/views.py:1457
+msgid "Package"
+msgstr "الحزمة"
 
-#: ../src/yumexbase/constants.py:81
-msgid "available"
-msgstr "متوفرة"
-
-#: ../src/yumexbase/constants.py:81
-msgid "installed"
-msgstr "مثبتة"
-
-#: ../src/yumexbase/constants.py:101
-msgid "Downloading repository information"
-msgstr "يجري تنزيل معلومات المستودع"
-
-#: ../src/yumexbase/constants.py:102
-#, python-format
-msgid "Downloading Package information for the %s repository"
-msgstr "يجري تنزيل معلومات الحزم الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:103
-#, python-format
-msgid "Downloading Filelist information for the %s repository"
-msgstr "يجري تنزيل معلومات عن قوائم الملفات الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:104
-#, python-format
-msgid "Downloading Changelog information for the %s repository"
-msgstr "يجري تنزيل معلومات التغييرات الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:105
-#, python-format
-msgid "Downloading Group information for the %s repository"
-msgstr "يجري تنزيل معلومات المجموعات الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:106
-#, python-format
-msgid "Downloading metalink information for the %s repository"
-msgstr "يجري تنزيل معلومات metalink الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:107
-#, python-format
-msgid "Downloading Delta update information for the %s repository"
-msgstr "يجري تنزيل فروقات معلومات التحديث الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:108
-#, python-format
-msgid "Downloading Update information for the %s repository"
-msgstr "يجري تنزيل معلومات التحديث الخاصة بالمستودع %s"
-
-#: ../src/yumexbase/constants.py:119
-msgid "0 - 7 Days"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:120
-msgid "7 - 14 Days"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:121
-msgid "14 - 21 Days"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:122
-msgid "21  - 30 days"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:123
-msgid "30 - 90 days"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:124
-msgid "90+ days"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:146
-#, fuzzy
-msgid "Getting all packages"
-msgstr "جلب الحزم المتوفرة"
-
-#: ../src/yumexbase/constants.py:147
-#, fuzzy
-msgid "Getting installed packages"
-msgstr "جلب الحزم المثبتة"
-
-#: ../src/yumexbase/constants.py:148
-#, fuzzy
-msgid "Getting available packages"
-msgstr "جلب الحزم المتوفرة"
-
-#: ../src/yumexbase/constants.py:149
-#, fuzzy
-msgid "Getting available updates"
-msgstr "جلب الحزم المتوفرة"
-
-#: ../src/yumexbase/constants.py:150
-#, fuzzy
-msgid "Getting available obsoletes"
-msgstr "جلب الحزم المتوفرة"
-
-#: ../src/yumexbase/constants.py:155
-#, fuzzy, python-format
-msgid "%s is updated"
-msgstr "تحديثات"
-
-#: ../src/yumexbase/constants.py:156
-#, python-format
-msgid "%s is erased"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:157 ../src/yumexbase/constants.py:158
-#: ../src/yumexbase/constants.py:160
-#, fuzzy, python-format
-msgid "%s is installed"
-msgstr "مثبتة"
-
-#: ../src/yumexbase/constants.py:159
-#, python-format
-msgid "%s is obsoleted"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:161
-#, python-format
-msgid "%s is cleanup"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:172
-#, fuzzy
-msgid "Updated packages"
-msgstr "جلب الحزم المحدثة"
-
-#: ../src/yumexbase/constants.py:173
-#, fuzzy
-msgid "Downgraded packages"
-msgstr "تنزيل الحزم"
-
-#: ../src/yumexbase/constants.py:174
-#, fuzzy
-msgid "Obsoleting packages"
-msgstr "عرض الحزم المثبتة"
-
-#: ../src/yumexbase/constants.py:175
-#, fuzzy
-msgid "Obsoleted packages"
-msgstr "عرض الحزم المثبتة"
-
-#: ../src/yumexbase/constants.py:176
-#, fuzzy
-msgid "Erased packages"
-msgstr "عرض الحزم المثبتة"
-
-#: ../src/yumexbase/constants.py:177 ../src/yumexbase/constants.py:178
-#, fuzzy
-msgid "Installed packages"
-msgstr "عرض الحزم المثبتة"
-
-#: ../src/yumexbase/constants.py:179
-msgid "Installed for dependencies"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:180
-#, fuzzy
-msgid "Reinstalled packages"
-msgstr "عرض الحزم المثبتة"
-
-#: ../src/yumexbase/constants.py:205 ../src/yumexgui/dialogs.py:589
-#: ../src/yumexgui/views.py:827
-msgid "Name"
-msgstr "الاسم"
-
-#: ../src/yumexbase/constants.py:206 ../src/yumexgui/views.py:200
-#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
-#: ../src/yumexgui/views.py:686
-msgid "Summary"
-msgstr "التفاصيل"
-
-#: ../src/yumexbase/constants.py:207 ../src/yumexgui/gui.py:374
-#, fuzzy
-msgid "Description"
-msgstr "الوصف : %s\n"
-
-#: ../src/yumexbase/constants.py:208 ../src/yumexgui/dialogs.py:590
-msgid "Arch"
-msgstr "المعمارية"
-
-#: ../src/yumexgui/dialogs.py:356
-msgid "Working !!!"
-msgstr "يجري العمل!!!"
-
-#: ../src/yumexgui/dialogs.py:426
-msgid "Preferences"
-msgstr "التفضيلات"
-
-#: ../src/yumexgui/dialogs.py:439
-msgid "Load packages on launch"
-msgstr "التحميل عند التشغيل"
-
-#: ../src/yumexgui/dialogs.py:440
-msgid "Use sortable columns in package view (slower)"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:441
-msgid "Typeahead search is active by default"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:449
-msgid "Debug Mode"
-msgstr "طور تمحيص الأخطاء"
-
-#: ../src/yumexgui/dialogs.py:450
-msgid "Disable startup network check"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:451
-msgid "Color (Installed)"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:452
-msgid "Color (Update)"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:453
-msgid "Color (Available)"
-msgstr ""
-
-#: ../src/yumexgui/dialogs.py:461
-msgid "Enable Yum Plugins"
-msgstr "تفعيل إضافات yum"
-
-#: ../src/yumexgui/dialogs.py:462
-msgid "Proxy"
-msgstr "الوكيل proxy"
-
-#: ../src/yumexgui/dialogs.py:463
-msgid "Yum Debug Level"
-msgstr "مستوى تمحيص الأخطاء"
-
-#: ../src/yumexgui/dialogs.py:540 ../src/yumexgui/dialogs.py:549
-msgid "Transaction Result"
-msgstr "نتيجة العملية"
-
-#: ../src/yumexgui/dialogs.py:591 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:591
 msgid "Ver"
 msgstr "الإصدار"
 
-#. Setup reponame & repofile column's
-#: ../src/yumexgui/dialogs.py:592 ../src/yumexgui/views.py:780
-#: ../src/yumexgui/views.py:826
-msgid "Repository"
-msgstr "المتسودع"
+#: ../src/yumexgui/views.py:200
+msgid "Repo"
+msgstr "المستودع"
 
-#: ../src/yumexgui/dialogs.py:593 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:200
+msgid "Architecture"
+msgstr "المعمارية"
+
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:593
 msgid "Size"
 msgstr "الحجم"
 
-#: ../src/yumexgui/dialogs.py:627
-#, fuzzy, python-format
-msgid "Download Size : %s "
-msgstr "تنزيل : %s ( %s )"
+#: ../src/yumexgui/views.py:348 ../src/yumexgui/views.py:465
+#: ../src/yumexgui/views.py:1346 ../src/yumexgui/views.py:1459
+msgid "Ver."
+msgstr "الإصدار"
 
-#: ../src/yumexgui/gui.py:212
-msgid "Package Description"
-msgstr "وصف الحزم"
+#: ../src/yumexgui/views.py:349 ../src/yumexgui/views.py:466
+#: ../src/yumexgui/views.py:1347 ../src/yumexgui/views.py:1460
+msgid "Arch."
+msgstr "المعمارية."
 
-#: ../src/yumexgui/gui.py:214
-#, fuzzy
-msgid "Update information"
-msgstr "جلب معلومات المجموعات"
+#: ../src/yumexgui/views.py:351 ../src/yumexgui/views.py:468
+msgid "Repo."
+msgstr "المستودع."
 
-#: ../src/yumexgui/gui.py:216
-msgid "Package Changelog"
-msgstr "التغييرات على الحزمة"
+#: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
+msgid "Size."
+msgstr "الحجم."
 
-#: ../src/yumexgui/gui.py:218
-msgid "Package Filelist"
-msgstr "قائمة بملفات الحزمة"
+#: ../src/yumexgui/views.py:647
+msgid "Package Queue:"
+msgstr "طابور الحزم:"
 
-#: ../src/yumexgui/gui.py:220
-#, fuzzy
-msgid "Package Dependencies"
-msgstr "يجري حلحلت الاعتماديات"
+#: ../src/yumexgui/views.py:681 ../src/yumexgui/__init__.py:376
+msgid "Packages"
+msgstr "الحزم"
 
-#: ../src/yumexgui/gui.py:325
-msgid "Project URL : "
+#: ../src/yumexgui/views.py:767
+#, python-format
+msgid "<b>Downgrade to</b> %s "
 msgstr ""
 
-#: ../src/yumexgui/gui.py:332
-msgid "Release"
-msgstr "الإطلاق"
+#. Setup reponame & repofile column's
+#: ../src/yumexgui/views.py:780 ../src/yumexgui/views.py:826
+#: ../src/yumexgui/dialogs.py:592
+msgid "Repository"
+msgstr "المتسودع"
 
-#: ../src/yumexgui/gui.py:333
-msgid "Type"
-msgstr "النوع"
+#: ../src/yumexgui/views.py:780
+msgid "Filename"
+msgstr "اسم الملف"
 
-#: ../src/yumexgui/gui.py:334
-msgid "Status"
-msgstr "الحالة"
+#. Setup reponame & repofile column's
+#: ../src/yumexgui/views.py:960
+msgid "Search Keys"
+msgstr ""
 
-#: ../src/yumexgui/gui.py:335
-msgid "Issued"
-msgstr "أُصدر في"
+#: ../src/yumexgui/views.py:1191
+msgid "Categories"
+msgstr ""
 
-#: ../src/yumexgui/gui.py:514
-msgid "Quit"
+#: ../src/yumexgui/views.py:1237
+msgid "Id"
+msgstr ""
+
+#: ../src/yumexgui/views.py:1238
+msgid "Login User"
+msgstr ""
+
+#: ../src/yumexgui/views.py:1239
+msgid "Data/Time"
+msgstr ""
+
+#: ../src/yumexgui/views.py:1240
+msgid "Action(s)"
+msgstr ""
+
+#: ../src/yumexgui/views.py:1241
+msgid "Altered"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:273
@@ -589,10 +563,6 @@ msgstr "جلب الحزم المتوفرة"
 msgid "Search for packages"
 msgstr "عرض التحديثات"
 
-#: ../src/yumexgui/__init__.py:376 ../src/yumexgui/views.py:681
-msgid "Packages"
-msgstr "الحزم"
-
 #: ../src/yumexgui/__init__.py:378
 msgid "Perform actions on packages"
 msgstr ""
@@ -630,95 +600,95 @@ msgstr ""
 msgid "Watch output details"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:444
+#: ../src/yumexgui/__init__.py:445
 msgid "Not connected to an network"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:445
+#: ../src/yumexgui/__init__.py:446
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:450
+#: ../src/yumexgui/__init__.py:451
 msgid "network connection state check is disabled"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:452
+#: ../src/yumexgui/__init__.py:453
 msgid "Can't detect the network connection state"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:454
+#: ../src/yumexgui/__init__.py:455
 msgid "Connected to an network"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:615
+#: ../src/yumexgui/__init__.py:618
 msgid "Enable Permanently"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:619
+#: ../src/yumexgui/__init__.py:622
 msgid "Disable Permanently"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:622
+#: ../src/yumexgui/__init__.py:625
 msgid "Clean Metadata"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:623
+#: ../src/yumexgui/__init__.py:626
 #, fuzzy
 msgid "Clean Packages"
 msgstr "الحزم"
 
-#: ../src/yumexgui/__init__.py:624
+#: ../src/yumexgui/__init__.py:627
 msgid "Clean DbCache"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:625
+#: ../src/yumexgui/__init__.py:628
 msgid "Clean All"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:638
+#: ../src/yumexgui/__init__.py:641
 #, fuzzy
 msgid "Reinstall Package"
 msgstr "عرض الحزم المثبتة"
 
-#: ../src/yumexgui/__init__.py:645
+#: ../src/yumexgui/__init__.py:648
 #, fuzzy
 msgid "Downgrade Package"
 msgstr "تنزيل الحزم"
 
-#: ../src/yumexgui/__init__.py:655
+#: ../src/yumexgui/__init__.py:658
 #, fuzzy
 msgid "By Repositories"
 msgstr "المتسودع"
 
-#: ../src/yumexgui/__init__.py:656
+#: ../src/yumexgui/__init__.py:659
 #, fuzzy
 msgid "By Size"
 msgstr "الحجم"
 
-#: ../src/yumexgui/__init__.py:681 ../src/yumexgui/__init__.py:682
+#: ../src/yumexgui/__init__.py:684 ../src/yumexgui/__init__.py:685
 msgid "Getting Group information"
 msgstr "جلب معلومات المجموعات"
 
-#: ../src/yumexgui/__init__.py:718
+#: ../src/yumexgui/__init__.py:721
 msgid "The pending action queue is empty"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:742
+#: ../src/yumexgui/__init__.py:745
 msgid "Processing pending actions"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:743
+#: ../src/yumexgui/__init__.py:746
 msgid "Preparing the transaction"
 msgstr ""
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:760 ../src/yumexgui/__init__.py:766
+#: ../src/yumexgui/__init__.py:763 ../src/yumexgui/__init__.py:769
 msgid "Transaction completed successfully"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:767
+#: ../src/yumexgui/__init__.py:770
 #, fuzzy
 msgid ""
 "\n"
@@ -730,162 +700,192 @@ msgstr ""
 "هل ترغب في الخروج من Yum Extender"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:773
+#: ../src/yumexgui/__init__.py:776
 msgid "Transaction Aborted by User"
 msgstr "أجهض المستخدم العملية"
 
-#: ../src/yumexgui/__init__.py:776
+#: ../src/yumexgui/__init__.py:779
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:858
+#: ../src/yumexgui/__init__.py:861
 msgid "<unset>"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:859
+#: ../src/yumexgui/__init__.py:862
 msgid "System"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:902
+#: ../src/yumexgui/__init__.py:905
 #, fuzzy
 msgid "Getting History Information"
 msgstr "جلب معلومات المجموعات"
 
-#: ../src/yumexgui/__init__.py:904
+#: ../src/yumexgui/__init__.py:907
 #, fuzzy
 msgid "Getting Latest History Information"
 msgstr "يجري جلب معلومات الحزم"
 
-#: ../src/yumexgui/__init__.py:906
+#: ../src/yumexgui/__init__.py:909
 #, fuzzy
 msgid "Getting All History Information"
 msgstr "جلب معلومات المجموعات"
 
-#: ../src/yumexgui/__init__.py:912 ../src/yumexgui/__init__.py:929
+#: ../src/yumexgui/__init__.py:915 ../src/yumexgui/__init__.py:932
 msgid "History Disabled"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:923 ../src/yumexgui/__init__.py:924
+#: ../src/yumexgui/__init__.py:926 ../src/yumexgui/__init__.py:927
 #, fuzzy
 msgid "Searching History Information"
 msgstr "جلب معلومات المجموعات"
 
-#: ../src/yumexgui/__init__.py:967
+#: ../src/yumexgui/__init__.py:970
 #, fuzzy
 msgid "Transaction Performed with"
 msgstr "أجهض المستخدم العملية"
 
-#: ../src/yumexgui/__init__.py:970
+#: ../src/yumexgui/__init__.py:973
 #, fuzzy
 msgid "Skipped packages"
 msgstr "عرض الحزم المثبتة"
 
-#: ../src/yumexgui/__init__.py:996 ../src/yumexgui/__init__.py:997
+#: ../src/yumexgui/__init__.py:999 ../src/yumexgui/__init__.py:1000
 #, fuzzy
 msgid "Adding Packages to view"
 msgstr "تنزيل الحزم"
 
-#: ../src/yumexgui/__init__.py:1001
+#: ../src/yumexgui/__init__.py:1004
 #, python-format
 msgid "Added %i Packages to view"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1330
+#: ../src/yumexgui/__init__.py:1333
 #, fuzzy
 msgid "Getting Category Packages"
 msgstr "جلب الحزم المتوفرة"
 
-#: ../src/yumexgui/__init__.py:1427
+#: ../src/yumexgui/__init__.py:1430
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1496
+#: ../src/yumexgui/__init__.py:1499
 #, python-format
 msgid "Executing : %s %s"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:1497
+#: ../src/yumexgui/__init__.py:1500
 msgid "Processing Queue Command"
 msgstr ""
 
-#. Setup Selection Column
-#. self.create_selection_colunm('')
-#. Setup Actions and pacakges
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:347
-#: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1344
-#: ../src/yumexgui/views.py:1457
-msgid "Package"
-msgstr "الحزمة"
+#: ../src/yumexgui/dialogs.py:356
+msgid "Working !!!"
+msgstr "يجري العمل!!!"
 
-#: ../src/yumexgui/views.py:200
-msgid "Repo"
-msgstr "المستودع"
+#: ../src/yumexgui/dialogs.py:426
+msgid "Preferences"
+msgstr "التفضيلات"
 
-#: ../src/yumexgui/views.py:200
-msgid "Architecture"
-msgstr "المعمارية"
+#: ../src/yumexgui/dialogs.py:439
+msgid "Load packages on launch"
+msgstr "التحميل عند التشغيل"
 
-#: ../src/yumexgui/views.py:348 ../src/yumexgui/views.py:465
-#: ../src/yumexgui/views.py:1346 ../src/yumexgui/views.py:1459
-msgid "Ver."
-msgstr "الإصدار"
-
-#: ../src/yumexgui/views.py:349 ../src/yumexgui/views.py:466
-#: ../src/yumexgui/views.py:1347 ../src/yumexgui/views.py:1460
-msgid "Arch."
-msgstr "المعمارية."
-
-#: ../src/yumexgui/views.py:351 ../src/yumexgui/views.py:468
-msgid "Repo."
-msgstr "المستودع."
-
-#: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
-msgid "Size."
-msgstr "الحجم."
-
-#: ../src/yumexgui/views.py:647
-msgid "Package Queue:"
-msgstr "طابور الحزم:"
-
-#: ../src/yumexgui/views.py:767
-#, python-format
-msgid "<b>Downgrade to</b> %s "
+#: ../src/yumexgui/dialogs.py:440
+msgid "Use sortable columns in package view (slower)"
 msgstr ""
 
-#: ../src/yumexgui/views.py:780
-msgid "Filename"
-msgstr "اسم الملف"
-
-#. Setup reponame & repofile column's
-#: ../src/yumexgui/views.py:960
-msgid "Search Keys"
+#: ../src/yumexgui/dialogs.py:441
+msgid "Typeahead search is active by default"
 msgstr ""
 
-#: ../src/yumexgui/views.py:1191
-msgid "Categories"
+#: ../src/yumexgui/dialogs.py:449
+msgid "Debug Mode"
+msgstr "طور تمحيص الأخطاء"
+
+#: ../src/yumexgui/dialogs.py:450
+msgid "Disable startup network check"
 msgstr ""
 
-#: ../src/yumexgui/views.py:1237
-msgid "Id"
+#: ../src/yumexgui/dialogs.py:451
+msgid "Color (Installed)"
 msgstr ""
 
-#: ../src/yumexgui/views.py:1238
-msgid "Login User"
+#: ../src/yumexgui/dialogs.py:452
+msgid "Color (Update)"
 msgstr ""
 
-#: ../src/yumexgui/views.py:1239
-msgid "Data/Time"
+#: ../src/yumexgui/dialogs.py:453
+msgid "Color (Available)"
 msgstr ""
 
-#: ../src/yumexgui/views.py:1240
-msgid "Action(s)"
+#: ../src/yumexgui/dialogs.py:461
+msgid "Enable Yum Plugins"
+msgstr "تفعيل إضافات yum"
+
+#: ../src/yumexgui/dialogs.py:462
+msgid "Proxy"
+msgstr "الوكيل proxy"
+
+#: ../src/yumexgui/dialogs.py:463
+msgid "Yum Debug Level"
+msgstr "مستوى تمحيص الأخطاء"
+
+#: ../src/yumexgui/dialogs.py:540 ../src/yumexgui/dialogs.py:549
+msgid "Transaction Result"
+msgstr "نتيجة العملية"
+
+#: ../src/yumexgui/dialogs.py:627
+#, fuzzy, python-format
+msgid "Download Size : %s "
+msgstr "تنزيل : %s ( %s )"
+
+#: ../src/yumexgui/gui.py:212
+msgid "Package Description"
+msgstr "وصف الحزم"
+
+#: ../src/yumexgui/gui.py:214
+#, fuzzy
+msgid "Update information"
+msgstr "جلب معلومات المجموعات"
+
+#: ../src/yumexgui/gui.py:216
+msgid "Package Changelog"
+msgstr "التغييرات على الحزمة"
+
+#: ../src/yumexgui/gui.py:218
+msgid "Package Filelist"
+msgstr "قائمة بملفات الحزمة"
+
+#: ../src/yumexgui/gui.py:220
+#, fuzzy
+msgid "Package Dependencies"
+msgstr "يجري حلحلت الاعتماديات"
+
+#: ../src/yumexgui/gui.py:325
+msgid "Project URL : "
 msgstr ""
 
-#: ../src/yumexgui/views.py:1241
-msgid "Altered"
+#: ../src/yumexgui/gui.py:332
+msgid "Release"
+msgstr "الإطلاق"
+
+#: ../src/yumexgui/gui.py:333
+msgid "Type"
+msgstr "النوع"
+
+#: ../src/yumexgui/gui.py:334
+msgid "Status"
+msgstr "الحالة"
+
+#: ../src/yumexgui/gui.py:335
+msgid "Issued"
+msgstr "أُصدر في"
+
+#: ../src/yumexgui/gui.py:514
+msgid "Quit"
 msgstr ""
 
 #: ../src/yumex.glade.h:1
