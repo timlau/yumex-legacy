@@ -30,10 +30,7 @@ from kitchen.i18n import easy_gettext_setup
 
 # setup the translation wrappers
 
-_, P_  = easy_gettext_setup('yumex', localedirs=(
-        os.path.join(os.path.realpath(os.path.dirname(__file__)), 'locale'),
-        os.path.join(sys.prefix, 'lib', 'locale')
-        )) 
+_, P_  = easy_gettext_setup('yumex') 
 
 class YumexProgressBase:
     '''
