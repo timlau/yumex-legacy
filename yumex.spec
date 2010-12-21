@@ -26,6 +26,7 @@ Requires: python-iniparse
 Requires: dbus-python
 Requires: udisks
 Requires: python-kitchen
+Requires: gnome-python2-gconf
 
 %description
 Graphical User Interface for Yum.
