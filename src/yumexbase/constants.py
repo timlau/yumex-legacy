@@ -40,11 +40,11 @@ __yumex_version__ = "3.0.1"
 
 YUMEX_LOG = 'yumex.verbose'
 FILTER_ACTIONS = {'updates' : 'u', 'available': 'i', 'installed' : 'r', \
-                   'obsoletes' : 'o', 'downgrade'  : 'do', 'reinstall' : 'ri'}
+                   'obsoletes' : 'o', 'downgrade'  : 'do', 'reinstall' : 'ri', 'localinstall' : 'li'}
 
 ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
                    'r' : 'installed' , 'o' : 'obsoletes', \
-                    'do' : 'downgrade', 'ri' : 'reinstall' }
+                    'do' : 'downgrade', 'ri' : 'reinstall', 'li' : 'localinstall' }
 
 # Paths
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -185,7 +185,8 @@ QUEUE_PACKAGE_TYPES = {
 'r' : 'remove',
 'o' : 'obsolete',
 'ri' : 'reinstall',
-'do' : 'downgrade'
+'do' : 'downgrade',
+'li' : 'localinstall'
 }
 
 YUMEX_CMDLINE_CMDS = ['search', 'install', 'remove', 'update', 'downgrade', 'reinstall']

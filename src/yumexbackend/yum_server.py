@@ -98,6 +98,7 @@ class _YumPreBaseConf:
         self.syslog_ident = None
         self.syslog_facility = None
         self.syslog_device = '/dev/log'
+        self.localpkg_gpgcheck = False
 
 class YumServer(yum.YumBase):
     """ 
@@ -382,7 +383,11 @@ class YumServer(yum.YumBase):
         if not action:
             pkg, action = self._get_action(pkg)
         action = pack(action)
-        return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
+        if pkg.pkgtype == 'local': # if local package, then return localpath instead of repoid   
+            return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.localpath,
+                    summary, action, pkg.size, recent)
+        else:
+            return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
                     summary, action, pkg.size, recent)
 
     def _show_requirement(self, req, pkg):
@@ -670,7 +675,8 @@ class YumServer(yum.YumBase):
         '''
         pkgstr = args[:-1]
         action = args[ -1]
-        po = self._getPackage(pkgstr)
+        if action != 'localinstall': # Dont get a po if it is at local package
+            po = self._getPackage(pkgstr)
         txmbrs = []
         if action == "install":
             txmbrs = self.install(po)
@@ -682,6 +688,9 @@ class YumServer(yum.YumBase):
             txmbrs = self.reinstall(po)
         elif action == "downgrade":
             txmbrs = self.downgrade(po)
+        elif action == "localinstall":
+            n, e, v, r, a, rpmfile = pkgstr
+            txmbrs = self.installLocal(rpmfile)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
             self.debug("Added : " + str(txmbr), __name__)
@@ -727,7 +736,12 @@ class YumServer(yum.YumBase):
             if cmd == 'ins':
                 action = 'i'
                 for pat in userlist:
-                    self.install(pattern=pat)
+                    if pat.endswith('.rpm'):
+                        self.debug("This is an local rpm : %s " % pat)
+                        action = 'li'
+                        self.installLocal(pat)
+                    else:
+                        self.install(pattern=pat)
             elif cmd == 'rem' or cmd == 'era':
                 action = 'r'
                 for pat in userlist:
