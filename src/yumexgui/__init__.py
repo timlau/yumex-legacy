@@ -462,6 +462,7 @@ class YumexApplication(Controller, YumexFrontend):
         else:
             self.backend.setup(repos=self.current_repos)
             self.notebook.set_active("repo")
+        self._setup_options()    
         # setup repository view    
         repos = self.backend.get_repositories()
         self.repos.populate(repos)
@@ -782,6 +783,10 @@ class YumexApplication(Controller, YumexFrontend):
             progress.set_pulse(False)
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
+            
+    def _setup_options(self):
+        self.ui.option_nogpgcheck.set_active(self.settings.no_gpg_check)                    
+        self.ui.option_skipbroken.set_active(self.settings.skip_broken)                    
 
     def _get_options(self):
         '''
