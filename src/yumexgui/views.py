@@ -741,6 +741,10 @@ class YumexQueueView:
         label = "<b>%s</b>" % P_("Package to reinstall", "Packages to reinstall", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
+        pkg_list = self.queue.packages['li']
+        label = "<b>%s</b>" % P_("RPM file to install", "RPM files to install", len(pkg_list))
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
         self.populate_list_downgrade()
         self.view.expand_all()
 
