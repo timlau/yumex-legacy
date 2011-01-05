@@ -383,7 +383,7 @@ class YumServer(yum.YumBase):
         if not action:
             pkg, action = self._get_action(pkg)
         action = pack(action)
-        if pkg.pkgtype == 'local': # if local package, then return localpath instead of repoid   
+        if hasattr(pkg,'pkgtype') and pkg.pkgtype == 'local': # if local package, then return localpath instead of repoid   
             return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.localpath,
                     summary, action, pkg.size, recent)
         else:
