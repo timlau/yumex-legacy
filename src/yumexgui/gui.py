@@ -224,11 +224,7 @@ class PackageInfo(SelectorBase):
 
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
-        client = gconf.client_get_default()
-        browser = client.get_string("/desktop/gnome/url-handlers/http/command") or "firefox %s"
-        # Because URLs contain & it needs to be quoted
-        browser = browser % '"' + url + '"'
-        subprocess.Popen(args=browser, shell=True)
+        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def update(self, pkg):
         '''

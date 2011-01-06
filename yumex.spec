@@ -26,7 +26,6 @@ Requires: python-iniparse
 Requires: dbus-python
 Requires: udisks
 Requires: python-kitchen
-Requires: gnome-python2-gconf
 Requires: urlgrabber
 
 %description
@@ -77,7 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
-* Sun Jan 2 2011 Tim Lauridsen <<timlau@fedoraproject.org>> 3.0.1-1
+* Thu Jan 6 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.1-1
+- removed gnome-python2-gconf requirement, not need anymore
+* Sun Jan 2 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.1-1
 - Added urlgrabber requirement
 * Tue Dec 21 2010 Tim Lauridsen <timlau@fedoraproject.org> - 3.0.1-1
 - bumped version to 3.0.1-1
