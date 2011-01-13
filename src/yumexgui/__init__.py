@@ -428,7 +428,7 @@ class YumexApplication(Controller, YumexFrontend):
         # setup repo view
         self.repos = YumexRepoView(self.ui.repoView)
         # setup transaction confirmation dialog
-        self.transactionConfirm = TransactionConfirmation(self.ui, self.window)
+        self.transactionConfirm = TransactionConfirmation(self.ui, self.get_progress())
         # setup yumex log handler
         self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
         # Set saved windows size and separator position

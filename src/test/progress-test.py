@@ -125,7 +125,7 @@ class TestProgress(Controller):
     def _setup_extras(self):
         tc = TransactionConfirmation(self.ui, self.window)
         #tc.dialog.show_all()
-        widget = tc.dialog.vbox
+        widget = self.ui.transactionVBox
         content = gtk.VBox()
         widget.reparent(content)
         self.ui.transactionEvent.hide()

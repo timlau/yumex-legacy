@@ -23,7 +23,7 @@ import gtk
 import pango
 import gobject
 
-from guihelpers import busyCursor, normalCursor
+from guihelpers import busyCursor, normalCursor, doGtkEvents
 from yumexbase import YumexProgressBase
 from yumexbase.constants import *
 from yumexgui.views import YumexSearchOptionsView
@@ -277,6 +277,9 @@ class Progress(YumexProgressBase):
         self._active = False
         self.ui.progressImage.set_from_file(ICON_SPINNER)
         self.resize() # Setup the initial size
+        self.extra_hidden = True
+        self.task_hidden = True
+        self.progress_hidden = False
 
     def is_active(self):
         return self._active
@@ -324,6 +327,7 @@ class Progress(YumexProgressBase):
         self.hide_extra()
         self.show_progress()
         self.tasks.show()
+        self.task_hidden = False
 
     def hide_tasks(self):
         '''
@@ -332,6 +336,7 @@ class Progress(YumexProgressBase):
         self.show_cancel(False)
         self.tasks.hide()
         self.resize()
+        self.task_hidden = True
         
     def show_progress(self):
         '''
@@ -341,26 +346,33 @@ class Progress(YumexProgressBase):
         self.ui.progressImage.set_from_file(ICON_SPINNER)
         self.ui.progressPB.show()
         self.resize()
+        self.progress_hidden = False
         
     def hide_progress(self):
         '''
         Hide the progress bar
         '''
         self.ui.progressPB.hide()
+        self.progress_hidden = True
+        
+    def setup_extra(self, widget):
+        if widget != None:
+            content = gtk.VBox()
+            widget.reparent(content)
+            self._extra_widget = content
+            self.ui.progressExtras.pack_start(self._extra_widget)
 
     def show_extra(self, widget=None):
         '''
         Show the progress extra
         '''
-        if widget != None:
-            self._extra_widget = widget
-            self.ui.progressExtras.pack_start(self._extra_widget)
-            self.ui.progressExtras.show()
-            self._extra_widget.show()
+        self.ui.progressExtras.show()
+        self._extra_widget.show()
         self.ui.progressExtras.show()
         self.hide_progress()
         self.hide_tasks()
         self.ui.progressImage.set_from_stock('gtk-dialog-question',  gtk.ICON_SIZE_DND)
+        self.extra_hidden = False
         
     def hide_extra(self):
         '''
@@ -368,6 +380,7 @@ class Progress(YumexProgressBase):
         '''
         self.ui.progressExtras.hide()
         self.resize()
+        self.extra_hidden = True
 
     def show_cancel(self, state=True):
         if state:
@@ -591,26 +604,29 @@ class TransactionConfirmation:
     The Transaction Confirmation dialog, to validate the result of the current transaction result
     '''
 
-    def __init__(self, ui, parent):
+    def __init__(self, ui, progress):
         '''
         Init the dialog   
         @param ui: the UI class instance
         @param parent: the parent window widget
         '''
         self.ui = ui
-        self.dialog = self.ui.Transaction
-        self.dialog.set_title(_("Transaction Result"))
-        self.parent = parent
-        self.dialog.set_transient_for(parent)
+        self.progress = progress
         self.view = self.ui.transactionView
         self.view.modify_font(SMALL_FONT)
         style = self.view.get_style()
         #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
-        self.header = self.ui.transactionHeader
-        self.header.modify_font(BIG_FONT)
-        self.set_header(_("Transaction Result"))
         self.store = self.setup_view(self.view)
         self._active = False
+        self.progress.setup_extra(self.ui.transactionVBox)
+        self.ui.transactionOK.connect("clicked", self.on_clicked,True)
+        self.ui.transactionCancel.connect("clicked", self.on_clicked,False)
+        self.hidden = None
+        self.confirmation = None
+
+    def on_clicked(self, widget, confirmation):
+        print "Confirm", confirmation
+        self.confirmation = confirmation
 
     def is_active(self):
         return self._active
@@ -619,18 +635,29 @@ class TransactionConfirmation:
         '''
         run the dialog
         '''
-        self._active = True
-        self.dialog.show_all()
+        self.hidden = (self.progress.progress_hidden, self.progress.task_hidden)
+        self.progress.set_header(_("Transaction Result"))
+        self.progress.show_extra()        
         self.view.expand_all()
-        rc = self.dialog.run()
-        return rc == 1
+        self._active = True
+        self.confirmation = None
+        while self.confirmation == None:
+            doGtkEvents()
+            time.sleep(0.01)
+        return self.confirmation
 
     def destroy(self):
         '''
         hide the dialog
         '''
         self._active = False
-        self.dialog.hide()
+        (progress_hidden, task_hidden) = self.hidden
+        self.progress.hide_extra()
+        if not progress_hidden:
+            self.progress.show_progress()
+        if not task_hidden:
+            self.progress.show_tasks()
+        
 
 
     def set_header(self, text):
@@ -687,6 +714,7 @@ class TransactionConfirmation:
                 for r in replaces:
                     level3 = model.append(level2, [ r, "", "", "", ""])
         self.ui.transactionLabel.set_text(_("Download Size : %s ") % dnl_size)
+        self.view.expand_all
 
 
 class ErrorDialog:
