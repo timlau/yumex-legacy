@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-07 08:37+0100\n"
-"PO-Revision-Date: 2011-01-13 20:00+0300\n"
+"PO-Revision-Date: 2011-01-13 20:09+0300\n"
 "Last-Translator: Kirill Muratov <kirillmailpost@gmail.com>\n"
 "Language-Team: Translation CVS Commit Group\n"
 "Language: ru\n"
@@ -288,7 +288,7 @@ msgstr "7 - 14 дней"
 
 #: ../src/yumexbase/constants.py:121
 msgid "14 - 21 Days"
-msgstr "14 - 21 дня"
+msgstr "14 - 21 день"
 
 #: ../src/yumexbase/constants.py:122
 msgid "21  - 30 days"
@@ -372,7 +372,7 @@ msgstr ""
 #: ../src/yumexbase/constants.py:207
 #: ../src/yumexgui/gui.py:374
 msgid "Description"
-msgstr "Описани"
+msgstr "Описание"
 
 #: ../src/yumexbase/constants.py:208
 #: ../src/yumexgui/dialogs.py:587
