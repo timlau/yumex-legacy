@@ -20,12 +20,14 @@
 
 import sys
 import gtk
-sys.path.insert(0, '/home/tim/udv/work/yumex/src')
+import os.path
+print os.path.expanduser('~/udv/work/yumex/src')
+sys.path.insert(0, os.path.expanduser('~/udv/work/yumex/src'))
 import time
 
+from yumexbase.constants import *
 from guihelpers import Controller, doGtkEvents
-from yumexgui.dialogs import Progress
-#from yumexbase.constants import *
+from yumexgui.dialogs import Progress, TransactionConfirmation
 
 BUILDER_FILE = '../yumex.glade'
 TASK_PENDING = 1
@@ -42,9 +44,10 @@ class TestProgress(Controller):
         '''
         # init the Controller Class to connect signals etc.
         Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex', connect=False)
+        self.status_icon = None
         self.window.set_title("Testing Progress")
         self.window.show()
-        self.progress = Progress(self.ui, self.window)
+        self.progress = Progress(self)
         self.progress.show()
         doGtkEvents()
         self.run_tests()
@@ -60,21 +63,25 @@ class TestProgress(Controller):
         self.progress.set_action("Testing Progress - Action")
         doGtkEvents()
         time.sleep(1)
-        self.test_bar()
-        self.test_tasks()
+        #self.test_bar()
+        #self.test_tasks()
         doGtkEvents()
         self.ui.Progress.resize(w, h) # shrink to the default size again
+        self.progress.set_action("Testing Progress - Action")
         self.test_bar()
+        self.test_show_hide()
         time.sleep(3)
         self.main_quit()
 
     def test_tasks(self):
+        self.progress.tasks.reset()
         self.progress.show_tasks()
-        for task_id in ('depsolve', 'download', 'gpg-check', 'test-trans', 'run-trans'):
-            self.progress.tasks.set_state(task_id, TASK_RUNNING)
-            self.test_bar(task_id)
-            self.progress.tasks.set_state(task_id, TASK_COMPLETE)
-        doGtkEvents()
+        self.progress.tasks.run_current() # task1 is now running
+        for i in xrange(0,len(self.progress.tasks)):
+            self.progress.set_header("%s" % self.progress.tasks.get_task_label())
+            self.test_bar()
+            self.progress.tasks.next()
+            doGtkEvents()
         time.sleep(1)
         self.progress.hide_tasks()
 
@@ -97,7 +104,40 @@ class TestProgress(Controller):
                 break
         self.progress.set_action("Action Completed")
         doGtkEvents()
-
+        
+    def test_show_hide(self):
+        self.progress.set_title("Testing Progress - Hide/Show")
+        self.progress.set_action("Testing Progress - Action")
+        self.progress.hide_progress()
+        self.progress.hide_tasks()
+        self._setup_extras()
+        self.delay()
+        self.progress.set_header("Show Progress")
+        self.progress.show_progress()
+        self.delay()
+        self.progress.set_header("Show Tasks")
+        self.progress.show_tasks()
+        self.delay()
+        self.progress.set_header("Hide Tasks")
+        self.progress.hide_tasks()
+        self.delay()
+        
+    def _setup_extras(self):
+        tc = TransactionConfirmation(self.ui, self.window)
+        #tc.dialog.show_all()
+        widget = tc.dialog.vbox
+        content = gtk.VBox()
+        widget.reparent(content)
+        self.ui.transactionEvent.hide()
+        self.progress.show_extra(widget=content)
+        
+        
+    def delay(self, time_to_sleep=5.0):
+        steps = int(time_to_sleep / 0.1)
+        for x in xrange(0,steps):
+            doGtkEvents()
+            time.sleep(0.1)
+        
 
 if __name__ == "__main__":
     tp = TestProgress()

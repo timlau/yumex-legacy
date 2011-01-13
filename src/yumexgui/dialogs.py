@@ -69,6 +69,9 @@ class TaskList:
         self.current_running = None
         self.extra_label = ""
         self.hide()
+        
+    def __len__(self):
+        return len(self._tasks)        
 
     def show(self):
         '''
@@ -210,6 +213,17 @@ class TaskList:
             (state, icon, task_label, extra_label) = self._get_task(task_id)
             task_label.set_text(text)
 
+    def get_task_label(self, task_id = None):
+        '''
+        get the task label
+        @param task_id:
+        '''
+        if task_id == None: # get current task
+           task_id = self._task_no[self.num_current]
+        if task_id in self._tasks:
+            (state, icon, task_label, extra_label) = self._get_task(task_id)
+            return task_label.get_text()
+
     def set_extra_label(self, task_id, text):
         '''
         set the task extra label
@@ -259,8 +273,10 @@ class Progress(YumexProgressBase):
         self.show_cancel(False) # Hide the Cancel button
         self.default_w = None
         self.default_h = None
-        self.ui.progressImage.set_from_file(ICON_SPINNER)
+        self._extra_widget = None
         self._active = False
+        self.ui.progressImage.set_from_file(ICON_SPINNER)
+        self.resize() # Setup the initial size
 
     def is_active(self):
         return self._active
@@ -280,7 +296,13 @@ class Progress(YumexProgressBase):
             self.dialog.resize(self.default_w, self.default_h)
             self.dialog.queue_draw()
 
-
+    def resize(self):
+        if not self.default_w: # store the default dialog size
+            self.default_w, self.default_h = self.dialog.get_size()
+        else:
+            # Shrink dialog to the default size
+            self.dialog.resize(self.default_w, self.default_h)
+            self.dialog.queue_draw()
 
     def hide(self):
         '''
@@ -299,6 +321,8 @@ class Progress(YumexProgressBase):
         '''
         #TODO : Make it possible to Cancel, before showing a cancel button
         #self.show_cancel(True)
+        self.hide_extra()
+        self.show_progress()
         self.tasks.show()
 
     def hide_tasks(self):
@@ -307,6 +331,43 @@ class Progress(YumexProgressBase):
         '''
         self.show_cancel(False)
         self.tasks.hide()
+        self.resize()
+        
+    def show_progress(self):
+        '''
+        Show the progress bar
+        '''
+        self.hide_extra()
+        self.ui.progressImage.set_from_file(ICON_SPINNER)
+        self.ui.progressPB.show()
+        self.resize()
+        
+    def hide_progress(self):
+        '''
+        Hide the progress bar
+        '''
+        self.ui.progressPB.hide()
+
+    def show_extra(self, widget=None):
+        '''
+        Show the progress extra
+        '''
+        if widget != None:
+            self._extra_widget = widget
+            self.ui.progressExtras.pack_start(self._extra_widget)
+            self.ui.progressExtras.show()
+            self._extra_widget.show()
+        self.ui.progressExtras.show()
+        self.hide_progress()
+        self.hide_tasks()
+        self.ui.progressImage.set_from_stock('gtk-dialog-question',  gtk.ICON_SIZE_DND)
+        
+    def hide_extra(self):
+        '''
+        Hide the progress extra
+        '''
+        self.ui.progressExtras.hide()
+        self.resize()
 
     def show_cancel(self, state=True):
         if state:

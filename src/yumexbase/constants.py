@@ -50,8 +50,12 @@ ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
 BUILDER_FILE = MAIN_PATH + '/yumex.glade'
 BUILDER_PKGINST = MAIN_PATH + '/pkginst.glade'
+print "MAIN_PATH", MAIN_PATH
 if MAIN_PATH == '/usr/share/yumex':
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
+if MAIN_PATH.endswith('test'):
+    PIXMAPS_PATH = MAIN_PATH + '/../../gfx'
+    
 else:
     PIXMAPS_PATH = MAIN_PATH + '/../gfx'
 

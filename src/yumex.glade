@@ -1150,10 +1150,12 @@ words.
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox3">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child>
           <object class="GtkVBox" id="transactionMain">
             <property name="visible">True</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkEventBox" id="transactionEvent">
                 <property name="visible">True</property>
@@ -1207,7 +1209,7 @@ words.
               </packing>
             </child>
             <child>
-              <object class="GtkScrolledWindow" id="scrolledwindow6">
+              <object class="GtkScrolledWindow" id="transactionSW">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hscrollbar_policy">automatic</property>
