@@ -63,17 +63,19 @@ class TestProgress(Controller):
         self.progress.set_action("Testing Progress - Action")
         doGtkEvents()
         time.sleep(1)
-        #self.test_bar()
-        #self.test_tasks()
+        self.test_bar()
+        self.test_tasks()
         doGtkEvents()
         self.ui.Progress.resize(w, h) # shrink to the default size again
         self.progress.set_action("Testing Progress - Action")
         self.test_bar()
         self.test_show_hide()
+        self.test_bar()
         time.sleep(3)
         self.main_quit()
 
     def test_tasks(self):
+        self.progress.set_header("Testing Tasks")
         self.progress.tasks.reset()
         self.progress.show_tasks()
         self.progress.tasks.run_current() # task1 is now running
@@ -99,7 +101,7 @@ class TestProgress(Controller):
                 self.progress.tasks.set_extra_label(task_id, "%i %%" % percent)
             doGtkEvents()
             frac += 0.01
-            time.sleep(0.05)
+            time.sleep(0.01)
             if frac > 1.0:
                 break
         self.progress.set_action("Action Completed")
@@ -107,6 +109,7 @@ class TestProgress(Controller):
         
     def test_show_hide(self):
         self.progress.set_title("Testing Progress - Hide/Show")
+        self._show_hide()
         self.progress.set_action("Testing Progress - Action")
         self.progress.hide_progress()
         self.progress.hide_tasks()
@@ -122,14 +125,23 @@ class TestProgress(Controller):
         self.progress.hide_tasks()
         self.delay()
         
+    def  _show_hide(self):
+        for i in xrange(0,5):
+            self.progress.hide()
+            self.delay(0.5)
+            self.progress.show()
+            self.delay(0.5)
+            
     def _setup_extras(self):
-        tc = TransactionConfirmation(self.ui, self.window)
-        #tc.dialog.show_all()
-        widget = self.ui.transactionVBox
-        content = gtk.VBox()
-        widget.reparent(content)
-        self.ui.transactionEvent.hide()
-        self.progress.show_extra(widget=content)
+        tc = TransactionConfirmation(self.ui, self.progress)
+        self.progress.show_extra()
+        self.delay(1)
+        self.progress.hide_extra()
+        self.delay(1)
+        self.progress.show_extra()
+        rc = tc.run()
+        tc.destroy()
+        print "Result", rc 
         
         
     def delay(self, time_to_sleep=5.0):

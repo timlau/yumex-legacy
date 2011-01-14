@@ -625,7 +625,6 @@ class TransactionConfirmation:
         self.confirmation = None
 
     def on_clicked(self, widget, confirmation):
-        print "Confirm", confirmation
         self.confirmation = confirmation
 
     def is_active(self):
@@ -657,8 +656,6 @@ class TransactionConfirmation:
             self.progress.show_progress()
         if not task_hidden:
             self.progress.show_tasks()
-        
-
 
     def set_header(self, text):
         '''
