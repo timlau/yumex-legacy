@@ -506,7 +506,7 @@ words.
 </property>
                         <property name="secondary_icon_stock">gtk-clear</property>
                         <property name="secondary_icon_activatable">True</property>
-                        <property name="secondary_icon_tooltip_text">Undo the current search</property>
+                        <property name="secondary_icon_tooltip_text" translatable="yes">Undo the current search</property>
                         <signal name="changed" handler="on_packageSearch_changed"/>
                         <signal name="key_press_event" handler="on_packageSearch_key_press_event"/>
                         <signal name="activate" handler="on_packageSearch_activate"/>
@@ -1443,7 +1443,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                 <property name="invisible_char">&#x25CF;</property>
                 <property name="secondary_icon_stock">gtk-clear</property>
                 <property name="secondary_icon_activatable">True</property>
-                <property name="secondary_icon_tooltip_text">Undo the current search</property>
+                <property name="secondary_icon_tooltip_text" translatable="yes">Undo the current search</property>
                 <signal name="activate" handler="on_historySearch_activate"/>
                 <signal name="icon_press" handler="on_historySearch_icon_press"/>
               </object>
