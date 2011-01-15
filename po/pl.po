@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2010-12-04 09:02+0100\n"
+"PO-Revision-Date: 2011-01-15 17:37+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
 "Language: pl\n"
@@ -781,6 +781,8 @@ msgstr "Wyłączenie sprawdzania stanu sieci podczas uruchamiania"
 #: ../src/yumexgui/dialogs.py:525
 msgid "Run backend with sudo (need working sudo nopasswd config)"
 msgstr ""
+"Uruchomienie zaplecza za pomocą programu sudo (wymaga działającej "
+"konfiguracji nopasswd programu sudo)"
 
 #: ../src/yumexgui/dialogs.py:526
 msgid "Color (Installed)"
@@ -1055,6 +1057,3 @@ msgstr "_Widok"
 #: ../src/yumex.glade.h:52
 msgid "no GPG Check"
 msgstr "bez sprawdzania podpisów GPG"
-
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">Transakcja</span>\n"
