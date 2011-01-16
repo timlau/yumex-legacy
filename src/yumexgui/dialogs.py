@@ -312,11 +312,12 @@ class Progress(YumexProgressBase):
         Hide the progress dialog
         '''
         self._active = False
-        normalCursor(self.parent)
+        #normalCursor(self.parent)
         # clear the status icon tooltip text
         if self.frontend.status_icon:
             self.frontend.status_icon.set_tooltip("")
         self.dialog.hide()
+        normalCursor(self.parent)
 
     def show_tasks(self):
         '''
@@ -355,19 +356,10 @@ class Progress(YumexProgressBase):
         self.ui.progressPB.hide()
         self.progress_hidden = True
         
-    def setup_extra(self, widget):
-        if widget != None:
-            content = gtk.VBox()
-            widget.reparent(content)
-            self._extra_widget = content
-            self.ui.progressExtras.pack_start(self._extra_widget)
-
     def show_extra(self, widget=None):
         '''
         Show the progress extra
         '''
-        self.ui.progressExtras.show()
-        self._extra_widget.show()
         self.ui.progressExtras.show()
         self.hide_progress()
         self.hide_tasks()
@@ -618,7 +610,6 @@ class TransactionConfirmation:
         #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
         self.store = self.setup_view(self.view)
         self._active = False
-        self.progress.setup_extra(self.ui.transactionVBox)
         self.ui.transactionOK.connect("clicked", self.on_clicked,True)
         self.ui.transactionCancel.connect("clicked", self.on_clicked,False)
         self.hidden = None
