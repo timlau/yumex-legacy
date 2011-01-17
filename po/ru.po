@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-07 08:37+0100\n"
-"PO-Revision-Date: 2011-01-13 20:09+0300\n"
+"PO-Revision-Date: 2011-01-17 17:42+0300\n"
 "Last-Translator: Kirill Muratov <kirillmailpost@gmail.com>\n"
 "Language-Team: Translation CVS Commit Group\n"
 "Language: ru\n"
@@ -153,12 +153,12 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:262
 msgid "Waiting 10 seconds and tries again !!!"
-msgstr ""
+msgstr "Подождите 10 секунд и попробуйте снова !!!"
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:297
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Диск не вставлен"
 
 #: ../src/yumexbackend/yum_server.py:328
 msgid "Closing rpm db and releasing yum lock  "
@@ -367,7 +367,7 @@ msgstr "Имя"
 #: ../src/yumexgui/views.py:467
 #: ../src/yumexgui/views.py:686
 msgid "Summary"
-msgstr ""
+msgstr "Всего"
 
 #: ../src/yumexbase/constants.py:207
 #: ../src/yumexgui/gui.py:374
@@ -389,7 +389,7 @@ msgstr "Настройки"
 
 #: ../src/yumexgui/dialogs.py:439
 msgid "Load packages on launch"
-msgstr ""
+msgstr "Загружать пакеты при запуске"
 
 #: ../src/yumexgui/dialogs.py:440
 msgid "Use sortable columns in package view (slower)"
@@ -409,19 +409,19 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:451
 msgid "Color (Installed)"
-msgstr ""
+msgstr "Цвет (установленные)"
 
 #: ../src/yumexgui/dialogs.py:452
 msgid "Color (Update)"
-msgstr ""
+msgstr "Цвет (обновления)"
 
 #: ../src/yumexgui/dialogs.py:453
 msgid "Color (Available)"
-msgstr ""
+msgstr "Цвет (доступные)"
 
 #: ../src/yumexgui/dialogs.py:461
 msgid "Enable Yum Plugins"
-msgstr ""
+msgstr "Включить плагины Yum"
 
 #: ../src/yumexgui/dialogs.py:462
 msgid "Proxy"
@@ -464,7 +464,7 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:214
 msgid "Update information"
-msgstr ""
+msgstr "Обновить информацию"
 
 #: ../src/yumexgui/gui.py:216
 msgid "Package Changelog"
@@ -480,7 +480,7 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:325
 msgid "Project URL : "
-msgstr ""
+msgstr "URL проекта : "
 
 #: ../src/yumexgui/gui.py:332
 msgid "Release"
@@ -553,7 +553,7 @@ msgstr "Доступные обновления"
 
 #: ../src/yumexgui/__init__.py:374
 msgid "Search for packages"
-msgstr ""
+msgstr "Поиск пакетов"
 
 #: ../src/yumexgui/__init__.py:376
 #: ../src/yumexgui/views.py:681
@@ -586,11 +586,11 @@ msgstr "История"
 
 #: ../src/yumexgui/__init__.py:389
 msgid "Watch yum history"
-msgstr ""
+msgstr "Посмотреть историю yum"
 
 #: ../src/yumexgui/__init__.py:395
 msgid "Output"
-msgstr ""
+msgstr "Консоль"
 
 #: ../src/yumexgui/__init__.py:396
 msgid "Watch output details"
@@ -598,13 +598,15 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:444
 msgid "Not connected to an network"
-msgstr ""
+msgstr "Не подключено к сети"
 
 #: ../src/yumexgui/__init__.py:445
 msgid ""
 "Not connected to an network.\n"
 "Do you want to continue "
 msgstr ""
+"Не подключено к сети.\n"
+"Вы хотите продолжить?"
 
 #: ../src/yumexgui/__init__.py:450
 msgid "network connection state check is disabled"
@@ -616,23 +618,23 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:454
 msgid "Connected to an network"
-msgstr ""
+msgstr "Подключено к сети"
 
 #: ../src/yumexgui/__init__.py:607
 msgid "Enable Permanently"
-msgstr ""
+msgstr "Включить немедленно"
 
 #: ../src/yumexgui/__init__.py:611
 msgid "Disable Permanently"
-msgstr ""
+msgstr "Отключить немедленно"
 
 #: ../src/yumexgui/__init__.py:614
 msgid "Clean Metadata"
-msgstr ""
+msgstr "Очистить метаданные"
 
 #: ../src/yumexgui/__init__.py:615
 msgid "Clean Packages"
-msgstr ""
+msgstr "Очистить пакеты"
 
 #: ../src/yumexgui/__init__.py:616
 msgid "Clean DbCache"
@@ -640,15 +642,15 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:617
 msgid "Clean All"
-msgstr ""
+msgstr "Очистить все"
 
 #: ../src/yumexgui/__init__.py:630
 msgid "Reinstall Package"
-msgstr ""
+msgstr "Переустановить пакет"
 
 #: ../src/yumexgui/__init__.py:637
 msgid "Downgrade Package"
-msgstr ""
+msgstr "Откатить пакет"
 
 #: ../src/yumexgui/__init__.py:647
 msgid "By Repositories"
@@ -687,6 +689,9 @@ msgid ""
 "\n"
 "Do you want to exit Yum Extender ?"
 msgstr ""
+"\n"
+"\n"
+"Вы хотите выйти из Yum Extender ?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:765
@@ -725,7 +730,7 @@ msgstr "Получение сведений о пакете"
 #: ../src/yumexgui/__init__.py:904
 #: ../src/yumexgui/__init__.py:921
 msgid "History Disabled"
-msgstr ""
+msgstr "История отключена"
 
 #: ../src/yumexgui/__init__.py:915
 #: ../src/yumexgui/__init__.py:916
@@ -744,7 +749,7 @@ msgstr "Пропущенные пакеты"
 #: ../src/yumexgui/__init__.py:988
 #: ../src/yumexgui/__init__.py:989
 msgid "Adding Packages to view"
-msgstr ""
+msgstr "Добавление пакетов для просмотра"
 
 #: ../src/yumexgui/__init__.py:993
 #, python-format
@@ -792,25 +797,28 @@ msgstr "Архитектура"
 #: ../src/yumexgui/views.py:465
 #: ../src/yumexgui/views.py:1346
 #: ../src/yumexgui/views.py:1459
+#, fuzzy
 msgid "Ver."
-msgstr ""
+msgstr "Вер."
 
 #: ../src/yumexgui/views.py:349
 #: ../src/yumexgui/views.py:466
 #: ../src/yumexgui/views.py:1347
 #: ../src/yumexgui/views.py:1460
+#, fuzzy
 msgid "Arch."
-msgstr ""
+msgstr "Арх."
 
 #: ../src/yumexgui/views.py:351
 #: ../src/yumexgui/views.py:468
+#, fuzzy
 msgid "Repo."
-msgstr ""
+msgstr "Репоз."
 
 #: ../src/yumexgui/views.py:352
 #: ../src/yumexgui/views.py:469
 msgid "Size."
-msgstr ""
+msgstr "Размер."
 
 #: ../src/yumexgui/views.py:647
 msgid "Package Queue:"
@@ -836,7 +844,7 @@ msgstr "Категории"
 
 #: ../src/yumexgui/views.py:1237
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:1238
 msgid "Login User"
@@ -864,7 +872,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:5
 msgid "Advanced"
-msgstr ""
+msgstr "Дополнительные"
 
 #: ../src/yumex.glade.h:6
 msgid "All"
@@ -872,15 +880,15 @@ msgstr "Все"
 
 #: ../src/yumex.glade.h:7
 msgid "Availa_ble"
-msgstr ""
+msgstr "Досту_пно"
 
 #: ../src/yumex.glade.h:8
 msgid "Basic"
-msgstr ""
+msgstr "Основные"
 
 #: ../src/yumex.glade.h:9
 msgid "Dont  check signatures for packages"
-msgstr ""
+msgstr "Не проверять подписи пакетов"
 
 #: ../src/yumex.glade.h:10
 msgid "Error"
@@ -896,7 +904,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:13
 msgid "R_epositories"
-msgstr ""
+msgstr "Р_епозитории"
 
 #: ../src/yumex.glade.h:14
 msgid "Redo a history transaction"
