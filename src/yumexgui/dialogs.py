@@ -280,6 +280,10 @@ class Progress(YumexProgressBase):
         self.extra_hidden = True
         self.task_hidden = True
         self.progress_hidden = False
+        
+    def close(self):
+        self.dialog.hide()
+        self.dialog.destroy()    
 
     def is_active(self):
         return self._active

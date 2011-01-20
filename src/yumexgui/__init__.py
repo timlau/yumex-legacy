@@ -269,41 +269,47 @@ class YumexApplication(Controller, YumexFrontend):
         @param err: error type
         @param msg: error message
         '''
-        quit = True
-        title = _("Fatal Error")
-        if err == 'lock-error': # Cant get the yum lock
-            text = _("Can't start the yum backend")
-            longtext = _("Another program is locking yum")
-            longtext += '\n\n'
-            longtext += _('Message from yum backend:')
-            longtext += '\n\n'
-            longtext += msg
-        elif err == "repo-error":
-            text = _("Error in repository setup")
-            longtext = msg
-            longtext += '\n\n'
-            longtext += _('You can try starting \'yumex -n\' from a command line\n')
-            longtext += _('and deselecting the repositories causing problems\n')
-            longtext += _('and try again.\n')
-            progress = self.get_progress()
-            progress.hide()
-            #quit = False
-        elif err == "backend-error":
-            text = _('Fatal Error in backend restart')
-            longtext = _("Backend could not be closed")
-            longtext += '\n\n'
-            longtext += msg
-        else:
-            text = _("Fatal Error : ") + err
-            longtext = msg
-        # Show error dialog    
-        dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
-        dialog.run()
-        dialog.destroy()
-        self.error(text)
-        self.error(longtext)
-        if quit:
+        try:
+            process = self.get_progress()
+            process.close()
+            quit = True
+            title = _("Fatal Error")
+            if err == 'lock-error': # Cant get the yum lock
+                text = _("Can't start the yum backend")
+                longtext = _("Another program is locking yum")
+                longtext += '\n\n'
+                longtext += _('Message from yum backend:')
+                longtext += '\n\n'
+                longtext += msg
+            elif err == "repo-error":
+                text = _("Error in repository setup")
+                longtext = msg
+                longtext += '\n\n'
+                longtext += _('You can try starting \'yumex -n\' from a command line\n')
+                longtext += _('and deselecting the repositories causing problems\n')
+                longtext += _('and try again.\n')
+                progress = self.get_progress()
+                progress.hide()
+                #quit = False
+            elif err == "backend-error":
+                text = _('Fatal Error in backend restart')
+                longtext = _("Backend could not be closed")
+                longtext += '\n\n'
+                longtext += msg
+            else:
+                text = _("Fatal Error : ") + err
+                longtext = msg
+            # Show error dialog    
+            dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
+            dialog.run()
+            dialog.destroy()
+            self.error(text)
+            self.error(longtext)
+            if quit:
+                self.main_quit()
+        except:
             self.main_quit()
+            
 
     def _add_key_binding(self, widget, accel, event='clicked'):
         '''
@@ -1325,6 +1331,7 @@ class YumexApplication(Controller, YumexFrontend):
                 elif active == 'categories': # Categories
                     self.ui.categoryWindow.show_all()
             normalCursor(self.window)
+
 
     def on_categoryContent_cursor_changed(self, widget):
         '''

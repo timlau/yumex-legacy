@@ -178,7 +178,7 @@ class YumexBackendFatalError(YumexBaseError):
         @param err:
         @param msg:
         '''
-        YumexBaseError.__init__(self)
+        YumexBaseError.__init__(self, msg)
         self.err = err
         self.msg = msg
 

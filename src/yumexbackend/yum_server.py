@@ -432,11 +432,12 @@ class YumServer(yum.YumBase):
         ''' write an warning message '''
         self.write(":warning\t%s" % msg)
 
-    def fatal(self, err, msg):
+    def fatal(self, err, msg, raise_exception = True):
         ''' write an fatal message '''
         pmsg = pack(msg)
         self.write(":fatal\t%s\t%s" % (err, pmsg))
-        raise YumexBackendFatalError(err, msg)
+        if raise_exception:
+            raise YumexBackendFatalError(err, msg)
 
     def gpg_check(self, po, userid, hexkeyid):
         ''' write an fatal message '''
@@ -502,7 +503,7 @@ class YumServer(yum.YumBase):
         self.write(":end\t%s" % state)
 
 
-    @catchYumException
+    #@catchYumException
     def get_packages(self, narrow, dupes):
         '''
         get list of packages and send results 
@@ -1329,6 +1330,12 @@ class YumServer(yum.YumBase):
                 t = time.time() - ts
                 self.debug("%s Args: %s  took %.2f s to complete" % (args[0], args[1:], t), __name__)
         except YumexBackendFatalError, e:
+            self.ended(True)
+            self.quit()
+        except Errors.RepoError, e:
+            # signal to the front end that we have a fatal error
+            pmsg = pack(str(e))
+            self.write(":fatal\t%s\t%s" % ('repo-error', pmsg))
             self.ended(True)
             self.quit()
         except:

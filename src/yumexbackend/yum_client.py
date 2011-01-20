@@ -133,13 +133,8 @@ class YumClientBase:
         """ fatal backend error """
         err = args[0]
         msg = unpack(args[1])
-        # flush messages from child
-        lines = self.child.readlines()
-        for line in lines:
-            cmd, args = self._parse_command(line)
-            if cmd:
-                self._check_for_message(cmd, args)
-        raise YumexBackendFatalError(err, msg)
+        # Trigger the frontend fatal error handler
+        self.frontend.handle_error(err, msg)
 
     def _timeout(self):
         """ 
@@ -363,6 +358,8 @@ class YumClientBase:
         '''
         
         '''
+        if not self.child:
+            return False
         beg = time.time()
         while not self.child.isalive():
             time.sleep(0.1)
@@ -381,6 +378,8 @@ class YumClientBase:
         '''
         
         '''
+        if not self.child:
+            return False
         beg = time.time()
         while not self.child.isalive():
             time.sleep(0.1)
