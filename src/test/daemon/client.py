@@ -19,7 +19,9 @@
 # along with Ailurus; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 
-from __future__ import with_statement
+#from __future__ import with_statement
+import os
+import dbus
 
 class UserDeniedError(Exception):
     'User has denied keyring authentication'
@@ -27,86 +29,81 @@ class UserDeniedError(Exception):
 class CommandFailError(Exception):
     'Fail to execute a command'
 
-def packed_env_string():
-    import os
-    env = dict( os.environ )
-    env['PWD'] = os.getcwd()
-    return repr(env)
-
-def daemon():
-    import dbus
-    bus = dbus.SystemBus()
-    obj = bus.get_object('org.yumex', '/')
-    return obj
-
-def get_dbus_daemon_version():
-    ret = daemon().get_version(dbus_interface='org.yumex.Interface')
-    return ret    
-
-def restart_dbus_daemon():
-    authenticate()
-    daemon().exit(dbus_interface='org.yumex.Interface')
-
-def get_authentication_method():
-    ret = daemon().get_check_permission_method(dbus_interface='org.yumex.Interface')
-    ret = int(ret)
-    return ret
-
-def authenticate():
-    if get_authentication_method() == 0:
-        import dbus, os
-        bus = dbus.SessionBus()
-        policykit = bus.get_object('org.freedesktop.PolicyKit.AuthenticationAgent', '/')
-        policykit.ObtainAuthorization('org.yumex', dbus.UInt32(0), dbus.UInt32(os.getpid()))
-
-def spawn_as_root(command):
-    is_string_not_empty(command)
-    
-    authenticate()
-    daemon().spawn(command, packed_env_string(), dbus_interface='org.yumex.Interface')
-
-def get_version():
-    authenticate()
-    print daemon().get_version( dbus_interface='org.yumex.Interface')
-    
-
-def drop_priviledge():
-    daemon().drop_priviledge(dbus_interface='org.yumex.Interface')
-    
 class AccessDeniedError(Exception):
     'User press cancel button in policykit window'
-
-def run_as_root(cmd, ignore_error=False):
-    import dbus
-    is_string_not_empty(cmd)
-    assert isinstance(ignore_error, bool)
     
-    print  ('Running as root : %s' % cmd)
-    authenticate()
-    try:
-        daemon().run(cmd, packed_env_string(), timeout=36000, dbus_interface='org.yumex.Interface')
-    except dbus.exceptions.DBusException, e:
-        if e.get_dbus_name() == 'org.yumex.AccessDeniedError': raise AccessDeniedError(*e.args)
-        elif e.get_dbus_name() == 'org.yumex.CommandFailError':
-            if not ignore_error: raise CommandFailError(cmd)
-        else: raise
+class YumexDaemonClient:    
 
-def is_string_not_empty(string):
-    if type(string)!=str and type(string)!=unicode: raise TypeError(string)
-    if string=='': raise ValueError
+    def __init__(self):
+        self.daemon = self._get_daemon() 
 
+    def packed_env_string(self):
+        ''' Get at repr of the current evironment'''
+        env = dict( os.environ )
 
-class CannotDownloadError(Exception):
-    pass
+        env['PWD'] = os.getcwd()
+        return repr(env)
 
-class UserCancelInstallation(Exception):
-    pass
+    def _get_daemon(self):
+        ''' Get the yumex daemon dbus object'''
+        obj = None
+        try:
+            bus = dbus.SystemBus()
+            obj = bus.get_object('org.yumex', '/')
+        except dbus.exceptions.DBusException, e:
+            print "Initialize of dbus daemon failed"
+            print str(e)
+        return obj
+
+    def get_daemon_version(self):
+        ''' Get the daemon version '''
+        ret = self.daemon.get_version(dbus_interface='org.yumex.Interface')
+        return ret    
+
+    def exit_daemon(self):
+        ''' End the daemon'''
+        self.daemon.exit(dbus_interface='org.yumex.Interface')
+
+    def get_authentication_method(self):
+        ''' Get the authentication method'''
+        ret = self.daemon.get_check_permission_method(dbus_interface='org.yumex.Interface')
+        ret = int(ret)
+        print('Authentication Method : %i' % ret)
+        return ret
+
+    def get_version(self):
+        print self.daemon.get_version( dbus_interface='org.yumex.Interface')
+    
+
+    def run_as_root(self, cmd, ignore_error=False):
+        self.is_string_not_empty(cmd)
+        assert isinstance(ignore_error, bool)
+        
+        print  ('Running as root : %s' % cmd)
+        try:
+            self.daemon.run(cmd, self.packed_env_string(), timeout=36000, dbus_interface='org.yumex.Interface')
+        except dbus.exceptions.DBusException, e:
+            if e.get_dbus_name() == 'org.yumex.AccessDeniedError': raise AccessDeniedError(*e.args)
+            elif e.get_dbus_name() == 'org.yumex.CommandFailError':
+                if not ignore_error: raise CommandFailError(cmd)
+            else: raise
+
+    def is_string_not_empty(self, string):
+        if type(string)!=str and type(string)!=unicode: raise TypeError(string)
+        if string=='': raise ValueError
 
 if __name__ == '__main__':
-    print('Getting deamon version')
-    get_version()
-    run_as_root('touch /root/yumex.txt')
-    run_as_root('touch /root/yumex1.txt')
-    run_as_root('touch /root/yumex2.txt')
-    run_as_root('touch /root/yumex3.txt')
-    restart_dbus_daemon()
+    cli = YumexDaemonClient()
+    try:
+        print('Getting deamon version')
+        cli.get_version()
+        print('Running some test commands as root')
+        cli.run_as_root('touch /root/yumex.txt')
+        cli.run_as_root('touch /root/yumex1.txt')
+        cli.run_as_root('touch /root/yumex2.txt')
+        cli.run_as_root('touch /root/dummy/yumex3.txt') # This will fail
+        cli.exit_daemon()
+    except AccessDeniedError, e:
+        print str(e)
+    except CommandFailError, e:
+        print "command failed : %s " % str(e)

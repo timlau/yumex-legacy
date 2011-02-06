@@ -7,7 +7,7 @@
   <vendor_url>http://yum-extender.org/</vendor_url>
   <action id="org.yumex">
     <description>Yum Extender</description>
-    <message>System policy prevents Yum Extender from launching program as "root"</message>
+    <message>Starting Yum Extender backend with root access</message>
     <defaults>
       <allow_inactive>no</allow_inactive>
       <allow_active>auth_admin_keep</allow_active>

@@ -26,7 +26,7 @@ import subprocess
 import ctypes
 import gc
 
-version = 10 # must be integer
+version = 100 # must be integer
 
 class AccessDeniedError(dbus.DBusException):
     _dbus_error_name = 'org.yumex.AccessDeniedError'
@@ -34,15 +34,22 @@ class AccessDeniedError(dbus.DBusException):
 class CommandFailError(dbus.DBusException):
     _dbus_error_name = 'org.yumex.CommandFailError'
 
-class CannotDownloadError(dbus.DBusException):
-    _dbus_error_name = 'org.yumex.CannotDownloadError'
+class YumexDaemon(dbus.service.Object):
 
-class YumexDeamon(dbus.service.Object):
+    def __init__(self, mainloop):
+        self.mainloop = mainloop # use to terminate mainloop
+        self.authorized_sender = set()
+        bus_name = dbus.service.BusName('org.yumex', bus = dbus.SystemBus())
+        dbus.service.Object.__init__(self, bus_name, '/')
+        obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
+        obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
+
     @dbus.service.method('org.yumex.Interface', 
                                           in_signature='ss', 
                                           out_signature='', 
                                           sender_keyword='sender')
     def run(self, command, env_string, sender=None):
+        ''' Run a command with root access '''
         self.check_permission(sender)
         command = command.encode('utf8')
         env_string = env_string.encode('utf8')
@@ -55,25 +62,6 @@ class YumexDeamon(dbus.service.Object):
         task.wait()
         if task.returncode:
             raise CommandFailError(command, task.returncode)
-
-    @dbus.service.method('org.yumex.Interface', 
-                                          in_signature='ss', 
-                                          out_signature='i', 
-                                          sender_keyword='sender')
-    def spawn(self, command, env_string, sender=None):
-        self.check_permission(sender)
-        command = command.encode('utf8')
-        env_string = env_string.encode('utf8')
-        env = self.__get_dict(env_string)
-        os.chdir(env['PWD'])
-        task = subprocess.Popen(command, shell=True, env=env)
-        return task.pid
-
-    @dbus.service.method('org.yumex.Interface', 
-                                          in_signature='', 
-                                          out_signature='i') 
-    def get_check_permission_method(self):
-        return self.check_permission_method
 
     @dbus.service.method('org.yumex.Interface', 
                                           in_signature='', 
@@ -89,26 +77,16 @@ class YumexDeamon(dbus.service.Object):
         self.check_permission(sender)
         self.mainloop.quit()
 
+
     def check_permission(self, sender):
         if sender in self.authorized_sender:
             return
         else:
-            self.__check_permission(sender)
+            self._check_permission(sender)
             self.authorized_sender.add(sender)
 
-    def __init__(self, mainloop):
-        self.mainloop = mainloop # use to terminate mainloop
-        self.authorized_sender = set()
-        bus_name = dbus.service.BusName('org.yumex', bus = dbus.SystemBus())
-        dbus.service.Object.__init__(self, bus_name, '/')
-        self.lock1_fd = -1 # a fd
-        self.lock2_fd = -1 # a fd
-        obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
-        obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
-        self.check_permission_method = 1
 
-    def __check_permission(self, sender):
-        # This function is from project "gnome-lirc-properties". Thanks !
+    def _check_permission(self, sender):
         if not sender: raise ValueError('sender == None')
         
         obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
@@ -116,18 +94,11 @@ class YumexDeamon(dbus.service.Object):
         (granted, _, details) = obj.CheckAuthorization(
                 ('system-bus-name', {'name': sender}), 'org.yumex', {}, dbus.UInt32(1), '', timeout=600)
         if not granted:
-            raise AccessDeniedError('Session is not authorized. Authorization method = 1')
+            raise AccessDeniedError('Session is not authorized')
 
     def __get_dict(self, string):
         return eval(string)
     
-    @dbus.service.method('org.yumex.Interface',
-                                    in_signature='',
-                                    out_signature='',
-                                    sender_keyword='sender')
-    def drop_priviledge(self, sender=None):
-        if sender in self.authorized_sender:
-            self.authorized_sender.remove(sender)
 
     def __prepare_env(self, env_string):
         env_dict = self.__get_dict(env_string)
@@ -137,14 +108,10 @@ class YumexDeamon(dbus.service.Object):
             os.putenv(key, env_dict[key])
 
 
-def main(): # revoked by yumex-daemon
-    try:
-        libc = ctypes.CDLL('libc.so.6')
-        libc.prctl(15, 'yumex-daemon', 0, 0, 0) # change_task_name
-    except: pass
+def main():
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
     mainloop = gobject.MainLoop()
-    YumexDeamon(mainloop)
+    YumexDaemon(mainloop)
     mainloop.run()
 
 if __name__ == '__main__':
