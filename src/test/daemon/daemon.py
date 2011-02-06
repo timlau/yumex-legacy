@@ -16,35 +16,32 @@
 #
 # (C) 2011 - Tim Lauridsen <timlau@fedoraproject.org>
 
-from __future__ import with_statement
 import dbus
 import dbus.service
 import dbus.glib
 import gobject
 import os
 import subprocess
-import ctypes
-import gc
 
 version = 100 # must be integer
+DAEMON_ORG = 'org.yumex'
+DAEMON_INTERFACE = 'org.yumex.Interface'
 
 class AccessDeniedError(dbus.DBusException):
-    _dbus_error_name = 'org.yumex.AccessDeniedError'
+    _dbus_error_name = DAEMON_ORG+'.AccessDeniedError'
 
 class CommandFailError(dbus.DBusException):
-    _dbus_error_name = 'org.yumex.CommandFailError'
+    _dbus_error_name = DAEMON_ORG+'.CommandFailError'
 
 class YumexDaemon(dbus.service.Object):
 
     def __init__(self, mainloop):
         self.mainloop = mainloop # use to terminate mainloop
         self.authorized_sender = set()
-        bus_name = dbus.service.BusName('org.yumex', bus = dbus.SystemBus())
+        bus_name = dbus.service.BusName(DAEMON_ORG, bus = dbus.SystemBus())
         dbus.service.Object.__init__(self, bus_name, '/')
-        obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
-        obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
 
-    @dbus.service.method('org.yumex.Interface', 
+    @dbus.service.method(DAEMON_INTERFACE, 
                                           in_signature='ss', 
                                           out_signature='', 
                                           sender_keyword='sender')
@@ -54,31 +51,29 @@ class YumexDaemon(dbus.service.Object):
         command = command.encode('utf8')
         env_string = env_string.encode('utf8')
         env = self.__get_dict(env_string)
-        try: 
-            os.chdir(env['PWD'])
-        except KeyError:
-            raise KeyError(env, env_string) # help to fix issue 850
         task = subprocess.Popen(command, shell=True, env=env)
         task.wait()
         if task.returncode:
             raise CommandFailError(command, task.returncode)
 
-    @dbus.service.method('org.yumex.Interface', 
+    @dbus.service.method(DAEMON_INTERFACE, 
                                           in_signature='', 
                                           out_signature='i') 
     def get_version(self):
         return version
 
-    @dbus.service.method('org.yumex.Interface', 
+    @dbus.service.method(DAEMON_INTERFACE, 
                                           in_signature='', 
                                           out_signature='',
                                           sender_keyword='sender')
     def exit(self, sender=None):
+        ''' Exit the daemon'''
         self.check_permission(sender)
         self.mainloop.quit()
 
 
     def check_permission(self, sender):
+        ''' Check for permission to execute'''
         if sender in self.authorized_sender:
             return
         else:
@@ -92,21 +87,12 @@ class YumexDaemon(dbus.service.Object):
         obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
         obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
         (granted, _, details) = obj.CheckAuthorization(
-                ('system-bus-name', {'name': sender}), 'org.yumex', {}, dbus.UInt32(1), '', timeout=600)
+                ('system-bus-name', {'name': sender}), DAEMON_ORG, {}, dbus.UInt32(1), '', timeout=600)
         if not granted:
             raise AccessDeniedError('Session is not authorized')
 
     def __get_dict(self, string):
         return eval(string)
-    
-
-    def __prepare_env(self, env_string):
-        env_dict = self.__get_dict(env_string)
-        if 'TERM' not in env_dict: env_dict['TERM'] = 'xterm'
-        env_dict['PATH'] = '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-        for key in ['DISPLAY', 'TERM', 'PATH']:
-            os.putenv(key, env_dict[key])
-
 
 def main():
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
