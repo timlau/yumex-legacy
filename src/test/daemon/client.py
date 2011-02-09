@@ -19,8 +19,8 @@
 import os
 import dbus
 
-DAEMON_ORG = 'org.yumex'
-DAEMON_INTERFACE = 'org.yumex.Interface'
+DAEMON_ORG = 'org.yumex.YumBackend'
+DAEMON_INTERFACE = DAEMON_ORG+'.Interface'
 
 # Exception classes 
 class CommandFailError(Exception):
@@ -62,8 +62,8 @@ class YumexDaemonClient:
             env = self._packed_env_string()
             self.daemon.run(cmd, env, timeout=36000, dbus_interface=DAEMON_INTERFACE)
         except dbus.exceptions.DBusException, e:
-            if e.get_dbus_name() == 'org.yumex.AccessDeniedError': raise AccessDeniedError(*e.args)
-            elif e.get_dbus_name() == 'org.yumex.CommandFailError':
+            if e.get_dbus_name() == 'org.yumex.YumBackend.AccessDeniedError': raise AccessDeniedError(*e.args)
+            elif e.get_dbus_name() == 'org.yumex.YumBackend.CommandFailError':
                 if not ignore_error: raise CommandFailError(cmd)
             else: raise
 

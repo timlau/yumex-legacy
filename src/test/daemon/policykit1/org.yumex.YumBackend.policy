@@ -5,7 +5,7 @@
 <policyconfig>
   <vendor>Yum Extender</vendor>
   <vendor_url>http://yum-extender.org/</vendor_url>
-  <action id="org.yumex">
+  <action id="org.yumex.YumBackend">
     <description>Yum Extender</description>
     <message>Starting Yum Extender backend with root access</message>
     <defaults>

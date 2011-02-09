@@ -24,8 +24,8 @@ import os
 import subprocess
 
 version = 100 # must be integer
-DAEMON_ORG = 'org.yumex'
-DAEMON_INTERFACE = 'org.yumex.Interface'
+DAEMON_ORG = 'org.yumex.YumBackend'
+DAEMON_INTERFACE = DAEMON_ORG+'.Interface'
 
 class AccessDeniedError(dbus.DBusException):
     _dbus_error_name = DAEMON_ORG+'.AccessDeniedError'
