@@ -747,7 +747,7 @@ class YumClient(YumClientBase):
         self._send_command('enable-repo-persistent', [ident, str(state)])
         return self._get_return_code()
 
-    def search(self, keys, filters):
+    def search(self, keys, filters, show_newest_only):
         '''
         
         @param keys:
@@ -755,14 +755,16 @@ class YumClient(YumClientBase):
         '''
         bKeys = pack(keys)
         bFilters = pack(filters)
-        return self.execute_command('search', [bKeys, bFilters])
+        show_newest_only = pack(show_newest_only)
+        return self.execute_command('search', [bKeys, bFilters, show_newest_only])
 
-    def search_prefix(self, prefix):
+    def search_prefix(self, prefix, show_newest_only):
         '''
         Search for packages with prefix
         @param prefix prefix to search for
         '''
-        return self.execute_command('search-prefix', [prefix])
+        show_newest_only = pack(show_newest_only)
+        return self.execute_command('search-prefix', [prefix, show_newest_only])
 
 
     def clean(self, what):

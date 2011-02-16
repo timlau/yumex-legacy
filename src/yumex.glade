@@ -183,6 +183,16 @@
                         <signal name="toggled" handler="on_option_nogpgcheck_toggled"/>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="option_show_newest_only">
+                        <property name="visible">True</property>
+                        <property name="tooltip_text" translatable="yes">Show only the latest packages when searching
+Dont show multiple version of the same package</property>
+                        <property name="label" translatable="yes">Show Newest Only</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_option_show_newest_only_toggled"/>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

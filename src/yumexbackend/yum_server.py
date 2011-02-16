@@ -42,6 +42,7 @@ import yum.logginglevels as logginglevels
 import yum.Errors as Errors
 from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
+from yum.packageSack import packagesNewestByName
 # Pylint in F10 cant handle the init_hook, so disable the cant find output error
 # pylint: disable-msg=F0401
 from output import DepSolveProgressCallBack # yum cli output.py
@@ -167,6 +168,10 @@ class YumServer(yum.YumBase):
         yum.YumBase.__init__(self)
         self.mediagrabber = self.mediaGrabber
         parser = OptionParser()
+        # FIXME: workaround for issue in the auto-update-debuginfo plugin
+        # The issue is fixed in upstream yum-utils, but it make take some time to get it out.
+        # So we work around it here
+        parser.add_option("--enablerepo", type='string', dest='repos', default=[])
         # Setup yum preconfig options
         self.preconf.debuglevel = debuglevel
         self.preconf.init_plugins = plugins
@@ -1036,13 +1041,15 @@ class YumServer(yum.YumBase):
                 good_tups[po.pkgtup] = 1
         return good_pkgs
 
-    def search_prefix(self, prefix):
+    def search_prefix(self, prefix, show_newest_only):
         prefix += '*'
         self.debug("prefix: %s " % prefix)
         pkgs = self.pkgSack.returnPackages(patterns=[prefix])
         ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
         pkgs.extend(ipkgs)
         best = self._limit_package_list(pkgs)
+        if show_newest_only:
+            best = packagesNewestByName(best)
         self._return_packages(best)
         self.ended(True)
 
@@ -1053,6 +1060,7 @@ class YumServer(yum.YumBase):
         '''
         keys = unpack(args[0])
         filters = unpack(args[1])
+        show_newest_only = unpack(args[2])
         ygh = self.doPackageLists(pkgnarrow='updates')
         pkgs = {}
         for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
@@ -1065,9 +1073,13 @@ class YumServer(yum.YumBase):
                 pkgs[na] = [pkg]
             else:
                 pkgs[na].append(pkg)
+        packages = []
         for na in pkgs:
             best = self._limit_package_list(pkgs[na])
-            self._return_packages(best)
+            packages.extend(best)
+        if show_newest_only:
+            packages = packagesNewestByName(packages)
+        self._return_packages(packages)
         self.ended(True)
 
     def get_repos(self, args):
@@ -1288,7 +1300,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'search':
             self.search(args)
         elif cmd == 'search-prefix':
-            self.search_prefix(args[0])
+            self.search_prefix(args[0], unpack(args[1]))
         elif cmd == 'update-info':
             self.get_update_info(args)
         elif cmd == 'set-option':

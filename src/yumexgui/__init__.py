@@ -792,7 +792,8 @@ class YumexApplication(Controller, YumexFrontend):
             
     def _setup_options(self):
         self.ui.option_nogpgcheck.set_active(self.settings.no_gpg_check)                    
-        self.ui.option_skipbroken.set_active(self.settings.skip_broken)                    
+        self.ui.option_skipbroken.set_active(self.settings.skip_broken)        
+        self.ui.option_show_newest_only.set_active(self.settings.show_newest_only)            
 
     def _get_options(self):
         '''
@@ -800,6 +801,7 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         options = []
         options.append((self.ui.option_nogpgcheck, self.ui.option_nogpgcheck.get_active()))
+        options.append((self.ui.option_show_newest_only, self.ui.self.ui.option_show_newest_only.get_active()))
         return options
 
     def _set_options(self, options):
@@ -1091,8 +1093,9 @@ class YumexApplication(Controller, YumexFrontend):
 
     def on_option_skipbroken_toggled(self, widget=None, event=None):
         self.backend.set_option('skip_broken', widget.get_active())
-
-
+    def on_option_show_newest_only_toggled(self, widget=None, event=None):
+        self.settings.show_newest_only = widget.get_active()
+        
     def on_viewPackages_activate(self, widget=None, event=None):
         '''
         Menu : View -> Packages
@@ -1143,7 +1146,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.ui.packageSearch.set_sensitive(False)
             busyCursor(self.window)
             self.debug("SEARCH : %s" % txt)
-            pkgs = self.backend.search_prefix(txt)
+            pkgs = self.backend.search_prefix(txt, self.settings.show_newest_only)
             self.debug("SEARCH : got %i packages" % len(pkgs))
             if not self.settings.search:
                 self.ui.packageFilterBox.hide()
@@ -1192,7 +1195,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.packageInfo.clear()
             filters = self.search_options.get_filters()
             keys = self.ui.packageSearch.get_text().split(' ')
-            pkgs = self.backend.search(keys, filters)
+            pkgs = self.backend.search(keys, filters, self.settings.show_newest_only)
             if not self.settings.search:
                 self.ui.packageFilterBox.hide()
                 if self._last_filter:

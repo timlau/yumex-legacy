@@ -61,6 +61,7 @@ class YumexConf(BaseConfig):
     use_sudo = BoolOption(False)
     skip_broken = BoolOption(False)
     no_gpg_check = BoolOption(False)
+    show_newest_only= BoolOption(True)
 
 
 class YumexOptions:
