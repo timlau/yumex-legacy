@@ -799,9 +799,10 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         Store the session based options in the Options menu
         '''
+        
         options = []
         options.append((self.ui.option_nogpgcheck, self.ui.option_nogpgcheck.get_active()))
-        options.append((self.ui.option_show_newest_only, self.ui.self.ui.option_show_newest_only.get_active()))
+        options.append((self.ui.option_show_newest_only, self.ui.option_show_newest_only.get_active()))
         return options
 
     def _set_options(self, options):
