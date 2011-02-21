@@ -1248,7 +1248,7 @@ class YumexHistoryView(SelectionView):
     def populate(self, data):
         self.model.clear()
         for (id, user, dt, action, alt) in data:
-            self.model.append([id, user, dt, action, alt])
+            self.model.append([str(id), user, dt, action, str(alt)])
 
 class HistoryLabel:
     """
