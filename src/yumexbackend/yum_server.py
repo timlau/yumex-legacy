@@ -165,6 +165,7 @@ class YumServer(yum.YumBase):
 
     def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None, yum_conf='/etc/yum.conf'):
         '''  Setup the spawned server '''
+        print('Yum Version : %s' % yum.__version__)
         yum.YumBase.__init__(self)
         self.mediagrabber = self.mediaGrabber
         parser = OptionParser()
@@ -1229,7 +1230,10 @@ class YumServer(yum.YumBase):
     def get_history_packages(self, tid, data_set='trans_data'):
         tids = self.history.old([tid])
         for yht in tids:
-            yhp = getattr(yht, data_set)
+            if hasattr(yht,data_set): # make sure we have the data_set, yum-3.2.27 dont have trans_skip
+                yhp = getattr(yht, data_set)
+            else:
+                yhp = []
             for pkg in yhp:
                 self._show_history_package(pkg)
         self.ended(True)
