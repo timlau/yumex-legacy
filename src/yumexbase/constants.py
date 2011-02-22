@@ -25,37 +25,26 @@ import os
 import sys
 import pango
 import time
-from enum import Enum
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 from yum.constants import *
 
 # Constant
 
-__yumex_version__ = "3.0.0"
+__yumex_version__ = "3.0.1"
 
 YUMEX_LOG = 'yumex.verbose'
-# Package Types
-PKG_TYPE = Enum('installed', 'available', 'update', 'obsolete')
-# Package list filters
-FILTER = Enum('all', 'installed', 'available', 'updates', 'obsoletes', 'downgrade', 'reinstall')
-# Search filters
-SEARCH = Enum('name', 'summary', 'description', 'ver', 'arch', 'repoid')
-# Group Package filters
-GROUP = Enum('all', 'default')
-# State
-STATE = Enum('none', 'init', 'download-meta', 'download-pkg', 'update', 'install', 'remove', 'cleanup')
-FILTER_ACTIONS = {str(FILTER.updates) : 'u', str(FILTER.available): 'i', str(FILTER.installed) : 'r', \
-                   str(FILTER.obsoletes) : 'o', str(FILTER.downgrade)  : 'do', str(FILTER.reinstall) : 'ri'}
+FILTER_ACTIONS = {'updates' : 'u', 'available': 'i', 'installed' : 'r', \
+                   'obsoletes' : 'o', 'downgrade'  : 'do', 'reinstall' : 'ri', 'localinstall' : 'li'}
 
-ACTIONS_FILTER = { 'u' : str(FILTER.updates), 'i' : str(FILTER.available), \
-                   'r' : str(FILTER.installed) , 'o' : str(FILTER.obsoletes), \
-                    'do' : str(FILTER.downgrade), 'ri' : str(FILTER.reinstall)  }
+ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
+                   'r' : 'installed' , 'o' : 'obsoletes', \
+                    'do' : 'downgrade', 'ri' : 'reinstall', 'li' : 'localinstall' }
 
 # Paths
 MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -63,6 +52,8 @@ BUILDER_FILE = MAIN_PATH + '/yumex.glade'
 BUILDER_PKGINST = MAIN_PATH + '/pkginst.glade'
 if MAIN_PATH == '/usr/share/yumex':
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
+elif MAIN_PATH.endswith('test'):
+    PIXMAPS_PATH = MAIN_PATH + '/../../gfx'
 else:
     PIXMAPS_PATH = MAIN_PATH + '/../gfx'
 
@@ -79,7 +70,7 @@ ICON_SMALL_SPINNER = PIXMAPS_PATH + '/spinner-small.gif'
 
 # NOTE: The package filter radio buttons in the top of the package page
 PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))
-PKG_FILTERS_ENUMS = (FILTER.updates, FILTER.available, FILTER.installed)
+PKG_FILTERS_ENUMS = ('updates', 'available', 'installed')
 
 REPO_HIDE = ['source', 'debuginfo']
 
@@ -150,15 +141,15 @@ PACKAGE_LOAD_MSG = {
  'obsoletes'    : _('Getting available obsoletes')
  }
 
-# RPM Completted action messages
+# RPM Completed action messages
 RPM_ACTIONS = {
-    TS_UPDATE: '%s is updated',
-    TS_ERASE: '%s is erased',
-    TS_INSTALL: '%s is installed',
-    TS_TRUEINSTALL: '%s is installed',
-    TS_OBSOLETED: '%s is obsoleted',
-    TS_OBSOLETING: '%s is installed',
-    TS_UPDATED: '%s is cleanup'
+    TS_UPDATE: _('%s is updated'),
+    TS_ERASE: _('%s is erased'),
+    TS_INSTALL: _('%s is installed'),
+    TS_TRUEINSTALL: _('%s is installed'),
+    TS_OBSOLETED: _('%s is obsoleted'),
+    TS_OBSOLETING: _('%s is installed'),
+    TS_UPDATED: _('%s is cleanup')
 }
 
 HISTORY_NEW_STATES = ['Update', 'Downgrade', 'Obsoleting']
@@ -196,7 +187,8 @@ QUEUE_PACKAGE_TYPES = {
 'r' : 'remove',
 'o' : 'obsolete',
 'ri' : 'reinstall',
-'do' : 'downgrade'
+'do' : 'downgrade',
+'li' : 'localinstall'
 }
 
 YUMEX_CMDLINE_CMDS = ['search', 'install', 'remove', 'update', 'downgrade', 'reinstall']

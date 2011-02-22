@@ -1,4 +1,6 @@
 *.pyc
+*.pyo
+*.patch
 *.tar.gz
 *.rpm
 *~

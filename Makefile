@@ -42,7 +42,7 @@ install:
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
 get-builddeps:
-	yum install perl-TimeDate python-devel gettext intltool
+	yum install perl-TimeDate python-devel gettext intltool rpmdevtools
 
 archive:
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
@@ -72,7 +72,7 @@ test-cleanup:
 	@rm -rf ${PKGNAME}-${VERSION}.test.tar.gz
 	@echo "Cleanup the git release-test local branch"
 	@git checkout -f
-	@git checkout future
+	@git checkout master
 	@git branch -D release-test
 
 show-vars:
@@ -92,6 +92,7 @@ test-release:
 	@rm -rf ${PKGNAME}-${NEW_VER}.tar.gz
 	@git archive --format=tar --prefix=$(PKGNAME)-$(NEW_VER)/ HEAD | gzip -9v >${PKGNAME}-$(NEW_VER).tar.gz
 	# Build RPMS
+	@rpmdev-wipetree
 	@rpmbuild -ta ${PKGNAME}-${NEW_VER}.tar.gz
 	@$(MAKE) test-cleanup
 	

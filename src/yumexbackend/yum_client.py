@@ -32,7 +32,7 @@ from yumexbackend import  YumexPackage, pack, unpack
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 
@@ -133,13 +133,8 @@ class YumClientBase:
         """ fatal backend error """
         err = args[0]
         msg = unpack(args[1])
-        # flush messages from child
-        lines = self.child.readlines()
-        for line in lines:
-            cmd, args = self._parse_command(line)
-            if cmd:
-                self._check_for_message(cmd, args)
-        raise YumexBackendFatalError(err, msg)
+        # Trigger the frontend fatal error handler
+        self.frontend.handle_error(err, msg)
 
     def _timeout(self):
         """ 
@@ -177,11 +172,19 @@ class YumClientBase:
                 self.info(_('Client is running in rootmode, starting backend launcher directly'))
                 cmd = '/usr/share/yumex/yumex-yum-backend'
             else: # Non root run using console helper wrapper
-                cmd = '/usr/bin/yumex-yum-backend'
+                if self.frontend.settings.use_sudo:
+                    self.info('Running backend launcher with sudo')
+                    cmd = '/usr/bin/sudo'
+                    args.append('-n') # Abort sudo if password is needed
+                    args.append('/usr/bin/yumex-yum-backend')
+                    
+                else:
+                    cmd = '/usr/bin/yumex-yum-backend'
         else:
             if os.getuid() != 0: # Non Root
                 self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
                 cmd = '/usr/bin/sudo'
+                args.append('-n') # Abort sudo if password is needed
                 args.append(MAIN_PATH + "/backend-launcher.py")
             else: # root
                 self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
@@ -355,6 +358,8 @@ class YumClientBase:
         '''
         
         '''
+        if not self.child:
+            return False
         beg = time.time()
         while not self.child.isalive():
             time.sleep(0.1)
@@ -373,6 +378,8 @@ class YumClientBase:
         '''
         
         '''
+        if not self.child:
+            return False
         beg = time.time()
         while not self.child.isalive():
             time.sleep(0.1)
@@ -740,7 +747,7 @@ class YumClient(YumClientBase):
         self._send_command('enable-repo-persistent', [ident, str(state)])
         return self._get_return_code()
 
-    def search(self, keys, filters):
+    def search(self, keys, filters, show_newest_only):
         '''
         
         @param keys:
@@ -748,14 +755,16 @@ class YumClient(YumClientBase):
         '''
         bKeys = pack(keys)
         bFilters = pack(filters)
-        return self.execute_command('search', [bKeys, bFilters])
+        show_newest_only = pack(show_newest_only)
+        return self.execute_command('search', [bKeys, bFilters, show_newest_only])
 
-    def search_prefix(self, prefix):
+    def search_prefix(self, prefix, show_newest_only):
         '''
         Search for packages with prefix
         @param prefix prefix to search for
         '''
-        return self.execute_command('search-prefix', [prefix])
+        show_newest_only = pack(show_newest_only)
+        return self.execute_command('search-prefix', [prefix, show_newest_only])
 
 
     def clean(self, what):

@@ -70,7 +70,7 @@ class YumexBackendBase(object):
     def search(self, keys, sch_filters):
         ''' 
         get packages matching keys
-        @param keys: list of keys to seach for
+        @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
         raise NotImplementedError()
@@ -149,7 +149,10 @@ class YumexPackage:
     @property
     def filename(self):
         ''' Package id (the full package filename) '''
-        return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
+        if action == 'li': # the full path for at localinstall is stored in repoid
+            return self.repoid
+        else:
+            return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)
 
     @property
     def fullver (self):

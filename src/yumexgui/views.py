@@ -26,7 +26,7 @@ import logging
 import os
 import time
 
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 from yumexbase import TimeFunction
 import yumexbase.constants as const
 from guihelpers import  doGtkEvents, busyCursor, normalCursor
@@ -741,6 +741,10 @@ class YumexQueueView:
         label = "<b>%s</b>" % P_("Package to reinstall", "Packages to reinstall", len(pkg_list))
         if len(pkg_list) > 0:
             self.populate_list(label, pkg_list)
+        pkg_list = self.queue.packages['li']
+        label = "<b>%s</b>" % P_("RPM file to install", "RPM files to install", len(pkg_list))
+        if len(pkg_list) > 0:
+            self.populate_list(label, pkg_list)
         self.populate_list_downgrade()
         self.view.expand_all()
 
@@ -1078,7 +1082,7 @@ class YumexGroupView:
         @param add:
         @param action:
         '''
-        pkgs = self.base.backend.get_group_packages(grpid, const.GROUP.default)
+        pkgs = self.base.backend.get_group_packages(grpid, 'default')
         # Add group packages to queue
         if add:
             for po in pkgs:
@@ -1244,7 +1248,7 @@ class YumexHistoryView(SelectionView):
     def populate(self, data):
         self.model.clear()
         for (id, user, dt, action, alt) in data:
-            self.model.append([id, user, dt, action, alt])
+            self.model.append([str(id), user, dt, action, str(alt)])
 
 class HistoryLabel:
     """

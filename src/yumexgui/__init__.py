@@ -50,7 +50,7 @@ from yum.packages import comparePoEVR
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 class YumexFrontend(YumexFrontendBase):
@@ -269,41 +269,47 @@ class YumexApplication(Controller, YumexFrontend):
         @param err: error type
         @param msg: error message
         '''
-        quit = True
-        title = _("Fatal Error")
-        if err == 'lock-error': # Cant get the yum lock
-            text = _("Can't start the yum backend")
-            longtext = _("Another program is locking yum")
-            longtext += '\n\n'
-            longtext += _('Message from yum backend:')
-            longtext += '\n\n'
-            longtext += msg
-        elif err == "repo-error":
-            text = _("Error in repository setup")
-            longtext = msg
-            longtext += '\n\n'
-            longtext += _('You can try starting \'yumex -n\' from a command line\n')
-            longtext += _('and deseleting the repositories causing problems\n')
-            longtext += _('and try again.\n')
-            progress = self.get_progress()
-            progress.hide()
-            #quit = False
-        elif err == "backend-error":
-            text = _('Fatal Error in backend restart')
-            longtext = _("Backend could not be closed")
-            longtext += '\n\n'
-            longtext += msg
-        else:
-            text = _("Fatal Error : ") + err
-            longtext = msg
-        # Show error dialog    
-        dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
-        dialog.run()
-        dialog.destroy()
-        self.error(text)
-        self.error(longtext)
-        if quit:
+        try:
+            process = self.get_progress()
+            process.close()
+            quit = True
+            title = _("Fatal Error")
+            if err == 'lock-error': # Cant get the yum lock
+                text = _("Can't start the yum backend")
+                longtext = _("Another program is locking yum")
+                longtext += '\n\n'
+                longtext += _('Message from yum backend:')
+                longtext += '\n\n'
+                longtext += msg
+            elif err == "repo-error":
+                text = _("Error in repository setup")
+                longtext = msg
+                longtext += '\n\n'
+                longtext += _('You can try starting \'yumex -n\' from a command line\n')
+                longtext += _('and deselecting the repositories causing problems\n')
+                longtext += _('and try again.\n')
+                progress = self.get_progress()
+                progress.hide()
+                #quit = False
+            elif err == "backend-error":
+                text = _('Fatal Error in backend restart')
+                longtext = _("Backend could not be closed")
+                longtext += '\n\n'
+                longtext += msg
+            else:
+                text = _("Fatal Error : ") + err
+                longtext = msg
+            # Show error dialog    
+            dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
+            dialog.run()
+            dialog.destroy()
+            self.error(text)
+            self.error(longtext)
+            if quit:
+                self.main_quit()
+        except:
             self.main_quit()
+            
 
     def _add_key_binding(self, widget, accel, event='clicked'):
         '''
@@ -402,7 +408,7 @@ class YumexApplication(Controller, YumexFrontend):
         # setup queue view
         self.queue = YumexQueueView(self.ui.queueView)
         self._setup_queue_entry()
-        # seach options
+        # search options
         self.search_options = SearchOptions(self.ui, self.window, self.search_keys, self.default_search_keys)
         self.typeahead_active = self.settings.typeahead_search
         active = self.ui.searchTypeAhead.set_active(self.typeahead_active)
@@ -428,7 +434,7 @@ class YumexApplication(Controller, YumexFrontend):
         # setup repo view
         self.repos = YumexRepoView(self.ui.repoView)
         # setup transaction confirmation dialog
-        self.transactionConfirm = TransactionConfirmation(self.ui, self.window)
+        self.transactionConfirm = TransactionConfirmation(self.ui, self.get_progress())
         # setup yumex log handler
         self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
         # Set saved windows size and separator position
@@ -436,7 +442,8 @@ class YumexApplication(Controller, YumexFrontend):
             self.window.resize(self.settings.win_width, self.settings.win_height)
             if self.settings.win_sep > 0:
                 self.ui.packageSep.set_position(self.settings.win_sep)
-        self.window.show()
+        if not self.cfg.cmd_args or not self.settings.always_yes:        
+            self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
         # check network state
@@ -461,6 +468,7 @@ class YumexApplication(Controller, YumexFrontend):
         else:
             self.backend.setup(repos=self.current_repos)
             self.notebook.set_active("repo")
+        self._setup_options()    
         # setup repository view    
         repos = self.backend.get_repositories()
         self.repos.populate(repos)
@@ -487,14 +495,24 @@ class YumexApplication(Controller, YumexFrontend):
                 if self.settings.autorefresh:
                     self.ui.packageRadioUpdates.clicked()
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-        elif self.settings.execute or self.settings.run: # Auto execute
+        elif self.settings.execute: # Auto execute
             queue = self.queue.queue
             if queue.total() != 0:
                 self.process_transaction()
+            elif self.settings.always_yes:
+                self.main_quit()
             else:
                 self.window.show()
 
         #self.testing()
+        
+    def settings_updated(self):
+        '''
+        Preferences has been update, update the current session to reflect that
+        '''
+        # Typeahead seach active by default.
+        active = self.ui.searchTypeAhead.set_active(self.settings.typeahead_search)
+          
 
 # pylint: enable-msg=W0201
 
@@ -771,13 +789,20 @@ class YumexApplication(Controller, YumexFrontend):
             progress.set_pulse(False)
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
+            
+    def _setup_options(self):
+        self.ui.option_nogpgcheck.set_active(self.settings.no_gpg_check)                    
+        self.ui.option_skipbroken.set_active(self.settings.skip_broken)        
+        self.ui.option_show_newest_only.set_active(self.settings.show_newest_only)            
 
     def _get_options(self):
         '''
         Store the session based options in the Options menu
         '''
+        
         options = []
         options.append((self.ui.option_nogpgcheck, self.ui.option_nogpgcheck.get_active()))
+        options.append((self.ui.option_show_newest_only, self.ui.option_show_newest_only.get_active()))
         return options
 
     def _set_options(self, options):
@@ -1018,7 +1043,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.backend._close() # Close the backend launcher
         except:
             pass
-        self.backend.debug("Backend reset completted")
+        self.backend.debug("Backend reset completed")
 
     # Menu
 
@@ -1036,6 +1061,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.debug("Edit -> Preferences")
         self.preferences.run()
         self.preferences.destroy()
+        self.settings_updated()
 
     def on_proNew_activate(self, widget=None, event=None):
         '''
@@ -1068,8 +1094,9 @@ class YumexApplication(Controller, YumexFrontend):
 
     def on_option_skipbroken_toggled(self, widget=None, event=None):
         self.backend.set_option('skip_broken', widget.get_active())
-
-
+    def on_option_show_newest_only_toggled(self, widget=None, event=None):
+        self.settings.show_newest_only = widget.get_active()
+        
     def on_viewPackages_activate(self, widget=None, event=None):
         '''
         Menu : View -> Packages
@@ -1120,7 +1147,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.ui.packageSearch.set_sensitive(False)
             busyCursor(self.window)
             self.debug("SEARCH : %s" % txt)
-            pkgs = self.backend.search_prefix(txt)
+            pkgs = self.backend.search_prefix(txt, self.settings.show_newest_only)
             self.debug("SEARCH : got %i packages" % len(pkgs))
             if not self.settings.search:
                 self.ui.packageFilterBox.hide()
@@ -1169,7 +1196,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.packageInfo.clear()
             filters = self.search_options.get_filters()
             keys = self.ui.packageSearch.get_text().split(' ')
-            pkgs = self.backend.search(keys, filters)
+            pkgs = self.backend.search(keys, filters, self.settings.show_newest_only)
             if not self.settings.search:
                 self.ui.packageFilterBox.hide()
                 if self._last_filter:
@@ -1287,10 +1314,10 @@ class YumexApplication(Controller, YumexFrontend):
                 progress.set_title(PACKAGE_LOAD_MSG[filter])
                 progress.set_header(PACKAGE_LOAD_MSG[filter])
                 progress.show()
-                pkgs = self.backend.get_packages(getattr(FILTER, active))
+                pkgs = self.backend.get_packages(active)
                 # if Updates, then add obsoletes too
                 if active == 'updates':
-                    obs = self.backend.get_packages(getattr(FILTER, 'obsoletes'))
+                    obs = self.backend.get_packages('obsoletes')
                     pkgs.extend(obs)
                     label = "updates & obsoletes"
                 self._add_packages(pkgs, label)
@@ -1308,6 +1335,7 @@ class YumexApplication(Controller, YumexFrontend):
                 elif active == 'categories': # Categories
                     self.ui.categoryWindow.show_all()
             normalCursor(self.window)
+
 
     def on_categoryContent_cursor_changed(self, widget):
         '''
@@ -1363,7 +1391,7 @@ class YumexApplication(Controller, YumexFrontend):
             isCategory = model.get_value(iterator, 4)
             if not isCategory:
                 grpid = model.get_value(iterator, 2)
-                pkgs = self.backend.get_group_packages(grpid, grp_filter=GROUP.all)
+                pkgs = self.backend.get_group_packages(grpid, grp_filter='all')
                 self.packages.add_packages(pkgs)
 
     # Repo Page    
@@ -1489,7 +1517,6 @@ class YumexApplication(Controller, YumexFrontend):
                 progress.set_header(msg)
                 self.info(msg)
                 pkgs = self.backend.run_command(cmd, userlist)
-                print pkgs
                 if cmd == 'downgrade':
                     pkgs = self._pair_downgrades(pkgs)
                     print pkgs

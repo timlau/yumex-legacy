@@ -42,6 +42,7 @@ import yum.logginglevels as logginglevels
 import yum.Errors as Errors
 from yum.rpmtrans import RPMBaseCallback
 from yum.packages import YumLocalPackage
+from yum.packageSack import packagesNewestByName
 # Pylint in F10 cant handle the init_hook, so disable the cant find output error
 # pylint: disable-msg=F0401
 from output import DepSolveProgressCallBack # yum cli output.py
@@ -55,10 +56,11 @@ from rpmUtils.arch import canCoinstall
 
 from yum.i18n import _ as yum_translated
 
+
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 def catchYumException(func):
@@ -97,6 +99,7 @@ class _YumPreBaseConf:
         self.syslog_ident = None
         self.syslog_facility = None
         self.syslog_device = '/dev/log'
+        self.localpkg_gpgcheck = False
 
 class YumServer(yum.YumBase):
     """ 
@@ -162,9 +165,14 @@ class YumServer(yum.YumBase):
 
     def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None, yum_conf='/etc/yum.conf'):
         '''  Setup the spawned server '''
+        print('Yum Version : %s' % yum.__version__)
         yum.YumBase.__init__(self)
         self.mediagrabber = self.mediaGrabber
         parser = OptionParser()
+        # FIXME: workaround for issue in the auto-update-debuginfo plugin
+        # The issue is fixed in upstream yum-utils, but it make take some time to get it out.
+        # So we work around it here
+        parser.add_option("--enablerepo", type='string', dest='repos', default=[])
         # Setup yum preconfig options
         self.preconf.debuglevel = debuglevel
         self.preconf.init_plugins = plugins
@@ -381,7 +389,11 @@ class YumServer(yum.YumBase):
         if not action:
             pkg, action = self._get_action(pkg)
         action = pack(action)
-        return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
+        if hasattr(pkg,'pkgtype') and pkg.pkgtype == 'local': # if local package, then return localpath instead of repoid   
+            return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.localpath,
+                    summary, action, pkg.size, recent)
+        else:
+            return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.ui_from_repo,
                     summary, action, pkg.size, recent)
 
     def _show_requirement(self, req, pkg):
@@ -426,11 +438,12 @@ class YumServer(yum.YumBase):
         ''' write an warning message '''
         self.write(":warning\t%s" % msg)
 
-    def fatal(self, err, msg):
+    def fatal(self, err, msg, raise_exception = True):
         ''' write an fatal message '''
         pmsg = pack(msg)
         self.write(":fatal\t%s\t%s" % (err, pmsg))
-        raise YumexBackendFatalError(err, msg)
+        if raise_exception:
+            raise YumexBackendFatalError(err, msg)
 
     def gpg_check(self, po, userid, hexkeyid):
         ''' write an fatal message '''
@@ -496,7 +509,7 @@ class YumServer(yum.YumBase):
         self.write(":end\t%s" % state)
 
 
-    @catchYumException
+    #@catchYumException
     def get_packages(self, narrow, dupes):
         '''
         get list of packages and send results 
@@ -669,7 +682,8 @@ class YumServer(yum.YumBase):
         '''
         pkgstr = args[:-1]
         action = args[ -1]
-        po = self._getPackage(pkgstr)
+        if action != 'localinstall': # Dont get a po if it is at local package
+            po = self._getPackage(pkgstr)
         txmbrs = []
         if action == "install":
             txmbrs = self.install(po)
@@ -681,6 +695,9 @@ class YumServer(yum.YumBase):
             txmbrs = self.reinstall(po)
         elif action == "downgrade":
             txmbrs = self.downgrade(po)
+        elif action == "localinstall":
+            n, e, v, r, a, rpmfile = pkgstr
+            txmbrs = self.installLocal(rpmfile)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
             self.debug("Added : " + str(txmbr), __name__)
@@ -726,7 +743,12 @@ class YumServer(yum.YumBase):
             if cmd == 'ins':
                 action = 'i'
                 for pat in userlist:
-                    self.install(pattern=pat)
+                    if pat.endswith('.rpm'):
+                        self.debug("This is an local rpm : %s " % pat)
+                        action = 'li'
+                        self.installLocal(pat)
+                    else:
+                        self.install(pattern=pat)
             elif cmd == 'rem' or cmd == 'era':
                 action = 'r'
                 for pat in userlist:
@@ -1020,13 +1042,15 @@ class YumServer(yum.YumBase):
                 good_tups[po.pkgtup] = 1
         return good_pkgs
 
-    def search_prefix(self, prefix):
+    def search_prefix(self, prefix, show_newest_only):
         prefix += '*'
         self.debug("prefix: %s " % prefix)
         pkgs = self.pkgSack.returnPackages(patterns=[prefix])
         ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
         pkgs.extend(ipkgs)
         best = self._limit_package_list(pkgs)
+        if show_newest_only:
+            best = packagesNewestByName(best)
         self._return_packages(best)
         self.ended(True)
 
@@ -1037,6 +1061,7 @@ class YumServer(yum.YumBase):
         '''
         keys = unpack(args[0])
         filters = unpack(args[1])
+        show_newest_only = unpack(args[2])
         ygh = self.doPackageLists(pkgnarrow='updates')
         pkgs = {}
         for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
@@ -1049,9 +1074,13 @@ class YumServer(yum.YumBase):
                 pkgs[na] = [pkg]
             else:
                 pkgs[na].append(pkg)
+        packages = []
         for na in pkgs:
             best = self._limit_package_list(pkgs[na])
-            self._return_packages(best)
+            packages.extend(best)
+        if show_newest_only:
+            packages = packagesNewestByName(packages)
+        self._return_packages(packages)
         self.ended(True)
 
     def get_repos(self, args):
@@ -1201,7 +1230,10 @@ class YumServer(yum.YumBase):
     def get_history_packages(self, tid, data_set='trans_data'):
         tids = self.history.old([tid])
         for yht in tids:
-            yhp = getattr(yht, data_set)
+            if hasattr(yht,data_set): # make sure we have the data_set, yum-3.2.27 dont have trans_skip
+                yhp = getattr(yht, data_set)
+            else:
+                yhp = []
             for pkg in yhp:
                 self._show_history_package(pkg)
         self.ended(True)
@@ -1272,7 +1304,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'search':
             self.search(args)
         elif cmd == 'search-prefix':
-            self.search_prefix(args[0])
+            self.search_prefix(args[0], unpack(args[1]))
         elif cmd == 'update-info':
             self.get_update_info(args)
         elif cmd == 'set-option':
@@ -1314,6 +1346,12 @@ class YumServer(yum.YumBase):
                 t = time.time() - ts
                 self.debug("%s Args: %s  took %.2f s to complete" % (args[0], args[1:], t), __name__)
         except YumexBackendFatalError, e:
+            self.ended(True)
+            self.quit()
+        except Errors.RepoError, e:
+            # signal to the front end that we have a fatal error
+            pmsg = pack(str(e))
+            self.write(":fatal\t%s\t%s" % ('repo-error', pmsg))
             self.ended(True)
             self.quit()
         except:
@@ -1462,7 +1500,7 @@ class YumexRPMCallback(RPMBaseCallback):
 
     def show_action(self, package, action):
         '''
-        Show action messages after trasaction is completted
+        Show action messages after trasaction is completed
         @param package: package name
         @param action: TS Action enum
         '''
@@ -1576,7 +1614,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
             if name not in self._printed:
                 # show downloaded <filename> ( <size> )
                 if name == '<delta rebuild>':
-                    self.base.info(_('Rebuild from deltarpms completted'))
+                    self.base.info(_('Rebuild from deltarpms completed'))
                 else:
                     self.base.info(_('Downloaded : %s ( %s )') % (name, self.totSize))
                 self._printed.append(name)

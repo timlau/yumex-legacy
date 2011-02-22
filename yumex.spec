@@ -1,7 +1,7 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.0
+Version:  3.0.1
 Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
@@ -22,10 +22,11 @@ Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
 Requires: usermode
 Requires: pexpect
-Requires: python-enum
 Requires: python-iniparse
 Requires: dbus-python
 Requires: udisks
+Requires: python-kitchen
+Requires: urlgrabber
 
 %description
 Graphical User Interface for Yum.
@@ -75,6 +76,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Thu Jan 6 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.1-1
+- removed gnome-python2-gconf requirement, not need anymore
+* Sun Jan 2 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.1-1
+- Added urlgrabber requirement
+* Tue Dec 21 2010 Tim Lauridsen <timlau@fedoraproject.org> - 3.0.1-1
+- bumped version to 3.0.1-1
 * Sat Nov 6 2010 Tim Lauridsen <timlau@fedoraproject.org> - 3.0.0-1
 - bumped version to 3.0.0-1
 * Sat Sep 11 2010 Tim Lauridsen <timlau@fedoraproject.org> - 2.9.11-1

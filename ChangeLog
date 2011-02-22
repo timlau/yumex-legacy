@@ -1,3 +1,225 @@
+2010-12-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.1
+
+2010-12-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexbase/__init__.py: Make
+	translations work again
+
+2010-12-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/POTFILES.in, po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po,
+	po/fr.po, po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po,
+	po/nl.po, po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po,
+	po/uk.po, po/yumex.pot, po/zh_CN.po: update POTFILES, po and pot
+
+2010-12-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/guihelpers/__init__.py: Remove uneeded gtk.glade import
+
+2010-12-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/views.py, yumex.spec: Lose
+	the python-enum requirement
+
+2010-12-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/op-test.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/__init__.py, src/yumexbase/conf.py,
+	src/yumexbase/constants.py, src/yumexbase/i18n.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py, src/yumexgui/views.py, yumex.spec: Use
+	translation wrappers from python kitchen
+
+2010-12-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: exit on -X -y if there is nothing to do
+
+
+2010-12-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/guihelpers/__init__.py: check if we have a valid mainwin,
+	before setting busycursor
+
+2010-12-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Dont show main window, when using -X -y
+
+
+2010-12-04  dominique <dominique@fedoraproject.org>
+
+	* po/fr.po: l10n: Updates to French (fr) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-12-04  dominique <dominique@fedoraproject.org>
+
+	* po/fr.po: l10n: Updates to French (fr) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-12-04  raven <raven@fedoraproject.org>
+
+	* po/pl.po: l10n: Updates to Polish (pl) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-12-04  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-12-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
+	po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po,
+	po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po: Update po & pot files
+
+2010-12-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py: patch by dominique chepioq to make
+	more strings translatable
+
+2010-12-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: Fix:  AttributeError: 'gtk.ScrolledWindow'
+	object has no attribute 'set_visible' error on rhel6
+
+2010-11-25  dominique <dominique@fedoraproject.org>
+
+	* po/fr.po: l10n: Updates to French (fr) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/fr.po: remove fuzzy entry from fr.po, to fix missing
+	translation
+
+2010-11-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/fa.po, po/fr.po, po/uk.po: po refresh
+
+2010-11-22  dominique <dominique@fedoraproject.org>
+
+	* po/fr.po: l10n: Updates to French (fr) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex
+
+2010-11-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, src/yumexbackend/yum_client.py: use sudo -n to bail out
+	if password is needed
+
+2010-11-21  behtooee <behtooee@fedoraproject.org>
+
+	* po/fa.po: l10n: Updates to Persian (fa) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: uddated HEAD branch in Makefile
+
+2010-11-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbase/conf.py: Added
+	suport for used sudo to run backend
+
+2010-11-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: remove debug printing
+
+2010-11-20  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-20  behtooee <behtooee@fedoraproject.org>
+
+	* po/fa.po: l10n: new fa translation  Transmitted-via: Transifex
+	(translate.fedoraproject.org)
+
+2010-11-19  raven <raven@fedoraproject.org>
+
+	* po/pl.po: l10n: Updates to Polish (pl) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: fix traceback with missing run option
+
+2010-11-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
+	po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po,
+	po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po: updated translation po & pot
+
+2010-11-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py, src/yumexgui/dialogs.py: change the
+	wording of the typeahead search option in preferences and make it
+	work without restart of yumex
+
+2010-11-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex
+
+2010-11-15  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: l10n: Updates to Spanish (Castilian) (es) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/progress-test.py, src/yumex.glade,
+	src/yumexbackend/__init__.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py: fix typos by Yuri
+	Chornoivan
+
+2010-11-08  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-08  raven <raven@fedoraproject.org>
+
+	* po/pl.po: l10n: Updates to Polish (pl) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Hide 'Select All' when doing a search on
+	the update page
+
+2010-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Make test-release target a bit more generic
+
+2010-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
+	po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po,
+	po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po: Refreshed po files
+
+2010-11-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, src/yumexgui/__init__.py,
+	src/yumexgui/views.py: Make the search option translable
+
+2010-11-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: updated TODO
+
+2010-11-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2010-11-06  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.0

@@ -35,7 +35,7 @@ from yumexbackend.yumMediaManagerUDisks import MediaManagerUDisks as MediaManage
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 class PackageCache:
@@ -197,7 +197,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 self.debug(msg)
                 progress.set_action(msg)
         elif ftype == 'REBUILD':
-            progress.set_action(_('Buiding rpms from deltarpm'))
+            progress.set_action(_('Building rpms from deltarpm'))
         else: # this is a package being downloaded
             #self.frontend.debug("DNL (%s): %s - %3i %%" % (ftype,name,percent))
             if name:
@@ -341,7 +341,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def get_packages(self, pkg_filter, show_dupes=False):
         ''' 
         get packages based on filter 
-        @param pkg_filer: package list filter (Enum FILTER)
+        @param pkg_filer: package list filter 
         @return: a list of packages
         '''
         if str(pkg_filter) == 'all':
@@ -438,22 +438,22 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.get_available_downgrades(self, po)
         return self.package_cache.find_packages(pkgs)
 
-    def search(self, keys, sch_filters, use_cache=True):
+    def search(self, keys, sch_filters, show_newest_only, use_cache=True ):
         ''' 
         get packages matching keys
-        @param keys: list of keys to seach for
+        @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
         self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
-        pkgs = YumClient.search(self, keys, sch_filters)
+        pkgs = YumClient.search(self, keys, sch_filters, show_newest_only)
         return self.package_cache.find_packages(pkgs)
 
-    def search_prefix(self, prefix, use_cache=True):
+    def search_prefix(self, prefix, show_newest_only, use_cache=True):
         '''
         Search for packages with prefix
         @param prefix prefix to search for
         '''
-        pkgs = YumClient.search_prefix(self, prefix)
+        pkgs = YumClient.search_prefix(self, prefix, show_newest_only)
         return self.package_cache.find_packages(pkgs)
 
     def run_command(self, cmd, userlist, use_cache=True):
@@ -542,7 +542,7 @@ class YumexTransactionYum(YumexTransactionBase):
         rc, msgs, trans, size = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
-            progress.hide()
+            #progress.hide()
             if self.frontend.confirm_transaction(trans, size[0]): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()

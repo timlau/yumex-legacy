@@ -36,7 +36,7 @@ from yumexgui.views import YumexDepsPackageView
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase.i18n import _, P_
+from yumexbase import _, P_
 # pylint: enable-msg=W0611
 
 #
@@ -224,11 +224,7 @@ class PackageInfo(SelectorBase):
 
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
-        client = gconf.client_get_default()
-        browser = client.get_string("/desktop/gnome/url-handlers/http/command") or "firefox %s"
-        # Because URLs contain & it needs to be quoted
-        browser = browser % '"' + url + '"'
-        subprocess.Popen(args=browser, shell=True)
+        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def update(self, pkg):
         '''
@@ -262,11 +258,11 @@ class PackageInfo(SelectorBase):
 
     def _set_output_view(self, key):
         if key == 'deps':
-            self.frontend.ui.packageInfoSW.set_visible(False)
-            self.frontend.ui.packageDepsSW.set_visible(True)
+            self.frontend.ui.packageInfoSW.hide()
+            self.frontend.ui.packageDepsSW.show()
         else:
-            self.frontend.ui.packageInfoSW.set_visible(True)
-            self.frontend.ui.packageDepsSW.set_visible(False)
+            self.frontend.ui.packageInfoSW.show()
+            self.frontend.ui.packageDepsSW.hide()
 
     def update_console(self, key):
         '''
