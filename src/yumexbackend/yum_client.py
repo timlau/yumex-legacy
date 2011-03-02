@@ -627,8 +627,8 @@ class YumClient(YumClientBase):
         else:
             return None
 
-    def get_update_info(self, ident):
-        self._send_command('update-info', [ident])
+    def get_update_info(self, ident, obsolete):
+        self._send_command('update-info', [ident, pack(obsolete)])
         msgs = self._get_messages()
         if 'updateinfo' in msgs and 'updated_po' in msgs:
             return msgs['updateinfo'], msgs['updated_po']

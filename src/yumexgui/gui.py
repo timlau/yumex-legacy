@@ -293,17 +293,26 @@ class PackageInfo(SelectorBase):
         upd_info = None
         updated_po = None
         upd_info_list, updated_po_list = self.pkg.updateinfo
+        updated_pkgs = updated_po_list[0]
         progress = self.frontend.get_progress()
         progress.hide()
         if not upd_info_list:
             return
+        if updated_pkgs:
+            new_pkg = "%s (%s) --> " % (self.pkg.fullname, self.pkg.size)
+            self.console.write(new_pkg, "changelog-header", newline=False)
+            spaces = " " * len(new_pkg)
+            i = 0
+            for po in updated_pkgs:
+                if i == 0:
+                    msg = str(po)
+                else:
+                    msg = "%s %s" % (spaces,po)
+                self.console.write(msg, "changelog-header")
+        self.console.write('\n')
         for i in xrange(0, len(upd_info_list)):
             ndx = (len(upd_info_list) - 1) - i
             upd_info = upd_info_list[ndx]
-            updated_po = updated_po_list[ndx]
-            if updated_po and updated_po <> 'None':
-                msg = "%s (%s) --> %s \n\n" % (self.pkg.fullname, self.pkg.size, updated_po)
-                self.console.write(msg, "changelog-header")
             if upd_info:
                 msg = "%s\n\n" % upd_info['update_id']
                 self.console.write(msg, "changelog-header")

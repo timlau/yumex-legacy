@@ -236,7 +236,11 @@ class YumexPackage:
         '''
         get update info for package
         '''
-        return self.backend.get_update_info(self.id)
+        if self.action == 'o':
+            return self.backend.get_update_info(self.id, obsolete=True)
+        else:
+            return self.backend.get_update_info(self.id, obsolete=False)
+            
 
 
     @property

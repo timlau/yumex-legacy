@@ -1,0 +1,8 @@
+[main]
+host = http://www.transifex.net
+
+[yumex.master]
+file_filter = po/<lang>.po
+source_file = po/yumex.pot
+source_lang = en
+

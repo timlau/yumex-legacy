@@ -1156,32 +1156,44 @@ class YumServer(yum.YumBase):
                     pass # No updateinfo.xml.gz in repo
         return self._updateMetadata
 
-    def get_update_info(self, args):
+    def get_update_info(self, pkg_id, obsolete):
         '''
         Get update infomation
         '''
-        pkg = self._getPackage(args)
+        pkg = self._getPackage(pkg_id)
         if pkg:
             md = self.update_metadata
             nvr = (pkg.name, pkg.ver, pkg.rel)
             notices = md.get_notices(pkg.name)
             for ret in notices:
                 self.message("updateinfo", ret)
+            if obsolete:
+                obs = self._get_obsoleted_po(pkg)
+                pkgs = [str(po) for po in obs]
+                self.message("updated_po", pkgs)
+            else:
                 po = self._get_updated_po(pkg)
-                self.message("updated_po", str(po))
+                self.message("updated_po", [str(po)])
         self.ended(True)
 
     def _get_updated_po(self, pkg):
         po = None
-        tuples = self._getUpdates().getUpdatesTuples(name=pkg.name)
-        if not tuples:
-            tuples = self._getUpdates().getObsoletersTuples(name=pkg.name)
-        if tuples:
-            tup = tuples[0]
+        tuples_upd = self._getUpdates().getUpdatesTuples(name=pkg.name)
+        if tuples_upd:
+            tup = tuples_upd[0]
             if tup:
                 new, old = tup
                 po = self.getInstalledPackageObject(old)
         return po
+
+    def _get_obsoleted_po(self, pkg):
+        obs = []
+        tuples_obs = self._getUpdates().getObsoletersTuples(name=pkg.name)
+        if tuples_obs:
+            for new,old in tuples_obs: 
+                po = self.getInstalledPackageObject(old)
+                obs.append(po)
+        return obs
 
     def clean(self, args):
         what = args[0]
@@ -1306,7 +1318,7 @@ class YumServer(yum.YumBase):
         elif cmd == 'search-prefix':
             self.search_prefix(args[0], unpack(args[1]))
         elif cmd == 'update-info':
-            self.get_update_info(args)
+            self.get_update_info(args[0:-1],unpack(args[-1]))
         elif cmd == 'set-option':
             self.set_option(args)
         elif cmd == 'clean':
