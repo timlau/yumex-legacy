@@ -14,7 +14,8 @@ TODO:
 
    	RFE: Add option to disable the 'do you want to exit' dialog, maybe a do not show me again check mark in 
    	     dialog.
-   	     
+
+	RFE: Use Shift + Mouse button to select a group of packages (https://fedorahosted.org/yumex/ticket/20)   	     
   	
 BUGS:
   	
