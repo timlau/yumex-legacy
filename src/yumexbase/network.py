@@ -72,10 +72,12 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
                 net = bus.get_object('org.freedesktop.NetworkManager', d)
                 net_props = dbus.Interface(net, 'org.freedesktop.DBus.Properties')
                 props = net_props.GetAll('org.freedesktop.NetworkManager.Device')
+                
                 state = props['State']
                 interface = "%s (%s)" % (props['Interface'], props['Driver'])
-                if state == 8: # 8 = connected
-                    #self.logger.info("network interface %s is connected" % interface)
+                #print interface, state
+                if state == 8 or state == 100: # 8 = connected (nm8), 100 = connected (nm9)
+                    self.logger.debug("network interface %s is connected" % interface)
                     self._connected = True
                 else: # Disconnected or other not connected state
                     if self._connected == None:
@@ -84,6 +86,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
         except dbus.exceptions.DBusException, e:
             # Could not get the state from NetworkManager
             # It might not be running
+            print str(e)
             return False
 
 if __name__ == '__main__':
