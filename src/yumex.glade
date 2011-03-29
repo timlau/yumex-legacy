@@ -1148,8 +1148,8 @@ words.
                         <property name="visible">True</property>
                         <property name="layout_style">end</property>
                         <child>
-                          <object class="GtkButton" id="transactionOK">
-                            <property name="label">gtk-ok</property>
+                          <object class="GtkButton" id="transactionCancel">
+                            <property name="label">gtk-cancel</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -1162,8 +1162,8 @@ words.
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton" id="transactionCancel">
-                            <property name="label">gtk-cancel</property>
+                          <object class="GtkButton" id="transactionOK">
+                            <property name="label">gtk-ok</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
