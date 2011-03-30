@@ -1,7 +1,7 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.1
+Version:  3.0.2
 Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
@@ -76,6 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Wed Mar 30 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.2-1
+- bumped version to 3.0.2-1
 * Thu Jan 6 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.1-1
 - removed gnome-python2-gconf requirement, not need anymore
 * Sun Jan 2 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.1-1
