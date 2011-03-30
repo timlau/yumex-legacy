@@ -1,3 +1,264 @@
+2011-03-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.2
+
+2011-03-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: fix bad english message
+
+2011-03-29  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of github.com:timlau/yumex
+
+2011-03-29  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/network.py: make network detection work with latest
+	NetworkManager
+
+2011-03-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* TODO: updated TODO list
+
+2011-03-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: switch OK & Cancel button in transaction
+	confirmation
+
+2011-03-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* .tx/config, src/yumexbackend/__init__.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/gui.py: Show the packages being obsoleted, when showing
+	the updateinfo for a obsoletes.
+
+2011-02-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/fr.po, po/it_IT.po: pulled updated translations from
+	transifex.net
+
+2011-02-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/it_IT.po: Updated translations from transifex.net
+
+2011-02-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: fix dont -> don't
+
+2011-02-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	merge with master
+
+2011-02-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* README: Added README
+
+2011-02-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: make history more failsafe, dont
+	explode if in yum-3.2.27 (epel6)
+
+2011-02-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/views.py: make sure all values are strings
+
+2011-02-20  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/yumex.pot: updated header in pot file
+
+2011-02-17  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: fix cut & paste error
+
+2011-02-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/conf.py, src/yumexgui/__init__.py: Add workaround for
+	traceback with auto-debuginstall-update plugin Add 'Show Newest
+	Only' to show only latest version of a package in a search
+
+2011-02-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* .gitignore, src/test/daemon/Makefile, src/test/daemon/client.py,
+	src/test/daemon/daemon.py,
+	src/test/daemon/dbus/org.yumex.YumBackend.conf,
+	src/test/daemon/dbus/org.yumex.YumBackend.service,
+	src/test/daemon/dbus/org.yumex.conf,
+	src/test/daemon/dbus/org.yumex.service,
+	src/test/daemon/policykit1/org.yumex.YumBackend.policy,
+	src/test/daemon/policykit1/org.yumex.policy,
+	src/test/dbus-test/client.py, src/test/dbus-test/server.py: more
+	dbus testing stuff
+
+2011-02-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/daemon/client.py, src/test/daemon/daemon.py: more daemon
+	test cleanups
+
+2011-02-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/daemon/Makefile, src/test/daemon/client.py,
+	src/test/daemon/daemon.py,
+	src/test/daemon/policykit0/org.yumex.policy,
+	src/test/daemon/policykit0/org.yumex.policy.in,
+	src/test/daemon/policykit1/org.yumex.policy,
+	src/test/daemon/policykit1/org.yumex.policy.in: Cleanup the test
+	daemon code
+
+2011-02-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/daemon/Makefile, src/test/daemon/client.py,
+	src/test/daemon/daemon.py, src/test/daemon/dbus/org.yumex.conf,
+	src/test/daemon/dbus/org.yumex.service,
+	src/test/daemon/inst/etc/dbus-1/system.d/org.yumex.conf,
+	src/test/daemon/inst/usr/share/dbus-1/system-services/org.yumex.ser
+	vice,
+	src/test/daemon/inst/usr/share/polkit-1/actions/org.yumex.policy,
+	src/test/daemon/inst/usr/share/yumex/client.py,
+	src/test/daemon/inst/usr/share/yumex/daemon.py,
+	src/test/daemon/inst/usr/share/yumex/yumex-deamon,
+	src/test/daemon/policykit0/org.yumex.policy,
+	src/test/daemon/policykit0/org.yumex.policy.in,
+	src/test/daemon/policykit1/org.yumex.policy,
+	src/test/daemon/policykit1/org.yumex.policy.in,
+	src/test/daemon/yumex-daemon: Added yumex DBUS daemon test code
+
+2011-01-20  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/__init__.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py: Fix the broken repo error handling, endless
+	looping
+
+2011-01-19  dominique <dominique@fedoraproject.org>
+
+	* po/fr.po: l10n: Updates to French (fr) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-17  kmuratov <kmuratov@fedoraproject.org>
+
+	* po/ru.po: l10n: Updates to Russian (ru) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/dialogs.py: fix blank progress
+	dialog in second run
+
+2011-01-15  raven <raven@fedoraproject.org>
+
+	* po/pl.po: l10n: Updates to Polish (pl) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-15  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/progress-test.py, src/yumexgui/dialogs.py: fixed progress
+	testing code
+
+2011-01-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
+	po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po,
+	po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/yumex.pot, po/zh_CN.po, src/yumex.glade: Make Undo the current
+	search translatable, glade3 cant do that :(
+
+2011-01-13  kmuratov <kmuratov@fedoraproject.org>
+
+	* po/ru.po: l10n: Updates to Russian (ru) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-13  kmuratov <kmuratov@fedoraproject.org>
+
+	* po/ru.po: l10n: Updates to Russian (ru) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/progress-test.py, src/yumex.glade,
+	src/yumexbackend/yum_backend.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py: Use the progress
+	to show transaction Confirmation
+
+2011-01-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/progress-test.py, src/yumex.glade,
+	src/yumexbase/constants.py, src/yumexgui/dialogs.py: Extend the
+	progress dialog to be able to include the transaction confirmation
+
+2011-01-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Stupid glade3, it shows a GtkVBox with default
+	orientation = horizontal, if at a orientation property is not set.
+	What do they think the V in GtkVBox stand for.
+
+2011-01-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ru.po: Added new russian translation by Павел
+	Скребнев
+
+2011-01-10  elsupergomez <elsupergomez@fedoraproject.org>
+
+	* po/es.po: l10n: Updates to Spanish (Castilian) (es) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2011-01-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: Added use_sudo to preferences
+
+2011-01-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py, yumex.spec: use gtk.show_uri and skip the
+	gnome-python2-gconf dep.
+
+2011-01-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Fix: not all pkg object types has
+	a pkgtype attribute
+
+2011-01-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex
+
+2011-01-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py, src/yumexgui/__init__.py: Added command
+	line options --nogpgcheck & --skip-broken to active these options
+	from commandline (default status can be set in ~/.yumex.conf by
+	using no_gpg_check=0/1 and skip_broken=0/1)
+
+2011-01-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexgui/views.py: Added support for
+	installing local rpm files, using yumex install /path/to/rpmfile
+
+2011-01-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex
+
+2011-01-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: Added urlgrabber to requirments
+
+2010-12-31  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Added progressExtras vbox to progress dialog for
+	future use
+
+2010-12-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: Added missing Requires: gnome-python2-gconf
+
+2010-12-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2010-12-21  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.1
@@ -86,6 +347,11 @@
 	* src/yumexgui/gui.py: Fix:  AttributeError: 'gtk.ScrolledWindow'
 	object has no attribute 'set_visible' error on rhel6
 
+2010-11-27  andreyjktl <andreyjktl@fedoraproject.org>
+
+	* po/ru.po: l10n: Updates to Russian (ru) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
 2010-11-25  dominique <dominique@fedoraproject.org>
 
 	* po/fr.po: l10n: Updates to French (fr) translation
@@ -173,6 +439,11 @@
 	* po/es.po: l10n: Updates to Spanish (Castilian) (es) translation
 	Transmitted-via: Transifex (translate.fedoraproject.org)
 
+2010-11-15  beckerde <beckerde@fedoraproject.org>
+
+	* po/es.po: l10n: Updates to Spanish (Castilian) (es) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
 2010-11-08  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/test/progress-test.py, src/yumex.glade,
@@ -184,6 +455,16 @@
 2010-11-08  yurchor <yurchor@fedoraproject.org>
 
 	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-08  yurchor <yurchor@fedoraproject.org>
+
+	* po/uk.po: l10n: Updates to Ukrainian (uk) translation
+	Transmitted-via: Transifex (translate.fedoraproject.org)
+
+2010-11-08  raven <raven@fedoraproject.org>
+
+	* po/pl.po: l10n: Updates to Polish (pl) translation
 	Transmitted-via: Transifex (translate.fedoraproject.org)
 
 2010-11-08  raven <raven@fedoraproject.org>
