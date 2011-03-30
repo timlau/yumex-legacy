@@ -449,7 +449,7 @@ class YumexApplication(Controller, YumexFrontend):
         # check network state
         if self.is_offline:
             self.info(_("Not connected to an network"))
-            rc = questionDialog(self.window, _("Not connected to an network.\nDo you want to continue "))
+            rc = questionDialog(self.window, _("Not connected to a network.\nDo you want to continue "))
             if not rc:
                 self.main_quit()
         else:
