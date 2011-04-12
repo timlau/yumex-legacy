@@ -293,12 +293,12 @@ class PackageInfo(SelectorBase):
         upd_info = None
         updated_po = None
         upd_info_list, updated_po_list = self.pkg.updateinfo
+        progress = self.frontend.get_progress()
+        progress.hide()
         if not updated_po_list:
             self.console.write(_("No Update information"), "changelog-header", newline=False)
             return
         updated_pkgs = updated_po_list[0]
-        progress = self.frontend.get_progress()
-        progress.hide()
         if not upd_info_list:
             return
         if updated_pkgs:
