@@ -1173,7 +1173,10 @@ class YumServer(yum.YumBase):
                 self.message("updated_po", pkgs)
             else:
                 po = self._get_updated_po(pkg)
-                self.message("updated_po", [str(po)])
+                if po:
+                    self.message("updated_po", [str(po)])
+                else:
+                    self.message("updated_po", [])
         self.ended(True)
 
     def _get_updated_po(self, pkg):
