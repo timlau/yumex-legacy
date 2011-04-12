@@ -24,7 +24,7 @@
 
 import gtk
 
-import gconf, subprocess
+import subprocess
 
 from datetime import date
 from yumexbase.constants import *
