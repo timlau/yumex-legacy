@@ -1,3 +1,30 @@
+2011-04-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.3
+
+2011-04-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Dont show package --> None, if
+	package is not an update
+
+2011-04-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: Always hide the progress dialog, also if no
+	update info
+
+2011-04-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: removed used gconf import (rhbz #695144)
+
+2011-04-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: Fix crash when showing update info on
+	package, with no update info
+
+2011-03-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2011-03-30  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.2
