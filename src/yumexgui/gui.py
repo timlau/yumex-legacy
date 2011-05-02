@@ -224,7 +224,11 @@ class PackageInfo(SelectorBase):
 
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
-        gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        #if g_find_program_in_path("xdg-open"):
+        if True:
+            os.popen("xdg-open %s"%url)
+        else:
+            gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def update(self, pkg):
         '''
