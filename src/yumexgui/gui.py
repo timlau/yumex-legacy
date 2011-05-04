@@ -31,6 +31,7 @@ from yumexbase.constants import *
 from guihelpers import TextViewBase, busyCursor, normalCursor
 from yum.i18n import utf8_text_wrap
 from yumexgui.views import YumexDepsPackageView
+from subprocess import call
 
 
 # We want these lines, but don't want pylint to whine about the imports not being used
@@ -224,10 +225,8 @@ class PackageInfo(SelectorBase):
 
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
-        #if g_find_program_in_path("xdg-open"):
-        if True:
-            os.popen("xdg-open %s"%url)
-        else:
+        rc = call("xdg-open %s"%url, shell=True)
+        if rc != 0: # failover to gtk.show_uri, if xdg-open fails or is not installed
             gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
 
     def update(self, pkg):
