@@ -32,7 +32,7 @@ from guihelpers import TextViewBase, busyCursor, normalCursor
 from yum.i18n import utf8_text_wrap
 from yumexgui.views import YumexDepsPackageView
 from subprocess import call
-
+import re
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -185,7 +185,7 @@ class SelectorBase:
             button.show()
 
 class PackageInfo(SelectorBase):
-    '''
+    '''    
     Package information gui handler
     controls the package info Textview and the buttons to show
     description, changelog and filelist.
@@ -223,11 +223,21 @@ class PackageInfo(SelectorBase):
         self._selected = 'description'
         self._set_output_view('description')
 
+    def _is_url(self,url):
+        urls = re.findall('^http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+~]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', url)
+        if urls:
+            return True
+        else:
+            return False
+        
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
-        rc = call("xdg-open %s"%url, shell=True)
-        if rc != 0: # failover to gtk.show_uri, if xdg-open fails or is not installed
-            gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        if self._is_url(url): # just to be sure and prevent shell injection
+            rc = call("xdg-open %s"%url, shell=True)
+            if rc != 0: # failover to gtk.show_uri, if xdg-open fails or is not installed
+                gtk.show_uri(None, url, gtk.gdk.CURRENT_TIME)
+        else:
+            self.frontend.warning("%s is not an url" % url)
 
     def update(self, pkg):
         '''
