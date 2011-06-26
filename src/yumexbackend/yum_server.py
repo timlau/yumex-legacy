@@ -954,7 +954,8 @@ class YumServer(yum.YumBase):
             else:
                 best_pkgs = self._group_names2aipkgs(grp.mandatory_packages.keys() + grp.default_packages.keys())
             for key in best_pkgs:
-                (apkg, ipkg) = best_pkgs[key][0]
+                # Sort the matching packages and take the last one (the best match for current arch)
+                (apkg, ipkg) = sorted(best_pkgs[key], key=lambda x: x[1] or x[0])[-1]
                 if ipkg:
                     self._show_package(ipkg, 'r')
                 else:
