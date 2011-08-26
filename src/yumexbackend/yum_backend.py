@@ -438,22 +438,22 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         pkgs = YumClient.get_available_downgrades(self, po)
         return self.package_cache.find_packages(pkgs)
 
-    def search(self, keys, sch_filters, show_newest_only, use_cache=True ):
+    def search(self, keys, sch_filters, show_newest_only, package_type, use_cache=True ):
         ''' 
         get packages matching keys
         @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
         '''
-        self.frontend.debug('Seaching for %s in %s ' % (keys, sch_filters))
-        pkgs = YumClient.search(self, keys, sch_filters, show_newest_only)
+        self.frontend.debug('Seaching for %s in %s (%s)' % (keys, sch_filters, package_type))
+        pkgs = YumClient.search(self, keys, sch_filters, show_newest_only, package_type)
         return self.package_cache.find_packages(pkgs)
 
-    def search_prefix(self, prefix, show_newest_only, use_cache=True):
+    def search_prefix(self, prefix, show_newest_only, package_type, use_cache=True):
         '''
         Search for packages with prefix
         @param prefix prefix to search for
         '''
-        pkgs = YumClient.search_prefix(self, prefix, show_newest_only)
+        pkgs = YumClient.search_prefix(self, prefix, show_newest_only, package_type)
         return self.package_cache.find_packages(pkgs)
 
     def run_command(self, cmd, userlist, use_cache=True):

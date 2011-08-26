@@ -67,7 +67,7 @@ class YumexBackendBase(object):
         '''
         raise NotImplementedError()
 
-    def search(self, keys, sch_filters):
+    def search(self, keys, sch_filters, package_type):
         ''' 
         get packages matching keys
         @param keys: list of keys to search for
@@ -250,6 +250,16 @@ class YumexPackage:
         '''
         return self.backend.get_dependencies(self.id)
 
+
+    @property
+    def is_update(self):
+        if self.action == 'o' or self.action == 'u':
+            return True
+        else:
+            return False
+        
+        
+        
 
 
 

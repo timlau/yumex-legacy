@@ -223,7 +223,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.current_category = None
         self.last_queue_text = ""
         self.last_search_text = ""
-
+        self._last_search_filter = None
 
 
     @property
@@ -483,7 +483,7 @@ class YumexApplication(Controller, YumexFrontend):
             rc = self.do_commands(self.cfg.cmd_args)
         if rc: # No commands executed
             if self.settings.search:            # Search only mode
-                self.ui.packageFilterBox.hide()
+                self._hide_filters_on_search(hide = True)
                 self.ui.packageSelectAll.hide()
                 self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
             elif self.settings.update_only:     # Update only mode
@@ -832,7 +832,7 @@ class YumexApplication(Controller, YumexFrontend):
 #            self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")     # show the package page
             if not self.settings.update_only and not self.settings.search:
-                self.ui.packageFilterBox.show()         # Show the filter selector
+                self._hide_filters_on_search(hide = False)
             self.ui.packageSearch.set_text('')      # Reset search entry
             self._set_options(options)
             if not self.settings.search:
@@ -1139,27 +1139,19 @@ class YumexApplication(Controller, YumexFrontend):
         self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
 
     def on_packageSearch_changed(self, widget=None, event=None):
+        '''
+        The content of the package search entry has changed handler
+        Used for type ahead search
+        '''
         keys = self.ui.packageSearch.get_text().split(' ')
         if not self.typeahead_active or len(keys) > 1:
             return
         txt = keys[0]
         if len(txt) >= 3 and len(txt) > len(self.last_search_text):
-            self.ui.packageSearch.set_sensitive(False)
-            busyCursor(self.window)
-            self.debug("SEARCH : %s" % txt)
-            pkgs = self.backend.search_prefix(txt, self.settings.show_newest_only)
-            self.debug("SEARCH : got %i packages" % len(pkgs))
-            if not self.settings.search:
-                self.ui.packageFilterBox.hide()
-                if self._last_filter:
-                    self._last_filter.set_active(True)
-            self.packages.add_packages(pkgs)
-            progress = self.get_progress()
-            progress.hide()
-            self.ui.packageSearch.set_sensitive(True)
-            normalCursor(self.window)
-            self.ui.packageSelectAll.hide()           
-            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+            if self._last_search_filter:
+                self._last_search_filter.clicked()
+            else:
+                self.ui.packageRadioAll.clicked()
         self.last_search_text = txt
 
     def on_package_popup(self, widget, action, pkg):
@@ -1186,32 +1178,33 @@ class YumexApplication(Controller, YumexFrontend):
         # print "Key %s (%d) was pressed" % (keyname, event.keyval)
         if keyname == 'Escape': # Esc pressed
             self._packageSearch_right_icon()
+            
+    def _hide_filters_on_search(self, hide = True):
+        '''
+        Hide Group & Category on search
+        '''
+        if hide:
+            self.ui.packageRadioGroups.hide()
+            self.ui.packageRadioCategories.hide()
+        else:
+            self.ui.packageRadioGroups.show()
+            self.ui.packageRadioCategories.show()
 
     def on_packageSearch_activate(self, widget=None, event=None):
         '''
         Enter pressed in the search field
         '''
         if self._packages_loaded:
-            busyCursor(self.window)
-            self.packageInfo.clear()
-            filters = self.search_options.get_filters()
-            keys = self.ui.packageSearch.get_text().split(' ')
-            pkgs = self.backend.search(keys, filters, self.settings.show_newest_only)
-            if not self.settings.search:
-                self.ui.packageFilterBox.hide()
-                if self._last_filter:
-                    self._last_filter.set_active(True)
-            self.packages.add_packages(pkgs)
-            progress = self.get_progress()
-            progress.hide()
-            normalCursor(self.window)
-            self.ui.packageSelectAll.hide()           
-            
+            if self._last_search_filter:
+                self._last_search_filter.clicked()
+            else:
+                self.ui.packageRadioAll.clicked()
 
     def _packageSearch_right_icon(self):
         self.ui.packageSearch.set_text('')
+        self._last_search_filter = None
         if not self.settings.search:
-            self.ui.packageFilterBox.show()
+            self._hide_filters_on_search(hide = False)
             if self._last_filter:
                 self._last_filter.clicked()
         self.ui.packageSearch.grab_focus()
@@ -1287,11 +1280,10 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         if widget.get_active():
             busyCursor(self.window, True)
-            self._last_filter = widget
             self._current_active = active
             self.packageInfo.clear()
             self.packages.clear()
-            self.ui.packageSearch.set_text('')
+            search_text = self.ui.packageSearch.get_text()
             self.ui.groupVBox.hide()
             self.ui.categoryWindow.hide()
             self.ui.leftBox.hide()
@@ -1305,23 +1297,54 @@ class YumexApplication(Controller, YumexFrontend):
                     self.window.resize(width - 150, height)
                     self._resized = False
                 self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
-                self.debug('START: Getting %s packages' % active)
-                self.backend.setup()
-                label = active
-                progress = self.get_progress()
-                progress.set_pulse(True)
-                filter = active
-                progress.set_title(PACKAGE_LOAD_MSG[filter])
-                progress.set_header(PACKAGE_LOAD_MSG[filter])
-                progress.show()
-                pkgs = self.backend.get_packages(active)
-                # if Updates, then add obsoletes too
-                if active == 'updates':
-                    obs = self.backend.get_packages('obsoletes')
-                    pkgs.extend(obs)
-                    label = "updates & obsoletes"
-                self._add_packages(pkgs, label)
-                self.debug('END: Getting %s packages' % active)
+                if search_text == '': # This is not a search
+                    self._last_filter = widget
+                    self.debug('START: Getting %s packages' % active)
+                    self.backend.setup()
+                    label = active
+                    progress = self.get_progress()
+                    progress.set_pulse(True)
+                    filter = active
+                    progress.set_title(PACKAGE_LOAD_MSG[filter])
+                    progress.set_header(PACKAGE_LOAD_MSG[filter])
+                    progress.show()
+                    pkgs = self.backend.get_packages(active)
+                    # if Updates, then add obsoletes too
+                    if active == 'updates':
+                        obs = self.backend.get_packages('obsoletes')
+                        pkgs.extend(obs)
+                        label = "updates & obsoletes"
+                    self._add_packages(pkgs, label)
+                    self.debug('END: Getting %s packages' % active)
+                else: # This is a search
+                    self._last_search_filter = widget
+                    if self.typeahead_active: # type-ahead
+                        keys = self.ui.packageSearch.get_text().split(' ')
+                        txt = keys[0]
+                        if len(txt) >= 3:
+                            self.ui.packageSearch.set_sensitive(False)
+                            self.debug("SEARCH : %s" % txt)
+                            pkgs = self.backend.search_prefix(txt, self.settings.show_newest_only, active)
+                            self.debug("SEARCH : got %i packages" % len(pkgs))
+                            if not self.settings.search:
+                                self._hide_filters_on_search(hide = True)
+                            self.packages.add_packages(pkgs)
+                            progress = self.get_progress()
+                            progress.hide()
+                            self.ui.packageSearch.set_sensitive(True)
+                            self.ui.packageSelectAll.hide()           
+                            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+                        self.last_search_text = txt
+                    else: # Normal search
+                        filters = self.search_options.get_filters()
+                        keys = self.ui.packageSearch.get_text().split(' ')
+                        print "DEBUG (active):", active
+                        pkgs = self.backend.search(keys, filters, self.settings.show_newest_only, active)
+                        if not self.settings.search:
+                            self._hide_filters_on_search(hide = True)
+                        self.packages.add_packages(pkgs)
+                        progress = self.get_progress()
+                        progress.hide()
             else:
                 if not self._resized:
                     width, height = self.window.get_size()

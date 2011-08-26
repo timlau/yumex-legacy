@@ -543,6 +543,28 @@ class YumClientBase:
         return pkgs
 
 
+    def filter_package_list(self, package_type, pkgs):
+        '''
+        Filter a list of packages based on a given package type
+        package_type ::= all | installed | updates | available
+        '''
+        result = [];
+        if package_type == 'updates':
+            for pkg in pkgs:
+                if pkg.is_update:
+                    result.append(pkg)
+        elif package_type == 'installed':
+            for pkg in pkgs:
+                if pkg.is_installed():
+                    result.append(pkg)
+        elif package_type == 'available':
+            for pkg in pkgs:
+                if not pkg.is_installed():
+                    result.append(pkg)
+        else:
+            result = pkgs
+        return result
+
 class YumClient(YumClientBase):
     """ 
     Client part of a the yum client/server
@@ -747,7 +769,7 @@ class YumClient(YumClientBase):
         self._send_command('enable-repo-persistent', [ident, str(state)])
         return self._get_return_code()
 
-    def search(self, keys, filters, show_newest_only):
+    def search(self, keys, filters, show_newest_only, package_type):
         '''
         
         @param keys:
@@ -756,16 +778,17 @@ class YumClient(YumClientBase):
         bKeys = pack(keys)
         bFilters = pack(filters)
         show_newest_only = pack(show_newest_only)
-        return self.execute_command('search', [bKeys, bFilters, show_newest_only])
+        pkgs = self.execute_command('search', [bKeys, bFilters, show_newest_only])
+        return self.filter_package_list(package_type, pkgs)
 
-    def search_prefix(self, prefix, show_newest_only):
+    def search_prefix(self, prefix, show_newest_only, package_type):
         '''
         Search for packages with prefix
         @param prefix prefix to search for
         '''
         show_newest_only = pack(show_newest_only)
-        return self.execute_command('search-prefix', [prefix, show_newest_only])
-
+        pkgs = self.execute_command('search-prefix', [prefix, show_newest_only])
+        return self.filter_package_list(package_type, pkgs)
 
     def clean(self, what):
         '''
