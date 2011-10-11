@@ -1,28 +1,30 @@
-# Dutch translation of yumex
-# Copyright (C) 2009 THE PACKAGE'S COPYRIGHT HOLDER
+# Yum Extender aka yumex translationa string
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Geert Warrink <geert.warrink@onsnet.nu>, 2009, 2010.
-# R.E. van der Luit <nippur@fedoraproject.org>, 2009, 2010.
-# Richard van der luit <nippur@fedoraproject.org>, 2010.
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Richard E. van der Luit <nippur@fedoraproject.org>, 2011.
+# Richard E. van der Luit <zuma@xs4all.nl>, 2011.
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex\n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2010-09-11 15:06+0200\n"
-"Last-Translator: R.E. van der Luit <nippur@fedoraproject.org>\n"
-"Language-Team: Dutch <nippur@fedoraproject.org>\n"
-"Language: nl\n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: Dutch (http://www.transifex.net/projects/p/yumex/team/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
 msgid "updates"
-msgstr "vernieuwingen"
+msgstr "updates"
 
 #: ../src/yumexbase/constants.py:72
 msgid "available"
@@ -49,27 +51,27 @@ msgstr "Informatie bestandenlijst downloaden van de %s repository"
 #: ../src/yumexbase/constants.py:95
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr "Informatie over veranderingen downloaden van de %s repository"
+msgstr "Informatie over de veranderingen downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr "Groepinformatie downloaden van de %s repository"
+msgstr "Groepsinformatie downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr "Metalinkinformatie downloaden van de %s repository"
+msgstr "Metalink-informatie downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr "Informatie over deltavernieuwing downloaden van de %s repository"
+msgstr "Informatie over delta-updates downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "Informatie over vernieuwingen downloaden van de %s repository"
+msgstr "Informatie over updates downloaden van de %s repository"
 
 #: ../src/yumexbase/constants.py:110
 msgid "0 - 7 Days"
@@ -109,76 +111,69 @@ msgstr "Beschikbare pakketten ophalen"
 
 #: ../src/yumexbase/constants.py:140
 msgid "Getting available updates"
-msgstr "Beschikbare vernieuwingen ophalen"
+msgstr "Beschikbare updates ophalen"
 
 #: ../src/yumexbase/constants.py:141
 msgid "Getting available obsoletes"
 msgstr "Beschikbare verouderde pakketten ophalen"
 
 #: ../src/yumexbase/constants.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "%s is updated"
-msgstr "vernieuwingen"
+msgstr "%s is bijgewerkt"
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%s is verwijderd"
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "%s is installed"
-msgstr "geïnstalleerd"
+msgstr "%s is geïnstalleerd"
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%s is verouderd"
 
 #: ../src/yumexbase/constants.py:152
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s is aan het schonen"
 
 #: ../src/yumexbase/constants.py:163
-#, fuzzy
 msgid "Updated packages"
-msgstr "Vernieuwde pakketten ophalen"
+msgstr "Bijgewerkte pakketten"
 
 #: ../src/yumexbase/constants.py:164
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "Pakketten downloaden"
+msgstr "Downgraded pakketten"
 
 #: ../src/yumexbase/constants.py:165
-#, fuzzy
 msgid "Obsoleting packages"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Pakketten aanmerken als verouderd"
 
 #: ../src/yumexbase/constants.py:166
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Verouderde pakketten"
 
 #: ../src/yumexbase/constants.py:167
-#, fuzzy
 msgid "Erased packages"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Gewiste pakketten"
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
-#, fuzzy
 msgid "Installed packages"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Geïnstalleerde pakketten"
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Geïnstalleerd wegens afhankelijkheden"
 
 #: ../src/yumexbase/constants.py:171
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Opnieuw geïnstalleerde pakketten"
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:678
@@ -192,9 +187,8 @@ msgid "Summary"
 msgstr "Samenvatting"
 
 #: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:370
-#, fuzzy
 msgid "Description"
-msgstr "Beschrijving : %s\n"
+msgstr "Beschrijving"
 
 #: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:679
 msgid "Arch"
@@ -212,18 +206,17 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "Onbekend repo metadata type (%s) voor %s"
 
 #: ../src/yumexbackend/yum_backend.py:200
-#, fuzzy
 msgid "Building rpms from deltarpm"
-msgstr "Rpm's opbouwen van deltarpm"
+msgstr "Bouwen RPM's van deltarpm"
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
-msgstr "Pakketten downloaden"
+msgstr "Pakketten aan het downloaden"
 
 #. Don't allow Cancel any more
 #: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
-msgstr "GPG ondertekeningen van pakket controleren"
+msgstr "GPG ondertekening van pakket controleren"
 
 #: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
@@ -236,7 +229,7 @@ msgstr "RPM transactie uitvoeren"
 #: ../src/yumexbackend/yum_backend.py:236
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr "Wil je GPG sleutel importeren : %s \n"
+msgstr "Wil je de GPG sleutel importeren : %s \n"
 
 #: ../src/yumexbackend/yum_backend.py:238
 #, python-format
@@ -255,7 +248,7 @@ msgstr "Breng media in met label %s."
 
 #: ../src/yumexbackend/yum_backend.py:318
 msgid "Starting yum child process"
-msgstr "Opstarten van yum kindproces"
+msgstr "Opstarten van yum-kindproces"
 
 #: ../src/yumexbackend/yum_backend.py:320
 #, python-format
@@ -270,12 +263,12 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
-msgstr "yum achtergrondproces is beëindigd"
+msgstr "yum-achtergrondproces is beëindigd"
 
 #: ../src/yumexbackend/yum_backend.py:362
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i pakketten gevonden"
 
 #: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
@@ -298,9 +291,8 @@ msgstr "Oplossen van afhankelijkheden afgemaakt met fouten"
 #. Bin package
 #. Root
 #: ../src/yumexbackend/yum_client.py:177
-#, fuzzy
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr "Cliënt draait in root mode, back-end rechtstreeks opstarten"
+msgstr "Client draait in rootmode, begin backend-launcher direct"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:251
@@ -310,7 +302,7 @@ msgstr "Yum achtergrondproces is niet tijdig netjes afgesloten"
 #: ../src/yumexbackend/yum_server.py:175
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr "Gebruik %s voor yum configuratie"
+msgstr "Gebruik %s voor yum-configuratie"
 
 #. Not local disable it
 #. No, disable it
@@ -343,7 +335,7 @@ msgstr "De schijf was niet ingebracht"
 
 #: ../src/yumexbackend/yum_server.py:330
 msgid "Closing rpm db and releasing yum lock  "
-msgstr "Sluiten van rpm db en yum blokkering vrij geven"
+msgstr "Sluiten van rpm-db en yum-blokkering vrijgeven"
 
 #: ../src/yumexbackend/yum_server.py:795
 msgid "Installing"
@@ -352,7 +344,7 @@ msgstr "Installeren"
 #: ../src/yumexbackend/yum_server.py:847
 #, python-format
 msgid "Error in yum Transaction : %s"
-msgstr "Fout in yum transactie : %s"
+msgstr "Fout in yum-transactie : %s"
 
 #: ../src/yumexbackend/yum_server.py:850
 msgid "Exception in run_transaction"
@@ -380,7 +372,7 @@ msgstr "De %s repository werd permanent uitgezet"
 #: ../src/yumexbackend/yum_server.py:1125
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr "Instellen van Yum optie %s = %s"
+msgstr "Instellen van Yum-optie %s = %s"
 
 #: ../src/yumexbackend/yum_server.py:1176
 msgid "Cleaned metadata from local cache"
@@ -399,9 +391,8 @@ msgid "Cleaned everything from local cache"
 msgstr "Locale cache helemaal opgeschoond"
 
 #: ../src/yumexbackend/yum_server.py:1594
-#, fuzzy
 msgid "Rebuild from deltarpms completed"
-msgstr "Opbouwen met deltarpms is klaar"
+msgstr "Herbouw van deltarpms afgerond"
 
 #: ../src/yumexbackend/yum_server.py:1596
 #, python-format
@@ -449,7 +440,7 @@ msgstr "Repo."
 
 #: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
 msgid "Size."
-msgstr "Grootte."
+msgstr "Grootte"
 
 #: ../src/yumexgui/views.py:647
 msgid "Package Queue:"
@@ -462,7 +453,7 @@ msgstr "Pakketten"
 #: ../src/yumexgui/views.py:771
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Downgrade naar</b> %s "
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:784 ../src/yumexgui/views.py:830
@@ -477,7 +468,7 @@ msgstr "Bestandsnaam"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:964
 msgid "Search Keys"
-msgstr ""
+msgstr "Zoeksleutels"
 
 #: ../src/yumexgui/views.py:1195
 msgid "Categories"
@@ -510,7 +501,7 @@ msgstr "Fatale fout"
 #. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:275
 msgid "Can't start the yum backend"
-msgstr "Kan yum back-end niet opstarten"
+msgstr "Kan yum-back-end niet opstarten"
 
 #: ../src/yumexgui/__init__.py:276
 msgid "Another program is locking yum"
@@ -518,24 +509,26 @@ msgstr "Een ander programma blokkeert yum"
 
 #: ../src/yumexgui/__init__.py:278
 msgid "Message from yum backend:"
-msgstr "Boodschap van yum back-end:"
+msgstr "Boodschap van yum-back-end:"
 
 #: ../src/yumexgui/__init__.py:282
 msgid "Error in repository setup"
-msgstr "Fout in repository instellingen"
+msgstr "Fout in repository-instellingen"
 
 #: ../src/yumexgui/__init__.py:285
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr "Je kunt proberen om 'yumex -n' op te starten op een commando-regel\n"
+msgstr ""
+"Je kunt proberen om met 'yumex -n' op te starten op een commando-regel\n"
 
 #: ../src/yumexgui/__init__.py:286
-#, fuzzy
 msgid "and deselecting the repositories causing problems\n"
-msgstr "en de repositories uitzetten die problemen veroorzaken\n"
+msgstr ""
+"en de repositories die problemen veroorzaken deselecteren\n"
+"\n"
 
 #: ../src/yumexgui/__init__.py:287
 msgid "and try again.\n"
-msgstr "en opnieuw proberen.\n"
+msgstr "en het opnieuw proberen.\n"
 
 #: ../src/yumexgui/__init__.py:292
 msgid "Fatal Error in backend restart"
@@ -550,14 +543,12 @@ msgid "Fatal Error : "
 msgstr "Fatale fout :"
 
 #: ../src/yumexgui/__init__.py:372
-#, fuzzy
 msgid "Available Updates"
-msgstr "Beschikbare vernieuwingen ophalen"
+msgstr "Beschikbare updates"
 
 #: ../src/yumexgui/__init__.py:374
-#, fuzzy
 msgid "Search for packages"
-msgstr "Laat pakketvernieuwingen zien"
+msgstr "Zoeken naar pakketten"
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Perform actions on packages"
@@ -585,7 +576,7 @@ msgstr "Geschiedenis"
 
 #: ../src/yumexgui/__init__.py:389
 msgid "Watch yum history"
-msgstr "Bekijk de yum geschiedenis"
+msgstr "Bekijk de yum-geschiedenis"
 
 #: ../src/yumexgui/__init__.py:395
 msgid "Output"
@@ -593,7 +584,7 @@ msgstr "Output"
 
 #: ../src/yumexgui/__init__.py:396
 msgid "Watch output details"
-msgstr "Bekijk output details"
+msgstr "Bekijk output-details"
 
 #: ../src/yumexgui/__init__.py:445
 msgid "Not connected to an network"
@@ -617,7 +608,7 @@ msgstr "Kan status van netwerkverbinding niet bepalen"
 
 #: ../src/yumexgui/__init__.py:455
 msgid "Connected to an network"
-msgstr "Verbonden met een netwerk"
+msgstr "Verbonden met netwerk"
 
 #: ../src/yumexgui/__init__.py:619
 msgid "Enable Permanently"
@@ -644,14 +635,12 @@ msgid "Clean All"
 msgstr "Alles opschonen"
 
 #: ../src/yumexgui/__init__.py:642
-#, fuzzy
 msgid "Reinstall Package"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Herïnstalleer pakket"
 
 #: ../src/yumexgui/__init__.py:649
-#, fuzzy
 msgid "Downgrade Package"
-msgstr "Pakketten downloaden"
+msgstr "Downgrade pakket"
 
 #: ../src/yumexgui/__init__.py:659
 msgid "By Repositories"
@@ -663,7 +652,7 @@ msgstr "Op grootte"
 
 #: ../src/yumexgui/__init__.py:685 ../src/yumexgui/__init__.py:686
 msgid "Getting Group information"
-msgstr "Groepinformatie ophalen"
+msgstr "Groepsinformatie ophalen"
 
 #: ../src/yumexgui/__init__.py:722
 msgid "The pending action queue is empty"
@@ -703,7 +692,7 @@ msgid ""
 " check output page for details"
 msgstr ""
 "Transactie afgemaakt met fouten,\n"
-" controleer de output pagina voor details"
+"controleer de output pagina voor details"
 
 #: ../src/yumexgui/__init__.py:866
 msgid "<unset>"
@@ -719,7 +708,7 @@ msgstr "Geschiedenisinformatie ophalen"
 
 #: ../src/yumexgui/__init__.py:912
 msgid "Getting Latest History Information"
-msgstr "De laatste geschiedenisinformatie ophalen"
+msgstr "Meest recente geschiedenisinformatie ophalen"
 
 #: ../src/yumexgui/__init__.py:914
 msgid "Getting All History Information"
@@ -730,47 +719,41 @@ msgid "History Disabled"
 msgstr "Geschiedenis uitgezet"
 
 #: ../src/yumexgui/__init__.py:931 ../src/yumexgui/__init__.py:932
-#, fuzzy
 msgid "Searching History Information"
-msgstr "Geschiedenisinformatie ophalen"
+msgstr "Zoek geschiedenisinformatie"
 
 #: ../src/yumexgui/__init__.py:975
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "Transactie afgebroken door gebruiker"
+msgstr "Transactie uitgevoerd met"
 
 #: ../src/yumexgui/__init__.py:978
-#, fuzzy
 msgid "Skipped packages"
-msgstr "Laat geïnstalleerde pakketten zien"
+msgstr "Overgeslagen pakketten"
 
 #: ../src/yumexgui/__init__.py:1004 ../src/yumexgui/__init__.py:1005
-#, fuzzy
 msgid "Adding Packages to view"
-msgstr "Pakketten downloaden"
+msgstr "Toevoegen van pakketten om te bekijken"
 
 #: ../src/yumexgui/__init__.py:1009
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "%i pakketten toegevoegd om te bekijken"
 
 #: ../src/yumexgui/__init__.py:1338
-#, fuzzy
 msgid "Getting Category Packages"
-msgstr "Alle pakketten ophalen"
+msgstr "Categorie pakketten ophalen"
 
 #: ../src/yumexgui/__init__.py:1435
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr "Wil je %s opschonen in jouw locale yum cache"
+msgstr "Wil je %s opschonen in de locale yum-cache"
 
 #: ../src/yumexgui/__init__.py:1504
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Uitvoeren: %s %s"
 
 #: ../src/yumexgui/__init__.py:1505
-#, fuzzy
 msgid "Processing Queue Command"
 msgstr "Wachtende acties afwerken"
 
@@ -788,11 +771,11 @@ msgstr "Laad pakketten bij opstarten"
 
 #: ../src/yumexgui/dialogs.py:514
 msgid "Use sortable columns in package view (slower)"
-msgstr "Gebruik te sorteren kolommen in pakket overzicht (langzamer)"
+msgstr "Gebruik te sorteren kolommen in pakketoverzicht (langzamer)"
 
 #: ../src/yumexgui/dialogs.py:515
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "Typeahead zoeken is standaard actief"
 
 #: ../src/yumexgui/dialogs.py:523
 msgid "Debug Mode"
@@ -805,6 +788,7 @@ msgstr "Schakel opstart-netwerkcontrole uit "
 #: ../src/yumexgui/dialogs.py:525
 msgid "Run backend with sudo (need working sudo nopasswd config)"
 msgstr ""
+"Draai backend met sudo (werkende sudo nopasswd config is hierbij nodig)"
 
 #: ../src/yumexgui/dialogs.py:526
 msgid "Color (Installed)"
@@ -844,9 +828,8 @@ msgid "Package Description"
 msgstr "Pakketbeschrijving"
 
 #: ../src/yumexgui/gui.py:214
-#, fuzzy
 msgid "Update information"
-msgstr "Groepinformatie ophalen"
+msgstr "Update-informatie"
 
 #: ../src/yumexgui/gui.py:216
 msgid "Package Changelog"
@@ -857,13 +840,12 @@ msgid "Package Filelist"
 msgstr "Pakket bestandenlijst"
 
 #: ../src/yumexgui/gui.py:220
-#, fuzzy
 msgid "Package Dependencies"
-msgstr "Afhankelijkheden oplossen"
+msgstr "Pakket afhankelijkheden"
 
 #: ../src/yumexgui/gui.py:321
 msgid "Project URL : "
-msgstr ""
+msgstr "URL van het project:"
 
 #: ../src/yumexgui/gui.py:328
 msgid "Release"
@@ -883,7 +865,7 @@ msgstr "Uitgegeven"
 
 #: ../src/yumexgui/gui.py:510
 msgid "Quit"
-msgstr ""
+msgstr "Beëindigen"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Working ....</span>\n"
@@ -899,16 +881,15 @@ msgstr "Alle"
 
 #: ../src/yumex.glade.h:5
 msgid "Availa_ble"
-msgstr "_Beschikbare"
+msgstr "_Beschikbaar"
 
 #: ../src/yumex.glade.h:6
 msgid "Basic"
 msgstr "Basis"
 
 #: ../src/yumex.glade.h:7
-#, fuzzy
 msgid "Don't check signatures for packages"
-msgstr "Controleer ondertekening van pakketten niet"
+msgstr "Controleer geen handtekeningen voor pakketten"
 
 #: ../src/yumex.glade.h:8
 msgid "Error"
@@ -935,17 +916,16 @@ msgid ""
 "Refresh packages with current selected\n"
 "repositories"
 msgstr ""
-"Ververs pakketten van de op dit moment geselecteerde\n"
-"repositories"
+"Ververs pakketten van de op dit moment\n"
+"geselecteerde repositories"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
 msgstr "Verwijder geselecteerde pakketten uit de wachtrij"
 
 #: ../src/yumex.glade.h:16
-#, fuzzy
 msgid "Search Options"
-msgstr "_Opties"
+msgstr "Zoekopties"
 
 #: ../src/yumex.glade.h:17
 msgid "Select all packages in current view"
@@ -973,7 +953,7 @@ msgstr "Laat geïnstalleerde pakketten zien"
 
 #: ../src/yumex.glade.h:23
 msgid "Show package updates"
-msgstr "Laat pakketvernieuwingen zien"
+msgstr "Laat pakket-updates zien"
 
 #: ../src/yumex.glade.h:24
 msgid "Skip Broken"
@@ -985,11 +965,11 @@ msgstr "Sla pakketten met afhankelijkheidsfouten over"
 
 #: ../src/yumex.glade.h:26
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Testspullie"
 
 #: ../src/yumex.glade.h:27
 msgid "Type package names to search for"
-msgstr ""
+msgstr "Typ pakketnamen om te zoeken"
 
 #: ../src/yumex.glade.h:28
 msgid ""
@@ -997,17 +977,17 @@ msgid ""
 "to find packages containing the search\n"
 "words.\n"
 msgstr ""
-"Vul zoekwoorden in, gescheiden door spaties\n"
-"om pakketten te vinden die de zoekwoorden\n"
-"bevatten.\n"
+"Vul zoekwoorden in, gescheiden door\n"
+"spaties om pakketten te vinden die de\n"
+"zoekwoorden bevatten.\n"
 
 #: ../src/yumex.glade.h:32
 msgid "Typeahead search on/off"
-msgstr ""
+msgstr "Typeahead zoeken aan / uit"
 
 #: ../src/yumex.glade.h:33
 msgid "U_pdates"
-msgstr "_Vernieuwingen"
+msgstr "U_pdates"
 
 #: ../src/yumex.glade.h:34
 msgid "Undo a history transaction"
@@ -1023,7 +1003,7 @@ msgstr "Maak repository selectie veranderingen ongedaan"
 
 #: ../src/yumex.glade.h:37
 msgid "Undo the current search"
-msgstr ""
+msgstr "Maak de huidige zoekopdracht ongedaan"
 
 #: ../src/yumex.glade.h:38
 msgid "Yum"
@@ -1085,36 +1065,4 @@ msgstr "Be_kijk"
 msgid "no GPG Check"
 msgstr "geen GPG check"
 
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">Transactie</span>\n"
 
-#~ msgid "Populating Package Cache"
-#~ msgstr "Pakketcache vullen"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "Pakketbeschrijving"
-
-#~ msgid "Update ID"
-#~ msgstr "Vernieuw ID"
-
-#~ msgid "       Bugs :"
-#~ msgstr "       Fouten :"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "Pakketlijsten ophalen"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "Beschikbare pakketten ophalen"
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "Geïnstalleerde pakketten ophalen"
-
-#~ msgid "Stopping yum child process"
-#~ msgstr "Yum kind proces stoppen"
-
-#~ msgid "Unknown Error : "
-#~ msgstr "Onbekende fout : "

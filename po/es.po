@@ -1,25 +1,24 @@
-# Fedora Spanish Translation of yumex.nextgen
-# This file is distributed under the same license as yumex.nextgen package
-#
-# Domingo Becker <domingobecker@gmail.com>. 2009.
-# Fernando Gonzalez Blanco <fgonz@fedoraproject.org>, 2009.
-# Héctor Daniel Cabrera <logan@fedoraproject.org>, 2010.
-#
+# Yum Extender aka yumex translationa string
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Héctor Daniel Cabrera <logan@fedoraproject.org>, 2011.
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex-nextgen\n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2011-01-10 15:46-0300\n"
-"Last-Translator: Claudio Rodrigo Pereyra Diaz <claudiorodrigo@pereyradiaz."
-"com.ar>\n"
-"Language-Team: Spanish <trans-es@lists.fedoraproject.org>\n"
-"Language: es\n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: Spanish (Castilian) (http://www.transifex.net/projects/p/yumex/team/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Spanish\n"
-"X-Poedit-Country: ARGENTINA\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
@@ -217,7 +216,7 @@ msgstr "Descargando paquetes"
 #. Don't allow Cancel any more
 #: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
-msgstr "Chequeando las firmas GPG de los paquetes"
+msgstr "Verificando las firmas GPG de los paquetes"
 
 #: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
@@ -692,7 +691,7 @@ msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr ""
-"Transasción completa pero con errores,\n"
+"Transacción completa pero con errores,\n"
 " consulte la página de salida para conocer los detalles"
 
 #: ../src/yumexgui/__init__.py:866
@@ -790,6 +789,7 @@ msgstr "Deshabilitar la verificación de red en el inicio"
 #: ../src/yumexgui/dialogs.py:525
 msgid "Run backend with sudo (need working sudo nopasswd config)"
 msgstr ""
+"Ejecutar el motor con sudo (es necesaria una configuración de sudo nopasswd)"
 
 #: ../src/yumexgui/dialogs.py:526
 msgid "Color (Installed)"
@@ -1063,38 +1063,6 @@ msgstr "_Ver"
 
 #: ../src/yumex.glade.h:52
 msgid "no GPG Check"
-msgstr "sin Chequeo de GPG"
+msgstr "sin verificación de GPG"
 
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">Transacción</span>\n"
 
-#~ msgid "Populating Package Cache"
-#~ msgstr "Poblando el caché de paquetes"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "Descripción del Paquete"
-
-#~ msgid "Update ID"
-#~ msgstr "ID de actualización"
-
-#~ msgid "       Bugs :"
-#~ msgstr "       Errores :"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "Obteniendo listas de paquetes"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "Obteniendo paquetes disponibles "
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "Obteniendo paquetes instalados"
-
-#~ msgid "Stopping yum child process"
-#~ msgstr "Deteniendo el proceso hijo yum"
-
-#~ msgid "Unknown Error : "
-#~ msgstr "Error desconocido : "

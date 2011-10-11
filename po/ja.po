@@ -1,28 +1,24 @@
-# translation of ja.po to Japanese
-# Japanese translation of Yumex
-# Copyright (C) 2005, 2006 Tim Lauridsen
-# This file is distributed under the same license as the Yumex package.
-#
-#
-# Takanori MATSUURA <t.matsuu@gmail.com>, 2005-2009.
-# Takanori MATSUURA <t.matsuu@gmail.com>, 2009.
-# Hyu_gabaru Ryu_ichi <hyu_gabaru@yahoo.co.jp>, 2009.
-# Kiyoto Hashida <khashida@redhat.com>, 2010.
+# Yum Extender aka yumex translationa string
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Takanori MATSUURA <t.matsuu@gmail.com>, 2011.
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: ja\n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2010-06-15 10:55+0900\n"
-"Last-Translator: Kiyoto Hashida <khashida@redhat.com>\n"
-"Language-Team: Japanese <jp@li.org>\n"
-"Language: ja\n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: Japanese (http://www.transifex.net/projects/p/yumex/team/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
@@ -49,32 +45,32 @@ msgstr "%sリポジトリーのパッケージ情報をダウンロード中"
 #: ../src/yumexbase/constants.py:94
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr "%sリポジトリーのファイルリスト情報をダウンロード中"
+msgstr "%sリポジトリのファイルリスト情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:95
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr "%sリポジトリーの変更履歴情報をダウンロード中"
+msgstr "%sリポジトリの変更履歴情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr "%sリポジトリーのグループ情報をダウンロード中"
+msgstr "%sリポジトリのグループ情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr "%sリポジトリーのメタリンク情報をダウンロード中"
+msgstr "%sリポジトリのメタリンク情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr "%sリポジトリーの差分更新情報をダウンロード中"
+msgstr "%sリポジトリの差分更新情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "%sリポジトリーの更新情報をダウンロード中"
+msgstr "%sリポジトリの更新情報をダウンロード中"
 
 #: ../src/yumexbase/constants.py:110
 msgid "0 - 7 Days"
@@ -90,7 +86,7 @@ msgstr "14 - 21 日"
 
 #: ../src/yumexbase/constants.py:113
 msgid "21  - 30 days"
-msgstr "21  - 30 日"
+msgstr "21 - 30 日"
 
 #: ../src/yumexbase/constants.py:114
 msgid "30 - 90 days"
@@ -101,45 +97,40 @@ msgid "90+ days"
 msgstr "90+ 日"
 
 #: ../src/yumexbase/constants.py:137
-#, fuzzy
 msgid "Getting all packages"
-msgstr "利用可能なパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:138
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "インストールされたパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:139
-#, fuzzy
 msgid "Getting available packages"
-msgstr "利用可能なパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:140
-#, fuzzy
 msgid "Getting available updates"
-msgstr "利用可能なパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:141
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "利用可能なパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "%s is updated"
-msgstr "更新"
+msgstr "%sは更新されました"
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%sは消去されました"
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "%s is installed"
-msgstr "インストール済"
+msgstr "%sはインストールされました"
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
@@ -152,43 +143,36 @@ msgid "%s is cleanup"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:163
-#, fuzzy
 msgid "Updated packages"
-msgstr "更新パッケージを取得中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:164
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "パッケージをダウンロード中"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:165
-#, fuzzy
 msgid "Obsoleting packages"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:166
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:167
-#, fuzzy
 msgid "Erased packages"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
-#, fuzzy
 msgid "Installed packages"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:171
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:678
@@ -202,9 +186,8 @@ msgid "Summary"
 msgstr "概要"
 
 #: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:370
-#, fuzzy
 msgid "Description"
-msgstr "説明: %s\n"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:679
 msgid "Arch"
@@ -222,9 +205,8 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "不明なリポジトリーメタデータタイプ; リポジトリー %2s (%1s)"
 
 #: ../src/yumexbackend/yum_backend.py:200
-#, fuzzy
 msgid "Building rpms from deltarpm"
-msgstr "deltarpmからrpmを構築中"
+msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
@@ -325,8 +307,7 @@ msgstr ""
 #: ../src/yumexbackend/yum_server.py:231 ../src/yumexbackend/yum_server.py:240
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
-"ネットワーク接続がないので、ローカルではないリポジトリー %s を無効にします"
+msgstr "ネットワーク接続がないので、ローカルではないリポジトリー %s を無効にします"
 
 #: ../src/yumexbackend/yum_server.py:255
 msgid "Yum is locked : "
@@ -364,9 +345,8 @@ msgid "Error in yum Transaction : %s"
 msgstr "yumトランザクション中にエラー: %s"
 
 #: ../src/yumexbackend/yum_server.py:850
-#, fuzzy
 msgid "Exception in run_transaction"
-msgstr "トランザクションを準備中"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:889
 #, python-format
@@ -409,9 +389,8 @@ msgid "Cleaned everything from local cache"
 msgstr "ローカルキャッシュから全てを除去しました"
 
 #: ../src/yumexbackend/yum_server.py:1594
-#, fuzzy
 msgid "Rebuild from deltarpms completed"
-msgstr "deltarpmからの再構築が完了"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1596
 #, python-format
@@ -539,9 +518,8 @@ msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr "コマンドラインから 'yumex -n' の開始を試すことができます\n"
 
 #: ../src/yumexgui/__init__.py:286
-#, fuzzy
 msgid "and deselecting the repositories causing problems\n"
-msgstr "そして、問題のあるレポジトリを選択解除します\n"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:287
 msgid "and try again.\n"
@@ -560,14 +538,12 @@ msgid "Fatal Error : "
 msgstr "致命的ななエラー : "
 
 #: ../src/yumexgui/__init__.py:372
-#, fuzzy
 msgid "Available Updates"
-msgstr "利用可能なパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:374
-#, fuzzy
 msgid "Search for packages"
-msgstr "更新パッケージを表示します"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Perform actions on packages"
@@ -654,14 +630,12 @@ msgid "Clean All"
 msgstr "全てを除去する"
 
 #: ../src/yumexgui/__init__.py:642
-#, fuzzy
 msgid "Reinstall Package"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:649
-#, fuzzy
 msgid "Downgrade Package"
-msgstr "パッケージをダウンロード中"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:659
 msgid "By Repositories"
@@ -736,29 +710,24 @@ msgid "Getting All History Information"
 msgstr "全ての履歴情報を取得中"
 
 #: ../src/yumexgui/__init__.py:920 ../src/yumexgui/__init__.py:937
-#, fuzzy
 msgid "History Disabled"
-msgstr "履歴"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:931 ../src/yumexgui/__init__.py:932
-#, fuzzy
 msgid "Searching History Information"
-msgstr "履歴情報を取得中"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:975
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "トランザクションがユーザーによって中止されました"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:978
-#, fuzzy
 msgid "Skipped packages"
-msgstr "インストールされたパッケージを表示します"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1004 ../src/yumexgui/__init__.py:1005
-#, fuzzy
 msgid "Adding Packages to view"
-msgstr "パッケージをダウンロード中"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1009
 #, python-format
@@ -766,9 +735,8 @@ msgid "Added %i Packages to view"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:1338
-#, fuzzy
 msgid "Getting Category Packages"
-msgstr "利用可能なパッケージを取得中"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1435
 #, python-format
@@ -781,9 +749,8 @@ msgid "Executing : %s %s"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:1505
-#, fuzzy
 msgid "Processing Queue Command"
-msgstr "保留しているアクションを処理中"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:430
 msgid "Working !!!"
@@ -855,9 +822,8 @@ msgid "Package Description"
 msgstr "パッケージの説明"
 
 #: ../src/yumexgui/gui.py:214
-#, fuzzy
 msgid "Update information"
-msgstr "グループ情報を取得中"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:216
 msgid "Package Changelog"
@@ -868,9 +834,8 @@ msgid "Package Filelist"
 msgstr "パッケージのファイルリスト"
 
 #: ../src/yumexgui/gui.py:220
-#, fuzzy
 msgid "Package Dependencies"
-msgstr "依存関係を解決中"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:321
 msgid "Project URL : "
@@ -917,9 +882,8 @@ msgid "Basic"
 msgstr "基本"
 
 #: ../src/yumex.glade.h:7
-#, fuzzy
 msgid "Don't check signatures for packages"
-msgstr "パッケージの署名を確認しません"
+msgstr ""
 
 #: ../src/yumex.glade.h:8
 msgid "Error"
@@ -952,9 +916,8 @@ msgid "Remove selected packages from queue"
 msgstr "選択されたパッケージをキューから削除します"
 
 #: ../src/yumex.glade.h:16
-#, fuzzy
 msgid "Search Options"
-msgstr "オプション(_O)"
+msgstr ""
 
 #: ../src/yumex.glade.h:17
 msgid "Select all packages in current view"
@@ -1093,31 +1056,4 @@ msgstr "表示(_V)"
 msgid "no GPG Check"
 msgstr "GPGを確認しない"
 
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">トランザクション</span>\n"
 
-#, fuzzy
-#~ msgid "Populating Package Cache"
-#~ msgstr "パッケージをダウンロード中"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "パッケージの説明"
-
-#~ msgid "Update ID"
-#~ msgstr "更新ID"
-
-#~ msgid "       Bugs :"
-#~ msgstr "       バグ:"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "パッケージリストを取得中"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "利用可能なパッケージを取得中"
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "インストールされたパッケージを取得中"

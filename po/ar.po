@@ -1,21 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
+# Yum Extender aka yumex translationa string
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex 3.0.0\n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2009-08-23 13:10+0200\n"
-"Last-Translator: Muayyad Saleh Alsadi <alsadi@ojuba.org>\n"
-"Language-Team: Arabic <ar@li.org>\n"
-"Language: ar\n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
@@ -94,34 +96,29 @@ msgid "90+ days"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:137
-#, fuzzy
 msgid "Getting all packages"
-msgstr "جلب الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:138
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "جلب الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:139
-#, fuzzy
 msgid "Getting available packages"
-msgstr "جلب الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:140
-#, fuzzy
 msgid "Getting available updates"
-msgstr "جلب الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:141
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "جلب الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "%s is updated"
-msgstr "تحديثات"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
@@ -130,9 +127,9 @@ msgstr ""
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "%s is installed"
-msgstr "مثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
@@ -145,43 +142,36 @@ msgid "%s is cleanup"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:163
-#, fuzzy
 msgid "Updated packages"
-msgstr "جلب الحزم المحدثة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:164
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "تنزيل الحزم"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:165
-#, fuzzy
 msgid "Obsoleting packages"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:166
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:167
-#, fuzzy
 msgid "Erased packages"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
-#, fuzzy
 msgid "Installed packages"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:171
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:678
@@ -195,9 +185,8 @@ msgid "Summary"
 msgstr "التفاصيل"
 
 #: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:370
-#, fuzzy
 msgid "Description"
-msgstr "الوصف : %s\n"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:679
 msgid "Arch"
@@ -215,9 +204,8 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "نوع بيانات الميتا (%s) للمستودع %s غير معروفة"
 
 #: ../src/yumexbackend/yum_backend.py:200
-#, fuzzy
 msgid "Building rpms from deltarpm"
-msgstr "بناء حزم rpms من الفروقات"
+msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
@@ -340,9 +328,8 @@ msgstr "انتظار 10 ثواني قبل المحاولة من جديد!!!"
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:299
-#, fuzzy
 msgid "The disc was not inserted"
-msgstr "الوسيط المطلوب غير موجود"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:330
 msgid "Closing rpm db and releasing yum lock  "
@@ -394,18 +381,16 @@ msgid "Cleaned dbcache"
 msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1182
-#, fuzzy
 msgid "Cleaned packages from local cache"
-msgstr "التحميل عند التشغيل"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1184
 msgid "Cleaned everything from local cache"
 msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1594
-#, fuzzy
 msgid "Rebuild from deltarpms completed"
-msgstr "تم الانتهاء من بناء الحزمة من فروقات deltarpms"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1596
 #, python-format
@@ -549,19 +534,16 @@ msgid "Backend could not be closed"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:297
-#, fuzzy
 msgid "Fatal Error : "
-msgstr "خطأ قاتل"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:372
-#, fuzzy
 msgid "Available Updates"
-msgstr "جلب الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:374
-#, fuzzy
 msgid "Search for packages"
-msgstr "عرض التحديثات"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Perform actions on packages"
@@ -576,9 +558,8 @@ msgid "Work with pending actions"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:384
-#, fuzzy
 msgid "Repositories"
-msgstr "المتسودع"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:385
 msgid "Select active repositories"
@@ -635,9 +616,8 @@ msgid "Clean Metadata"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:627
-#, fuzzy
 msgid "Clean Packages"
-msgstr "الحزم"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:628
 msgid "Clean DbCache"
@@ -648,24 +628,20 @@ msgid "Clean All"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:642
-#, fuzzy
 msgid "Reinstall Package"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:649
-#, fuzzy
 msgid "Downgrade Package"
-msgstr "تنزيل الحزم"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:659
-#, fuzzy
 msgid "By Repositories"
-msgstr "المتسودع"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:660
-#, fuzzy
 msgid "By Size"
-msgstr "الحجم"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:685 ../src/yumexgui/__init__.py:686
 msgid "Getting Group information"
@@ -689,15 +665,11 @@ msgid "Transaction completed successfully"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:771
-#, fuzzy
 msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
 msgstr ""
-"\n"
-"\n"
-"هل ترغب في الخروج من Yum Extender"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:777
@@ -719,43 +691,36 @@ msgid "System"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:910
-#, fuzzy
 msgid "Getting History Information"
-msgstr "جلب معلومات المجموعات"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:912
-#, fuzzy
 msgid "Getting Latest History Information"
-msgstr "يجري جلب معلومات الحزم"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:914
-#, fuzzy
 msgid "Getting All History Information"
-msgstr "جلب معلومات المجموعات"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:920 ../src/yumexgui/__init__.py:937
 msgid "History Disabled"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:931 ../src/yumexgui/__init__.py:932
-#, fuzzy
 msgid "Searching History Information"
-msgstr "جلب معلومات المجموعات"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:975
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "أجهض المستخدم العملية"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:978
-#, fuzzy
 msgid "Skipped packages"
-msgstr "عرض الحزم المثبتة"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1004 ../src/yumexgui/__init__.py:1005
-#, fuzzy
 msgid "Adding Packages to view"
-msgstr "تنزيل الحزم"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1009
 #, python-format
@@ -763,9 +728,8 @@ msgid "Added %i Packages to view"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:1338
-#, fuzzy
 msgid "Getting Category Packages"
-msgstr "جلب الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1435
 #, python-format
@@ -842,18 +806,17 @@ msgid "Transaction Result"
 msgstr "نتيجة العملية"
 
 #: ../src/yumexgui/dialogs.py:716
-#, fuzzy, python-format
+#, python-format
 msgid "Download Size : %s "
-msgstr "تنزيل : %s ( %s )"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:212
 msgid "Package Description"
 msgstr "وصف الحزم"
 
 #: ../src/yumexgui/gui.py:214
-#, fuzzy
 msgid "Update information"
-msgstr "جلب معلومات المجموعات"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:216
 msgid "Package Changelog"
@@ -864,9 +827,8 @@ msgid "Package Filelist"
 msgstr "قائمة بملفات الحزمة"
 
 #: ../src/yumexgui/gui.py:220
-#, fuzzy
 msgid "Package Dependencies"
-msgstr "يجري حلحلت الاعتماديات"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:321
 msgid "Project URL : "
@@ -913,9 +875,8 @@ msgid "Basic"
 msgstr "أساسي"
 
 #: ../src/yumex.glade.h:7
-#, fuzzy
 msgid "Don't check signatures for packages"
-msgstr "لا تفحص التواقيع على الحزم"
+msgstr ""
 
 #: ../src/yumex.glade.h:8
 msgid "Error"
@@ -930,9 +891,8 @@ msgid "Get all History elements"
 msgstr ""
 
 #: ../src/yumex.glade.h:11
-#, fuzzy
 msgid "R_epositories"
-msgstr "المتسودع"
+msgstr ""
 
 #: ../src/yumex.glade.h:12
 msgid "Redo a history transaction"
@@ -951,9 +911,8 @@ msgid "Remove selected packages from queue"
 msgstr "إزالة الحزم المختارة من الطابور"
 
 #: ../src/yumex.glade.h:16
-#, fuzzy
 msgid "Search Options"
-msgstr "_خيارات"
+msgstr ""
 
 #: ../src/yumex.glade.h:17
 msgid "Select all packages in current view"
@@ -964,14 +923,12 @@ msgid "Show Categories"
 msgstr ""
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Groups"
-msgstr "م_جموعات"
+msgstr ""
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show all Packages"
-msgstr "عرض الحزم المتوفرة"
+msgstr ""
 
 #: ../src/yumex.glade.h:21
 msgid "Show available packages"
@@ -1075,9 +1032,8 @@ msgid "_Output"
 msgstr ""
 
 #: ../src/yumex.glade.h:48
-#, fuzzy
 msgid "_Packages"
-msgstr "الحزم"
+msgstr ""
 
 #: ../src/yumex.glade.h:49
 msgid "_Profiles"
@@ -1095,34 +1051,4 @@ msgstr "_عرض"
 msgid "no GPG Check"
 msgstr "لا تفحص توقيع GPG"
 
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">العملية</span>\n"
 
-#, fuzzy
-#~ msgid "Populating Package Cache"
-#~ msgstr "تنزيل الحزم"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "وصف الحزمة"
-
-#~ msgid "Update ID"
-#~ msgstr "معرف التحديث"
-
-#~ msgid "       Bugs :"
-#~ msgstr "       العثرات :"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "جلب قوائم الحزم"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "جلب الحزم المتوفرة"
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "جلب الحزم المثبتة"
-
-#~ msgid "Stopping yum child process"
-#~ msgstr "يجري إيقاف عملية yum الوليدة"

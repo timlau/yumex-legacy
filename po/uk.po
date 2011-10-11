@@ -1,22 +1,24 @@
+# Yum Extender aka yumex translationa string
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Yuri Chornoivan <yurchor@ukr.net>, 2010, 2011.
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2011-01-15 09:18+0200\n"
-"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
@@ -1063,30 +1065,4 @@ msgstr "П_ерегляд"
 msgid "no GPG Check"
 msgstr "без перевірки GPG"
 
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">Операція</span>\n"
 
-#~ msgid "Populating Package Cache"
-#~ msgstr "Заповнення кешу пакунків"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "Опис пакунка"
-
-#~ msgid "Update ID"
-#~ msgstr "Ід. оновлення"
-
-#~ msgid "       Bugs :"
-#~ msgstr "       Вади:"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "Отримання списків пакунків"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "Отримання списку доступних пакунків"
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "Отримання списку встановлених пакунків"

@@ -1,20 +1,24 @@
-# translation of pl.po to Polish
-# Dawid Zamirski <dzrudy@gmail.com>, 2005.
-# Patryk Zawadzki <patrys@pld-linux.org>, 2007.
-# Piotr Drąg <piotrdrag@gmail.com>, 2007.
-#
+# Yum Extender aka yumex translationa string
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Piotr Drąg <piotrdrag@gmail.com>, 2011.
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: pl\n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2011-01-15 17:37+0100\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <trans-pl@lists.fedoraproject.org>\n"
-"Language: pl\n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: Polish (http://www.transifex.net/projects/p/yumex/team/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
@@ -955,7 +959,8 @@ msgstr "Pomijanie uszkodzonych"
 
 #: ../src/yumex.glade.h:25
 msgid "Skip packages there get depsolve errors"
-msgstr "Pomija pakiety, wobec których występują błędy rozwiązywania zależności"
+msgstr ""
+"Pomija pakiety, wobec których występują błędy rozwiązywania zależności"
 
 #: ../src/yumex.glade.h:26
 msgid "Testing Stuff"
@@ -1057,3 +1062,5 @@ msgstr "_Widok"
 #: ../src/yumex.glade.h:52
 msgid "no GPG Check"
 msgstr "bez sprawdzania podpisów GPG"
+
+

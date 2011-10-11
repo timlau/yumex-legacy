@@ -1,23 +1,23 @@
-# Serbian(Latin) translations for yumex
-# Copyright (C) 2007 Tim Lauridsen
-# This file is distributed under the same license as the yumex package.
-# Jovan Krunic <jovan.krunic@gmail.com>, 2008.
-# Miloš Komarčević <kmilos@gmail.com>, 2009.
-#
+# Yum Extender aka yumex translationa string
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Tim Lauridsen <tla@rasmil.dk> 2011
+# 
+# Translators:
+# Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: yumex\n"
+"Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-14 07:09+0100\n"
-"PO-Revision-Date: 2009-11-08 21:36+0000\n"
-"Last-Translator: Miloš Komarčević <kmilos@gmail.com>\n"
-"Language-Team: Serbian (sr) <fedora-trans-sr@redhat.com>\n"
-"Language: \n"
+"PO-Revision-Date: 2011-09-08 05:38+0000\n"
+"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: sr@latin\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:72
@@ -96,34 +96,29 @@ msgid "90+ days"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:137
-#, fuzzy
 msgid "Getting all packages"
-msgstr "Dobavljam dostupne pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:138
-#, fuzzy
 msgid "Getting installed packages"
-msgstr "Dobavljam instalirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:139
-#, fuzzy
 msgid "Getting available packages"
-msgstr "Dobavljam dostupne pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:140
-#, fuzzy
 msgid "Getting available updates"
-msgstr "Dobavljam dostupne pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:141
-#, fuzzy
 msgid "Getting available obsoletes"
-msgstr "Dobavljam dostupne pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:146
-#, fuzzy, python-format
+#, python-format
 msgid "%s is updated"
-msgstr "ažuriranja"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
@@ -132,9 +127,9 @@ msgstr ""
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "%s is installed"
-msgstr "instalirano"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
@@ -147,43 +142,36 @@ msgid "%s is cleanup"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:163
-#, fuzzy
 msgid "Updated packages"
-msgstr "Dobavljam ažurirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:164
-#, fuzzy
 msgid "Downgraded packages"
-msgstr "Preuzimanje paketa"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:165
-#, fuzzy
 msgid "Obsoleting packages"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:166
-#, fuzzy
 msgid "Obsoleted packages"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:167
-#, fuzzy
 msgid "Erased packages"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
-#, fuzzy
 msgid "Installed packages"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:171
-#, fuzzy
 msgid "Reinstalled packages"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:678
@@ -197,9 +185,8 @@ msgid "Summary"
 msgstr "Sažetak"
 
 #: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:370
-#, fuzzy
 msgid "Description"
-msgstr "Opis : %s\n"
+msgstr ""
 
 #: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:679
 msgid "Arch"
@@ -217,9 +204,8 @@ msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:200
-#, fuzzy
 msgid "Building rpms from deltarpm"
-msgstr "Ponovna izgradnja iz deltarpm paketa je završena"
+msgstr ""
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
@@ -356,9 +342,8 @@ msgid "Error in yum Transaction : %s"
 msgstr "Greška pri yum transakciji : %s"
 
 #: ../src/yumexbackend/yum_server.py:850
-#, fuzzy
 msgid "Exception in run_transaction"
-msgstr "Pripremam transakciju"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:889
 #, python-format
@@ -401,9 +386,8 @@ msgid "Cleaned everything from local cache"
 msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1594
-#, fuzzy
 msgid "Rebuild from deltarpms completed"
-msgstr "Ponovna izgradnja iz deltarpm paketa je završena"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1596
 #, python-format
@@ -547,19 +531,16 @@ msgid "Backend could not be closed"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:297
-#, fuzzy
 msgid "Fatal Error : "
-msgstr "Kobna greška"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:372
-#, fuzzy
 msgid "Available Updates"
-msgstr "Dobavljam dostupne pakete"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:374
-#, fuzzy
 msgid "Search for packages"
-msgstr "Prikaži ažuriranja paketa"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Perform actions on packages"
@@ -646,14 +627,12 @@ msgid "Clean All"
 msgstr "Očisti sve"
 
 #: ../src/yumexgui/__init__.py:642
-#, fuzzy
 msgid "Reinstall Package"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:649
-#, fuzzy
 msgid "Downgrade Package"
-msgstr "Preuzimanje paketa"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:659
 msgid "By Repositories"
@@ -731,19 +710,16 @@ msgid "Searching History Information"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:975
-#, fuzzy
 msgid "Transaction Performed with"
-msgstr "Transakciju je prekinuo korisnik"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:978
-#, fuzzy
 msgid "Skipped packages"
-msgstr "Prikaži instalirane pakete"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1004 ../src/yumexgui/__init__.py:1005
-#, fuzzy
 msgid "Adding Packages to view"
-msgstr "Preuzimanje paketa"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1009
 #, python-format
@@ -751,9 +727,8 @@ msgid "Added %i Packages to view"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:1338
-#, fuzzy
 msgid "Getting Category Packages"
-msgstr "Dobavljam dostupne pakete"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1435
 #, python-format
@@ -766,9 +741,8 @@ msgid "Executing : %s %s"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:1505
-#, fuzzy
 msgid "Processing Queue Command"
-msgstr "Obrađujem akcije na čekanju"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:430
 msgid "Working !!!"
@@ -852,9 +826,8 @@ msgid "Package Filelist"
 msgstr "Spisak datoteka paketa"
 
 #: ../src/yumexgui/gui.py:220
-#, fuzzy
 msgid "Package Dependencies"
-msgstr "Razrešavanje zavisnosti"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:321
 msgid "Project URL : "
@@ -881,9 +854,8 @@ msgid "Quit"
 msgstr ""
 
 #: ../src/yumex.glade.h:1
-#, fuzzy
 msgid "<span size=\"x-large\">Working ....</span>\n"
-msgstr "<span size=\"large\"><b>Akcija</b></span>\n"
+msgstr ""
 
 #: ../src/yumex.glade.h:3
 msgid "Advanced"
@@ -922,9 +894,8 @@ msgid "R_epositories"
 msgstr "R_epozitorijumi"
 
 #: ../src/yumex.glade.h:12
-#, fuzzy
 msgid "Redo a history transaction"
-msgstr "Pripremam transakciju"
+msgstr ""
 
 #: ../src/yumex.glade.h:13
 msgid ""
@@ -937,28 +908,24 @@ msgid "Remove selected packages from queue"
 msgstr "Ukloni izabrane pakete iz reda"
 
 #: ../src/yumex.glade.h:16
-#, fuzzy
 msgid "Search Options"
-msgstr "_Opcije"
+msgstr ""
 
 #: ../src/yumex.glade.h:17
 msgid "Select all packages in current view"
 msgstr ""
 
 #: ../src/yumex.glade.h:18
-#, fuzzy
 msgid "Show Categories"
-msgstr "Kategorije"
+msgstr ""
 
 #: ../src/yumex.glade.h:19
-#, fuzzy
 msgid "Show Groups"
-msgstr "_Grupe"
+msgstr ""
 
 #: ../src/yumex.glade.h:20
-#, fuzzy
 msgid "Show all Packages"
-msgstr "Prikaži dostupne pakete"
+msgstr ""
 
 #: ../src/yumex.glade.h:21
 msgid "Show available packages"
@@ -1008,14 +975,12 @@ msgid "Undo a history transaction"
 msgstr ""
 
 #: ../src/yumex.glade.h:35
-#, fuzzy
 msgid "Undo all package selection"
-msgstr "Nema izabranih paketa"
+msgstr ""
 
 #: ../src/yumex.glade.h:36
-#, fuzzy
 msgid "Undo repository selection changes"
-msgstr "Prikaz za izbor repozitorijuma"
+msgstr ""
 
 #: ../src/yumex.glade.h:37
 msgid "Undo the current search"
@@ -1081,28 +1046,4 @@ msgstr "Preg_led"
 msgid "no GPG Check"
 msgstr ""
 
-#~ msgid "<span size=\"x-large\">Transaction</span>\n"
-#~ msgstr "<span size=\"x-large\">Transakcija</span>\n"
 
-#, fuzzy
-#~ msgid "Populating Package Cache"
-#~ msgstr "Preuzimanje paketa"
-
-#~ msgid ""
-#~ "\n"
-#~ "Package Description"
-#~ msgstr ""
-#~ "\n"
-#~ "Opis paketa"
-
-#~ msgid "Update ID"
-#~ msgstr "IB ažuriranja"
-
-#~ msgid "Getting Package Lists"
-#~ msgstr "Dobavljam spiskove paketa"
-
-#~ msgid "Getting Available Packages"
-#~ msgstr "Dobavljam dostupne pakete"
-
-#~ msgid "Getting installed Packages"
-#~ msgstr "Dobavljam instalirane pakete"
