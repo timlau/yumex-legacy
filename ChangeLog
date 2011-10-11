@@ -1,3 +1,50 @@
+2011-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
+	po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po,
+	po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/zh_CN.po, src/yumexbase/constants.py, yumex.spec: bumped version
+	to 3.0.4
+
+2011-09-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/fr.po, po/it_IT.po, po/uk.po: refreshed po files
+
+2011-08-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexgui/__init__.py: Added
+	suport for using package filters, when searching
+
+2011-08-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Updated about and saved .glade with lastest
+	glade3
+
+2011-06-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Make matching group packages
+	better on multi arch (rhbz #716668)
+
+2011-05-05  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: check that this is a real url before calling
+	xdg-open
+
+2011-05-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: Use xdg-open, but failover to gtk.show_uri,
+	if xdg-open fails or is not installed
+
+2011-05-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/gui.py: Use xdg-open to open URLs patch by Raphael
+	Groner (Preliminary patch)
+
+2011-04-27  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2011-04-27  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.3
