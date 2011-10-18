@@ -109,13 +109,13 @@ test-builds:
 
 
 transifex-pull:
-      tx pull -a -f
-      @echo "You can now git commit -a -m 'Transfix pull, *.po update'"
+	tx pull -a -f
+	@echo "You can now git commit -a -m 'Transfix pull, *.po update'"
 
 transifex-push:
-      make -C po yumex.pot
-      tx push -s -t
-      @echo "You can now git commit -a -m 'Transfix push, yum.pot update'"
+	make -C po yumex.pot
+	tx push -s -t
+	@echo "You can now git commit -a -m 'Transfix push, yum.pot update'"
 		
 FORCE:
     
