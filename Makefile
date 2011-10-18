@@ -106,6 +106,16 @@ test-builds:
 	@scp ${PKGNAME}-${NEW_VER}.tar.gz timlau.fedorapeople.org:public_html/files/yumex/${PKGNAME}-${NEW_VER}-${GITDATE}.tar.gz
 	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
+
+
+transifex-pull:
+      tx pull -a -f
+      @echo "You can now git commit -a -m 'Transfix pull, *.po update'"
+
+transifex-push:
+      make -C po yumex.pot
+      tx push -s -t
+      @echo "You can now git commit -a -m 'Transfix push, yum.pot update'"
 		
 FORCE:
     
