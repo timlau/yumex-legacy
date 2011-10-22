@@ -1,8 +1,8 @@
-%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+u%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
 Version:  3.0.4
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -44,6 +44,11 @@ make
 rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
 
+#install another .glade file for el6
+%if 0%{?el6}
+install -m644 src/yumex.glade.el6 $RPM_BUILD_ROOT/%{_datadir}/yumex.glade
+%endif
+
 desktop-file-install --vendor fedora --delete-original \
     --dir $RPM_BUILD_ROOT%{_datadir}/applications \
     --add-category X-Fedora \
@@ -76,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Sat Oct 22 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-2
+- bumped version to 3.0.4-2
+- install special yumex.glade on el6
 * Tue Oct 11 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-1
 - bumped version to 3.0.4-1
 * Wed Apr 27 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.3-1
