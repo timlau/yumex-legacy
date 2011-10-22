@@ -46,7 +46,7 @@ make DESTDIR=$RPM_BUILD_ROOT install
 
 #install another .glade file for el6
 %if 0%{?el6}
-install -m644 src/yumex.glade.el6 $RPM_BUILD_ROOT/%{_datadir}/yumex.glade
+install -m644 src/yumex.glade.el6 $RPM_BUILD_ROOT/%{_datadir}/%{name}/yumex.glade
 %endif
 
 desktop-file-install --vendor fedora --delete-original \
