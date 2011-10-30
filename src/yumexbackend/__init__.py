@@ -2,8 +2,7 @@
 '''
 '''
 
-import pickle
-import base64
+import json
 from urlgrabber.progress import format_number
 
 
@@ -455,10 +454,10 @@ class YumHistoryPackage:
     # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
 def pack(value):
     '''  Pickle and base64 encode an python object'''
-    return base64.b64encode(pickle.dumps(value))
+    return json.dumps(value)
 
 def unpack(value):
     '''  base64 decode and unpickle an python object'''
-    return pickle.loads(base64.b64decode(value))
+    return json.loads(value)
 
 
