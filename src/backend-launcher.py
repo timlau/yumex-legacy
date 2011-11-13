@@ -25,13 +25,19 @@ def parse_command(cmd, param):
 def dispatcher():
     print ":debug\tLAUNCHER: Ready for commands"
     print '#ready'
-    line = sys.stdin.readline().strip('\n')
-    if not line or line.startswith('#exit'):
-        return False
-    cmd, param = line.split('\t')
-    rc = parse_command(cmd, param)
+    try:
+        line = sys.stdin.readline().strip('\n')
+        if not line or line.startswith('#exit'):
+            return False
+        cmd, param = line.split('\t')
+        rc = parse_command(cmd, param)
+    except IOError, e:
+        print ":error\tFatal error in backend launcher (can't read from sys.stdin)"
+        err, msg = (e.err, e.msg)
+        print ":error\texception : %s %s " % (err, msg)
+        rc = False
     return rc
-
+        
 def run(parameters):
     try:
         retcode = call(parameters, shell=True)
