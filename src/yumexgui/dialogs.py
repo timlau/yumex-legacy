@@ -764,6 +764,7 @@ class ErrorDialog:
         @param longtext: the main text
         '''
         buf = self.longtext.get_buffer()
+        buf.set_text('')
         start, end = buf.get_bounds()
         buf.insert_with_tags(end, longtext, self.style_err)
 
