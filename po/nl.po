@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 09:23+0200\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: timlau <tla@rasmil.dk>\n"
-"Language-Team: Dutch (http://www.transifex.net/projects/p/yumex/team/nl/)\n"
+"POT-Creation-Date: 2012-02-14 19:06+0100\n"
+"PO-Revision-Date: 2011-11-08 13:10+0000\n"
+"Last-Translator: Richard E. van der Luit <nippur@fedoraproject.org>\n"
+"Language-Team: Dutch (http://www.transifex.net/projects/p/yumex/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -255,10 +255,7 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
-"Gebruik de volgende repositories : \n"
-"%s\n"
-"\n"
+msgstr "De volgende repositories worden gebruikt: \n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
@@ -301,7 +298,7 @@ msgstr "Yum achtergrondproces is niet tijdig netjes afgesloten"
 #: ../src/yumexbackend/yum_server.py:181
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr "Gebruik %s voor yum-configuratie"
+msgstr "%s wordt voor yum-configuratie gebruikt"
 
 #. Not local disable it
 #. No, disable it
@@ -516,14 +513,11 @@ msgstr "Fout in repository-instellingen"
 
 #: ../src/yumexgui/__init__.py:288
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
-"Je kunt proberen om met 'yumex -n' op te starten op een commando-regel\n"
+msgstr "Je kunt proberen om met 'yumex -n' op te starten op een commando-regel\n"
 
 #: ../src/yumexgui/__init__.py:289
 msgid "and deselecting the repositories causing problems\n"
-msgstr ""
-"en de repositories die problemen veroorzaken deselecteren\n"
-"\n"
+msgstr "en de repositories die problemen veroorzaken deselecteren\n\n"
 
 #: ../src/yumexgui/__init__.py:290
 msgid "and try again.\n"
@@ -593,7 +587,7 @@ msgstr "Niet verbonden met een netwerk"
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "Niet aangesloten op een netwerk. \nWilt u doorgaan "
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
@@ -673,10 +667,7 @@ msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
-"\n"
-"\n"
-"Wil je Yum Extender verlaten?"
+msgstr "\n\nWil je Yum Extender verlaten?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -687,9 +678,7 @@ msgstr "Transactie afgebroken door gebruiker"
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
-"Transactie afgemaakt met fouten,\n"
-"controleer de output pagina voor details"
+msgstr "Transactie afgemaakt met fouten,\ncontroleer de output pagina voor details"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
@@ -784,8 +773,7 @@ msgstr "Schakel opstart-netwerkcontrole uit "
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
-"Draai backend met sudo (werkende sudo nopasswd config is hierbij nodig)"
+msgstr "Draai backend met sudo (werkende sudo nopasswd config is hierbij nodig)"
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
@@ -842,7 +830,7 @@ msgstr "Pakket afhankelijkheden"
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
-msgstr ""
+msgstr "Geen Update informatie"
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
@@ -916,9 +904,7 @@ msgstr "Een geschiedenistransactie opnieuw uitvoeren"
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
-"Ververs pakketten van de op dit moment\n"
-"geselecteerde repositories"
+msgstr "Ververs pakketten van de op dit moment\ngeselecteerde repositories"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
@@ -942,7 +928,7 @@ msgstr "Laat groepen zien"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Newest Only"
-msgstr ""
+msgstr "Toon Alleen Nieuwste"
 
 #: ../src/yumex.glade.h:21
 msgid "Show all Packages"
@@ -960,7 +946,7 @@ msgstr "Laat geïnstalleerde pakketten zien"
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "Toon alleen de nieuwste pakketten bij het zoeken\nToon geen meerdere versies van hetzelfde pakket"
 
 #: ../src/yumex.glade.h:26
 msgid "Show package updates"
@@ -987,10 +973,7 @@ msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
-"Vul zoekwoorden in, gescheiden door\n"
-"spaties om pakketten te vinden die de\n"
-"zoekwoorden bevatten.\n"
+msgstr "Vul zoekwoorden in, gescheiden door\nspaties om pakketten te vinden die de\nzoekwoorden bevatten.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
@@ -1075,5 +1058,3 @@ msgstr "Be_kijk"
 #: ../src/yumex.glade.h:55
 msgid "no GPG Check"
 msgstr "geen GPG check"
-
-

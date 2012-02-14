@@ -10,10 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 09:23+0200\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: timlau <tla@rasmil.dk>\n"
-"Language-Team: Japanese (http://www.transifex.net/projects/p/yumex/team/ja/)\n"
+"POT-Creation-Date: 2012-02-14 19:06+0100\n"
+"PO-Revision-Date: 2011-11-18 15:23+0000\n"
+"Last-Translator: Takanori MATSUURA <t.matsuu@gmail.com>\n"
+"Language-Team: Japanese (http://www.transifex.net/projects/p/yumex/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -110,69 +110,69 @@ msgstr "利用できるパッケージを取得しています"
 
 #: ../src/yumexbase/constants.py:140
 msgid "Getting available updates"
-msgstr "利用できる更新を取得しています"
+msgstr "利用できる更新情報を取得しています"
 
 #: ../src/yumexbase/constants.py:141
 msgid "Getting available obsoletes"
-msgstr ""
+msgstr "利用できる廃止情報を取得しています"
 
 #: ../src/yumexbase/constants.py:146
 #, python-format
 msgid "%s is updated"
-msgstr "%s は更新されました"
+msgstr "%sは更新されました"
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
 msgid "%s is erased"
-msgstr "%s は消去されました"
+msgstr "%sは消去されました"
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
 #, python-format
 msgid "%s is installed"
-msgstr "%s はインストールされました"
+msgstr "%sはインストールされました"
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%sは廃止されました"
 
 #: ../src/yumexbase/constants.py:152
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%sは除去されました"
 
 #: ../src/yumexbase/constants.py:163
 msgid "Updated packages"
-msgstr "更新済みパッケージ"
+msgstr "更新されたパッケージ"
 
 #: ../src/yumexbase/constants.py:164
 msgid "Downgraded packages"
-msgstr "ダウンロード済みパッケージ"
+msgstr "ダウンロードされたパッケージ"
 
 #: ../src/yumexbase/constants.py:165
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "廃止されるパッケージ"
 
 #: ../src/yumexbase/constants.py:166
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "廃止されたパッケージ"
 
 #: ../src/yumexbase/constants.py:167
 msgid "Erased packages"
-msgstr "消去済みパッケージ"
+msgstr "消去されたパッケージ"
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
 msgid "Installed packages"
-msgstr "インストール済みパッケージ"
+msgstr "インストールされたパッケージ"
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "依存関係によりインストールされたパッケージ"
 
 #: ../src/yumexbase/constants.py:171
 msgid "Reinstalled packages"
-msgstr "再インストール済みパッケージ"
+msgstr "再インストールされたパッケージ"
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:670
@@ -255,9 +255,7 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
-"以下のリポジトリーを使用しています:\n"
-"%s\n"
+msgstr "以下のリポジトリーを使用しています:\n%s\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
@@ -290,7 +288,7 @@ msgstr "依存関係の解決がエラーで完了しました"
 #. Root
 #: ../src/yumexbackend/yum_client.py:172
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
+msgstr "クライアントはrootモードで起動しています。バックエンドランチャーを直接開始します"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:246
@@ -300,7 +298,7 @@ msgstr "yum バックエンドは時間内に正しく終了しませんでし�
 #: ../src/yumexbackend/yum_server.py:181
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "%sをyumの設定に使用します"
 
 #. Not local disable it
 #. No, disable it
@@ -482,7 +480,7 @@ msgstr "ログインユーザー"
 
 #: ../src/yumexgui/views.py:1243
 msgid "Data/Time"
-msgstr "データ/時刻"
+msgstr "日付/時刻"
 
 #: ../src/yumexgui/views.py:1244
 msgid "Action(s)"
@@ -515,15 +513,15 @@ msgstr "リポジトリーのセットアップにエラー"
 
 #: ../src/yumexgui/__init__.py:288
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr "コマンドラインから 'yumex -n' の開始を試すことができます\n"
+msgstr "コマンドラインから 'yumex -n' として起動し、\n"
 
 #: ../src/yumexgui/__init__.py:289
 msgid "and deselecting the repositories causing problems\n"
-msgstr ""
+msgstr "問題のあるリポジトリーを非選択にし、\n"
 
 #: ../src/yumexgui/__init__.py:290
 msgid "and try again.\n"
-msgstr "そして再試行します。\n"
+msgstr "再試行することができます。\n"
 
 #: ../src/yumexgui/__init__.py:295
 msgid "Fatal Error in backend restart"
@@ -589,7 +587,7 @@ msgstr "ネットワークに接続されていません"
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "ネットワークに接続していません。\n続けますか?"
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
@@ -669,9 +667,7 @@ msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
-"\n"
-"Yum Extender を終了しますか?"
+msgstr "\nYum Extender を終了しますか?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -682,9 +678,7 @@ msgstr "トランザクションがユーザーによって中止されました
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
-"トランザクションがエラーで完了しました。\n"
-"詳細は出力をご覧ください"
+msgstr "トランザクションがエラーで完了しました。\n詳細は出力をご覧ください"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
@@ -708,7 +702,7 @@ msgstr "すべての履歴情報を取得しています"
 
 #: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:946
 msgid "History Disabled"
-msgstr ""
+msgstr "履歴は無効です"
 
 #: ../src/yumexgui/__init__.py:940 ../src/yumexgui/__init__.py:941
 msgid "Searching History Information"
@@ -716,7 +710,7 @@ msgstr "履歴情報を検索しています"
 
 #: ../src/yumexgui/__init__.py:984
 msgid "Transaction Performed with"
-msgstr ""
+msgstr "トランザクションの実行に使用"
 
 #: ../src/yumexgui/__init__.py:987
 msgid "Skipped packages"
@@ -724,16 +718,16 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
 msgid "Adding Packages to view"
-msgstr ""
+msgstr "パッケージを表示に追加しています"
 
 #: ../src/yumexgui/__init__.py:1018
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "%i個のパッケージを表示に追加しています"
 
 #: ../src/yumexgui/__init__.py:1372
 msgid "Getting Category Packages"
-msgstr ""
+msgstr "カテゴリーパッケージを取得しています"
 
 #: ../src/yumexgui/__init__.py:1469
 #, python-format
@@ -763,11 +757,11 @@ msgstr "起動時にパッケージを読み込む"
 
 #: ../src/yumexgui/dialogs.py:510
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "並べ替え可能なカラムを使用する (遅い)"
 
 #: ../src/yumexgui/dialogs.py:511
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "先行入力検索をデフォルトで有効にする"
 
 #: ../src/yumexgui/dialogs.py:519
 msgid "Debug Mode"
@@ -779,7 +773,7 @@ msgstr "ネットワーク開始のチェックを無効にする"
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
+msgstr "バックエンドをsudoで起動する (sudoのnopasswd設定が動作する必要があります)"
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
@@ -836,7 +830,7 @@ msgstr "依存パッケージ"
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
-msgstr ""
+msgstr "更新情報はありません"
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
@@ -934,7 +928,7 @@ msgstr "グループを表示する"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Newest Only"
-msgstr ""
+msgstr "最新のもののみ表示"
 
 #: ../src/yumex.glade.h:21
 msgid "Show all Packages"
@@ -952,7 +946,7 @@ msgstr "インストールされたパッケージを表示します"
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "検索時に最新のパッケージのみを表示します\n同一パッケージの複数バージョンを表示しません"
 
 #: ../src/yumex.glade.h:26
 msgid "Show package updates"
@@ -972,20 +966,18 @@ msgstr ""
 
 #: ../src/yumex.glade.h:30
 msgid "Type package names to search for"
-msgstr ""
+msgstr "検索したいパッケージ名を入力します"
 
 #: ../src/yumex.glade.h:31
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
-"検索語を含むパッケージを検索するには、\n"
-"検索語を空白で区切って入力してください。\n"
+msgstr "検索語を含むパッケージを検索するには、\n検索語を空白で区切って入力してください。\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
-msgstr ""
+msgstr "先行入力検索 オン/オフ"
 
 #: ../src/yumex.glade.h:36
 msgid "U_pdates"
@@ -1066,5 +1058,3 @@ msgstr "表示(_V)"
 #: ../src/yumex.glade.h:55
 msgid "no GPG Check"
 msgstr "GPG を確認しない"
-
-

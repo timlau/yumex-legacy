@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 09:23+0200\n"
+"POT-Creation-Date: 2012-02-14 19:06+0100\n"
 "PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -253,10 +253,7 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
-"در حال استفاده از انباره های :\n"
-"%s\n"
-"\n"
+msgstr "در حال استفاده از انباره های :\n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
@@ -289,8 +286,7 @@ msgstr "تحلیل پکیج های وابسته با خطا به پایان رس
 #. Root
 #: ../src/yumexbackend/yum_client.py:172
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
-"کاربر در حال کار با دسترسی روت می باشد , در حال شروع مستقیم  فرایند پشتیبان "
+msgstr "کاربر در حال کار با دسترسی روت می باشد , در حال شروع مستقیم  فرایند پشتیبان "
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:246
@@ -669,10 +665,7 @@ msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
-"\n"
-"\n"
-"آیا میخواهید از یام اکستندر خارج شوید ?"
+msgstr "\n\nآیا میخواهید از یام اکستندر خارج شوید ?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -683,9 +676,7 @@ msgstr "تراکنش توسط کاربر لغو شد "
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
-"تراکنش با خطا پایان یافت,\n"
-" برای رویت جزئیات صفحه خروجی را چک کنید"
+msgstr "تراکنش با خطا پایان یافت,\n برای رویت جزئیات صفحه خروجی را چک کنید"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
@@ -911,9 +902,7 @@ msgstr "اجرای مجدد تراکنش های پیشین"
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
-"تجدید پکیج ها با انباره های انتخاب شده\n"
-"repositories"
+msgstr "تجدید پکیج ها با انباره های انتخاب شده\nrepositories"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
@@ -967,8 +956,7 @@ msgstr "صرفنظر از پکیج های معیوب"
 
 #: ../src/yumex.glade.h:28
 msgid "Skip packages there get depsolve errors"
-msgstr ""
-"صرفنظر از پکیج هایی که  یافتن پکیج های وابسته آنها با خطا مواجه شده است"
+msgstr "صرفنظر از پکیج هایی که  یافتن پکیج های وابسته آنها با خطا مواجه شده است"
 
 #: ../src/yumex.glade.h:29
 msgid "Testing Stuff"
@@ -983,10 +971,7 @@ msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
-"کلمات مورد جستجو را با فاصله تایپ کنید\n"
-"برای پیدا کردن پکیج های حاوی \n"
-"کلمات.\n"
+msgstr "کلمات مورد جستجو را با فاصله تایپ کنید\nبرای پیدا کردن پکیج های حاوی \nکلمات.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
@@ -1071,5 +1056,3 @@ msgstr "_نمایه"
 #: ../src/yumex.glade.h:55
 msgid "no GPG Check"
 msgstr "چک نکردن GPG "
-
-

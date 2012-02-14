@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 09:23+0200\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: timlau <tla@rasmil.dk>\n"
+"POT-Creation-Date: 2012-02-14 19:06+0100\n"
+"PO-Revision-Date: 2011-10-18 13:05+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -254,10 +254,7 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
-"З використанням таких сховищ:\n"
-"%s\n"
-"\n"
+msgstr "З використанням таких сховищ:\n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
@@ -290,9 +287,7 @@ msgstr "Розв’язання залежностей завершено з п�
 #. Root
 #: ../src/yumexbackend/yum_client.py:172
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
-"Клієнтську програму запущено від імені адміністратора, виконуємо "
-"безпосередній запуск сервера"
+msgstr "Клієнтську програму запущено від імені адміністратора, виконуємо безпосередній запуск сервера"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:246
@@ -591,7 +586,7 @@ msgstr "Не з’єднано з мережею"
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "З’єднання з мережею не встановлено.\nБажаєте продовжити виконання дії "
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
@@ -671,10 +666,7 @@ msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
-"\n"
-"\n"
-"Бажаєте завершити роботу Yum Extender?"
+msgstr "\n\nБажаєте завершити роботу Yum Extender?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -685,9 +677,7 @@ msgstr "Операцію перервано користувачем"
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
-"Виконання операції завершилося з помилками,\n"
-" повідомлення наведено на сторінці виводу"
+msgstr "Виконання операції завершилося з помилками,\n повідомлення наведено на сторінці виводу"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
@@ -766,8 +756,7 @@ msgstr "Завантажувати пакунки після запуску"
 
 #: ../src/yumexgui/dialogs.py:510
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
-"Стовпчики з можливістю впорядкування на панелі списку пакунків (повільніше)"
+msgstr "Стовпчики з можливістю впорядкування на панелі списку пакунків (повільніше)"
 
 #: ../src/yumexgui/dialogs.py:511
 msgid "Typeahead search is active by default"
@@ -783,9 +772,7 @@ msgstr "Вимкнути перевірку мережевого з’єднан
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
-"Запустити сервер обробки з sudo (потрібне налаштування sudo на роботу без "
-"пароля)"
+msgstr "Запустити сервер обробки з sudo (потрібне налаштування sudo на роботу без пароля)"
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
@@ -842,7 +829,7 @@ msgstr "Залежності пакунка"
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
-msgstr ""
+msgstr "Без даних щодо оновлень"
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
@@ -916,9 +903,7 @@ msgstr "Повторити операцію з журналу"
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
-"Освіжити список пакунків за поточними\n"
-"позначеними сховищами"
+msgstr "Освіжити список пакунків за поточними\nпозначеними сховищами"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
@@ -942,7 +927,7 @@ msgstr "Показати групи"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Newest Only"
-msgstr ""
+msgstr "Показати лише найновіші"
 
 #: ../src/yumex.glade.h:21
 msgid "Show all Packages"
@@ -960,7 +945,7 @@ msgstr "Показати встановлені пакунки"
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "Показувати у результатах пошуку лише найновіші пакунки\nНе показувати декілька версій одного пакунка"
 
 #: ../src/yumex.glade.h:26
 msgid "Show package updates"
@@ -987,10 +972,7 @@ msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
-"Введіть ключові слова пошуку, відокремлені\n"
-"пробілами, що виявити пакунки, що відповідають\n"
-"ключовим словам.\n"
+msgstr "Введіть ключові слова пошуку, відокремлені\nпробілами, що виявити пакунки, що відповідають\nключовим словам.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
@@ -1075,5 +1057,3 @@ msgstr "П_ерегляд"
 #: ../src/yumex.glade.h:55
 msgid "no GPG Check"
 msgstr "без перевірки GPG"
-
-

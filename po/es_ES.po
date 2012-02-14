@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 09:23+0200\n"
+"POT-Creation-Date: 2012-02-14 19:06+0100\n"
 "PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: timlau <tla@rasmil.dk>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/yumex/team/es_ES/)\n"
+"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/yumex/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,8 +44,7 @@ msgstr "Descargando la información de los paquetes desde el repositorio %s"
 #: ../src/yumexbase/constants.py:94
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-"Descargando la información de la lista de archivos desde el repositorio %s"
+msgstr "Descargando la información de la lista de archivos desde el repositorio %s"
 
 #: ../src/yumexbase/constants.py:95
 #, python-format
@@ -255,10 +254,7 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
-"Usando los siguientes repositorios:\n"
-"%s\n"
-"\n"
+msgstr "Usando los siguientes repositorios:\n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
@@ -291,9 +287,7 @@ msgstr "Resolución de dependencia completa pero con errores"
 #. Root
 #: ../src/yumexbackend/yum_client.py:172
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
-"El cliente está siendo ejecutado en modo root, iniciando directamente el "
-"lanzador del motor"
+msgstr "El cliente está siendo ejecutado en modo root, iniciando directamente el lanzador del motor"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:246
@@ -596,8 +590,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
-msgstr ""
-"se encuentra deshabilitada la verificación del estado de la conexión de red"
+msgstr "se encuentra deshabilitada la verificación del estado de la conexión de red"
 
 #: ../src/yumexgui/__init__.py:459
 msgid "Can't detect the network connection state"
@@ -673,10 +666,7 @@ msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
-"\n"
-"\n"
-"¿Desea salir de Yum Extender?"
+msgstr "\n\n¿Desea salir de Yum Extender?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -687,9 +677,7 @@ msgstr "Transacción cancelada por el usuario"
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
-"Transacción completa pero con errores,\n"
-" consulte la página de salida para conocer los detalles"
+msgstr "Transacción completa pero con errores,\n consulte la página de salida para conocer los detalles"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
@@ -768,8 +756,7 @@ msgstr "Cargar paquetes al lanzar"
 
 #: ../src/yumexgui/dialogs.py:510
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
-"Utilice columnas ordenables en la visualización de los paquetes (más lento)"
+msgstr "Utilice columnas ordenables en la visualización de los paquetes (más lento)"
 
 #: ../src/yumexgui/dialogs.py:511
 msgid "Typeahead search is active by default"
@@ -785,8 +772,7 @@ msgstr "Deshabilitar la verificación de red en el inicio"
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
-"Ejecutar el motor con sudo (es necesaria una configuración de sudo nopasswd)"
+msgstr "Ejecutar el motor con sudo (es necesaria una configuración de sudo nopasswd)"
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
@@ -917,9 +903,7 @@ msgstr "Rehacer una transacción del histórico"
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
-"Actualiza los paquetes desde los repositorios\n"
-"actualmente seleccionados"
+msgstr "Actualiza los paquetes desde los repositorios\nactualmente seleccionados"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
@@ -988,9 +972,7 @@ msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
-"Introduzca las palabaras de la búsqueda separadas\n"
-"por espacios para poder encontrar los paquetes que las contengan.\n"
+msgstr "Introduzca las palabaras de la búsqueda separadas\npor espacios para poder encontrar los paquetes que las contengan.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
@@ -1075,5 +1057,3 @@ msgstr "_Ver"
 #: ../src/yumex.glade.h:55
 msgid "no GPG Check"
 msgstr "sin verificación de GPG"
-
-

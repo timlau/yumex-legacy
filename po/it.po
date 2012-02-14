@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-18 09:23+0200\n"
+"POT-Creation-Date: 2012-02-14 19:06+0100\n"
 "PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: timlau <tla@rasmil.dk>\n"
+"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,8 +63,7 @@ msgstr "Scaricamento informazione di metalink per il repository %s "
 #: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr ""
-"Scaricamento informazione di aggiornamento Delta per il repository %s "
+msgstr "Scaricamento informazione di aggiornamento Delta per il repository %s "
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
@@ -254,10 +253,7 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
-"Utilizzo dei seguenti repositories:\n"
-"%s\n"
-"\n"
+msgstr "Utilizzo dei seguenti repositories:\n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
@@ -680,9 +676,7 @@ msgstr "Transazione annullata dall'utente"
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
-"Transazione completata con errori,\n"
-"controllare l'output per i dettagli"
+msgstr "Transazione completata con errori,\ncontrollare l'output per i dettagli"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
@@ -908,9 +902,7 @@ msgstr ""
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
-"Ricaricare i pacchetti con i repositories\n"
-"attualmente selezionati"
+msgstr "Ricaricare i pacchetti con i repositories\nattualmente selezionati"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
@@ -979,10 +971,7 @@ msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
-"Inserire le parole separate da spazi \n"
-"per trovare i pacchetti\n"
-"che contengono quelle parole.\n"
+msgstr "Inserire le parole separate da spazi \nper trovare i pacchetti\nche contengono quelle parole.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
@@ -1067,5 +1056,3 @@ msgstr ""
 #: ../src/yumex.glade.h:55
 msgid "no GPG Check"
 msgstr "nessun controllo GPG "
-
-
