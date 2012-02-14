@@ -32,13 +32,7 @@ from kitchen.i18n import easy_gettext_setup
 
 #_, P_  = easy_gettext_setup('yumex') 
 
-print os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'po')
-print os.path.join(sys.prefix, 'lib', 'locale')
-
-_, P_  = easy_gettext_setup('yumex', localedirs=(
-        os.path.join(os.path.abspath(os.path.dirname(sys.argv[0])), 'po'),
-        os.path.join(sys.prefix, 'lib', 'locale')
-        ))
+_, P_  = easy_gettext_setup('yumex', localedirs=[os.path.join(sys.prefix, 'share', 'locale')])
 
 class YumexProgressBase:
     '''
