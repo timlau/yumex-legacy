@@ -114,7 +114,7 @@ transifex-pull:
 
 transifex-push:
 	make -C po yumex.pot
-	tx push -s -t
+	tx push -s
 	@echo "You can now git commit -a -m 'Transfix push, yum.pot update'"
 		
 FORCE:
