@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Tim Lauridsen <tla@rasmil.dk>, 2011.
+# Tim Lauridsen <tla@rasmil.dk>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-14 19:06+0100\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
+"PO-Revision-Date: 2012-02-14 18:32+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -96,81 +96,81 @@ msgstr "90+ dage"
 
 #: ../src/yumexbase/constants.py:137
 msgid "Getting all packages"
-msgstr ""
+msgstr "Henter oversigt over alle pakker"
 
 #: ../src/yumexbase/constants.py:138
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Henter oversigt over installerede pakker"
 
 #: ../src/yumexbase/constants.py:139
 msgid "Getting available packages"
-msgstr ""
+msgstr "Henter oversigt over tilgængelige pakker"
 
 #: ../src/yumexbase/constants.py:140
 msgid "Getting available updates"
-msgstr ""
+msgstr "Henter oversigt over tilgængelige opdateringer"
 
 #: ../src/yumexbase/constants.py:141
 msgid "Getting available obsoletes"
-msgstr ""
+msgstr "Henter oversigt over tilgængelige erstatninger"
 
 #: ../src/yumexbase/constants.py:146
 #, python-format
 msgid "%s is updated"
-msgstr ""
+msgstr "%s er opdateret"
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%s er slettet"
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
 #, python-format
 msgid "%s is installed"
-msgstr ""
+msgstr "%s er installeret"
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%s er erstattet"
 
 #: ../src/yumexbase/constants.py:152
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s er ryddet op"
 
 #: ../src/yumexbase/constants.py:163
 msgid "Updated packages"
-msgstr ""
+msgstr "Opdaterede pakker"
 
 #: ../src/yumexbase/constants.py:164
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Nedgraderede pakker"
 
 #: ../src/yumexbase/constants.py:165
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "pakker som erstatter"
 
 #: ../src/yumexbase/constants.py:166
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Erstatted pakker"
 
 #: ../src/yumexbase/constants.py:167
 msgid "Erased packages"
-msgstr ""
+msgstr "Slettede pakker"
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
 msgid "Installed packages"
-msgstr ""
+msgstr "Installerede pakker"
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Installeret som afhængighed"
 
 #: ../src/yumexbase/constants.py:171
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Geninstallerede pakker"
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:670
@@ -185,7 +185,7 @@ msgstr "Resumé"
 
 #: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:395
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:671
 msgid "Arch"
@@ -204,7 +204,7 @@ msgstr "Ukendt pakkearkiv-metadatatype (%s) for %s"
 
 #: ../src/yumexbackend/yum_backend.py:200
 msgid "Building rpms from deltarpm"
-msgstr ""
+msgstr "Bygger rpm'er fra deltarpm'er"
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
@@ -262,7 +262,7 @@ msgstr "yum-backendproces er afsluttet"
 #: ../src/yumexbackend/yum_backend.py:362
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i returnered pakker"
 
 #: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
@@ -286,7 +286,7 @@ msgstr "Løsning af afhængigheder afsluttet med fejl"
 #. Root
 #: ../src/yumexbackend/yum_client.py:172
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
+msgstr "Klienten kører som superbruger, starter baggrunds proces direkte"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:246
@@ -296,7 +296,7 @@ msgstr "Yum-backenden lukkede ikke pænt i tide"
 #: ../src/yumexbackend/yum_server.py:181
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "Bruger %s for yum konfiguration"
 
 #. Not local disable it
 #. No, disable it
@@ -325,11 +325,11 @@ msgstr "Venter 10 sekunder og prøver igen !!!"
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:305
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Disken er ikke i drevet"
 
 #: ../src/yumexbackend/yum_server.py:336
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "Lukker rpm database og frigiver yum lås"
 
 #: ../src/yumexbackend/yum_server.py:802
 msgid "Installing"
@@ -386,7 +386,7 @@ msgstr "Ryddede alt op fra lokal cache"
 
 #: ../src/yumexbackend/yum_server.py:1633
 msgid "Rebuild from deltarpms completed"
-msgstr ""
+msgstr "Bygning fra deltarpm'er afsluttet"
 
 #: ../src/yumexbackend/yum_server.py:1635
 #, python-format
@@ -447,7 +447,7 @@ msgstr "Pakker"
 #: ../src/yumexgui/views.py:771
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Nedgradering til</b> %s "
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:784 ../src/yumexgui/views.py:830
@@ -462,7 +462,7 @@ msgstr "Filnavn"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:964
 msgid "Search Keys"
-msgstr ""
+msgstr "Søge Nøgler"
 
 #: ../src/yumexgui/views.py:1195
 msgid "Categories"
@@ -535,11 +535,11 @@ msgstr "Fatal fejl: "
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Available Updates"
-msgstr ""
+msgstr "Tilgængelige Opdateringer"
 
 #: ../src/yumexgui/__init__.py:380
 msgid "Search for packages"
-msgstr ""
+msgstr "Søgning efter pakker"
 
 #: ../src/yumexgui/__init__.py:384
 msgid "Perform actions on packages"
@@ -625,11 +625,11 @@ msgstr "Ryd alt op"
 
 #: ../src/yumexgui/__init__.py:648
 msgid "Reinstall Package"
-msgstr ""
+msgstr "Geninstaller pakke"
 
 #: ../src/yumexgui/__init__.py:655
 msgid "Downgrade Package"
-msgstr ""
+msgstr "Nedgrader Pakke "
 
 #: ../src/yumexgui/__init__.py:665
 msgid "By Repositories"
@@ -700,32 +700,32 @@ msgstr "Henter al information om historik"
 
 #: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:946
 msgid "History Disabled"
-msgstr ""
+msgstr "Historie deaktiveret"
 
 #: ../src/yumexgui/__init__.py:940 ../src/yumexgui/__init__.py:941
 msgid "Searching History Information"
-msgstr ""
+msgstr "Søger i historie informationer"
 
 #: ../src/yumexgui/__init__.py:984
 msgid "Transaction Performed with"
-msgstr ""
+msgstr "Transaktionen udført med"
 
 #: ../src/yumexgui/__init__.py:987
 msgid "Skipped packages"
-msgstr ""
+msgstr "Ignorede pakker"
 
 #: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
 msgid "Adding Packages to view"
-msgstr ""
+msgstr "Tilføjer pakker til oversigten"
 
 #: ../src/yumexgui/__init__.py:1018
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "Tilføjede %i pakker til oversigten"
 
 #: ../src/yumexgui/__init__.py:1372
 msgid "Getting Category Packages"
-msgstr ""
+msgstr "Henter Kategori Pakker"
 
 #: ../src/yumexgui/__init__.py:1469
 #, python-format
@@ -735,11 +735,11 @@ msgstr "Vil du rydde %s op fra yum-cache"
 #: ../src/yumexgui/__init__.py:1538
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Udfører : %s %s"
 
 #: ../src/yumexgui/__init__.py:1539
 msgid "Processing Queue Command"
-msgstr ""
+msgstr "Udfører Kø Kommando"
 
 #: ../src/yumexgui/dialogs.py:426
 msgid "Working !!!"
@@ -755,11 +755,11 @@ msgstr "Indlæs pakker ved programstart"
 
 #: ../src/yumexgui/dialogs.py:510
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "Brug sorterbare koloner i pakke oversigt (Langsom)"
 
 #: ../src/yumexgui/dialogs.py:511
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "Søge mens du taster, aktiv som standard"
 
 #: ../src/yumexgui/dialogs.py:519
 msgid "Debug Mode"
@@ -771,7 +771,7 @@ msgstr "Deaktivér opstart af netværkskontrol"
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
+msgstr "Kører baggrunds proces med sudo (behøver sudo nopasswd opsætning)"
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
@@ -812,7 +812,7 @@ msgstr "Pakkebeskrivelse"
 
 #: ../src/yumexgui/gui.py:215
 msgid "Update information"
-msgstr ""
+msgstr "Opdateringsinformation"
 
 #: ../src/yumexgui/gui.py:217
 msgid "Package Changelog"
@@ -824,7 +824,7 @@ msgstr "Filliste for pakke"
 
 #: ../src/yumexgui/gui.py:221
 msgid "Package Dependencies"
-msgstr ""
+msgstr "Pakke Afhængigheder"
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
@@ -832,7 +832,7 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
-msgstr ""
+msgstr "Projekt URL:"
 
 #: ../src/yumexgui/gui.py:353
 msgid "Release"
