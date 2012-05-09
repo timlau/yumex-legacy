@@ -1317,15 +1317,18 @@ class YumexApplication(Controller, YumexFrontend):
                     self._add_packages(pkgs, label)
                     self.debug('END: Getting %s packages' % active)
                 else: # This is a search
+                    if active == "installed": # always show all installed packages
+                        newest_only = False
+                    else:
+                        newest_only = self.settings.show_newest_only
+                        
                     self._last_search_filter = widget
                     if self.typeahead_active: # type-ahead
                         keys = self.ui.packageSearch.get_text().split(' ')
                         txt = keys[0]
                         if len(txt) >= 3:
                             self.ui.packageSearch.set_sensitive(False)
-                            self.debug("SEARCH : %s" % txt)
-                            pkgs = self.backend.search_prefix(txt, self.settings.show_newest_only, active)
-                            self.debug("SEARCH : got %i packages" % len(pkgs))
+                            pkgs = self.backend.search_prefix(txt, newest_only, active)
                             if not self.settings.search:
                                 self._hide_filters_on_search(hide = True)
                             self.packages.add_packages(pkgs)
@@ -1338,8 +1341,7 @@ class YumexApplication(Controller, YumexFrontend):
                     else: # Normal search
                         filters = self.search_options.get_filters()
                         keys = self.ui.packageSearch.get_text().split(' ')
-                        print "DEBUG (active):", active
-                        pkgs = self.backend.search(keys, filters, self.settings.show_newest_only, active)
+                        pkgs = self.backend.search(keys, filters, newest_only, active)
                         if not self.settings.search:
                             self._hide_filters_on_search(hide = True)
                         self.packages.add_packages(pkgs)

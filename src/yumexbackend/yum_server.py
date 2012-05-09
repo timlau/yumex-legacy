@@ -202,6 +202,8 @@ class YumServer(yum.YumBase):
         self._updateMetadata = None # Update metadata cache 
         self._updates_list = None
         self._obsoletes_list = None
+        self._last_search = None
+        self._last_search_result = None
         self.write(':started') # Let the front end know that we are up and running
 
     def _is_local_repo(self, repo):
@@ -1019,7 +1021,6 @@ class YumServer(yum.YumBase):
         return po, action
 
     def _return_packages(self, pkgs, filter=None):
-        updates = self._get_updates()
         for po in pkgs:
             po, action = self._get_action(po)
             if filter and action not in filter: # Check if action is in filter
@@ -1045,7 +1046,6 @@ class YumServer(yum.YumBase):
 
     def search_prefix(self, prefix, show_newest_only):
         prefix += '*'
-        self.debug("prefix: %s " % prefix)
         pkgs = self.pkgSack.returnPackages(patterns=[prefix])
         ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
         pkgs.extend(ipkgs)
@@ -1063,22 +1063,26 @@ class YumServer(yum.YumBase):
         keys = unpack(args[0])
         filters = unpack(args[1])
         show_newest_only = unpack(args[2])
-        ygh = self.doPackageLists(pkgnarrow='updates')
-        pkgs = {}
-        for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
-            pkg = found[0]
-            fkeys = found[1]
-            if not len(fkeys) == len(keys): # skip the result if not all keys matches
-                continue
-            na = "%s.%s" % (pkg.name, pkg.arch)
-            if not na in pkgs:
-                pkgs[na] = [pkg]
-            else:
-                pkgs[na].append(pkg)
-        packages = []
-        for na in pkgs:
-            best = self._limit_package_list(pkgs[na])
-            packages.extend(best)
+        if keys != self._last_search:
+            self._last_search = keys
+            pkgs = {}
+            for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
+                pkg = found[0]
+                fkeys = found[1]
+                if not len(fkeys) == len(keys): # skip the result if not all keys matches
+                    continue
+                na = "%s.%s" % (pkg.name, pkg.arch)
+                if not na in pkgs:
+                    pkgs[na] = [pkg]
+                else:
+                    pkgs[na].append(pkg)
+            packages = []
+            for na in pkgs:
+                best = self._limit_package_list(pkgs[na])
+                packages.extend(best)
+            self._last_search_result = packages
+        else:
+            packages = self._last_search_result
         if show_newest_only:
             packages = packagesNewestByName(packages)
         self._return_packages(packages)
