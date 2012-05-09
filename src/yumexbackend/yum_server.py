@@ -1045,11 +1045,16 @@ class YumServer(yum.YumBase):
         return good_pkgs
 
     def search_prefix(self, prefix, show_newest_only):
-        prefix += '*'
-        pkgs = self.pkgSack.returnPackages(patterns=[prefix])
-        ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
-        pkgs.extend(ipkgs)
-        best = self._limit_package_list(pkgs)
+        if prefix != self._last_search:
+            self._last_search = prefix
+            prefix += '*'
+            pkgs = self.pkgSack.returnPackages(patterns=[prefix])
+            ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
+            pkgs.extend(ipkgs)
+            best = self._limit_package_list(pkgs)
+            self._last_search_result = best
+        else:
+            best = self._last_search_result
         if show_newest_only:
             best = packagesNewestByName(best)
         self._return_packages(best)
