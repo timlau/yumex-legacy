@@ -20,13 +20,13 @@ BuildRequires: intltool
 
 Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
-Requires: usermode
 Requires: pexpect
 Requires: python-iniparse
 Requires: dbus-python
 Requires: udisks
 Requires: python-kitchen
 Requires: urlgrabber
+Requires: polkit
 
 %description
 Graphical User Interface for Yum.
@@ -79,8 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
-* Tue May 8 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-3
+* Wed May 9 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-3
 - Added PolicyKit policy
+- Removed usermode requirement
+- Added polkit requirement
 * Sat Oct 22 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-2
 - bumped version to 3.0.4-2
 - install special yumex.glade on el6
