@@ -11,12 +11,11 @@ clean:
 
 install:
 	mkdir -p $(DESTDIR)/usr/share/yumex
-	mkdir -p $(DESTDIR)/usr/share/yumex
-	install -m755 *.pyc $(DESTDIR)/$(PKGDIR)/.
-	install -m755 *.py $(DESTDIR)/$(PKGDIR)/.
+	mkdir -p $(DESTDIR)/usr/bin
+	install -m755 backend-launcher.* $(DESTDIR)/$(PKGDIR)/.
+	install -m755 yum_childtask.* $(DESTDIR)/$(PKGDIR)/.
+	install -m755 yumex.py $(DESTDIR)/usr/bin/yumex
 	install -m644 *.glade $(DESTDIR)/$(PKGDIR)/.
-	chmod +x $(DESTDIR)/$(PKGDIR)/yum_childtask.py
-	chmod +x $(DESTDIR)/$(PKGDIR)/backend-launcher.py
 	ln -s  backend-launcher.py $(DESTDIR)/$(PKGDIR)/yumex-yum-backend
 
 pylint:

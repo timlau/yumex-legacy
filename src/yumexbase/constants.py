@@ -47,10 +47,16 @@ ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
                     'do' : 'downgrade', 'ri' : 'reinstall', 'li' : 'localinstall' }
 
 # Paths
-MAIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
+BIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
+if BIN_PATH == "/usr/bin":
+    MAIN_PATH = '/usr/share/yumex'
+else:
+    MAIN_PATH = BIN_PATH
+
 BUILDER_FILE = MAIN_PATH + '/yumex.glade'
 BUILDER_PKGINST = MAIN_PATH + '/pkginst.glade'
-if MAIN_PATH == '/usr/share/yumex':
+
+if BIN_PATH == '/usr/bin':
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
 elif MAIN_PATH.endswith('test'):
     PIXMAPS_PATH = MAIN_PATH + '/../../gfx'

@@ -29,7 +29,6 @@ install:
 	mkdir -p $(DESTDIR)/etc
 	mkdir -p $(DESTDIR)/usr/share/polkit-1/actions/
 	install -m644 COPYING $(DESTDIR)/usr/share/yumex/.
-	install -m755 $(MISCDIR)/yumex $(DESTDIR)/usr/bin/yumex
 	install -m644 $(PIXDIR)/*.png $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.
