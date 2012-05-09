@@ -1,8 +1,5 @@
 PKGDIR = /usr/share/yumex
 
-all: 
-	@../tools/py-compile *.py 
-
 clean:
 	rm -fv *.pyc *.pyo *~ *.bak *.gladep
 	rm -fv yumexgui/*.pyc yumexgui/*.pyo yumexgui/*~ 
@@ -16,7 +13,6 @@ install:
 	install -m755 yum_childtask.* $(DESTDIR)/$(PKGDIR)/.
 	install -m755 yumex.py $(DESTDIR)/usr/bin/yumex
 	install -m644 *.glade $(DESTDIR)/$(PKGDIR)/.
-	ln -s  backend-launcher.py $(DESTDIR)/$(PKGDIR)/yumex-yum-backend
 
 pylint:
 	@pylint --rcfile=test/yumex-pylintrc *.py yumexbase yumexgui yumexbackend guihelpers 2>/dev/null

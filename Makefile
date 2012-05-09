@@ -33,7 +33,6 @@ install:
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.
 	install -m644 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
-	install -m755 $(MISCDIR)/yumex-yum-backend $(DESTDIR)/usr/bin/yumex-yum-backend
 	install -m644 $(MISCDIR)/org.yum-extender.backend.policy $(DESTDIR)/usr/share/polkit-1/actions/.
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done

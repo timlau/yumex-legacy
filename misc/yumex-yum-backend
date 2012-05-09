@@ -1,2 +1,0 @@
-#!/bin/sh
-exec /usr/bin/pkexec /usr/share/yumex/yumex-yum-backend
