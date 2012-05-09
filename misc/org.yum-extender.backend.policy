@@ -8,13 +8,13 @@
  <vendor_url>http://yum-extender.org</vendor_url>
 
  <action id="org.yum-extender.backend.pkexec.run">
-    <_description>Run Yum Extender backend</_description>
-    <_message>Authentication is required to run Yum Extender</_message>
-    <icon_name>syumex</icon_name>
+    <description>Run Yum Extender backend</description>
+    <message>Authentication is required for Yum Extender to handle packages on the system</message>
+    <icon_name>yumex</icon_name>
     <defaults>
      <allow_any>no</allow_any>
      <allow_inactive>no</allow_inactive>
-     <allow_active>auth_self_keep</allow_active>
+     <allow_active>auth_admin</allow_active>
     </defaults>
     <annotate key="org.freedesktop.policykit.exec.path">/usr/share/yumex/yumex-yum-backend</annotate>
     <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>

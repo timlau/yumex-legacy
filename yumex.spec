@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.4
-Release:  2%{?dist}
+Version:  3.0.5
+Release:  0.1.git20120508%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -75,12 +75,12 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/guihelpers/
 %config(noreplace)  %{_sysconfdir}/yumex.profiles.conf
 %config(noreplace)  %{_sysconfdir}/yumex.conf
-%config %{_sysconfdir}/pam.d/yumex-yum-backend
-%config %{_sysconfdir}/security/console.apps/yumex-yum-backend
-
+%{_datadir}/polkit-1/actions/org.yum-extender.backend.policy
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Tue May 8 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-3
+- Added PolicyKit policy
 * Sat Oct 22 2011 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-2
 - bumped version to 3.0.4-2
 - install special yumex.glade on el6
