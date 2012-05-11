@@ -47,6 +47,7 @@ class YumexConf(BaseConfig):
     color_update = Option('red')
     color_normal = Option('black')
     color_obsolete = Option('blue')
+    color_downgrade = Option('goldenrod')
     disable_repo_page = BoolOption(False)
     branding_title = Option('Yum Extender')
     win_width = IntOption(1000)

@@ -229,6 +229,8 @@ class YumexPackage:
             color = self.frontend.settings.color_update
         elif self.action == 'o':
             color = self.frontend.settings.color_obsolete
+        elif self.action == 'do':
+            color = self.frontend.settings.color_downgrade
         return color
 
     @property

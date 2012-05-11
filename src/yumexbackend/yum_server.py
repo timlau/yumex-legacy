@@ -204,6 +204,7 @@ class YumServer(yum.YumBase):
         self._obsoletes_list = None
         self._last_search = None
         self._last_search_result = None
+        self._package_cache = {}
         self.write(':started') # Let the front end know that we are up and running
 
     def _is_local_repo(self, repo):
@@ -519,12 +520,17 @@ class YumServer(yum.YumBase):
         '''
         if narrow:
             show_dupes = (dupes == 'True')
-            self.info(PACKAGE_LOAD_MSG[narrow])
-            ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
+            if not narrow in self._package_cache:
+                self.info(PACKAGE_LOAD_MSG[narrow])
+                ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
+                self._package_cache[narrow] = getattr(ygh, narrow)
             action = const.FILTER_ACTIONS[narrow]
-            for pkg in getattr(ygh, narrow):
+            for pkg in self._package_cache[narrow]:
                 self._show_package(pkg, action)
         self.ended(True)
+
+    def clear_package_cache(self):
+        self._package_cache = {}
 
     def get_packages_size(self, ndx):
         '''
@@ -1007,6 +1013,7 @@ class YumServer(yum.YumBase):
     def _get_action(self, po):
         updates = self._get_updates()
         obsoletes = self._get_obsoletes()
+        action = 'i'
         if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
             (n, a, e, v, r) = po.pkgtup
             po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
@@ -1017,7 +1024,12 @@ class YumServer(yum.YumBase):
             elif po in obsoletes:
                 action = 'o'
             else:
-                action = 'i'
+                # Check if po is and older version of a installed package
+                ipkgs = self.rpmdb.searchNevra(name=po.name)
+                if ipkgs:
+                    ipkg = ipkgs[0]
+                    if ipkg.verGT(po) and not self.allowedMultipleInstalls(po): # inst > po
+                        action = 'do'
         return po, action
 
     def _return_packages(self, pkgs, filter=None):
@@ -1027,18 +1039,19 @@ class YumServer(yum.YumBase):
                 continue
             self._show_package(po, action)
 
-    def _limit_package_list(self, pkgs):
+    def _limit_package_list(self, pkgs, skip_old=True):
         good_pkgs = set()
         good_tups = {}
         for po in pkgs:
             valid = True
             if po.pkgtup in good_tups: # dont process the same po twice
                 continue
-            ipkgs = self.rpmdb.searchNevra(name=po.name)
-            if ipkgs:
-                ipkg = ipkgs[0]
-                if ipkg.verGT(po) and not self.allowedMultipleInstalls(po): # inst > po
-                    valid = False
+            if skip_old:
+                ipkgs = self.rpmdb.searchNevra(name=po.name)
+                if ipkgs:
+                    ipkg = ipkgs[0]
+                    if ipkg.verGT(po) and not self.allowedMultipleInstalls(po): # inst > po
+                        valid = False
             if valid:
                 good_pkgs.add(po)
                 good_tups[po.pkgtup] = 1
@@ -1083,7 +1096,7 @@ class YumServer(yum.YumBase):
                     pkgs[na].append(pkg)
             packages = []
             for na in pkgs:
-                best = self._limit_package_list(pkgs[na])
+                best = self._limit_package_list(pkgs[na], show_newest_only)
                 packages.extend(best)
             self._last_search_result = packages
         else:
