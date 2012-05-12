@@ -221,15 +221,60 @@ class YumexPackageBase(SelectionView):
         Toggle the package queue status
         @param obj:
         '''
-        if obj.queued == obj.action:
+        if obj.action == 'do' or obj.queued == 'do':
+            self._toggle_downgrade(obj)
+        else:
+            if obj.queued == obj.action:
+                obj.queued = None
+                self.queue.remove(obj)
+                obj.set_select(not obj.selected)
+            elif not self.queue.has_pkg_with_name_arch(obj):
+                obj.queued = obj.action
+                self.queue.add(obj)
+                obj.set_select(not obj.selected)
+            
+            
+    def _toggle_downgrade(self, obj):
+        if obj.queued == 'do': # all-ready queued
+            related_po = obj.downgrade_po
+            if obj.is_installed(): # is obj the installed pkg ?
+                self.queue.remove(obj)
+                obj.action = "r"
+            else:
+                self.queue.remove(related_po)
+                related_po.action = "r"
             obj.queued = None
-            self.queue.remove(obj)
-            obj.set_select(not obj.selected)
-        elif not self.queue.has_pkg_with_name_arch(obj):
-            obj.queued = obj.action
-            self.queue.add(obj)
-            obj.set_select(not obj.selected)
-
+            obj.set_select(False)
+            related_po.queued = None
+            related_po.set_select(False)
+            # the releated package
+        else:
+            pkgs = self.frontend.backend.get_available_downgrades(obj) # get the installed po
+            if pkgs:
+                # downgrade the po
+                pkg = pkgs[0]
+                if pkg.action == 'do' or self.queue.has_pkg_with_name_arch(pkg): # Installed pkg is all-ready downgraded by another package
+                    return
+                pkg.action = 'do'
+                pkg.queued = 'do'
+                pkg.selected = True
+                pkg.downgrade_po = obj
+                obj.queued = 'do'
+                obj.selected = True
+                obj.downgrade_po = pkg
+                self.queue.add(pkg)
+        self.view.queue_draw()
+        
+    def _show_pkg(self,obj):
+        print "package           : ", obj
+        print " --> queued       :  ", obj.queued
+        print " --> action       :  ", obj.action
+        print " --> selected     :  ", obj.selected
+        print " --> downgrade_po :  ", obj.downgrade_po
+        print " --> installed    :  ", obj.is_installed()
+        
+        
+    
     def selectAll(self):
         '''
         Select all packages in the view
@@ -644,14 +689,14 @@ class YumexQueue:
         '''
         
         '''
-        self.logger.info(_("Package Queue:"))
-        for action in ['install', 'update', 'remove']:
-            a = action[0]
+        print(_("Package Queue:"))
+        for a in const.QUEUE_PACKAGE_TYPES:
+            action = const.QUEUE_PACKAGE_TYPES[a]
             pkg_list = self.packages[a]
+            print(" Package(s) to %s" % action)
             if len(pkg_list) > 0:
-                self.logger.info(" Package(s) to %s" % action)
                 for pkg in pkg_list:
-                    self.logger.info(" ---> %s " % str(pkg))
+                    print(" ---> %s " % str(pkg))
         for action in ['install', 'remove']:
             a = action[0]
             pkg_list = self.groups[a]
@@ -701,12 +746,14 @@ class YumexQueueView:
             if row.parent != None:
                 rmvlist.append(row[0])
         for pkg in self.getPkgsFromList(rmvlist):
+            self.queue.remove(pkg)
+            if pkg.queued == "do" and pkg.is_installed():
+                print pkg.downgrade_po
+                pkg.downgrade_po.queued = None
+                pkg.downgrade_po.set_select(not pkg.selected)
+                pkg.action = "r" # reset action type of installed package
             pkg.queued = None
             pkg.set_select(not pkg.selected)
-        for action in const.QUEUE_PACKAGE_TYPES:
-            pkg_list = self.queue.get(action)
-            if pkg_list:
-                self.queue.packages[action] = [x for x in pkg_list if str(x) not in rmvlist]
         self.refresh()
 
 

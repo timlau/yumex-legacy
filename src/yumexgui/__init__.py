@@ -1163,12 +1163,22 @@ class YumexApplication(Controller, YumexFrontend):
         self.queue.refresh()
 
     def on_package_downgrade(self, widget, event, pkg, down_pkg):
+        '''
+        Downgrade package right click menu handler
+        Add downgrade to selected package to action queue.
+        :param widget:
+        :param event:
+        :param pkg: package to downgrade
+        :param down_pkg: package to downgrade to
+        '''
         if event.button == 1: # Left Click    
             pkg.action = 'do'
             self.queue.queue.add(pkg)
             pkg.queued = 'do'
             pkg.selected = True
             pkg.downgrade_po = down_pkg
+            down_pkg.queued = "do"
+            down_pkg.selected = True
             self.queue.refresh()
 
 
@@ -1231,23 +1241,28 @@ class YumexApplication(Controller, YumexFrontend):
                 self.packageInfo.update(pkg)
 
     def on_packageView_button_press_event(self, treeview, event):
-         if event.button == 3: # Right Click
-            x = int(event.x)
-            y = int(event.y)
-            t = event.time
-            pthinfo = treeview.get_path_at_pos(x, y)
-            if pthinfo is not None:
-                path, col, cellx, celly = pthinfo
-                treeview.grab_focus()
-                treeview.set_cursor(path, col, 0)
-                store = treeview.get_model()
-                iter = store.get_iter(path)
-                pkg = store.get_value(iter, 0)
-                if not pkg.is_installed() or pkg.queued: # Only open popup menu for installed packages
-                    return
-                popup = self.get_package_popup(pkg, path)
-                popup.popup(None, None, None, event.button, t)
-            return True
+        '''
+        Mouse button clicked in package view handler
+        :param treeview:
+        :param event:
+        '''
+        if event.button == 3: # Right Click
+           x = int(event.x)
+           y = int(event.y)
+           t = event.time
+           pthinfo = treeview.get_path_at_pos(x, y)
+           if pthinfo is not None:
+               path, col, cellx, celly = pthinfo
+               treeview.grab_focus()
+               treeview.set_cursor(path, col, 0)
+               store = treeview.get_model()
+               iter = store.get_iter(path)
+               pkg = store.get_value(iter, 0)
+               if not pkg.is_installed() or pkg.queued: # Only open popup menu for installed packages
+                   return
+               popup = self.get_package_popup(pkg, path)
+               popup.popup(None, None, None, event.button, t)
+           return True
 
 
 

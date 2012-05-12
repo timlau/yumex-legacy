@@ -575,11 +575,16 @@ class YumServer(yum.YumBase):
         @param pkgstr: package id
         '''
         pkg = self._getPackage(pkgstr)
-        apkgs = self.pkgSack.returnPackages(patterns=[pkg.name], ignore_case=False)
         pkgs = []
-        for po in apkgs:
-            if self._is_valid_downgrade(pkg, po):
-                pkgs.append(po)
+        if self._is_installed(pkg): # is installed , we must find available downgrade
+            apkgs = self.pkgSack.returnPackages(patterns=[pkg.name], ignore_case=False)
+            for po in apkgs:
+                if self._is_valid_downgrade(pkg, po):
+                    pkgs.append(po)
+        else: # Not installed, this is the package to downgrade to, find the installed one
+            ipkgs = self.rpmdb.searchNevra(name=pkg.name, arch = pkg.arch)
+            if ipkgs:
+                pkgs.append(ipkgs[0])
         self._return_packages(pkgs)
         self.ended(True)
 
