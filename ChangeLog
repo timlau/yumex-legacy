@@ -1,3 +1,160 @@
+2012-05-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.5
+
+2012-05-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py,
+	src/yumexgui/views.py: Added support for downgrading by selecting
+	older packages when searching with "show-newest-only" not set. Fix
+	the queue removal to make it possible to re-add packages removed
+	from the queue view
+
+2012-05-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/conf.py: - cache package list in backend - If 'Show newest only' is not set
+	then show older available packages in another color
+
+2012-05-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Make search option dialog view expend
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: Cache results on typeahead seach
+	to give faster results when switching the filter
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: - don't show newest only when installed filter is active - cache the
+	search result in backend to improve speed when changing filter under
+	search - delete debug code
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: updated .spec requirements, removed usermode & added
+	polkit
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/Makefile, src/yumexbase/Makefile,
+	src/yumexgui/Makefile: Remove .py compile, this is not needed
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/org.yum-extender.backend.policy, misc/yumex,
+	misc/yumex-yum-backend, src/Makefile,
+	src/yumexbackend/yum_client.py, tools/py-compile: Skip the extra
+	yumex-yum-backend in /usr/bin it is not needed
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, src/Makefile, src/yumexbase/constants.py: Remove
+	/usr/bin/yumex launch script and install yumex.py into /usr/bin and
+	other Makefile cleanups
+
+2012-05-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/org.yum-extender.backend.policy, yumex.spec: create
+	polkit dir & add policy file to spec fix issues in PolicyKit
+	profile.
+
+2012-05-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/org.yum-extender.backend.policy,
+	misc/yumex-yum-backend, misc/yumex-yum-backend.console.app,
+	misc/yumex-yum-backend.pam, misc/yumex.console.app: convert yumex to
+	use PolicyKit instead of usermode
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/it_IT.po: remove it_IT.po
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/da.po: Transfix pull, *.po update
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: make transifex-push, should only push yumex.pot
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/bn_IN.po, po/cs.po, po/da.po, po/de.po, po/es.po,
+	po/es_ES.po, po/fa.po, po/fr.po, po/gu.po, po/hu.po, po/id.po,
+	po/it.po, po/ja.po, po/nl.po, po/pl.po, po/pt.po, po/ru.po,
+	po/sr.po, po/sr@latin.po, po/tr_TR.po, po/uk.po, po/yumex.pot,
+	po/zh_CN.po, src/yumexgui/gui.py.new: update .po files from
+	transifex
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/__init__.py: try to workaround python-kitchen
+	translation issue
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/bn_IN.po, po/cs.po, po/es_ES.po, po/gu.po, po/tr_TR.po: Added
+	some po files
+
+2012-02-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/Makefile, po/POTFILES.in, po/yumex.pot,
+	src/yumexbase/__init__.py: update translation wrapper setup
+
+2012-01-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/__init__.py: Revert "Use json to
+	transfer data between backend and frontend"  This reverts commit
+	3ed130fd9fd4c7bbb97a213a33ec6d71a6f088d7.
+
+2011-12-21  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/dialogs.py: clear the error dialog each time (rhbz
+	#769448)
+
+2011-11-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py: Make backed-launcher more error prune
+
+2011-10-30  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexbackend/__init__.py: Use json to
+	transfer data between backend and frontend
+
+2011-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: fix missing dir in el6 glade installwq
+
+2011-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: fix typo in .spec
+
+2011-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade.el6, yumex.spec: Use special .glade file on el6
+
+2011-10-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
+	po/hu.po, po/id.po, po/it.po, po/it_IT.po, po/ja.po, po/nl.po,
+	po/pl.po, po/pt.po, po/ru.po, po/sr.po, po/sr@latin.po, po/uk.po,
+	po/zh_CN.po: Transfix pull, *.po update
+
+2011-10-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, po/yumex.pot: yumex.pot update and makefile transifex
+	fixed
+
+2011-10-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Add transifex-pull & transifex-push to makefile
+
+2011-10-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2011-10-11  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* po/ar.po, po/da.po, po/de.po, po/es.po, po/fa.po, po/fr.po,
