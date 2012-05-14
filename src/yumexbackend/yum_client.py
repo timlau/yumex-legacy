@@ -176,7 +176,7 @@ class YumClientBase:
                     self.info('Running backend launcher with sudo')
                     cmd = '/usr/bin/sudo'
                     args.append('-n') # Abort sudo if password is needed
-                    args.append('/usr/bin/yumex-yum-backend')
+                    args.append(MAIN_PATH + "/backend-launcher.py")
                     
                 else:
                     cmd = '/usr/bin/pkexec'
