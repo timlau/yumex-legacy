@@ -78,15 +78,18 @@ class YumexOptions:
     def get_cmd_options(self):
         return (self.cmd_options, self.cmd_args)
 
-    def get_yumex_config(self, configfile='.yumex.conf', sec='yumex'):
+    def get_yumex_config(self, sec='yumex'):
         conf = YumexConf()
         parser = ConfigParser()
-        configfile = os.environ['HOME'] + "/" + configfile
-        if not os.path.exists(configfile):
+        self.logger.info("Using config file : "+CONF_FILE)
+        if not os.path.exists(CONF_FILE):
+            if os.path.exists(OLD_CONF_FILE):
+                self.logger.info("Migrating settings from : "+OLD_CONF_FILE)
+                shutil.move(OLD_CONF_FILE, CONF_FILE)
             # if /etc/yumex.conf exists and is readable the copy it to homedir
-            if os.path.exists('/etc/yumex.conf') and os.access("/etc/yumex.conf", os.R_OK):
-                shutil.copyfile('/etc/yumex.conf', configfile)
-        parser.read(configfile)
+            elif os.path.exists('/etc/yumex.conf') and os.access("/etc/yumex.conf", os.R_OK):
+                shutil.copyfile('/etc/yumex.conf', CONF_FILE)
+        parser.read(CONF_FILE)
         if not parser.has_section('yumex'):
             parser.add_section('yumex')
         conf.populate(parser, sec)
@@ -192,7 +195,6 @@ class YumexOptions:
             setattr(self.settings, option, cmdopt)
 
     def save(self, configfile='.yumex.conf'):
-        configfile = os.environ['HOME'] + "/" + configfile
-        fn = open(configfile, "w")
+        fn = open(CONF_FILE, "w")
         self.conf_settings.write(fn)
         fn.close()

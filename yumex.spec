@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  3.0.5
-Release:  1%{?dist}
+Release:  3%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -27,6 +27,7 @@ Requires: udisks
 Requires: python-kitchen
 Requires: urlgrabber
 Requires: polkit
+Requires: pyxdg
 
 %description
 Graphical User Interface for Yum.
@@ -79,6 +80,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Tue May 15 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.5-3
+- Added pyxdg requirement
 * Sun May 13 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.5-1
 - bumped version to 3.0.5-1
 * Wed May 9 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.4-3

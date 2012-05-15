@@ -25,6 +25,7 @@ import os
 import sys
 import pango
 import time
+from xdg import BaseDirectory
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -62,6 +63,11 @@ elif MAIN_PATH.endswith('test'):
     PIXMAPS_PATH = MAIN_PATH + '/../../gfx'
 else:
     PIXMAPS_PATH = MAIN_PATH + '/../gfx'
+    
+OLD_CONF_FILE = os.environ['HOME'] + "/.yumex.conf"
+CONF_DIR = BaseDirectory.save_config_path('yumex')
+CONF_FILE = os.path.join(CONF_DIR,'yumex.conf')
+    
 
 # icons
 ICON_YUMEX = PIXMAPS_PATH + "/yumex-icon.png"
