@@ -42,9 +42,8 @@ def run(parameters):
     try:
         retcode = call(parameters, shell=True)
         rc = True
-    except OSError, e:
-        err, msg = (e.err, e.msg)
-        print ":error\texception : %s %s " % (err, msg)
+    except BaseException,e:
+        print ":error\texception : %s %s " % (str(e), str(e.args))
         rc = False
     return rc
 
