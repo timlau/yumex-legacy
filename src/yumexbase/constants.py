@@ -49,7 +49,7 @@ ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
 
 # Paths
 BIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
-if BIN_PATH == "/usr/bin":
+if BIN_PATH in ["/usr/bin", "/bin"]:
     MAIN_PATH = '/usr/share/yumex'
 else:
     MAIN_PATH = BIN_PATH
