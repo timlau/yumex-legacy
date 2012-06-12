@@ -103,6 +103,11 @@ test-builds:
 	@scp ~/rpmbuild/RPMS/noarch/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 	@scp ~/rpmbuild/SRPMS/${PKGNAME}-${NEW_VER}*.rpm timlau.fedorapeople.org:public_html/files/yumex/.
 
+transifex-setup:
+	tx init
+	tx set --auto-remote https://www.transifex.net/projects/p/yumex/
+	tx set --auto-local  -r yumex.master 'po/<lang>.po' --source-lang en --source-file po/yumex.pot --execute
+
 
 transifex-pull:
 	tx pull -a -f
