@@ -4,14 +4,17 @@
 # 
 # Translators:
 # Tim Lauridsen <tla@rasmil.dk>, 2011.
+# <ys9889@gmail.com>, 2012.
+#   <ys9889@gmail.com>, 2012.
+# Yusuf Salah Al-Deen <ys9889@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-14 19:06+0100\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2012-04-24 20:03+0000\n"
+"Last-Translator: yusuf2011 <ys9889@gmail.com>\n"
+"Language-Team: Arabic (http://www.transifex.net/projects/p/yumex/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -72,43 +75,43 @@ msgstr "يجري تنزيل معلومات التحديث الخاصة بالم�
 
 #: ../src/yumexbase/constants.py:110
 msgid "0 - 7 Days"
-msgstr ""
+msgstr "0 -7أيام"
 
 #: ../src/yumexbase/constants.py:111
 msgid "7 - 14 Days"
-msgstr ""
+msgstr "7 - 14 يوم"
 
 #: ../src/yumexbase/constants.py:112
 msgid "14 - 21 Days"
-msgstr ""
+msgstr "14 - 21 يوم"
 
 #: ../src/yumexbase/constants.py:113
 msgid "21  - 30 days"
-msgstr ""
+msgstr "21 - 30 يوم"
 
 #: ../src/yumexbase/constants.py:114
 msgid "30 - 90 days"
-msgstr ""
+msgstr "30 - 90 يوم"
 
 #: ../src/yumexbase/constants.py:115
 msgid "90+ days"
-msgstr ""
+msgstr "أكثر من 90 يومًا"
 
 #: ../src/yumexbase/constants.py:137
 msgid "Getting all packages"
-msgstr ""
+msgstr "إحضار جميع الحزم"
 
 #: ../src/yumexbase/constants.py:138
 msgid "Getting installed packages"
-msgstr ""
+msgstr "إحضار الحزم المثبتة"
 
 #: ../src/yumexbase/constants.py:139
 msgid "Getting available packages"
-msgstr ""
+msgstr "إحضار الحزم المتوفرة"
 
 #: ../src/yumexbase/constants.py:140
 msgid "Getting available updates"
-msgstr ""
+msgstr "إحضار التحديثات المتوفرة"
 
 #: ../src/yumexbase/constants.py:141
 msgid "Getting available obsoletes"
@@ -470,7 +473,7 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:1241
 msgid "Id"
-msgstr ""
+msgstr "المعرف"
 
 #: ../src/yumexgui/views.py:1242
 msgid "Login User"
@@ -625,7 +628,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:648
 msgid "Reinstall Package"
-msgstr ""
+msgstr "أعد تثبيت الحزمة"
 
 #: ../src/yumexgui/__init__.py:655
 msgid "Downgrade Package"
@@ -633,11 +636,11 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:665
 msgid "By Repositories"
-msgstr ""
+msgstr "بالمستودعات"
 
 #: ../src/yumexgui/__init__.py:666
 msgid "By Size"
-msgstr ""
+msgstr "بالحجم"
 
 #: ../src/yumexgui/__init__.py:691 ../src/yumexgui/__init__.py:692
 msgid "Getting Group information"
@@ -684,7 +687,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:876
 msgid "System"
-msgstr ""
+msgstr "النّظام"
 
 #: ../src/yumexgui/__init__.py:919
 msgid "Getting History Information"
@@ -735,7 +738,7 @@ msgstr ""
 #: ../src/yumexgui/__init__.py:1538
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "تنفيذ : %s %s"
 
 #: ../src/yumexgui/__init__.py:1539
 msgid "Processing Queue Command"
@@ -832,7 +835,7 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
-msgstr ""
+msgstr "عنوان المشروع : "
 
 #: ../src/yumexgui/gui.py:353
 msgid "Release"
@@ -852,7 +855,7 @@ msgstr "أُصدر في"
 
 #: ../src/yumexgui/gui.py:535
 msgid "Quit"
-msgstr ""
+msgstr "أنه"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Working ....</span>\n"
@@ -864,7 +867,7 @@ msgstr "متقدم"
 
 #: ../src/yumex.glade.h:4
 msgid "All"
-msgstr ""
+msgstr "الكل"
 
 #: ../src/yumex.glade.h:5
 msgid "Availa_ble"
@@ -892,7 +895,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:11
 msgid "R_epositories"
-msgstr ""
+msgstr "المتسودعات"
 
 #: ../src/yumex.glade.h:12
 msgid "Redo a history transaction"
@@ -910,7 +913,7 @@ msgstr "إزالة الحزم المختارة من الطابور"
 
 #: ../src/yumex.glade.h:16
 msgid "Search Options"
-msgstr ""
+msgstr "خيارات البحث"
 
 #: ../src/yumex.glade.h:17
 msgid "Select all packages in current view"
@@ -918,11 +921,11 @@ msgstr "اختر كل الحزم المعروضة"
 
 #: ../src/yumex.glade.h:18
 msgid "Show Categories"
-msgstr ""
+msgstr "أظهر الفئات"
 
 #: ../src/yumex.glade.h:19
 msgid "Show Groups"
-msgstr ""
+msgstr "أظهر المجموعات"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Newest Only"
@@ -930,7 +933,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:21
 msgid "Show all Packages"
-msgstr ""
+msgstr "اعرض كل الحزم"
 
 #: ../src/yumex.glade.h:22
 msgid "Show available packages"
@@ -999,11 +1002,11 @@ msgstr ""
 
 #: ../src/yumex.glade.h:41
 msgid "Yum"
-msgstr ""
+msgstr "يُم"
 
 #: ../src/yumex.glade.h:42
 msgid "_Categories"
-msgstr ""
+msgstr "_فئات"
 
 #: ../src/yumex.glade.h:43
 msgid "_Edit"
@@ -1043,11 +1046,11 @@ msgstr ""
 
 #: ../src/yumex.glade.h:52
 msgid "_Profiles"
-msgstr ""
+msgstr "_أطوار:"
 
 #: ../src/yumex.glade.h:53
 msgid "_Queue"
-msgstr ""
+msgstr "_طابور"
 
 #: ../src/yumex.glade.h:54
 msgid "_View"

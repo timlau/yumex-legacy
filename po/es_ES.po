@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+#   <asaez@asaez.eu>, 2012.
 # Héctor Daniel Cabrera <logan@fedoraproject.org>, 2011.
 # Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-14 19:06+0100\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
+"PO-Revision-Date: 2012-03-21 12:00+0000\n"
+"Last-Translator: asaez <asaez@asaez.eu>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.net/projects/p/yumex/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +40,7 @@ msgstr "Descargando información del repositorio"
 #: ../src/yumexbase/constants.py:93
 #, python-format
 msgid "Downloading Package information for the %s repository"
-msgstr "Descargando la información de los paquetes desde el repositorio %s"
+msgstr "Descargando la información de los paquetes del repositorio %s"
 
 #: ../src/yumexbase/constants.py:94
 #, python-format
@@ -218,7 +219,7 @@ msgstr "Verificando las firmas GPG de los paquetes"
 
 #: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
-msgstr "Ejecutando la prueba de las Transacciones RPM"
+msgstr "Ejecutando la prueba de transacciones RPM"
 
 #: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:271
 msgid "Running RPM Transaction"
@@ -463,7 +464,7 @@ msgstr "Nombre de archivo"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:964
 msgid "Search Keys"
-msgstr "Busca llaves"
+msgstr "Claves de búsqueda"
 
 #: ../src/yumexgui/views.py:1195
 msgid "Categories"
@@ -475,7 +476,7 @@ msgstr "Id"
 
 #: ../src/yumexgui/views.py:1242
 msgid "Login User"
-msgstr "Usuario de acceso"
+msgstr "Usuario"
 
 #: ../src/yumexgui/views.py:1243
 msgid "Data/Time"
@@ -586,7 +587,7 @@ msgstr "No conectado a la red"
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "No está conectado a una red.\nDesea continuar"
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
@@ -752,7 +753,7 @@ msgstr "Preferencias"
 
 #: ../src/yumexgui/dialogs.py:509
 msgid "Load packages on launch"
-msgstr "Cargar paquetes al lanzar"
+msgstr "Cargar paquetes al iniciar"
 
 #: ../src/yumexgui/dialogs.py:510
 msgid "Use sortable columns in package view (slower)"
@@ -813,7 +814,7 @@ msgstr "Descripción del paquete"
 
 #: ../src/yumexgui/gui.py:215
 msgid "Update information"
-msgstr "Actualiza información"
+msgstr "Actualizar información"
 
 #: ../src/yumexgui/gui.py:217
 msgid "Package Changelog"
@@ -829,7 +830,7 @@ msgstr "Dependencias del Paquete"
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
-msgstr ""
+msgstr "No hay información de actualización"
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
@@ -877,7 +878,7 @@ msgstr "Básico"
 
 #: ../src/yumex.glade.h:7
 msgid "Don't check signatures for packages"
-msgstr "No verifica las firmas de los paquetes"
+msgstr "No verificar las firmas de los paquetes"
 
 #: ../src/yumex.glade.h:8
 msgid "Error"
@@ -885,7 +886,7 @@ msgstr "Error"
 
 #: ../src/yumex.glade.h:9
 msgid "Execute all pending actions in queue"
-msgstr "Ejecuta todas las acciones pendientes en la lista"
+msgstr "Ejecutar todas las acciones pendientes en la lista"
 
 #: ../src/yumex.glade.h:10
 msgid "Get all History elements"
@@ -927,7 +928,7 @@ msgstr "Mostrar los Grupos"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Newest Only"
-msgstr ""
+msgstr "Mostrar sólo los más nuevos"
 
 #: ../src/yumex.glade.h:21
 msgid "Show all Packages"
@@ -945,7 +946,7 @@ msgstr "Mostrar paquetes instalados"
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "Mostrar sólo los últimos paquetes en las búsquedas\nNo mostrar múltiples versiones del mismo paquete"
 
 #: ../src/yumex.glade.h:26
 msgid "Show package updates"

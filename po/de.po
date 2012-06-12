@@ -3,15 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2012.
+# Raphael Groner <raphgro@web.de>, 2012.
 # Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-14 19:06+0100\n"
-"PO-Revision-Date: 2011-10-18 07:23+0000\n"
-"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2012-04-17 19:49+0000\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
+"Language-Team: German (http://www.transifex.net/projects/p/yumex/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,50 +27,50 @@ msgstr "Aktualisierungen"
 
 #: ../src/yumexbase/constants.py:72
 msgid "available"
-msgstr "verfügbar"
+msgstr "Verfügbar"
 
 #: ../src/yumexbase/constants.py:72
 msgid "installed"
-msgstr "installiert"
+msgstr "Installiert"
 
 #: ../src/yumexbase/constants.py:92
 msgid "Downloading repository information"
-msgstr ""
+msgstr "Paketquelleninformationen werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:93
 #, python-format
 msgid "Downloading Package information for the %s repository"
-msgstr ""
+msgstr "Paketinformationen der Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:94
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
+msgstr "Dateilisten der Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:95
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr ""
+msgstr "Änderungsprotokolle der Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:96
 #, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr ""
+msgstr "Gruppeninformationen für die Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:97
 #, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr ""
+msgstr "Metalink-Informationen der Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:98
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr ""
+msgstr "Delta-Aktualisierungsinformationen der Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:99
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr ""
+msgstr "Aktualisierungsinformationen der Paketquelle %s werden heruntergeladen"
 
 #: ../src/yumexbase/constants.py:110
 msgid "0 - 7 Days"
@@ -96,81 +98,81 @@ msgstr "90+ Tage"
 
 #: ../src/yumexbase/constants.py:137
 msgid "Getting all packages"
-msgstr ""
+msgstr "Alle Pakete werden geholt"
 
 #: ../src/yumexbase/constants.py:138
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Installierte Pakete werden geholt"
 
 #: ../src/yumexbase/constants.py:139
 msgid "Getting available packages"
-msgstr ""
+msgstr "Verfügbare Pakete werden geholt"
 
 #: ../src/yumexbase/constants.py:140
 msgid "Getting available updates"
-msgstr ""
+msgstr "Verfügbare Aktualisierungen werden geholt"
 
 #: ../src/yumexbase/constants.py:141
 msgid "Getting available obsoletes"
-msgstr ""
+msgstr "Verfügbare veraltete Pakete werden geholt"
 
 #: ../src/yumexbase/constants.py:146
 #, python-format
 msgid "%s is updated"
-msgstr ""
+msgstr "%s ist aktualisiert"
 
 #: ../src/yumexbase/constants.py:147
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%s ist gelöscht"
 
 #: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
 #: ../src/yumexbase/constants.py:151
 #, python-format
 msgid "%s is installed"
-msgstr ""
+msgstr "%s ist installiert"
 
 #: ../src/yumexbase/constants.py:150
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%s ist veraltet"
 
 #: ../src/yumexbase/constants.py:152
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s ist bereinigt"
 
 #: ../src/yumexbase/constants.py:163
 msgid "Updated packages"
-msgstr ""
+msgstr "Aktualisierte Pakete"
 
 #: ../src/yumexbase/constants.py:164
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Zurückgesetzte Pakete"
 
 #: ../src/yumexbase/constants.py:165
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Pakete werden als veraltet markiert"
 
 #: ../src/yumexbase/constants.py:166
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Veraltete Pakete"
 
 #: ../src/yumexbase/constants.py:167
 msgid "Erased packages"
-msgstr ""
+msgstr "Gelöschte Pakete"
 
 #: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
 msgid "Installed packages"
-msgstr ""
+msgstr "Installierte Pakete"
 
 #: ../src/yumexbase/constants.py:170
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Als Abhängigkeit installierte Pakete"
 
 #: ../src/yumexbase/constants.py:171
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Erneut installierte Pakete"
 
 #: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
 #: ../src/yumexgui/dialogs.py:670
@@ -185,7 +187,7 @@ msgstr "Zusammenfassung"
 
 #: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:395
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:671
 msgid "Arch"
@@ -195,57 +197,57 @@ msgstr "Arch"
 #: ../src/yumexbackend/yum_backend.py:166
 #: ../src/yumexbackend/yum_backend.py:167
 msgid "Getting Package Information"
-msgstr ""
+msgstr "Paket-Informationen werden gelesen"
 
 #: ../src/yumexbackend/yum_backend.py:186
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
-msgstr ""
+msgstr "Unbekannter Metadaten-Typ (%s) für Softwarequelle %s"
 
 #: ../src/yumexbackend/yum_backend.py:200
 msgid "Building rpms from deltarpm"
-msgstr ""
+msgstr "Pakete werden aus Delta-Paketen erstellt"
 
 #: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
-msgstr ""
+msgstr "Pakete werden heruntergeladen"
 
 #. Don't allow Cancel any more
 #: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
-msgstr ""
+msgstr "GPG-Signaturen der Pakete werden überprüft"
 
 #: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
-msgstr ""
+msgstr "Laufende RPM-Transaktion (Test)"
 
 #: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:271
 msgid "Running RPM Transaction"
-msgstr ""
+msgstr "Laufende RPM-Transaktion"
 
 #: ../src/yumexbackend/yum_backend.py:236
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr ""
+msgstr "Möchten Sie den GPG-Schlüssel importieren: %s \n"
 
 #: ../src/yumexbackend/yum_backend.py:238
 #, python-format
 msgid "Needed by %s"
-msgstr ""
+msgstr "Benötigt von %s"
 
 #: ../src/yumexbackend/yum_backend.py:253
 #, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr ""
+msgstr "Bitte legen Sie das Medium %s #%d ein."
 
 #: ../src/yumexbackend/yum_backend.py:255
 #, python-format
 msgid "Please insert media labeled %s."
-msgstr ""
+msgstr "Bitte legen Sie das Medium %s ein."
 
 #: ../src/yumexbackend/yum_backend.py:318
 msgid "Starting yum child process"
-msgstr ""
+msgstr "Yum-Unterprozess wird gestartet"
 
 #: ../src/yumexbackend/yum_backend.py:320
 #, python-format
@@ -253,83 +255,83 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
+msgstr "Die folgenden Paketquellen werden verwendet:\n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:338
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "Yum-Backendprozess wurde beendet"
 
 #: ../src/yumexbackend/yum_backend.py:362
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i Pakete zurückgegeben"
 
 #: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
-msgstr ""
+msgstr "Abhängigkeiten werden aufgelöst"
 
 #: ../src/yumexbackend/yum_backend.py:556
 #: ../src/yumexbackend/yum_backend.py:557
 msgid "Dependency Resolution Failed"
-msgstr ""
+msgstr "Auflösen der Abhängigkeit ist fehlgeschlagen"
 
 #: ../src/yumexbackend/yum_backend.py:558
 msgid "Dependency Resolution Errors:"
-msgstr ""
+msgstr "Fehler beim Auflösen der Abhängigkeiten:"
 
 #. Write errors to output page
 #: ../src/yumexbackend/yum_backend.py:567
 msgid "Dependency resolving completed with errors"
-msgstr ""
+msgstr "Abhängigkeitsauflösung wurde mit Fehlern beendet"
 
 #. Bin package
 #. Root
 #: ../src/yumexbackend/yum_client.py:172
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
+msgstr "Client läuft im Administratormodus, das Backend wird direkt gestartet"
 
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:246
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Yum-Backend ließ sich nicht in angemessener Zeit schließen"
 
 #: ../src/yumexbackend/yum_server.py:181
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "%s wird als Yum-Konfiguration verwendet"
 
 #. Not local disable it
 #. No, disable it
 #: ../src/yumexbackend/yum_server.py:237 ../src/yumexbackend/yum_server.py:246
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
+msgstr "Keine Netzwerkverbindung, entfernte Paketquelle %s wird deaktiviert"
 
 #: ../src/yumexbackend/yum_server.py:261
 msgid "Yum is locked : "
-msgstr ""
+msgstr "Yum ist gesperrt:"
 
 #: ../src/yumexbackend/yum_server.py:266
 msgid "  The other application is: PackageKit"
-msgstr ""
+msgstr "  Die andere Anwendung ist: PackageKit"
 
 #: ../src/yumexbackend/yum_server.py:268
 #, python-format
 msgid "  The other application is: %s"
-msgstr ""
+msgstr "  Die andere Anwendung ist: %s"
 
 #: ../src/yumexbackend/yum_server.py:270
 msgid "Waiting 10 seconds and tries again !!!"
-msgstr ""
+msgstr "Nach 10 Sekunden wird es erneut versucht!!!"
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:305
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Das Medium wurde nicht eingelegt"
 
 #: ../src/yumexbackend/yum_server.py:336
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "RPM-Datenbank wird geschlossen und Yum entsperrt"
 
 #: ../src/yumexbackend/yum_server.py:802
 msgid "Installing"
@@ -338,60 +340,60 @@ msgstr "Installation"
 #: ../src/yumexbackend/yum_server.py:854
 #, python-format
 msgid "Error in yum Transaction : %s"
-msgstr ""
+msgstr "Fehler in Yum-Transaktion: %s"
 
 #: ../src/yumexbackend/yum_server.py:857
 msgid "Exception in run_transaction"
-msgstr ""
+msgstr "Ausnahmefehler in run_transaction"
 
 #: ../src/yumexbackend/yum_server.py:896
 #, python-format
 msgid "Failure getting %s: "
-msgstr ""
+msgstr "Fehler beim Holen von %s: "
 
 #: ../src/yumexbackend/yum_server.py:897
 msgid "Trying other mirror."
-msgstr ""
+msgstr "Ein anderer Spiegelserver wird versucht."
 
 #: ../src/yumexbackend/yum_server.py:1126
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr ""
+msgstr "Die Paketquelle %s wurde dauerhaft aktiviert"
 
 #: ../src/yumexbackend/yum_server.py:1129
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr ""
+msgstr "Die Paketquelle %s wurde dauerhaft deaktiviert"
 
 #: ../src/yumexbackend/yum_server.py:1140
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "Yum-Option %s wird auf %s gesetzt"
 
 #: ../src/yumexbackend/yum_server.py:1206
 msgid "Cleaned metadata from local cache"
-msgstr ""
+msgstr "Metadaten wurden im lokalen Zwischenspeicher geleert"
 
 #: ../src/yumexbackend/yum_server.py:1209
 msgid "Cleaned dbcache"
-msgstr ""
+msgstr "dbcache wurde aufgeräumt"
 
 #: ../src/yumexbackend/yum_server.py:1212
 msgid "Cleaned packages from local cache"
-msgstr ""
+msgstr "Lokaler Zwischenspeicher wurde aufgeräumt"
 
 #: ../src/yumexbackend/yum_server.py:1214
 msgid "Cleaned everything from local cache"
-msgstr ""
+msgstr "Lokaler Zwischenspeicher wurde vollständig aufgeräumt"
 
 #: ../src/yumexbackend/yum_server.py:1633
 msgid "Rebuild from deltarpms completed"
-msgstr ""
+msgstr "Erstellung aus Delta-Paketen ist abgeschlossen"
 
 #: ../src/yumexbackend/yum_server.py:1635
 #, python-format
 msgid "Downloaded : %s ( %s )"
-msgstr ""
+msgstr "Heruntergeladen: %s ( %s )"
 
 #. Setup Selection Column
 #. self.create_selection_colunm('')
@@ -408,7 +410,7 @@ msgstr "Ver"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"
-msgstr "Repo"
+msgstr "Quelle"
 
 #: ../src/yumexgui/views.py:200
 msgid "Architecture"
@@ -416,7 +418,7 @@ msgstr "Architektur"
 
 #: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:674
 msgid "Size"
-msgstr "Grösse"
+msgstr "Größe"
 
 #: ../src/yumexgui/views.py:348 ../src/yumexgui/views.py:465
 #: ../src/yumexgui/views.py:1350 ../src/yumexgui/views.py:1463
@@ -430,11 +432,11 @@ msgstr "Arch."
 
 #: ../src/yumexgui/views.py:351 ../src/yumexgui/views.py:468
 msgid "Repo."
-msgstr "Repo."
+msgstr "Quelle."
 
 #: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
 msgid "Size."
-msgstr "Grösse."
+msgstr "Größe."
 
 #: ../src/yumexgui/views.py:647
 msgid "Package Queue:"
@@ -447,13 +449,13 @@ msgstr "Pakete"
 #: ../src/yumexgui/views.py:771
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Zurücksetzen auf</b> %s "
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:784 ../src/yumexgui/views.py:830
 #: ../src/yumexgui/dialogs.py:673
 msgid "Repository"
-msgstr "Repository"
+msgstr "Paketquelle"
 
 #: ../src/yumexgui/views.py:784
 msgid "Filename"
@@ -462,7 +464,7 @@ msgstr "Dateinamen"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:964
 msgid "Search Keys"
-msgstr ""
+msgstr "Schlüssel suchen"
 
 #: ../src/yumexgui/views.py:1195
 msgid "Categories"
@@ -478,88 +480,88 @@ msgstr "Benutzer-Anmeldung"
 
 #: ../src/yumexgui/views.py:1243
 msgid "Data/Time"
-msgstr "Daten/Zeit "
+msgstr "Datum/Zeit "
 
 #: ../src/yumexgui/views.py:1244
 msgid "Action(s)"
-msgstr ""
+msgstr "Aktion(en)"
 
 #: ../src/yumexgui/views.py:1245
 msgid "Altered"
-msgstr ""
+msgstr "Verändert"
 
 #: ../src/yumexgui/__init__.py:276
 msgid "Fatal Error"
-msgstr "Nicht-behebbarer Fehler"
+msgstr "Schwerwiegender Fehler"
 
 #. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:278
 msgid "Can't start the yum backend"
-msgstr ""
+msgstr "Yum-Backend kann nicht gestartet werden"
 
 #: ../src/yumexgui/__init__.py:279
 msgid "Another program is locking yum"
-msgstr ""
+msgstr "Ein anderes Programm blockiert Yum"
 
 #: ../src/yumexgui/__init__.py:281
 msgid "Message from yum backend:"
-msgstr ""
+msgstr "Meldung vom Yum-Backend:"
 
 #: ../src/yumexgui/__init__.py:285
 msgid "Error in repository setup"
-msgstr ""
+msgstr "Fehler in den Einstellungen der Paketquellen"
 
 #: ../src/yumexgui/__init__.py:288
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgstr "Sie können versuchen, »yumex -n« in einer Befehlszeile zu starten\n"
 
 #: ../src/yumexgui/__init__.py:289
 msgid "and deselecting the repositories causing problems\n"
-msgstr ""
+msgstr "und die Probleme verursachenden Softwarequellen zu deaktivieren\n"
 
 #: ../src/yumexgui/__init__.py:290
 msgid "and try again.\n"
-msgstr ""
+msgstr "und es erneut versuchen.\n"
 
 #: ../src/yumexgui/__init__.py:295
 msgid "Fatal Error in backend restart"
-msgstr ""
+msgstr "Schwerwiegender Fehler beim Neustart des Backends"
 
 #: ../src/yumexgui/__init__.py:296
 msgid "Backend could not be closed"
-msgstr ""
+msgstr "Backend konnte nicht geschlossen werden"
 
 #: ../src/yumexgui/__init__.py:300
 msgid "Fatal Error : "
-msgstr ""
+msgstr "Schwerwiegender Fehler:"
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Available Updates"
-msgstr ""
+msgstr "Verfügbare Aktualisierungen"
 
 #: ../src/yumexgui/__init__.py:380
 msgid "Search for packages"
-msgstr ""
+msgstr "Suche nach Paketen"
 
 #: ../src/yumexgui/__init__.py:384
 msgid "Perform actions on packages"
-msgstr ""
+msgstr "Aktionen auf Pakete anwenden"
 
 #: ../src/yumexgui/__init__.py:386
 msgid "Pending Actions"
-msgstr ""
+msgstr "Ausstehende Aktionen"
 
 #: ../src/yumexgui/__init__.py:387
 msgid "Work with pending actions"
-msgstr ""
+msgstr "Arbeit mit ausstehenden Aktionen"
 
 #: ../src/yumexgui/__init__.py:390
 msgid "Repositories"
-msgstr "Repositories"
+msgstr "Paketquellen"
 
 #: ../src/yumexgui/__init__.py:391
 msgid "Select active repositories"
-msgstr ""
+msgstr "Aktive Paketquellen auswählen"
 
 #: ../src/yumexgui/__init__.py:394
 msgid "History"
@@ -567,7 +569,7 @@ msgstr "Verlauf"
 
 #: ../src/yumexgui/__init__.py:395
 msgid "Watch yum history"
-msgstr ""
+msgstr "Yum-Verlauf betrachten"
 
 #: ../src/yumexgui/__init__.py:401
 msgid "Output"
@@ -575,112 +577,112 @@ msgstr "Ausgabe"
 
 #: ../src/yumexgui/__init__.py:402
 msgid "Watch output details"
-msgstr ""
+msgstr "Details der Ausgabe betrachten"
 
 #: ../src/yumexgui/__init__.py:451
 msgid "Not connected to an network"
-msgstr ""
+msgstr "Nicht mit einem Netzwerk verbunden"
 
 #: ../src/yumexgui/__init__.py:452
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "Nicht mit einem Netzwerk verbunden.\nWollen Sie fortsetzen"
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
-msgstr ""
+msgstr "Überprüfung des Netzwerkstatus ist deaktiviert"
 
 #: ../src/yumexgui/__init__.py:459
 msgid "Can't detect the network connection state"
-msgstr ""
+msgstr "Netzwerkverbindungsstatus kann nicht ermittelt werden"
 
 #: ../src/yumexgui/__init__.py:461
 msgid "Connected to an network"
-msgstr ""
+msgstr "Mit einem Netzwerk verbunden"
 
 #: ../src/yumexgui/__init__.py:625
 msgid "Enable Permanently"
-msgstr ""
+msgstr "Dauerhaft aktivieren"
 
 #: ../src/yumexgui/__init__.py:629
 msgid "Disable Permanently"
-msgstr ""
+msgstr "Dauerhaft deaktivieren"
 
 #: ../src/yumexgui/__init__.py:632
 msgid "Clean Metadata"
-msgstr ""
+msgstr "Metadaten aufräumen"
 
 #: ../src/yumexgui/__init__.py:633
 msgid "Clean Packages"
-msgstr ""
+msgstr "Pakete aufräumen"
 
 #: ../src/yumexgui/__init__.py:634
 msgid "Clean DbCache"
-msgstr ""
+msgstr "DbCache wird geleert"
 
 #: ../src/yumexgui/__init__.py:635
 msgid "Clean All"
-msgstr ""
+msgstr "Alle bereinigen"
 
 #: ../src/yumexgui/__init__.py:648
 msgid "Reinstall Package"
-msgstr ""
+msgstr "Paket neu installieren"
 
 #: ../src/yumexgui/__init__.py:655
 msgid "Downgrade Package"
-msgstr ""
+msgstr "Paketversion zurücksetzen"
 
 #: ../src/yumexgui/__init__.py:665
 msgid "By Repositories"
-msgstr "Nach Repositories"
+msgstr "Nach Paketquellen"
 
 #: ../src/yumexgui/__init__.py:666
 msgid "By Size"
-msgstr "Nach Grösse"
+msgstr "Nach Größe"
 
 #: ../src/yumexgui/__init__.py:691 ../src/yumexgui/__init__.py:692
 msgid "Getting Group information"
-msgstr ""
+msgstr "Gruppen-Informationen werden gelesen"
 
 #: ../src/yumexgui/__init__.py:728
 msgid "The pending action queue is empty"
-msgstr ""
+msgstr "Die Warteschlange für Aktionen ist leer"
 
 #: ../src/yumexgui/__init__.py:752
 msgid "Processing pending actions"
-msgstr ""
+msgstr "Ausstehende Aktionen werden ausgeführt"
 
 #: ../src/yumexgui/__init__.py:753
 msgid "Preparing the transaction"
-msgstr ""
+msgstr "Transaktion wird vorbereitet"
 
 #. Transaction ok
 #: ../src/yumexgui/__init__.py:770 ../src/yumexgui/__init__.py:776
 msgid "Transaction completed successfully"
-msgstr ""
+msgstr "Transaktion wurde erfolgreich ausgeführt"
 
 #: ../src/yumexgui/__init__.py:777
 msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
+msgstr "\n\nWollen Sie Yum Extender beenden?"
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
 msgid "Transaction Aborted by User"
-msgstr ""
+msgstr "Transaktion wurde vom Benutzer abgebrochen"
 
 #: ../src/yumexgui/__init__.py:786
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
+msgstr "Transaktion wurde mit Fehlern beeendet,\nin der Ausgabe finden Sie Details"
 
 #: ../src/yumexgui/__init__.py:875
 msgid "<unset>"
-msgstr ""
+msgstr "<nicht gesetzt>"
 
 #: ../src/yumexgui/__init__.py:876
 msgid "System"
@@ -688,15 +690,15 @@ msgstr "System"
 
 #: ../src/yumexgui/__init__.py:919
 msgid "Getting History Information"
-msgstr ""
+msgstr "Verlaufsinformationen werden geholt"
 
 #: ../src/yumexgui/__init__.py:921
 msgid "Getting Latest History Information"
-msgstr ""
+msgstr "Neueste Verlaufsinformationen werden geholt"
 
 #: ../src/yumexgui/__init__.py:923
 msgid "Getting All History Information"
-msgstr ""
+msgstr "Alle Verlaufsinformationen werden geholt"
 
 #: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:946
 msgid "History Disabled"
@@ -704,42 +706,42 @@ msgstr "Verlauf deaktiviert"
 
 #: ../src/yumexgui/__init__.py:940 ../src/yumexgui/__init__.py:941
 msgid "Searching History Information"
-msgstr ""
+msgstr "Verlaufsinformationen werden durchsucht"
 
 #: ../src/yumexgui/__init__.py:984
 msgid "Transaction Performed with"
-msgstr ""
+msgstr "Transaktion ausgeführt mit"
 
 #: ../src/yumexgui/__init__.py:987
 msgid "Skipped packages"
-msgstr ""
+msgstr "Übersprungene Pakete"
 
 #: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
 msgid "Adding Packages to view"
-msgstr ""
+msgstr "Pakete werden zur Ansicht hinzugefügt"
 
 #: ../src/yumexgui/__init__.py:1018
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "%i Pakete wurden zur Ansicht hinzugefügt"
 
 #: ../src/yumexgui/__init__.py:1372
 msgid "Getting Category Packages"
-msgstr ""
+msgstr "Pakete der Kategorie werden geholt"
 
 #: ../src/yumexgui/__init__.py:1469
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr ""
+msgstr "Wollen Sie %s aus dem Yum-Zwischenspeicher löschen"
 
 #: ../src/yumexgui/__init__.py:1538
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Ausführen: %s %s"
 
 #: ../src/yumexgui/__init__.py:1539
 msgid "Processing Queue Command"
-msgstr ""
+msgstr "Warteschlangenbefehl wird ausgeführt"
 
 #: ../src/yumexgui/dialogs.py:426
 msgid "Working !!!"
@@ -751,43 +753,43 @@ msgstr "Einstellungen"
 
 #: ../src/yumexgui/dialogs.py:509
 msgid "Load packages on launch"
-msgstr ""
+msgstr "Pakete beim Start laden"
 
 #: ../src/yumexgui/dialogs.py:510
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "Sortierbare Spalten in der Paketansicht verwenden (langsamer)"
 
 #: ../src/yumexgui/dialogs.py:511
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "Suchen beim Eingeben ist standardmäßig aktiviert"
 
 #: ../src/yumexgui/dialogs.py:519
 msgid "Debug Mode"
-msgstr ""
+msgstr "Debug-Modus"
 
 #: ../src/yumexgui/dialogs.py:520
 msgid "Disable startup network check"
-msgstr ""
+msgstr "Netzwerküberprüfung beim Start deaktivieren"
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
+msgstr "Backend mit sudo ausführen (benötigt Deaktivierung des sudo-Passworts)"
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
-msgstr ""
+msgstr "Farbe (Installiert)"
 
 #: ../src/yumexgui/dialogs.py:523
 msgid "Color (Update)"
-msgstr ""
+msgstr "Farbe (Aktualisierung)"
 
 #: ../src/yumexgui/dialogs.py:524
 msgid "Color (Available)"
-msgstr ""
+msgstr "Farbe (Verfügbar)"
 
 #: ../src/yumexgui/dialogs.py:532
 msgid "Enable Yum Plugins"
-msgstr ""
+msgstr "Yum-Plugins aktivieren"
 
 #: ../src/yumexgui/dialogs.py:533
 msgid "Proxy"
@@ -795,44 +797,44 @@ msgstr "Proxy"
 
 #: ../src/yumexgui/dialogs.py:534
 msgid "Yum Debug Level"
-msgstr ""
+msgstr "Debug-Level für Yum"
 
 #: ../src/yumexgui/dialogs.py:633
 msgid "Transaction Result"
-msgstr ""
+msgstr "Ergebnis der Transaktion"
 
 #: ../src/yumexgui/dialogs.py:708
 #, python-format
 msgid "Download Size : %s "
-msgstr ""
+msgstr "Heruntergeladene Größe: %s "
 
 #: ../src/yumexgui/gui.py:213
 msgid "Package Description"
-msgstr ""
+msgstr "Paketbeschreibung"
 
 #: ../src/yumexgui/gui.py:215
 msgid "Update information"
-msgstr ""
+msgstr "Aktualisierungsinformationen"
 
 #: ../src/yumexgui/gui.py:217
 msgid "Package Changelog"
-msgstr "Paket-Changelog"
+msgstr "Paket-Änderungsprotokoll"
 
 #: ../src/yumexgui/gui.py:219
 msgid "Package Filelist"
-msgstr ""
+msgstr "Dateiliste des Pakets"
 
 #: ../src/yumexgui/gui.py:221
 msgid "Package Dependencies"
-msgstr ""
+msgstr "Abhängigkeiten des Pakets"
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
-msgstr ""
+msgstr "Keine Aktualisierungsinformationen"
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
-msgstr ""
+msgstr "Projektadresse:"
 
 #: ../src/yumexgui/gui.py:353
 msgid "Release"
@@ -848,15 +850,15 @@ msgstr "Status"
 
 #: ../src/yumexgui/gui.py:356
 msgid "Issued"
-msgstr ""
+msgstr "Veröffentlicht"
 
 #: ../src/yumexgui/gui.py:535
 msgid "Quit"
-msgstr ""
+msgstr "Beenden"
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Working ....</span>\n"
-msgstr ""
+msgstr "<span size=\"x-large\">Wird verarbeitet …</span>\n"
 
 #: ../src/yumex.glade.h:3
 msgid "Advanced"
@@ -868,7 +870,7 @@ msgstr "Alle"
 
 #: ../src/yumex.glade.h:5
 msgid "Availa_ble"
-msgstr ""
+msgstr "Verfüg_bar"
 
 #: ../src/yumex.glade.h:6
 msgid "Basic"
@@ -876,7 +878,7 @@ msgstr "Basis"
 
 #: ../src/yumex.glade.h:7
 msgid "Don't check signatures for packages"
-msgstr ""
+msgstr "Paketsignaturen nicht überprüfen"
 
 #: ../src/yumex.glade.h:8
 msgid "Error"
@@ -884,37 +886,37 @@ msgstr "Fehler"
 
 #: ../src/yumex.glade.h:9
 msgid "Execute all pending actions in queue"
-msgstr ""
+msgstr "Alle ausstehenden Aktionen in der Warteschlange ausführen"
 
 #: ../src/yumex.glade.h:10
 msgid "Get all History elements"
-msgstr ""
+msgstr "Alle Verlaufselemente werden geholt"
 
 #: ../src/yumex.glade.h:11
 msgid "R_epositories"
-msgstr ""
+msgstr "Softwarequ_ellen"
 
 #: ../src/yumex.glade.h:12
 msgid "Redo a history transaction"
-msgstr ""
+msgstr "Eine Verlaufs-Transaktion wiederholen"
 
 #: ../src/yumex.glade.h:13
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
+msgstr "Pakete mit den aktuell ausgewählten\nSoftwarequellen abgleichen"
 
 #: ../src/yumex.glade.h:15
 msgid "Remove selected packages from queue"
-msgstr ""
+msgstr "Alle ausgewählten Pakete aus der Warteschlange entfernen"
 
 #: ../src/yumex.glade.h:16
 msgid "Search Options"
-msgstr ""
+msgstr "Suchoptionen"
 
 #: ../src/yumex.glade.h:17
 msgid "Select all packages in current view"
-msgstr ""
+msgstr "Alle Pakete in der aktuellen Ansicht auswählen"
 
 #: ../src/yumex.glade.h:18
 msgid "Show Categories"
@@ -926,7 +928,7 @@ msgstr "Gruppen anzeigen"
 
 #: ../src/yumex.glade.h:20
 msgid "Show Newest Only"
-msgstr ""
+msgstr "Nur neueste zeigen"
 
 #: ../src/yumex.glade.h:21
 msgid "Show all Packages"
@@ -944,7 +946,7 @@ msgstr "Installierte Pakete anzeigen"
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "Nur neueste Paketversionen suchen\nNicht mehrere Versionen des gleichen Pakets anzeigen"
 
 #: ../src/yumex.glade.h:26
 msgid "Show package updates"
@@ -952,50 +954,50 @@ msgstr "Paket-Aktualisierungen anzeigen"
 
 #: ../src/yumex.glade.h:27
 msgid "Skip Broken"
-msgstr ""
+msgstr "Fehlerhafte überspringen"
 
 #: ../src/yumex.glade.h:28
 msgid "Skip packages there get depsolve errors"
-msgstr ""
+msgstr "Pakete mit gescheiterter Abhängigkeitsauflösung überspringen"
 
 #: ../src/yumex.glade.h:29
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Testlauf"
 
 #: ../src/yumex.glade.h:30
 msgid "Type package names to search for"
-msgstr ""
+msgstr "Geben Sie Paketnamen ein, um danach zu suchen"
 
 #: ../src/yumex.glade.h:31
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
+msgstr "Geben Sie Wörter ein, durch Leerzeichen\ngetrennt, um Pakete zu finden, die diese\nWörter enthalten.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Typeahead search on/off"
-msgstr ""
+msgstr "Suchen nach Eingabe ein-/ausschalten"
 
 #: ../src/yumex.glade.h:36
 msgid "U_pdates"
-msgstr "A_kualisierungen"
+msgstr "A_ktualisierungen"
 
 #: ../src/yumex.glade.h:37
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "Eine Verlaufs-Transaktion rückgängig machen"
 
 #: ../src/yumex.glade.h:38
 msgid "Undo all package selection"
-msgstr ""
+msgstr "Paketauswahl zurücksetzen"
 
 #: ../src/yumex.glade.h:39
 msgid "Undo repository selection changes"
-msgstr ""
+msgstr "Änderung der Paketquellen rückgängig machen"
 
 #: ../src/yumex.glade.h:40
 msgid "Undo the current search"
-msgstr ""
+msgstr "Aktuellen Suchvorgang rückgängig machen"
 
 #: ../src/yumex.glade.h:41
 msgid "Yum"
