@@ -49,7 +49,13 @@ ACTIONS_FILTER = { 'u' : 'updates', 'i' : 'available', \
 
 # Paths
 BIN_PATH = os.path.abspath(os.path.dirname(sys.argv[0]))
-if BIN_PATH in ["/usr/bin", "/bin"]:
+
+if BIN_PATH.endswith('/bin'):
+    IS_PROD = True
+else:
+    IS_PROD = False
+
+if IS_PROD:
     MAIN_PATH = '/usr/share/yumex'
 else:
     MAIN_PATH = BIN_PATH
@@ -57,7 +63,7 @@ else:
 BUILDER_FILE = MAIN_PATH + '/yumex.glade'
 BUILDER_PKGINST = MAIN_PATH + '/pkginst.glade'
 
-if BIN_PATH == '/usr/bin':
+if IS_PROD:
     PIXMAPS_PATH = '/usr/share/pixmaps/yumex'
 elif MAIN_PATH.endswith('test'):
     PIXMAPS_PATH = MAIN_PATH + '/../../gfx'
