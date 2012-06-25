@@ -167,7 +167,7 @@ class YumClientBase:
 
     def _start_launcher(self, filelog):
         args = []
-        if BIN_PATH == '/usr/bin': # Bin package
+        if IS_PROD: # Bin package
             if os.getuid() == 0: # Root
                 self.info(_('Client is running in rootmode, starting backend launcher directly'))
                 cmd = '/usr/share/yumex/backend-launcher.py'
