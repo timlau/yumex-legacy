@@ -5,6 +5,7 @@ VERSION=$(shell awk '/Version:/ { print $$2 }' ${PKGNAME}.spec)
 PYTHON=python
 SRCDIR=src
 MISCDIR=misc
+PODIR=po
 PIXDIR=gfx
 ALLDIRS=$(SUBDIRS) gfx misc tools
 GITDATE=git$(shell date +%Y%m%d)
@@ -33,6 +34,9 @@ install:
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.
 	install -m644 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
+	# build the .policy file with translations
+	@rm -f $(MISCDIR)/org.yum-extender.backend.policy
+	intltool-merge -x -u $(PODIR) $(MISCDIR)/org.yum-extender.backend.policy.in $(MISCDIR)/org.yum-extender.backend.policy
 	install -m644 $(MISCDIR)/org.yum-extender.backend.policy $(DESTDIR)/usr/share/polkit-1/actions/.
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done

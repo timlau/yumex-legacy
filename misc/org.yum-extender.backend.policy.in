@@ -8,8 +8,8 @@
  <vendor_url>http://yum-extender.org</vendor_url>
 
  <action id="org.yum-extender.backend.pkexec.run">
-    <description>Run Yum Extender backend</description>
-    <message>Authentication is required for Yum Extender to handle packages on the system</message>
+    <_description>Run Yum Extender backend</_description>
+    <_message>Authentication is required for Yum Extender to handle packages on the system</_message>
     <icon_name>yumex</icon_name>
     <defaults>
      <allow_any>no</allow_any>

@@ -14,7 +14,8 @@ FMTCATALOGS = $(patsubst %.po,%.mo,$(CATALOGS))
 
 PYFILES  = $(wildcard ../src/*.py) $(wildcard ../src/yumex*/*.py) 
 GLADEFILES = $(wildcard ../src/*.glade*)
-POTFILES  = $(PYFILES) $(GLADEFILES)
+OTHERFILES = $(wildcard ../misc/*.policy.in)
+POTFILES  = $(PYFILES) $(GLADEFILES) $(OTHERFILES)
 
 all: $(NLSPACKAGE).pot $(FMTCATALOGS)
 
@@ -52,7 +53,7 @@ clean:
 	@rm -fv *mo *~ .depend *.autosave
    
 distclean: clean
-	rm -f *mo .depend Makefile $(NLSPACKAGE).pot POTFILES.in
+	rm -f *mo .depend $(NLSPACKAGE).pot POTFILES.in
 
 depend:
 
