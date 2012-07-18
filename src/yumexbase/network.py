@@ -21,6 +21,7 @@ Yumex Networking Classes
 
 import dbus
 from yumexbase.constants import *
+from yumexbase import _, P_
 
 
 class NetworkCheckBase:
@@ -77,7 +78,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
                 interface = "%s (%s)" % (props['Interface'], props['Driver'])
                 #print interface, state
                 if state == 8 or state == 100: # 8 = connected (nm8), 100 = connected (nm9)
-                    self.logger.debug("network interface %s is connected" % interface)
+                    self.logger.debug(_("network interface %s is connected") % interface)
                     self._connected = True
                 else: # Disconnected or other not connected state
                     if self._connected == None:
