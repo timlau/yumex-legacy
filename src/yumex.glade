@@ -9,8 +9,8 @@
     <property name="type_hint">normal</property>
     <property name="transient_for">main</property>
     <property name="program_name">Yum Extender</property>
-    <property name="copyright">(C) 2011 Tim Lauridsen</property>
-    <property name="website">http://www.yum-extender.org</property>
+    <property name="copyright">(C) 2005-2012 Tim Lauridsen</property>
+    <property name="website">http://www.yumex.dk</property>
     <property name="license">This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
