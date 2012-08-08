@@ -56,7 +56,7 @@ changelog:
 	@git log --pretty --numstat --summary --after=2008-10-22 | tools/git2cl > ChangeLog
 	
 upload: FORCE
-	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz yum-extender.org:public_html/dnl/yumex/source/.
+	@scp ~/rpmbuild/SOURCES/${PKGNAME}-${VERSION}.tar.gz fedorahosted.org:yumex
     
 release:
 	@git commit -a -m "bumped version to $(VERSION)"
