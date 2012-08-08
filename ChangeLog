@@ -1,3 +1,88 @@
+2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.6
+
+2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Update copyright + hompage url in about dialog
+
+2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: updated makefile to upload source to fedorahosted.org
+
+2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/bn_IN.po, po/cs.po, po/da.po, po/de.po, po/es.po,
+	po/es_ES.po, po/fa.po, po/fr.po, po/gu.po, po/hu.po, po/id.po,
+	po/it.po, po/ja.po, po/nl.po, po/pl.po, po/pt.po, po/ru.po,
+	po/sr.po, po/sr@latin.po, po/tr_TR.po, po/uk.po, po/zh_CN.po,
+	po/zh_TW.po: Transfix pull, translation updates
+
+2012-07-18  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/yumex.pot, src/yumexbase/network.py: make string translatable
+	and update .pot file by dominique chepioq
+
+2012-07-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/org.yum-extender.backend.policy,
+	misc/org.yum-extender.backend.policy.in, po/Makefile,
+	po/POTFILES.in, po/yumex.pot: Make policy file translatable
+
+2012-06-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: Use IS_PROD flag when launching
+	backend
+
+2012-06-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py: Better fix for /bin is before /usr/bin
+	in path
+
+2012-06-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Added transifex setup
+
+2012-06-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* .tx/config, po/ar.po, po/de.po, po/es_ES.po, po/nl.po, po/ru.po,
+	po/zh_TW.po: update translations from transifex
+
+2012-06-09  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: fixed some warnings when loading the .glade filer
+	(rhbz #825845)
+
+2012-06-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py: Added more generic exception handling in
+	backend-launcher
+
+2012-06-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Make the depsolve result package view resize when
+	the dialog is resized (rhbz #755123)
+
+2012-06-06  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py: fix issues with yumex.glade not found
+	is /bin is path before /usr/bin in F17 (rhbz #827119)
+
+2012-05-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/conf.py, src/yumexbase/constants.py, yumex.spec: 
+	Move to using XDG folder to store configurations $HOME/.yumex.conf
+	.> $HOME/.config/yumex/yumex.conf
+
+2012-05-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: make yumex work with use_sudo=1 in
+	.yumex.conf
+
+2012-05-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2012-05-13  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.5
