@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Tim Lauridsen <tla@rasmil.dk>, 2011.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-14 19:06+0100\n"
-"PO-Revision-Date: 2011-10-18 13:05+0000\n"
+"POT-Creation-Date: 2012-07-18 07:02+0200\n"
+"PO-Revision-Date: 2012-07-18 11:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,176 +19,183 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
+#. print interface, state
+#. 8 = connected (nm8), 100 = connected (nm9)
+#: ../src/yumexbase/network.py:81
+#, python-format
+msgid "network interface %s is connected"
+msgstr "встановлено з'єднання за допомогою інтерфейсу мережі %s"
+
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:72
+#: ../src/yumexbase/constants.py:90
 msgid "updates"
 msgstr "оновлює"
 
-#: ../src/yumexbase/constants.py:72
+#: ../src/yumexbase/constants.py:90
 msgid "available"
 msgstr "доступний"
 
-#: ../src/yumexbase/constants.py:72
+#: ../src/yumexbase/constants.py:90
 msgid "installed"
 msgstr "встановлено"
 
-#: ../src/yumexbase/constants.py:92
+#: ../src/yumexbase/constants.py:110
 msgid "Downloading repository information"
 msgstr "Звантаження інформації щодо сховища"
 
-#: ../src/yumexbase/constants.py:93
+#: ../src/yumexbase/constants.py:111
 #, python-format
 msgid "Downloading Package information for the %s repository"
 msgstr "Звантаження відомостей щодо пакунків для сховища %s"
 
-#: ../src/yumexbase/constants.py:94
+#: ../src/yumexbase/constants.py:112
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
 msgstr "Звантаження відомостей щодо списку файлів для сховища %s"
 
-#: ../src/yumexbase/constants.py:95
+#: ../src/yumexbase/constants.py:113
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
 msgstr "Звантаження відомостей щодо журналу змін для сховища %s"
 
-#: ../src/yumexbase/constants.py:96
+#: ../src/yumexbase/constants.py:114
 #, python-format
 msgid "Downloading Group information for the %s repository"
 msgstr "Звантаження відомостей щодо груп для сховища %s"
 
-#: ../src/yumexbase/constants.py:97
+#: ../src/yumexbase/constants.py:115
 #, python-format
 msgid "Downloading metalink information for the %s repository"
 msgstr "Звантаження відомостей щодо метапосилань для сховища %s"
 
-#: ../src/yumexbase/constants.py:98
+#: ../src/yumexbase/constants.py:116
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
 msgstr "Звантаження відомостей щодо нарощувальних оновлень для сховища %s"
 
-#: ../src/yumexbase/constants.py:99
+#: ../src/yumexbase/constants.py:117
 #, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr "Звантаження відомостей щодо оновлення для сховища %s"
 
-#: ../src/yumexbase/constants.py:110
+#: ../src/yumexbase/constants.py:128
 msgid "0 - 7 Days"
 msgstr "0 - 7 днів"
 
-#: ../src/yumexbase/constants.py:111
+#: ../src/yumexbase/constants.py:129
 msgid "7 - 14 Days"
 msgstr "7 - 14 днів"
 
-#: ../src/yumexbase/constants.py:112
+#: ../src/yumexbase/constants.py:130
 msgid "14 - 21 Days"
 msgstr "14 - 21 днів"
 
-#: ../src/yumexbase/constants.py:113
+#: ../src/yumexbase/constants.py:131
 msgid "21  - 30 days"
 msgstr "21  - 30 днів"
 
-#: ../src/yumexbase/constants.py:114
+#: ../src/yumexbase/constants.py:132
 msgid "30 - 90 days"
 msgstr "30 - 90 днів"
 
-#: ../src/yumexbase/constants.py:115
+#: ../src/yumexbase/constants.py:133
 msgid "90+ days"
 msgstr "90+ днів"
 
-#: ../src/yumexbase/constants.py:137
+#: ../src/yumexbase/constants.py:155
 msgid "Getting all packages"
 msgstr "Отримання списку всіх пакунків"
 
-#: ../src/yumexbase/constants.py:138
+#: ../src/yumexbase/constants.py:156
 msgid "Getting installed packages"
 msgstr "Отримання списку встановлених пакунків"
 
-#: ../src/yumexbase/constants.py:139
+#: ../src/yumexbase/constants.py:157
 msgid "Getting available packages"
 msgstr "Отримання списку доступних пакунків"
 
-#: ../src/yumexbase/constants.py:140
+#: ../src/yumexbase/constants.py:158
 msgid "Getting available updates"
 msgstr "Отримання списку доступних оновлень"
 
-#: ../src/yumexbase/constants.py:141
+#: ../src/yumexbase/constants.py:159
 msgid "Getting available obsoletes"
 msgstr "Отримання списку застарілих пакунків"
 
-#: ../src/yumexbase/constants.py:146
+#: ../src/yumexbase/constants.py:164
 #, python-format
 msgid "%s is updated"
 msgstr "%s оновлено"
 
-#: ../src/yumexbase/constants.py:147
+#: ../src/yumexbase/constants.py:165
 #, python-format
 msgid "%s is erased"
 msgstr "%s вилучено"
 
-#: ../src/yumexbase/constants.py:148 ../src/yumexbase/constants.py:149
-#: ../src/yumexbase/constants.py:151
+#: ../src/yumexbase/constants.py:166 ../src/yumexbase/constants.py:167
+#: ../src/yumexbase/constants.py:169
 #, python-format
 msgid "%s is installed"
 msgstr "%s встановлено"
 
-#: ../src/yumexbase/constants.py:150
+#: ../src/yumexbase/constants.py:168
 #, python-format
 msgid "%s is obsoleted"
 msgstr "%s застарів"
 
-#: ../src/yumexbase/constants.py:152
+#: ../src/yumexbase/constants.py:170
 #, python-format
 msgid "%s is cleanup"
 msgstr "%s очищено"
 
-#: ../src/yumexbase/constants.py:163
+#: ../src/yumexbase/constants.py:181
 msgid "Updated packages"
 msgstr "Оновлені пакунки"
 
-#: ../src/yumexbase/constants.py:164
+#: ../src/yumexbase/constants.py:182
 msgid "Downgraded packages"
 msgstr "Пакунки, версію яких понижено"
 
-#: ../src/yumexbase/constants.py:165
+#: ../src/yumexbase/constants.py:183
 msgid "Obsoleting packages"
 msgstr "Вилучення застарілих пакунків"
 
-#: ../src/yumexbase/constants.py:166
+#: ../src/yumexbase/constants.py:184
 msgid "Obsoleted packages"
 msgstr "Застарілі пакунки"
 
-#: ../src/yumexbase/constants.py:167
+#: ../src/yumexbase/constants.py:185
 msgid "Erased packages"
 msgstr "Вилучені пакунки"
 
-#: ../src/yumexbase/constants.py:168 ../src/yumexbase/constants.py:169
+#: ../src/yumexbase/constants.py:186 ../src/yumexbase/constants.py:187
 msgid "Installed packages"
 msgstr "Встановлені пакунки"
 
-#: ../src/yumexbase/constants.py:170
+#: ../src/yumexbase/constants.py:188
 msgid "Installed for dependencies"
 msgstr "Встановлено як залежність"
 
-#: ../src/yumexbase/constants.py:171
+#: ../src/yumexbase/constants.py:189
 msgid "Reinstalled packages"
 msgstr "Повторно встановлені пакунки"
 
-#: ../src/yumexbase/constants.py:197 ../src/yumexgui/views.py:831
+#: ../src/yumexbase/constants.py:215 ../src/yumexgui/views.py:878
 #: ../src/yumexgui/dialogs.py:670
 msgid "Name"
 msgstr "Назва"
 
-#: ../src/yumexbase/constants.py:198 ../src/yumexgui/views.py:200
-#: ../src/yumexgui/views.py:350 ../src/yumexgui/views.py:467
-#: ../src/yumexgui/views.py:686
+#: ../src/yumexbase/constants.py:216 ../src/yumexgui/views.py:200
+#: ../src/yumexgui/views.py:395 ../src/yumexgui/views.py:512
+#: ../src/yumexgui/views.py:731
 msgid "Summary"
 msgstr "Резюме"
 
-#: ../src/yumexbase/constants.py:199 ../src/yumexgui/gui.py:395
+#: ../src/yumexbase/constants.py:217 ../src/yumexgui/gui.py:395
 msgid "Description"
 msgstr "Опис"
 
-#: ../src/yumexbase/constants.py:200 ../src/yumexgui/dialogs.py:671
+#: ../src/yumexbase/constants.py:218 ../src/yumexgui/dialogs.py:671
 msgid "Arch"
 msgstr "Арх."
 
@@ -290,7 +297,7 @@ msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr "Клієнтську програму запущено від імені адміністратора, виконуємо безпосередній запуск сервера"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:246
+#: ../src/yumexbackend/yum_client.py:247
 msgid "Yum backend did not close nicely in time"
 msgstr "Сервер Yum не зміг завершити роботу без помилок за відведений час"
 
@@ -301,95 +308,95 @@ msgstr "Використання %s для налаштування yum"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:237 ../src/yumexbackend/yum_server.py:246
+#: ../src/yumexbackend/yum_server.py:240 ../src/yumexbackend/yum_server.py:249
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "Не встановлено з’єднання з мережею, нелокальне сховище %s вимкнено"
 
-#: ../src/yumexbackend/yum_server.py:261
+#: ../src/yumexbackend/yum_server.py:264
 msgid "Yum is locked : "
 msgstr "Yum заблоковано: "
 
-#: ../src/yumexbackend/yum_server.py:266
+#: ../src/yumexbackend/yum_server.py:269
 msgid "  The other application is: PackageKit"
 msgstr "  Сторонньою програмою є: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:268
+#: ../src/yumexbackend/yum_server.py:271
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  Сторонньою програмою є: %s"
 
-#: ../src/yumexbackend/yum_server.py:270
+#: ../src/yumexbackend/yum_server.py:273
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "Десятисекундне очікування і повторна спроба!!!"
 
 #. yumRepo will catch this
-#: ../src/yumexbackend/yum_server.py:305
+#: ../src/yumexbackend/yum_server.py:308
 msgid "The disc was not inserted"
 msgstr "Диск не було вставлено"
 
-#: ../src/yumexbackend/yum_server.py:336
+#: ../src/yumexbackend/yum_server.py:339
 msgid "Closing rpm db and releasing yum lock  "
 msgstr "Закриваємо базу даних rpm і знімаємо блокування yum  "
 
-#: ../src/yumexbackend/yum_server.py:802
+#: ../src/yumexbackend/yum_server.py:815
 msgid "Installing"
 msgstr "Встановлення"
 
-#: ../src/yumexbackend/yum_server.py:854
+#: ../src/yumexbackend/yum_server.py:867
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "Помилка під час операції yum: %s"
 
-#: ../src/yumexbackend/yum_server.py:857
+#: ../src/yumexbackend/yum_server.py:870
 msgid "Exception in run_transaction"
 msgstr "Виключення у run_transaction"
 
-#: ../src/yumexbackend/yum_server.py:896
+#: ../src/yumexbackend/yum_server.py:909
 #, python-format
 msgid "Failure getting %s: "
 msgstr "Помилка отримання %s: "
 
-#: ../src/yumexbackend/yum_server.py:897
+#: ../src/yumexbackend/yum_server.py:910
 msgid "Trying other mirror."
 msgstr "Спроба використання іншого дзеркала."
 
-#: ../src/yumexbackend/yum_server.py:1126
+#: ../src/yumexbackend/yum_server.py:1153
 #, python-format
 msgid "The %s repository has been enabled permanently"
 msgstr "Сховище %s було остаточно увімкнено"
 
-#: ../src/yumexbackend/yum_server.py:1129
+#: ../src/yumexbackend/yum_server.py:1156
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "Сховище %s було остаточно вимкнено"
 
-#: ../src/yumexbackend/yum_server.py:1140
+#: ../src/yumexbackend/yum_server.py:1167
 #, python-format
 msgid "Setting Yum Option %s = %s"
 msgstr "Встановлення параметра Yum %s = %s"
 
-#: ../src/yumexbackend/yum_server.py:1206
+#: ../src/yumexbackend/yum_server.py:1233
 msgid "Cleaned metadata from local cache"
 msgstr "З локального кешу вилучено метадані"
 
-#: ../src/yumexbackend/yum_server.py:1209
+#: ../src/yumexbackend/yum_server.py:1236
 msgid "Cleaned dbcache"
 msgstr "Спорожнено dbcache"
 
-#: ../src/yumexbackend/yum_server.py:1212
+#: ../src/yumexbackend/yum_server.py:1239
 msgid "Cleaned packages from local cache"
 msgstr "З локального кешу вилучено пакунки"
 
-#: ../src/yumexbackend/yum_server.py:1214
+#: ../src/yumexbackend/yum_server.py:1241
 msgid "Cleaned everything from local cache"
 msgstr "Локальний кеш повністю спорожнено"
 
-#: ../src/yumexbackend/yum_server.py:1633
+#: ../src/yumexbackend/yum_server.py:1660
 msgid "Rebuild from deltarpms completed"
 msgstr "Повторне збирання з deltarpm завершено"
 
-#: ../src/yumexbackend/yum_server.py:1635
+#: ../src/yumexbackend/yum_server.py:1662
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "Звантажено: %s ( %s )"
@@ -397,9 +404,9 @@ msgstr "Звантажено: %s ( %s )"
 #. Setup Selection Column
 #. self.create_selection_colunm('')
 #. Setup Actions and pacakges
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:347
-#: ../src/yumexgui/views.py:464 ../src/yumexgui/views.py:1348
-#: ../src/yumexgui/views.py:1461
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/views.py:392
+#: ../src/yumexgui/views.py:509 ../src/yumexgui/views.py:1395
+#: ../src/yumexgui/views.py:1508
 msgid "Package"
 msgstr "Пакунок"
 
@@ -419,73 +426,73 @@ msgstr "Архітектура"
 msgid "Size"
 msgstr "Розмір"
 
-#: ../src/yumexgui/views.py:348 ../src/yumexgui/views.py:465
-#: ../src/yumexgui/views.py:1350 ../src/yumexgui/views.py:1463
+#: ../src/yumexgui/views.py:393 ../src/yumexgui/views.py:510
+#: ../src/yumexgui/views.py:1397 ../src/yumexgui/views.py:1510
 msgid "Ver."
 msgstr "Вер."
 
-#: ../src/yumexgui/views.py:349 ../src/yumexgui/views.py:466
-#: ../src/yumexgui/views.py:1351 ../src/yumexgui/views.py:1464
+#: ../src/yumexgui/views.py:394 ../src/yumexgui/views.py:511
+#: ../src/yumexgui/views.py:1398 ../src/yumexgui/views.py:1511
 msgid "Arch."
 msgstr "Арх."
 
-#: ../src/yumexgui/views.py:351 ../src/yumexgui/views.py:468
+#: ../src/yumexgui/views.py:396 ../src/yumexgui/views.py:513
 msgid "Repo."
 msgstr "Схов."
 
-#: ../src/yumexgui/views.py:352 ../src/yumexgui/views.py:469
+#: ../src/yumexgui/views.py:397 ../src/yumexgui/views.py:514
 msgid "Size."
 msgstr "Розмір"
 
-#: ../src/yumexgui/views.py:647
+#: ../src/yumexgui/views.py:692
 msgid "Package Queue:"
 msgstr "Черга пакунків:"
 
-#: ../src/yumexgui/views.py:681 ../src/yumexgui/__init__.py:382
+#: ../src/yumexgui/views.py:726 ../src/yumexgui/__init__.py:382
 msgid "Packages"
 msgstr "Пакунки"
 
-#: ../src/yumexgui/views.py:771
+#: ../src/yumexgui/views.py:818
 #, python-format
 msgid "<b>Downgrade to</b> %s "
 msgstr "<b>Повернення до версії</b> %s "
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/views.py:784 ../src/yumexgui/views.py:830
+#: ../src/yumexgui/views.py:831 ../src/yumexgui/views.py:877
 #: ../src/yumexgui/dialogs.py:673
 msgid "Repository"
 msgstr "Сховище"
 
-#: ../src/yumexgui/views.py:784
+#: ../src/yumexgui/views.py:831
 msgid "Filename"
 msgstr "Назва файла"
 
 #. Setup reponame & repofile column's
-#: ../src/yumexgui/views.py:964
+#: ../src/yumexgui/views.py:1011
 msgid "Search Keys"
 msgstr "Ключі пошуку"
 
-#: ../src/yumexgui/views.py:1195
+#: ../src/yumexgui/views.py:1242
 msgid "Categories"
 msgstr "Категорії"
 
-#: ../src/yumexgui/views.py:1241
+#: ../src/yumexgui/views.py:1288
 msgid "Id"
 msgstr "Ід"
 
-#: ../src/yumexgui/views.py:1242
+#: ../src/yumexgui/views.py:1289
 msgid "Login User"
 msgstr "Користувач"
 
-#: ../src/yumexgui/views.py:1243
+#: ../src/yumexgui/views.py:1290
 msgid "Data/Time"
 msgstr "Дата/Час"
 
-#: ../src/yumexgui/views.py:1244
+#: ../src/yumexgui/views.py:1291
 msgid "Action(s)"
 msgstr "Дії"
 
-#: ../src/yumexgui/views.py:1245
+#: ../src/yumexgui/views.py:1292
 msgid "Altered"
 msgstr "Змінено"
 
@@ -724,21 +731,21 @@ msgstr "Додавання пакунків для перегляду"
 msgid "Added %i Packages to view"
 msgstr "Додано %i пакунків для перегляду"
 
-#: ../src/yumexgui/__init__.py:1372
+#: ../src/yumexgui/__init__.py:1389
 msgid "Getting Category Packages"
 msgstr "Отримання списку категорій пакунків"
 
-#: ../src/yumexgui/__init__.py:1469
+#: ../src/yumexgui/__init__.py:1486
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Бажаєте вилучити %s з кешу yum"
 
-#: ../src/yumexgui/__init__.py:1538
+#: ../src/yumexgui/__init__.py:1555
 #, python-format
 msgid "Executing : %s %s"
 msgstr "Виконання: %s %s"
 
-#: ../src/yumexgui/__init__.py:1539
+#: ../src/yumexgui/__init__.py:1556
 msgid "Processing Queue Command"
 msgstr "Обробка команди черги дій"
 
@@ -860,200 +867,209 @@ msgid "<span size=\"x-large\">Working ....</span>\n"
 msgstr "<span size=\"x-large\">Працюємо...</span>\n"
 
 #: ../src/yumex.glade.h:3
-msgid "Advanced"
-msgstr "Додатково"
-
-#: ../src/yumex.glade.h:4
-msgid "All"
-msgstr "Всі"
-
-#: ../src/yumex.glade.h:5
-msgid "Availa_ble"
-msgstr "_Доступні"
-
-#: ../src/yumex.glade.h:6
-msgid "Basic"
-msgstr "Основні"
-
-#: ../src/yumex.glade.h:7
-msgid "Don't check signatures for packages"
-msgstr "Не перевіряти підписів пакунків"
-
-#: ../src/yumex.glade.h:8
 msgid "Error"
 msgstr "Помилка"
 
-#: ../src/yumex.glade.h:9
-msgid "Execute all pending actions in queue"
-msgstr "Виконати всі дії з черги дій"
+#: ../src/yumex.glade.h:4
+msgid "Type package names to search for"
+msgstr "Введіть назви пакунків, які слід знайти"
 
-#: ../src/yumex.glade.h:10
+#: ../src/yumex.glade.h:5
+msgid "Undo the current search"
+msgstr "Скасувати поточний пошук"
+
+#: ../src/yumex.glade.h:6
 msgid "Get all History elements"
 msgstr "Отримати всі записи журналу"
 
-#: ../src/yumex.glade.h:11
-msgid "R_epositories"
-msgstr "С_ховища"
+#: ../src/yumex.glade.h:7
+msgid "Undo a history transaction"
+msgstr "Скасувати операцію з журналу"
 
-#: ../src/yumex.glade.h:12
+#: ../src/yumex.glade.h:8
 msgid "Redo a history transaction"
 msgstr "Повторити операцію з журналу"
 
+#: ../src/yumex.glade.h:9
+msgid "_File"
+msgstr "_Файл"
+
+#: ../src/yumex.glade.h:10
+msgid "_Edit"
+msgstr "_Правка"
+
+#: ../src/yumex.glade.h:11
+msgid "_View"
+msgstr "П_ерегляд"
+
+#: ../src/yumex.glade.h:12
+msgid "_Packages"
+msgstr "Пак_унки"
+
 #: ../src/yumex.glade.h:13
-msgid ""
-"Refresh packages with current selected\n"
-"repositories"
-msgstr "Освіжити список пакунків за поточними\nпозначеними сховищами"
+msgid "_Queue"
+msgstr "_Черга"
+
+#: ../src/yumex.glade.h:14
+msgid "R_epositories"
+msgstr "С_ховища"
 
 #: ../src/yumex.glade.h:15
-msgid "Remove selected packages from queue"
-msgstr "Вилучити позначені пакунки з черги"
+msgid "_History"
+msgstr "_Журнал"
 
 #: ../src/yumex.glade.h:16
-msgid "Search Options"
-msgstr "Параметри пошуку"
+msgid "_Output"
+msgstr "В_ивід"
 
 #: ../src/yumex.glade.h:17
-msgid "Select all packages in current view"
-msgstr "Позначити всі пакунки у поточному списку"
+msgid "_Profiles"
+msgstr "Про_філі"
 
 #: ../src/yumex.glade.h:18
-msgid "Show Categories"
-msgstr "Показати категорії"
+msgid "_Options"
+msgstr "П_араметри"
 
 #: ../src/yumex.glade.h:19
-msgid "Show Groups"
-msgstr "Показати групи"
+msgid "Skip packages there get depsolve errors"
+msgstr "Пропустити пакунки з помилками розв’язання залежностей"
 
 #: ../src/yumex.glade.h:20
-msgid "Show Newest Only"
-msgstr "Показати лише найновіші"
+msgid "Skip Broken"
+msgstr "Пропустити помилкові"
 
 #: ../src/yumex.glade.h:21
-msgid "Show all Packages"
-msgstr "Показати всі пакунки"
+msgid "Don't check signatures for packages"
+msgstr "Не перевіряти підписів пакунків"
 
 #: ../src/yumex.glade.h:22
-msgid "Show available packages"
-msgstr "Показати доступні пакунки"
+msgid "no GPG Check"
+msgstr "без перевірки GPG"
 
 #: ../src/yumex.glade.h:23
-msgid "Show installed packages"
-msgstr "Показати встановлені пакунки"
-
-#: ../src/yumex.glade.h:24
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
 msgstr "Показувати у результатах пошуку лише найновіші пакунки\nНе показувати декілька версій одного пакунка"
 
+#: ../src/yumex.glade.h:25
+msgid "Show Newest Only"
+msgstr "Показати лише найновіші"
+
 #: ../src/yumex.glade.h:26
-msgid "Show package updates"
-msgstr "Показати оновлення пакунків"
+msgid "_Help"
+msgstr "_Довідка"
 
 #: ../src/yumex.glade.h:27
-msgid "Skip Broken"
-msgstr "Пропустити помилкові"
+msgid "Typeahead search on/off"
+msgstr "Увімкнути/Вимкнути випереджувальний пошук за типом"
 
 #: ../src/yumex.glade.h:28
-msgid "Skip packages there get depsolve errors"
-msgstr "Пропустити пакунки з помилками розв’язання залежностей"
-
-#: ../src/yumex.glade.h:29
-msgid "Testing Stuff"
-msgstr "Тестове програмне забезпечення"
-
-#: ../src/yumex.glade.h:30
-msgid "Type package names to search for"
-msgstr "Введіть назви пакунків, які слід знайти"
-
-#: ../src/yumex.glade.h:31
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
 msgstr "Введіть ключові слова пошуку, відокремлені\nпробілами, що виявити пакунки, що відповідають\nключовим словам.\n"
 
-#: ../src/yumex.glade.h:35
-msgid "Typeahead search on/off"
-msgstr "Увімкнути/Вимкнути випереджувальний пошук за типом"
+#: ../src/yumex.glade.h:32
+msgid "Search Options"
+msgstr "Параметри пошуку"
 
-#: ../src/yumex.glade.h:36
+#: ../src/yumex.glade.h:33
 msgid "U_pdates"
 msgstr "_Оновлення"
 
+#: ../src/yumex.glade.h:34
+msgid "Show package updates"
+msgstr "Показати оновлення пакунків"
+
+#: ../src/yumex.glade.h:35
+msgid "Availa_ble"
+msgstr "_Доступні"
+
+#: ../src/yumex.glade.h:36
+msgid "Show available packages"
+msgstr "Показати доступні пакунки"
+
 #: ../src/yumex.glade.h:37
-msgid "Undo a history transaction"
-msgstr "Скасувати операцію з журналу"
-
-#: ../src/yumex.glade.h:38
-msgid "Undo all package selection"
-msgstr "Скасувати позначення всіх пакунків"
-
-#: ../src/yumex.glade.h:39
-msgid "Undo repository selection changes"
-msgstr "Скасувати зміни у виборі сховищ"
-
-#: ../src/yumex.glade.h:40
-msgid "Undo the current search"
-msgstr "Скасувати поточний пошук"
-
-#: ../src/yumex.glade.h:41
-msgid "Yum"
-msgstr "Yum"
-
-#: ../src/yumex.glade.h:42
-msgid "_Categories"
-msgstr "_Категорії"
-
-#: ../src/yumex.glade.h:43
-msgid "_Edit"
-msgstr "_Правка"
-
-#: ../src/yumex.glade.h:44
-msgid "_File"
-msgstr "_Файл"
-
-#: ../src/yumex.glade.h:45
-msgid "_Groups"
-msgstr "_Групи"
-
-#: ../src/yumex.glade.h:46
-msgid "_Help"
-msgstr "_Довідка"
-
-#: ../src/yumex.glade.h:47
-msgid "_History"
-msgstr "_Журнал"
-
-#: ../src/yumex.glade.h:48
 msgid "_Installed"
 msgstr "_Встановлено"
 
+#: ../src/yumex.glade.h:38
+msgid "Show installed packages"
+msgstr "Показати встановлені пакунки"
+
+#: ../src/yumex.glade.h:39
+msgid "All"
+msgstr "Всі"
+
+#: ../src/yumex.glade.h:40
+msgid "Show all Packages"
+msgstr "Показати всі пакунки"
+
+#: ../src/yumex.glade.h:41
+msgid "_Groups"
+msgstr "_Групи"
+
+#: ../src/yumex.glade.h:42
+msgid "Show Groups"
+msgstr "Показати групи"
+
+#: ../src/yumex.glade.h:43
+msgid "_Categories"
+msgstr "_Категорії"
+
+#: ../src/yumex.glade.h:44
+msgid "Show Categories"
+msgstr "Показати категорії"
+
+#: ../src/yumex.glade.h:45
+msgid "Select all packages in current view"
+msgstr "Позначити всі пакунки у поточному списку"
+
+#: ../src/yumex.glade.h:46
+msgid "Undo all package selection"
+msgstr "Скасувати позначення всіх пакунків"
+
+#: ../src/yumex.glade.h:47
+msgid "Execute all pending actions in queue"
+msgstr "Виконати всі дії з черги дій"
+
+#: ../src/yumex.glade.h:48
+msgid "Basic"
+msgstr "Основні"
+
 #: ../src/yumex.glade.h:49
-msgid "_Options"
-msgstr "П_араметри"
+msgid "Advanced"
+msgstr "Додатково"
 
 #: ../src/yumex.glade.h:50
-msgid "_Output"
-msgstr "В_ивід"
+msgid "Yum"
+msgstr "Yum"
 
 #: ../src/yumex.glade.h:51
-msgid "_Packages"
-msgstr "Пак_унки"
+msgid "Remove selected packages from queue"
+msgstr "Вилучити позначені пакунки з черги"
 
 #: ../src/yumex.glade.h:52
-msgid "_Profiles"
-msgstr "Про_філі"
-
-#: ../src/yumex.glade.h:53
-msgid "_Queue"
-msgstr "_Черга"
+msgid ""
+"Refresh packages with current selected\n"
+"repositories"
+msgstr "Освіжити список пакунків за поточними\nпозначеними сховищами"
 
 #: ../src/yumex.glade.h:54
-msgid "_View"
-msgstr "П_ерегляд"
+msgid "Undo repository selection changes"
+msgstr "Скасувати зміни у виборі сховищ"
 
 #: ../src/yumex.glade.h:55
-msgid "no GPG Check"
-msgstr "без перевірки GPG"
+msgid "Testing Stuff"
+msgstr "Тестове програмне забезпечення"
+
+#: ../misc/org.yum-extender.backend.policy.in.h:1
+msgid "Run Yum Extender backend"
+msgstr "Запуск основного модуля Yum Extender"
+
+#: ../misc/org.yum-extender.backend.policy.in.h:2
+msgid ""
+"Authentication is required for Yum Extender to handle packages on the system"
+msgstr "Щоб надати змогу Yum Extender виконувати обробку пакунків у вашій системі, ви маєте пройти розпізнавання."
