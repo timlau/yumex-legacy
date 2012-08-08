@@ -7,8 +7,8 @@ Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
 License:  GPLv2+
-URL:      http://www.yum-extender.org
-Source0:  http://www.yum-extender.org/dnl/yumex/source/%{name}-%{version}.tar.gz
+URL:      http://www.yumex.dk
+Source0:  https://fedorahosted.org/releases/y/u/yumex/%{name}-%{version}.tar.gz
 BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch: noarch
@@ -82,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Wed Aug 08 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.6-1
 - bumped version to 3.0.6-1
+- Changed project url & source url
 * Tue May 15 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.5-3
 - Added pyxdg requirement
 * Sun May 13 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.5-1
