@@ -179,7 +179,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             if percent > 0: # only show update labels once.
                 return
             if '/' in name:
-                repo, mdtype = name.split('/')
+                values = name.split('/')
+                repo, mdtype = values[0],values[-1] # there can be more than 2 values, take first & last
             else:
                 repo = None
                 mdtype = name
