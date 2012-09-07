@@ -5,9 +5,9 @@
 <policyconfig>
 
  <vendor>Yum Extender</vendor>
- <vendor_url>http://yum-extender.org</vendor_url>
+ <vendor_url>http://yumex.dk</vendor_url>
 
- <action id="org.yum-extender.backend.pkexec.run">
+ <action id="dk.yumex.backend.pkexec.run">
     <_description>Run Yum Extender backend</_description>
     <_message>Authentication is required for Yum Extender to handle packages on the system</_message>
     <icon_name>yumex</icon_name>

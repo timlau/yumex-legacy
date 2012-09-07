@@ -35,9 +35,9 @@ install:
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.
 	install -m644 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
 	# build the .policy file with translations
-	@rm -f $(MISCDIR)/org.yum-extender.backend.policy
-	intltool-merge -x -u $(PODIR) $(MISCDIR)/org.yum-extender.backend.policy.in $(MISCDIR)/org.yum-extender.backend.policy
-	install -m644 $(MISCDIR)/org.yum-extender.backend.policy $(DESTDIR)/usr/share/polkit-1/actions/.
+	@rm -f $(MISCDIR)/dk.yumex.backend.policy
+	intltool-merge -x -u $(PODIR) $(MISCDIR)/dk.yumex.backend.policy.in $(MISCDIR)/dk.yumex.backend.policy
+	install -m644 $(MISCDIR)/dk.yumex.backend.policy $(DESTDIR)/usr/share/polkit-1/actions/.
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
