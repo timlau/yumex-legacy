@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-18 07:02+0200\n"
+"POT-Creation-Date: 2012-09-10 16:39+0200\n"
 "PO-Revision-Date: 2012-07-18 05:05+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. print interface, state
 #. 8 = connected (nm8), 100 = connected (nm9)
@@ -204,57 +204,57 @@ msgstr "Arch"
 msgid "Getting Package Information"
 msgstr "Csomaginformációk lekérése"
 
-#: ../src/yumexbackend/yum_backend.py:186
+#: ../src/yumexbackend/yum_backend.py:187
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "Ismeretlen tároló metaadat(%s) a(z) %s-hoz"
 
-#: ../src/yumexbackend/yum_backend.py:200
+#: ../src/yumexbackend/yum_backend.py:201
 msgid "Building rpms from deltarpm"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
+#: ../src/yumexbackend/yum_backend.py:217 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
 msgstr "Csomagok letöltése"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:269
+#: ../src/yumexbackend/yum_backend.py:223 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
 msgstr "A csomag GPG aláírásának ellenőrzése"
 
-#: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
+#: ../src/yumexbackend/yum_backend.py:228 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
 msgstr "RPM teszt tranzakció futtatása"
 
-#: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:271
+#: ../src/yumexbackend/yum_backend.py:232 ../src/yumexgui/dialogs.py:271
 msgid "Running RPM Transaction"
 msgstr "RPM tranzakció végrehajtása"
 
-#: ../src/yumexbackend/yum_backend.py:236
+#: ../src/yumexbackend/yum_backend.py:237
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Szeretné importálni a következő  %s GPG kulcsot?\n"
 
-#: ../src/yumexbackend/yum_backend.py:238
+#: ../src/yumexbackend/yum_backend.py:239
 #, python-format
 msgid "Needed by %s"
 msgstr "Szüksége %s"
 
-#: ../src/yumexbackend/yum_backend.py:253
+#: ../src/yumexbackend/yum_backend.py:254
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "Helyezze be az alábbi címkéjű adathordozót %s #%d."
 
-#: ../src/yumexbackend/yum_backend.py:255
+#: ../src/yumexbackend/yum_backend.py:256
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "Kérem helyezze be az alábbi címkéjű adathordozót %s"
 
-#: ../src/yumexbackend/yum_backend.py:318
+#: ../src/yumexbackend/yum_backend.py:319
 msgid "Starting yum child process"
 msgstr "Yum gyermekfolyamat indítása"
 
-#: ../src/yumexbackend/yum_backend.py:320
+#: ../src/yumexbackend/yum_backend.py:321
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -262,30 +262,30 @@ msgid ""
 "\n"
 msgstr "A következő tárolók felhasználása:\n%s\n\n"
 
-#: ../src/yumexbackend/yum_backend.py:338
+#: ../src/yumexbackend/yum_backend.py:339
 msgid "yum backend process is ended"
 msgstr "yum háttérrendszer-folyamat kész"
 
-#: ../src/yumexbackend/yum_backend.py:362
+#: ../src/yumexbackend/yum_backend.py:363
 #, python-format
 msgid "%i packages returned"
 msgstr ""
 
-#: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:267
+#: ../src/yumexbackend/yum_backend.py:540 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
 msgstr "Függőségek feloldása"
 
-#: ../src/yumexbackend/yum_backend.py:556
 #: ../src/yumexbackend/yum_backend.py:557
+#: ../src/yumexbackend/yum_backend.py:558
 msgid "Dependency Resolution Failed"
 msgstr "A függőségfeloldás meghiúsult"
 
-#: ../src/yumexbackend/yum_backend.py:558
+#: ../src/yumexbackend/yum_backend.py:559
 msgid "Dependency Resolution Errors:"
 msgstr "A függőségfeloldás meghiúsult:"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:567
+#: ../src/yumexbackend/yum_backend.py:568
 msgid "Dependency resolving completed with errors"
 msgstr "A Függőségek feloldása kész hibákkal"
 
@@ -1064,11 +1064,11 @@ msgstr "A tároló kiválasztásának visszavonása"
 msgid "Testing Stuff"
 msgstr ""
 
-#: ../misc/org.yum-extender.backend.policy.in.h:1
+#: ../misc/dk.yumex.backend.policy.in.h:1
 msgid "Run Yum Extender backend"
 msgstr ""
 
-#: ../misc/org.yum-extender.backend.policy.in.h:2
+#: ../misc/dk.yumex.backend.policy.in.h:2
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr ""

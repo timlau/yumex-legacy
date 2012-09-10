@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-18 07:02+0200\n"
+"POT-Creation-Date: 2012-09-10 16:39+0200\n"
 "PO-Revision-Date: 2012-07-18 05:20+0000\n"
 "Last-Translator: dominique bribanick <chepioq@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/yumex/language/fr/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. print interface, state
 #. 8 = connected (nm8), 100 = connected (nm9)
@@ -205,57 +205,57 @@ msgstr "Arch"
 msgid "Getting Package Information"
 msgstr "Obtention des informations des paquets"
 
-#: ../src/yumexbackend/yum_backend.py:186
+#: ../src/yumexbackend/yum_backend.py:187
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "Métadonnées du dépôt de type inconnu (%s) pour %s"
 
-#: ../src/yumexbackend/yum_backend.py:200
+#: ../src/yumexbackend/yum_backend.py:201
 msgid "Building rpms from deltarpm"
 msgstr "Construction des rpms depuis les deltarpms"
 
-#: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
+#: ../src/yumexbackend/yum_backend.py:217 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
 msgstr "Téléchargement des paquets"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:269
+#: ../src/yumexbackend/yum_backend.py:223 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
 msgstr "Vérification des signatures GPG des paquets"
 
-#: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
+#: ../src/yumexbackend/yum_backend.py:228 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
 msgstr "Lancement du test de transaction RPM"
 
-#: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:271
+#: ../src/yumexbackend/yum_backend.py:232 ../src/yumexgui/dialogs.py:271
 msgid "Running RPM Transaction"
 msgstr "Lancement de la transaction RPM"
 
-#: ../src/yumexbackend/yum_backend.py:236
+#: ../src/yumexbackend/yum_backend.py:237
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "Voulez-vous importer cette clé GPG : %s \n"
 
-#: ../src/yumexbackend/yum_backend.py:238
+#: ../src/yumexbackend/yum_backend.py:239
 #, python-format
 msgid "Needed by %s"
 msgstr "Requis par %s"
 
-#: ../src/yumexbackend/yum_backend.py:253
+#: ../src/yumexbackend/yum_backend.py:254
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "Merci d'insérer le média nommé %s #%d."
 
-#: ../src/yumexbackend/yum_backend.py:255
+#: ../src/yumexbackend/yum_backend.py:256
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "Merci d'insérer le média nommé %s."
 
-#: ../src/yumexbackend/yum_backend.py:318
+#: ../src/yumexbackend/yum_backend.py:319
 msgid "Starting yum child process"
 msgstr "Lancement du processus enfant de yum"
 
-#: ../src/yumexbackend/yum_backend.py:320
+#: ../src/yumexbackend/yum_backend.py:321
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -263,30 +263,30 @@ msgid ""
 "\n"
 msgstr "Utilisation des dépôts suivants :\n %s\n\n"
 
-#: ../src/yumexbackend/yum_backend.py:338
+#: ../src/yumexbackend/yum_backend.py:339
 msgid "yum backend process is ended"
 msgstr "Le processus yum est terminé"
 
-#: ../src/yumexbackend/yum_backend.py:362
+#: ../src/yumexbackend/yum_backend.py:363
 #, python-format
 msgid "%i packages returned"
 msgstr "%i paquets renvoyés"
 
-#: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:267
+#: ../src/yumexbackend/yum_backend.py:540 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
 msgstr "Résolution des dépendances"
 
-#: ../src/yumexbackend/yum_backend.py:556
 #: ../src/yumexbackend/yum_backend.py:557
+#: ../src/yumexbackend/yum_backend.py:558
 msgid "Dependency Resolution Failed"
 msgstr "La résolution des dépendances a échoué"
 
-#: ../src/yumexbackend/yum_backend.py:558
+#: ../src/yumexbackend/yum_backend.py:559
 msgid "Dependency Resolution Errors:"
 msgstr "Erreurs lors de la résolution des dépendances : "
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:567
+#: ../src/yumexbackend/yum_backend.py:568
 msgid "Dependency resolving completed with errors"
 msgstr "La résolution des dépendances a été effectuée avec des erreurs"
 
@@ -1065,11 +1065,11 @@ msgstr "Désélectionner tous les dépôts"
 msgid "Testing Stuff"
 msgstr "Test de commande"
 
-#: ../misc/org.yum-extender.backend.policy.in.h:1
+#: ../misc/dk.yumex.backend.policy.in.h:1
 msgid "Run Yum Extender backend"
 msgstr "Lancer l'arrière-plan de Yum Extender"
 
-#: ../misc/org.yum-extender.backend.policy.in.h:2
+#: ../misc/dk.yumex.backend.policy.in.h:2
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Une authentification est demandée par Yum Extender pour gérer les paquets sur le système"

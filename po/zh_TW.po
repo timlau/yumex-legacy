@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-18 07:02+0200\n"
+"POT-Creation-Date: 2012-09-10 16:39+0200\n"
 "PO-Revision-Date: 2012-07-31 07:53+0000\n"
 "Last-Translator: chaoweilun <chaoweilun@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/yumex/language/zh_TW/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. print interface, state
 #. 8 = connected (nm8), 100 = connected (nm9)
@@ -205,57 +205,57 @@ msgstr "硬體架構"
 msgid "Getting Package Information"
 msgstr "提取套件資訊"
 
-#: ../src/yumexbackend/yum_backend.py:186
+#: ../src/yumexbackend/yum_backend.py:187
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
 msgstr "不明的後設資料型態 (%s) 於 %s"
 
-#: ../src/yumexbackend/yum_backend.py:200
+#: ../src/yumexbackend/yum_backend.py:201
 msgid "Building rpms from deltarpm"
 msgstr "從 deltarpm 建立 rpms"
 
-#: ../src/yumexbackend/yum_backend.py:216 ../src/yumexgui/dialogs.py:268
+#: ../src/yumexbackend/yum_backend.py:217 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
 msgstr "下載套件"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:222 ../src/yumexgui/dialogs.py:269
+#: ../src/yumexbackend/yum_backend.py:223 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
 msgstr "檢查套件的 GPG 簽名"
 
-#: ../src/yumexbackend/yum_backend.py:227 ../src/yumexgui/dialogs.py:270
+#: ../src/yumexbackend/yum_backend.py:228 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
 msgstr "執行 RPM 異動作業測試"
 
-#: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:271
+#: ../src/yumexbackend/yum_backend.py:232 ../src/yumexgui/dialogs.py:271
 msgid "Running RPM Transaction"
 msgstr "執行 RPM 異動作業"
 
-#: ../src/yumexbackend/yum_backend.py:236
+#: ../src/yumexbackend/yum_backend.py:237
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "您要匯入 GPG 金鑰嗎：%s\n"
 
-#: ../src/yumexbackend/yum_backend.py:238
+#: ../src/yumexbackend/yum_backend.py:239
 #, python-format
 msgid "Needed by %s"
 msgstr "是 %s 所需的"
 
-#: ../src/yumexbackend/yum_backend.py:253
+#: ../src/yumexbackend/yum_backend.py:254
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "請插入標記為 %s #%d 的媒體。"
 
-#: ../src/yumexbackend/yum_backend.py:255
+#: ../src/yumexbackend/yum_backend.py:256
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "請插入標記為 %s 的媒體。"
 
-#: ../src/yumexbackend/yum_backend.py:318
+#: ../src/yumexbackend/yum_backend.py:319
 msgid "Starting yum child process"
 msgstr "開始 yum 子進程"
 
-#: ../src/yumexbackend/yum_backend.py:320
+#: ../src/yumexbackend/yum_backend.py:321
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -263,30 +263,30 @@ msgid ""
 "\n"
 msgstr "使用下列套件庫：\n%s\n\n"
 
-#: ../src/yumexbackend/yum_backend.py:338
+#: ../src/yumexbackend/yum_backend.py:339
 msgid "yum backend process is ended"
 msgstr "yum 後端處理已結束"
 
-#: ../src/yumexbackend/yum_backend.py:362
+#: ../src/yumexbackend/yum_backend.py:363
 #, python-format
 msgid "%i packages returned"
 msgstr "%i 個套件已回傳"
 
-#: ../src/yumexbackend/yum_backend.py:539 ../src/yumexgui/dialogs.py:267
+#: ../src/yumexbackend/yum_backend.py:540 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
 msgstr "解析相依性"
 
-#: ../src/yumexbackend/yum_backend.py:556
 #: ../src/yumexbackend/yum_backend.py:557
+#: ../src/yumexbackend/yum_backend.py:558
 msgid "Dependency Resolution Failed"
 msgstr "相依性解析失敗"
 
-#: ../src/yumexbackend/yum_backend.py:558
+#: ../src/yumexbackend/yum_backend.py:559
 msgid "Dependency Resolution Errors:"
 msgstr "相依性解析錯誤："
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:567
+#: ../src/yumexbackend/yum_backend.py:568
 msgid "Dependency resolving completed with errors"
 msgstr "相依性解析已完成但發生錯誤"
 
@@ -1065,11 +1065,11 @@ msgstr "復原套件庫選擇變更"
 msgid "Testing Stuff"
 msgstr "測試部分"
 
-#: ../misc/org.yum-extender.backend.policy.in.h:1
+#: ../misc/dk.yumex.backend.policy.in.h:1
 msgid "Run Yum Extender backend"
 msgstr "執行 Yum Extender 的後端程式"
 
-#: ../misc/org.yum-extender.backend.policy.in.h:2
+#: ../misc/dk.yumex.backend.policy.in.h:2
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Yum Extender 要求驗證以處理系統中的套件"

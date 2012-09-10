@@ -3,21 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Hasan Alp İNAN <hasanalpinan@gmail.com>, 2011.
-# Necdet Yücel <necdetyucel@gmail.com>, 2012.
+# Valentin Laskov <laskov@festa.bg>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-10 16:39+0200\n"
-"PO-Revision-Date: 2012-07-18 05:05+0000\n"
-"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/projects/p/yumex/language/tr_TR/)\n"
+"PO-Revision-Date: 2012-09-04 12:59+0000\n"
+"Last-Translator: Valentin Laskov <laskov@festa.bg>\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/yumex/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr_TR\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. print interface, state
 #. 8 = connected (nm8), 100 = connected (nm9)
@@ -29,231 +28,231 @@ msgstr ""
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:90
 msgid "updates"
-msgstr "güncellemeler"
+msgstr "обновления"
 
 #: ../src/yumexbase/constants.py:90
 msgid "available"
-msgstr "kullanılabilir"
+msgstr "налични"
 
 #: ../src/yumexbase/constants.py:90
 msgid "installed"
-msgstr "kurulu"
+msgstr "инсталирани"
 
 #: ../src/yumexbase/constants.py:110
 msgid "Downloading repository information"
-msgstr "Depo bilgisi indiriliyor"
+msgstr "Сваляне на информация за хранилища"
 
 #: ../src/yumexbase/constants.py:111
 #, python-format
 msgid "Downloading Package information for the %s repository"
-msgstr "%s deposu için Paket bilgileri indiriliyor"
+msgstr "Сваляне на информация за пакети за хранилището %s"
 
 #: ../src/yumexbase/constants.py:112
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
-msgstr ""
+msgstr "Сваляне информация за списъка файлове за хранилището %s"
 
 #: ../src/yumexbase/constants.py:113
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
-msgstr ""
+msgstr "Сваляне Changelog информацията за хранилището %s"
 
 #: ../src/yumexbase/constants.py:114
 #, python-format
 msgid "Downloading Group information for the %s repository"
-msgstr "%s deposu için Grup bilgileri indiriliyor."
+msgstr "Сваляне Group информацията за хранилището %s"
 
 #: ../src/yumexbase/constants.py:115
 #, python-format
 msgid "Downloading metalink information for the %s repository"
-msgstr ""
+msgstr "Сваляне metalink информацията за хранилището %s"
 
 #: ../src/yumexbase/constants.py:116
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
-msgstr "%s deposu için Delta güncelleme bilgileri indiriliyor"
+msgstr "Сваляне Delta update информацията за хранилището %s"
 
 #: ../src/yumexbase/constants.py:117
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr "%s deposu için Güncelleme bilgileri indiriliyor."
+msgstr "Сваляне Update информацията за хранилището %s"
 
 #: ../src/yumexbase/constants.py:128
 msgid "0 - 7 Days"
-msgstr "0 - 7 Gün"
+msgstr "0 - 7 дни"
 
 #: ../src/yumexbase/constants.py:129
 msgid "7 - 14 Days"
-msgstr "7 - 14 Gün"
+msgstr "7 - 14 дни"
 
 #: ../src/yumexbase/constants.py:130
 msgid "14 - 21 Days"
-msgstr "14 - 21 Gün"
+msgstr "14 - 21 дни"
 
 #: ../src/yumexbase/constants.py:131
 msgid "21  - 30 days"
-msgstr "21 - 30 Gün"
+msgstr "21  - 30 дни"
 
 #: ../src/yumexbase/constants.py:132
 msgid "30 - 90 days"
-msgstr "30 - 90 Gün"
+msgstr "30 - 90 дни"
 
 #: ../src/yumexbase/constants.py:133
 msgid "90+ days"
-msgstr "90+ gün"
+msgstr "90+ дни"
 
 #: ../src/yumexbase/constants.py:155
 msgid "Getting all packages"
-msgstr "Tüm paketler alınıyor"
+msgstr "Взимам всички пакети"
 
 #: ../src/yumexbase/constants.py:156
 msgid "Getting installed packages"
-msgstr "Kurulu paketler alınıyor"
+msgstr "Взимам инсталираните пакети"
 
 #: ../src/yumexbase/constants.py:157
 msgid "Getting available packages"
-msgstr "Uygun paketler alınıyor"
+msgstr "Взимам наличните пакети"
 
 #: ../src/yumexbase/constants.py:158
 msgid "Getting available updates"
-msgstr "Uygun güncellemeler alınıyor"
+msgstr "Взимам наличните обновления"
 
 #: ../src/yumexbase/constants.py:159
 msgid "Getting available obsoletes"
-msgstr ""
+msgstr "Взимам наличните излезли от употреба"
 
 #: ../src/yumexbase/constants.py:164
 #, python-format
 msgid "%s is updated"
-msgstr "%s güncellendi"
+msgstr "%s е обновен"
 
 #: ../src/yumexbase/constants.py:165
 #, python-format
 msgid "%s is erased"
-msgstr "%s silindi"
+msgstr "%s е изтрит"
 
 #: ../src/yumexbase/constants.py:166 ../src/yumexbase/constants.py:167
 #: ../src/yumexbase/constants.py:169
 #, python-format
 msgid "%s is installed"
-msgstr "%s kuruldu"
+msgstr "%s е инсталиран"
 
 #: ../src/yumexbase/constants.py:168
 #, python-format
 msgid "%s is obsoleted"
-msgstr "%s artık kullanılmıyor"
+msgstr "%s е излязъл от употреба"
 
 #: ../src/yumexbase/constants.py:170
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s е почистен"
 
 #: ../src/yumexbase/constants.py:181
 msgid "Updated packages"
-msgstr "Güncellenen paketler"
+msgstr "Обновени пакети"
 
 #: ../src/yumexbase/constants.py:182
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Пакети, върнати към предишна версия"
 
 #: ../src/yumexbase/constants.py:183
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Излизащи от употреба пакети"
 
 #: ../src/yumexbase/constants.py:184
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Излезли от употреба пакети"
 
 #: ../src/yumexbase/constants.py:185
 msgid "Erased packages"
-msgstr "Silinen paketler"
+msgstr "Изтрити пакети"
 
 #: ../src/yumexbase/constants.py:186 ../src/yumexbase/constants.py:187
 msgid "Installed packages"
-msgstr "Kurulu paketler"
+msgstr "Инсталирани пакети"
 
 #: ../src/yumexbase/constants.py:188
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Инсталирани поради зависимости"
 
 #: ../src/yumexbase/constants.py:189
 msgid "Reinstalled packages"
-msgstr "Yeniden kurulan paketler"
+msgstr "Преинсталирани пакети"
 
 #: ../src/yumexbase/constants.py:215 ../src/yumexgui/views.py:878
 #: ../src/yumexgui/dialogs.py:670
 msgid "Name"
-msgstr "Ad"
+msgstr "Име"
 
 #: ../src/yumexbase/constants.py:216 ../src/yumexgui/views.py:200
 #: ../src/yumexgui/views.py:395 ../src/yumexgui/views.py:512
 #: ../src/yumexgui/views.py:731
 msgid "Summary"
-msgstr "Özet"
+msgstr "Обобщение"
 
 #: ../src/yumexbase/constants.py:217 ../src/yumexgui/gui.py:395
 msgid "Description"
-msgstr "Açıklama"
+msgstr "Описание"
 
 #: ../src/yumexbase/constants.py:218 ../src/yumexgui/dialogs.py:671
 msgid "Arch"
-msgstr "Mimari"
+msgstr "Архитектура"
 
 #. if the progress is hidden, then show it at set the labels.
 #: ../src/yumexbackend/yum_backend.py:166
 #: ../src/yumexbackend/yum_backend.py:167
 msgid "Getting Package Information"
-msgstr "Paket Bilgisi Alınıyor"
+msgstr "Взимане информация за пакетите"
 
 #: ../src/yumexbackend/yum_backend.py:187
 #, python-format
 msgid "Unknown Repo Metadata type (%s) for %s"
-msgstr ""
+msgstr "Непознат тип метаданни на хранилище (%s) за %s"
 
 #: ../src/yumexbackend/yum_backend.py:201
 msgid "Building rpms from deltarpm"
-msgstr ""
+msgstr "Създаване rpm-и от deltarpm"
 
 #: ../src/yumexbackend/yum_backend.py:217 ../src/yumexgui/dialogs.py:268
 msgid "Downloading Packages"
-msgstr "Paketler İndiriliyor"
+msgstr "Сваляне на пакети"
 
 #. Don't allow Cancel any more
 #: ../src/yumexbackend/yum_backend.py:223 ../src/yumexgui/dialogs.py:269
 msgid "Checking Package GPG Signatures"
-msgstr "Paket GPG İmzaları Kontrol Ediliyor"
+msgstr "Проверка GPG сигнатури на пакетите"
 
 #: ../src/yumexbackend/yum_backend.py:228 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Test Transaction"
-msgstr ""
+msgstr "Изпълнение на RPM тестова транзакция"
 
 #: ../src/yumexbackend/yum_backend.py:232 ../src/yumexgui/dialogs.py:271
 msgid "Running RPM Transaction"
-msgstr ""
+msgstr "Изпълнение на RPM транзакция"
 
 #: ../src/yumexbackend/yum_backend.py:237
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr ""
+msgstr "Желаете ли импортирането на GPG ключ : %s \n"
 
 #: ../src/yumexbackend/yum_backend.py:239
 #, python-format
 msgid "Needed by %s"
-msgstr ""
+msgstr "Нужен за %s"
 
 #: ../src/yumexbackend/yum_backend.py:254
 #, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr ""
+msgstr "Моля поставете медията с етикет %s #%d."
 
 #: ../src/yumexbackend/yum_backend.py:256
 #, python-format
 msgid "Please insert media labeled %s."
-msgstr ""
+msgstr "Моля поставете медията с етикет %s."
 
 #: ../src/yumexbackend/yum_backend.py:319
 msgid "Starting yum child process"
-msgstr ""
+msgstr "Стартиране на дъщерен yum процес"
 
 #: ../src/yumexbackend/yum_backend.py:321
 #, python-format
@@ -261,34 +260,34 @@ msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
+msgstr "С използването на следните хранилища :\n%s\n\n"
 
 #: ../src/yumexbackend/yum_backend.py:339
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "фоновият yum процес завърши"
 
 #: ../src/yumexbackend/yum_backend.py:363
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i върнати пакети"
 
 #: ../src/yumexbackend/yum_backend.py:540 ../src/yumexgui/dialogs.py:267
 msgid "Resolving Dependencies"
-msgstr "Bağımlılıklar Çözülüyor"
+msgstr "Удовлетворяване на зависимости"
 
 #: ../src/yumexbackend/yum_backend.py:557
 #: ../src/yumexbackend/yum_backend.py:558
 msgid "Dependency Resolution Failed"
-msgstr "Bağımlılık Çözümlemesi Başarısız Oldu"
+msgstr "Удовлетворяването на зависимости се провали"
 
 #: ../src/yumexbackend/yum_backend.py:559
 msgid "Dependency Resolution Errors:"
-msgstr "Bağımlılık Çözümleme Hataları:"
+msgstr "Грешки в удовлетворяването на зависимости:"
 
 #. Write errors to output page
 #: ../src/yumexbackend/yum_backend.py:568
 msgid "Dependency resolving completed with errors"
-msgstr "Bağımlılık çözümlemesi hatalarla tamamlandı"
+msgstr "Удовлетворяването на зависимости завърши с грешки"
 
 #. Bin package
 #. Root
@@ -299,49 +298,49 @@ msgstr ""
 #. The yum backend did not ended nicely
 #: ../src/yumexbackend/yum_client.py:247
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Фоновият yum процес не завърши коректно навреме"
 
 #: ../src/yumexbackend/yum_server.py:181
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr "Yum yapılandırması için %s kullanılıyor"
+msgstr "Използвам %s за конфигурация на yum"
 
 #. Not local disable it
 #. No, disable it
 #: ../src/yumexbackend/yum_server.py:240 ../src/yumexbackend/yum_server.py:249
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
+msgstr "Няма връзка с мрежата, забранявам не-локалното хранилище %s"
 
 #: ../src/yumexbackend/yum_server.py:264
 msgid "Yum is locked : "
-msgstr "Yum kilitli: "
+msgstr "Yum е заключен : "
 
 #: ../src/yumexbackend/yum_server.py:269
 msgid "  The other application is: PackageKit"
-msgstr "  Diğer uygulama: PackageKit"
+msgstr "  Другото приложение е: PackageKit"
 
 #: ../src/yumexbackend/yum_server.py:271
 #, python-format
 msgid "  The other application is: %s"
-msgstr "  Diğer uygulama: %s"
+msgstr "  Другото приложение е: %s"
 
 #: ../src/yumexbackend/yum_server.py:273
 msgid "Waiting 10 seconds and tries again !!!"
-msgstr ""
+msgstr "Чакам 10 секунди и пробвам отново !!!"
 
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:308
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Дискът не е вкаран"
 
 #: ../src/yumexbackend/yum_server.py:339
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "Затварям rpm db и освобождавам заключването на yum"
 
 #: ../src/yumexbackend/yum_server.py:815
 msgid "Installing"
-msgstr "Kuruluyor"
+msgstr "Инсталиране"
 
 #: ../src/yumexbackend/yum_server.py:867
 #, python-format
@@ -359,7 +358,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:910
 msgid "Trying other mirror."
-msgstr "Diğer bir yansı deneniyor."
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1153
 #, python-format
@@ -382,7 +381,7 @@ msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1236
 msgid "Cleaned dbcache"
-msgstr "Dbcache temizlendi"
+msgstr ""
 
 #: ../src/yumexbackend/yum_server.py:1239
 msgid "Cleaned packages from local cache"
@@ -408,49 +407,49 @@ msgstr ""
 #: ../src/yumexgui/views.py:509 ../src/yumexgui/views.py:1395
 #: ../src/yumexgui/views.py:1508
 msgid "Package"
-msgstr "Paket"
+msgstr "Пакет"
 
 #: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:672
 msgid "Ver"
-msgstr "Sürüm"
+msgstr "Вер"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"
-msgstr "Depo"
+msgstr "Хран"
 
 #: ../src/yumexgui/views.py:200
 msgid "Architecture"
-msgstr "Mimari"
+msgstr "Архитектура"
 
 #: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:674
 msgid "Size"
-msgstr "Boyut"
+msgstr "Обем"
 
 #: ../src/yumexgui/views.py:393 ../src/yumexgui/views.py:510
 #: ../src/yumexgui/views.py:1397 ../src/yumexgui/views.py:1510
 msgid "Ver."
-msgstr "Sürüm."
+msgstr "Вер."
 
 #: ../src/yumexgui/views.py:394 ../src/yumexgui/views.py:511
 #: ../src/yumexgui/views.py:1398 ../src/yumexgui/views.py:1511
 msgid "Arch."
-msgstr "Mimari"
+msgstr "Арх."
 
 #: ../src/yumexgui/views.py:396 ../src/yumexgui/views.py:513
 msgid "Repo."
-msgstr "Depo."
+msgstr "Хран."
 
 #: ../src/yumexgui/views.py:397 ../src/yumexgui/views.py:514
 msgid "Size."
-msgstr "Boyut."
+msgstr "Обем."
 
 #: ../src/yumexgui/views.py:692
 msgid "Package Queue:"
-msgstr "Paket Kuyruğu:"
+msgstr "Опашка пакети:"
 
 #: ../src/yumexgui/views.py:726 ../src/yumexgui/__init__.py:382
 msgid "Packages"
-msgstr "Paketler"
+msgstr "Пакети"
 
 #: ../src/yumexgui/views.py:818
 #, python-format
@@ -461,24 +460,24 @@ msgstr ""
 #: ../src/yumexgui/views.py:831 ../src/yumexgui/views.py:877
 #: ../src/yumexgui/dialogs.py:673
 msgid "Repository"
-msgstr "Depo"
+msgstr "Хранилище"
 
 #: ../src/yumexgui/views.py:831
 msgid "Filename"
-msgstr "Dosya Adı"
+msgstr "Име на файл"
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:1011
 msgid "Search Keys"
-msgstr "Arama Anahtarları"
+msgstr ""
 
 #: ../src/yumexgui/views.py:1242
 msgid "Categories"
-msgstr "Kategoriler"
+msgstr "Категории"
 
 #: ../src/yumexgui/views.py:1288
 msgid "Id"
-msgstr "ld"
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:1289
 msgid "Login User"
@@ -486,48 +485,48 @@ msgstr ""
 
 #: ../src/yumexgui/views.py:1290
 msgid "Data/Time"
-msgstr "Tarih/Zaman"
+msgstr "Дата/Час"
 
 #: ../src/yumexgui/views.py:1291
 msgid "Action(s)"
-msgstr ""
+msgstr "Действие"
 
 #: ../src/yumexgui/views.py:1292
 msgid "Altered"
-msgstr ""
+msgstr "Променен"
 
 #: ../src/yumexgui/__init__.py:276
 msgid "Fatal Error"
-msgstr "Ölümcül Hata"
+msgstr "Фатална грешка"
 
 #. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:278
 msgid "Can't start the yum backend"
-msgstr ""
+msgstr "Не мога да стартирам фоновия процес на yum"
 
 #: ../src/yumexgui/__init__.py:279
 msgid "Another program is locking yum"
-msgstr "Başka bir program yum'u kilitliyor"
+msgstr "Друга програма е заключила yum"
 
 #: ../src/yumexgui/__init__.py:281
 msgid "Message from yum backend:"
-msgstr ""
+msgstr "Съобщение от фоновия процес на yum:"
 
 #: ../src/yumexgui/__init__.py:285
 msgid "Error in repository setup"
-msgstr "Depo ayarlarında hata"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:288
 msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr "Komut satırından 'yumex -n' komutunu verip\n"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:289
 msgid "and deselecting the repositories causing problems\n"
-msgstr "probleme yol açan depoları seçmeyerek\n"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:290
 msgid "and try again.\n"
-msgstr "yeniden deneyebilirsiniz.\n"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:295
 msgid "Fatal Error in backend restart"
@@ -539,15 +538,15 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:300
 msgid "Fatal Error : "
-msgstr "Ölümcül Hata: "
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:378
 msgid "Available Updates"
-msgstr "Mevcut Güncellemeler"
+msgstr "Налични обновления"
 
 #: ../src/yumexgui/__init__.py:380
 msgid "Search for packages"
-msgstr ""
+msgstr "Търсене на пакети"
 
 #: ../src/yumexgui/__init__.py:384
 msgid "Perform actions on packages"
@@ -563,49 +562,49 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:390
 msgid "Repositories"
-msgstr "Depolar"
+msgstr "Хранилища"
 
 #: ../src/yumexgui/__init__.py:391
 msgid "Select active repositories"
-msgstr "Aktif depoları seç"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:394
 msgid "History"
-msgstr "Geçmiş"
+msgstr "История"
 
 #: ../src/yumexgui/__init__.py:395
 msgid "Watch yum history"
-msgstr "Yum geçmişini görüntüle"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:401
 msgid "Output"
-msgstr "Çıktı"
+msgstr "Рапорт"
 
 #: ../src/yumexgui/__init__.py:402
 msgid "Watch output details"
-msgstr "Çıktı ayrıntılarını görüntüle"
+msgstr "Преглед информацията в рапорта"
 
 #: ../src/yumexgui/__init__.py:451
 msgid "Not connected to an network"
-msgstr "Bir ağa bağlı değil"
+msgstr "Не е свързан към мрежа"
 
 #: ../src/yumexgui/__init__.py:452
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr "Bir ağa bağlı değil.\nDevam etmek istiyor musunuz "
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:457
 msgid "network connection state check is disabled"
-msgstr ""
+msgstr "забранена е проверката състоянието на връзката към мрежата"
 
 #: ../src/yumexgui/__init__.py:459
 msgid "Can't detect the network connection state"
-msgstr ""
+msgstr "Не мога да определя състоянието на връзката с мрежата"
 
 #: ../src/yumexgui/__init__.py:461
 msgid "Connected to an network"
-msgstr "Bir ağa bağlı"
+msgstr "Свързан към мрежа"
 
 #: ../src/yumexgui/__init__.py:625
 msgid "Enable Permanently"
@@ -621,19 +620,19 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:633
 msgid "Clean Packages"
-msgstr "Paketleri temizle"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:634
 msgid "Clean DbCache"
-msgstr "DbCache'i temizle"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:635
 msgid "Clean All"
-msgstr "Tümünü Temizle"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:648
 msgid "Reinstall Package"
-msgstr "paketi yeniden kur"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:655
 msgid "Downgrade Package"
@@ -641,15 +640,15 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:665
 msgid "By Repositories"
-msgstr "Depoya göre"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:666
 msgid "By Size"
-msgstr "Boyuta göre"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:691 ../src/yumexgui/__init__.py:692
 msgid "Getting Group information"
-msgstr "Grup bilgisi getiriliyor"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:728
 msgid "The pending action queue is empty"
@@ -673,7 +672,7 @@ msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr "\n\nYum Extender'dan çıkmak istiyor musunuz?"
+msgstr ""
 
 #. Aborted by user
 #: ../src/yumexgui/__init__.py:783
@@ -692,7 +691,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:876
 msgid "System"
-msgstr "Sistem"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:919
 msgid "Getting History Information"
@@ -720,7 +719,7 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:987
 msgid "Skipped packages"
-msgstr "Atlanan paketler"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
 msgid "Adding Packages to view"
@@ -743,7 +742,7 @@ msgstr ""
 #: ../src/yumexgui/__init__.py:1555
 #, python-format
 msgid "Executing : %s %s"
-msgstr "Yürütülüyor : %s %s"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:1556
 msgid "Processing Queue Command"
@@ -751,11 +750,11 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:426
 msgid "Working !!!"
-msgstr "İşleniyor !!!"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:496
 msgid "Preferences"
-msgstr "Tercihler"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:509
 msgid "Load packages on launch"
@@ -771,27 +770,27 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:519
 msgid "Debug Mode"
-msgstr "Hata Ayıklama Kipi"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:520
 msgid "Disable startup network check"
-msgstr "Açılışta ağ bağlantısını kontrol etme"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:521
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr "Artalanda sudo ile çalıştır (sudo yapılandırmasında nopasswd gerektirir)"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:522
 msgid "Color (Installed)"
-msgstr "Renk (Kurulu)"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:523
 msgid "Color (Update)"
-msgstr "Renk (Güncelleme)"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:524
 msgid "Color (Available)"
-msgstr "Renk (Mevcut)"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:532
 msgid "Enable Yum Plugins"
@@ -799,7 +798,7 @@ msgstr ""
 
 #: ../src/yumexgui/dialogs.py:533
 msgid "Proxy"
-msgstr "Vekil"
+msgstr ""
 
 #: ../src/yumexgui/dialogs.py:534
 msgid "Yum Debug Level"
@@ -812,11 +811,11 @@ msgstr ""
 #: ../src/yumexgui/dialogs.py:708
 #, python-format
 msgid "Download Size : %s "
-msgstr "İndirme Boyutu : %s"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:213
 msgid "Package Description"
-msgstr "Paket Açıklaması"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:215
 msgid "Update information"
@@ -828,31 +827,31 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:219
 msgid "Package Filelist"
-msgstr "Paket Dosya Listesi"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:221
 msgid "Package Dependencies"
-msgstr "Paket Bağımlılıkları"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:312
 msgid "No Update information"
-msgstr "Güncelleme Bilgisi yok"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:346
 msgid "Project URL : "
-msgstr "Proje URL'i: "
+msgstr ""
 
 #: ../src/yumexgui/gui.py:353
 msgid "Release"
-msgstr "Sürüm"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:354
 msgid "Type"
-msgstr "Tip"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:355
 msgid "Status"
-msgstr "Durum"
+msgstr ""
 
 #: ../src/yumexgui/gui.py:356
 msgid "Issued"
@@ -860,7 +859,7 @@ msgstr ""
 
 #: ../src/yumexgui/gui.py:535
 msgid "Quit"
-msgstr "Çıkış"
+msgstr ""
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Working ....</span>\n"
@@ -868,7 +867,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:3
 msgid "Error"
-msgstr "Hata"
+msgstr ""
 
 #: ../src/yumex.glade.h:4
 msgid "Type package names to search for"
@@ -880,7 +879,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:6
 msgid "Get all History elements"
-msgstr "Tüm Geçmiş elemanlarını getir"
+msgstr ""
 
 #: ../src/yumex.glade.h:7
 msgid "Undo a history transaction"
@@ -892,23 +891,23 @@ msgstr ""
 
 #: ../src/yumex.glade.h:9
 msgid "_File"
-msgstr "_Dosya"
+msgstr "_Файл"
 
 #: ../src/yumex.glade.h:10
 msgid "_Edit"
-msgstr "_Düzenle"
+msgstr "_Редактиране"
 
 #: ../src/yumex.glade.h:11
 msgid "_View"
-msgstr "_Göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:12
 msgid "_Packages"
-msgstr "_Paketler"
+msgstr "Пак_ети"
 
 #: ../src/yumex.glade.h:13
 msgid "_Queue"
-msgstr "K_uyruk"
+msgstr ""
 
 #: ../src/yumex.glade.h:14
 msgid "R_epositories"
@@ -916,19 +915,19 @@ msgstr ""
 
 #: ../src/yumex.glade.h:15
 msgid "_History"
-msgstr "_Geçmiş"
+msgstr "_История"
 
 #: ../src/yumex.glade.h:16
 msgid "_Output"
-msgstr "_Çıktı"
+msgstr "Р_апорт"
 
 #: ../src/yumex.glade.h:17
 msgid "_Profiles"
-msgstr "_Profiller"
+msgstr "Профа_йли"
 
 #: ../src/yumex.glade.h:18
 msgid "_Options"
-msgstr "_Seçenekler"
+msgstr "_Опции"
 
 #: ../src/yumex.glade.h:19
 msgid "Skip packages there get depsolve errors"
@@ -944,7 +943,7 @@ msgstr ""
 
 #: ../src/yumex.glade.h:22
 msgid "no GPG Check"
-msgstr "GPG Kontrolü yok"
+msgstr ""
 
 #: ../src/yumex.glade.h:23
 msgid ""
@@ -954,11 +953,11 @@ msgstr ""
 
 #: ../src/yumex.glade.h:25
 msgid "Show Newest Only"
-msgstr "Sadece en yenileri göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:26
 msgid "_Help"
-msgstr "_Yardım"
+msgstr "_Помощ"
 
 #: ../src/yumex.glade.h:27
 msgid "Typeahead search on/off"
@@ -973,15 +972,15 @@ msgstr ""
 
 #: ../src/yumex.glade.h:32
 msgid "Search Options"
-msgstr "Arama Seçenekleri"
+msgstr ""
 
 #: ../src/yumex.glade.h:33
 msgid "U_pdates"
-msgstr "G_üncellemeler"
+msgstr ""
 
 #: ../src/yumex.glade.h:34
 msgid "Show package updates"
-msgstr "Paket güncellemelerini göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:35
 msgid "Availa_ble"
@@ -989,39 +988,39 @@ msgstr ""
 
 #: ../src/yumex.glade.h:36
 msgid "Show available packages"
-msgstr "Uygun paketleri göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:37
 msgid "_Installed"
-msgstr "_Kurulu"
+msgstr "И_нсталирани"
 
 #: ../src/yumex.glade.h:38
 msgid "Show installed packages"
-msgstr "Kurulu paketleri göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:39
 msgid "All"
-msgstr "Tümü"
+msgstr ""
 
 #: ../src/yumex.glade.h:40
 msgid "Show all Packages"
-msgstr "Tüm paketleri göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:41
 msgid "_Groups"
-msgstr "_Gruplar"
+msgstr "_Групи"
 
 #: ../src/yumex.glade.h:42
 msgid "Show Groups"
-msgstr "Grupları Göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:43
 msgid "_Categories"
-msgstr "_Kategoriler"
+msgstr "_Категории"
 
 #: ../src/yumex.glade.h:44
 msgid "Show Categories"
-msgstr "Kategorileri Göster"
+msgstr ""
 
 #: ../src/yumex.glade.h:45
 msgid "Select all packages in current view"
@@ -1037,11 +1036,11 @@ msgstr ""
 
 #: ../src/yumex.glade.h:48
 msgid "Basic"
-msgstr "Temel"
+msgstr ""
 
 #: ../src/yumex.glade.h:49
 msgid "Advanced"
-msgstr "Ayrıntılı"
+msgstr ""
 
 #: ../src/yumex.glade.h:50
 msgid "Yum"
