@@ -1,3 +1,50 @@
+2012-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.7
+
+2012-09-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/bg.po, po/bn_IN.po, po/cs.po, po/da.po, po/de.po,
+	po/es.po, po/es_ES.po, po/fa.po, po/fr.po, po/gu.po, po/hu.po,
+	po/id.po, po/it.po, po/ja.po, po/nl.po, po/pl.po, po/pt.po,
+	po/ru.po, po/sr.po, po/sr@latin.po, po/tr_TR.po, po/uk.po,
+	po/zh_CN.po, po/zh_TW.po: pulled translations from Transifex
+
+2012-09-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/yumex.pot: updated .pot file
+
+2012-09-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/POTFILES.in: Recreated POTFILES.in after polkit policy rename,
+	so it get translated again
+
+2012-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: something has changes in yum, so
+	the name returned by callback when downloading metadata has changed
+	from <repoid>/<metadata type> to <repoid>/<release>/<arch>/<metadata
+	type> (rhbz #855027)
+
+2012-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/dk.yumex.backend.policy.in,
+	misc/org.yum-extender.backend.policy.in, yumex.spec: Renamed polkit
+	policy to dk.yumex.backend.policy the upstream homepage address
+
+2012-09-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* misc/org.yum-extender.backend.policy.in: add auth_admin to
+	allow_inactive in polkit policy
+
+2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: Updated project url & source url in spec
+
+2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2012-08-08  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.6
