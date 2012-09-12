@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.6
-Release:  2%{?dist}
+Version:  3.0.7
+Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -80,6 +80,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/fedora-%{name}.desktop
 
 %changelog
+* Fri Sep 07 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.7-1
+- bumped version to 3.0.7-1
 * Fri Sep 07 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.6-2
 - renamed polkit policy to dk.yumex.backend.policy
 * Wed Aug 08 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.6-1

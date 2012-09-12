@@ -37,7 +37,7 @@ from yum.constants import *
 
 # Constant
 
-__yumex_version__ = "3.0.6"
+__yumex_version__ = "3.0.7"
 
 YUMEX_LOG = 'yumex.verbose'
 FILTER_ACTIONS = {'updates' : 'u', 'available': 'i', 'installed' : 'r', \
