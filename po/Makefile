@@ -14,7 +14,7 @@ FMTCATALOGS = $(patsubst %.po,%.mo,$(CATALOGS))
 
 PYFILES  = $(wildcard ../src/*.py) $(wildcard ../src/yumex*/*.py) 
 GLADEFILES = $(wildcard ../src/*.glade*)
-OTHERFILES = $(wildcard ../misc/*.policy.in)
+OTHERFILES = $(wildcard ../misc/*.policy.in) $(wildcard ../misc/*.desktop.in)
 POTFILES  = $(PYFILES) $(GLADEFILES) $(OTHERFILES)
 
 all: $(NLSPACKAGE).pot $(FMTCATALOGS)
