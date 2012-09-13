@@ -18,3 +18,5 @@ src/yumexgui/gui.py
 src/yumex.glade.el6
 src/yumex.glade
 misc/dk.yumex.backend.policy.in
+misc/yumex.desktop.in
+misc/yumex-local.desktop.in
