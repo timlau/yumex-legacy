@@ -40,11 +40,11 @@ install:
 	install -m644 $(MISCDIR)/dk.yumex.backend.policy $(DESTDIR)/usr/share/polkit-1/actions/.
 	# build & install desktop file with translations
 	@rm -f $(MISCDIR)/yumex.desktop
-	intltool-merge -x -u $(PODIR) $(MISCDIR)/yumex.desktop.in $(MISCDIR)/yumex.desktop
+	intltool-merge -d -u $(PODIR) $(MISCDIR)/yumex.desktop.in $(MISCDIR)/yumex.desktop
 	install -m644 $(MISCDIR)/yumex.desktop $(DESTDIR)/usr/share/applications/.
 	# build & install desktop file for local package install with translations
 	@rm -f $(MISCDIR)/yumex-local.desktop
-	intltool-merge -x -u $(PODIR) $(MISCDIR)/yumex-local.desktop.in $(MISCDIR)/yumex-local.desktop
+	intltool-merge -d -u $(PODIR) $(MISCDIR)/yumex-local.desktop.in $(MISCDIR)/yumex-local.desktop
 	install -m644 $(MISCDIR)/yumex-local.desktop $(DESTDIR)/usr/share/applications/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
