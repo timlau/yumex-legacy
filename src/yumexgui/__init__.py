@@ -442,7 +442,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.window.resize(self.settings.win_width, self.settings.win_height)
             if self.settings.win_sep > 0:
                 self.ui.packageSep.set_position(self.settings.win_sep)
-        if not self.cfg.cmd_args or not self.settings.always_yes:        
+        if not self.cfg.cmd_args:        
             self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
@@ -498,11 +498,11 @@ class YumexApplication(Controller, YumexFrontend):
         elif self.settings.execute: # Auto execute
             queue = self.queue.queue
             if queue.total() != 0:
-                self.process_transaction()
-            elif self.settings.always_yes:
+                self.process_transaction(autoinstall=True)
                 self.main_quit()
             else:
-                self.window.show()
+                okDialog(self.window, _("Nothing to do"))
+                self.main_quit()
 
         #self.testing()
         
@@ -738,7 +738,7 @@ class YumexApplication(Controller, YumexFrontend):
                     self.backend.transaction.add(po, QUEUE_PACKAGE_TYPES[action])
         return True
 
-    def process_transaction(self, action="queue", tid=None):
+    def process_transaction(self, action="queue", tid=None, autoinstall=False):
         '''
         Process the active transaction
         @param action:
@@ -749,7 +749,10 @@ class YumexApplication(Controller, YumexFrontend):
             self.notebook.set_active("output")
             progress = self.get_progress()
             progress.set_pulse(True)
-            progress.set_title(_("Processing pending actions"))
+            if autoinstall:
+                progress.set_title(_("Installing local Packages"))
+            else:
+                progress.set_title(_("Processing pending actions"))
             progress.set_header(_("Preparing the transaction"))
             progress.show_tasks()
             progress.show()
@@ -769,7 +772,9 @@ class YumexApplication(Controller, YumexFrontend):
             if rc: # Transaction ok
                 self.info(_("Transaction completed successfully"))
                 progress.hide()
-                if self.settings.always_yes:
+                if self.settings.always_yes or autoinstall:
+                    if autoinstall:
+                        okDialog(self.window, _("Installation of local packages completed"))
                     rc = True
                 else:
                     self.window.show()
@@ -779,7 +784,7 @@ class YumexApplication(Controller, YumexFrontend):
                 if rc:
                     self.main_quit() # Quit Yum Extender
                 self.reload()
-            elif rc == None: # Aborted by user
+            elif rc == None: # Aborted by user  
                 self.warning(_("Transaction Aborted by User"))
                 self.notebook.set_active("package")     # show the package page
             else:

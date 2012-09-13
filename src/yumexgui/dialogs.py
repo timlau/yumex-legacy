@@ -807,6 +807,7 @@ def okDialog(parent, msg):
     dlg = gtk.MessageDialog(parent=parent,
                             type=gtk.MESSAGE_INFO,
                             buttons=gtk.BUTTONS_OK)
+    dlg.set_title("Yum Extender")
     dlg.set_markup(cleanMarkupSting(msg))
     dlg.run()
     dlg.destroy()
