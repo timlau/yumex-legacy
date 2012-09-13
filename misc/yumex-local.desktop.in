@@ -1,0 +1,12 @@
+[Desktop Entry]
+_Name=Yumex Package Installer
+_Comment=Install local packages on system
+Categories=System;
+Exec=/usr/bin/yumex -X install %F
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/yumex/yumex-icon.png
+StartupNotify=true
+NoDisplay=true
+MimeType=application/x-rpm;application/x-redhat-package-manager;
+
