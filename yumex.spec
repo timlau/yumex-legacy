@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  3.0.7
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -55,11 +55,21 @@ desktop-file-install --vendor fedora --delete-original \
     --add-category X-Fedora \
     $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
 
+desktop-file-install --vendor fedora --delete-original \
+    --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+    --add-category X-Fedora \
+    $RPM_BUILD_ROOT%{_datadir}/applications/%{name}-local.desktop
+    
 # this is a doc file; removing from installed tree
 rm $RPM_BUILD_ROOT%{_datadir}/yumex/COPYING
 
 %find_lang %name
 
+%post
+update-desktop-database %{_datadir}/applications &> /dev/null || :
+
+%postun
+update-desktop-database %{_datadir}/applications &> /dev/null || :
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,10 +87,13 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace)  %{_sysconfdir}/yumex.profiles.conf
 %config(noreplace)  %{_sysconfdir}/yumex.conf
 %{_datadir}/polkit-1/actions/dk.yumex.backend.policy
-%{_datadir}/applications/fedora-%{name}.desktop
+%{_datadir}/applications/*.desktop
 
 %changelog
-* Fri Sep 07 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.7-1
+* Thu Sep 13 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.7-2
+- Install another .desktop file with mimetype for local .rpm install
+- update desktop database post install & post uninstall
+* Wed Sep 12 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.7-1
 - bumped version to 3.0.7-1
 * Fri Sep 07 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.6-2
 - renamed polkit policy to dk.yumex.backend.policy
