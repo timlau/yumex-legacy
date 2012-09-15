@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-10 16:39+0200\n"
-"PO-Revision-Date: 2012-07-18 05:05+0000\n"
+"POT-Creation-Date: 2012-09-13 07:09+0200\n"
+"PO-Revision-Date: 2012-09-13 05:12+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/yumex/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -606,6 +606,10 @@ msgstr "Не возможно определить состояние подкл
 msgid "Connected to an network"
 msgstr "Подключено к сети"
 
+#: ../src/yumexgui/__init__.py:504
+msgid "Nothing to do"
+msgstr ""
+
 #: ../src/yumexgui/__init__.py:625
 msgid "Enable Permanently"
 msgstr "Разрешить постоянно"
@@ -654,20 +658,28 @@ msgstr "Получение информации о группах"
 msgid "The pending action queue is empty"
 msgstr "Очередь отложенных действий пуста"
 
-#: ../src/yumexgui/__init__.py:752
+#: ../src/yumexgui/__init__.py:753
+msgid "Installing local Packages"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:755
 msgid "Processing pending actions"
 msgstr "Обработка отложенных действий"
 
-#: ../src/yumexgui/__init__.py:753
+#: ../src/yumexgui/__init__.py:756
 msgid "Preparing the transaction"
 msgstr "Подготовка транзакции"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:770 ../src/yumexgui/__init__.py:776
+#: ../src/yumexgui/__init__.py:773 ../src/yumexgui/__init__.py:781
 msgid "Transaction completed successfully"
 msgstr "Транзакция завершилась успешно"
 
 #: ../src/yumexgui/__init__.py:777
+msgid "Installation of local packages completed"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:782
 msgid ""
 "\n"
 "\n"
@@ -675,76 +687,76 @@ msgid ""
 msgstr "\n\nВы хотите выйти из Yum Extender?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:783
+#: ../src/yumexgui/__init__.py:788
 msgid "Transaction Aborted by User"
 msgstr "Транзакция отменена пользователем"
 
-#: ../src/yumexgui/__init__.py:786
+#: ../src/yumexgui/__init__.py:791
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "Транзакция завершилась с ошибками,\n проверьте страницу вывода для деталей"
 
-#: ../src/yumexgui/__init__.py:875
+#: ../src/yumexgui/__init__.py:880
 msgid "<unset>"
 msgstr ""
 
-#: ../src/yumexgui/__init__.py:876
+#: ../src/yumexgui/__init__.py:881
 msgid "System"
 msgstr "система"
 
-#: ../src/yumexgui/__init__.py:919
+#: ../src/yumexgui/__init__.py:924
 msgid "Getting History Information"
 msgstr "Получение информации о истории"
 
-#: ../src/yumexgui/__init__.py:921
+#: ../src/yumexgui/__init__.py:926
 msgid "Getting Latest History Information"
 msgstr "Получение последней информации о истории"
 
-#: ../src/yumexgui/__init__.py:923
+#: ../src/yumexgui/__init__.py:928
 msgid "Getting All History Information"
 msgstr "Получение полной информации о истории"
 
-#: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:946
+#: ../src/yumexgui/__init__.py:934 ../src/yumexgui/__init__.py:951
 msgid "History Disabled"
 msgstr "История запрещена"
 
-#: ../src/yumexgui/__init__.py:940 ../src/yumexgui/__init__.py:941
+#: ../src/yumexgui/__init__.py:945 ../src/yumexgui/__init__.py:946
 msgid "Searching History Information"
 msgstr "Поиск информации о истории"
 
-#: ../src/yumexgui/__init__.py:984
+#: ../src/yumexgui/__init__.py:989
 msgid "Transaction Performed with"
 msgstr "Транзакция выполнена с"
 
-#: ../src/yumexgui/__init__.py:987
+#: ../src/yumexgui/__init__.py:992
 msgid "Skipped packages"
 msgstr "Пропущенные пакеты"
 
-#: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
+#: ../src/yumexgui/__init__.py:1018 ../src/yumexgui/__init__.py:1019
 msgid "Adding Packages to view"
 msgstr "Добавление пакетов в список"
 
-#: ../src/yumexgui/__init__.py:1018
+#: ../src/yumexgui/__init__.py:1023
 #, python-format
 msgid "Added %i Packages to view"
 msgstr "Добавлено %i пакетов в список"
 
-#: ../src/yumexgui/__init__.py:1389
+#: ../src/yumexgui/__init__.py:1394
 msgid "Getting Category Packages"
 msgstr "Получение категории пакетов"
 
-#: ../src/yumexgui/__init__.py:1486
+#: ../src/yumexgui/__init__.py:1491
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Вы хотите очистить %s из кэша yum"
 
-#: ../src/yumexgui/__init__.py:1555
+#: ../src/yumexgui/__init__.py:1560
 #, python-format
 msgid "Executing : %s %s"
 msgstr "Выполнение : %s %s"
 
-#: ../src/yumexgui/__init__.py:1556
+#: ../src/yumexgui/__init__.py:1561
 msgid "Processing Queue Command"
 msgstr "Выполнение очереди команд"
 
@@ -1071,4 +1083,20 @@ msgstr ""
 #: ../misc/dk.yumex.backend.policy.in.h:2
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
+msgstr ""
+
+#: ../misc/yumex.desktop.in.h:1
+msgid "Yum Extender"
+msgstr ""
+
+#: ../misc/yumex.desktop.in.h:2
+msgid "GUI front end for Yum"
+msgstr ""
+
+#: ../misc/yumex-local.desktop.in.h:1
+msgid "Yumex Package Installer"
+msgstr ""
+
+#: ../misc/yumex-local.desktop.in.h:2
+msgid "Install local packages on system"
 msgstr ""

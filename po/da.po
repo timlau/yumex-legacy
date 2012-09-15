@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-10 16:39+0200\n"
-"PO-Revision-Date: 2012-09-10 16:01+0000\n"
+"POT-Creation-Date: 2012-09-13 07:09+0200\n"
+"PO-Revision-Date: 2012-09-13 05:12+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/yumex/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -606,6 +606,10 @@ msgstr "Kan ikke detektere status for netværksforbindelsen"
 msgid "Connected to an network"
 msgstr "Forbundet til et netværk"
 
+#: ../src/yumexgui/__init__.py:504
+msgid "Nothing to do"
+msgstr ""
+
 #: ../src/yumexgui/__init__.py:625
 msgid "Enable Permanently"
 msgstr "Aktivér permanent"
@@ -654,20 +658,28 @@ msgstr "Henter gruppeinformation"
 msgid "The pending action queue is empty"
 msgstr "Der er ingen ventende handlinger i køen"
 
-#: ../src/yumexgui/__init__.py:752
+#: ../src/yumexgui/__init__.py:753
+msgid "Installing local Packages"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:755
 msgid "Processing pending actions"
 msgstr "Udfører ventede handlinger"
 
-#: ../src/yumexgui/__init__.py:753
+#: ../src/yumexgui/__init__.py:756
 msgid "Preparing the transaction"
 msgstr "Klargører transaktionen"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:770 ../src/yumexgui/__init__.py:776
+#: ../src/yumexgui/__init__.py:773 ../src/yumexgui/__init__.py:781
 msgid "Transaction completed successfully"
 msgstr "Transaktion er afsluttet uden fejl"
 
 #: ../src/yumexgui/__init__.py:777
+msgid "Installation of local packages completed"
+msgstr ""
+
+#: ../src/yumexgui/__init__.py:782
 msgid ""
 "\n"
 "\n"
@@ -675,76 +687,76 @@ msgid ""
 msgstr "\n\nVil du afslutte Yum Extender?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:783
+#: ../src/yumexgui/__init__.py:788
 msgid "Transaction Aborted by User"
 msgstr "Transaktionen er afbrudt af brugeren"
 
-#: ../src/yumexgui/__init__.py:786
+#: ../src/yumexgui/__init__.py:791
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "Der opstod fejl under transaktionen,\n kontrollér outputsiden for detaljer"
 
-#: ../src/yumexgui/__init__.py:875
+#: ../src/yumexgui/__init__.py:880
 msgid "<unset>"
 msgstr "<ikke sat>"
 
-#: ../src/yumexgui/__init__.py:876
+#: ../src/yumexgui/__init__.py:881
 msgid "System"
 msgstr "System"
 
-#: ../src/yumexgui/__init__.py:919
+#: ../src/yumexgui/__init__.py:924
 msgid "Getting History Information"
 msgstr "Henter information om historik"
 
-#: ../src/yumexgui/__init__.py:921
+#: ../src/yumexgui/__init__.py:926
 msgid "Getting Latest History Information"
 msgstr "Henter seneste information om historik"
 
-#: ../src/yumexgui/__init__.py:923
+#: ../src/yumexgui/__init__.py:928
 msgid "Getting All History Information"
 msgstr "Henter al information om historik"
 
-#: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:946
+#: ../src/yumexgui/__init__.py:934 ../src/yumexgui/__init__.py:951
 msgid "History Disabled"
 msgstr "Historie deaktiveret"
 
-#: ../src/yumexgui/__init__.py:940 ../src/yumexgui/__init__.py:941
+#: ../src/yumexgui/__init__.py:945 ../src/yumexgui/__init__.py:946
 msgid "Searching History Information"
 msgstr "Søger i historie informationer"
 
-#: ../src/yumexgui/__init__.py:984
+#: ../src/yumexgui/__init__.py:989
 msgid "Transaction Performed with"
 msgstr "Transaktionen udført med"
 
-#: ../src/yumexgui/__init__.py:987
+#: ../src/yumexgui/__init__.py:992
 msgid "Skipped packages"
 msgstr "Ignorede pakker"
 
-#: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
+#: ../src/yumexgui/__init__.py:1018 ../src/yumexgui/__init__.py:1019
 msgid "Adding Packages to view"
 msgstr "Tilføjer pakker til oversigten"
 
-#: ../src/yumexgui/__init__.py:1018
+#: ../src/yumexgui/__init__.py:1023
 #, python-format
 msgid "Added %i Packages to view"
 msgstr "Tilføjede %i pakker til oversigten"
 
-#: ../src/yumexgui/__init__.py:1389
+#: ../src/yumexgui/__init__.py:1394
 msgid "Getting Category Packages"
 msgstr "Henter Kategori Pakker"
 
-#: ../src/yumexgui/__init__.py:1486
+#: ../src/yumexgui/__init__.py:1491
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Vil du rydde %s op fra yum-cache"
 
-#: ../src/yumexgui/__init__.py:1555
+#: ../src/yumexgui/__init__.py:1560
 #, python-format
 msgid "Executing : %s %s"
 msgstr "Udfører : %s %s"
 
-#: ../src/yumexgui/__init__.py:1556
+#: ../src/yumexgui/__init__.py:1561
 msgid "Processing Queue Command"
 msgstr "Udfører Kø Kommando"
 
@@ -1072,3 +1084,19 @@ msgstr "Kør Yum Extender baggrundsproces"
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Godkendelse er påkrævet for at Yum Extender kan behandler pakker på systemet."
+
+#: ../misc/yumex.desktop.in.h:1
+msgid "Yum Extender"
+msgstr ""
+
+#: ../misc/yumex.desktop.in.h:2
+msgid "GUI front end for Yum"
+msgstr ""
+
+#: ../misc/yumex-local.desktop.in.h:1
+msgid "Yumex Package Installer"
+msgstr ""
+
+#: ../misc/yumex-local.desktop.in.h:2
+msgid "Install local packages on system"
+msgstr ""

@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Richard E. van der Luit <nippur@fedoraproject.org>, 2011, 2012.
+# Richard E. van der Luit <nippur@fedoraproject.org>, 2011-2012.
 # Richard E. van der Luit <zuma@xs4all.nl>, 2011.
 # Tim Lauridsen <tla@rasmil.dk>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-10 16:39+0200\n"
-"PO-Revision-Date: 2012-08-24 13:21+0000\n"
+"POT-Creation-Date: 2012-09-13 07:09+0200\n"
+"PO-Revision-Date: 2012-09-13 10:23+0000\n"
 "Last-Translator: Richard E. van der Luit <nippur@fedoraproject.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/yumex/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -608,6 +608,10 @@ msgstr "Kan status van netwerkverbinding niet bepalen"
 msgid "Connected to an network"
 msgstr "Verbonden met netwerk"
 
+#: ../src/yumexgui/__init__.py:504
+msgid "Nothing to do"
+msgstr "Er is niets te doen"
+
 #: ../src/yumexgui/__init__.py:625
 msgid "Enable Permanently"
 msgstr "Permanent aanzetten"
@@ -656,20 +660,28 @@ msgstr "Groepsinformatie ophalen"
 msgid "The pending action queue is empty"
 msgstr "De actiewachtrij is leeg"
 
-#: ../src/yumexgui/__init__.py:752
+#: ../src/yumexgui/__init__.py:753
+msgid "Installing local Packages"
+msgstr "Lokale pakketten installeren"
+
+#: ../src/yumexgui/__init__.py:755
 msgid "Processing pending actions"
 msgstr "Wachtende acties afwerken"
 
-#: ../src/yumexgui/__init__.py:753
+#: ../src/yumexgui/__init__.py:756
 msgid "Preparing the transaction"
 msgstr "De transactie voorbereiden"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:770 ../src/yumexgui/__init__.py:776
+#: ../src/yumexgui/__init__.py:773 ../src/yumexgui/__init__.py:781
 msgid "Transaction completed successfully"
 msgstr "Transactie met succes uitgevoerd"
 
 #: ../src/yumexgui/__init__.py:777
+msgid "Installation of local packages completed"
+msgstr "De installatie van lokale pakketten is afgerond"
+
+#: ../src/yumexgui/__init__.py:782
 msgid ""
 "\n"
 "\n"
@@ -677,76 +689,76 @@ msgid ""
 msgstr "\n\nWil je Yum Extender verlaten?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:783
+#: ../src/yumexgui/__init__.py:788
 msgid "Transaction Aborted by User"
 msgstr "Transactie afgebroken door gebruiker"
 
-#: ../src/yumexgui/__init__.py:786
+#: ../src/yumexgui/__init__.py:791
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "Transactie afgemaakt met fouten,\ncontroleer de output pagina voor details"
 
-#: ../src/yumexgui/__init__.py:875
+#: ../src/yumexgui/__init__.py:880
 msgid "<unset>"
 msgstr "<niet ingesteld>"
 
-#: ../src/yumexgui/__init__.py:876
+#: ../src/yumexgui/__init__.py:881
 msgid "System"
 msgstr "Systeem"
 
-#: ../src/yumexgui/__init__.py:919
+#: ../src/yumexgui/__init__.py:924
 msgid "Getting History Information"
 msgstr "Geschiedenisinformatie ophalen"
 
-#: ../src/yumexgui/__init__.py:921
+#: ../src/yumexgui/__init__.py:926
 msgid "Getting Latest History Information"
 msgstr "Meest recente geschiedenisinformatie ophalen"
 
-#: ../src/yumexgui/__init__.py:923
+#: ../src/yumexgui/__init__.py:928
 msgid "Getting All History Information"
 msgstr "Alle geschiedenisinformatie ophalen"
 
-#: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:946
+#: ../src/yumexgui/__init__.py:934 ../src/yumexgui/__init__.py:951
 msgid "History Disabled"
 msgstr "Geschiedenis uitgezet"
 
-#: ../src/yumexgui/__init__.py:940 ../src/yumexgui/__init__.py:941
+#: ../src/yumexgui/__init__.py:945 ../src/yumexgui/__init__.py:946
 msgid "Searching History Information"
 msgstr "Zoek geschiedenisinformatie"
 
-#: ../src/yumexgui/__init__.py:984
+#: ../src/yumexgui/__init__.py:989
 msgid "Transaction Performed with"
 msgstr "Transactie uitgevoerd met"
 
-#: ../src/yumexgui/__init__.py:987
+#: ../src/yumexgui/__init__.py:992
 msgid "Skipped packages"
 msgstr "Overgeslagen pakketten"
 
-#: ../src/yumexgui/__init__.py:1013 ../src/yumexgui/__init__.py:1014
+#: ../src/yumexgui/__init__.py:1018 ../src/yumexgui/__init__.py:1019
 msgid "Adding Packages to view"
 msgstr "Toevoegen van pakketten om te bekijken"
 
-#: ../src/yumexgui/__init__.py:1018
+#: ../src/yumexgui/__init__.py:1023
 #, python-format
 msgid "Added %i Packages to view"
 msgstr "%i pakketten toegevoegd om te bekijken"
 
-#: ../src/yumexgui/__init__.py:1389
+#: ../src/yumexgui/__init__.py:1394
 msgid "Getting Category Packages"
 msgstr "Categorie pakketten ophalen"
 
-#: ../src/yumexgui/__init__.py:1486
+#: ../src/yumexgui/__init__.py:1491
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Wil je %s opschonen in de locale yum-cache"
 
-#: ../src/yumexgui/__init__.py:1555
+#: ../src/yumexgui/__init__.py:1560
 #, python-format
 msgid "Executing : %s %s"
 msgstr "Uitvoeren: %s %s"
 
-#: ../src/yumexgui/__init__.py:1556
+#: ../src/yumexgui/__init__.py:1561
 msgid "Processing Queue Command"
 msgstr "Wachtende acties afwerken"
 
@@ -1074,3 +1086,19 @@ msgstr "Voer Yum Extender op de achtergrond uit"
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Authenticatie is vereist opdat Yum Extender pakketten op dit systeem mag verwerken "
+
+#: ../misc/yumex.desktop.in.h:1
+msgid "Yum Extender"
+msgstr "Yum Extender"
+
+#: ../misc/yumex.desktop.in.h:2
+msgid "GUI front end for Yum"
+msgstr "GUI front-end voor Yum"
+
+#: ../misc/yumex-local.desktop.in.h:1
+msgid "Yumex Package Installer"
+msgstr "Yumex Package Installer"
+
+#: ../misc/yumex-local.desktop.in.h:2
+msgid "Install local packages on system"
+msgstr "Installeer lokale pakketten op systeem"
