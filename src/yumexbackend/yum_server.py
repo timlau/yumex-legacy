@@ -196,6 +196,7 @@ class YumServer(yum.YumBase):
         self.offline = offline
         # Setup repos
         self._setup_repos(enabled_repos)
+        self._disable_multi_download() # disable parallel file download
         # Setup failure callback
         freport = (self._failureReport, (), {})
         self.repos.setFailureCallback(freport)
@@ -218,6 +219,13 @@ class YumServer(yum.YumBase):
 
     def _is_file_url(self, urls):
         return [url for url in urls if url.startswith('file:')]
+    
+    def _disable_multi_download(self):
+        # Disable parallel down for this repo, we dont support it
+        for repo in self.repos.listEnabled():
+            self.debug("disable multi : "+repo.id)
+            repo._async = False
+        
 
     def _setup_repos(self, enabled_repos):
         '''
