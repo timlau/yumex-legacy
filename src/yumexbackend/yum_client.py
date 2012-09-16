@@ -59,6 +59,7 @@ class YumClientBase:
         self.end_state = None
         self.launcher_is_started = False
         self.yum_backend_is_running = False
+        self.using_polkit = False
 
     def error(self, msg):
         """ error message (overload in child class)"""
@@ -184,7 +185,9 @@ class YumClientBase:
                     
                 else:
                     cmd = '/usr/bin/pkexec'
-                    args.append('/usr/share/yumex/backend-launcher.py')                   
+                    args.append('/usr/share/yumex/backend-launcher.py')
+                    self.using_polkit = True
+                   
         else:
             if os.getuid() != 0: # Non Root
                 self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
@@ -320,7 +323,15 @@ class YumClientBase:
                 self._timeout()
                 continue
         # Client is not running any more
-        args = ['backend-not-running', pack('backend not running as expected (yumex will close) (%s)' % self.child.exitstatus)]
+        exitrc = self.child.exitstatus
+        # default error
+        args = ['backend-not-running', pack(_('Backend not running as expected \n\nYum Extender will terminate\n   --> exit code : %s') % exitrc)]
+        #polkit releated errors
+        if self.using_polkit:
+            if exitrc == 127:
+                args = ['backend-not-running', pack(_('Could not get polkit autherisation to start backend \n\nYum Extender will terminate'))]
+            elif exitrc == 126:
+                args = ['backend-not-running', pack(_('User has cancelled polkit autherisation\n\nYum Extender will terminate'))]
         self.fatal(args)
 
     def _check_for_message(self, cmd, args):
