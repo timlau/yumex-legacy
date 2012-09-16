@@ -41,6 +41,7 @@ def dispatcher():
 def run(parameters):
     try:
         retcode = call(parameters, shell=True)
+        print ":exitcode\t"+str(retcode)
         rc = True
     except BaseException,e:
         print ":error\texception : %s %s " % (str(e), str(e.args))

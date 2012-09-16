@@ -114,6 +114,14 @@ class YumexFrontend(YumexFrontendBase):
         if exit_pgm:
             sys.exit(1)
 
+    def exitcode(self, code):
+        ''' reset the frontend '''
+        if code == "0": # normal exit
+            self.logger.info("exitcode from backend : "+code)
+            self.refresh()
+        else: # Something is wrong
+            self.logger.error("exitcode from backend : "+code)
+            self.refresh()
 
     def warning(self, msg):
         ''' Write an warning message to frontend '''

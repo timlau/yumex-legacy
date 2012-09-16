@@ -340,7 +340,7 @@ class YumServer(yum.YumBase):
             ps[data[0].strip().lower()] = data[1].strip()
         return ps
 
-    def quit(self):
+    def quit(self, returncode=0):
         '''
         Exit the yum backend
         '''
@@ -348,7 +348,7 @@ class YumServer(yum.YumBase):
         self.closeRpmDB()
         self.doUnlock()
         self.ended(True)
-        sys.exit(1)
+        sys.exit(returncode)
 
     def write(self, msg):
         ''' write an message to stdout, to be read by the client'''
@@ -1398,19 +1398,20 @@ class YumServer(yum.YumBase):
                 self.debug("%s Args: %s  took %.2f s to complete" % (args[0], args[1:], t), __name__)
         except YumexBackendFatalError, e:
             self.ended(True)
-            self.quit()
+            self.quit(1)
         except Errors.RepoError, e:
             # signal to the front end that we have a fatal error
             pmsg = pack(str(e))
             self.write(":fatal\t%s\t%s" % ('repo-error', pmsg))
             self.ended(True)
-            self.quit()
+            self.quit(2)
         except:
             errmsg = traceback.format_exc()
             #print errmsg
             self.write(":exception\t%s" % pack(errmsg))
             self.ended(True)
-        self.quit()
+            self.quit(3)
+        self.quit(0)
 
 class YumexTransCallback:
     '''

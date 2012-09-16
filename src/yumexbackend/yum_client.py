@@ -88,6 +88,10 @@ class YumClientBase:
         """ yum state message handler (overload in child class)"""
         raise NotImplementedError()
 
+    def exitcode(self, code):
+        """ Exitcode from backend"""
+        raise NotImplementedError()
+
     def _yum_rpm(self, value):
         """ yum rpm action progress message """
         (action, package, percent, ts_current, ts_total) = unpack(value)
@@ -351,6 +355,8 @@ class YumClientBase:
             self._yum_dnl(args[0])
         elif cmd == ':yum-state':
             self.yum_state(args[0])
+        elif cmd == ':exitcode':
+            self.exitcode(args[0])
         else:
             return False # not a message
         return True

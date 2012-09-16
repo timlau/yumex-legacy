@@ -38,7 +38,7 @@ def sigquit(signum, frame):
     '''
     if my:
         my.quit()
-    sys.exit(1)
+    sys.exit(4)
 
 
 if __name__ == "__main__":

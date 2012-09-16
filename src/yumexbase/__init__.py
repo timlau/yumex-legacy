@@ -151,6 +151,10 @@ class YumexFrontendBase:
         ''' reset the frontend '''
         raise NotImplementedError()
 
+    def exitcode(self, code):
+        ''' exitcode from backend '''
+        raise NotImplementedError()
+
 class YumexBaseError(Exception):
     """
     Base Yumex Error. All other Errors thrown by yum should inherit from

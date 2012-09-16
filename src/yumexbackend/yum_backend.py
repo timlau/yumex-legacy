@@ -135,6 +135,11 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def info(self, msg):
         """ info message """
         self.frontend.info(msg)
+        
+    def exitcode(self, code):
+        """ Exitcode from backend"""
+        self.frontend.exitcode(code)
+        
 
     def debug(self, msg, name=None):
         """ debug message """
