@@ -1,6 +1,6 @@
 [Desktop Entry]
 _Name=Yum Extender
-_Comment=GUI front end for Yum
+_Comment=Install, update and remove application
 Categories=Application;System;X-Red-Hat-Base;X-Fedora;
 Icon=/usr/share/pixmaps/yumex/yumex-icon.png
 Exec=/usr/bin/yumex
