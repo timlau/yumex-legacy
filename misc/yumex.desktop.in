@@ -7,5 +7,4 @@ Exec=/usr/bin/yumex
 Type=Application
 Terminal=false
 Encoding=UTF-8
-X-Desktop-File-Install-Version=0.10
 _GenericName=Software Installer
