@@ -1643,8 +1643,8 @@ class YumexDownloadCallback(DownloadBaseCallback):
             if pkg: # show package to download
                 self.current_name = str(pkg)
                 self.current_type = 'PKG'
-            elif name == '<delta rebuild>': # Presto rebuilding rpm
-                self.current_name = self.text
+            elif name == '<locally rebuilding deltarpms>': # Presto rebuilding rpm
+                self.current_name = "Rebuild delta packages"
                 self.current_type = 'REBUILD'
             elif name.endswith('.drpm'): # Presto delta rpm
                 self.current_name = name
@@ -1665,7 +1665,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
             self.current_name = None
             if name not in self._printed:
                 # show downloaded <filename> ( <size> )
-                if name == '<delta rebuild>':
+                if name == '<locally rebuilding deltarpms>':
                     self.base.info(_('Rebuild from deltarpms completed'))
                 else:
                     self.base.info(_('Downloaded : %s ( %s )') % (name, self.totSize))
