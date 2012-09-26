@@ -648,7 +648,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="border_width">1</property>
             <child>
               <object class="GtkMenuItem" id="fileMenu">
                 <property name="use_action_appearance">False</property>
