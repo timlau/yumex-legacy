@@ -171,10 +171,6 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_title(_('Getting Package Information'))
             progress.set_header(_('Getting Package Information'))
             progress.show()
-        if percent == 100:
-            progress.set_pulse(True)
-        elif percent == 0:
-            progress.set_pulse(False)
         if progress.tasks.current_running == 'download':
             width = len("%s" % tot)
             progress.tasks.set_extra_label('download', "<b>( %*s / %*s )</b>" % (width, cur, width, tot))
