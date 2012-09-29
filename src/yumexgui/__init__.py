@@ -31,7 +31,7 @@ import time
 
 from datetime import date
 
-from yumexgui.gui import Notebook, PackageInfo, CompletedEntry, YumexStatusIcon
+from yumexgui.gui import Notebook, PackageInfo, CompletedEntry
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions, \
                              TestWindow
@@ -369,8 +369,6 @@ class YumexApplication(Controller, YumexFrontend):
         #Setup About dialog
         self.ui.About.set_version(const.__yumex_version__)
 
-        # Status Icon
-        self.status_icon = YumexStatusIcon(self)
 
         # Calc font constants based on default font 
         DEFAULT_FONT = self.window.get_pango_context().get_font_description()

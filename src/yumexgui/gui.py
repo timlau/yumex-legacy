@@ -523,52 +523,6 @@ class CompletedEntry(gtk.Entry):
         for word in words:
             model.append([word])
 
-class YumexStatusIcon(gtk.StatusIcon):
-    def __init__(self, frontend):
-        gtk.StatusIcon.__init__(self)
-        self.frontend = frontend
-        self.set_from_file(ICON_YUMEX)
-        self.connect('popup-menu', self._on_right_click)
-        self.connect('activate', self._on_left_click)
-        self._hide = False
-        self._menu = gtk.Menu()
-        self._add_menu(_('Quit'), self._quit)
-
-    def hide(self):
-        self.set_visible(False)
-
-    def show(self):
-        self.set_visible(True)
-
-
-    def _on_right_click(self, data, event_button, event_time):
-        self._show_menu(event_button, event_time, data)
-
-    def _on_left_click(self, event):
-        if self._hide:
-            self.frontend.show()
-        else:
-            self.frontend.hide()
-        self._hide = not self._hide
-
-    def _quit(self, data):
-        self.hide()
-        self.frontend.hide()
-        self.frontend.main_quit()
-
-    def _add_menu(self, title, callback):
-        item = gtk.MenuItem(title)
-        #Append the menu items  
-        self._menu.append(item)
-        #add callbacks
-        item.connect_object("activate", callback, None)
-        item.show()
-
-
-    def _show_menu(self, event_button, event_time, data=None):
-        #Popup the menu   
-        self._menu.popup(None, None, None, event_button, event_time)
-
 
 
 

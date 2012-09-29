@@ -317,9 +317,6 @@ class Progress(YumexProgressBase):
         '''
         self._active = False
         #normalCursor(self.parent)
-        # clear the status icon tooltip text
-        if self.frontend.status_icon:
-            self.frontend.status_icon.set_tooltip("")
         self.dialog.hide()
         normalCursor(self.parent)
 
@@ -399,8 +396,6 @@ class Progress(YumexProgressBase):
         '''
         self.header.set_text(text)
         self.set_action("")
-        if self.frontend.status_icon:
-            self.frontend.status_icon.set_tooltip(text + " " + self.tasks.extra_label)
 
     def set_action(self, text):
         '''
