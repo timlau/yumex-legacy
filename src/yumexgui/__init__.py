@@ -1112,6 +1112,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.settings.show_newest_only = widget.get_active()
 
     def on_option_remove_requirement_toggled(self, widget=None, event=None):
+        self.backend.set_option('clean_requirements_on_remove', widget.get_active())
         self.settings.remove_requirement = widget.get_active()
         
     def on_viewPackages_activate(self, widget=None, event=None):
