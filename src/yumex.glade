@@ -867,6 +867,17 @@ Don't show multiple version of the same package</property>
                         <signal name="toggled" handler="on_option_show_newest_only_toggled" swapped="no"/>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="option_remove_requirement">
+                        <property name="use_action_appearance">False</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Remove package requirements when removing packages</property>
+                        <property name="label" translatable="yes">Remove Requirements</property>
+                        <property name="use_underline">True</property>
+                        <signal name="toggled" handler="on_option_remove_requirement_toggled" swapped="no"/>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

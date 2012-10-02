@@ -63,6 +63,7 @@ class YumexConf(BaseConfig):
     skip_broken = BoolOption(False)
     no_gpg_check = BoolOption(False)
     show_newest_only= BoolOption(True)
+    remove_requirements= BoolOption(False)
 
 
 class YumexOptions:

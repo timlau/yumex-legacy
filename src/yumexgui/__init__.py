@@ -805,6 +805,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.ui.option_nogpgcheck.set_active(self.settings.no_gpg_check)                    
         self.ui.option_skipbroken.set_active(self.settings.skip_broken)        
         self.ui.option_show_newest_only.set_active(self.settings.show_newest_only)            
+        self.ui.option_remove_requirement.set_active(self.settings.remove_requirements)            
 
     def _get_options(self):
         '''
@@ -814,6 +815,7 @@ class YumexApplication(Controller, YumexFrontend):
         options = []
         options.append((self.ui.option_nogpgcheck, self.ui.option_nogpgcheck.get_active()))
         options.append((self.ui.option_show_newest_only, self.ui.option_show_newest_only.get_active()))
+        options.append((self.ui.option_remove_requirement, self.ui.option_remove_requirement.get_active()))
         return options
 
     def _set_options(self, options):
@@ -1105,8 +1107,12 @@ class YumexApplication(Controller, YumexFrontend):
 
     def on_option_skipbroken_toggled(self, widget=None, event=None):
         self.backend.set_option('skip_broken', widget.get_active())
+        
     def on_option_show_newest_only_toggled(self, widget=None, event=None):
         self.settings.show_newest_only = widget.get_active()
+
+    def on_option_remove_requirement_toggled(self, widget=None, event=None):
+        self.settings.remove_requirement = widget.get_active()
         
     def on_viewPackages_activate(self, widget=None, event=None):
         '''
