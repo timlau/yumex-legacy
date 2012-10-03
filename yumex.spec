@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.7
-Release:  2%{?dist}
+Version:  3.0.8
+Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -90,6 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Wed Oct 3 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.8-1
+- bumped version to 3.0.8-1
 * Thu Sep 13 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.7-2
 - Install another .desktop file with mimetype for local .rpm install
 - update desktop database post install & post uninstall
