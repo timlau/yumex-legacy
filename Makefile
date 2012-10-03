@@ -49,7 +49,7 @@ install:
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
 get-builddeps:
-	yum install perl-TimeDate python-devel gettext intltool rpmdevtools
+	yum install perl-TimeDate python-devel gettext intltool rpmdevtools transifex-client
 
 archive:
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
