@@ -1,5 +1,25 @@
 2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
 
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.9
+
+2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/bg.po, po/bn_IN.po, po/cs.po, po/da.po, po/de.po,
+	po/es.po, po/es_ES.po, po/fa.po, po/fr.po, po/gu.po, po/hu.po,
+	po/id.po, po/it.po, po/ja.po, po/nl.po, po/pl.po, po/pt.po,
+	po/ru.po, po/sr.po, po/sr@latin.po, po/tr_TR.po, po/uk.po,
+	po/zh_CN.po, po/zh_TW.po: Transfix pull, *.po update
+
+2012-10-03  Christoph Wickert <cwickert@fedoraproject.org>
+
+	* misc/yumex.desktop.in: Fix categories in desktop file
+
+2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
+2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
+
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.8
 
 2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
