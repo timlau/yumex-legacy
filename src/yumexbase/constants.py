@@ -69,11 +69,11 @@ elif MAIN_PATH.endswith('test'):
     PIXMAPS_PATH = MAIN_PATH + '/../../gfx'
 else:
     PIXMAPS_PATH = MAIN_PATH + '/../gfx'
-    
+
 OLD_CONF_FILE = os.environ['HOME'] + "/.yumex.conf"
 CONF_DIR = BaseDirectory.save_config_path('yumex')
 CONF_FILE = os.path.join(CONF_DIR,'yumex.conf')
-    
+
 
 # icons
 ICON_YUMEX = PIXMAPS_PATH + "/yumex-icon.png"

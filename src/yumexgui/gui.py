@@ -52,7 +52,7 @@ class PackageInfoTextView(TextViewBase):
     def __init__(self, textview, font_size=8, window=None, url_handler=None):
         '''
         Setup the textview
-        @param textview: the gtk.TextView widget to use 
+        @param textview: the gtk.TextView widget to use
         @param font_size: default text size
         '''
         TextViewBase.__init__(self, textview, window, url_handler)
@@ -95,7 +95,7 @@ class PageHeader(gtk.HBox):
     ''' Page header to show in top of Notebook Page'''
 
     def __init__(self, text, icon=None):
-        ''' 
+        '''
         setup the notebook page header
         @param text: Page Title
         @param icon: icon filename
@@ -185,7 +185,7 @@ class SelectorBase:
             button.show()
 
 class PackageInfo(SelectorBase):
-    '''    
+    '''
     Package information gui handler
     controls the package info Textview and the buttons to show
     description, changelog and filelist.
@@ -229,7 +229,7 @@ class PackageInfo(SelectorBase):
             return True
         else:
             return False
-        
+
     def _url_handler(self, url):
         self.frontend.info('Url activated : ' + url)
         if self._is_url(url): # just to be sure and prevent shell injection
@@ -243,7 +243,7 @@ class PackageInfo(SelectorBase):
         '''
         update the package info with a new package
         @param pkg: package to show info for
-        @param update: package is an update (used to display update info) 
+        @param update: package is an update (used to display update info)
         '''
         if pkg == self.pkg:
             return
@@ -399,7 +399,7 @@ class PackageInfo(SelectorBase):
 
     def show_changelog(self):
         '''
-        show the package changelog 
+        show the package changelog
         '''
         changelog = self.pkg.changelog
         progress = self.frontend.get_progress()
@@ -418,7 +418,7 @@ class PackageInfo(SelectorBase):
         files = self.pkg.filelist
         progress = self.frontend.get_progress()
         progress.hide()
-        if files: # files can be None   
+        if files: # files can be None
             files.sort()
             for fn in files:
                 self.console.write(fn, "filelist")
@@ -452,12 +452,12 @@ class Notebook:
         self._callbacks = {}
 
     def add_page(self, key, title, widget, icon=None, tooltip=None, header=True, accel=None, callback=None):
-        ''' 
+        '''
         Add a new page and selector button to notebook
         @param key: the page key (name) used by reference the page
         @param widget: the widget container to insert into the page
         @param icon: an optional icon file for the selector button
-        @param tooltip: an optional tooltip for the selector button  
+        @param tooltip: an optional tooltip for the selector button
         '''
         num = len(self._pages)
         container = gtk.VBox()
@@ -468,7 +468,7 @@ class Notebook:
             sep = gtk.HSeparator()
             sep.show()
             container.pack_start(sep, expand=False)
-        # get the content from the widget and reparent it and add it to page    
+        # get the content from the widget and reparent it and add it to page
         content = gtk.VBox()
         widget.reparent(content)
         container.pack_start(content, expand=True)

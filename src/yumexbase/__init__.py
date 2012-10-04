@@ -30,7 +30,7 @@ from kitchen.i18n import easy_gettext_setup
 
 # setup the translation wrappers
 
-#_, P_  = easy_gettext_setup('yumex') 
+#_, P_  = easy_gettext_setup('yumex')
 
 _, P_  = easy_gettext_setup('yumex', localedirs=[os.path.join(sys.prefix, 'share', 'locale')])
 
@@ -40,7 +40,7 @@ class YumexProgressBase:
     '''
     def __init__(self):
         '''
-        
+
         '''
         self._active = False
         self._pulse = False
@@ -55,19 +55,19 @@ class YumexProgressBase:
 
     def is_active(self):
         '''
-        
+
         '''
         return self._active
 
     def is_pulse(self):
         '''
-        
+
         '''
         return self._pulse
 
     def set_pulse(self, pulse):
         '''
-        
+
         @param pulse:
         '''
         self._pulse = pulse
@@ -162,7 +162,7 @@ class YumexBaseError(Exception):
     """
     def __init__(self, value=None):
         '''
-        
+
         @param value:
         '''
         Exception.__init__(self)
@@ -170,17 +170,17 @@ class YumexBaseError(Exception):
 
     def __str__(self):
         '''
-        
+
         '''
         return "%s" % (self.value,)
 
 class YumexBackendFatalError(YumexBaseError):
     '''
-    
+
     '''
     def __init__(self, err, msg):
         '''
-        
+
         @param err:
         @param msg:
         '''
@@ -191,7 +191,7 @@ class YumexBackendFatalError(YumexBaseError):
 
 def TimeFunction(func):
     """
-    This decorator catch yum exceptions and send fatal signal to frontend 
+    This decorator catch yum exceptions and send fatal signal to frontend
     """
     def newFunc(*args, **kwargs):
         t_start = time.time()

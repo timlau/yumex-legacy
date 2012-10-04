@@ -5,7 +5,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -62,7 +62,7 @@ interface = 'org.freedesktop.UDisks'
 
 # TODO: catch some "except dbus.exceptions.DBusException"
 # Don't care about __init__ method from base class 'MediaDevice' is not called
-# pylint: disable-msg=W0231 
+# pylint: disable-msg=W0231
 
 class MediaDeviceUDisks(MediaDevice):
     """
@@ -73,7 +73,7 @@ class MediaDeviceUDisks(MediaDevice):
     """
     def __init__(self, media_id):
         """
-        media_id argument is the implementation-specific id in our case it's udi in hal, 
+        media_id argument is the implementation-specific id in our case it's udi in hal,
         it's provided by MediaManager.
         """
         self._unmount_needed = False

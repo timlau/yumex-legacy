@@ -65,7 +65,7 @@ from yumexbase import _, P_
 
 def catchYumException(func):
     """
-    This decorator catch yum exceptions and send fatal signal to frontend 
+    This decorator catch yum exceptions and send fatal signal to frontend
     """
     def newFunc(*args, **kwargs):
         try:
@@ -102,45 +102,45 @@ class _YumPreBaseConf:
         self.localpkg_gpgcheck = False
 
 class YumServer(yum.YumBase):
-    """ 
+    """
     A yum server class to be used in a spawned process.
     it receives commands from stdin and send results and info
     to stdout.
-    
+
     Commands: (commands and parameters are separated with '\t' )
         get-packages <pkg-filter> <show_dupes>  : get a list of packages based on a filter
-        get-packages-size                    : 
-        get-packages-repo                    : 
+        get-packages-size                    :
+        get-packages-repo                    :
         get-attribute <pkg_id> <attribute>   : get an attribute of an package
-        get-changelog                        : 
-        update-info                          : 
-        set-option                           : 
+        get-changelog                        :
+        update-info                          :
+        set-option                           :
         add-transaction <pkg_id> <action>    : add a po to the transaction
         remove-transaction <pkg_id>          : add a po to the transaction
         list-transaction                     : list po's in transaction
         build-transaction                    : build the transaction (resolve dependencies)
         run-transaction                      : run the transaction
         get-groups                           : Get the groups
-        get-group-packages                   : 
+        get-group-packages                   :
         get-repos                            : Get the repositories
         enable-repo                          : enable/disable a repository
-        enable-repo-persistent               : 
+        enable-repo-persistent               :
         search                               : search
-        clean                                : 
-        get-history                          : 
-        get-history-packages                 : 
-        history-undo                         : 
-        history-redo                         : 
-    
+        clean                                :
+        get-history                          :
+        get-history-packages                 :
+        history-undo                         :
+        history-redo                         :
+
         Parameters:
         <pkg-filter> : all,installed,available,updates,obsoletes
         <pkg_id>     : name epoch ver release arch repoid ('\t' separated)
         <attribute>  : pkg attribute (ex. description, changelog)
-        <action>     : 'install', 'update', 'remove' 
+        <action>     : 'install', 'update', 'remove'
         <show_dupes> : Show duplicate packages (True or False)
-        
+
     Results:(starts with and ':' and cmd and parameters are separated with '\t')
-    
+
         :info <message>        : information message
         :error <message>       : error message
         :warning <message>     : warning message
@@ -153,14 +153,14 @@ class YumServer(yum.YumBase):
         :group <grp>           : group
         :repo <repo>           : repo
         :msg <type> <value>
-        :media-change <media info> 
-        
+        :media-change <media info>
+
         Parameters:
         <message>  : a text message ('\n' is replaced with ';'
         <pkg>      : name epoch ver release arch repoid summary ('\t' separated)
         <object>   : an package attribute pickled and base64 encoded.
-      
-    
+
+
     """
 
     def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None, yum_conf='/etc/yum.conf'):
@@ -200,7 +200,7 @@ class YumServer(yum.YumBase):
         # Setup failure callback
         freport = (self._failureReport, (), {})
         self.repos.setFailureCallback(freport)
-        self._updateMetadata = None # Update metadata cache 
+        self._updateMetadata = None # Update metadata cache
         self._updates_list = None
         self._obsoletes_list = None
         self._last_search = None
@@ -219,13 +219,13 @@ class YumServer(yum.YumBase):
 
     def _is_file_url(self, urls):
         return [url for url in urls if url.startswith('file:')]
-    
+
     def _disable_multi_download(self):
         # Disable parallel down for this repo, we dont support it
         for repo in self.repos.listEnabled():
             self.debug("disable multi : "+repo.id)
             repo._async = False
-        
+
 
     def _setup_repos(self, enabled_repos):
         '''
@@ -318,7 +318,7 @@ class YumServer(yum.YumBase):
 
     def get_process_info(self, pid):
         '''
-        Get process information from /proc 
+        Get process information from /proc
         @param pid: the process id
         '''
         if not pid:
@@ -372,7 +372,7 @@ class YumServer(yum.YumBase):
     def _is_installed(self, po):
         '''
         Check if a package is installed
-        @param po: package to check for 
+        @param po: package to check for
         '''
         (n, a, e, v, r) = po.pkgtup
         po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)
@@ -400,7 +400,7 @@ class YumServer(yum.YumBase):
         if not action:
             pkg, action = self._get_action(pkg)
         action = pack(action)
-        if hasattr(pkg,'pkgtype') and pkg.pkgtype == 'local': # if local package, then return localpath instead of repoid   
+        if hasattr(pkg,'pkgtype') and pkg.pkgtype == 'local': # if local package, then return localpath instead of repoid
             return (pkg.name, pkg.epoch, pkg.ver, pkg.rel, pkg.arch, pkg.localpath,
                     summary, action, pkg.size, recent)
         else:
@@ -425,7 +425,7 @@ class YumServer(yum.YumBase):
 
     def _show_repo(self, repo):
         '''
-        send a repo message to the frontend        
+        send a repo message to the frontend
         @param repo: repo object
         '''
         self.write(":repo\t%s\t%s\t%s\t%s" % (repo.enabled, repo.id, repo.name, repo.gpgcheck))
@@ -472,7 +472,7 @@ class YumServer(yum.YumBase):
     def message(self, msg_type, value):
         '''
         send at a custom message to the frontend
-        @param msg_type: message type 
+        @param msg_type: message type
         @param value: some standard python object (dict,list,tuble etc.) to pass with the message.
         '''
         value = pack(value)
@@ -502,7 +502,7 @@ class YumServer(yum.YumBase):
     def yum_state(self, state):
         '''
         Send an yum transaction state message
-        @param state: 
+        @param state:
         '''
         self.write(":yum-state\t%s" % state)
 
@@ -523,7 +523,7 @@ class YumServer(yum.YumBase):
     #@catchYumException
     def get_packages(self, narrow, dupes):
         '''
-        get list of packages and send results 
+        get list of packages and send results
         @param narrow:
         '''
         if narrow:
@@ -698,7 +698,7 @@ class YumServer(yum.YumBase):
 
     def add_transaction(self, args):
         '''
-        
+
         @param args:
         '''
         pkgstr = args[:-1]
@@ -726,7 +726,7 @@ class YumServer(yum.YumBase):
 
     def remove_transaction(self, args):
         '''
-        
+
         @param args:
         '''
         pkgstr = args
@@ -742,7 +742,7 @@ class YumServer(yum.YumBase):
 
     def list_transaction(self):
         '''
-        
+
         '''
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po, txmbr.ts_state)
@@ -750,7 +750,7 @@ class YumServer(yum.YumBase):
 
     def _show_packages_in_transaction(self, action):
         '''
-        
+
         '''
         for txmbr in self.tsInfo:
             self._show_package(txmbr.po, action)
@@ -794,7 +794,7 @@ class YumServer(yum.YumBase):
 
     def build_transaction(self):
         '''
-        
+
         '''
         rc, msgs = self.buildTransaction()
         self.message('return_code', rc)
@@ -812,7 +812,7 @@ class YumServer(yum.YumBase):
         return format_number(total)
 
     def _get_transaction_list(self):
-        ''' 
+        '''
         Generate a list of the current transaction to show in at TreeView
         based on YumOutput.listTransaction.
         used yum translation wrappers, so we can reuse the allready translated strings
@@ -864,7 +864,7 @@ class YumServer(yum.YumBase):
 
     def run_transaction(self):
         '''
-        
+
         '''
         try:
             rpmDisplay = YumexRPMCallback(self)
@@ -882,8 +882,8 @@ class YumServer(yum.YumBase):
             self.ended(False)
 
     def _askForGPGKeyImport(self, po, userid, hexkeyid):
-        ''' 
-        Ask for GPGKeyImport 
+        '''
+        Ask for GPGKeyImport
         This need to be overloaded in a subclass to make GPG Key import work
         '''
         self.gpg_check(po, userid, hexkeyid)
@@ -894,8 +894,8 @@ class YumServer(yum.YumBase):
             return False
 
     def _ask_for_media_change(self, prompt_first, media_id, media_name, media_num=None):
-        ''' 
-        Ask for media change 
+        '''
+        Ask for media change
         '''
         if media_num:
             self.debug("media : %s #%d is needed" % (media_name, media_num), __name__)
@@ -922,8 +922,8 @@ class YumServer(yum.YumBase):
         '''Handle CTRL-C's during downloads
 
         If a CTRL-C occurs a URLGrabError will be raised to push the download
-        onto the next mirror.  
-        
+        onto the next mirror.
+
         @param cbobj: urlgrabber callback obj
         '''
         # Go to next mirror
@@ -963,7 +963,7 @@ class YumServer(yum.YumBase):
 
     def get_group_packages(self, args):
         '''
-        
+
         @param args:
         '''
         grpid = args[0]
@@ -1027,7 +1027,7 @@ class YumServer(yum.YumBase):
         updates = self._get_updates()
         obsoletes = self._get_obsoletes()
         action = 'i'
-        if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po 
+        if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po
             (n, a, e, v, r) = po.pkgtup
             po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
             action = 'r'
@@ -1088,7 +1088,7 @@ class YumServer(yum.YumBase):
 
     def search(self, args):
         '''
-        
+
         @param args:
         '''
         keys = unpack(args[0])
@@ -1121,7 +1121,7 @@ class YumServer(yum.YumBase):
 
     def get_repos(self, args):
         '''
-        
+
         @param args:
         '''
         for repo in self.repos.repos:
@@ -1131,7 +1131,7 @@ class YumServer(yum.YumBase):
 
     def enable_repo(self, args):
         '''
-        
+
         @param args:
         '''
         ident = args[0]
@@ -1149,7 +1149,7 @@ class YumServer(yum.YumBase):
 
     def enable_repo_persistent(self, args):
         '''
-        
+
         @param args:
         '''
         ident = args[0]
@@ -1229,7 +1229,7 @@ class YumServer(yum.YumBase):
         obs = []
         tuples_obs = self._getUpdates().getObsoletersTuples(name=pkg.name)
         if tuples_obs:
-            for new,old in tuples_obs: 
+            for new,old in tuples_obs:
                 po = self.getInstalledPackageObject(old)
                 obs.append(po)
         return obs
@@ -1419,14 +1419,14 @@ class YumexTransCallback:
 
     def __init__(self, base):
         '''
-        
+
         @param base:
         '''
         self.base = base
 
     def event(self, state, data=None):
         '''
-        
+
         @param state:
         @param data:
         '''
@@ -1449,7 +1449,7 @@ class YumexRPMCallback(RPMBaseCallback):
 
     def __init__(self, base):
         '''
-        
+
         @param base:
         '''
         RPMBaseCallback.__init__(self)
@@ -1458,7 +1458,7 @@ class YumexRPMCallback(RPMBaseCallback):
         self._last_pkg = None
         self._printed = {}
 
-    # Copied from yum/output.py        
+    # Copied from yum/output.py
     def pkgname_ui(self, pkgname, ts_states=None):
         """ Get more information on a simple pkgname, if we can. We need to search
             packages that we are dealing with atm. and installed packages (if the
@@ -1563,7 +1563,7 @@ class YumexRPMCallback(RPMBaseCallback):
 
     def scriptout(self, package, msgs):
         '''
-        
+
         @param package:
         @param msgs:
         '''
@@ -1575,7 +1575,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
     """ Download callback handler """
     def __init__(self, base):
         '''
-        
+
         @param base:
         '''
         DownloadBaseCallback.__init__(self)
@@ -1593,7 +1593,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
 
     def setPackages(self, new_pkgs, percent_start, percent_length):
         '''
-        
+
         @param new_pkgs:
         @param percent_start:
         @param percent_length:
@@ -1605,7 +1605,7 @@ class YumexDownloadCallback(DownloadBaseCallback):
 
     def _getPackage(self, name):
         '''
-        
+
         @param name:
         '''
         if self.saved_pkgs:

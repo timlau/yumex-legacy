@@ -149,7 +149,7 @@ class YumexOptions:
                         action="store_true", dest="no_gpg_check", default=self.settings.no_gpg_check,
                         help="Run yum transaction without checking gpg signatures on packages")
 
- 
+
         return parser.parse_args()
 
     def dump(self):
@@ -175,7 +175,7 @@ class YumexOptions:
                 s = size.split('x')
                 w = int(s[0])
                 h = int(s[1])
-                if w > 635 and h > 351: # Check for min size 
+                if w > 635 and h > 351: # Check for min size
                     self.settings.win_width = w
                     self.settings.win_height = h
 
@@ -184,7 +184,7 @@ class YumexOptions:
         '''
         Check if a command line option has a diffent value, than
         the default value for the setting.
-        if it is the set the setting value to the value from the 
+        if it is the set the setting value to the value from the
         commandline option.
         '''
         default = None

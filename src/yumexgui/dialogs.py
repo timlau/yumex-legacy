@@ -37,12 +37,12 @@ from yumexbase import _, P_
 class TaskList:
     '''
     A Task based progress list to show in a gtk.VBox widget
-    
+
     tasks = TaskList(container,parent_window)
     tasks.add_task('task1','This is task 1')
     tasks.add_task('task2','This is task 2')
     tasks.add_task('task3','This is task 3')
-    
+
     tasks.run_current() # task1 is now running
     tasks.show()
     # Do the action for task1
@@ -69,9 +69,9 @@ class TaskList:
         self.current_running = None
         self.extra_label = ""
         self.hide()
-        
+
     def __len__(self):
-        return len(self._tasks)        
+        return len(self._tasks)
 
     def show(self):
         '''
@@ -280,10 +280,10 @@ class Progress(YumexProgressBase):
         self.extra_hidden = True
         self.task_hidden = True
         self.progress_hidden = False
-        
+
     def close(self):
         self.dialog.hide()
-        self.dialog.destroy()    
+        self.dialog.destroy()
 
     def is_active(self):
         return self._active
@@ -339,7 +339,7 @@ class Progress(YumexProgressBase):
         self.tasks.hide()
         self.resize()
         self.task_hidden = True
-        
+
     def show_progress(self):
         '''
         Show the progress bar
@@ -349,14 +349,14 @@ class Progress(YumexProgressBase):
         self.ui.progressPB.show()
         self.resize()
         self.progress_hidden = False
-        
+
     def hide_progress(self):
         '''
         Hide the progress bar
         '''
         self.ui.progressPB.hide()
         self.progress_hidden = True
-        
+
     def show_extra(self, widget=None):
         '''
         Show the progress extra
@@ -366,7 +366,7 @@ class Progress(YumexProgressBase):
         self.hide_tasks()
         self.ui.progressImage.set_from_stock('gtk-dialog-question',  gtk.ICON_SIZE_DND)
         self.extra_hidden = False
-        
+
     def hide_extra(self):
         '''
         Hide the progress extra
@@ -399,7 +399,7 @@ class Progress(YumexProgressBase):
 
     def set_action(self, text):
         '''
-        set the action text 
+        set the action text
         @param text: the action text
         '''
         self.label.set_markup(text)
@@ -545,8 +545,8 @@ class Preferences:
         for id in self._options:
             opt = self._options[id]
             opt.set_value(getattr(self.settings, id))
-            
-                
+
+
 
 
     def run(self):
@@ -597,7 +597,7 @@ class TransactionConfirmation:
 
     def __init__(self, ui, progress):
         '''
-        Init the dialog   
+        Init the dialog
         @param ui: the UI class instance
         @param parent: the parent window widget
         '''
@@ -606,7 +606,7 @@ class TransactionConfirmation:
         self.view = self.ui.transactionView
         self.view.modify_font(SMALL_FONT)
         style = self.view.get_style()
-        #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])        
+        #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])
         self.store = self.setup_view(self.view)
         self._active = False
         self.ui.transactionOK.connect("clicked", self.on_clicked,True)
@@ -626,7 +626,7 @@ class TransactionConfirmation:
         '''
         self.hidden = (self.progress.progress_hidden, self.progress.task_hidden)
         self.progress.set_header(_("Transaction Result"))
-        self.progress.show_extra()        
+        self.progress.show_extra()
         self.view.expand_all()
         self._active = True
         self.confirmation = None
@@ -671,7 +671,7 @@ class TransactionConfirmation:
 
     def create_text_column(self, hdr, view, colno, size=None):
         '''
-        Create at TreeViewColumn 
+        Create at TreeViewColumn
         @param hdr: column header text
         @param view: the TreeView widget
         @param colno: the TreeStore column containing data for the column
@@ -689,7 +689,7 @@ class TransactionConfirmation:
     def populate(self, pkglist, dnl_size):
         '''
         Populate the TreeView with data
-        @param pkglist: list containing view data 
+        @param pkglist: list containing view data
         '''
         model = self.store
         self.store.clear()
@@ -717,7 +717,7 @@ class ErrorDialog:
         @param title: dialog title
         @param text: dialog header text
         @param longtext: dialog main text
-        @param modal: is modal 
+        @param modal: is modal
         '''
         self.ui = ui
         self.dialog = ui.errDialog
@@ -843,7 +843,7 @@ def okCancelDialog(parent, msg):
 
 def cleanMarkupSting(msg):
     '''
-    Make the sting legal to use as Markup 
+    Make the sting legal to use as Markup
     @param msg:
     '''
     msg = str(msg) # make sure it is a string

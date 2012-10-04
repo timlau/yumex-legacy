@@ -32,7 +32,7 @@ import yum.misc
 my = None
 def sigquit(signum, frame):
     '''
-    
+
     @param signum:
     @param frame:
     '''

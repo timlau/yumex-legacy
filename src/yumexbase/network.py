@@ -73,7 +73,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
                 net = bus.get_object('org.freedesktop.NetworkManager', d)
                 net_props = dbus.Interface(net, 'org.freedesktop.DBus.Properties')
                 props = net_props.GetAll('org.freedesktop.NetworkManager.Device')
-                
+
                 state = props['State']
                 interface = "%s (%s)" % (props['Interface'], props['Driver'])
                 #print interface, state

@@ -37,7 +37,7 @@ def dispatcher():
         print ":error\texception : %s %s " % (err, msg)
         rc = False
     return rc
-        
+
 def run(parameters):
     try:
         retcode = call(parameters, shell=True)

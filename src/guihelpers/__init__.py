@@ -33,7 +33,7 @@ class TextViewBase:
     def __init__(self, textview, window=None, url_handler=None):
         '''
         Setup the textview
-        @param textview: the gtk.TextView widget to use 
+        @param textview: the gtk.TextView widget to use
         '''
         self.textview = textview
         self.buffer = self.textview.get_buffer()
@@ -68,7 +68,7 @@ class TextViewBase:
         x, y, mask = widget.window.get_pointer()
         # convert coords to TextBuffer coords
         x, y = widget.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, x, y)
-        # Get the tags on current pointer location     
+        # Get the tags on current pointer location
         tags = widget.get_iter_at_location(x, y).get_tags()
         # Remove underline and hand mouse pointer
         if self.underlined_url:
@@ -109,7 +109,7 @@ class TextViewBase:
     def get_style(self, tag=None):
         '''
         Get a gtk.TextTag style
-        @param tag: the tag of the style to get 
+        @param tag: the tag of the style to get
         '''
         if not tag:
             tag = self.default_style
@@ -123,7 +123,7 @@ class TextViewBase:
         Change the font and color of a gtk.TextTag style
         @param tag: text tag to indentify the style
         @param color: the font foreground color name ex. 'red'
-        @param font: the font name ex. 'courier' 
+        @param font: the font name ex. 'courier'
         '''
         style = self.get_style(tag)
         if style:
@@ -133,7 +133,7 @@ class TextViewBase:
                 style.set_property("font", font)
 
     def write(self, txt, style=None, newline=True):
-        ''' 
+        '''
         write a line of text to the textview and scoll to end
         @param txt: Text to write to textview
         @param style: text tag to indentify the style to use
@@ -167,15 +167,15 @@ class TextViewBase:
 
 
 class TextViewConsole(TextViewBase):
-    '''  
+    '''
     A textview console with 3 predefined styles
     'info' (blue) , 'debug'  and 'error' (red)
     @param textview: the gtk.TextView widget to use
-    @param text_size: Optional text_size for the styles (default = 8)  
+    @param text_size: Optional text_size for the styles (default = 8)
     '''
     def __init__(self, textview, font_size=8, window=None, url_handler=None):
         '''
-        
+
         @param textview:
         @param font_size:
         '''
@@ -222,7 +222,7 @@ class TextViewLogHandler(logging.Handler):
 
     def emit(self, record):
         '''
-        
+
         @param record:
         '''
         msg = self.format(record)
@@ -250,7 +250,7 @@ class UI(gtk.Builder):
 
         gtk.Builder.__init__(self)
         self.filename = filename
-        # set the translation domain 
+        # set the translation domain
         if domain:
             self.set_translation_domain(domain)
         self.add_from_file(filename)
@@ -335,7 +335,7 @@ class Controller:
 
 #
 # Functions
-#    
+#
 
 def doLoggerSetup(console, logroot, logfmt='%(message)s', loglvl=logging.DEBUG):
     ''' Setup Python logging using a TextViewLogHandler '''
@@ -347,7 +347,7 @@ def doLoggerSetup(console, logroot, logfmt='%(message)s', loglvl=logging.DEBUG):
     # shut up pylint whinning about attributes declared outside __init__ (false positive)
     # pylint: disable-msg=W0201
     handler.propagate = False
-    # pylint: enable-msg=W0201    
+    # pylint: enable-msg=W0201
     logger.addHandler(handler)
     return handler
 
@@ -368,7 +368,7 @@ def normalCursor(mainwin):
 
 def doGtkEvents():
     '''
-    
+
     '''
     while gtk.events_pending():      # process gtk events
         gtk.main_iteration()
@@ -376,7 +376,7 @@ def doGtkEvents():
 
 def toUTF(txt):
     '''
-    
+
     @param txt:
     '''
     rc = ""

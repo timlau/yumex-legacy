@@ -10,11 +10,11 @@ from urlgrabber.progress import format_number
 class YumexBackendBase(object):
     '''
     Yumex Backend Base class
-    This is the base class to interact with the package system    
+    This is the base class to interact with the package system
     '''
     def __init__(self, frontend, transaction):
-        ''' 
-        init the backend 
+        '''
+        init the backend
         @param frontend: the current frontend
         '''
         self.frontend = frontend
@@ -29,8 +29,8 @@ class YumexBackendBase(object):
         raise NotImplementedError()
 
     def get_packages(self, pkg_filter, show_dupes=False):
-        ''' 
-        get packages based on filter 
+        '''
+        get packages based on filter
         @param pkg_filer: package list filter (Enum FILTER)
         @param show_dupes: show duplicate packages
         @return: a list of packages
@@ -38,14 +38,14 @@ class YumexBackendBase(object):
         raise NotImplementedError()
 
     def get_repositories(self):
-        ''' 
-        get repositories 
+        '''
+        get repositories
         @return: a list of repositories
         '''
         raise NotImplementedError()
 
     def enable_repository(self, repoid, enabled=True):
-        ''' 
+        '''
         set repository enable state
         @param repoid: repo id to change
         @param enabled: repo enable state
@@ -53,22 +53,22 @@ class YumexBackendBase(object):
         raise NotImplementedError()
 
     def get_groups(self):
-        ''' 
-        get groups 
+        '''
+        get groups
         @return: a list of groups
         '''
         raise NotImplementedError()
 
     def get_group_packages(self, group, grp_filter):
-        ''' 
-        get packages in a group 
+        '''
+        get packages in a group
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
         raise NotImplementedError()
 
     def search(self, keys, sch_filters, package_type):
-        ''' 
+        '''
         get packages matching keys
         @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
@@ -118,13 +118,13 @@ class YumexPackage:
     @property
     def id(self):
         '''
-        
+
         '''
         return '%s\t%s\t%s\t%s\t%s\t%s' % (self.name, self.epoch, self.ver, self.rel, self.arch, self.repoid)
 
     def get_attribute(self, attr):
         '''
-        
+
         @param attr:
         '''
         return self.backend.get_attribute(self.id, attr)
@@ -134,14 +134,14 @@ class YumexPackage:
     @property
     def version(self):
         '''
-        
+
         '''
         return self.ver
 
     @property
     def release(self):
         '''
-        
+
         '''
         return self.rel
 
@@ -172,7 +172,7 @@ class YumexPackage:
     @property
     def size(self):
         '''
-        
+
         '''
         return format_number(self.sizeBytes)
 
@@ -183,14 +183,14 @@ class YumexPackage:
 
     def set_select(self, state):
         '''
-        
+
         @param state:
         '''
         self.selected = state
 
     def set_visible(self, state):
         '''
-        
+
         @param state:
         '''
         self.visible = state
@@ -198,14 +198,14 @@ class YumexPackage:
     @property
     def description(self):
         '''
-        
+
         '''
         return self.get_attribute('description')
 
     @property
     def changelog(self):
         '''
-        
+
         '''
         return self.backend.get_changelog(self.id, 4)
 
@@ -242,7 +242,7 @@ class YumexPackage:
             return self.backend.get_update_info(self.id, obsolete=True)
         else:
             return self.backend.get_update_info(self.id, obsolete=False)
-            
+
 
 
     @property
@@ -259,9 +259,9 @@ class YumexPackage:
             return True
         else:
             return False
-        
-        
-        
+
+
+
 
 
 
@@ -272,7 +272,7 @@ class YumexGroupBase:
 
     def __init__(self, grp, category):
         '''
-        
+
         @param grp:
         @param category:
         '''
@@ -454,7 +454,7 @@ class YumHistoryPackage:
 
 
 
-    # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe 
+    # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe
 def pack(value):
     '''  Pickle and base64 encode an python object'''
     return base64.b64encode(pickle.dumps(value))

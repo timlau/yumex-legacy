@@ -113,7 +113,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
 
     def __init__(self, frontend):
         '''
-        
+
         @param frontend:
         '''
         transaction = YumexTransactionYum(self, frontend)
@@ -135,11 +135,11 @@ class YumexBackendYum(YumexBackendBase, YumClient):
     def info(self, msg):
         """ info message """
         self.frontend.info(msg)
-        
+
     def exitcode(self, code):
         """ Exitcode from backend"""
         self.frontend.exitcode(code)
-        
+
 
     def debug(self, msg, name=None):
         """ debug message """
@@ -210,7 +210,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
 
     def yum_state(self, state):
         '''
-        
+
         @param state:
         '''
         progress = self.frontend.get_progress()
@@ -247,7 +247,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         @param prompt_first: should prompt user before looking for the media
         @param media_id: An ID to make sure we got the required disc
         @param media_name: The media name
-        @param media_num: The media discnum   
+        @param media_num: The media discnum
         @return: the mountpoint of the requested media or None to cancel
         '''
         prompt = prompt_first
@@ -301,7 +301,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
 
 
     def timeout(self, count):
-        """ 
+        """
         timeout function call every time an timeout occours
         An timeout occaurs if the server takes more then timeout
         periode to respond to the current action.
@@ -341,9 +341,9 @@ class YumexBackendYum(YumexBackendBase, YumClient):
 
     #@TimeFunction
     def get_packages(self, pkg_filter, show_dupes=False):
-        ''' 
-        get packages based on filter 
-        @param pkg_filer: package list filter 
+        '''
+        get packages based on filter
+        @param pkg_filer: package list filter
         @return: a list of packages
         '''
         if str(pkg_filter) == 'all':
@@ -365,7 +365,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return rc
 
     def get_packages_size(self, ndx):
-        ''' 
+        '''
         get packages based on size ranges
         @param ndx: size range index
         @return: a list of packages
@@ -386,7 +386,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return rc
 
     def get_packages_repo(self, repoid):
-        ''' 
+        '''
         get packages based on repoid
         @param repoid: the repo id
         @return: a list of packages
@@ -395,8 +395,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return self.package_cache.find_packages(pkgs)
 
     def get_repositories(self):
-        ''' 
-        get repositories 
+        '''
+        get repositories
         @return: a list of repositories
         '''
         repos = YumClient.get_repos(self)
@@ -404,7 +404,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
 
 
     def enable_repository(self, repoid, enabled=True):
-        ''' 
+        '''
         set repository enable state
         @param repoid: repo id to change
         @param enabled: repo enable state
@@ -414,8 +414,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return repo
 
     def get_groups(self):
-        ''' 
-        get groups 
+        '''
+        get groups
         @return: a list of groups
         '''
         self.frontend.debug('Getting Group information')
@@ -423,8 +423,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return grps
 
     def get_group_packages(self, group, grp_filter=None):
-        ''' 
-        get packages in a group 
+        '''
+        get packages in a group
         @param group: group id to get packages from
         @param grp_filter: group filters (Enum GROUP)
         '''
@@ -441,7 +441,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         return self.package_cache.find_packages(pkgs)
 
     def search(self, keys, sch_filters, show_newest_only, package_type, use_cache=True ):
-        ''' 
+        '''
         get packages matching keys
         @param keys: list of keys to search for
         @param sch_filters: list of search filter (Enum SEARCH)
@@ -561,7 +561,7 @@ class YumexTransactionYum(YumexTransactionBase):
             longtext += '\n\n'
             for msg in msgs:
                 longtext += msg
-            # Show error dialog    
+            # Show error dialog
             dialog = ErrorDialog(self.frontend.ui, self.frontend.window, title, text, longtext, modal=True)
             dialog.run()
             dialog.destroy()

@@ -67,7 +67,7 @@ class SelectionView:
         return column
 
     def create_text_column(self, hdr, prop, size, sortcol=None):
-        """ 
+        """
         Create a TreeViewColumn with text and set
         the sorting properties and add it to the view
         """
@@ -80,7 +80,7 @@ class SelectionView:
         if sortcol:
             column.set_sort_column_id(sortcol)
             #column.set_sort_indicator(True)
-            #column.set_sort_order(gtk.SORT_ASCENDING)       
+            #column.set_sort_order(gtk.SORT_ASCENDING)
         else:
             column.set_sort_column_id(-1)
         self.view.append_column(column)
@@ -91,7 +91,7 @@ class SelectionView:
         Create an selection column, there get data via property function and a key attr
         @param attr: key attr for property funtion
         '''
-        # Setup a selection column using a object attribute 
+        # Setup a selection column using a object attribute
         cell1 = gtk.CellRendererToggle()    # Selection
         cell1.set_property('activatable', True)
         column1 = gtk.TreeViewColumn("", cell1)
@@ -105,7 +105,7 @@ class SelectionView:
 
     def create_selection_column_num(self, num, data_func=None):
         '''
-        Create an selection column, there get data an TreeStore Column        
+        Create an selection column, there get data an TreeStore Column
         @param num: TreeStore column to get data from
         '''
         # Setup a selection column using a column num
@@ -127,7 +127,7 @@ class SelectionView:
 
     def create_selection_text_column(self, hdr, select_func, text_attr, size=200):
         '''
-        Create an selection column, there get data an TreeStore Column        
+        Create an selection column, there get data an TreeStore Column
         @param num: TreeStore column to get data from
         '''
         # Setup a selection column using a column num
@@ -167,7 +167,7 @@ class SelectionView:
         '''
         a property function to get boolean data from a object in the TreeStore based on
         an attributes key
-        
+
         @param column:
         @param cell:
         @param model:
@@ -181,7 +181,7 @@ class SelectionView:
 
 
     def on_toggled(self, widget, path):
-        ''' 
+        '''
         selection togged handler
         overload in child class
         '''
@@ -232,8 +232,8 @@ class YumexPackageBase(SelectionView):
                 obj.queued = obj.action
                 self.queue.add(obj)
                 obj.set_select(not obj.selected)
-            
-            
+
+
     def _toggle_downgrade(self, obj):
         if obj.queued == 'do': # all-ready queued
             related_po = obj.downgrade_po
@@ -264,7 +264,7 @@ class YumexPackageBase(SelectionView):
                 obj.downgrade_po = pkg
                 self.queue.add(pkg)
         self.view.queue_draw()
-        
+
     def _show_pkg(self,obj):
         print "package           : ", obj
         print " --> queued       :  ", obj.queued
@@ -272,9 +272,9 @@ class YumexPackageBase(SelectionView):
         print " --> selected     :  ", obj.selected
         print " --> downgrade_po :  ", obj.downgrade_po
         print " --> installed    :  ", obj.is_installed()
-        
-        
-    
+
+
+
     def selectAll(self):
         '''
         Select all packages in the view
@@ -302,7 +302,7 @@ class YumexPackageBase(SelectionView):
         self.view.queue_draw()
 
     def new_pixbuf(self, column, cell, model, iterator):
-        """ 
+        """
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
@@ -346,7 +346,7 @@ class YumexPackageBase(SelectionView):
 
     def doGtkEvents(self):
         '''
-        
+
         '''
         i = 0
         progress = self.frontend.get_progress()
@@ -553,7 +553,7 @@ class YumexPackageViewSorted(YumexPackageBase):
             self.frontend.debug("package view population - sort column set")
             self.view.set_model(self.sort_store)
             self.frontend.debug("package view population - store is applied to TreeView")
-            #self.view.thaw_child_notify()            
+            #self.view.thaw_child_notify()
             self.frontend.debug("package view population - start GtkEvent Processing")
             self.doGtkEvents()
             self.frontend.debug("package view population - end GtkEvent Processing")
@@ -590,7 +590,7 @@ class YumexQueue:
 
     def clear(self):
         '''
-        
+
         '''
         del self.packages
         self.packages = {}
@@ -602,7 +602,7 @@ class YumexQueue:
 
     def get(self, action=None):
         '''
-        
+
         @param action:
         '''
         if action == None:
@@ -612,7 +612,7 @@ class YumexQueue:
 
     def total(self):
         '''
-        
+
         '''
         num = 0
         for key in const.QUEUE_PACKAGE_TYPES:
@@ -621,7 +621,7 @@ class YumexQueue:
 
     def add(self, pkg):
         '''
-        
+
         @param pkg:
         '''
         na = "%s.%s" % (pkg.name, pkg.arch)
@@ -632,7 +632,7 @@ class YumexQueue:
 
     def remove(self, pkg):
         '''
-        
+
         @param pkg:
         '''
         na = "%s.%s" % (pkg.name, pkg.arch)
@@ -646,7 +646,7 @@ class YumexQueue:
 
     def addGroup(self, grp, action):
         '''
-        
+
         @param grp:
         @param action:
         '''
@@ -657,7 +657,7 @@ class YumexQueue:
 
     def removeGroup(self, grp, action):
         '''
-        
+
         @param grp:
         @param action:
         '''
@@ -677,7 +677,7 @@ class YumexQueue:
 
     def hasGroup(self, grp):
         '''
-        
+
         @param grp:
         '''
         for action in ['i', 'r']:
@@ -687,7 +687,7 @@ class YumexQueue:
 
     def dump(self):
         '''
-        
+
         '''
         print(_("Package Queue:"))
         for a in const.QUEUE_PACKAGE_TYPES:
@@ -710,7 +710,7 @@ class YumexQueueView:
     """ Queue View Class"""
     def __init__(self, widget):
         '''
-        
+
         @param widget:
         '''
         self.view = widget
@@ -737,7 +737,7 @@ class YumexQueueView:
 
     def deleteSelected(self):
         '''
-        
+
         '''
         rmvlist = []
         model, paths = self.view.get_selection().get_selected_rows()
@@ -759,7 +759,7 @@ class YumexQueueView:
 
     def getPkgsFromList(self, rlist):
         '''
-        
+
         @param rlist:
         '''
         rclist = []
@@ -797,7 +797,7 @@ class YumexQueueView:
 
     def populate_list(self, label, pkg_list):
         '''
-        
+
         @param label:
         @param pkg_list:
         '''
@@ -807,7 +807,7 @@ class YumexQueueView:
 
     def populate_list_downgrade(self):
         '''
-        
+
         '''
         pkg_list = self.queue.packages['do']
         label = "<b>%s</b>" % P_("Package to downgrade", "Packages to downgrade", len(pkg_list))
@@ -818,12 +818,12 @@ class YumexQueueView:
                 self.model.append(item, [_("<b>Downgrade to</b> %s ") % str(pkg.downgrade_po), ""])
 
 class YumexRepoView(SelectionView):
-    """ 
+    """
     This class controls the repo TreeView
     """
     def __init__(self, widget):
         '''
-        
+
         @param widget:
         '''
         SelectionView.__init__(self, widget)
@@ -889,7 +889,7 @@ class YumexRepoView(SelectionView):
 
     def isHidden(self, ident):
         '''
-        
+
         @param ident:
         '''
         for hide in const.REPO_HIDE:
@@ -900,7 +900,7 @@ class YumexRepoView(SelectionView):
 
     def new_pixbuf(self, column, cell, model, iterator):
         '''
-        
+
         @param column:
         @param cell:
         @param model:
@@ -914,7 +914,7 @@ class YumexRepoView(SelectionView):
 
     def get_selected(self):
         '''
-        
+
         '''
         selected = []
         for elem in self.store:
@@ -926,7 +926,7 @@ class YumexRepoView(SelectionView):
 
     def get_notselected(self):
         '''
-        
+
         '''
         notselected = []
         for elem in self.store:
@@ -938,7 +938,7 @@ class YumexRepoView(SelectionView):
 
     def deselect_all(self):
         '''
-        
+
         '''
         iterator = self.store.get_iter_first()
         while iterator != None:
@@ -947,7 +947,7 @@ class YumexRepoView(SelectionView):
 
     def select_all(self):
         '''
-        
+
         '''
         iterator = self.store.get_iter_first()
         while iterator != None:
@@ -957,7 +957,7 @@ class YumexRepoView(SelectionView):
 
     def select_by_keys(self, keys):
         '''
-        
+
         @param keys:
         '''
         iterator = self.store.get_iter_first()
@@ -970,12 +970,12 @@ class YumexRepoView(SelectionView):
             iterator = self.store.iter_next(iterator)
 
 class YumexSearchOptionsView(SelectionView):
-    """ 
+    """
     This class controls the search option TreeView
     """
     def __init__(self, widget):
         '''
-        
+
         @param widget:
         '''
         SelectionView.__init__(self, widget)
@@ -991,7 +991,7 @@ class YumexSearchOptionsView(SelectionView):
 
     def get_selected(self):
         '''
-        
+
         '''
         selected = []
         for elem in self.store:
@@ -1027,7 +1027,7 @@ class YumexGroupView:
 
     def __init__(self, treeview, qview, base):
         '''
-        
+
         @param treeview:
         @param qview:
         @param base:
@@ -1038,7 +1038,7 @@ class YumexGroupView:
         self.model = self.setup_view()
         self.queue = qview.queue
         self.queueView = qview
-        self.yumbase = None # it will se set later 
+        self.yumbase = None # it will se set later
         self.currentCategory = None
         self.icon_theme = gtk.icon_theme_get_default()
         self._groups = None
@@ -1049,9 +1049,9 @@ class YumexGroupView:
         model = gtk.TreeStore(gobject.TYPE_BOOLEAN, # 0 Installed
                               gobject.TYPE_STRING, # 1 Group Name
                               gobject.TYPE_STRING, # 2 Group Id
-                              gobject.TYPE_BOOLEAN, # 3 In queue          
-                              gobject.TYPE_BOOLEAN, # 4 isCategory   
-                              gobject.TYPE_STRING)  # 5 Description     
+                              gobject.TYPE_BOOLEAN, # 3 In queue
+                              gobject.TYPE_BOOLEAN, # 4 isCategory
+                              gobject.TYPE_STRING)  # 5 Description
 
 
         self.view.set_model(model)
@@ -1071,7 +1071,7 @@ class YumexGroupView:
         column.pack_start(state, False)
         column.set_cell_data_func(state, self.queue_pixbuf)
 
-        # category/group icons 
+        # category/group icons
         icon = gtk.CellRendererPixbuf()
         icon.set_property('stock-size', 1)
         column.pack_start(icon, False)
@@ -1087,7 +1087,7 @@ class YumexGroupView:
 
     def setCheckbox(self, column, cell, model, iterator):
         '''
-        
+
         @param column:
         @param cell:
         @param model:
@@ -1113,7 +1113,7 @@ class YumexGroupView:
             self.model.set_value(iterator, 3, False)
         else:
             if inst: # Group is installed add it to queue for removal
-                self.queue.addGroup(grpid, 'r') # Add for remove           
+                self.queue.addGroup(grpid, 'r') # Add for remove
                 self._updatePackages(grpid, True, 'r')
             else: # Group is not installed, add it to queue for installation
                 self.queue.addGroup(grpid, 'i') # Add for install
@@ -1124,7 +1124,7 @@ class YumexGroupView:
 
     def _updatePackages(self, grpid, add, action):
         '''
-        
+
         @param grpid:
         @param add:
         @param action:
@@ -1166,7 +1166,7 @@ class YumexGroupView:
 
     def populate(self, data):
         '''
-        
+
         @param data:
         '''
         self.model.clear()
@@ -1180,7 +1180,7 @@ class YumexGroupView:
 
 
     def queue_pixbuf(self, column, cell, model, iterator):
-        """ 
+        """
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
@@ -1197,7 +1197,7 @@ class YumexGroupView:
         cell.set_property('visible', queued)
 
     def grp_pixbuf(self, column, cell, model, iterator):
-        """ 
+        """
         Cell Data function for recent Column, shows pixmap
         if recent Value is True.
         """
@@ -1215,7 +1215,7 @@ class YumexGroupView:
 
     def _get_pix(self, fn):
         '''
-        
+
         @param fn:
         '''
         imgsize = 24
@@ -1309,12 +1309,12 @@ class HistoryLabel:
 
 
 class YumexHistoryPackageView(SelectionView):
-    """ 
+    """
     This class controls the history package
     """
     def __init__(self, widget, install_color, other_color):
         '''
-        
+
         @param widget:
         '''
         SelectionView.__init__(self, widget)
@@ -1326,7 +1326,7 @@ class YumexHistoryPackageView(SelectionView):
     def get_data_bool(self, column, cell, model, iterator, prop):
         '''
         Show a checkbox is selection column is not None
-        
+
         @param column:
         @param cell:
         @param model:
@@ -1375,7 +1375,7 @@ class YumexHistoryPackageView(SelectionView):
 
     def get_selected(self):
         '''
-        
+
         '''
         selected = []
         for elem in self.store:
@@ -1422,12 +1422,12 @@ class YumexHistoryPackageView(SelectionView):
             self._add_values(cat, elements)
 
 class YumexDepsPackageView(SelectionView):
-    """ 
+    """
     This class controls the history package
     """
     def __init__(self, widget, install_color, other_color):
         '''
-        
+
         @param widget:
         '''
         SelectionView.__init__(self, widget)
@@ -1439,7 +1439,7 @@ class YumexDepsPackageView(SelectionView):
     def get_data_bool(self, column, cell, model, iterator, prop):
         '''
         Show a checkbox is selection column is not None
-        
+
         @param column:
         @param cell:
         @param model:
@@ -1488,7 +1488,7 @@ class YumexDepsPackageView(SelectionView):
 
     def get_selected(self):
         '''
-        
+
         '''
         selected = []
         for elem in self.store:
