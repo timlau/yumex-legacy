@@ -23,19 +23,16 @@
 # Imports
 
 from yumexbase.constants import *
-from urlgrabber.progress import format_number
-from yumexbase import TimeFunction
+#from yumexbase import TimeFunction
 from yum.misc import prco_tuple_to_string
 
 from yumexbackend import YumexBackendBase, YumexTransactionBase
 from yumexbackend.yum_client import YumClient, unpack
 from yumexgui.dialogs import ErrorDialog, questionDialog, okCancelDialog
-from guihelpers import doGtkEvents
 from yumexbackend.yumMediaManagerUDisks import MediaManagerUDisks as MediaManager
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
-import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 class PackageCache:

@@ -149,7 +149,7 @@ class YumexPackage:
     @property
     def filename(self):
         ''' Package id (the full package filename) '''
-        if action == 'li': # the full path for at localinstall is stored in repoid
+        if self.action == 'li': # the full path for at localinstall is stored in repoid
             return self.repoid
         else:
             return "%s-%s.%s.%s.rpm" % (self.name, self.version, self.release, self.arch)

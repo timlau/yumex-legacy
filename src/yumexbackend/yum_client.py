@@ -31,8 +31,7 @@ from yumexbackend import  YumexPackage, pack, unpack
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
-import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 
@@ -208,7 +207,6 @@ class YumClientBase:
         ''' Setup the client and spawn the server'''
         if not self.yum_backend_is_running:
             self.debug("Setup START")
-            prefix = ""
             args = []
             if not self.launcher_is_started:
                 self._start_launcher(filelog)
@@ -261,7 +259,6 @@ class YumClientBase:
         """ send a command to the spawned server """
         line = "%s\t%s" % (cmd, "\t".join(args))
         debug_msg = 'Sending: %s args: %s' % (cmd, str(args))
-        timeouts = 0
         self.sending = True
         self.end_state = None
         while True:
@@ -272,7 +269,7 @@ class YumClientBase:
                 elif cmd == None:
                     self.sending = False
                     return False
-            except pexpect.TIMEOUT, e:
+            except pexpect.TIMEOUT, e:  # lint:ok
                 self._timeout()
                 continue
         self.debug(debug_msg)
@@ -319,7 +316,7 @@ class YumClientBase:
                         return cmd, args
                 else:
                     self.yum_logger(line.strip('\n'))
-            except pexpect.TIMEOUT, e:
+            except pexpect.TIMEOUT, e:  # lint:ok
                 self._timeout()
                 continue
         # Client is not running any more
@@ -457,7 +454,6 @@ class YumClientBase:
         :end command is received
         '''
         data = []
-        cnt = 0L
         while True:
             cmd, args = self._readline()
             if self.is_ended(cmd, args):
@@ -477,7 +473,6 @@ class YumClientBase:
         :end command is received
         '''
         data = []
-        cnt = 0L
         while True:
             cmd, args = self._readline()
             if self.is_ended(cmd, args):
@@ -495,7 +490,6 @@ class YumClientBase:
         '''
         read a given result command from the server.
         '''
-        cnt = 0L
         while True:
             cmd, args = self._readline()
             if not self._check_for_message(cmd, args):
@@ -722,7 +716,7 @@ class YumClient(YumClientBase):
 
         '''
         self._send_command('run-transaction', [])
-        lst = self._get_list()
+        lst = self._get_list()  # lint:ok
         return self.end_state
 
     def get_dependencies(self, po):

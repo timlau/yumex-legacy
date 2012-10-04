@@ -29,8 +29,7 @@ from xdg import BaseDirectory
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
-import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 from yum.constants import *

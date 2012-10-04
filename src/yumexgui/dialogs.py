@@ -30,8 +30,7 @@ from yumexgui.views import YumexSearchOptionsView
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
-import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 class TaskList:
@@ -605,7 +604,7 @@ class TransactionConfirmation:
         self.progress = progress
         self.view = self.ui.transactionView
         self.view.modify_font(SMALL_FONT)
-        style = self.view.get_style()
+        #style = self.view.get_style()
         #self.ui.transactionEvent.modify_bg( gtk.STATE_NORMAL, style.base[0])
         self.store = self.setup_view(self.view)
         self._active = False
@@ -699,7 +698,7 @@ class TransactionConfirmation:
             for name, arch, ver, repo, size, replaces in lvl1:
                 level2 = model.append(level1, [name, arch, ver, repo, size])
                 for r in replaces:
-                    level3 = model.append(level2, [ r, "", "", "", ""])
+                    model.append(level2, [ r, "", "", "", ""])
         self.ui.transactionLabel.set_text(_("Download Size : %s ") % dnl_size)
         self.view.expand_all
 

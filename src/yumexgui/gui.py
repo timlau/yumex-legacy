@@ -24,7 +24,6 @@
 
 import gtk
 
-import subprocess
 
 from datetime import date
 from yumexbase.constants import *
@@ -36,8 +35,7 @@ import re
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
-import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 #
@@ -304,7 +302,6 @@ class PackageInfo(SelectorBase):
         show the package description
         '''
         upd_info = None
-        updated_po = None
         upd_info_list, updated_po_list = self.pkg.updateinfo
         progress = self.frontend.get_progress()
         progress.hide()
@@ -367,7 +364,6 @@ class PackageInfo(SelectorBase):
             bzs = [ r for r in upd_info['references'] if r and r['type'] == 'bugzilla']
             if len(bzs):
                 header = "Bugzilla"
-                buglist = ""
                 for bz in bzs:
                     if 'title' in bz and bz['title']:
                         bug_msg = ' - %s' % bz['title']

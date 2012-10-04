@@ -59,8 +59,7 @@ from yum.i18n import _ as yum_translated
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
-import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 def catchYumException(func):
@@ -786,7 +785,7 @@ class YumServer(yum.YumBase):
                 action = 'ri'
                 for pat in userlist:
                     self.reinstall(pattern=pat)
-        except Errors.InstallError, e:
+        except Errors.InstallError, e:  # lint:ok
             pass
         self._show_packages_in_transaction(action)
         self.reset_transaction()
@@ -846,7 +845,6 @@ class YumServer(yum.YumBase):
                 sublist = []
         for (action, pkglist) in [(yum_translated('Skipped (dependency problems)'),
                                    self.skipped_packages), ]:
-            lines = []
             for po in pkglist:
                 (n, a, e, v, r) = po.pkgtup
                 evr = po.printVer()
@@ -1169,7 +1167,6 @@ class YumServer(yum.YumBase):
     def set_option(self, args):
         option = args[0]
         value = unpack(args[1])
-        on_repos = unpack(args[2])
         if hasattr(self.conf, option):
             setattr(self.conf, option, value)
             self.info(_("Setting Yum Option %s = %s") % (option, value))
@@ -1199,7 +1196,6 @@ class YumServer(yum.YumBase):
         pkg = self._getPackage(pkg_id)
         if pkg:
             md = self.update_metadata
-            nvr = (pkg.name, pkg.ver, pkg.rel)
             notices = md.get_notices(pkg.name)
             for ret in notices:
                 self.message("updateinfo", ret)
