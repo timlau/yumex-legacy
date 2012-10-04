@@ -168,35 +168,37 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_title(_('Getting Package Information'))
             progress.set_header(_('Getting Package Information'))
             progress.show()
+        if percent == 0.0: # If we are downloading something, then disable pulse mode
+            progress.set_pulse(False)
         if progress.tasks.current_running == 'download':
             width = len("%s" % tot)
             progress.tasks.set_extra_label('download', "<b>( %*s / %*s )</b>" % (width, cur, width, tot))
+        elif percent == 100.0: # if not downloading package, and current download is complete
+            progress.set_pulse(True)
         progress.set_fraction(float(percent) / 100.0, "%3i %% ( %s / %s ) - %s" % (percent, fread, ftotal, ftime))
-        #self.frontend.debug("Progress: %s - %s - %s - %s - %s" %  (cur, tot, fread, ftotal, ftime))
         if ftype == "REPO": # This is repo metadata being downloaded
             if percent > 0: # only show update labels once.
                 return
             if '/' in name:
                 values = name.split('/')
-                repo, mdtype = values[0],values[-1] # there can be more than 2 values, take first & last
+                if len(values) == 3: # Latest version of yum returns (repoid/fedora_release/arch) for repomd
+                    repo, mdtype = values[0],"repomd"
+                else:
+                    repo, mdtype = values[0],values[-1] # there can be more than 2 values, take first & last
             else:
                 repo = name
                 mdtype = None
+            markup_repo = "<b>%s</b>" % repo
             if mdtype:
-                msg = _("Repo Metadata type (%s) for %s") % (mdtype, '%s')
-                for key in REPO_INFO_MAP:
-                    if key in mdtype:
-                        msg = REPO_INFO_MAP[key]
-                        break
+                if mdtype in REPO_INFO_MAP:
+                    msg = REPO_INFO_MAP[mdtype] % markup_repo
+                else:
+                    msg = _("Unknown metadata type (%s) for %s") % (mdtype,markup_repo)
+                    self.warning(msg)
             else:
-                msg = _("Repo Metadata for %s")
-            if repo:
-                markup = "<b>%s</b>" % repo
-                self.debug(msg % repo)
-                progress.set_action(msg % markup)
-
-            else:
-                progress.set_action(msg)
+                msg = _("Repo Metadata for %s") % markup_repo
+            progress.set_action(msg)
+            self.debug(msg)
         elif ftype == 'REBUILD':
             progress.set_action(_('Building rpms from deltarpm'))
         else: # this is a package being downloaded

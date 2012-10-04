@@ -317,6 +317,7 @@ class Progress(YumexProgressBase):
         self._active = False
         #normalCursor(self.parent)
         self.dialog.hide()
+        self.set_pulse(False)
         normalCursor(self.parent)
 
     def show_tasks(self):

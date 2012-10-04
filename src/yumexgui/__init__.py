@@ -928,6 +928,7 @@ class YumexApplication(Controller, YumexFrontend):
             else:
                 self.info(_("History Disabled"))
             progress.hide()
+            progress.set_pulse(False)
             self.debug("Getting History Information - END")
             self.history_is_loaded = True
 
@@ -945,6 +946,8 @@ class YumexApplication(Controller, YumexFrontend):
         else:
             self.info(_("History Disabled"))
         progress.hide()
+        progress.set_pulse(False)
+
         self.debug("Searching History Information - END")
 
     def _order_packages(self, pkgs):
@@ -1366,6 +1369,8 @@ class YumexApplication(Controller, YumexFrontend):
                         self.packages.add_packages(pkgs)
                         progress = self.get_progress()
                         progress.hide()
+                        progress.set_pulse(False)
+
             else:
                 if not self._resized:
                     width, height = self.window.get_size()

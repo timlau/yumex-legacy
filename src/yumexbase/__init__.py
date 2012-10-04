@@ -67,7 +67,6 @@ class YumexProgressBase:
 
     def set_pulse(self, pulse):
         '''
-
         @param pulse:
         '''
         self._pulse = pulse
