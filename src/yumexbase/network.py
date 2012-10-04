@@ -22,6 +22,8 @@ Yumex Networking Classes
 import dbus
 from yumexbase.constants import *
 from yumexbase import _, P_   # lint:ok
+import logging
+
 
 
 class NetworkCheckBase:
