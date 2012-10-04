@@ -2,7 +2,7 @@
 
 from subprocess import call
 import sys
-from yumexbackend import  pack, unpack
+from yumexbackend import unpack
 
 
 def parse_command(cmd, param):

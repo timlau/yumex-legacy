@@ -1,4 +1,0 @@
-[D-BUS Service]
-Name=org.yumex.YumBackend
-Exec=/usr/bin/env python /usr/share/yumex/yumex-daemon
-User=root
