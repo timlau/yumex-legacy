@@ -47,7 +47,7 @@ from yum.packages import comparePoEVR
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
 import logging
-from yumexbase import _, P_
+from yumexbase import _, P_  # lint:ok
 # pylint: enable-msg=W0611
 
 class YumexFrontend(YumexFrontendBase):
@@ -414,7 +414,7 @@ class YumexApplication(Controller, YumexFrontend):
         # search options
         self.search_options = SearchOptions(self.ui, self.window, self.search_keys, self.default_search_keys)
         self.typeahead_active = self.settings.typeahead_search
-        active = self.ui.searchTypeAhead.set_active(self.typeahead_active)
+        self.ui.searchTypeAhead.set_active(self.typeahead_active)
 
         # setup package and package info view
         if self.settings.use_sortable_view:
