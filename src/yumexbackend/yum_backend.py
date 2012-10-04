@@ -180,20 +180,22 @@ class YumexBackendYum(YumexBackendBase, YumClient):
                 values = name.split('/')
                 repo, mdtype = values[0],values[-1] # there can be more than 2 values, take first & last
             else:
-                repo = None
-                mdtype = name
-            msg = _("Unknown Repo Metadata type (%s) for %s") % (mdtype, '%s')
-            for key in REPO_INFO_MAP:
-                if key in mdtype:
-                    msg = REPO_INFO_MAP[key]
-                    break
+                repo = name
+                mdtype = None
+            if mdtype:
+                msg = _("Repo Metadata type (%s) for %s") % (mdtype, '%s')
+                for key in REPO_INFO_MAP:
+                    if key in mdtype:
+                        msg = REPO_INFO_MAP[key]
+                        break
+            else:
+                msg = _("Repo Metadata for %s")
             if repo:
                 markup = "<b>%s</b>" % repo
                 self.debug(msg % repo)
                 progress.set_action(msg % markup)
 
             else:
-                self.debug(msg)
                 progress.set_action(msg)
         elif ftype == 'REBUILD':
             progress.set_action(_('Building rpms from deltarpm'))
