@@ -32,6 +32,7 @@ install:
 	install -m644 COPYING $(DESTDIR)/usr/share/yumex/.
 	install -m644 $(PIXDIR)/*.png $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
+	install -m644 $(PIXDIR)/yumex-icon.png $(DESTDIR)/usr/share/pixmaps/yumex.png
 	install -m644 $(MISCDIR)/yumex.profiles.conf $(DESTDIR)/etc/.
 	install -m644 $(MISCDIR)/yumex.conf.default $(DESTDIR)/etc/yumex.conf
 	# build the .policy file with translations

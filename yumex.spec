@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  3.0.9
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -50,15 +50,8 @@ make DESTDIR=$RPM_BUILD_ROOT install
 install -m644 src/yumex.glade.el6 $RPM_BUILD_ROOT/%{_datadir}/%{name}/yumex.glade
 %endif
 
-desktop-file-install --vendor fedora --delete-original \
-    --dir $RPM_BUILD_ROOT%{_datadir}/applications \
-    --add-category X-Fedora \
-    $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
-
-desktop-file-install --vendor fedora --delete-original \
-    --dir $RPM_BUILD_ROOT%{_datadir}/applications \
-    --add-category X-Fedora \
-    $RPM_BUILD_ROOT%{_datadir}/applications/%{name}-local.desktop
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
+desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}-local.desktop
     
 # this is a doc file; removing from installed tree
 rm $RPM_BUILD_ROOT%{_datadir}/yumex/COPYING
@@ -77,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f  %{name}.lang
 %defattr(-, root, root, -)
 %doc COPYING ChangeLog TODO
-%{_datadir}/pixmaps/yumex
+%{_datadir}/pixmaps/*
 %{_datadir}/yumex
 %{_bindir}/yumex*
 %{python_sitelib}/yumexbackend/
@@ -90,6 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Fri Oct 12 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.9-2
+- changed .desktop file install to use desktop-file-validate
 * Wed Oct 3 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.9-1
 - bumped version to 3.0.9-1
 * Wed Oct 3 2012 Tim Lauridsen <timlau@fedoraproject.org> 3.0.8-1
