@@ -636,7 +636,7 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
   </object>
   <object class="GtkWindow" id="main">
     <property name="can_focus">False</property>
-    <property name="icon">yumex.png</property>
+    <property name="icon_name">yumex</property>
     <accel-groups>
       <group name="accelgroup1"/>
     </accel-groups>
