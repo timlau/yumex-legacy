@@ -2,7 +2,7 @@
 _Name=Yum Extender
 _Comment=Install, update and remove applications
 Categories=System;Settings;X-Red-Hat-Base;X-Fedora;
-Icon=/usr/share/pixmaps/yumex/yumex-icon.png
+Icon=yumex
 Exec=/usr/bin/yumex
 Type=Application
 Terminal=false
