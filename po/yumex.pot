@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-04 14:26+0000\n"
+"POT-Creation-Date: 2012-10-14 12:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,7 +180,7 @@ msgid "Reinstalled packages"
 msgstr ""
 
 #: ../src/yumexbase/constants.py:216 ../src/yumexgui/views.py:878
-#: ../src/yumexgui/dialogs.py:665
+#: ../src/yumexgui/dialogs.py:669
 msgid "Name"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../src/yumexbase/constants.py:219 ../src/yumexgui/dialogs.py:666
+#: ../src/yumexbase/constants.py:219 ../src/yumexgui/dialogs.py:670
 msgid "Arch"
 msgstr ""
 
@@ -438,7 +438,7 @@ msgstr ""
 msgid "Package"
 msgstr ""
 
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:667
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:671
 msgid "Ver"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "Architecture"
 msgstr ""
 
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:669
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:673
 msgid "Size"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgstr ""
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:831 ../src/yumexgui/views.py:877
-#: ../src/yumexgui/dialogs.py:668
+#: ../src/yumexgui/dialogs.py:672
 msgid "Repository"
 msgstr ""
 
@@ -809,47 +809,63 @@ msgstr ""
 msgid "Typeahead search is active by default"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:514
-msgid "Debug Mode"
+#: ../src/yumexgui/dialogs.py:507
+msgid "Skip Broken is ative by default"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:515
-msgid "Disable startup network check"
+#: ../src/yumexgui/dialogs.py:508
+msgid "No GPG Check is active by default"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:516
-msgid "Run backend with sudo (need working sudo nopasswd config)"
+#: ../src/yumexgui/dialogs.py:509
+msgid "Show Newest Only is active by default"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:517
-msgid "Color (Installed)"
+#: ../src/yumexgui/dialogs.py:510
+msgid "Clean Unused Requirements is active by default"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:518
-msgid "Color (Update)"
+msgid "Debug Mode"
 msgstr ""
 
 #: ../src/yumexgui/dialogs.py:519
+msgid "Disable startup network check"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:520
+msgid "Run backend with sudo (need working sudo nopasswd config)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:521
+msgid "Color (Installed)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:522
+msgid "Color (Update)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:523
 msgid "Color (Available)"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:527
+#: ../src/yumexgui/dialogs.py:531
 msgid "Enable Yum Plugins"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:528
+#: ../src/yumexgui/dialogs.py:532
 msgid "Proxy"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:529
+#: ../src/yumexgui/dialogs.py:533
 msgid "Yum Debug Level"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:628
+#: ../src/yumexgui/dialogs.py:632
 msgid "Transaction Result"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:703
+#: ../src/yumexgui/dialogs.py:707
 #, python-format
 msgid "Download Size : %s "
 msgstr ""
