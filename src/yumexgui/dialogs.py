@@ -504,7 +504,7 @@ class Preferences:
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
         self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))
         self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Typeahead search is active by default'))
-        self._add_option(PrefBoolean, vbox, 'skip_broken', _('Skip Broken is ative by default'))
+        self._add_option(PrefBoolean, vbox, 'skip_broken', _('Skip Broken is active by default'))
         self._add_option(PrefBoolean, vbox, 'no_gpg_check', _('No GPG Check is active by default'))
         self._add_option(PrefBoolean, vbox, 'show_newest_only', _('Show Newest Only is active by default'))
         self._add_option(PrefBoolean, vbox, 'remove_requirements', _('Clean Unused Requirements is active by default'))
