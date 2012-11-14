@@ -484,6 +484,7 @@ class YumexApplication(Controller, YumexFrontend):
             if self.settings.always_yes:
                 self.window.hide()
             rc = self.do_commands(self.cfg.cmd_args)
+
         if rc: # No commands executed
             if self.settings.search:            # Search only mode
                 self._hide_filters_on_search(hide = True)
@@ -506,7 +507,8 @@ class YumexApplication(Controller, YumexFrontend):
             else:
                 okDialog(self.window, _("Nothing to do"))
                 self.main_quit()
-
+        else:
+            self.window.show()
         #self.testing()
 
     def settings_updated(self):
