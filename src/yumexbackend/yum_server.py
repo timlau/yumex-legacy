@@ -747,11 +747,11 @@ class YumServer(yum.YumBase):
             self._show_package(txmbr.po, txmbr.ts_state)
         self.ended(True)
 
-    def _show_packages_in_transaction(self, action):
+    def _show_packages_in_transaction(self, action,result_pkgs):
         '''
 
         '''
-        for txmbr in self.tsInfo:
+        for txmbr in result_pkgs:
             self._show_package(txmbr.po, action)
         self.ended(True)
 
@@ -759,6 +759,7 @@ class YumServer(yum.YumBase):
         self.reset_transaction()
         cmd = cmd[:3]
         action = None
+        result_pkgs =  []
         try:
             if cmd == 'ins':
                 action = 'i'
@@ -766,28 +767,28 @@ class YumServer(yum.YumBase):
                     if pat.endswith('.rpm'):
                         self.debug("This is an local rpm : %s " % pat)
                         action = 'li'
-                        self.installLocal(pat)
+                        result_pkgs.extend(self.installLocal(pat))
                     else:
-                        self.install(pattern=pat)
+                        result_pkgs.extend(self.install(pattern=pat))
             elif cmd == 'rem' or cmd == 'era':
                 action = 'r'
                 for pat in userlist:
-                    self.remove(pattern=pat)
+                    result_pkgs.extend(self.remove(pattern=pat))
             elif cmd == 'upd':
                 action = 'u'
                 for pat in userlist:
-                    self.update(pattern=pat)
+                    result_pkgs.extend(self.update(pattern=pat))
             elif cmd == 'dow':
                 action = 'do'
                 for pat in userlist:
-                    self.downgrade(pattern=pat)
+                    result_pkgs.extend(self.downgrade(pattern=pat))
             elif cmd == 'rei':
                 action = 'ri'
                 for pat in userlist:
-                    self.reinstall(pattern=pat)
+                    result_pkgs.extend(self.reinstall(pattern=pat))
         except Errors.InstallError, e:  # lint:ok
             pass
-        self._show_packages_in_transaction(action)
+        self._show_packages_in_transaction(action,result_pkgs )
         self.reset_transaction()
 
 
