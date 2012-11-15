@@ -1,3 +1,132 @@
+2012-11-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.10
+
+2012-11-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/bg.po, po/bn_IN.po, po/cs.po, po/da.po, po/de.po,
+	po/es.po, po/es_ES.po, po/fa.po, po/fr.po, po/gu.po, po/hu.po,
+	po/id.po, po/it.po, po/ja.po, po/nl.po, po/pl.po, po/pt.po,
+	po/ru.po, po/sr.po, po/sr@latin.po, po/tr_TR.po, po/uk.po,
+	po/zh_CN.po, po/zh_TW.po: Transfix pull, *.po update
+
+2012-11-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: show window after command line actions
+	if -X is not applied
+
+2012-11-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: make updating from a local .rpm
+	work
+
+2012-10-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py: handle more metadata types
+
+2012-10-24  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/yumex.pot, src/yumexgui/dialogs.py: fix typo in preferences
+
+2012-10-14  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/yumex.pot, src/yumexgui/dialogs.py: Set Option default values
+	from the preferences
+
+2012-10-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Use yumex icon from current theme as windows icon
+
+
+2012-10-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of github.com:timlau/yumex
+
+2012-10-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade: Use yumex icon from current theme as windows icon
+
+
+2012-10-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile, misc/yumex-local.desktop.in, misc/yumex.desktop.in,
+	yumex.spec: change icon installation, so yumex will use the icon
+	from current theme
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/yumex.pot: Transfix push, yum.pot update
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbase/__init__.py,
+	src/yumexbase/constants.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py: Cleanup metadata download messages and
+	progress bar actions. So it works better with latest yum versions.
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: better handling of repo metadata
+	download messages
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/network.py: Added import there was removed from
+	wrong file
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/test/dbus-test/client.py, src/test/dbus-test/server.py: Remove
+	dbus test code
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py, src/test/daemon/Makefile,
+	src/test/daemon/client.py, src/test/daemon/daemon.py,
+	src/test/daemon/dbus/org.yumex.YumBackend.conf,
+	src/test/daemon/dbus/org.yumex.YumBackend.service,
+	src/test/daemon/inst/etc/dbus-1/system.d/org.yumex.conf,
+	src/test/daemon/inst/usr/share/dbus-1/system-services/org.yumex.ser
+	vice,
+	src/test/daemon/inst/usr/share/polkit-1/actions/org.yumex.policy,
+	src/test/daemon/inst/usr/share/yumex/client.py,
+	src/test/daemon/inst/usr/share/yumex/daemon.py,
+	src/test/daemon/inst/usr/share/yumex/yumex-deamon,
+	src/test/daemon/policykit1/org.yumex.YumBackend.policy,
+	src/test/daemon/yumex-daemon: Remove yum daemon code, it is no
+	maintained in a separate project
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: More pylint fixes
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/__init__.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexbase/network.py,
+	src/yumexgui/dialogs.py, src/yumexgui/gui.py: pylint fixes
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* .gitignore: update .gitignore
+
+2012-10-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py, src/guihelpers/__init__.py,
+	src/yum_childtask.py, src/yumexbackend/__init__.py,
+	src/yumexbackend/yumMediaManagerUDisks.py,
+	src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexbase/__init__.py,
+	src/yumexbase/conf.py, src/yumexbase/constants.py,
+	src/yumexbase/network.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py, src/yumexgui/views.py: cleanup trailing spaces
+	in source files
+
+2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2012-10-03  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.9
@@ -4512,5 +4641,51 @@
 
 2008-10-23  Tim Lauridsen <timlau@fedoraproject.org>
 
-	* Add more skelton classes and files
+	* src/yumex.glade, src/yumex.py, src/yumexgui/__init__.py,
+	src/yumexgui/gui.py, src/yumexgui/misc.py: Add more skelton classes
+	and files
+
+2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: added yumexgui module
+
+2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/callbacks.py, src/dialogs.py, src/filters.py, src/gui.py,
+	src/i18n.py, src/misc.py, src/nextgen/yumexbase/__init__.py,
+	src/nextgen/yumexbase/backend_yum.py, src/old-stuff/callbacks.py,
+	src/old-stuff/dialogs.py, src/old-stuff/filters.py,
+	src/old-stuff/gui.py, src/old-stuff/i18n.py, src/old-stuff/misc.py,
+	src/old-stuff/packages.py, src/old-stuff/views.py,
+	src/old-stuff/yumapi.py, src/old-stuff/yumex.glade,
+	src/old-stuff/yumex.py, src/old-stuff/yumgui/Makefile,
+	src/old-stuff/yumgui/__init__.py,
+	src/old-stuff/yumgui/__init__.pyc,
+	src/old-stuff/yumgui/callbacks.py,
+	src/old-stuff/yumgui/callbacks.pyc,
+	src/old-stuff/yumgui/packages.py,
+	src/old-stuff/yumgui/packages.pyc, src/old-stuff/yumgui/widgets.py,
+	src/old-stuff/yumgui/widgets.pyc, src/packages.py, src/views.py,
+	src/yumapi.py, src/yumex.glade, src/yumex.py,
+	src/yumexbase/__init__.py, src/yumexbase/backend_yum.py,
+	src/yumgui/Makefile, src/yumgui/__init__.py,
+	src/yumgui/callbacks.py, src/yumgui/packages.py,
+	src/yumgui/widgets.py: cleanup the future branch
+
+2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/nextgen/yumexbase/__init__.py,
+	src/nextgen/yumexbase/backend_yum.py: removed future stuff from this
+	branch
+
+2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of ssh://git.fedorahosted.org/git/yumex  *
+	'master' of ssh://git.fedorahosted.org/git/yumex:   Updated French
+	translation   Updated Serbian Latin translation   Updated Serbian
+	translation
+
+2008-10-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* future: cleanup code and fix typos
 
