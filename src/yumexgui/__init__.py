@@ -773,9 +773,14 @@ class YumexApplication(Controller, YumexFrontend):
                     rc = True
                 else:
                     self.window.show()
-                    msg = _("Transaction completed successfully")
-                    msg += _("\n\nDo you want to exit Yum Extender ?")
-                    rc = questionDialog(self.window, msg) # Ask if the user want to Quit
+                    if self.settings.exit_action == 'ask':
+                        msg = _("Transaction completed successfully")
+                        msg += _("\n\nDo you want to exit Yum Extender ?")
+                        rc = questionDialog(self.window, msg) # Ask if the user want to Quit
+                    elif self.settings.exit_action == 'exit':
+                        rc = True
+                    else:
+                        rc = False
                 if rc:
                     self.main_quit() # Quit Yum Extender
                 self.reload()
