@@ -32,6 +32,7 @@ from yum.i18n import utf8_text_wrap
 from yumexgui.views import YumexDepsPackageView
 from subprocess import call
 import re
+from operator import itemgetter, attrgetter
 
 # We want these lines, but don't want pylint to whine about the imports not being used
 # pylint: disable-msg=W0611
@@ -323,9 +324,7 @@ class PackageInfo(SelectorBase):
                     msg = "%s %s" % (spaces,po)
                 self.console.write(msg, "changelog-header")
         self.console.write('\n')
-        for i in xrange(0, len(upd_info_list)):
-            ndx = (len(upd_info_list) - 1) - i
-            upd_info = upd_info_list[ndx]
+        for upd_info in sorted(upd_info_list, key=itemgetter('update_id'), reverse=True):
             if upd_info:
                 msg = "%s\n\n" % upd_info['update_id']
                 self.console.write(msg, "changelog-header")
