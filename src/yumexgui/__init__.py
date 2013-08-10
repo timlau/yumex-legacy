@@ -263,7 +263,7 @@ class YumexApplication(Controller, YumexFrontend):
         # setup
         try:
             self.setup_gui()
-            self.backend.setup()
+            self.backend.setup(need_root=False)
             gtk.main()
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
@@ -469,7 +469,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.populate_package_cache()
             self.notebook.set_active("package")
         else:
-            self.backend.setup(repos=self.current_repos)
+            self.backend.setup(repos=self.current_repos, need_root=False)
             self.notebook.set_active("repo")
         self._setup_options()
         # setup repository view
@@ -510,6 +510,16 @@ class YumexApplication(Controller, YumexFrontend):
         else:
             self.window.show()
         #self.testing()
+
+    def start_root_backend(self):
+        self.backend.setup(offline=self.is_offline, repos=self.current_repos,
+                need_root=True)
+        progress = self.get_progress()
+        options = self._get_options()
+        self._set_options(options)
+        # we need to refresh the package list of the backend
+        pkgs,label = self.get_packages(self._current_active)
+        progress.hide()
 
     def settings_updated(self):
         '''
@@ -704,7 +714,7 @@ class YumexApplication(Controller, YumexFrontend):
         progress = self.get_progress()
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
-        self.backend.setup(self.is_offline, repos)
+        self.backend.setup(self.is_offline, repos, need_root=False)
         self.debug("Getting package lists - END")
         progress.set_pulse(False)
         progress.hide()
@@ -741,6 +751,7 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         rc = False
         try:
+            self.start_root_backend() # we need to be root for this
             self.notebook.set_active("output")
             progress = self.get_progress()
             progress.set_pulse(True)
@@ -1329,20 +1340,14 @@ class YumexApplication(Controller, YumexFrontend):
                 if search_text == '': # This is not a search
                     self._last_filter = widget
                     self.debug('START: Getting %s packages' % active)
-                    self.backend.setup()
-                    label = active
+                    self.backend.setup(need_root=False)
                     progress = self.get_progress()
                     progress.set_pulse(True)
                     cur_filter = active
                     progress.set_title(PACKAGE_LOAD_MSG[cur_filter])
                     progress.set_header(PACKAGE_LOAD_MSG[cur_filter])
                     progress.show()
-                    pkgs = self.backend.get_packages(active)
-                    # if Updates, then add obsoletes too
-                    if active == 'updates':
-                        obs = self.backend.get_packages('obsoletes')
-                        pkgs.extend(obs)
-                        label = "updates & obsoletes"
+                    pkgs,label = self.get_packages(active)
                     self._add_packages(pkgs, label)
                     self.debug('END: Getting %s packages' % active)
                 else: # This is a search
@@ -1391,6 +1396,16 @@ class YumexApplication(Controller, YumexFrontend):
                 elif active == 'categories': # Categories
                     self.ui.categoryWindow.show_all()
             normalCursor(self.window)
+
+    def get_packages(self, active):
+        pkgs = self.backend.get_packages(active)
+        label = active
+        # if Updates, then add obsoletes too
+        if active == 'updates':
+            obs = self.backend.get_packages('obsoletes')
+            pkgs.extend(obs)
+            label = "updates & obsoletes"
+        return [pkgs, label]
 
 
     def on_categoryContent_cursor_changed(self, widget):
@@ -1515,6 +1530,7 @@ class YumexApplication(Controller, YumexFrontend):
         iterator = store.get_iter(path)
         repo_id = store.get_value(iterator, 1)
         store.set_value(iterator, 0, enable)
+        self.start_root_backend()
         self.backend.enable_repo_persistent(repo_id, enable)
 
     # Queue Page

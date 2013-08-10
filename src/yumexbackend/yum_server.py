@@ -184,6 +184,7 @@ class YumServer(yum.YumBase):
         logginglevels.setLoggingApp('yumex')
         if hasattr(self, 'run_with_package_names'):
             self.run_with_package_names.add("yumex")
+        self.setCacheDir()
         self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
         self.repos.setProgressBar(self.dnlCallback)
