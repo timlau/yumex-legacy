@@ -527,7 +527,7 @@ class CompletedEntry(gtk.Entry):
 class StatusIcon:
     rel_font_size = 0.75
     is_working = 0
-    update_count = 0
+    update_count = -2
 
     popup_menu = None
     quit_menu = None
@@ -579,7 +579,10 @@ class StatusIcon:
         else:
             self.set_popup_menu_sensitivity(True)
             update_count = self.update_count
-            if update_count == -1:
+            if update_count == -2:
+                self.statusicon.set_tooltip_text(_("Yum Extender"))
+                pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_no_update)
+            elif update_count == -1:
                 self.statusicon.set_tooltip_text(_("Yum Extender: Error"))
                 pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_error)
             elif update_count == 0:
