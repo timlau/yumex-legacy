@@ -236,6 +236,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.last_queue_text = ""
         self.last_search_text = ""
         self._last_search_filter = None
+        self.refresh_on_show = False
 
 
     @property
@@ -457,7 +458,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.window.resize(self.settings.win_width, self.settings.win_height)
             if self.settings.win_sep > 0:
                 self.ui.packageSep.set_position(self.settings.win_sep)
-        if not self.cfg.cmd_args:
+        if not self.cfg.cmd_args and not self.settings.start_hidden:
             self.window.show()
         # set up the package filters ( updates, available, installed, groups)
         self.setup_filters()
@@ -509,8 +510,11 @@ class YumexApplication(Controller, YumexFrontend):
             else:
                 # setup default package filter (updates)
                 if self.settings.autorefresh:
-                    self.ui.packageRadioUpdates.clicked()
                     self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+                    if self.settings.start_hidden:
+                        self.refresh_on_show = True
+                    else:
+                        self.ui.packageRadioUpdates.clicked()
         elif self.settings.execute: # Auto execute
             queue = self.queue.queue
             if queue.total() != 0:
@@ -519,9 +523,15 @@ class YumexApplication(Controller, YumexFrontend):
             else:
                 okDialog(self.window, _("Nothing to do"))
                 self.main_quit()
-        else:
+        elif not self.settings.start_hidden:
             self.window.show()
         #self.testing()
+    
+    def show(self):
+        YumexFrontend.show(self)
+        if self.refresh_on_show:
+            self.refresh_on_show = False
+            self.ui.packageRadioUpdates.clicked()
 
     def start_root_backend(self):
         self.backend.setup(offline=self.is_offline, repos=self.current_repos,

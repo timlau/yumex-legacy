@@ -37,6 +37,7 @@ from iniparse.compat import ConfigParser
 class YumexConf(BaseConfig):
     """ Yum Extender Config Setting"""
     autorefresh = BoolOption(True)
+    start_hidden = BoolOption(False)
     recentdays = IntOption(14)
     debug = BoolOption(False)
     plugins = BoolOption(True)
@@ -128,6 +129,9 @@ class YumexOptions:
         parser.add_option("-n", "--noauto",
                         action="store_false", dest="autorefresh", default=self.settings.autorefresh,
                         help="No automatic refresh af program start")
+        parser.add_option("", "--start-hidden",
+                        action="store_true", dest="start_hidden", default=self.settings.start_hidden,
+                        help="Start with hidden main window")
         parser.add_option("", "--debuglevel", dest="yumdebuglevel", action="store",
                 default=self.settings.yumdebuglevel, help="yum debugging output level", type='int',
                 metavar='[level]')
@@ -163,7 +167,7 @@ class YumexOptions:
     def update_settings(self):
         """ update setting with commandline options """
         #options = ['plugins', 'debug', 'usecache', 'fullobsoletion','nolauncher']
-        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'disable_netcheck', 'yum_conf',\
+        options = ['plugins', 'debug', 'yumdebuglevel', 'autorefresh', 'start_hidden', 'disable_netcheck', 'yum_conf',\
                     'search', 'update_only', 'always_yes', 'execute', 'use_sudo', 'skip_broken', 'no_gpg_check']
         for opt in options:
             self._calcOption(opt)

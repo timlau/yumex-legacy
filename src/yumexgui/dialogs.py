@@ -507,6 +507,7 @@ class Preferences:
         '''
         vbox = self.ui.prefBasicVBox
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
+        self._add_option(PrefBoolean, vbox, 'start_hidden', _('Start hidden'))
         self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))
         self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Typeahead search is active by default'))
         self._add_option(PrefBoolean, vbox, 'skip_broken', _('Skip Broken is active by default'))
