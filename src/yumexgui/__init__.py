@@ -29,7 +29,7 @@ import pwd
 import time
 
 
-from yumexgui.gui import Notebook, PackageInfo, CompletedEntry
+from yumexgui.gui import Notebook, PackageInfo, CompletedEntry, StatusIcon
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions
 from yumexbase.network import NetworkCheckNetworkManager
@@ -206,7 +206,14 @@ class YumexApplication(Controller, YumexFrontend):
         self.backend = backend(self)
         # init the Controller Class to connect signals etc.
         Controller.__init__(self, BUILDER_FILE , 'main', domain='yumex')
-        progress = Progress(self)
+        self.status_icon = StatusIcon()
+        icon=self.status_icon.get_status_icon()
+        icon.connect("activate", self.on_status_icon_clicked)
+        self.status_icon.quit_menu.connect("activate", self.main_quit)
+        self.status_icon.search_updates_menu.connect("activate",
+                self.check_for_updates)
+
+        progress = Progress(self, self.status_icon)
         YumexFrontend.__init__(self, self.backend, progress)
         self.debug_options = [] # Debug options set in os.environ['YUMEX_DBG']
         self._packages_loaded = False
@@ -337,6 +344,11 @@ class YumexApplication(Controller, YumexFrontend):
         self._add_key_binding(self.ui.viewHistory, '<ctrl>4')
         self._add_key_binding(self.ui.viewOutput, '<ctrl>5')
 
+    def on_status_icon_clicked(self, event):
+        if self.window.get_property('visible'):
+            self.hide()
+        else:
+            self.show()
 
 # shut up pylint whinning about attributes declared outside __init__
 # pylint: disable-msg=W0201
@@ -1397,16 +1409,23 @@ class YumexApplication(Controller, YumexFrontend):
                     self.ui.categoryWindow.show_all()
             normalCursor(self.window)
 
-    def get_packages(self, active):
-        pkgs = self.backend.get_packages(active)
+    def get_packages(self, active, disable_cache=False):
+        pkgs = self.backend.get_packages(active, disable_cache=disable_cache)
         label = active
         # if Updates, then add obsoletes too
         if active == 'updates':
-            obs = self.backend.get_packages('obsoletes')
+            obs = self.backend.get_packages('obsoletes',
+                    disable_cache=disable_cache)
             pkgs.extend(obs)
+            self.status_icon.set_update_count(len(pkgs))
             label = "updates & obsoletes"
         return [pkgs, label]
 
+    def check_for_updates(self, widget=None):
+        self.status_icon.set_is_working(True)
+        pkgs,label = self.get_packages('updates', True)
+        self.status_icon.set_is_working(False)
+        return len(pkgs)
 
     def on_categoryContent_cursor_changed(self, widget):
         '''
@@ -1624,6 +1643,7 @@ class YumexApplication(Controller, YumexFrontend):
         The Queue/Packages Execute button
         '''
         self.debug("Starting pending actions processing")
+        #self.check_for_updates()
         self.process_transaction(action="queue")
         self.debug("Ended pending actions processing")
 

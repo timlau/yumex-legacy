@@ -241,7 +241,7 @@ class Progress(YumexProgressBase):
     The Progress Dialog
     '''
 
-    def __init__(self, frontend):
+    def __init__(self, frontend, status_icon):
         '''
         Setup the progress dialog
         @param ui: the UI class containing the dialog
@@ -279,6 +279,7 @@ class Progress(YumexProgressBase):
         self.extra_hidden = True
         self.task_hidden = True
         self.progress_hidden = False
+        self.status_icon = status_icon
 
     def close(self):
         self.dialog.hide()
@@ -291,7 +292,10 @@ class Progress(YumexProgressBase):
         '''
         Show the progress dialog
         '''
+        if not self._active: self.status_icon.set_is_working(True)
         self._active = True
+        if not self.parent.get_property('visible'): return
+
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show()
@@ -314,6 +318,7 @@ class Progress(YumexProgressBase):
         '''
         Hide the progress dialog
         '''
+        if self._active: self.status_icon.set_is_working(False)
         self._active = False
         #normalCursor(self.parent)
         self.dialog.hide()

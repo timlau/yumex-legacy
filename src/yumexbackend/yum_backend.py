@@ -349,7 +349,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             self.frontend.info(_("yum backend process is ended"))
 
     #@TimeFunction
-    def get_packages(self, pkg_filter, show_dupes=False):
+    def get_packages(self, pkg_filter, show_dupes=False, disable_cache=False):
         '''
         get packages based on filter
         @param pkg_filer: package list filter
@@ -362,7 +362,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         rc = []
         # Getting the packages
         for flt in filters:
-            if not self.package_cache.is_populated(pkg_filter):
+            if not self.package_cache.is_populated(pkg_filter) or disable_cache:
                 pkgs = YumClient.get_packages(self, flt, show_dupes)
                 self.debug('got %i packages from yum backend' % (len(pkgs)))
                 self.package_cache.populate(flt, pkgs)

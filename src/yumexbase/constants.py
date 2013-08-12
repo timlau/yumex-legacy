@@ -84,6 +84,10 @@ ICON_REPOS = PIXMAPS_PATH + '/button-repo.png'
 ICON_HISTORY = PIXMAPS_PATH + '/button-history.png'
 ICON_SPINNER = PIXMAPS_PATH + '/spinner.gif'
 ICON_SMALL_SPINNER = PIXMAPS_PATH + '/spinner-small.gif'
+ICON_TRAY_ERROR = PIXMAPS_PATH + '/tray-error.png'
+ICON_TRAY_NO_UPDATES = PIXMAPS_PATH + '/tray-no-updates.png'
+ICON_TRAY_UPDATES = PIXMAPS_PATH + '/tray-updates.png'
+ICON_TRAY_WORKING = PIXMAPS_PATH + '/tray-working.png'
 
 # NOTE: The package filter radio buttons in the top of the package page
 PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))
