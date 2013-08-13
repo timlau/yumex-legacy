@@ -25,6 +25,7 @@ Yum Extender GUI main module
 
 import sys
 import gtk
+import gobject
 import pwd
 import time
 
@@ -33,6 +34,7 @@ from yumexgui.gui import Notebook, PackageInfo, CompletedEntry, StatusIcon
 from yumexgui.dialogs import Progress, TransactionConfirmation, ErrorDialog, okDialog, \
                              questionDialog, Preferences, okCancelDialog, SearchOptions
 from yumexbase.network import NetworkCheckNetworkManager
+from yumexbase.timestamp import UpdateTimestamp
 from guihelpers import  Controller, TextViewConsole, doGtkEvents, busyCursor, normalCursor, doLoggerSetup
 from yumexgui.views import YumexPackageView, YumexQueueView, YumexRepoView, YumexGroupView, \
                            YumexCategoryContentView, YumexCategoryTypesView, YumexHistoryView, \
@@ -237,6 +239,8 @@ class YumexApplication(Controller, YumexFrontend):
         self.last_search_text = ""
         self._last_search_filter = None
         self.refresh_on_show = False
+        self.update_timer_id = -1
+        self.update_timestamp = UpdateTimestamp()
 
 
     @property
@@ -526,12 +530,16 @@ class YumexApplication(Controller, YumexFrontend):
         elif not self.settings.start_hidden:
             self.window.show()
         #self.testing()
+
+        self.startup_init_update_timer()
+
     
     def show(self):
         YumexFrontend.show(self)
         if self.refresh_on_show:
             self.refresh_on_show = False
-            self.ui.packageRadioUpdates.clicked()
+            if self.ui.packageRadioUpdates.get_active():
+                self.ui.packageRadioUpdates.clicked()
 
     def start_root_backend(self):
         self.backend.setup(offline=self.is_offline, repos=self.current_repos,
@@ -542,6 +550,50 @@ class YumexApplication(Controller, YumexFrontend):
         # we need to refresh the package list of the backend
         pkgs,label = self.get_packages(self._current_active)
         progress.hide()
+
+    def startup_init_update_timer(self):
+        """ start the update timer with a delayed startup
+        """
+        if self.settings.check_for_updates:
+            self.debug("Starting delayed update timer")
+            gobject.timeout_add_seconds(self.settings.update_startup_delay,
+                    self.start_update_timer)
+
+    def start_update_timer(self):
+        """ 
+        start or restart the update timer: check when the last update was done
+        """
+        if self.settings.check_for_updates:
+            if self.settings.update_interval < MIN_UPDATE_INTERVAL:
+                    self.settings.update_interval = MIN_UPDATE_INTERVAL
+            if self.update_timer_id != -1:
+                gobject.source_remove(self.update_timer_id)
+
+            time_diff = self.update_timestamp.get_last_time_diff() # in seconds
+            delay = self.settings.update_interval - int(time_diff/60)
+            if time_diff == -1 or delay < 0:
+                delay = 0
+
+            self.debug("Starting update timer with a delay of {0} min (time_diff={1})"
+                    .format(delay, time_diff))
+            self.update_timer_id = gobject.timeout_add_seconds(60*delay+1,
+                    self.update_timeout)
+        return False
+
+    def update_timeout(self):
+        self.debug("update timer timeout")
+
+        self.update_timer_id = -1
+        progress = self.get_progress()
+        if progress.is_active() or self.window.get_property('visible'):
+            # do not check for updates now: retry in a few sec
+            self.update_timer_id = gobject.timeout_add_seconds(20,
+                    self.update_timeout)
+        else:
+            # check for updates: this will automatically restart the timer
+            self.check_for_updates()
+
+        return False
 
     def settings_updated(self):
         '''
@@ -1428,10 +1480,15 @@ class YumexApplication(Controller, YumexFrontend):
                     disable_cache=disable_cache)
             pkgs.extend(obs)
             self.status_icon.set_update_count(len(pkgs))
+            self.update_timestamp.store_current_time()
+            self.start_update_timer() # restart update timer if necessary
             label = "updates & obsoletes"
         return [pkgs, label]
 
     def check_for_updates(self, widget=None):
+        self.debug("Checking for updates now")
+        if not self.window.get_property('visible'):
+            self.refresh_on_show = True
         self.status_icon.set_is_working(True)
         pkgs,label = self.get_packages('updates', True)
         self.status_icon.set_is_working(False)
@@ -1653,7 +1710,6 @@ class YumexApplication(Controller, YumexFrontend):
         The Queue/Packages Execute button
         '''
         self.debug("Starting pending actions processing")
-        #self.check_for_updates()
         self.process_transaction(action="queue")
         self.debug("Ended pending actions processing")
 

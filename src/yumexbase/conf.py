@@ -38,6 +38,9 @@ class YumexConf(BaseConfig):
     """ Yum Extender Config Setting"""
     autorefresh = BoolOption(True)
     start_hidden = BoolOption(False)
+    check_for_updates = BoolOption(False)
+    update_interval = IntOption(60*3) #in minutes
+    update_startup_delay = IntOption(30) #in seconds
     recentdays = IntOption(14)
     debug = BoolOption(False)
     plugins = BoolOption(True)

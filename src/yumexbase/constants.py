@@ -72,6 +72,8 @@ else:
 OLD_CONF_FILE = os.environ['HOME'] + "/.yumex.conf"
 CONF_DIR = BaseDirectory.save_config_path('yumex')
 CONF_FILE = os.path.join(CONF_DIR,'yumex.conf')
+TIMESTAMP_FILE = os.path.join(CONF_DIR,'update_timestamp.conf')
+MIN_UPDATE_INTERVAL = 5
 
 
 # icons
