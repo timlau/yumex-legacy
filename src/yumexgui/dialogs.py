@@ -460,22 +460,34 @@ class PrefInt(gtk.HBox):
         self._label.modify_font(SMALL_FONT)
         self._label.set_alignment(0.0, 0.5)
         self._label.set_padding(5, 0)
+        self._spinbutton = gtk.SpinButton()
+        self._spinbutton.modify_font(SMALL_FONT)
+        self._spinbutton.set_width_chars(width)
+        self._spinbutton.set_range(0, 999999)
+        self._spinbutton.set_increments(1, 1)
+        self.pack_start(self._label, expand=False, padding=5)
+        self.pack_end(self._spinbutton, expand=False, padding=5)
+        self.show_all()
+
+    def get_value(self):
+        return self._spinbutton.get_value_as_int()
+
+    def set_value(self, value):
+        self._spinbutton.set_value(value)
+
+class PrefStr(gtk.HBox):
+    def __init__(self, text, width=40):
+        gtk.HBox.__init__(self)
+        self._label = gtk.Label(text)
+        self._label.modify_font(SMALL_FONT)
+        self._label.set_alignment(0.0, 0.5)
+        self._label.set_padding(5, 0)
         self._entry = gtk.Entry()
         self._entry.modify_font(SMALL_FONT)
         self._entry.set_width_chars(width)
         self.pack_start(self._label, expand=False, padding=5)
         self.pack_end(self._entry, expand=False, padding=5)
         self.show_all()
-
-    def get_value(self):
-        return int(self._entry.get_text())
-
-    def set_value(self, value):
-        self._entry.set_text(str(value))
-
-class PrefStr(PrefInt):
-    def __init__(self, text, width=40):
-        PrefInt.__init__(self, text, width)
 
     def get_value(self):
         return self._entry.get_text()
