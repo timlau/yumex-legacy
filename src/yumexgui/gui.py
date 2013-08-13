@@ -525,7 +525,7 @@ class CompletedEntry(gtk.Entry):
 
 
 class StatusIcon:
-    rel_font_size = 0.75
+    rel_font_size = 0.7
     is_working = 0
     update_count = -2
 
@@ -606,10 +606,12 @@ class StatusIcon:
         ctx.paint()
 
         font_size = size*relative_font_size
-        ctx.set_source_rgb(0, 0, 0)
+        ctx.set_source_rgb(0.1, 0.1, 0.1)
         # resize font size until text fits ...
         while font_size > 1.0:
             ctx.set_font_size(int(font_size))
+            ctx.select_font_face("Sans", cairo.FONT_SLANT_NORMAL,
+                    cairo.FONT_WEIGHT_BOLD)
             [bearing_x, bearing_y, font_x, font_y, ax, ay] = ctx.text_extents(text) 
             if font_x < size: break
             font_size = font_size * 0.9
