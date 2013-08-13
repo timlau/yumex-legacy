@@ -191,6 +191,9 @@ class YumClientBase:
         else:
             if os.getuid() != 0 and need_root: # Non Root
                 self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
+                cmd = '/usr/bin/sudo'
+                args.append('-n') # Abort sudo if password is needed
+                args.append(MAIN_PATH + "/backend-launcher.py")
             else: # root or not root needed
                 if os.getuid() == 0:
                     self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
