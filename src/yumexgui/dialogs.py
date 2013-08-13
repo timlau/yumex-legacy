@@ -241,7 +241,7 @@ class Progress(YumexProgressBase):
     The Progress Dialog
     '''
 
-    def __init__(self, frontend):
+    def __init__(self, frontend, status_icon):
         '''
         Setup the progress dialog
         @param ui: the UI class containing the dialog
@@ -279,6 +279,7 @@ class Progress(YumexProgressBase):
         self.extra_hidden = True
         self.task_hidden = True
         self.progress_hidden = False
+        self.status_icon = status_icon
 
     def close(self):
         self.dialog.hide()
@@ -291,7 +292,10 @@ class Progress(YumexProgressBase):
         '''
         Show the progress dialog
         '''
+        if not self._active: self.status_icon.set_is_working(True)
         self._active = True
+        if not self.parent.get_property('visible'): return
+
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show()
@@ -314,6 +318,7 @@ class Progress(YumexProgressBase):
         '''
         Hide the progress dialog
         '''
+        if self._active: self.status_icon.set_is_working(False)
         self._active = False
         #normalCursor(self.parent)
         self.dialog.hide()
@@ -445,8 +450,33 @@ class PrefBoolean(gtk.HBox):
     def set_value(self, state):
         self._checkbutton.set_active(state)
 
+    def get_checkbutton(self):
+        return self._checkbutton
+
 class PrefInt(gtk.HBox):
     def __init__(self, text, width=10):
+        gtk.HBox.__init__(self)
+        self._label = gtk.Label(text)
+        self._label.modify_font(SMALL_FONT)
+        self._label.set_alignment(0.0, 0.5)
+        self._label.set_padding(5, 0)
+        self._spinbutton = gtk.SpinButton()
+        self._spinbutton.modify_font(SMALL_FONT)
+        self._spinbutton.set_width_chars(width)
+        self._spinbutton.set_range(0, 999999)
+        self._spinbutton.set_increments(1, 1)
+        self.pack_start(self._label, expand=False, padding=5)
+        self.pack_end(self._spinbutton, expand=False, padding=5)
+        self.show_all()
+
+    def get_value(self):
+        return self._spinbutton.get_value_as_int()
+
+    def set_value(self, value):
+        self._spinbutton.set_value(value)
+
+class PrefStr(gtk.HBox):
+    def __init__(self, text, width=40):
         gtk.HBox.__init__(self)
         self._label = gtk.Label(text)
         self._label.modify_font(SMALL_FONT)
@@ -458,16 +488,6 @@ class PrefInt(gtk.HBox):
         self.pack_start(self._label, expand=False, padding=5)
         self.pack_end(self._entry, expand=False, padding=5)
         self.show_all()
-
-    def get_value(self):
-        return int(self._entry.get_text())
-
-    def set_value(self, value):
-        self._entry.set_text(str(value))
-
-class PrefStr(PrefInt):
-    def __init__(self, text, width=40):
-        PrefInt.__init__(self, text, width)
 
     def get_value(self):
         return self._entry.get_text()
@@ -502,6 +522,17 @@ class Preferences:
         '''
         vbox = self.ui.prefBasicVBox
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
+        self._add_option(PrefBoolean, vbox, 'start_hidden', _('Start hidden'))
+        updates_opt = self._add_option(PrefBoolean, vbox, 'check_for_updates', _('Autocheck for updates'))
+        self._update_interval = self._add_option(PrefInt, vbox, 
+                'update_interval', _('Update check interval (in minutes)'))
+        self._update_startup_delay = self._add_option(PrefInt, vbox,
+                'update_startup_delay', _('Startup delay before checking for updates (in seconds)'))
+
+        button = updates_opt.get_checkbutton()
+        button.connect("toggled", self._check_for_updates_clicked)
+        self._check_for_updates_clicked(button)
+
         self._add_option(PrefBoolean, vbox, 'use_sortable_view', _('Use sortable columns in package view (slower)'))
         self._add_option(PrefBoolean, vbox, 'typeahead_search', _('Typeahead search is active by default'))
         self._add_option(PrefBoolean, vbox, 'skip_broken', _('Skip Broken is active by default'))
@@ -509,6 +540,11 @@ class Preferences:
         self._add_option(PrefBoolean, vbox, 'show_newest_only', _('Show Newest Only is active by default'))
         self._add_option(PrefBoolean, vbox, 'remove_requirements', _('Clean Unused Requirements is active by default'))
         vbox.show_all()
+
+    def _check_for_updates_clicked(self, widget):
+        active = widget.get_active()
+        self._update_interval.set_sensitive(active)
+        self._update_startup_delay.set_sensitive(active)
 
     def setup_advanced(self):
         '''
@@ -544,6 +580,7 @@ class Preferences:
         vbox.pack_start(opt , expand=False, padding=5)
         self._options[id] = opt
         opt.set_value(getattr(self.settings, id))
+        return opt
 
     def _refresh(self):
         for id in self._options:

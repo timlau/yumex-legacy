@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 #    Yum Exteder (yumex) - A GUI for yum
 #    Copyright (C) 2008 Tim Lauridsen < tim<AT>yum-extender<DOT>org >
+#    modified 2013 by Beat Kueng <beat-kueng@gmx.net>
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -23,6 +24,8 @@
 '''
 
 import gtk
+import cairo
+import random
 
 
 from datetime import date
@@ -521,3 +524,127 @@ class CompletedEntry(gtk.Entry):
 
 
 
+class StatusIcon:
+    rel_font_size = 0.7
+    is_working = 0
+    update_count = -2
+
+    popup_menu = None
+    quit_menu = None
+    search_updates_menu = None
+
+
+    def __init__(self):
+        self.image_checking = ICON_TRAY_WORKING
+        self.image_no_update= ICON_TRAY_NO_UPDATES
+        self.image_updates  = ICON_TRAY_UPDATES
+        self.image_error    = ICON_TRAY_ERROR
+
+        self.statusicon = gtk.StatusIcon()
+        self.init_popup_menu()
+        self.update_tray_icon()
+
+    def init_popup_menu(self):
+        menu = gtk.Menu()
+        self.popup_menu = menu
+
+        quit = gtk.MenuItem(_("Quit"))
+        self.quit_menu = quit
+
+        search_updates = gtk.MenuItem(_("Search for Updates"))
+        self.search_updates_menu = search_updates
+        
+        menu.append(search_updates)
+        menu.append(quit)
+        menu.show_all()
+        self.statusicon.connect("popup-menu", self.on_popup)
+
+
+    def set_popup_menu_sensitivity(self, sensitive):
+        self.quit_menu.set_sensitive(sensitive)
+        self.search_updates_menu.set_sensitive(sensitive)
+        
+    def on_popup(self, icon, button, time):
+        self.popup_menu.popup(None, None, gtk.status_icon_position_menu, button,
+                time, self.statusicon)
+
+    def get_status_icon(self):
+        return self.statusicon
+
+    def update_tray_icon(self):
+        if self.is_working > 0:
+            self.statusicon.set_tooltip_text("Yum Extender: Working")
+            pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_checking)
+            self.set_popup_menu_sensitivity(False)
+        else:
+            self.set_popup_menu_sensitivity(True)
+            update_count = self.update_count
+            if update_count == -2:
+                self.statusicon.set_tooltip_text(_("Yum Extender"))
+                pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_no_update)
+            elif update_count == -1:
+                self.statusicon.set_tooltip_text(_("Yum Extender: Error"))
+                pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_error)
+            elif update_count == 0:
+                self.statusicon.set_tooltip_text(_("Yum Extender: No Updates"))
+                pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_no_update)
+            else:
+                self.statusicon.set_tooltip_text(_("Yum Extender: %s Updates available")
+                        % update_count)
+                pixbuf = self.get_pixbuf_with_text(self.image_updates,
+                        str(update_count), self.rel_font_size)
+        self.statusicon.set_from_pixbuf(pixbuf)
+        gtk.main_iteration(False)
+
+    # png_file must be a squared image
+    def get_pixbuf_with_text(self, png_file, text, relative_font_size):
+        img = cairo.ImageSurface.create_from_png(png_file)  
+        size = img.get_height()
+        surface = cairo.ImageSurface (cairo.FORMAT_ARGB32, size, size)
+        ctx = cairo.Context (surface)
+        ctx.set_source_surface(img, 0, 0)  
+        ctx.paint()
+
+        font_size = size*relative_font_size
+        ctx.set_source_rgb(0.1, 0.1, 0.1)
+        # resize font size until text fits ...
+        while font_size > 1.0:
+            ctx.set_font_size(int(font_size))
+            ctx.select_font_face("Sans", cairo.FONT_SLANT_NORMAL,
+                    cairo.FONT_WEIGHT_BOLD)
+            [bearing_x, bearing_y, font_x, font_y, ax, ay] = ctx.text_extents(text) 
+            if font_x < size: break
+            font_size = font_size * 0.9
+        ctx.move_to(int(size-font_x)/2-bearing_x , int(size-font_y)/2-bearing_y)
+        ctx.show_text(text)
+        ctx.stroke()
+
+        # this is ugly but the easiest way to get a pixbuf from a cairo image
+        # surface...
+        r = int(random.random()*999999)
+        file_name = "/tmp/notifier_tmp_"+str(r)+".png"
+        surface.write_to_png(file_name)
+        pixbuf = gtk.gdk.pixbuf_new_from_file(file_name)
+        os.remove(file_name)
+        return pixbuf
+
+
+    def set_update_count(self, update_count):
+        '''
+        set the available update count
+        @param update_count: =0: no updates, -1: error occured
+        '''
+        self.update_count = update_count
+        self.update_tray_icon()
+
+    def set_is_working(self, is_working=True):
+        '''
+        set working: show a busy tray icon if is_working is True
+        '''
+        if is_working:
+            self.is_working = self.is_working+1
+        else:
+            self.is_working = self.is_working-1
+        self.update_tray_icon()
+
+        

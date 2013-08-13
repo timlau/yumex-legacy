@@ -169,11 +169,12 @@ class YumClientBase:
         param = pack(cmd)
         self._send_command("#run", [param])
 
-    def _start_launcher(self, filelog):
+    def _start_launcher(self, filelog, need_root):
         args = []
         if IS_PROD: # Bin package
-            if os.getuid() == 0: # Root
-                self.info(_('Client is running in rootmode, starting backend launcher directly'))
+            if os.getuid() == 0 or not need_root: # Root
+                if need_root:
+                    self.info(_('Client is running in rootmode, starting backend launcher directly'))
                 cmd = '/usr/share/yumex/backend-launcher.py'
             else: # Non root run using console helper wrapper
                 if self.frontend.settings.use_sudo:
@@ -188,13 +189,13 @@ class YumClientBase:
                     self.using_polkit = True
 
         else:
-            if os.getuid() != 0: # Non Root
+            if os.getuid() != 0 and need_root: # Non Root
                 self.info('Running backend launcher with \"sudo %s\"' % (MAIN_PATH + "/backend-launcher.py"))
-                cmd = '/usr/bin/sudo'
-                args.append('-n') # Abort sudo if password is needed
-                args.append(MAIN_PATH + "/backend-launcher.py")
-            else: # root
-                self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
+            else: # root or not root needed
+                if os.getuid() == 0:
+                    self.info('ROOTMODE: Running backend launcher (%s)' % (MAIN_PATH + "/backend-launcher.py"))
+                else:
+                    self.info('Running backend launcher as non-root (%s)' % (MAIN_PATH + "/backend-launcher.py"))
                 cmd = MAIN_PATH + "/backend-launcher.py"
         self.child = pexpect.spawn(cmd, args, timeout=self._timeout_value)
         self.child.setecho(False)
@@ -203,13 +204,14 @@ class YumClientBase:
         self._wait_for_launcher_started()
         self.launcher_is_started = True
 
-    def setup(self, debuglevel=2, plugins=True, filelog=False, offline=False, repos=None, proxy=None, yum_conf='/etc/yum.conf'):
+    def setup(self, debuglevel=2, plugins=True, filelog=False, offline=False,
+            repos=None, proxy=None, yum_conf='/etc/yum.conf', need_root=True):
         ''' Setup the client and spawn the server'''
         if not self.yum_backend_is_running:
             self.debug("Setup START")
             args = []
             if not self.launcher_is_started:
-                self._start_launcher(filelog)
+                self._start_launcher(filelog, need_root)
             cmd = MAIN_PATH + "/yum_childtask.py "
             args.append(str(debuglevel)) # debuglevel
             args.append(str(plugins))    # plugins
@@ -532,9 +534,11 @@ class YumClientBase:
             if self.child.isalive():
                 try:
                     self._send_command("#exit", []) # Send exit to backend launcher
-                    cmd, args = self._readline()
-                    self.debug(cmd)
-                    time.sleep(2) # Waiting a while to make sure that backend is closed
+                    beg = time.time()
+                    while self.child.isalive():
+                        time.sleep(0.1)
+                        if time.time() - beg > 2:
+                            break
                     self.debug("Forcing backend to close")
                     self.child.close(force=True)
                 except pexpect.ExceptionPexpect, e:
@@ -543,6 +547,7 @@ class YumClientBase:
                     raise YumexBackendFatalError("backend-error", str(e))
             del self.child
         self.child = None
+        self.launcher_is_started=False
 
     def execute_command(self, cmd , args=[]):
         '''

@@ -20,6 +20,7 @@ BuildRequires: intltool
 
 Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
+Requires: pycairo
 Requires: pexpect
 Requires: python-iniparse
 Requires: dbus-python

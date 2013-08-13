@@ -118,6 +118,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         YumClient.__init__(self, frontend)
         self.dont_abort = False
         self.package_cache = PackageCache(self, frontend)
+        self._running_as_root = True
 
     # Overload the YumClient message methods
 
@@ -314,10 +315,15 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         """ debug message """
         self.frontend.exception(unpack(msg))
 
-    def setup(self, offline=False, repos=None):
+    def setup(self, offline=False, repos=None, need_root=True):
         ''' Setup the backend'''
         if self.yum_backend_is_running: # Check if backend is already running
-            return
+            if self._running_as_root == need_root or self._running_as_root:
+                return
+            self.debug('Restarting backend as root')
+            self.reset() # stop the running backend
+            self._close() # stop the running launcher process
+        self._running_as_root = need_root or os.getuid()==0
         self.frontend.info(_("Starting yum child process"))
         if repos:
             self.frontend.info(_("Using the following repositories :\n%s\n\n") % (','.join(repos)))
@@ -329,7 +335,9 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         if 'show_backend' in self.frontend.debug_options:
             filelog = True
         self.debug('Initialize yum backend - BEGIN')
-        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins, filelog=filelog, offline=offline, repos=repos, proxy=proxy, yum_conf=yum_conf)
+        rc = YumClient.setup(self, debuglevel=yumdebuglevel, plugins=plugins,
+                filelog=filelog, offline=offline, repos=repos, proxy=proxy,
+                yum_conf=yum_conf, need_root=need_root)
         self.debug('Initialize yum backend - END')
         return rc
 
@@ -341,7 +349,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             self.frontend.info(_("yum backend process is ended"))
 
     #@TimeFunction
-    def get_packages(self, pkg_filter, show_dupes=False):
+    def get_packages(self, pkg_filter, show_dupes=False, disable_cache=False):
         '''
         get packages based on filter
         @param pkg_filer: package list filter
@@ -354,7 +362,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         rc = []
         # Getting the packages
         for flt in filters:
-            if not self.package_cache.is_populated(pkg_filter):
+            if not self.package_cache.is_populated(pkg_filter) or disable_cache:
                 pkgs = YumClient.get_packages(self, flt, show_dupes)
                 self.debug('got %i packages from yum backend' % (len(pkgs)))
                 self.package_cache.populate(flt, pkgs)
