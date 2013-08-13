@@ -563,11 +563,12 @@ class YumexApplication(Controller, YumexFrontend):
         """ 
         start or restart the update timer: check when the last update was done
         """
+        if self.update_timer_id != -1:
+            gobject.source_remove(self.update_timer_id)
+
         if self.settings.check_for_updates:
             if self.settings.update_interval < MIN_UPDATE_INTERVAL:
                     self.settings.update_interval = MIN_UPDATE_INTERVAL
-            if self.update_timer_id != -1:
-                gobject.source_remove(self.update_timer_id)
 
             time_diff = self.update_timestamp.get_last_time_diff() # in seconds
             delay = self.settings.update_interval - int(time_diff/60)
@@ -601,6 +602,7 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         # Typeahead seach active by default.
         self.ui.searchTypeAhead.set_active(self.settings.typeahead_search)
+        self.start_update_timer() # update the timer
 
 
 # pylint: enable-msg=W0201
