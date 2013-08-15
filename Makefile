@@ -117,7 +117,7 @@ test-builds:
 
 transifex-setup:
 	tx init
-	tx set --auto-remote https://www.transifex.net/projects/p/yumex/
+	tx set --auto-remote https://www.transifex.com/projects/p/yumex/
 	tx set --auto-local  -r yumex.master 'po/<lang>.po' --source-lang en --source-file po/yumex.pot --execute
 
 
