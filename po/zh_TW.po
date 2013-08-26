@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-#   <chaoweilun@gmail.com>, 2012.
-# Wei-Lun Chao <william.chao@ossii.com.tw>, 2006, 2007, 2012.
+# chaoweilun <chaoweilun@gmail.com>, 2012
+# Wei-Lun Chao <bluebat@member.fsf.org>, 2013
+# Wei-Lun Chao <william.chao@ossii.com.tw>, 2006-2007,2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 10:52-0400\n"
-"PO-Revision-Date: 2012-10-24 14:52+0000\n"
+"POT-Creation-Date: 2013-08-15 18:24+0200\n"
+"PO-Revision-Date: 2013-08-15 16:24+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/yumex/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -27,241 +28,241 @@ msgid "network interface %s is connected"
 msgstr "已連線至網路介面 %s"
 
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:89
+#: ../src/yumexbase/constants.py:95
 msgid "updates"
 msgstr "更新"
 
-#: ../src/yumexbase/constants.py:89
+#: ../src/yumexbase/constants.py:95
 msgid "available"
 msgstr "可用"
 
-#: ../src/yumexbase/constants.py:89
+#: ../src/yumexbase/constants.py:95
 msgid "installed"
 msgstr "已安裝"
 
-#: ../src/yumexbase/constants.py:109
+#: ../src/yumexbase/constants.py:115
 #, python-format
 msgid "Downloading repository information for the %s repository"
-msgstr ""
+msgstr "下載 %s 套件庫的資訊"
 
-#: ../src/yumexbase/constants.py:110 ../src/yumexbase/constants.py:111
+#: ../src/yumexbase/constants.py:116 ../src/yumexbase/constants.py:117
 #, python-format
 msgid "Downloading Package information for the %s repository"
 msgstr "下載 %s 套件庫中的套件資訊"
 
-#: ../src/yumexbase/constants.py:112
+#: ../src/yumexbase/constants.py:118 ../src/yumexbase/constants.py:119
 #, python-format
 msgid "Downloading Filelist information for the %s repository"
 msgstr "下載 %s 套件庫中的檔案列表資訊"
 
-#: ../src/yumexbase/constants.py:113
+#: ../src/yumexbase/constants.py:120 ../src/yumexbase/constants.py:121
 #, python-format
 msgid "Downloading Changelog information for the %s repository"
 msgstr "下載 %s 套件庫中的變更記錄資訊"
 
-#: ../src/yumexbase/constants.py:114
+#: ../src/yumexbase/constants.py:122
 #, python-format
 msgid "Downloading Group information for the %s repository"
 msgstr "下載 %s 套件庫中的群組資訊"
 
-#: ../src/yumexbase/constants.py:115
+#: ../src/yumexbase/constants.py:123
 #, python-format
 msgid "Downloading metalink information for the %s repository"
 msgstr "下載 %s 套件庫中的後設連結資訊"
 
-#: ../src/yumexbase/constants.py:116 ../src/yumexbase/constants.py:117
+#: ../src/yumexbase/constants.py:124 ../src/yumexbase/constants.py:125
 #, python-format
 msgid "Downloading Delta update information for the %s repository"
 msgstr "下載 %s 套件庫中的差異更新資訊"
 
-#: ../src/yumexbase/constants.py:118
+#: ../src/yumexbase/constants.py:126
 #, python-format
 msgid "Downloading Update information for the %s repository"
 msgstr "下載 %s 套件庫中的更新資訊"
 
-#: ../src/yumexbase/constants.py:129
+#: ../src/yumexbase/constants.py:137
 msgid "0 - 7 Days"
 msgstr "0 - 7 天"
 
-#: ../src/yumexbase/constants.py:130
+#: ../src/yumexbase/constants.py:138
 msgid "7 - 14 Days"
 msgstr "7 - 14 天"
 
-#: ../src/yumexbase/constants.py:131
+#: ../src/yumexbase/constants.py:139
 msgid "14 - 21 Days"
 msgstr "14 - 21 天"
 
-#: ../src/yumexbase/constants.py:132
+#: ../src/yumexbase/constants.py:140
 msgid "21  - 30 days"
 msgstr "21  - 30 天"
 
-#: ../src/yumexbase/constants.py:133
+#: ../src/yumexbase/constants.py:141
 msgid "30 - 90 days"
 msgstr "30 - 90 天"
 
-#: ../src/yumexbase/constants.py:134
+#: ../src/yumexbase/constants.py:142
 msgid "90+ days"
 msgstr "90 天以上"
 
-#: ../src/yumexbase/constants.py:156
+#: ../src/yumexbase/constants.py:164
 msgid "Getting all packages"
 msgstr "提取所有套件"
 
-#: ../src/yumexbase/constants.py:157
+#: ../src/yumexbase/constants.py:165
 msgid "Getting installed packages"
 msgstr "提取已安裝的套件"
 
-#: ../src/yumexbase/constants.py:158
+#: ../src/yumexbase/constants.py:166
 msgid "Getting available packages"
 msgstr "提取可用套件"
 
-#: ../src/yumexbase/constants.py:159
+#: ../src/yumexbase/constants.py:167
 msgid "Getting available updates"
 msgstr "提取可用更新"
 
-#: ../src/yumexbase/constants.py:160
+#: ../src/yumexbase/constants.py:168
 msgid "Getting available obsoletes"
 msgstr "提取可用淘汰"
 
-#: ../src/yumexbase/constants.py:165
+#: ../src/yumexbase/constants.py:173
 #, python-format
 msgid "%s is updated"
 msgstr "%s 已更新"
 
-#: ../src/yumexbase/constants.py:166
+#: ../src/yumexbase/constants.py:174
 #, python-format
 msgid "%s is erased"
 msgstr "%s 已清除"
 
-#: ../src/yumexbase/constants.py:167 ../src/yumexbase/constants.py:168
-#: ../src/yumexbase/constants.py:170
+#: ../src/yumexbase/constants.py:175 ../src/yumexbase/constants.py:176
+#: ../src/yumexbase/constants.py:178
 #, python-format
 msgid "%s is installed"
 msgstr "%s 已安裝"
 
-#: ../src/yumexbase/constants.py:169
+#: ../src/yumexbase/constants.py:177
 #, python-format
 msgid "%s is obsoleted"
 msgstr "%s 已淘汰"
 
-#: ../src/yumexbase/constants.py:171
+#: ../src/yumexbase/constants.py:179
 #, python-format
 msgid "%s is cleanup"
 msgstr "%s 已清理"
 
-#: ../src/yumexbase/constants.py:182
+#: ../src/yumexbase/constants.py:190
 msgid "Updated packages"
 msgstr "已更新的套件"
 
-#: ../src/yumexbase/constants.py:183
+#: ../src/yumexbase/constants.py:191
 msgid "Downgraded packages"
 msgstr "已降級的套件"
 
-#: ../src/yumexbase/constants.py:184
+#: ../src/yumexbase/constants.py:192
 msgid "Obsoleting packages"
 msgstr "已新替的套件"
 
-#: ../src/yumexbase/constants.py:185
+#: ../src/yumexbase/constants.py:193
 msgid "Obsoleted packages"
 msgstr "已淘汰的套件"
 
-#: ../src/yumexbase/constants.py:186
+#: ../src/yumexbase/constants.py:194
 msgid "Erased packages"
 msgstr "已清除的套件"
 
-#: ../src/yumexbase/constants.py:187 ../src/yumexbase/constants.py:188
+#: ../src/yumexbase/constants.py:195 ../src/yumexbase/constants.py:196
 msgid "Installed packages"
 msgstr "已安裝的套件"
 
-#: ../src/yumexbase/constants.py:189
+#: ../src/yumexbase/constants.py:197
 msgid "Installed for dependencies"
 msgstr "根據相依性而安裝"
 
-#: ../src/yumexbase/constants.py:190
+#: ../src/yumexbase/constants.py:198
 msgid "Reinstalled packages"
 msgstr "重新安裝的套件"
 
-#: ../src/yumexbase/constants.py:216 ../src/yumexgui/views.py:878
-#: ../src/yumexgui/dialogs.py:669
+#: ../src/yumexbase/constants.py:224 ../src/yumexgui/views.py:878
+#: ../src/yumexgui/dialogs.py:706
 msgid "Name"
 msgstr "名稱"
 
-#: ../src/yumexbase/constants.py:217 ../src/yumexgui/views.py:200
+#: ../src/yumexbase/constants.py:225 ../src/yumexgui/views.py:200
 #: ../src/yumexgui/views.py:395 ../src/yumexgui/views.py:512
 #: ../src/yumexgui/views.py:731
 msgid "Summary"
 msgstr "概要"
 
-#: ../src/yumexbase/constants.py:218 ../src/yumexgui/gui.py:391
+#: ../src/yumexbase/constants.py:226 ../src/yumexgui/gui.py:393
 msgid "Description"
 msgstr "描述"
 
-#: ../src/yumexbase/constants.py:219 ../src/yumexgui/dialogs.py:670
+#: ../src/yumexbase/constants.py:227 ../src/yumexgui/dialogs.py:707
 msgid "Arch"
 msgstr "硬體架構"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:168
 #: ../src/yumexbackend/yum_backend.py:169
+#: ../src/yumexbackend/yum_backend.py:170
 msgid "Getting Package Information"
 msgstr "提取套件資訊"
 
-#: ../src/yumexbackend/yum_backend.py:196
+#: ../src/yumexbackend/yum_backend.py:197
 #, python-format
 msgid "Unknown metadata type (%s) for %s"
-msgstr ""
+msgstr "不明的後設資料型態 (%s) 於 %s"
 
-#: ../src/yumexbackend/yum_backend.py:199
+#: ../src/yumexbackend/yum_backend.py:200
 #, python-format
 msgid "Repo Metadata for %s"
-msgstr ""
+msgstr "%s 的套件庫後設資料"
 
-#: ../src/yumexbackend/yum_backend.py:203
+#: ../src/yumexbackend/yum_backend.py:204
 msgid "Building rpms from deltarpm"
 msgstr "從 deltarpm 建立 rpms"
 
-#: ../src/yumexbackend/yum_backend.py:219 ../src/yumexgui/dialogs.py:267
+#: ../src/yumexbackend/yum_backend.py:220 ../src/yumexgui/dialogs.py:267
 msgid "Downloading Packages"
 msgstr "下載套件"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:225 ../src/yumexgui/dialogs.py:268
+#: ../src/yumexbackend/yum_backend.py:226 ../src/yumexgui/dialogs.py:268
 msgid "Checking Package GPG Signatures"
 msgstr "檢查套件的 GPG 簽名"
 
-#: ../src/yumexbackend/yum_backend.py:230 ../src/yumexgui/dialogs.py:269
+#: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:269
 msgid "Running RPM Test Transaction"
 msgstr "執行 RPM 異動作業測試"
 
-#: ../src/yumexbackend/yum_backend.py:234 ../src/yumexgui/dialogs.py:270
+#: ../src/yumexbackend/yum_backend.py:235 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Transaction"
 msgstr "執行 RPM 異動作業"
 
-#: ../src/yumexbackend/yum_backend.py:239
+#: ../src/yumexbackend/yum_backend.py:240
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
 msgstr "您要匯入 GPG 金鑰嗎：%s\n"
 
-#: ../src/yumexbackend/yum_backend.py:241
+#: ../src/yumexbackend/yum_backend.py:242
 #, python-format
 msgid "Needed by %s"
 msgstr "是 %s 所需的"
 
-#: ../src/yumexbackend/yum_backend.py:256
+#: ../src/yumexbackend/yum_backend.py:257
 #, python-format
 msgid "Please insert media labeled %s #%d."
 msgstr "請插入標記為 %s #%d 的媒體。"
 
-#: ../src/yumexbackend/yum_backend.py:258
+#: ../src/yumexbackend/yum_backend.py:259
 #, python-format
 msgid "Please insert media labeled %s."
 msgstr "請插入標記為 %s 的媒體。"
 
-#: ../src/yumexbackend/yum_backend.py:321
+#: ../src/yumexbackend/yum_backend.py:327
 msgid "Starting yum child process"
-msgstr "開始 yum 子進程"
+msgstr "開始 yum 子行程"
 
-#: ../src/yumexbackend/yum_backend.py:323
+#: ../src/yumexbackend/yum_backend.py:329
 #, python-format
 msgid ""
 "Using the following repositories :\n"
@@ -269,67 +270,65 @@ msgid ""
 "\n"
 msgstr "使用下列套件庫：\n%s\n\n"
 
-#: ../src/yumexbackend/yum_backend.py:341
+#: ../src/yumexbackend/yum_backend.py:349
 msgid "yum backend process is ended"
 msgstr "yum 後端處理已結束"
 
-#: ../src/yumexbackend/yum_backend.py:365
+#: ../src/yumexbackend/yum_backend.py:373
 #, python-format
 msgid "%i packages returned"
 msgstr "%i 個套件已回傳"
 
-#: ../src/yumexbackend/yum_backend.py:542 ../src/yumexgui/dialogs.py:266
+#: ../src/yumexbackend/yum_backend.py:550 ../src/yumexgui/dialogs.py:266
 msgid "Resolving Dependencies"
 msgstr "解析相依性"
 
-#: ../src/yumexbackend/yum_backend.py:559
-#: ../src/yumexbackend/yum_backend.py:560
+#: ../src/yumexbackend/yum_backend.py:567
+#: ../src/yumexbackend/yum_backend.py:568
 msgid "Dependency Resolution Failed"
 msgstr "相依性解析失敗"
 
-#: ../src/yumexbackend/yum_backend.py:561
+#: ../src/yumexbackend/yum_backend.py:569
 msgid "Dependency Resolution Errors:"
 msgstr "相依性解析錯誤："
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:570
+#: ../src/yumexbackend/yum_backend.py:578
 msgid "Dependency resolving completed with errors"
 msgstr "相依性解析已完成但發生錯誤"
 
-#. Bin package
-#. Root
-#: ../src/yumexbackend/yum_client.py:176
+#: ../src/yumexbackend/yum_client.py:177
 msgid "Client is running in rootmode, starting backend launcher directly"
 msgstr "客戶端在管理者模式中執行，直接開啟後端執行程式"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:252
+#: ../src/yumexbackend/yum_client.py:257
 msgid "Yum backend did not close nicely in time"
 msgstr "Yum 後端程式並未及時正常關閉"
 
 #. default error
-#: ../src/yumexbackend/yum_client.py:325
+#: ../src/yumexbackend/yum_client.py:330
 #, python-format
 msgid ""
 "Backend not running as expected \n"
 "\n"
 "Yum Extender will terminate\n"
 "   --> exit code : %s"
-msgstr ""
+msgstr "後端軟體的運行不如預期\n\nYum Extender 即將終止\n   --> 結束碼 : %s"
 
-#: ../src/yumexbackend/yum_client.py:329
+#: ../src/yumexbackend/yum_client.py:334
 msgid ""
 "Could not get polkit autherisation to start backend \n"
 "\n"
 "Yum Extender will terminate"
-msgstr ""
+msgstr "無法取得 polkit 的憑證以啟動後端軟體\n\nYum Extender 即將終止"
 
-#: ../src/yumexbackend/yum_client.py:331
+#: ../src/yumexbackend/yum_client.py:336
 msgid ""
 "User has cancelled polkit autherisation\n"
 "\n"
 "Yum Extender will terminate"
-msgstr ""
+msgstr "使用者已經取消了 polkit 憑證\n\nYum Extender 即將終止"
 
 #: ../src/yumexbackend/yum_server.py:180
 #, python-format
@@ -338,95 +337,95 @@ msgstr "使用 %s 做為 yum 組態"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:247 ../src/yumexbackend/yum_server.py:256
+#: ../src/yumexbackend/yum_server.py:248 ../src/yumexbackend/yum_server.py:257
 #, python-format
 msgid "No network connection, disable non local repo %s"
 msgstr "沒有網路連線，停用非本地套件庫 %s"
 
-#: ../src/yumexbackend/yum_server.py:271
+#: ../src/yumexbackend/yum_server.py:272
 msgid "Yum is locked : "
 msgstr "Yum 被鎖定："
 
-#: ../src/yumexbackend/yum_server.py:276
+#: ../src/yumexbackend/yum_server.py:277
 msgid "  The other application is: PackageKit"
 msgstr "  另外的應用程式是：PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:278
+#: ../src/yumexbackend/yum_server.py:279
 #, python-format
 msgid "  The other application is: %s"
 msgstr "  另外的應用程式是：%s"
 
-#: ../src/yumexbackend/yum_server.py:280
+#: ../src/yumexbackend/yum_server.py:281
 msgid "Waiting 10 seconds and tries again !!!"
 msgstr "等待 10 秒後再試一次 !!!"
 
 #. yumRepo will catch this
-#: ../src/yumexbackend/yum_server.py:315
+#: ../src/yumexbackend/yum_server.py:316
 msgid "The disc was not inserted"
 msgstr "碟片未插入"
 
-#: ../src/yumexbackend/yum_server.py:346
+#: ../src/yumexbackend/yum_server.py:347
 msgid "Closing rpm db and releasing yum lock  "
 msgstr "關閉 rpm 資料庫並釋放 yum 鎖定  "
 
-#: ../src/yumexbackend/yum_server.py:822
+#: ../src/yumexbackend/yum_server.py:824
 msgid "Installing"
 msgstr "正在安裝"
 
-#: ../src/yumexbackend/yum_server.py:873
+#: ../src/yumexbackend/yum_server.py:875
 #, python-format
 msgid "Error in yum Transaction : %s"
 msgstr "在 yum 異動作業時發生錯誤：%s"
 
-#: ../src/yumexbackend/yum_server.py:876
+#: ../src/yumexbackend/yum_server.py:878
 msgid "Exception in run_transaction"
 msgstr "執行異動作業時發生異常"
 
-#: ../src/yumexbackend/yum_server.py:915
+#: ../src/yumexbackend/yum_server.py:917
 #, python-format
 msgid "Failure getting %s: "
 msgstr "提取 %s 時失敗："
 
-#: ../src/yumexbackend/yum_server.py:916
+#: ../src/yumexbackend/yum_server.py:918
 msgid "Trying other mirror."
 msgstr "嘗試其他鏡像網址。"
 
-#: ../src/yumexbackend/yum_server.py:1159
+#: ../src/yumexbackend/yum_server.py:1161
 #, python-format
 msgid "The %s repository has been enabled permanently"
 msgstr "%s 套件庫已被永久啟用"
 
-#: ../src/yumexbackend/yum_server.py:1162
+#: ../src/yumexbackend/yum_server.py:1164
 #, python-format
 msgid "The %s repository has been disabled permanently"
 msgstr "%s 套件庫已被永久停用"
 
-#: ../src/yumexbackend/yum_server.py:1172
+#: ../src/yumexbackend/yum_server.py:1174
 #, python-format
 msgid "Setting Yum Option %s = %s"
 msgstr "設定 Yum 選項 %s = %s"
 
-#: ../src/yumexbackend/yum_server.py:1237
+#: ../src/yumexbackend/yum_server.py:1239
 msgid "Cleaned metadata from local cache"
 msgstr "後設資料已從本地快取中清除"
 
-#: ../src/yumexbackend/yum_server.py:1240
+#: ../src/yumexbackend/yum_server.py:1242
 msgid "Cleaned dbcache"
 msgstr "資料庫快取已清除"
 
-#: ../src/yumexbackend/yum_server.py:1243
+#: ../src/yumexbackend/yum_server.py:1245
 msgid "Cleaned packages from local cache"
 msgstr "套件已從本地快取中清除"
 
-#: ../src/yumexbackend/yum_server.py:1245
+#: ../src/yumexbackend/yum_server.py:1247
 msgid "Cleaned everything from local cache"
 msgstr "所有東西已從本地快取中清除"
 
-#: ../src/yumexbackend/yum_server.py:1665
+#: ../src/yumexbackend/yum_server.py:1667
 msgid "Rebuild from deltarpms completed"
 msgstr "從 deltarpms 的重建已完成"
 
-#: ../src/yumexbackend/yum_server.py:1667
+#: ../src/yumexbackend/yum_server.py:1669
 #, python-format
 msgid "Downloaded : %s ( %s )"
 msgstr "已下載：%s (%s)"
@@ -440,7 +439,7 @@ msgstr "已下載：%s (%s)"
 msgid "Package"
 msgstr "套件"
 
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:671
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:708
 msgid "Ver"
 msgstr "版本"
 
@@ -452,7 +451,7 @@ msgstr "套件庫"
 msgid "Architecture"
 msgstr "硬體架構"
 
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:673
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:710
 msgid "Size"
 msgstr "大小"
 
@@ -478,7 +477,7 @@ msgstr "大小"
 msgid "Package Queue:"
 msgstr "套件佇列："
 
-#: ../src/yumexgui/views.py:726 ../src/yumexgui/__init__.py:385
+#: ../src/yumexgui/views.py:726 ../src/yumexgui/__init__.py:402
 msgid "Packages"
 msgstr "套件"
 
@@ -489,7 +488,7 @@ msgstr "<b>降級到</b> %s "
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:831 ../src/yumexgui/views.py:877
-#: ../src/yumexgui/dialogs.py:672
+#: ../src/yumexgui/dialogs.py:709
 msgid "Repository"
 msgstr "套件庫"
 
@@ -526,191 +525,191 @@ msgstr "動作"
 msgid "Altered"
 msgstr "已改變"
 
-#: ../src/yumexgui/__init__.py:281
+#: ../src/yumexgui/__init__.py:293
 msgid "Fatal Error"
 msgstr "嚴重錯誤"
 
 #. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:283
+#: ../src/yumexgui/__init__.py:295
 msgid "Can't start the yum backend"
 msgstr "無法啟動 yum 後端程式"
 
-#: ../src/yumexgui/__init__.py:284
+#: ../src/yumexgui/__init__.py:296
 msgid "Another program is locking yum"
 msgstr "另外的程式正在鎖定 yum"
 
-#: ../src/yumexgui/__init__.py:286
+#: ../src/yumexgui/__init__.py:298
 msgid "Message from yum backend:"
 msgstr "來自 yum 後端程式的訊息："
 
-#: ../src/yumexgui/__init__.py:290
+#: ../src/yumexgui/__init__.py:302
 msgid "Error in repository setup"
 msgstr "在套件庫設定時發生錯誤"
 
-#: ../src/yumexgui/__init__.py:293
+#: ../src/yumexgui/__init__.py:305
 msgid "You can try starting 'yumex -n' from a command line\n"
 msgstr "您可以試著從命令列啟動『yumex -n』\n"
 
-#: ../src/yumexgui/__init__.py:294
+#: ../src/yumexgui/__init__.py:306
 msgid "and deselecting the repositories causing problems\n"
 msgstr "和取消選取造成問題的套件庫\n"
 
-#: ../src/yumexgui/__init__.py:295
+#: ../src/yumexgui/__init__.py:307
 msgid "and try again.\n"
 msgstr "並且再次嘗試。\n"
 
-#: ../src/yumexgui/__init__.py:300
+#: ../src/yumexgui/__init__.py:312
 msgid "Fatal Error in backend restart"
 msgstr "後端程式重新啟動時發生嚴重錯誤"
 
-#: ../src/yumexgui/__init__.py:301
+#: ../src/yumexgui/__init__.py:313
 msgid "Backend could not be closed"
 msgstr "無法關閉後端程式"
 
-#: ../src/yumexgui/__init__.py:305
+#: ../src/yumexgui/__init__.py:317
 msgid "Fatal Error : "
 msgstr "嚴重錯誤："
 
-#: ../src/yumexgui/__init__.py:381
+#: ../src/yumexgui/__init__.py:398
 msgid "Available Updates"
 msgstr "可用更新"
 
-#: ../src/yumexgui/__init__.py:383
+#: ../src/yumexgui/__init__.py:400
 msgid "Search for packages"
 msgstr "搜尋套件"
 
-#: ../src/yumexgui/__init__.py:387
+#: ../src/yumexgui/__init__.py:404
 msgid "Perform actions on packages"
 msgstr "施行動作於套件"
 
-#: ../src/yumexgui/__init__.py:389
+#: ../src/yumexgui/__init__.py:406
 msgid "Pending Actions"
 msgstr "擱置動作"
 
-#: ../src/yumexgui/__init__.py:390
+#: ../src/yumexgui/__init__.py:407
 msgid "Work with pending actions"
 msgstr "用於擱置動作"
 
-#: ../src/yumexgui/__init__.py:393
+#: ../src/yumexgui/__init__.py:410
 msgid "Repositories"
 msgstr "套件庫"
 
-#: ../src/yumexgui/__init__.py:394
+#: ../src/yumexgui/__init__.py:411
 msgid "Select active repositories"
 msgstr "選取現用套件庫"
 
-#: ../src/yumexgui/__init__.py:397
+#: ../src/yumexgui/__init__.py:414
 msgid "History"
 msgstr "歷史記錄"
 
-#: ../src/yumexgui/__init__.py:398
+#: ../src/yumexgui/__init__.py:415
 msgid "Watch yum history"
 msgstr "監看 yum 歷史記錄"
 
-#: ../src/yumexgui/__init__.py:404
+#: ../src/yumexgui/__init__.py:421
 msgid "Output"
 msgstr "輸出"
 
-#: ../src/yumexgui/__init__.py:405
+#: ../src/yumexgui/__init__.py:422
 msgid "Watch output details"
 msgstr "監看輸出細節"
 
-#: ../src/yumexgui/__init__.py:454
+#: ../src/yumexgui/__init__.py:471
 msgid "Not connected to an network"
 msgstr "無法連線到網路"
 
-#: ../src/yumexgui/__init__.py:455
+#: ../src/yumexgui/__init__.py:472
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
 msgstr "無法連線到網路。\n您要繼續"
 
-#: ../src/yumexgui/__init__.py:460
+#: ../src/yumexgui/__init__.py:477
 msgid "network connection state check is disabled"
 msgstr "網路連線狀態檢查已停用"
 
-#: ../src/yumexgui/__init__.py:462
+#: ../src/yumexgui/__init__.py:479
 msgid "Can't detect the network connection state"
 msgstr "無法偵測網路連線狀態"
 
-#: ../src/yumexgui/__init__.py:464
+#: ../src/yumexgui/__init__.py:481
 msgid "Connected to an network"
 msgstr "已連線到網路"
 
-#: ../src/yumexgui/__init__.py:507
+#: ../src/yumexgui/__init__.py:528
 msgid "Nothing to do"
-msgstr ""
+msgstr "沒有任務"
 
-#: ../src/yumexgui/__init__.py:618
+#: ../src/yumexgui/__init__.py:706
 msgid "Enable Permanently"
 msgstr "永久啟用"
 
-#: ../src/yumexgui/__init__.py:622
+#: ../src/yumexgui/__init__.py:710
 msgid "Disable Permanently"
 msgstr "永久停用"
 
-#: ../src/yumexgui/__init__.py:625
+#: ../src/yumexgui/__init__.py:713
 msgid "Clean Metadata"
 msgstr "清除後設資料"
 
-#: ../src/yumexgui/__init__.py:626
+#: ../src/yumexgui/__init__.py:714
 msgid "Clean Packages"
 msgstr "清除套件"
 
-#: ../src/yumexgui/__init__.py:627
+#: ../src/yumexgui/__init__.py:715
 msgid "Clean DbCache"
 msgstr "清除資料庫快取"
 
-#: ../src/yumexgui/__init__.py:628
+#: ../src/yumexgui/__init__.py:716
 msgid "Clean All"
 msgstr "清除全部"
 
-#: ../src/yumexgui/__init__.py:641
+#: ../src/yumexgui/__init__.py:729
 msgid "Reinstall Package"
 msgstr "重新安裝套件"
 
-#: ../src/yumexgui/__init__.py:648
+#: ../src/yumexgui/__init__.py:736
 msgid "Downgrade Package"
 msgstr "降級套件"
 
-#: ../src/yumexgui/__init__.py:658
+#: ../src/yumexgui/__init__.py:746
 msgid "By Repositories"
 msgstr "依套件庫"
 
-#: ../src/yumexgui/__init__.py:659
+#: ../src/yumexgui/__init__.py:747
 msgid "By Size"
 msgstr "依大小"
 
-#: ../src/yumexgui/__init__.py:684 ../src/yumexgui/__init__.py:685
+#: ../src/yumexgui/__init__.py:772 ../src/yumexgui/__init__.py:773
 msgid "Getting Group information"
 msgstr "提取群組資訊"
 
-#: ../src/yumexgui/__init__.py:721
+#: ../src/yumexgui/__init__.py:809
 msgid "The pending action queue is empty"
 msgstr "擱置動作佇列是空的"
 
-#: ../src/yumexgui/__init__.py:746
+#: ../src/yumexgui/__init__.py:835
 msgid "Installing local Packages"
-msgstr ""
+msgstr "安裝本地套件"
 
-#: ../src/yumexgui/__init__.py:748
+#: ../src/yumexgui/__init__.py:837
 msgid "Processing pending actions"
 msgstr "處理擱置動作"
 
-#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/__init__.py:838
 msgid "Preparing the transaction"
 msgstr "準備異動作業"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:766 ../src/yumexgui/__init__.py:774
+#: ../src/yumexgui/__init__.py:855 ../src/yumexgui/__init__.py:864
 msgid "Transaction completed successfully"
 msgstr "異動作業已完成"
 
-#: ../src/yumexgui/__init__.py:770
+#: ../src/yumexgui/__init__.py:859
 msgid "Installation of local packages completed"
-msgstr ""
+msgstr "已完成本地套件的安裝"
 
-#: ../src/yumexgui/__init__.py:775
+#: ../src/yumexgui/__init__.py:865
 msgid ""
 "\n"
 "\n"
@@ -718,203 +717,244 @@ msgid ""
 msgstr "\n\n您要離開 Yum Extender 嗎？"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:781
+#: ../src/yumexgui/__init__.py:875
 msgid "Transaction Aborted by User"
 msgstr "使用者放棄異動作業"
 
-#: ../src/yumexgui/__init__.py:784
+#: ../src/yumexgui/__init__.py:878
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "異動作業已完成但發生錯誤，\n請檢查輸出頁面以瞭解細節"
 
-#: ../src/yumexgui/__init__.py:875
+#: ../src/yumexgui/__init__.py:969
 msgid "<unset>"
 msgstr "<未設>"
 
-#: ../src/yumexgui/__init__.py:876
+#: ../src/yumexgui/__init__.py:970
 msgid "System"
 msgstr "系統"
 
-#: ../src/yumexgui/__init__.py:919
+#: ../src/yumexgui/__init__.py:1013
 msgid "Getting History Information"
 msgstr "提取歷史資訊"
 
-#: ../src/yumexgui/__init__.py:921
+#: ../src/yumexgui/__init__.py:1015
 msgid "Getting Latest History Information"
 msgstr "提取最近的歷史資訊"
 
-#: ../src/yumexgui/__init__.py:923
+#: ../src/yumexgui/__init__.py:1017
 msgid "Getting All History Information"
 msgstr "提取所有歷史資訊"
 
-#: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:947
+#: ../src/yumexgui/__init__.py:1023 ../src/yumexgui/__init__.py:1041
 msgid "History Disabled"
 msgstr "歷史記錄已停用"
 
-#: ../src/yumexgui/__init__.py:941 ../src/yumexgui/__init__.py:942
+#: ../src/yumexgui/__init__.py:1035 ../src/yumexgui/__init__.py:1036
 msgid "Searching History Information"
 msgstr "搜尋歷史資訊"
 
-#: ../src/yumexgui/__init__.py:987
+#: ../src/yumexgui/__init__.py:1081
 msgid "Transaction Performed with"
 msgstr "異動作業已施行於"
 
-#: ../src/yumexgui/__init__.py:990
+#: ../src/yumexgui/__init__.py:1084
 msgid "Skipped packages"
 msgstr "已略過套件"
 
-#: ../src/yumexgui/__init__.py:1015 ../src/yumexgui/__init__.py:1016
+#: ../src/yumexgui/__init__.py:1109 ../src/yumexgui/__init__.py:1110
 msgid "Adding Packages to view"
 msgstr "加入套件到檢視"
 
-#: ../src/yumexgui/__init__.py:1020
+#: ../src/yumexgui/__init__.py:1114
 #, python-format
 msgid "Added %i Packages to view"
 msgstr "已加入 %i 個套件到檢視"
 
-#: ../src/yumexgui/__init__.py:1398
+#: ../src/yumexgui/__init__.py:1508
 msgid "Getting Category Packages"
 msgstr "提取類別套件"
 
-#: ../src/yumexgui/__init__.py:1495
+#: ../src/yumexgui/__init__.py:1605
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "您要從 yum 快取中清除 %s "
 
-#: ../src/yumexgui/__init__.py:1564
+#: ../src/yumexgui/__init__.py:1675
 #, python-format
 msgid "Executing : %s %s"
 msgstr "執行：%s %s"
 
-#: ../src/yumexgui/__init__.py:1565
+#: ../src/yumexgui/__init__.py:1676
 msgid "Processing Queue Command"
 msgstr "處理佇列命令"
 
-#: ../src/yumexgui/dialogs.py:421
+#: ../src/yumexgui/dialogs.py:426
 msgid "Working !!!"
 msgstr "可行 !!!"
 
-#: ../src/yumexgui/dialogs.py:491
+#: ../src/yumexgui/dialogs.py:511
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: ../src/yumexgui/dialogs.py:504
+#: ../src/yumexgui/dialogs.py:524
 msgid "Load packages on launch"
 msgstr "啟動時載入套件"
 
-#: ../src/yumexgui/dialogs.py:505
+#: ../src/yumexgui/dialogs.py:525
+msgid "Start hidden"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:526
+msgid "Autocheck for updates"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:528
+msgid "Update check interval (in minutes)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:530
+msgid "Startup delay before checking for updates (in seconds)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:536
 msgid "Use sortable columns in package view (slower)"
 msgstr "在套件檢視中使用可排序的欄位 (較慢)"
 
-#: ../src/yumexgui/dialogs.py:506
+#: ../src/yumexgui/dialogs.py:537
 msgid "Typeahead search is active by default"
 msgstr "提前輸入式搜尋預設為有作用"
 
-#: ../src/yumexgui/dialogs.py:507
+#: ../src/yumexgui/dialogs.py:538
 msgid "Skip Broken is active by default"
-msgstr ""
+msgstr "預設啟用跳過毀損的套件"
 
-#: ../src/yumexgui/dialogs.py:508
+#: ../src/yumexgui/dialogs.py:539
 msgid "No GPG Check is active by default"
-msgstr ""
+msgstr "預設不啟用任何 GPG 檢查"
 
-#: ../src/yumexgui/dialogs.py:509
+#: ../src/yumexgui/dialogs.py:540
 msgid "Show Newest Only is active by default"
-msgstr ""
+msgstr "預設啟用只顯示最新版"
 
-#: ../src/yumexgui/dialogs.py:510
+#: ../src/yumexgui/dialogs.py:541
 msgid "Clean Unused Requirements is active by default"
-msgstr ""
+msgstr "預設啟用清除未使用的依存套件"
 
-#: ../src/yumexgui/dialogs.py:518
+#: ../src/yumexgui/dialogs.py:554
 msgid "Debug Mode"
 msgstr "除錯模式"
 
-#: ../src/yumexgui/dialogs.py:519
+#: ../src/yumexgui/dialogs.py:555
 msgid "Disable startup network check"
 msgstr "停用啟動時網路檢查"
 
-#: ../src/yumexgui/dialogs.py:520
+#: ../src/yumexgui/dialogs.py:556
 msgid "Run backend with sudo (need working sudo nopasswd config)"
 msgstr "以 sudo 運行後端程式 (需要設好 sudo 的無密碼組配)"
 
-#: ../src/yumexgui/dialogs.py:521
+#: ../src/yumexgui/dialogs.py:557
 msgid "Color (Installed)"
 msgstr "顏色 (已安裝)"
 
-#: ../src/yumexgui/dialogs.py:522
+#: ../src/yumexgui/dialogs.py:558
 msgid "Color (Update)"
 msgstr "顏色 (更新)"
 
-#: ../src/yumexgui/dialogs.py:523
+#: ../src/yumexgui/dialogs.py:559
 msgid "Color (Available)"
 msgstr "顏色 (可用)"
 
-#: ../src/yumexgui/dialogs.py:531
+#: ../src/yumexgui/dialogs.py:567
 msgid "Enable Yum Plugins"
 msgstr "啟用 Yum 外掛程式"
 
-#: ../src/yumexgui/dialogs.py:532
+#: ../src/yumexgui/dialogs.py:568
 msgid "Proxy"
 msgstr "代理伺服器"
 
-#: ../src/yumexgui/dialogs.py:533
+#: ../src/yumexgui/dialogs.py:569
 msgid "Yum Debug Level"
 msgstr "Yum 除錯等級"
 
-#: ../src/yumexgui/dialogs.py:632
+#: ../src/yumexgui/dialogs.py:669
 msgid "Transaction Result"
 msgstr "異動作業結果"
 
-#: ../src/yumexgui/dialogs.py:707
+#: ../src/yumexgui/dialogs.py:744
 #, python-format
 msgid "Download Size : %s "
 msgstr "下載大小：%s "
 
-#: ../src/yumexgui/gui.py:211
+#: ../src/yumexgui/gui.py:215
 msgid "Package Description"
 msgstr "套件描述"
 
-#: ../src/yumexgui/gui.py:213
+#: ../src/yumexgui/gui.py:217
 msgid "Update information"
 msgstr "更新資訊"
 
-#: ../src/yumexgui/gui.py:215
+#: ../src/yumexgui/gui.py:219
 msgid "Package Changelog"
 msgstr "套件變更記錄"
 
-#: ../src/yumexgui/gui.py:217
+#: ../src/yumexgui/gui.py:221
 msgid "Package Filelist"
 msgstr "套件檔案列表"
 
-#: ../src/yumexgui/gui.py:219
+#: ../src/yumexgui/gui.py:223
 msgid "Package Dependencies"
 msgstr "套件相依性"
 
-#: ../src/yumexgui/gui.py:309
+#: ../src/yumexgui/gui.py:313
 msgid "No Update information"
 msgstr "沒有更新資訊"
 
-#: ../src/yumexgui/gui.py:343
+#: ../src/yumexgui/gui.py:345
 msgid "Project URL : "
 msgstr "專案網址："
 
-#: ../src/yumexgui/gui.py:350
+#: ../src/yumexgui/gui.py:352
 msgid "Release"
 msgstr "釋出"
 
-#: ../src/yumexgui/gui.py:351
+#: ../src/yumexgui/gui.py:353
 msgid "Type"
 msgstr "型態"
 
-#: ../src/yumexgui/gui.py:352
+#: ../src/yumexgui/gui.py:354
 msgid "Status"
 msgstr "狀態"
 
-#: ../src/yumexgui/gui.py:353
+#: ../src/yumexgui/gui.py:355
 msgid "Issued"
 msgstr "已發行"
+
+#: ../src/yumexgui/gui.py:551
+msgid "Quit"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:554
+msgid "Search for Updates"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:583 ../misc/yumex.desktop.in.h:1
+msgid "Yum Extender"
+msgstr "Yum Extender"
+
+#: ../src/yumexgui/gui.py:586
+msgid "Yum Extender: Error"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:589
+msgid "Yum Extender: No Updates"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:592
+#, python-format
+msgid "Yum Extender: %s Updates available"
+msgstr ""
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Working ....</span>\n"
@@ -1014,11 +1054,11 @@ msgstr "只顯示最新的"
 msgid ""
 "When removing packages, also remove requirements\n"
 "there is not used by any other packages. "
-msgstr ""
+msgstr "移除套件時，同時移除那些\n未被其他套件所使用的依存需求。 "
 
 #: ../src/yumex.glade.h:28
 msgid "Clean Unused Requirements"
-msgstr ""
+msgstr "清除未使用的依存套件"
 
 #: ../src/yumex.glade.h:29
 msgid "_Help"
@@ -1138,22 +1178,18 @@ msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Yum Extender 要求驗證以處理系統中的套件"
 
-#: ../misc/yumex.desktop.in.h:1
-msgid "Yum Extender"
-msgstr ""
-
 #: ../misc/yumex.desktop.in.h:2
 msgid "Install, update and remove applications"
-msgstr ""
+msgstr "安裝、更新以及移除應用軟體"
 
 #: ../misc/yumex.desktop.in.h:3
 msgid "Software Installer"
-msgstr ""
+msgstr "軟體安裝程式"
 
 #: ../misc/yumex-local.desktop.in.h:1
 msgid "Yumex Package Installer"
-msgstr ""
+msgstr "Yumex 套件安裝程式"
 
 #: ../misc/yumex-local.desktop.in.h:2
 msgid "Install local packages on system"
-msgstr ""
+msgstr "安裝本地套件到系統上"

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Milan Kerslager <milan.kerslager@pslib.cz>, 2011.
+# Milan Kerslager <milan.kerslager@pslib.cz>, 2011
+# hroncok <miro@hroncok.cz>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 10:52-0400\n"
-"PO-Revision-Date: 2012-10-24 14:52+0000\n"
+"POT-Creation-Date: 2013-08-15 18:24+0200\n"
+"PO-Revision-Date: 2013-08-15 16:24+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/yumex/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -23,412 +24,410 @@ msgstr ""
 #: ../src/yumexbase/network.py:83
 #, python-format
 msgid "network interface %s is connected"
-msgstr ""
+msgstr "síťové rozhraní %s je připojeno"
 
 #. NOTE: The package filter radio buttons in the top of the package page
-#: ../src/yumexbase/constants.py:89
+#: ../src/yumexbase/constants.py:95
 msgid "updates"
 msgstr "aktualizace"
 
-#: ../src/yumexbase/constants.py:89
+#: ../src/yumexbase/constants.py:95
 msgid "available"
 msgstr "dostupných"
 
-#: ../src/yumexbase/constants.py:89
+#: ../src/yumexbase/constants.py:95
 msgid "installed"
 msgstr "instalováno"
 
-#: ../src/yumexbase/constants.py:109
-#, python-format
-msgid "Downloading repository information for the %s repository"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:110 ../src/yumexbase/constants.py:111
-#, python-format
-msgid "Downloading Package information for the %s repository"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:112
-#, python-format
-msgid "Downloading Filelist information for the %s repository"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:113
-#, python-format
-msgid "Downloading Changelog information for the %s repository"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:114
-#, python-format
-msgid "Downloading Group information for the %s repository"
-msgstr ""
-
 #: ../src/yumexbase/constants.py:115
 #, python-format
-msgid "Downloading metalink information for the %s repository"
-msgstr ""
+msgid "Downloading repository information for the %s repository"
+msgstr "Stahují se informace o repozitáři %s"
 
 #: ../src/yumexbase/constants.py:116 ../src/yumexbase/constants.py:117
 #, python-format
-msgid "Downloading Delta update information for the %s repository"
-msgstr ""
+msgid "Downloading Package information for the %s repository"
+msgstr "Stahují se informace o balíčcích pro repozitář %s"
 
-#: ../src/yumexbase/constants.py:118
+#: ../src/yumexbase/constants.py:118 ../src/yumexbase/constants.py:119
+#, python-format
+msgid "Downloading Filelist information for the %s repository"
+msgstr "Stahují se informace o seznamech souborů pro repozitář %s"
+
+#: ../src/yumexbase/constants.py:120 ../src/yumexbase/constants.py:121
+#, python-format
+msgid "Downloading Changelog information for the %s repository"
+msgstr "Stahují se informace o změnách v balíčcích pro repozitář %s"
+
+#: ../src/yumexbase/constants.py:122
+#, python-format
+msgid "Downloading Group information for the %s repository"
+msgstr "Stahují se informace o skupinách balíčlů pro repozitář %s"
+
+#: ../src/yumexbase/constants.py:123
+#, python-format
+msgid "Downloading metalink information for the %s repository"
+msgstr "Stahují se informace o metaodkazech pro repozitář %s"
+
+#: ../src/yumexbase/constants.py:124 ../src/yumexbase/constants.py:125
+#, python-format
+msgid "Downloading Delta update information for the %s repository"
+msgstr "Stahují se informace o delta aktualizacích pro repozitář %s"
+
+#: ../src/yumexbase/constants.py:126
 #, python-format
 msgid "Downloading Update information for the %s repository"
-msgstr ""
+msgstr "Stahují se informace o aktualizacích pro repozitář %s"
 
-#: ../src/yumexbase/constants.py:129
+#: ../src/yumexbase/constants.py:137
 msgid "0 - 7 Days"
 msgstr "0 - 7 dní"
 
-#: ../src/yumexbase/constants.py:130
+#: ../src/yumexbase/constants.py:138
 msgid "7 - 14 Days"
 msgstr "7 - 14 dní"
 
-#: ../src/yumexbase/constants.py:131
+#: ../src/yumexbase/constants.py:139
 msgid "14 - 21 Days"
 msgstr "14 - 21 dní"
 
-#: ../src/yumexbase/constants.py:132
+#: ../src/yumexbase/constants.py:140
 msgid "21  - 30 days"
 msgstr "21  - 30 dní"
 
-#: ../src/yumexbase/constants.py:133
+#: ../src/yumexbase/constants.py:141
 msgid "30 - 90 days"
 msgstr "30 - 90 dní"
 
-#: ../src/yumexbase/constants.py:134
+#: ../src/yumexbase/constants.py:142
 msgid "90+ days"
 msgstr "90+ dní"
 
-#: ../src/yumexbase/constants.py:156
+#: ../src/yumexbase/constants.py:164
 msgid "Getting all packages"
-msgstr "Získání všech balíčků"
-
-#: ../src/yumexbase/constants.py:157
-msgid "Getting installed packages"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:158
-msgid "Getting available packages"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:159
-msgid "Getting available updates"
-msgstr ""
-
-#: ../src/yumexbase/constants.py:160
-msgid "Getting available obsoletes"
-msgstr ""
+msgstr "Získávání seznamu všech balíčků"
 
 #: ../src/yumexbase/constants.py:165
-#, python-format
-msgid "%s is updated"
-msgstr ""
+msgid "Getting installed packages"
+msgstr "Získávání seznamu nainstalovaných balíčků"
 
 #: ../src/yumexbase/constants.py:166
+msgid "Getting available packages"
+msgstr "Získávání seznamu dostupných balíčků"
+
+#: ../src/yumexbase/constants.py:167
+msgid "Getting available updates"
+msgstr "Získávání seznamu dostupných aktualizací"
+
+#: ../src/yumexbase/constants.py:168
+msgid "Getting available obsoletes"
+msgstr "Zjišťování dostupných zastaralých balíčků"
+
+#: ../src/yumexbase/constants.py:173
+#, python-format
+msgid "%s is updated"
+msgstr "%s je aktualizován"
+
+#: ../src/yumexbase/constants.py:174
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%s je smazán"
 
-#: ../src/yumexbase/constants.py:167 ../src/yumexbase/constants.py:168
-#: ../src/yumexbase/constants.py:170
+#: ../src/yumexbase/constants.py:175 ../src/yumexbase/constants.py:176
+#: ../src/yumexbase/constants.py:178
 #, python-format
 msgid "%s is installed"
-msgstr ""
+msgstr "%s je nainstalován"
 
-#: ../src/yumexbase/constants.py:169
+#: ../src/yumexbase/constants.py:177
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%s je zastaralý"
 
-#: ../src/yumexbase/constants.py:171
+#: ../src/yumexbase/constants.py:179
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s je pročištěn"
 
-#: ../src/yumexbase/constants.py:182
+#: ../src/yumexbase/constants.py:190
 msgid "Updated packages"
 msgstr "Aktualizované balíčky"
 
-#: ../src/yumexbase/constants.py:183
+#: ../src/yumexbase/constants.py:191
 msgid "Downgraded packages"
 msgstr "Ponížené balíčky"
 
-#: ../src/yumexbase/constants.py:184
+#: ../src/yumexbase/constants.py:192
 msgid "Obsoleting packages"
 msgstr "Zastarání balíčků"
 
-#: ../src/yumexbase/constants.py:185
+#: ../src/yumexbase/constants.py:193
 msgid "Obsoleted packages"
 msgstr "Zastaralé balíčky"
 
-#: ../src/yumexbase/constants.py:186
+#: ../src/yumexbase/constants.py:194
 msgid "Erased packages"
 msgstr "Odstraněné balíčky"
 
-#: ../src/yumexbase/constants.py:187 ../src/yumexbase/constants.py:188
+#: ../src/yumexbase/constants.py:195 ../src/yumexbase/constants.py:196
 msgid "Installed packages"
 msgstr "Nainstalované balíčky"
 
-#: ../src/yumexbase/constants.py:189
+#: ../src/yumexbase/constants.py:197
 msgid "Installed for dependencies"
 msgstr "Instalováno kvůli závislostem"
 
-#: ../src/yumexbase/constants.py:190
+#: ../src/yumexbase/constants.py:198
 msgid "Reinstalled packages"
 msgstr "Reinstalované balíčky"
 
-#: ../src/yumexbase/constants.py:216 ../src/yumexgui/views.py:878
-#: ../src/yumexgui/dialogs.py:669
+#: ../src/yumexbase/constants.py:224 ../src/yumexgui/views.py:878
+#: ../src/yumexgui/dialogs.py:706
 msgid "Name"
 msgstr "Jméno"
 
-#: ../src/yumexbase/constants.py:217 ../src/yumexgui/views.py:200
+#: ../src/yumexbase/constants.py:225 ../src/yumexgui/views.py:200
 #: ../src/yumexgui/views.py:395 ../src/yumexgui/views.py:512
 #: ../src/yumexgui/views.py:731
 msgid "Summary"
-msgstr ""
+msgstr "Souhrn"
 
-#: ../src/yumexbase/constants.py:218 ../src/yumexgui/gui.py:391
+#: ../src/yumexbase/constants.py:226 ../src/yumexgui/gui.py:393
 msgid "Description"
-msgstr ""
+msgstr "Popis"
 
-#: ../src/yumexbase/constants.py:219 ../src/yumexgui/dialogs.py:670
+#: ../src/yumexbase/constants.py:227 ../src/yumexgui/dialogs.py:707
 msgid "Arch"
 msgstr "Arch"
 
 #. if the progress is hidden, then show it at set the labels.
-#: ../src/yumexbackend/yum_backend.py:168
 #: ../src/yumexbackend/yum_backend.py:169
+#: ../src/yumexbackend/yum_backend.py:170
 msgid "Getting Package Information"
-msgstr ""
+msgstr "Získávání informací o balíčku"
 
-#: ../src/yumexbackend/yum_backend.py:196
+#: ../src/yumexbackend/yum_backend.py:197
 #, python-format
 msgid "Unknown metadata type (%s) for %s"
-msgstr ""
+msgstr "Neznámý typ metadat (%s) u %s"
 
-#: ../src/yumexbackend/yum_backend.py:199
+#: ../src/yumexbackend/yum_backend.py:200
 #, python-format
 msgid "Repo Metadata for %s"
-msgstr ""
+msgstr "Metadata repozitáře pro %s"
 
-#: ../src/yumexbackend/yum_backend.py:203
+#: ../src/yumexbackend/yum_backend.py:204
 msgid "Building rpms from deltarpm"
-msgstr ""
+msgstr "Sestavování balíčků z deltarpm"
 
-#: ../src/yumexbackend/yum_backend.py:219 ../src/yumexgui/dialogs.py:267
+#: ../src/yumexbackend/yum_backend.py:220 ../src/yumexgui/dialogs.py:267
 msgid "Downloading Packages"
-msgstr ""
+msgstr "Stahování balíčků"
 
 #. Don't allow Cancel any more
-#: ../src/yumexbackend/yum_backend.py:225 ../src/yumexgui/dialogs.py:268
+#: ../src/yumexbackend/yum_backend.py:226 ../src/yumexgui/dialogs.py:268
 msgid "Checking Package GPG Signatures"
-msgstr ""
+msgstr "Kontrolují se GPG podpisy balíčku"
 
-#: ../src/yumexbackend/yum_backend.py:230 ../src/yumexgui/dialogs.py:269
+#: ../src/yumexbackend/yum_backend.py:231 ../src/yumexgui/dialogs.py:269
 msgid "Running RPM Test Transaction"
-msgstr ""
+msgstr "RPM testovací transakce spuštěna"
 
-#: ../src/yumexbackend/yum_backend.py:234 ../src/yumexgui/dialogs.py:270
+#: ../src/yumexbackend/yum_backend.py:235 ../src/yumexgui/dialogs.py:270
 msgid "Running RPM Transaction"
-msgstr ""
+msgstr "RPM transakce spuštěna"
 
-#: ../src/yumexbackend/yum_backend.py:239
+#: ../src/yumexbackend/yum_backend.py:240
 #, python-format
 msgid "Do you want to import GPG Key : %s \n"
-msgstr ""
+msgstr "Chcete importovat GPG klíč: %s \n"
 
-#: ../src/yumexbackend/yum_backend.py:241
+#: ../src/yumexbackend/yum_backend.py:242
 #, python-format
 msgid "Needed by %s"
-msgstr ""
+msgstr "Je potřeba pro %s"
 
-#: ../src/yumexbackend/yum_backend.py:256
+#: ../src/yumexbackend/yum_backend.py:257
 #, python-format
 msgid "Please insert media labeled %s #%d."
-msgstr ""
+msgstr "Prosím vložte médium označené %s #%d."
 
-#: ../src/yumexbackend/yum_backend.py:258
+#: ../src/yumexbackend/yum_backend.py:259
 #, python-format
 msgid "Please insert media labeled %s."
-msgstr ""
+msgstr "Prosím vložte médium označené %s."
 
-#: ../src/yumexbackend/yum_backend.py:321
+#: ../src/yumexbackend/yum_backend.py:327
 msgid "Starting yum child process"
-msgstr ""
+msgstr "Spouštění procesu yum"
 
-#: ../src/yumexbackend/yum_backend.py:323
+#: ../src/yumexbackend/yum_backend.py:329
 #, python-format
 msgid ""
 "Using the following repositories :\n"
 "%s\n"
 "\n"
-msgstr ""
+msgstr "Jsou použity tyto repozitáře:\n%s\n\n"
 
-#: ../src/yumexbackend/yum_backend.py:341
+#: ../src/yumexbackend/yum_backend.py:349
 msgid "yum backend process is ended"
-msgstr ""
+msgstr "proces yum skončil"
 
-#: ../src/yumexbackend/yum_backend.py:365
+#: ../src/yumexbackend/yum_backend.py:373
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i balíčků získáno"
 
-#: ../src/yumexbackend/yum_backend.py:542 ../src/yumexgui/dialogs.py:266
+#: ../src/yumexbackend/yum_backend.py:550 ../src/yumexgui/dialogs.py:266
 msgid "Resolving Dependencies"
-msgstr ""
+msgstr "Řešení závislostí..."
 
-#: ../src/yumexbackend/yum_backend.py:559
-#: ../src/yumexbackend/yum_backend.py:560
+#: ../src/yumexbackend/yum_backend.py:567
+#: ../src/yumexbackend/yum_backend.py:568
 msgid "Dependency Resolution Failed"
-msgstr ""
+msgstr "Řešení závislostí selhalo"
 
-#: ../src/yumexbackend/yum_backend.py:561
+#: ../src/yumexbackend/yum_backend.py:569
 msgid "Dependency Resolution Errors:"
-msgstr ""
+msgstr "Chyby řešení závislostí"
 
 #. Write errors to output page
-#: ../src/yumexbackend/yum_backend.py:570
+#: ../src/yumexbackend/yum_backend.py:578
 msgid "Dependency resolving completed with errors"
-msgstr ""
+msgstr "Zjišťování závislostí skončilo s chybami"
 
-#. Bin package
-#. Root
-#: ../src/yumexbackend/yum_client.py:176
+#: ../src/yumexbackend/yum_client.py:177
 msgid "Client is running in rootmode, starting backend launcher directly"
-msgstr ""
+msgstr "Klient běží jako root, startuji yum přímo"
 
 #. The yum backend did not ended nicely
-#: ../src/yumexbackend/yum_client.py:252
+#: ../src/yumexbackend/yum_client.py:257
 msgid "Yum backend did not close nicely in time"
-msgstr ""
+msgstr "Yum se slušně neukončil včas"
 
 #. default error
-#: ../src/yumexbackend/yum_client.py:325
+#: ../src/yumexbackend/yum_client.py:330
 #, python-format
 msgid ""
 "Backend not running as expected \n"
 "\n"
 "Yum Extender will terminate\n"
 "   --> exit code : %s"
-msgstr ""
+msgstr "Yum neběží podle očekávání \n\nYum Extender bude ukončen\n   --> exit code : %s"
 
-#: ../src/yumexbackend/yum_client.py:329
+#: ../src/yumexbackend/yum_client.py:334
 msgid ""
 "Could not get polkit autherisation to start backend \n"
 "\n"
 "Yum Extender will terminate"
-msgstr ""
+msgstr "Nepodařilo se získat autorizaci polkit pro spuštění Yumu \n\nYum Extender  bude ukončen"
 
-#: ../src/yumexbackend/yum_client.py:331
+#: ../src/yumexbackend/yum_client.py:336
 msgid ""
 "User has cancelled polkit autherisation\n"
 "\n"
 "Yum Extender will terminate"
-msgstr ""
+msgstr "Uživatel zrušil autorizaci polkit\n\nYum Extender  bude ukončen"
 
 #: ../src/yumexbackend/yum_server.py:180
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "Použito %s pro konfiguraci yumu"
 
 #. Not local disable it
 #. No, disable it
-#: ../src/yumexbackend/yum_server.py:247 ../src/yumexbackend/yum_server.py:256
+#: ../src/yumexbackend/yum_server.py:248 ../src/yumexbackend/yum_server.py:257
 #, python-format
 msgid "No network connection, disable non local repo %s"
-msgstr ""
+msgstr "Žádné připojení k síti, vzdálený repozitář %s zakázán"
 
-#: ../src/yumexbackend/yum_server.py:271
+#: ../src/yumexbackend/yum_server.py:272
 msgid "Yum is locked : "
-msgstr ""
+msgstr "Yum je uzamčen:"
 
-#: ../src/yumexbackend/yum_server.py:276
+#: ../src/yumexbackend/yum_server.py:277
 msgid "  The other application is: PackageKit"
-msgstr ""
+msgstr "  Další aplikace je: PackageKit"
 
-#: ../src/yumexbackend/yum_server.py:278
+#: ../src/yumexbackend/yum_server.py:279
 #, python-format
 msgid "  The other application is: %s"
-msgstr ""
+msgstr "  Další aplikace je: %s"
 
-#: ../src/yumexbackend/yum_server.py:280
+#: ../src/yumexbackend/yum_server.py:281
 msgid "Waiting 10 seconds and tries again !!!"
-msgstr ""
+msgstr "Čekám 10 sekund na další pokus !!!"
 
 #. yumRepo will catch this
-#: ../src/yumexbackend/yum_server.py:315
+#: ../src/yumexbackend/yum_server.py:316
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "Disk nebyl vložen"
 
-#: ../src/yumexbackend/yum_server.py:346
+#: ../src/yumexbackend/yum_server.py:347
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "Zavírá se databáze RPM a uvolňuje se zámek yumu"
 
-#: ../src/yumexbackend/yum_server.py:822
+#: ../src/yumexbackend/yum_server.py:824
 msgid "Installing"
-msgstr ""
+msgstr "Instalování"
 
-#: ../src/yumexbackend/yum_server.py:873
+#: ../src/yumexbackend/yum_server.py:875
 #, python-format
 msgid "Error in yum Transaction : %s"
-msgstr ""
+msgstr "Chyba v yum transakci: %s"
 
-#: ../src/yumexbackend/yum_server.py:876
+#: ../src/yumexbackend/yum_server.py:878
 msgid "Exception in run_transaction"
-msgstr ""
+msgstr "Výjimka v transakci"
 
-#: ../src/yumexbackend/yum_server.py:915
+#: ../src/yumexbackend/yum_server.py:917
 #, python-format
 msgid "Failure getting %s: "
-msgstr ""
+msgstr "Selhalo získávání %s: "
 
-#: ../src/yumexbackend/yum_server.py:916
+#: ../src/yumexbackend/yum_server.py:918
 msgid "Trying other mirror."
-msgstr ""
+msgstr "Zkusí se jiné zrcadlo..."
 
-#: ../src/yumexbackend/yum_server.py:1159
+#: ../src/yumexbackend/yum_server.py:1161
 #, python-format
 msgid "The %s repository has been enabled permanently"
-msgstr ""
+msgstr "Repozitář %s byl trvale povolen"
 
-#: ../src/yumexbackend/yum_server.py:1162
+#: ../src/yumexbackend/yum_server.py:1164
 #, python-format
 msgid "The %s repository has been disabled permanently"
-msgstr ""
+msgstr "Repozitář %s byl trvale zakázán"
 
-#: ../src/yumexbackend/yum_server.py:1172
+#: ../src/yumexbackend/yum_server.py:1174
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "Nastavuje se volba Yumu %s = %s"
 
-#: ../src/yumexbackend/yum_server.py:1237
+#: ../src/yumexbackend/yum_server.py:1239
 msgid "Cleaned metadata from local cache"
-msgstr ""
+msgstr "Metadata z lokální cache pročištěna"
 
-#: ../src/yumexbackend/yum_server.py:1240
+#: ../src/yumexbackend/yum_server.py:1242
 msgid "Cleaned dbcache"
-msgstr ""
-
-#: ../src/yumexbackend/yum_server.py:1243
-msgid "Cleaned packages from local cache"
-msgstr ""
+msgstr "Databázová cache pročištěna"
 
 #: ../src/yumexbackend/yum_server.py:1245
-msgid "Cleaned everything from local cache"
-msgstr ""
+msgid "Cleaned packages from local cache"
+msgstr "Lokální cache balíčků vyčištěna"
 
-#: ../src/yumexbackend/yum_server.py:1665
-msgid "Rebuild from deltarpms completed"
-msgstr ""
+#: ../src/yumexbackend/yum_server.py:1247
+msgid "Cleaned everything from local cache"
+msgstr "Celá lokální cache vyčištěna"
 
 #: ../src/yumexbackend/yum_server.py:1667
+msgid "Rebuild from deltarpms completed"
+msgstr "Sestavení z deltarpm dokončeno"
+
+#: ../src/yumexbackend/yum_server.py:1669
 #, python-format
 msgid "Downloaded : %s ( %s )"
-msgstr ""
+msgstr "Staženo: %s ( %s )"
 
 #. Setup Selection Column
 #. self.create_selection_colunm('')
@@ -437,722 +436,759 @@ msgstr ""
 #: ../src/yumexgui/views.py:509 ../src/yumexgui/views.py:1395
 #: ../src/yumexgui/views.py:1508
 msgid "Package"
-msgstr ""
+msgstr "Balíček"
 
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:671
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:708
 msgid "Ver"
-msgstr ""
+msgstr "Ver"
 
 #: ../src/yumexgui/views.py:200
 msgid "Repo"
-msgstr ""
+msgstr "Repo"
 
 #: ../src/yumexgui/views.py:200
 msgid "Architecture"
-msgstr ""
+msgstr "Architektura"
 
-#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:673
+#: ../src/yumexgui/views.py:200 ../src/yumexgui/dialogs.py:710
 msgid "Size"
-msgstr ""
+msgstr "Velikost"
 
 #: ../src/yumexgui/views.py:393 ../src/yumexgui/views.py:510
 #: ../src/yumexgui/views.py:1397 ../src/yumexgui/views.py:1510
 msgid "Ver."
-msgstr ""
+msgstr "Verze"
 
 #: ../src/yumexgui/views.py:394 ../src/yumexgui/views.py:511
 #: ../src/yumexgui/views.py:1398 ../src/yumexgui/views.py:1511
 msgid "Arch."
-msgstr ""
+msgstr "Arch."
 
 #: ../src/yumexgui/views.py:396 ../src/yumexgui/views.py:513
 msgid "Repo."
-msgstr ""
+msgstr "Reporiztář"
 
 #: ../src/yumexgui/views.py:397 ../src/yumexgui/views.py:514
 msgid "Size."
-msgstr ""
+msgstr "Velikost"
 
 #: ../src/yumexgui/views.py:692
 msgid "Package Queue:"
-msgstr ""
+msgstr "Fronta balíčků:"
 
-#: ../src/yumexgui/views.py:726 ../src/yumexgui/__init__.py:385
+#: ../src/yumexgui/views.py:726 ../src/yumexgui/__init__.py:402
 msgid "Packages"
-msgstr ""
+msgstr "Balíčky"
 
 #: ../src/yumexgui/views.py:818
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Ponížit na</b> %s "
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:831 ../src/yumexgui/views.py:877
-#: ../src/yumexgui/dialogs.py:672
+#: ../src/yumexgui/dialogs.py:709
 msgid "Repository"
-msgstr ""
+msgstr "Repozitář"
 
 #: ../src/yumexgui/views.py:831
 msgid "Filename"
-msgstr ""
+msgstr "Název souboru"
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:1011
 msgid "Search Keys"
-msgstr ""
+msgstr "Hledané pojmy"
 
 #: ../src/yumexgui/views.py:1242
 msgid "Categories"
-msgstr ""
+msgstr "Kategorie"
 
 #: ../src/yumexgui/views.py:1288
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: ../src/yumexgui/views.py:1289
 msgid "Login User"
-msgstr ""
+msgstr "Přihlášený uživatel"
 
 #: ../src/yumexgui/views.py:1290
 msgid "Data/Time"
-msgstr ""
+msgstr "Datum/Čas"
 
 #: ../src/yumexgui/views.py:1291
 msgid "Action(s)"
-msgstr ""
+msgstr "Akce"
 
 #: ../src/yumexgui/views.py:1292
 msgid "Altered"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:281
-msgid "Fatal Error"
-msgstr ""
-
-#. Cant get the yum lock
-#: ../src/yumexgui/__init__.py:283
-msgid "Can't start the yum backend"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:284
-msgid "Another program is locking yum"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:286
-msgid "Message from yum backend:"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:290
-msgid "Error in repository setup"
-msgstr ""
+msgstr "Pozměněno"
 
 #: ../src/yumexgui/__init__.py:293
-msgid "You can try starting 'yumex -n' from a command line\n"
-msgstr ""
+msgid "Fatal Error"
+msgstr "Závažná chyba"
 
-#: ../src/yumexgui/__init__.py:294
-msgid "and deselecting the repositories causing problems\n"
-msgstr ""
-
+#. Cant get the yum lock
 #: ../src/yumexgui/__init__.py:295
-msgid "and try again.\n"
-msgstr ""
+msgid "Can't start the yum backend"
+msgstr "Nelze spustit yum"
 
-#: ../src/yumexgui/__init__.py:300
-msgid "Fatal Error in backend restart"
-msgstr ""
+#: ../src/yumexgui/__init__.py:296
+msgid "Another program is locking yum"
+msgstr "Jiná aplikace zamkla yum"
 
-#: ../src/yumexgui/__init__.py:301
-msgid "Backend could not be closed"
-msgstr ""
+#: ../src/yumexgui/__init__.py:298
+msgid "Message from yum backend:"
+msgstr "Zpráva od yumu:"
+
+#: ../src/yumexgui/__init__.py:302
+msgid "Error in repository setup"
+msgstr "Problém v nastavení repozitáře"
 
 #: ../src/yumexgui/__init__.py:305
+msgid "You can try starting 'yumex -n' from a command line\n"
+msgstr "Můžete zkusit spustit 'yumex -n' z příkazové řádky,\n"
+
+#: ../src/yumexgui/__init__.py:306
+msgid "and deselecting the repositories causing problems\n"
+msgstr "odebrat problematické repozitáře\n"
+
+#: ../src/yumexgui/__init__.py:307
+msgid "and try again.\n"
+msgstr "a vyzkoušet to znovu.\n"
+
+#: ../src/yumexgui/__init__.py:312
+msgid "Fatal Error in backend restart"
+msgstr "Závažná chyba při restartu yumu"
+
+#: ../src/yumexgui/__init__.py:313
+msgid "Backend could not be closed"
+msgstr "Yum nelze zavřít"
+
+#: ../src/yumexgui/__init__.py:317
 msgid "Fatal Error : "
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:381
-msgid "Available Updates"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:383
-msgid "Search for packages"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:387
-msgid "Perform actions on packages"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:389
-msgid "Pending Actions"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:390
-msgid "Work with pending actions"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:393
-msgid "Repositories"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:394
-msgid "Select active repositories"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:397
-msgid "History"
-msgstr ""
+msgstr "Závažná chyba:"
 
 #: ../src/yumexgui/__init__.py:398
-msgid "Watch yum history"
-msgstr ""
+msgid "Available Updates"
+msgstr "Dostupné aktualizace"
+
+#: ../src/yumexgui/__init__.py:400
+msgid "Search for packages"
+msgstr "Hledat balíčky"
 
 #: ../src/yumexgui/__init__.py:404
+msgid "Perform actions on packages"
+msgstr "provádět akce s balíčky"
+
+#: ../src/yumexgui/__init__.py:406
+msgid "Pending Actions"
+msgstr "Naplánované akce"
+
+#: ../src/yumexgui/__init__.py:407
+msgid "Work with pending actions"
+msgstr "Pracovat s naplánovanými úlohami"
+
+#: ../src/yumexgui/__init__.py:410
+msgid "Repositories"
+msgstr "Repozitáře"
+
+#: ../src/yumexgui/__init__.py:411
+msgid "Select active repositories"
+msgstr "Spravovat aktivní repozitáře"
+
+#: ../src/yumexgui/__init__.py:414
+msgid "History"
+msgstr "Historie"
+
+#: ../src/yumexgui/__init__.py:415
+msgid "Watch yum history"
+msgstr "Procházet historii yumu"
+
+#: ../src/yumexgui/__init__.py:421
 msgid "Output"
-msgstr ""
+msgstr "Výstup"
 
-#: ../src/yumexgui/__init__.py:405
+#: ../src/yumexgui/__init__.py:422
 msgid "Watch output details"
-msgstr ""
+msgstr "Procházet detail výstupu"
 
-#: ../src/yumexgui/__init__.py:454
+#: ../src/yumexgui/__init__.py:471
 msgid "Not connected to an network"
-msgstr ""
+msgstr "Nepřipojeno k síti"
 
-#: ../src/yumexgui/__init__.py:455
+#: ../src/yumexgui/__init__.py:472
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "Nepřipojeno k síti.\nChcete pokračovat"
 
-#: ../src/yumexgui/__init__.py:460
+#: ../src/yumexgui/__init__.py:477
 msgid "network connection state check is disabled"
-msgstr ""
+msgstr "kontrola připojení k síti je zakázána"
 
-#: ../src/yumexgui/__init__.py:462
+#: ../src/yumexgui/__init__.py:479
 msgid "Can't detect the network connection state"
-msgstr ""
+msgstr "Nelze zjistit stav připojení k síti"
 
-#: ../src/yumexgui/__init__.py:464
+#: ../src/yumexgui/__init__.py:481
 msgid "Connected to an network"
-msgstr ""
+msgstr "Připojeno k síti"
 
-#: ../src/yumexgui/__init__.py:507
+#: ../src/yumexgui/__init__.py:528
 msgid "Nothing to do"
-msgstr ""
+msgstr "Není co dělat"
 
-#: ../src/yumexgui/__init__.py:618
+#: ../src/yumexgui/__init__.py:706
 msgid "Enable Permanently"
-msgstr ""
+msgstr "Povolit trvale"
 
-#: ../src/yumexgui/__init__.py:622
+#: ../src/yumexgui/__init__.py:710
 msgid "Disable Permanently"
-msgstr ""
+msgstr "Zakázat trvale"
 
-#: ../src/yumexgui/__init__.py:625
+#: ../src/yumexgui/__init__.py:713
 msgid "Clean Metadata"
-msgstr ""
+msgstr "Vyčistit metadata"
 
-#: ../src/yumexgui/__init__.py:626
+#: ../src/yumexgui/__init__.py:714
 msgid "Clean Packages"
-msgstr ""
+msgstr "Vyčistit balíčky"
 
-#: ../src/yumexgui/__init__.py:627
+#: ../src/yumexgui/__init__.py:715
 msgid "Clean DbCache"
-msgstr ""
+msgstr "Vyčistit databázovou chache"
 
-#: ../src/yumexgui/__init__.py:628
+#: ../src/yumexgui/__init__.py:716
 msgid "Clean All"
-msgstr ""
+msgstr "Vyčistit vše"
 
-#: ../src/yumexgui/__init__.py:641
+#: ../src/yumexgui/__init__.py:729
 msgid "Reinstall Package"
-msgstr ""
+msgstr "Přeinstalovat balíček"
 
-#: ../src/yumexgui/__init__.py:648
+#: ../src/yumexgui/__init__.py:736
 msgid "Downgrade Package"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:658
-msgid "By Repositories"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:659
-msgid "By Size"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:684 ../src/yumexgui/__init__.py:685
-msgid "Getting Group information"
-msgstr ""
-
-#: ../src/yumexgui/__init__.py:721
-msgid "The pending action queue is empty"
-msgstr ""
+msgstr "Snížit verzi balíčku"
 
 #: ../src/yumexgui/__init__.py:746
+msgid "By Repositories"
+msgstr "Podle repozitářů"
+
+#: ../src/yumexgui/__init__.py:747
+msgid "By Size"
+msgstr "Podle velikosti"
+
+#: ../src/yumexgui/__init__.py:772 ../src/yumexgui/__init__.py:773
+msgid "Getting Group information"
+msgstr "Získávání informací o skupinách"
+
+#: ../src/yumexgui/__init__.py:809
+msgid "The pending action queue is empty"
+msgstr "Fronta naplánovaných úloh je prázná"
+
+#: ../src/yumexgui/__init__.py:835
 msgid "Installing local Packages"
-msgstr ""
+msgstr "Instalují se lokální balíčky"
 
-#: ../src/yumexgui/__init__.py:748
+#: ../src/yumexgui/__init__.py:837
 msgid "Processing pending actions"
-msgstr ""
+msgstr "Zpracovávají se naplánované úlohy"
 
-#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/__init__.py:838
 msgid "Preparing the transaction"
-msgstr ""
+msgstr "Připravuje se transakce"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:766 ../src/yumexgui/__init__.py:774
+#: ../src/yumexgui/__init__.py:855 ../src/yumexgui/__init__.py:864
 msgid "Transaction completed successfully"
-msgstr ""
+msgstr "Transakce úspěšně dokončena"
 
-#: ../src/yumexgui/__init__.py:770
+#: ../src/yumexgui/__init__.py:859
 msgid "Installation of local packages completed"
-msgstr ""
+msgstr "Instalace lokálních balíčků dokončena"
 
-#: ../src/yumexgui/__init__.py:775
+#: ../src/yumexgui/__init__.py:865
 msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr ""
+msgstr "\n\nChcete ukončit Yum Extender?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:781
+#: ../src/yumexgui/__init__.py:875
 msgid "Transaction Aborted by User"
-msgstr ""
+msgstr "Transakce zrušena uživatelem"
 
-#: ../src/yumexgui/__init__.py:784
+#: ../src/yumexgui/__init__.py:878
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
-msgstr ""
+msgstr "Transakce skončila s chybami,\npro podrobnosti zkontrolujte stránku s výstupem"
 
-#: ../src/yumexgui/__init__.py:875
+#: ../src/yumexgui/__init__.py:969
 msgid "<unset>"
-msgstr ""
+msgstr "<nenastaveno>"
 
-#: ../src/yumexgui/__init__.py:876
+#: ../src/yumexgui/__init__.py:970
 msgid "System"
-msgstr ""
+msgstr "Systém"
 
-#: ../src/yumexgui/__init__.py:919
+#: ../src/yumexgui/__init__.py:1013
 msgid "Getting History Information"
-msgstr ""
+msgstr "Získávání informací o historii"
 
-#: ../src/yumexgui/__init__.py:921
+#: ../src/yumexgui/__init__.py:1015
 msgid "Getting Latest History Information"
-msgstr ""
+msgstr "Získávání posledních informací o historii"
 
-#: ../src/yumexgui/__init__.py:923
+#: ../src/yumexgui/__init__.py:1017
 msgid "Getting All History Information"
-msgstr ""
+msgstr "Získávání všech informací o historii"
 
-#: ../src/yumexgui/__init__.py:929 ../src/yumexgui/__init__.py:947
+#: ../src/yumexgui/__init__.py:1023 ../src/yumexgui/__init__.py:1041
 msgid "History Disabled"
-msgstr ""
+msgstr "Historie zakázána"
 
-#: ../src/yumexgui/__init__.py:941 ../src/yumexgui/__init__.py:942
+#: ../src/yumexgui/__init__.py:1035 ../src/yumexgui/__init__.py:1036
 msgid "Searching History Information"
-msgstr ""
+msgstr "Hledání informací o historii"
 
-#: ../src/yumexgui/__init__.py:987
+#: ../src/yumexgui/__init__.py:1081
 msgid "Transaction Performed with"
-msgstr ""
+msgstr "Transakce proběhla s"
 
-#: ../src/yumexgui/__init__.py:990
+#: ../src/yumexgui/__init__.py:1084
 msgid "Skipped packages"
-msgstr ""
+msgstr "Přeskočené balíčky"
 
-#: ../src/yumexgui/__init__.py:1015 ../src/yumexgui/__init__.py:1016
+#: ../src/yumexgui/__init__.py:1109 ../src/yumexgui/__init__.py:1110
 msgid "Adding Packages to view"
-msgstr ""
+msgstr "Přidávání balíčků do zobrazení"
 
-#: ../src/yumexgui/__init__.py:1020
+#: ../src/yumexgui/__init__.py:1114
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "Přidáno %i balíčků do zobrazení"
 
-#: ../src/yumexgui/__init__.py:1398
+#: ../src/yumexgui/__init__.py:1508
 msgid "Getting Category Packages"
-msgstr ""
+msgstr "Získávání balíčků z kategorie"
 
-#: ../src/yumexgui/__init__.py:1495
+#: ../src/yumexgui/__init__.py:1605
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
-msgstr ""
+msgstr "Chcete odstranit %s z cache yumu"
 
-#: ../src/yumexgui/__init__.py:1564
+#: ../src/yumexgui/__init__.py:1675
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Provádění: %s %s"
 
-#: ../src/yumexgui/__init__.py:1565
+#: ../src/yumexgui/__init__.py:1676
 msgid "Processing Queue Command"
-msgstr ""
+msgstr "Zpracovává se příkaz fronty"
 
-#: ../src/yumexgui/dialogs.py:421
+#: ../src/yumexgui/dialogs.py:426
 msgid "Working !!!"
-msgstr ""
+msgstr "Pracuji !!!"
 
-#: ../src/yumexgui/dialogs.py:491
+#: ../src/yumexgui/dialogs.py:511
 msgid "Preferences"
-msgstr ""
+msgstr "Nastavení"
 
-#: ../src/yumexgui/dialogs.py:504
+#: ../src/yumexgui/dialogs.py:524
 msgid "Load packages on launch"
+msgstr "Načíst balíčky při spuštění"
+
+#: ../src/yumexgui/dialogs.py:525
+msgid "Start hidden"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:505
+#: ../src/yumexgui/dialogs.py:526
+msgid "Autocheck for updates"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:528
+msgid "Update check interval (in minutes)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:530
+msgid "Startup delay before checking for updates (in seconds)"
+msgstr ""
+
+#: ../src/yumexgui/dialogs.py:536
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "Používat seřaditelné sloupce při zobrazení balíčků (pomalejší)"
 
-#: ../src/yumexgui/dialogs.py:506
+#: ../src/yumexgui/dialogs.py:537
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "Automaticky aktivovat hledání psaním"
 
-#: ../src/yumexgui/dialogs.py:507
+#: ../src/yumexgui/dialogs.py:538
 msgid "Skip Broken is active by default"
-msgstr ""
+msgstr "Automaticky aktivovat přeskakování rozbitých balíčků"
 
-#: ../src/yumexgui/dialogs.py:508
+#: ../src/yumexgui/dialogs.py:539
 msgid "No GPG Check is active by default"
-msgstr ""
+msgstr "Automaticky potlačit kontrolu GPG"
 
-#: ../src/yumexgui/dialogs.py:509
+#: ../src/yumexgui/dialogs.py:540
 msgid "Show Newest Only is active by default"
-msgstr ""
+msgstr "Automaticky aktivovat zobrazování pouze nejnovějších verzí"
 
-#: ../src/yumexgui/dialogs.py:510
+#: ../src/yumexgui/dialogs.py:541
 msgid "Clean Unused Requirements is active by default"
-msgstr ""
+msgstr "Automaticky aktivovat odebírání nepotřebných závislostí"
 
-#: ../src/yumexgui/dialogs.py:518
+#: ../src/yumexgui/dialogs.py:554
 msgid "Debug Mode"
-msgstr ""
+msgstr "Režim ladění"
 
-#: ../src/yumexgui/dialogs.py:519
+#: ../src/yumexgui/dialogs.py:555
 msgid "Disable startup network check"
-msgstr ""
+msgstr "Zakázat test připojení k síti po stratu"
 
-#: ../src/yumexgui/dialogs.py:520
+#: ../src/yumexgui/dialogs.py:556
 msgid "Run backend with sudo (need working sudo nopasswd config)"
-msgstr ""
+msgstr "Používat pro yum sudo (vyžaduje funkční konfiguraci sudo bez zadávání hesla)"
 
-#: ../src/yumexgui/dialogs.py:521
+#: ../src/yumexgui/dialogs.py:557
 msgid "Color (Installed)"
-msgstr ""
+msgstr "Barva (Nainstalováno)"
 
-#: ../src/yumexgui/dialogs.py:522
+#: ../src/yumexgui/dialogs.py:558
 msgid "Color (Update)"
-msgstr ""
+msgstr "Barva (Aktualizace)"
 
-#: ../src/yumexgui/dialogs.py:523
+#: ../src/yumexgui/dialogs.py:559
 msgid "Color (Available)"
-msgstr ""
+msgstr "Barva (Dostupné)"
 
-#: ../src/yumexgui/dialogs.py:531
+#: ../src/yumexgui/dialogs.py:567
 msgid "Enable Yum Plugins"
-msgstr ""
+msgstr "Povolit zásuvné moduly yumu"
 
-#: ../src/yumexgui/dialogs.py:532
+#: ../src/yumexgui/dialogs.py:568
 msgid "Proxy"
-msgstr ""
+msgstr "Proxy"
 
-#: ../src/yumexgui/dialogs.py:533
+#: ../src/yumexgui/dialogs.py:569
 msgid "Yum Debug Level"
 msgstr ""
 
-#: ../src/yumexgui/dialogs.py:632
+#: ../src/yumexgui/dialogs.py:669
 msgid "Transaction Result"
-msgstr ""
+msgstr "Výsledek transakce"
 
-#: ../src/yumexgui/dialogs.py:707
+#: ../src/yumexgui/dialogs.py:744
 #, python-format
 msgid "Download Size : %s "
-msgstr ""
-
-#: ../src/yumexgui/gui.py:211
-msgid "Package Description"
-msgstr ""
-
-#: ../src/yumexgui/gui.py:213
-msgid "Update information"
-msgstr ""
+msgstr "Velikost ke stažení: %s"
 
 #: ../src/yumexgui/gui.py:215
-msgid "Package Changelog"
-msgstr ""
+msgid "Package Description"
+msgstr " Popis balíčku"
 
 #: ../src/yumexgui/gui.py:217
-msgid "Package Filelist"
-msgstr ""
+msgid "Update information"
+msgstr "Informace o aktualizaci"
 
 #: ../src/yumexgui/gui.py:219
+msgid "Package Changelog"
+msgstr "Seznam změn balíčku"
+
+#: ../src/yumexgui/gui.py:221
+msgid "Package Filelist"
+msgstr "Soubory v balíčku"
+
+#: ../src/yumexgui/gui.py:223
 msgid "Package Dependencies"
-msgstr ""
+msgstr "Závislosti balíčku"
 
-#: ../src/yumexgui/gui.py:309
+#: ../src/yumexgui/gui.py:313
 msgid "No Update information"
-msgstr ""
+msgstr "Žádné informace o aktualizaci"
 
-#: ../src/yumexgui/gui.py:343
+#: ../src/yumexgui/gui.py:345
 msgid "Project URL : "
-msgstr ""
-
-#: ../src/yumexgui/gui.py:350
-msgid "Release"
-msgstr ""
-
-#: ../src/yumexgui/gui.py:351
-msgid "Type"
-msgstr ""
+msgstr "Domovská stránka: "
 
 #: ../src/yumexgui/gui.py:352
-msgid "Status"
-msgstr ""
+msgid "Release"
+msgstr "Vydání"
 
 #: ../src/yumexgui/gui.py:353
+msgid "Type"
+msgstr "Typ"
+
+#: ../src/yumexgui/gui.py:354
+msgid "Status"
+msgstr "Stav"
+
+#: ../src/yumexgui/gui.py:355
 msgid "Issued"
+msgstr "Vydáno"
+
+#: ../src/yumexgui/gui.py:551
+msgid "Quit"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:554
+msgid "Search for Updates"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:583 ../misc/yumex.desktop.in.h:1
+msgid "Yum Extender"
+msgstr "Yum Extender"
+
+#: ../src/yumexgui/gui.py:586
+msgid "Yum Extender: Error"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:589
+msgid "Yum Extender: No Updates"
+msgstr ""
+
+#: ../src/yumexgui/gui.py:592
+#, python-format
+msgid "Yum Extender: %s Updates available"
 msgstr ""
 
 #: ../src/yumex.glade.h:1
 msgid "<span size=\"x-large\">Working ....</span>\n"
-msgstr ""
+msgstr "<span size=\"x-large\">Pracuji....</span>\n"
 
 #: ../src/yumex.glade.h:3
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: ../src/yumex.glade.h:4
 msgid "Type package names to search for"
-msgstr ""
+msgstr "Pište hledané názvy balíčků"
 
 #: ../src/yumex.glade.h:5
 msgid "Undo the current search"
-msgstr ""
+msgstr "Vrátit aktuální hledání"
 
 #: ../src/yumex.glade.h:6
 msgid "Get all History elements"
-msgstr ""
+msgstr "Získat všechny položky historie"
 
 #: ../src/yumex.glade.h:7
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "Zvrátit položku historie"
 
 #: ../src/yumex.glade.h:8
 msgid "Redo a history transaction"
-msgstr ""
+msgstr "Znovu vykonat položku historie"
 
 #: ../src/yumex.glade.h:9
 msgid "_File"
-msgstr ""
+msgstr "_Soubor"
 
 #: ../src/yumex.glade.h:10
 msgid "_Edit"
-msgstr ""
+msgstr "_Upravit"
 
 #: ../src/yumex.glade.h:11
 msgid "_View"
-msgstr ""
+msgstr "_Zobrazit"
 
 #: ../src/yumex.glade.h:12
 msgid "_Packages"
-msgstr ""
+msgstr "_Balíčky"
 
 #: ../src/yumex.glade.h:13
 msgid "_Queue"
-msgstr ""
+msgstr "_Fronta"
 
 #: ../src/yumex.glade.h:14
 msgid "R_epositories"
-msgstr ""
+msgstr "_Repozitář"
 
 #: ../src/yumex.glade.h:15
 msgid "_History"
-msgstr ""
+msgstr "_Historie"
 
 #: ../src/yumex.glade.h:16
 msgid "_Output"
-msgstr ""
+msgstr "_Výstup"
 
 #: ../src/yumex.glade.h:17
 msgid "_Profiles"
-msgstr ""
+msgstr "_Profily"
 
 #: ../src/yumex.glade.h:18
 msgid "_Options"
-msgstr ""
+msgstr "_Možnosti"
 
 #: ../src/yumex.glade.h:19
 msgid "Skip packages there get depsolve errors"
-msgstr ""
+msgstr "Přeskočit balíčky s problémy v závislostech"
 
 #: ../src/yumex.glade.h:20
 msgid "Skip Broken"
-msgstr ""
+msgstr "Přeskočit rozbité"
 
 #: ../src/yumex.glade.h:21
 msgid "Don't check signatures for packages"
-msgstr ""
+msgstr "Nekontrolovat podpisy balíčků"
 
 #: ../src/yumex.glade.h:22
 msgid "no GPG Check"
-msgstr ""
+msgstr "Vypnout GPG kontrolu"
 
 #: ../src/yumex.glade.h:23
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "Při hledání zobrazovat pouze nejnovější verze balíčků\nNezobrazovat více verzí stejného balíčku"
 
 #: ../src/yumex.glade.h:25
 msgid "Show Newest Only"
-msgstr ""
+msgstr "Zobrazovat jen nejnovější verze"
 
 #: ../src/yumex.glade.h:26
 msgid ""
 "When removing packages, also remove requirements\n"
 "there is not used by any other packages. "
-msgstr ""
+msgstr "Při odstraňování balíčků odstranit také závislosti,\nkteré nejsou vyžadovány jinými balíčky."
 
 #: ../src/yumex.glade.h:28
 msgid "Clean Unused Requirements"
-msgstr ""
+msgstr "Odebírat nepotřebné závislosti"
 
 #: ../src/yumex.glade.h:29
 msgid "_Help"
-msgstr ""
+msgstr "_Nápověda"
 
 #: ../src/yumex.glade.h:30
 msgid "Typeahead search on/off"
-msgstr ""
+msgstr "Zapnout/vypnout hledání psaním"
 
 #: ../src/yumex.glade.h:31
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
+msgstr "Pište hledaná slova oddělená mezerami,\nabyste našli balíčky, které je obsahují.\n"
 
 #: ../src/yumex.glade.h:35
 msgid "Search Options"
-msgstr ""
+msgstr "Volby hledání"
 
 #: ../src/yumex.glade.h:36
 msgid "U_pdates"
-msgstr ""
+msgstr "_Aktualizace"
 
 #: ../src/yumex.glade.h:37
 msgid "Show package updates"
-msgstr ""
+msgstr "Zobrazit dostupné aktualizace"
 
 #: ../src/yumex.glade.h:38
 msgid "Availa_ble"
-msgstr ""
+msgstr "_Dostupné"
 
 #: ../src/yumex.glade.h:39
 msgid "Show available packages"
-msgstr ""
+msgstr "Zobrazit dostupné balíčky"
 
 #: ../src/yumex.glade.h:40
 msgid "_Installed"
-msgstr ""
+msgstr "Na_instalováno"
 
 #: ../src/yumex.glade.h:41
 msgid "Show installed packages"
-msgstr ""
+msgstr "Zobrazit nainstalované balíčky"
 
 #: ../src/yumex.glade.h:42
 msgid "All"
-msgstr ""
+msgstr "Všechny"
 
 #: ../src/yumex.glade.h:43
 msgid "Show all Packages"
-msgstr ""
+msgstr "Zobrazit všechny balíčky"
 
 #: ../src/yumex.glade.h:44
 msgid "_Groups"
-msgstr ""
+msgstr "_Skupiny"
 
 #: ../src/yumex.glade.h:45
 msgid "Show Groups"
-msgstr ""
+msgstr "Zobrazit skupiny"
 
 #: ../src/yumex.glade.h:46
 msgid "_Categories"
-msgstr ""
+msgstr "_Kategorie"
 
 #: ../src/yumex.glade.h:47
 msgid "Show Categories"
-msgstr ""
+msgstr "Zobrazit kategorie"
 
 #: ../src/yumex.glade.h:48
 msgid "Select all packages in current view"
-msgstr ""
+msgstr "Zvolit všechny viditelné balíčky"
 
 #: ../src/yumex.glade.h:49
 msgid "Undo all package selection"
-msgstr ""
+msgstr "Zrušit označení všech balíčků"
 
 #: ../src/yumex.glade.h:50
 msgid "Execute all pending actions in queue"
-msgstr ""
+msgstr "provést všechny naplánované úlohy"
 
 #: ../src/yumex.glade.h:51
 msgid "Basic"
-msgstr ""
+msgstr "Základní"
 
 #: ../src/yumex.glade.h:52
 msgid "Advanced"
-msgstr ""
+msgstr "Pokročilé"
 
 #: ../src/yumex.glade.h:53
 msgid "Yum"
-msgstr ""
+msgstr "Yum"
 
 #: ../src/yumex.glade.h:54
 msgid "Remove selected packages from queue"
-msgstr ""
+msgstr "Odstranit zvolené balíčky z fronty"
 
 #: ../src/yumex.glade.h:55
 msgid ""
 "Refresh packages with current selected\n"
 "repositories"
-msgstr ""
+msgstr "Obnovit balíčky pomocí zvolených\nrepozitářů"
 
 #: ../src/yumex.glade.h:57
 msgid "Undo repository selection changes"
-msgstr ""
+msgstr "Zrušit označení všech repozitářů"
 
 #: ../src/yumex.glade.h:58
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Testovací věci"
 
 #: ../misc/dk.yumex.backend.policy.in.h:1
 msgid "Run Yum Extender backend"
-msgstr ""
+msgstr "Spustit yum"
 
 #: ../misc/dk.yumex.backend.policy.in.h:2
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
-msgstr ""
-
-#: ../misc/yumex.desktop.in.h:1
-msgid "Yum Extender"
-msgstr ""
+msgstr "Pro spuštění Yum Extendeu a správu balíčků je vyžadována autentizace"
 
 #: ../misc/yumex.desktop.in.h:2
 msgid "Install, update and remove applications"
-msgstr ""
+msgstr "Instalování, aktualizace a odebírání aplikací"
 
 #: ../misc/yumex.desktop.in.h:3
 msgid "Software Installer"
-msgstr ""
+msgstr "Instalátor softwaru"
 
 #: ../misc/yumex-local.desktop.in.h:1
 msgid "Yumex Package Installer"
-msgstr ""
+msgstr "Instalátor balíčků Yumex"
 
 #: ../misc/yumex-local.desktop.in.h:2
 msgid "Install local packages on system"
-msgstr ""
+msgstr "Instalovat lokální balíčky do systému"
