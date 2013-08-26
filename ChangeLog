@@ -1,3 +1,94 @@
+2013-08-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.11
+
+2013-08-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* po/ar.po, po/bg.po, po/bn_IN.po, po/cs.po, po/da.po, po/de.po,
+	po/es.po, po/es_ES.po, po/fa.po, po/fr.po, po/gu.po, po/hu.po,
+	po/id.po, po/it.po, po/ja.po, po/nl.po, po/pl.po, po/pt.po,
+	po/ru.po, po/sr.po, po/sr@latin.po, po/tr_TR.po, po/uk.po,
+	po/zh_CN.po, po/zh_TW.po: Transfix pull, *.po update
+
+2013-08-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* .tx/config, Makefile, po/yumex.pot: fixed Makefile for transifex
+	setup and rebuild yumex.pot
+
+2013-08-13  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py: Fixed non-root/root backend launch
+	when running from source
+
+2013-08-13  Tim Lauridsen <tla@rasmil.dk>
+
+	Merge pull request #6 from bkueng/update_checking  add status
+	icon & auto-check for updates
+
+2013-08-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/dialogs.py: options dialog: use gtk.SpinButton for
+	integer values instead of gtk.Entry
+
+2013-08-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/__init__.py, src/yumexgui/dialogs.py: add auto update
+	options to preferences dialog
+
+2013-08-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/gui.py: status icon: use bold font & a smaller font
+	size
+
+2013-08-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbase/conf.py, src/yumexbase/constants.py,
+	src/yumexbase/timestamp.py, src/yumexgui/__init__.py: add auto-check
+	for updates with configurable interval
+
+2013-08-12  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbase/conf.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py: add --start-hidden command line &
+	configuration parameter: start with hidden main window
+
+2013-08-12  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/gui.py: status icon: set tooltip to "Yum Extender" on
+	startup instead of "Yum Extender: No Updates"
+
+2013-08-12  Beat Küng <beat-kueng@gmx.net>
+
+	* gfx/tray-error.png, gfx/tray-no-updates.png,
+	gfx/tray-updates.png, gfx/tray-working.png,
+	src/yumexbackend/yum_backend.py, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py, yumex.spec: add status icon with popup menu to
+	search for updates
+
+2013-08-10  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yum_childtask.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: start backend with non-root privileges,
+	restart backend when root is needed  there are two cases which need
+	root: - executing a transaction (updates, undo/redo history, ...) -
+	permanently enable/disable a repository
+
+2012-12-07  Tim Lauridsen <timlau@fedoraproject.orgn>
+
+	* src/yumexgui/gui.py: Always show updates info in the right order
+	with the latest first
+
+2012-12-05  Tim Lauridsen <timlau@fedoraproject.orgn>
+
+	* src/yumexbase/conf.py, src/yumexgui/__init__.py: Added option to
+	control exit action
+
+2012-11-15  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2012-11-15  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.10
