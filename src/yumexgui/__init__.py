@@ -241,6 +241,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.refresh_on_show = False
         self.update_timer_id = -1
         self.update_timestamp = UpdateTimestamp()
+        self.window.connect('delete_event', self.delete_event)
 
 
     @property
@@ -291,14 +292,7 @@ class YumexApplication(Controller, YumexFrontend):
             process.close()
             quit_pgm = True
             title = _("Fatal Error")
-            if err == 'lock-error': # Cant get the yum lock
-                text = _("Can't start the yum backend")
-                longtext = _("Another program is locking yum")
-                longtext += '\n\n'
-                longtext += _('Message from yum backend:')
-                longtext += '\n\n'
-                longtext += msg
-            elif err == "repo-error":
+            if err == "repo-error":
                 text = _("Error in repository setup")
                 longtext = msg
                 longtext += '\n\n'
@@ -307,7 +301,6 @@ class YumexApplication(Controller, YumexFrontend):
                 longtext += _('and try again.\n')
                 progress = self.get_progress()
                 progress.hide()
-                #quit = False
             elif err == "backend-error":
                 text = _('Fatal Error in backend restart')
                 longtext = _("Backend could not be closed")
@@ -1115,6 +1108,12 @@ class YumexApplication(Controller, YumexFrontend):
         progress.set_pulse(False)
         progress.hide()
 
+    def close_pressed(self):
+        if self.settings.close_to_tray:
+            self.hide()
+            return True
+        return False
+
 # Signal handlers
 
     def quit(self):
@@ -1141,6 +1140,12 @@ class YumexApplication(Controller, YumexFrontend):
             pass
         self.backend.debug("Backend reset completed")
 
+    def delete_event(self, *args):
+        progress = self.get_progress()
+        if self.close_pressed() or progress.is_active():
+            return gtk.TRUE
+        self.main_quit()
+        return gtk.FALSE
     # Menu
 
     def on_fileQuit_activate(self, widget=None, event=None):

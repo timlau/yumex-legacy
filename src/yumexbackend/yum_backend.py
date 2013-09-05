@@ -119,6 +119,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         self.dont_abort = False
         self.package_cache = PackageCache(self, frontend)
         self._running_as_root = True
+        self.lock_is_progress_active = False
 
     # Overload the YumClient message methods
 
@@ -234,6 +235,23 @@ class YumexBackendYum(YumexBackendBase, YumClient):
             progress.set_pulse(False)
             progress.set_header(_("Running RPM Transaction"))
             progress.tasks.next()
+
+
+    def lock_msg(self, state, additional):
+
+        additional = unpack(additional)
+        progress = self.frontend.get_progress()
+
+        if state == 'try-lock':
+            progress.set_header(_("Yum is locked: waiting for release")+"\n"+
+                    additional[1])
+            progress.set_pulse(True)
+            self.lock_is_progress_active = progress.is_active()
+            if not self.lock_is_progress_active:
+                progress.show()
+        elif state == 'got-lock':
+            if not self.lock_is_progress_active:
+                progress.hide()
 
     def gpg_check(self, po, userid, hexkeyid):
         """  Confirm GPG key  """
@@ -363,7 +381,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         # Getting the packages
         for flt in filters:
             if not self.package_cache.is_populated(pkg_filter) or disable_cache:
-                pkgs = YumClient.get_packages(self, flt, show_dupes)
+                pkgs = YumClient.get_packages(self, flt, show_dupes,
+                        disable_cache)
                 self.debug('got %i packages from yum backend' % (len(pkgs)))
                 self.package_cache.populate(flt, pkgs)
             else:

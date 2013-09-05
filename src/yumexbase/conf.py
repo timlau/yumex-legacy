@@ -41,6 +41,7 @@ class YumexConf(BaseConfig):
     check_for_updates = BoolOption(False)
     update_interval = IntOption(60*3) #in minutes
     update_startup_delay = IntOption(30) #in seconds
+    close_to_tray = BoolOption(False)
     recentdays = IntOption(14)
     debug = BoolOption(False)
     plugins = BoolOption(True)
@@ -68,7 +69,7 @@ class YumexConf(BaseConfig):
     no_gpg_check = BoolOption(False)
     show_newest_only= BoolOption(True)
     remove_requirements= BoolOption(False)
-    exit_action = SelectionOption('ask',['ask', 'exit', 'reload'])
+    exit_action = SelectionOption('reload',['ask', 'exit', 'reload'])
 
 
 class YumexOptions:
