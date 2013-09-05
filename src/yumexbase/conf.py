@@ -41,6 +41,7 @@ class YumexConf(BaseConfig):
     check_for_updates = BoolOption(False)
     update_interval = IntOption(60*3) #in minutes
     update_startup_delay = IntOption(30) #in seconds
+    close_to_tray = BoolOption(False)
     recentdays = IntOption(14)
     debug = BoolOption(False)
     plugins = BoolOption(True)

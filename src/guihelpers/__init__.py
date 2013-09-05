@@ -279,7 +279,6 @@ class Controller:
         if connect:
             self.ui.connect_signals(self._getAllMethods())
         self.window = getattr(self.ui, rootname)
-        self.window.connect("delete_event", self.main_quit)
 
     def main_quit(self, widget=None, event=None):
         ''' Main destroy Handler '''

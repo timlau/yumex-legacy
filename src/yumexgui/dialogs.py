@@ -283,8 +283,8 @@ class Progress(YumexProgressBase):
         self.progress_hidden = False
         self.status_icon = status_icon
 
-    def _delete_event(*args):
-        # ignore close button
+    def _delete_event(self, *args):
+        self.frontend.close_pressed() # hides the window if necessary
         return gtk.TRUE
 
     def close(self):
@@ -529,6 +529,7 @@ class Preferences:
         vbox = self.ui.prefBasicVBox
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
         self._add_option(PrefBoolean, vbox, 'start_hidden', _('Start hidden'))
+        self._add_option(PrefBoolean, vbox, 'close_to_tray', _('Close button hides the window'))
         updates_opt = self._add_option(PrefBoolean, vbox, 'check_for_updates', _('Autocheck for updates'))
         self._update_interval = self._add_option(PrefInt, vbox, 
                 'update_interval', _('Update check interval (in minutes)'))
