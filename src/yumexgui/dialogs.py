@@ -252,6 +252,8 @@ class Progress(YumexProgressBase):
         self.ui = frontend.ui
         self.dialog = self.ui.Progress
         self.dialog.set_title("Working....")
+        self.dialog.set_deletable(False)
+        self.dialog.connect('delete_event', self._delete_event)
         self.parent = frontend.window
         self.dialog.set_transient_for(self.parent)
         style = self.ui.packageView.get_style()
@@ -280,6 +282,10 @@ class Progress(YumexProgressBase):
         self.task_hidden = True
         self.progress_hidden = False
         self.status_icon = status_icon
+
+    def _delete_event(*args):
+        # ignore close button
+        return gtk.TRUE
 
     def close(self):
         self.dialog.hide()
