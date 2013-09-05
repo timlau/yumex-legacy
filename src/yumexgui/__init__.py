@@ -291,14 +291,7 @@ class YumexApplication(Controller, YumexFrontend):
             process.close()
             quit_pgm = True
             title = _("Fatal Error")
-            if err == 'lock-error': # Cant get the yum lock
-                text = _("Can't start the yum backend")
-                longtext = _("Another program is locking yum")
-                longtext += '\n\n'
-                longtext += _('Message from yum backend:')
-                longtext += '\n\n'
-                longtext += msg
-            elif err == "repo-error":
+            if err == "repo-error":
                 text = _("Error in repository setup")
                 longtext = msg
                 longtext += '\n\n'
@@ -307,7 +300,6 @@ class YumexApplication(Controller, YumexFrontend):
                 longtext += _('and try again.\n')
                 progress = self.get_progress()
                 progress.hide()
-                #quit = False
             elif err == "backend-error":
                 text = _('Fatal Error in backend restart')
                 longtext = _("Backend could not be closed")

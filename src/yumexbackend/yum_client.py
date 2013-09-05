@@ -88,6 +88,10 @@ class YumClientBase:
         """ yum state message handler (overload in child class)"""
         raise NotImplementedError()
 
+    def lock_msg(self, state, additional):
+        """ yum lock message handler (overload in child class)"""
+        raise NotImplementedError()
+
     def exitcode(self, code):
         """ Exitcode from backend"""
         raise NotImplementedError()
@@ -368,6 +372,8 @@ class YumClientBase:
             self._yum_dnl(args[0])
         elif cmd == ':yum-state':
             self.yum_state(args[0])
+        elif cmd == ':lock':
+            self.lock_msg(args[0], args[1])
         elif cmd == ':exitcode':
             self.exitcode(args[0])
         else:
