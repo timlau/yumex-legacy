@@ -381,7 +381,8 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         # Getting the packages
         for flt in filters:
             if not self.package_cache.is_populated(pkg_filter) or disable_cache:
-                pkgs = YumClient.get_packages(self, flt, show_dupes)
+                pkgs = YumClient.get_packages(self, flt, show_dupes,
+                        disable_cache)
                 self.debug('got %i packages from yum backend' % (len(pkgs)))
                 self.package_cache.populate(flt, pkgs)
             else:

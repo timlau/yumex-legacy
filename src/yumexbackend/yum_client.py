@@ -606,9 +606,10 @@ class YumClient(YumClientBase):
         '''
         YumClientBase.__init__(self, frontend, timeout)
 
-    def get_packages(self, pkg_filter, show_dupes=False):
+    def get_packages(self, pkg_filter, show_dupes=False, disable_cache=False):
         ''' get a list of packages based on pkg_filter '''
-        return self.execute_command('get-packages', [str(pkg_filter), str(show_dupes)])
+        return self.execute_command('get-packages', 
+                [str(pkg_filter), str(show_dupes), str(disable_cache)])
 
     def get_available_by_name(self, name):
         return self.execute_command('get-available-by-name', [name])

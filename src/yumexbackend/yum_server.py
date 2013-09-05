@@ -107,7 +107,7 @@ class YumServer(yum.YumBase):
     to stdout.
 
     Commands: (commands and parameters are separated with '\t' )
-        get-packages <pkg-filter> <show_dupes>  : get a list of packages based on a filter
+        get-packages <pkg-filter> <show_dupes> <disable_cache> : get a list of packages based on a filter
         get-packages-size                    :
         get-packages-repo                    :
         get-attribute <pkg_id> <attribute>   : get an attribute of an package
@@ -528,14 +528,14 @@ class YumServer(yum.YumBase):
 
 
     #@catchYumException
-    def get_packages(self, narrow, dupes):
+    def get_packages(self, narrow, dupes, disable_cache):
         '''
         get list of packages and send results
         @param narrow:
         '''
         if narrow:
             show_dupes = (dupes == 'True')
-            if not narrow in self._package_cache:
+            if not narrow in self._package_cache or disable_cache == 'True':
                 self.info(PACKAGE_LOAD_MSG[narrow])
                 ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
                 self._package_cache[narrow] = getattr(ygh, narrow)
@@ -1328,7 +1328,7 @@ class YumServer(yum.YumBase):
         try:
             self.doLock()
             if cmd == 'get-packages':       # get-packages <Package filter
-                self.get_packages(args[0], args[1])
+                self.get_packages(args[0], args[1], args[2])
             elif cmd == 'get-attribute':
                 self.get_attribute(args)
             elif cmd == 'get-changelog':
