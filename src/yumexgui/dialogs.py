@@ -252,6 +252,8 @@ class Progress(YumexProgressBase):
         self.ui = frontend.ui
         self.dialog = self.ui.Progress
         self.dialog.set_title("Working....")
+        self.dialog.set_deletable(False)
+        self.dialog.connect('delete_event', self._delete_event)
         self.parent = frontend.window
         self.dialog.set_transient_for(self.parent)
         style = self.ui.packageView.get_style()
@@ -280,6 +282,10 @@ class Progress(YumexProgressBase):
         self.task_hidden = True
         self.progress_hidden = False
         self.status_icon = status_icon
+
+    def _delete_event(self, *args):
+        self.frontend.close_pressed() # hides the window if necessary
+        return gtk.TRUE
 
     def close(self):
         self.dialog.hide()
@@ -523,6 +529,7 @@ class Preferences:
         vbox = self.ui.prefBasicVBox
         self._add_option(PrefBoolean, vbox, 'autorefresh', _('Load packages on launch'))
         self._add_option(PrefBoolean, vbox, 'start_hidden', _('Start hidden'))
+        self._add_option(PrefBoolean, vbox, 'close_to_tray', _('Close button hides the window'))
         updates_opt = self._add_option(PrefBoolean, vbox, 'check_for_updates', _('Autocheck for updates'))
         self._update_interval = self._add_option(PrefInt, vbox, 
                 'update_interval', _('Update check interval (in minutes)'))

@@ -107,7 +107,7 @@ class YumServer(yum.YumBase):
     to stdout.
 
     Commands: (commands and parameters are separated with '\t' )
-        get-packages <pkg-filter> <show_dupes>  : get a list of packages based on a filter
+        get-packages <pkg-filter> <show_dupes> <disable_cache> : get a list of packages based on a filter
         get-packages-size                    :
         get-packages-repo                    :
         get-attribute <pkg_id> <attribute>   : get an attribute of an package
@@ -185,7 +185,6 @@ class YumServer(yum.YumBase):
         if hasattr(self, 'run_with_package_names'):
             self.run_with_package_names.add("yumex")
         self.setCacheDir()
-        self.doLock()
         self.dnlCallback = YumexDownloadCallback(self)
         self.repos.setProgressBar(self.dnlCallback)
         # make some dummy options,args for yum plugins
@@ -262,11 +261,13 @@ class YumServer(yum.YumBase):
         Active the yum lock.
         @param lockfile: path to yum lock file
         '''
-        cnt = 0
         nmsg = ""
-        while cnt < 6:
+        first_time=True
+        while True:
             try:
                 yum.YumBase.doLock(self)
+                if not first_time:
+                    self.lock_msg('got-lock', None)
                 return True
             except Errors.LockError, e:
                 self.warning(_("Yum is locked : ") + e.msg)
@@ -278,11 +279,11 @@ class YumServer(yum.YumBase):
                         else:
                             nmsg = _("  The other application is: %s") % ps['name']
                         self.warning(nmsg)
+                if first_time:
+                    first_time=False
+                    self.lock_msg('try-lock', [e.msg, nmsg])
                 self.warning(_("Waiting 10 seconds and tries again !!!"))
-                cnt += 1
                 time.sleep(10)
-        msg = e.msg + "\n" + nmsg
-        self.fatal("lock-error", msg)
 
     def mediaGrabber(self, *args, **kwargs):
         '''
@@ -346,7 +347,6 @@ class YumServer(yum.YumBase):
         '''
         self.info(_("Closing rpm db and releasing yum lock  "))
         self.closeRpmDB()
-        self.doUnlock()
         self.ended(True)
         sys.exit(returncode)
 
@@ -478,6 +478,13 @@ class YumServer(yum.YumBase):
         value = pack(value)
         self.write(":msg\t%s\t%s" % (msg_type, value))
 
+    def lock_msg(self, state, additional):
+        '''
+        send a lock-specific message to the frontend
+        '''
+        value = pack(additional)
+        self.write(":lock\t%s\t%s" % (state, value))
+
     def yum_rpm(self, action, package, frac, ts_current, ts_total):
         ''' write an yum rpm action progressmessage '''
         value = (action, package, frac, ts_current, ts_total)
@@ -521,14 +528,14 @@ class YumServer(yum.YumBase):
 
 
     #@catchYumException
-    def get_packages(self, narrow, dupes):
+    def get_packages(self, narrow, dupes, disable_cache):
         '''
         get list of packages and send results
         @param narrow:
         '''
         if narrow:
             show_dupes = (dupes == 'True')
-            if not narrow in self._package_cache:
+            if not narrow in self._package_cache or disable_cache == 'True':
                 self.info(PACKAGE_LOAD_MSG[narrow])
                 ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
                 self._package_cache[narrow] = getattr(ygh, narrow)
@@ -1318,68 +1325,72 @@ class YumServer(yum.YumBase):
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
-        if cmd == 'get-packages':       # get-packages <Package filter
-            self.get_packages(args[0], args[1])
-        elif cmd == 'get-attribute':
-            self.get_attribute(args)
-        elif cmd == 'get-changelog':
-            self.get_changelog(args)
-        elif cmd == 'add-transaction':
-            self.add_transaction(args)
-        elif cmd == 'remove-transaction':
-            self.remove_transaction(args)
-        elif cmd == 'reset-transaction':
-            self.reset_transaction()
-        elif cmd == 'list-transaction':
-            self.list_transaction()
-        elif cmd == 'run-transaction':
-            self.run_transaction()
-        elif cmd == 'build-transaction':
-            self.build_transaction()
-        elif cmd == 'get-groups':
-            self.get_groups(args)
-        elif cmd == 'get-group-packages':
-            self.get_group_packages(args)
-        elif cmd == 'get-packages-size':
-            self.get_packages_size(args[0])
-        elif cmd == 'get-packages-repo':
-            self.get_packages_repo(args[0])
-        elif cmd == 'get-repos':
-            self.get_repos(args)
-        elif cmd == 'enable-repo':
-            self.enable_repo(args)
-        elif cmd == 'enable-repo-persistent':
-            self.enable_repo_persistent(args)
-        elif cmd == 'search':
-            self.search(args)
-        elif cmd == 'search-prefix':
-            self.search_prefix(args[0], unpack(args[1]))
-        elif cmd == 'update-info':
-            self.get_update_info(args[0:-1],unpack(args[-1]))
-        elif cmd == 'set-option':
-            self.set_option(args)
-        elif cmd == 'clean':
-            self.clean(args)
-        elif cmd == 'get-history':
-            self.get_history(args)
-        elif cmd == 'get-history-packages':
-            self.get_history_packages(args[0], args[1])
-        elif cmd == 'history-undo':
-            self.history_undo(args)
-        elif cmd == 'history-redo':
-            self.history_redo(args)
-        elif cmd == 'search-history':
-            self.search_history(unpack(args[0]))
-        elif cmd == 'run-command':
-            self.run_command(args[0], unpack(args[1]))
-        elif cmd == 'get-available-by-name':
-            self.get_available_by_name(args[0])
-        elif cmd == 'get-available-downgrades':
-            self.get_available_downgrades(args)
-        elif cmd == 'get-dependencies':
-            self.get_dependencies(args)
-        else:
-            self.error('Unknown command : %s' % cmd)
+        try:
+            self.doLock()
+            if cmd == 'get-packages':       # get-packages <Package filter
+                self.get_packages(args[0], args[1], args[2])
+            elif cmd == 'get-attribute':
+                self.get_attribute(args)
+            elif cmd == 'get-changelog':
+                self.get_changelog(args)
+            elif cmd == 'add-transaction':
+                self.add_transaction(args)
+            elif cmd == 'remove-transaction':
+                self.remove_transaction(args)
+            elif cmd == 'reset-transaction':
+                self.reset_transaction()
+            elif cmd == 'list-transaction':
+                self.list_transaction()
+            elif cmd == 'run-transaction':
+                self.run_transaction()
+            elif cmd == 'build-transaction':
+                self.build_transaction()
+            elif cmd == 'get-groups':
+                self.get_groups(args)
+            elif cmd == 'get-group-packages':
+                self.get_group_packages(args)
+            elif cmd == 'get-packages-size':
+                self.get_packages_size(args[0])
+            elif cmd == 'get-packages-repo':
+                self.get_packages_repo(args[0])
+            elif cmd == 'get-repos':
+                self.get_repos(args)
+            elif cmd == 'enable-repo':
+                self.enable_repo(args)
+            elif cmd == 'enable-repo-persistent':
+                self.enable_repo_persistent(args)
+            elif cmd == 'search':
+                self.search(args)
+            elif cmd == 'search-prefix':
+                self.search_prefix(args[0], unpack(args[1]))
+            elif cmd == 'update-info':
+                self.get_update_info(args[0:-1],unpack(args[-1]))
+            elif cmd == 'set-option':
+                self.set_option(args)
+            elif cmd == 'clean':
+                self.clean(args)
+            elif cmd == 'get-history':
+                self.get_history(args)
+            elif cmd == 'get-history-packages':
+                self.get_history_packages(args[0], args[1])
+            elif cmd == 'history-undo':
+                self.history_undo(args)
+            elif cmd == 'history-redo':
+                self.history_redo(args)
+            elif cmd == 'search-history':
+                self.search_history(unpack(args[0]))
+            elif cmd == 'run-command':
+                self.run_command(args[0], unpack(args[1]))
+            elif cmd == 'get-available-by-name':
+                self.get_available_by_name(args[0])
+            elif cmd == 'get-available-downgrades':
+                self.get_available_downgrades(args)
+            elif cmd == 'get-dependencies':
+                self.get_dependencies(args)
+            else:
+                self.error('Unknown command : %s' % cmd)
+        finally:
+            self.doUnlock()
 
     def dispatcher(self):
         ''' receive commands and parameter from stdin (from the client) '''

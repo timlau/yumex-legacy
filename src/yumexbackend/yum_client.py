@@ -88,6 +88,10 @@ class YumClientBase:
         """ yum state message handler (overload in child class)"""
         raise NotImplementedError()
 
+    def lock_msg(self, state, additional):
+        """ yum lock message handler (overload in child class)"""
+        raise NotImplementedError()
+
     def exitcode(self, code):
         """ Exitcode from backend"""
         raise NotImplementedError()
@@ -368,6 +372,8 @@ class YumClientBase:
             self._yum_dnl(args[0])
         elif cmd == ':yum-state':
             self.yum_state(args[0])
+        elif cmd == ':lock':
+            self.lock_msg(args[0], args[1])
         elif cmd == ':exitcode':
             self.exitcode(args[0])
         else:
@@ -600,9 +606,10 @@ class YumClient(YumClientBase):
         '''
         YumClientBase.__init__(self, frontend, timeout)
 
-    def get_packages(self, pkg_filter, show_dupes=False):
+    def get_packages(self, pkg_filter, show_dupes=False, disable_cache=False):
         ''' get a list of packages based on pkg_filter '''
-        return self.execute_command('get-packages', [str(pkg_filter), str(show_dupes)])
+        return self.execute_command('get-packages', 
+                [str(pkg_filter), str(show_dupes), str(disable_cache)])
 
     def get_available_by_name(self, name):
         return self.execute_command('get-available-by-name', [name])
