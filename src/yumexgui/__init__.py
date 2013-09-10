@@ -526,7 +526,7 @@ class YumexApplication(Controller, YumexFrontend):
 
         self.startup_init_update_timer()
 
-    
+
     def show(self):
         YumexFrontend.show(self)
         if self.refresh_on_show:
@@ -541,7 +541,8 @@ class YumexApplication(Controller, YumexFrontend):
         options = self._get_options()
         self._set_options(options)
         # we need to refresh the package list of the backend
-        pkgs,label = self.get_packages(self._current_active)
+        if self._current_active:
+            pkgs,label = self.get_packages(self._current_active)
         progress.hide()
 
     def startup_init_update_timer(self):
@@ -553,7 +554,7 @@ class YumexApplication(Controller, YumexFrontend):
                     self.start_update_timer)
 
     def start_update_timer(self):
-        """ 
+        """
         start or restart the update timer: check when the last update was done
         """
         if self.update_timer_id != -1:
