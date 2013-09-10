@@ -84,6 +84,13 @@ class YumClientBase:
         """ yum logger message (overload in child class)"""
         raise NotImplementedError()
 
+    def _yum_logger(self, msg):
+        '''
+        unpack yum messages
+        '''
+        msg = unpack(msg)
+        self.yum_logger(msg)
+
     def yum_state(self, state):
         """ yum state message handler (overload in child class)"""
         raise NotImplementedError()
@@ -359,7 +366,7 @@ class YumClientBase:
         elif cmd == ':exception':
             self.exception(args[0])
         elif cmd == ':yum':
-            self.yum_logger(args[0])
+            self._yum_logger(args[0])
         elif cmd == ':fatal':
             self.fatal(args)
         elif cmd == ':gpg-check':
@@ -608,7 +615,7 @@ class YumClient(YumClientBase):
 
     def get_packages(self, pkg_filter, show_dupes=False, disable_cache=False):
         ''' get a list of packages based on pkg_filter '''
-        return self.execute_command('get-packages', 
+        return self.execute_command('get-packages',
                 [str(pkg_filter), str(show_dupes), str(disable_cache)])
 
     def get_available_by_name(self, name):

@@ -515,6 +515,7 @@ class YumServer(yum.YumBase):
 
     def yum_logger(self, msg):
         ''' write an yum logger message '''
+        msg = pack(msg)
         self.write(":yum\t%s" % msg)
 
     def ended(self, state):
