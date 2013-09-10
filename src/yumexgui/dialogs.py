@@ -531,7 +531,7 @@ class Preferences:
         self._add_option(PrefBoolean, vbox, 'start_hidden', _('Start hidden'))
         self._add_option(PrefBoolean, vbox, 'close_to_tray', _('Close button hides the window'))
         updates_opt = self._add_option(PrefBoolean, vbox, 'check_for_updates', _('Autocheck for updates'))
-        self._update_interval = self._add_option(PrefInt, vbox, 
+        self._update_interval = self._add_option(PrefInt, vbox,
                 'update_interval', _('Update check interval (in minutes)'))
         self._update_startup_delay = self._add_option(PrefInt, vbox,
                 'update_startup_delay', _('Startup delay before checking for updates (in seconds)'))
@@ -674,6 +674,8 @@ class TransactionConfirmation:
         '''
         self.hidden = (self.progress.progress_hidden, self.progress.task_hidden)
         self.progress.set_header(_("Transaction Result"))
+        # make sure that the transaction summary is shown if we are running 'yumex -X install some.file.rpm
+        self.progress.dialog.set_visible(True)
         self.progress.show_extra()
         self.view.expand_all()
         self._active = True
