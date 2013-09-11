@@ -294,13 +294,19 @@ class Progress(YumexProgressBase):
     def is_active(self):
         return self._active
 
-    def show(self):
+    def show(self, force = False):
         '''
         Show the progress dialog
         '''
         if not self._active: self.status_icon.set_is_working(True)
         self._active = True
-        if not self.parent.get_property('visible'): return
+        _is_visible = self.dialog.get_property('visible')
+        if force: # If force the make sure the dialog is shown
+            if not _is_visible:
+                self.dialog.set_property('visible',True)
+                self.dialog.show()
+                self.dialog.queue_draw()
+        elif not self.parent.get_property('visible'): return
 
         busyCursor(self.parent, True)
         self.reset()
@@ -674,8 +680,6 @@ class TransactionConfirmation:
         '''
         self.hidden = (self.progress.progress_hidden, self.progress.task_hidden)
         self.progress.set_header(_("Transaction Result"))
-        # make sure that the transaction summary is shown if we are running 'yumex -X install some.file.rpm
-        self.progress.dialog.set_visible(True)
         self.progress.show_extra()
         self.view.expand_all()
         self._active = True

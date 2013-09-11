@@ -540,6 +540,7 @@ class YumexApplication(Controller, YumexFrontend):
         progress = self.get_progress()
         options = self._get_options()
         self._set_options(options)
+        self.backend.set_option('clean_requirements_on_remove', self.settings.remove_requirements)
         # we need to refresh the package list of the backend
         if self._current_active:
             pkgs,label = self.get_packages(self._current_active)
@@ -881,6 +882,8 @@ class YumexApplication(Controller, YumexFrontend):
         self.ui.option_skipbroken.set_active(self.settings.skip_broken)
         self.ui.option_show_newest_only.set_active(self.settings.show_newest_only)
         self.ui.option_remove_requirement.set_active(self.settings.remove_requirements)
+
+
 
     def _get_options(self):
         '''
