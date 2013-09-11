@@ -643,7 +643,7 @@ class TransactionConfirmation:
     The Transaction Confirmation dialog, to validate the result of the current transaction result
     '''
 
-    def __init__(self, ui, progress):
+    def __init__(self, ui, progress, status_icon):
         '''
         Init the dialog
         @param ui: the UI class instance
@@ -661,6 +661,7 @@ class TransactionConfirmation:
         self.ui.transactionCancel.connect("clicked", self.on_clicked,False)
         self.hidden = None
         self.confirmation = None
+        self.status_icon = status_icon
 
     def on_clicked(self, widget, confirmation):
         self.confirmation = confirmation
@@ -678,9 +679,11 @@ class TransactionConfirmation:
         self.view.expand_all()
         self._active = True
         self.confirmation = None
+        self.status_icon.need_user_input(True)
         while self.confirmation == None:
             doGtkEvents()
             time.sleep(0.01)
+        self.status_icon.need_user_input(False)
         return self.confirmation
 
     def destroy(self):
