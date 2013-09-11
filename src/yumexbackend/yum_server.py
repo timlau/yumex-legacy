@@ -861,7 +861,7 @@ class YumServer(yum.YumBase):
                 repoid = po.repoid
                 pkgsize = float(po.size)
                 size = format_number(pkgsize)
-                el = (n, a, evr, repoid, size, alist)
+                el = (n, a, evr, repoid, size, [])
                 sublist.append(el)
             if pkglist:
                 out_list.append([action, sublist])
