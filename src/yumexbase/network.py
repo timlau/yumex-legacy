@@ -86,7 +86,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
                     if self._connected == None:
                         self._connected = False
             return True
-        except: Catch all exceptions
+        except: # Catch all exceptions
             # Could not get the state from NetworkManager
             # It might not be running
             print str(e)
