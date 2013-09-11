@@ -541,9 +541,8 @@ class YumexApplication(Controller, YumexFrontend):
         options = self._get_options()
         self._set_options(options)
         self.backend.set_option('clean_requirements_on_remove', self.settings.remove_requirements)
-        # we need to refresh the package list of the backend
-        if self._current_active:
-            pkgs,label = self.get_packages(self._current_active)
+        # we need to refresh the package lists in the backend, so we get the available updates
+        pkgs,label = self.get_packages('updates')
         progress.hide()
 
     def startup_init_update_timer(self):
