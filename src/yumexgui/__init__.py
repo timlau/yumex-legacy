@@ -241,6 +241,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.refresh_on_show = False
         self.update_timer_id = -1
         self.update_timestamp = UpdateTimestamp()
+        self._exit_program = False
         self.window.connect('delete_event', self.delete_event)
 
 
@@ -310,9 +311,10 @@ class YumexApplication(Controller, YumexFrontend):
                 text = _("Fatal Error : ") + err
                 longtext = msg
             # Show error dialog
-            dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
-            dialog.run()
-            dialog.destroy()
+            if not self._exit_program: # we dont want a error dialog if we are closing the application
+                dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
+                dialog.run()
+                dialog.destroy()
             self.error(text)
             self.error(longtext)
             if quit_pgm:
@@ -1122,6 +1124,7 @@ class YumexApplication(Controller, YumexFrontend):
     def quit(self):
         ''' destroy Handler '''
         # Save the windows size and separator position
+        self._exit_program = True
         try:
             width, height = self.window.get_size()
             self.window.set_visible(False)
