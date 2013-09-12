@@ -25,6 +25,7 @@ Yum Extender GUI main module
 
 import sys
 import gtk
+import gtk.gdk
 import gobject
 import pwd
 import time
