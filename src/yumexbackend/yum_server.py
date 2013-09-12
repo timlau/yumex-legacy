@@ -100,7 +100,7 @@ class _YumPreBaseConf:
         self.syslog_device = '/dev/log'
         self.localpkg_gpgcheck = False
 
-class YumServer(yum.YumBase):
+class YumServer:
     """
     A yum server class to be used in a spawned process.
     it receives commands from stdin and send results and info
@@ -165,47 +165,58 @@ class YumServer(yum.YumBase):
     def __init__(self, debuglevel=2, plugins=True, offline=False, enabled_repos=None, yum_conf='/etc/yum.conf'):
         '''  Setup the spawned server '''
         print('Yum Version : %s' % yum.__version__)
-        yum.YumBase.__init__(self)
-        self.mediagrabber = self.mediaGrabber
-        parser = OptionParser()
-        # FIXME: workaround for issue in the auto-update-debuginfo plugin
-        # The issue is fixed in upstream yum-utils, but it make take some time to get it out.
-        # So we work around it here
-        parser.add_option("--enablerepo", type='string', dest='repos', default=[])
-        # Setup yum preconfig options
-        self.preconf.debuglevel = debuglevel
-        self.preconf.init_plugins = plugins
-        self.preconf.optparser = parser
+        self._yumbase = None
         if yum_conf != '/etc/yum.conf':
             self.info(_('Using %s for yum configuration') % yum_conf)
-        self.preconf.fn = yum_conf
-        # Disable refresh-package plugin, it will get in the way every time we finish a transaction
-        self.preconf.disabled_plugins = ['refresh-packagekit']
+        self.yum_conf = yum_conf
+        self.enabled_repos = enabled_repos
         logginglevels.setLoggingApp('yumex')
-        if hasattr(self, 'run_with_package_names'):
-            self.run_with_package_names.add("yumex")
-        self.setCacheDir()
         self.dnlCallback = YumexDownloadCallback(self)
-        self.repos.setProgressBar(self.dnlCallback)
-        # make some dummy options,args for yum plugins
-        (options, args) = parser.parse_args()
-        self.plugins.setCmdLine(options, args)
-        dscb = DepSolveProgressCallBack(ayum=self)
-        self.dsCallback = dscb
+        self.dsCallback = DepSolveProgressCallBack(ayum=self)
         self.offline = offline
-        # Setup repos
-        self._setup_repos(enabled_repos)
-        self._disable_multi_download() # disable parallel file download
-        # Setup failure callback
-        freport = (self._failureReport, (), {})
-        self.repos.setFailureCallback(freport)
+        self.debuglevel = debuglevel
+        self.plugins = plugins
         self._updateMetadata = None # Update metadata cache
         self._updates_list = None
         self._obsoletes_list = None
         self._last_search = None
         self._last_search_result = None
         self._package_cache = {}
+        self.yumbase # init the YumBase attribute
         self.write(':started') # Let the front end know that we are up and running
+
+    @property
+    def yumbase(self):
+        if not self._yumbase:
+            yumbase = yum.YumBase()
+            self._yumbase = yumbase
+            yumbase.mediagrabber = self.mediaGrabber
+            parser = OptionParser()
+            # FIXME: workaround for issue in the auto-update-debuginfo plugin
+            # The issue is fixed in upstream yum-utils, but it make take some time to get it out.
+            # So we work around it here
+            parser.add_option("--enablerepo", type='string', dest='repos', default=[])
+            # Setup yum preconfig options
+            yumbase.preconf.debuglevel = self.debuglevel
+            yumbase.preconf.init_plugins = self.plugins
+            yumbase.preconf.optparser = parser
+            if hasattr(yumbase, 'run_with_package_names'):
+                yumbase.run_with_package_names.add("yumex")
+            yumbase.preconf.fn = self.yum_conf
+            # Disable refresh-package plugin, it will get in the way every time we finish a transaction
+            yumbase.preconf.disabled_plugins = ['refresh-packagekit']
+            yumbase.setCacheDir()
+            yumbase.repos.setProgressBar(self.dnlCallback)
+            # make some dummy options,args for yum plugins
+            (options, args) = parser.parse_args()
+            yumbase.plugins.setCmdLine(options, args)
+            # Setup repos
+            self._setup_repos(self.enabled_repos)
+            self._disable_multi_download() # disable parallel file download
+            # Setup failure callback
+            freport = (self._failureReport, (), {})
+            yumbase.repos.setFailureCallback(freport)
+        return self._yumbase
 
     def _is_local_repo(self, repo):
         '''
@@ -221,7 +232,7 @@ class YumServer(yum.YumBase):
 
     def _disable_multi_download(self):
         # Disable parallel down for this repo, we dont support it
-        for repo in self.repos.listEnabled():
+        for repo in self.yumbase.repos.listEnabled():
             self.debug("disable multi : "+repo.id)
             repo._async = False
 
@@ -232,29 +243,29 @@ class YumServer(yum.YumBase):
         '''
         if not self.offline: # Online
             if enabled_repos: # Use the positive list of repos to enable
-                for repo in self.repos.repos.values():
+                for repo in self.yumbase.repos.repos.values():
                     if repo.id in enabled_repos: # is in the positive list
-                        self.repos.enableRepo(repo.id)
+                        self.yumbase.repos.enableRepo(repo.id)
                     else:
-                        self.repos.disableRepo(repo.id)
+                        self.yumbase.repos.disableRepo(repo.id)
         else: # Offline, use only media or locale file:// repos
             if enabled_repos: # Use the supplied list of repos to enable
-                for repo in self.repos.repos.values():
+                for repo in self.yumbase.repos.repos.values():
                     if repo.id in enabled_repos:
                         if self._is_local_repo(repo): # is local ?
-                            self.repos.enableRepo(repo.id)
+                            self.yumbase.repos.enableRepo(repo.id)
                         else: # Not local disable it
                             self.info(_("No network connection, disable non local repo %s") % repo.id)
-                            self.repos.disableRepo(repo.id)
+                            self.yumbase.repos.disableRepo(repo.id)
                     else: # not in positive list, disable it
-                        self.repos.disableRepo(repo.id)
+                        self.yumbase.repos.disableRepo(repo.id)
             else: # Use the default enabled ones
-                for repo in self.repos.listEnabled():
+                for repo in self.yumbase.repos.listEnabled():
                     if self._is_local_repo(repo): # is local ?
-                        self.repos.enableRepo(repo.id)
+                        self.yumbase.repos.enableRepo(repo.id)
                     else: # No, disable it
                         self.info(_("No network connection, disable non local repo %s") % repo.id)
-                        self.repos.disableRepo(repo.id)
+                        self.yumbase.repos.disableRepo(repo.id)
 
     def doLock(self, lockfile=YUM_PID_FILE):
         '''
@@ -265,7 +276,7 @@ class YumServer(yum.YumBase):
         first_time=True
         while True:
             try:
-                yum.YumBase.doLock(self)
+                self.yumbase.doLock()
                 if not first_time:
                     self.lock_msg('got-lock', None)
                 return True
@@ -284,6 +295,9 @@ class YumServer(yum.YumBase):
                     self.lock_msg('try-lock', [e.msg, nmsg])
                 self.warning(_("Waiting 10 seconds and tries again !!!"))
                 time.sleep(10)
+
+    def doUnlock(self):
+        self.yumbase.doUnlock()
 
     def mediaGrabber(self, *args, **kwargs):
         '''
@@ -346,7 +360,7 @@ class YumServer(yum.YumBase):
         Exit the yum backend
         '''
         self.info(_("Closing rpm db and releasing yum lock  "))
-        self.closeRpmDB()
+        self.yumbase.closeRpmDB()
         self.ended(True)
         sys.exit(returncode)
 
@@ -375,7 +389,7 @@ class YumServer(yum.YumBase):
         @param po: package to check for
         '''
         (n, a, e, v, r) = po.pkgtup
-        po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)
+        po = self.yumbase.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)
         if po:
             return True
         else:
@@ -537,7 +551,7 @@ class YumServer(yum.YumBase):
             show_dupes = (dupes == 'True')
             if not narrow in self._package_cache or disable_cache == 'True':
                 self.info(PACKAGE_LOAD_MSG[narrow])
-                ygh = self.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
+                ygh = self.yumbase.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
                 self._package_cache[narrow] = getattr(ygh, narrow)
             action = const.FILTER_ACTIONS[narrow]
             for pkg in self._package_cache[narrow]:
@@ -552,7 +566,7 @@ class YumServer(yum.YumBase):
         get list of packages in a size range
         @param ndx: Size range index
         '''
-        ygh = self.doPackageLists()
+        ygh = self.yumbase.doPackageLists()
         action = const.FILTER_ACTIONS['available']
         for pkg in ygh.available:
             if self._in_size_range(pkg, ndx):
@@ -565,7 +579,7 @@ class YumServer(yum.YumBase):
         self.ended(True)
 
     def get_available_by_name(self, name):
-        pkgs = self.pkgSack.returnPackages(patterns=[name], ignore_case=False)
+        pkgs = self.yumbase.pkgSack.returnPackages(patterns=[name], ignore_case=False)
         self._return_packages(pkgs)
         self.ended(True)
 
@@ -580,7 +594,7 @@ class YumServer(yum.YumBase):
             valid = False
         elif canCoinstall(po.arch, down_po.arch): # po must not be coinstallable with down_po
             valid = False
-        elif self.allowedMultipleInstalls(po): # po must not be a multiple installable (ex. kernels )
+        elif self.yumbase.allowedMultipleInstalls(po): # po must not be a multiple installable (ex. kernels )
             valid = False
         return valid
 
@@ -592,12 +606,12 @@ class YumServer(yum.YumBase):
         pkg = self._getPackage(pkgstr)
         pkgs = []
         if self._is_installed(pkg): # is installed , we must find available downgrade
-            apkgs = self.pkgSack.returnPackages(patterns=[pkg.name], ignore_case=False)
+            apkgs = self.yumbase.pkgSack.returnPackages(patterns=[pkg.name], ignore_case=False)
             for po in apkgs:
                 if self._is_valid_downgrade(pkg, po):
                     pkgs.append(po)
         else: # Not installed, this is the package to downgrade to, find the installed one
-            ipkgs = self.rpmdb.searchNevra(name=pkg.name, arch = pkg.arch)
+            ipkgs = self.yumbase.rpmdb.searchNevra(name=pkg.name, arch = pkg.arch)
             if ipkgs:
                 pkgs.append(ipkgs[0])
         self._return_packages(pkgs)
@@ -616,14 +630,14 @@ class YumServer(yum.YumBase):
         get list of packages in a size range
         @param ndx: Size range index
         '''
-        ygh = self.doPackageLists('installed')
+        ygh = self.yumbase.doPackageLists('installed')
         action = const.FILTER_ACTIONS['available']
-        pkgs = self.pkgSack.returnPackages(repoid=repoid)
+        pkgs = self.yumbase.pkgSack.returnPackages(repoid=repoid)
         for pkg in pkgs:
             if not self._is_installed(pkg):
                 self._show_package(pkg, action)
         action = const.FILTER_ACTIONS['installed']
-        ipkgs = self.rpmdb.returnPackages()
+        ipkgs = self.yumbase.rpmdb.returnPackages()
         for pkg in ipkgs:
             if self._in_a_repo(pkg, repoid, inst=True):
                 self._show_package(pkg, action)
@@ -645,13 +659,13 @@ class YumServer(yum.YumBase):
         ''' find the real package from an package id'''
         n, e, v, r, a, ident = para
         if ident == 'installed' or ident.startswith('@'):
-            pkgs = self.rpmdb.searchNevra(n, e, v, r, a)
+            pkgs = self.yumbase.rpmdb.searchNevra(n, e, v, r, a)
         else:
-            repo = self.repos.getRepo(ident) # Used the repo sack, it will be faster
+            repo = self.yumbase.repos.getRepo(ident) # Used the repo sack, it will be faster
             if repo:
                 pkgs = repo.sack.searchNevra(n, e, v, r, a)
             else: # fallback to the use the pkgSack, just in case
-                pkgs = self.pkgSack.searchNevra(n, e, v, r, a)
+                pkgs = self.yumbase.pkgSack.searchNevra(n, e, v, r, a)
         if pkgs:
             return pkgs[0]
         else:
@@ -691,13 +705,13 @@ class YumServer(yum.YumBase):
 
     def get_dependencies(self, args):
         po = self._getPackage(args)
-        deps = self.findDeps([po])
+        deps = self.yumbase.findDeps([po])
         for po in deps:
             requirements = deps[po]
             for req in requirements:
                 provides = requirements[req]
                 print req
-                for prov in self.bestPackagesFromList(provides, single_name=True):
+                for prov in self.yumbase.bestPackagesFromList(provides, single_name=True):
                     self._show_requirement(req, prov)
                 #print " Dep : %s -> %s " % (req, po)
         self.ended(True)
@@ -714,18 +728,18 @@ class YumServer(yum.YumBase):
             po = self._getPackage(pkgstr)
         txmbrs = []
         if action == "install":
-            txmbrs = self.install(po)
+            txmbrs = self.yumbase.install(po)
         elif action == "update" or action == "obsolete":
-            txmbrs = self.update(po)
+            txmbrs = self.yumbase.update(po)
         elif action == "remove":
-            txmbrs = self.remove(po)
+            txmbrs = self.yumbase.remove(po)
         elif action == "reinstall":
-            txmbrs = self.reinstall(po)
+            txmbrs = self.yumbase.reinstall(po)
         elif action == "downgrade":
-            txmbrs = self.downgrade(po)
+            txmbrs = self.yumbase.downgrade(po)
         elif action == "localinstall":
             n, e, v, r, a, rpmfile = pkgstr
-            txmbrs = self.installLocal(rpmfile)
+            txmbrs = self.yumbase.installLocal(rpmfile)
         for txmbr in txmbrs:
             self._show_package(txmbr.po, txmbr.ts_state)
             self.debug("Added : " + str(txmbr), __name__)
@@ -738,20 +752,20 @@ class YumServer(yum.YumBase):
         '''
         pkgstr = args
         po = self._getPackage(pkgstr)
-        self.tsInfo.remove(po)
+        self.yumbase.tsInfo.remove(po)
 
     def reset_transaction(self):
         '''
         reset tsInfo for a new run
         '''
-        self._tsInfo = None
+        self.yumbase._tsInfo = None
 
 
     def list_transaction(self):
         '''
 
         '''
-        for txmbr in self.tsInfo:
+        for txmbr in self.yumbase.tsInfo:
             self._show_package(txmbr.po, txmbr.ts_state)
         self.ended(True)
 
@@ -775,25 +789,25 @@ class YumServer(yum.YumBase):
                     if pat.endswith('.rpm'):
                         self.debug("This is an local rpm : %s " % pat)
                         action = 'li'
-                        result_pkgs.extend(self.installLocal(pat))
+                        result_pkgs.extend(self.yumbase.installLocal(pat))
                     else:
-                        result_pkgs.extend(self.install(pattern=pat))
+                        result_pkgs.extend(self.yumbase.install(pattern=pat))
             elif cmd == 'rem' or cmd == 'era':
                 action = 'r'
                 for pat in userlist:
-                    result_pkgs.extend(self.remove(pattern=pat))
+                    result_pkgs.extend(self.yumbase.remove(pattern=pat))
             elif cmd == 'upd':
                 action = 'u'
                 for pat in userlist:
-                    result_pkgs.extend(self.update(pattern=pat))
+                    result_pkgs.extend(self.yumbase.update(pattern=pat))
             elif cmd == 'dow':
                 action = 'do'
                 for pat in userlist:
-                    result_pkgs.extend(self.downgrade(pattern=pat))
+                    result_pkgs.extend(self.yumbase.downgrade(pattern=pat))
             elif cmd == 'rei':
                 action = 'ri'
                 for pat in userlist:
-                    result_pkgs.extend(self.reinstall(pattern=pat))
+                    result_pkgs.extend(self.yumbase.reinstall(pattern=pat))
         except Errors.InstallError, e:  # lint:ok
             pass
         self._show_packages_in_transaction(action,result_pkgs )
@@ -804,7 +818,7 @@ class YumServer(yum.YumBase):
         '''
 
         '''
-        rc, msgs = self.buildTransaction()
+        rc, msgs = self.yumbase.buildTransaction()
         self.message('return_code', rc)
         for msg in msgs:
             self.message('messages', msg)
@@ -814,7 +828,7 @@ class YumServer(yum.YumBase):
 
     def _get_download_size(self):
         total = 0L
-        dlpkgs = [x.po for x in self.tsInfo.getMembers() if x.ts_state in ("i", "u")]
+        dlpkgs = [x.po for x in self.yumbase.tsInfo.getMembers() if x.ts_state in ("i", "u")]
         for po in dlpkgs:
             total += po.size
         return format_number(total)
@@ -827,13 +841,16 @@ class YumServer(yum.YumBase):
         '''
         out_list = []
         sublist = []
-        self.tsInfo.makelists()
-        for (action, pkglist) in [(yum.i18n._('Installing'), self.tsInfo.installed),
-                            (yum_translated('Updating'), self.tsInfo.updated),
-                            (yum_translated('Removing'), self.tsInfo.removed),
-                            (yum_translated('Installing for dependencies'), self.tsInfo.depinstalled),
-                            (yum_translated('Updating for dependencies'), self.tsInfo.depupdated),
-                            (yum_translated('Removing for dependencies'), self.tsInfo.depremoved)]:
+        self.yumbase.tsInfo.makelists()
+        for (action, pkglist) in [(yum.i18n._('Installing'), self.yumbase.tsInfo.installed),
+                            (yum_translated('Updating'), self.yumbase.tsInfo.updated),
+                            (yum_translated('Removing'), self.yumbase.tsInfo.removed),
+                            (yum_translated('Installing for dependencies'),
+                                self.yumbase.tsInfo.depinstalled),
+                            (yum_translated('Updating for dependencies'),
+                                self.yumbase.tsInfo.depupdated),
+                            (yum_translated('Removing for dependencies'),
+                                self.yumbase.tsInfo.depremoved)]:
             for txmbr in pkglist:
                 (n, a, e, v, r) = txmbr.pkgtup
                 evr = txmbr.po.printVer()
@@ -853,7 +870,7 @@ class YumServer(yum.YumBase):
                 out_list.append([action, sublist])
                 sublist = []
         for (action, pkglist) in [(yum_translated('Skipped (dependency problems)'),
-                                   self.skipped_packages), ]:
+                                   self.yumbase.skipped_packages), ]:
             for po in pkglist:
                 (n, a, e, v, r) = po.pkgtup
                 evr = po.printVer()
@@ -876,7 +893,7 @@ class YumServer(yum.YumBase):
         try:
             rpmDisplay = YumexRPMCallback(self)
             callback = YumexTransCallback(self)
-            self.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
+            self.yumbase.processTransaction(callback=callback, rpmDisplay=rpmDisplay)
             self.ended(True)
         except Errors.YumBaseError, e:
             self.error(_('Error in yum Transaction : %s') % str(e))
@@ -943,11 +960,11 @@ class YumServer(yum.YumBase):
         '''
         all_groups = []
         try:
-            cats = self.comps.get_categories()
+            cats = self.yumbase.comps.get_categories()
             for category in cats:
                 cat = (category.categoryid, category.ui_name, category.ui_description)
                 cat_grps = []
-                grps = [self.comps.return_group(g) for g in category.groups if self.comps.has_group(g)]
+                grps = [self.yumbase.comps.return_group(g) for g in category.groups if self.yumbase.comps.has_group(g)]
                 for grp in grps:
                     icon = None
                     fn = "/usr/share/pixmaps/comps/%s.png" % grp.groupid
@@ -975,7 +992,7 @@ class YumServer(yum.YumBase):
         '''
         grpid = args[0]
         grp_flt = args[1]
-        grp = self.comps.return_group(grpid)
+        grp = self.yumbase.comps.return_group(grpid)
         if grp:
             if grp_flt == 'all':
                 best_pkgs = self._group_names2aipkgs(grp.packages)
@@ -996,8 +1013,8 @@ class YumServer(yum.YumBase):
     def _group_names2aipkgs(self, pkg_names):
         """ Convert pkg_names to installed pkgs or available pkgs, return
             value is a dict on pkg.name returning (apkg, ipkg). """
-        ipkgs = self.rpmdb.searchNames(pkg_names)
-        apkgs = self.pkgSack.searchNames(pkg_names)
+        ipkgs = self.yumbase.rpmdb.searchNames(pkg_names)
+        apkgs = self.yumbase.pkgSack.searchNames(pkg_names)
         apkgs = packagesNewestByNameArch(apkgs)
 
         # This is somewhat similar to doPackageLists()
@@ -1020,13 +1037,13 @@ class YumServer(yum.YumBase):
 
     def _get_updates(self):
         if not self._updates_list:
-            ygh = self.doPackageLists(pkgnarrow='updates')
+            ygh = self.yumbase.doPackageLists(pkgnarrow='updates')
             self._updates_list = ygh.updates
         return self._updates_list
 
     def _get_obsoletes(self):
         if not self._obsoletes_list:
-            ygh = self.doPackageLists(pkgnarrow='obsoletes')
+            ygh = self.yumbase.doPackageLists(pkgnarrow='obsoletes')
             self._obsoletes_list = ygh.obsoletes
         return self._obsoletes_list
 
@@ -1034,9 +1051,9 @@ class YumServer(yum.YumBase):
         updates = self._get_updates()
         obsoletes = self._get_obsoletes()
         action = 'i'
-        if self.rpmdb.contains(po=po): # if the best po is installed, then return the installed po
+        if self.yumbase.rpmdb.contains(po=po): # if the best po is installed, then return the installed po
             (n, a, e, v, r) = po.pkgtup
-            po = self.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
+            po = self.yumbase.rpmdb.searchNevra(name=n, arch=a, ver=v, rel=r, epoch=e)[0]
             action = 'r'
         else:
             if po in updates:
@@ -1045,10 +1062,10 @@ class YumServer(yum.YumBase):
                 action = 'o'
             else:
                 # Check if po is and older version of a installed package
-                ipkgs = self.rpmdb.searchNevra(name=po.name)
+                ipkgs = self.yumbase.rpmdb.searchNevra(name=po.name)
                 if ipkgs:
                     ipkg = ipkgs[0]
-                    if ipkg.verGT(po) and not self.allowedMultipleInstalls(po): # inst > po
+                    if ipkg.verGT(po) and not self.yumbase.allowedMultipleInstalls(po): # inst > po
                         action = 'do'
         return po, action
 
@@ -1067,10 +1084,10 @@ class YumServer(yum.YumBase):
             if po.pkgtup in good_tups: # dont process the same po twice
                 continue
             if skip_old:
-                ipkgs = self.rpmdb.searchNevra(name=po.name)
+                ipkgs = self.yumbase.rpmdb.searchNevra(name=po.name)
                 if ipkgs:
                     ipkg = ipkgs[0]
-                    if ipkg.verGT(po) and not self.allowedMultipleInstalls(po): # inst > po
+                    if ipkg.verGT(po) and not self.yumbase.allowedMultipleInstalls(po): # inst > po
                         valid = False
             if valid:
                 good_pkgs.add(po)
@@ -1081,8 +1098,8 @@ class YumServer(yum.YumBase):
         if prefix != self._last_search:
             self._last_search = prefix
             prefix += '*'
-            pkgs = self.pkgSack.returnPackages(patterns=[prefix])
-            ipkgs = self.rpmdb.returnPackages(patterns=[prefix])
+            pkgs = self.yumbase.pkgSack.returnPackages(patterns=[prefix])
+            ipkgs = self.yumbase.rpmdb.returnPackages(patterns=[prefix])
             pkgs.extend(ipkgs)
             best = self._limit_package_list(pkgs)
             self._last_search_result = best
@@ -1104,7 +1121,7 @@ class YumServer(yum.YumBase):
         if keys != self._last_search:
             self._last_search = keys
             pkgs = {}
-            for found in self.searchGenerator(filters, keys, showdups=True, keys=True):
+            for found in self.yumbase.searchGenerator(filters, keys, showdups=True, keys=True):
                 pkg = found[0]
                 fkeys = found[1]
                 if not len(fkeys) == len(keys): # skip the result if not all keys matches
@@ -1131,8 +1148,8 @@ class YumServer(yum.YumBase):
 
         @param args:
         '''
-        for repo in self.repos.repos:
-            self._show_repo(self.repos.getRepo(repo))
+        for repo in self.yumbase.repos.repos:
+            self._show_repo(self.yumbase.repos.getRepo(repo))
         self.ended(True)
 
 
@@ -1144,12 +1161,12 @@ class YumServer(yum.YumBase):
         ident = args[0]
         state = (args[1] == 'True')
         self.debug("Repo : %s Enabled : %s" % (ident, state), __name__)
-        repo = self.repos.getRepo(ident)
+        repo = self.yumbase.repos.getRepo(ident)
         if repo:
             if state:
-                self.repos.enableRepo(ident)
+                self.yumbase.repos.enableRepo(ident)
             else:
-                self.repos.disableRepo(ident)
+                self.yumbase.repos.disableRepo(ident)
             self._show_repo(repo)
         else:
             self.error("Repo : %s not found" % ident)
@@ -1161,7 +1178,7 @@ class YumServer(yum.YumBase):
         '''
         ident = args[0]
         state = (args[1] == 'True')
-        repo = self.repos.getRepo(ident)
+        repo = self.yumbase.repos.getRepo(ident)
         if repo:
             if state:
                 repo.enablePersistent()
@@ -1176,10 +1193,10 @@ class YumServer(yum.YumBase):
     def set_option(self, args):
         option = args[0]
         value = unpack(args[1])
-        if hasattr(self.conf, option):
-            setattr(self.conf, option, value)
+        if hasattr(self.yumbase.conf, option):
+            setattr(self.yumbase.conf, option, value)
             self.info(_("Setting Yum Option %s = %s") % (option, value))
-            for repo in self.repos.repos.values():
+            for repo in self.yumbase.repos.repos.values():
                 if repo.isEnabled():
                     if hasattr(repo, option):
                         setattr(repo, option, value)
@@ -1191,7 +1208,7 @@ class YumServer(yum.YumBase):
     def update_metadata(self):
         if not self._updateMetadata:
             self._updateMetadata = UpdateMetadata()
-            for repo in self.repos.listEnabled():
+            for repo in self.yumbase.repos.listEnabled():
                 try:
                     self._updateMetadata.add(repo)
                 except:
@@ -1222,39 +1239,39 @@ class YumServer(yum.YumBase):
 
     def _get_updated_po(self, pkg):
         po = None
-        tuples_upd = self._getUpdates().getUpdatesTuples(name=pkg.name)
+        tuples_upd = self.yumbase._getUpdates().getUpdatesTuples(name=pkg.name)
         if tuples_upd:
             tup = tuples_upd[0]
             if tup:
                 new, old = tup
-                po = self.getInstalledPackageObject(old)
+                po = self.yumbase.getInstalledPackageObject(old)
         return po
 
     def _get_obsoleted_po(self, pkg):
         obs = []
-        tuples_obs = self._getUpdates().getObsoletersTuples(name=pkg.name)
+        tuples_obs = self.yumbase._getUpdates().getObsoletersTuples(name=pkg.name)
         if tuples_obs:
             for new,old in tuples_obs:
-                po = self.getInstalledPackageObject(old)
+                po = self.yumbase.getInstalledPackageObject(old)
                 obs.append(po)
         return obs
 
     def clean(self, args):
         what = args[0]
         if what == 'metadata':
-            self.cleanMetadata()
+            self.yumbase.cleanMetadata()
             msg = _("Cleaned metadata from local cache")
         elif what == 'dbcache':
-            self.cleanSqlite()
+            self.yumbase.cleanSqlite()
             msg = _("Cleaned dbcache")
         elif what == 'packages':
-            self.cleanPackages()
+            self.yumbase.cleanPackages()
             msg = _("Cleaned packages from local cache")
         elif what == 'all':
             msg = _("Cleaned everything from local cache")
-            self.cleanMetadata()
-            self.cleanPackages()
-            self.cleanSqlite()
+            self.yumbase.cleanMetadata()
+            self.yumbase.cleanPackages()
+            self.yumbase.cleanSqlite()
         self.info(msg)
         self.ended(True)
 
@@ -1262,9 +1279,9 @@ class YumServer(yum.YumBase):
         """
         Get the yum history elements
         """
-        if hasattr(self, "_history"): # Yum supports history
-            tids = self.history.search(pattern)
-            yhts = self.history.old(tids)
+        if hasattr(self.yumbase, "_history"): # Yum supports history
+            tids = self.yumbase.history.search(pattern)
+            yhts = self.yumbase.history.old(tids)
             for yht in yhts:
                 self._show_history_item(yht)
             self.ended(True)
@@ -1275,8 +1292,8 @@ class YumServer(yum.YumBase):
         """
         Get the yum history elements
         """
-        if hasattr(self, "_history"): # Yum supports history
-            yhts = self.history.old()
+        if hasattr(self.yumbase, "_history"): # Yum supports history
+            yhts = self.yumbase.history.old()
             for yht in yhts:
                 self._show_history_item(yht)
             self.ended(True)
@@ -1284,7 +1301,7 @@ class YumServer(yum.YumBase):
             self.ended(False)
 
     def get_history_packages(self, tid, data_set='trans_data'):
-        tids = self.history.old([tid])
+        tids = self.yumbase.history.old([tid])
         for yht in tids:
             if hasattr(yht,data_set): # make sure we have the data_set, yum-3.2.27 dont have trans_skip
                 yhp = getattr(yht, data_set)
@@ -1299,13 +1316,13 @@ class YumServer(yum.YumBase):
         Undo a history transaction
         '''
         tid = int(args[0])
-        tids = self.history.old([tid])
+        tids = self.yumbase.history.old([tid])
         if tids:
-            yum.YumBase.history_undo(self, tids[0])
+            self.yumbase.history_undo(tids[0])
         print "Transaction after undo"
-        for txmbr in self.tsInfo:
+        for txmbr in self.yumbase.tsInfo:
             print txmbr.po
-        if len(self.tsInfo) > 0:
+        if len(self.yumbase.tsInfo) > 0:
             self.ended(True)
         else:
             self.ended(False)
@@ -1315,10 +1332,10 @@ class YumServer(yum.YumBase):
         Redo a history transaction
         '''
         tid = int(args[0])
-        tids = self.history.old([tid])
+        tids = self.yumbase.history.old([tid])
         if tids:
-            yum.YumBase.history_redo(self, tids[0])
-        if len(self.tsInfo) > 0:
+            self.yumbase.history_redo(tids[0])
+        if len(self.yumbase.tsInfo) > 0:
             self.ended(True)
         else:
             self.ended(False)
