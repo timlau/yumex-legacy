@@ -373,6 +373,8 @@ class YumexApplication(Controller, YumexFrontend):
         # setup
         self.window.set_title(self.settings.branding_title)
         self.window.add_accel_group(self.key_bindings)
+        icon = gtk.icon_theme_get_default().load_icon('yumex', 128, 0)
+        self.window.set_icon(icon)
 
 
         #Setup About dialog
