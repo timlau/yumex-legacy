@@ -871,8 +871,8 @@ class YumexApplication(Controller, YumexFrontend):
                         okDialog(self.window, _("Installation of local packages completed"))
                     rc = True
                 else:
-                    self.window.show()
                     if self.settings.exit_action == 'ask':
+                        self.window.show()
                         msg = _("Transaction completed successfully")
                         msg += _("\n\nDo you want to exit Yum Extender ?")
                         rc = questionDialog(self.window, msg) # Ask if the user want to Quit
