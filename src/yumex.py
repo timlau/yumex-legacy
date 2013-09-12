@@ -24,6 +24,22 @@ import os
 import traceback
 from yumexgui import YumexApplication
 from yumexbackend.yum_backend import YumexBackendYum as backend
+import subprocess
+
+def check_yumex_is_running():
+    '''
+    Check if other instances of yum is running
+    '''
+    ps = subprocess.Popen("ps -eaf | grep yumex", shell=True, stdout=subprocess.PIPE)
+    output = ps.stdout.read()
+    ps.stdout.close()
+    ps.wait()
+    cnt = 0
+    for line in output.split('\n'):
+        if '/usr/bin/yumex' in line or 'yumex.py' in line:
+            cnt += 1
+    return cnt > 1
+
 
 if os.getuid() == 0 and not '--root' in sys.argv:
     print "Don't run yumex as root it is unsafe (Use --root to force)"
@@ -39,6 +55,10 @@ if 'YUMEX_DBG' in os.environ:
     print debug
 
 try:
+    if check_yumex_is_running():
+        print("Yum Extender is already started")
+        sys.exit(1)
+        
     app = YumexApplication(backend)
     app.debug_options = debug
     #app.run_test()
