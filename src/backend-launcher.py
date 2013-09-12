@@ -33,8 +33,7 @@ def dispatcher():
         rc = parse_command(cmd, param)
     except IOError, e:
         print ":error\tFatal error in backend launcher (can't read from sys.stdin)"
-        err, msg = (e.err, e.msg)
-        print ":error\texception : %s %s " % (err, msg)
+        print ":error\texception : %s %s " % ("", e.msg)
         rc = False
     except:
         print ":error\tFatal error in backend launcher"
