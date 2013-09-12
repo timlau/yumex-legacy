@@ -1373,7 +1373,17 @@ class YumexApplication(Controller, YumexFrontend):
                popup.popup(None, None, None, event.button, t)
            return True
 
+    def on_packageInstallAll_clicked(self, widget=None, event=None):
+        '''
+        Install All when watching groups
+        '''
+        self.packages.installAll()
 
+    def on_packageRemoveAll_clicked(self, widget=None, event=None):
+        '''
+        Remove All when watching groups
+        '''
+        self.packages.removeAll()
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -1416,6 +1426,9 @@ class YumexApplication(Controller, YumexFrontend):
                     self.ui.packageSelectAll.show()
                 else:
                     self.ui.packageSelectAll.hide()
+                # Hide Group Only buttons
+                self.ui.packageInstallAll.hide()
+                self.ui.packageRemoveAll.hide()
                 if self._resized:
                     width, height = self.window.get_size()
                     self.window.resize(width - 150, height)
@@ -1475,6 +1488,9 @@ class YumexApplication(Controller, YumexFrontend):
                 self.ui.leftBox.show()
                 self.packages.clear()
                 if active == 'groups': # Groups
+                    self.ui.packageInstallAll.show()
+                    self.ui.packageRemoveAll.show()
+                    self.ui.packageSelectAll.hide()
                     self.setup_groups()
                     self.ui.groupVBox.show_all()
                 elif active == 'categories': # Categories
