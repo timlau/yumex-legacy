@@ -183,6 +183,7 @@ class YumServer:
         self._last_search_result = None
         self._package_cache = {}
         self._last_yumbase_reload = int(time.time())
+        self._applied_set_options = {}
         self.yumbase # init the YumBase attribute
         self.write(':started') # Let the front end know that we are up and running
 
@@ -562,6 +563,10 @@ class YumServer:
                     enabled_repos.append(r.id)
             self.enabled_repos = enabled_repos
             self._yumbase = None # force reinitialization of YumBase
+            # restore the set-option commands
+            for k,v in self._applied_set_options.iteritems():
+                self._set_option(k, v)
+
             return True
         return False
             
@@ -1222,6 +1227,12 @@ class YumServer:
     def set_option(self, args):
         option = args[0]
         value = unpack(args[1])
+        self._applied_set_options[option] = value
+        self._set_option(option, value)
+
+        self.ended(True)
+
+    def _set_option(self, option, value):
         if hasattr(self.yumbase.conf, option):
             setattr(self.yumbase.conf, option, value)
             self.info(_("Setting Yum Option %s = %s") % (option, value))
@@ -1230,8 +1241,6 @@ class YumServer:
                     if hasattr(repo, option):
                         setattr(repo, option, value)
                         self.debug("Setting Yum Option %s = %s (%s)" % (option, value, repo.id), __name__)
-
-        self.ended(True)
 
     @property
     def update_metadata(self):
