@@ -294,13 +294,19 @@ class Progress(YumexProgressBase):
     def is_active(self):
         return self._active
 
-    def show(self):
+    def show(self, force = False):
         '''
         Show the progress dialog
         '''
         if not self._active: self.status_icon.set_is_working(True)
         self._active = True
-        if not self.parent.get_property('visible'): return
+        _is_visible = self.dialog.get_property('visible')
+        if force: # If force the make sure the dialog is shown
+            if not _is_visible:
+                self.dialog.set_property('visible',True)
+                self.dialog.show()
+                self.dialog.queue_draw()
+        elif not self.parent.get_property('visible'): return
 
         busyCursor(self.parent, True)
         self.reset()
@@ -531,7 +537,7 @@ class Preferences:
         self._add_option(PrefBoolean, vbox, 'start_hidden', _('Start hidden'))
         self._add_option(PrefBoolean, vbox, 'close_to_tray', _('Close button hides the window'))
         updates_opt = self._add_option(PrefBoolean, vbox, 'check_for_updates', _('Autocheck for updates'))
-        self._update_interval = self._add_option(PrefInt, vbox, 
+        self._update_interval = self._add_option(PrefInt, vbox,
                 'update_interval', _('Update check interval (in minutes)'))
         self._update_startup_delay = self._add_option(PrefInt, vbox,
                 'update_startup_delay', _('Startup delay before checking for updates (in seconds)'))

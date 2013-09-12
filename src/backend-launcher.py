@@ -29,10 +29,14 @@ def dispatcher():
         line = sys.stdin.readline().strip('\n')
         if not line or line.startswith('#exit'):
             return False
-        cmd, param = line.split('\t')
+        cmd, param = line.split('\t',2) # Dont blow up if more than 2 x \t instring
         rc = parse_command(cmd, param)
     except IOError, e:
         print ":error\tFatal error in backend launcher (can't read from sys.stdin)"
+        print ":error\texception : %s %s " % ("", e.msg)
+        rc = False
+    except:
+        print ":error\tFatal error in backend launcher"
         err, msg = (e.err, e.msg)
         print ":error\texception : %s %s " % (err, msg)
         rc = False

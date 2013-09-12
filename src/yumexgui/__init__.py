@@ -246,6 +246,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.update_timestamp = UpdateTimestamp()
         self.next_update = 0
         self.last_timestamp = 0
+        self._exit_program = False
 
 
     @property
@@ -314,9 +315,10 @@ class YumexApplication(Controller, YumexFrontend):
                 text = _("Fatal Error : ") + err
                 longtext = msg
             # Show error dialog
-            dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
-            dialog.run()
-            dialog.destroy()
+            if not self._exit_program: # we dont want a error dialog if we are closing the application
+                dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
+                dialog.run()
+                dialog.destroy()
             self.error(text)
             self.error(longtext)
             if quit_pgm:
@@ -531,7 +533,7 @@ class YumexApplication(Controller, YumexFrontend):
 
         self.startup_init_update_timer()
 
-    
+
     def show(self):
         YumexFrontend.show(self)
         if self.refresh_on_show:
@@ -545,8 +547,9 @@ class YumexApplication(Controller, YumexFrontend):
         progress = self.get_progress()
         options = self._get_options()
         self._set_options(options)
-        # we need to refresh the package list of the backend
-        pkgs,label = self.get_packages(self._current_active)
+        self.backend.set_option('clean_requirements_on_remove', self.settings.remove_requirements)
+        # we need to refresh the package lists in the backend, so we get the available updates
+        pkgs,label = self.get_packages('updates')
         progress.hide()
 
     def startup_init_update_timer(self):
@@ -558,7 +561,7 @@ class YumexApplication(Controller, YumexFrontend):
                     self.start_update_timer)
 
     def start_update_timer(self):
-        """ 
+        """
         start or restart the update timer: check when the last update was done
         """
         if self.update_timer_id != -1:
@@ -900,6 +903,8 @@ class YumexApplication(Controller, YumexFrontend):
         self.ui.option_show_newest_only.set_active(self.settings.show_newest_only)
         self.ui.option_remove_requirement.set_active(self.settings.remove_requirements)
 
+
+
     def _get_options(self):
         '''
         Store the session based options in the Options menu
@@ -1138,6 +1143,7 @@ class YumexApplication(Controller, YumexFrontend):
     def quit(self):
         ''' destroy Handler '''
         # Save the windows size and separator position
+        self._exit_program = True
         try:
             width, height = self.window.get_size()
             self.window.set_visible(False)
@@ -1389,7 +1395,17 @@ class YumexApplication(Controller, YumexFrontend):
                popup.popup(None, None, None, event.button, t)
            return True
 
+    def on_packageInstallAll_clicked(self, widget=None, event=None):
+        '''
+        Install All when watching groups
+        '''
+        self.packages.installAll()
 
+    def on_packageRemoveAll_clicked(self, widget=None, event=None):
+        '''
+        Remove All when watching groups
+        '''
+        self.packages.removeAll()
 
     def on_packageClear_clicked(self, widget=None, event=None):
         '''
@@ -1432,6 +1448,9 @@ class YumexApplication(Controller, YumexFrontend):
                     self.ui.packageSelectAll.show()
                 else:
                     self.ui.packageSelectAll.hide()
+                # Hide Group Only buttons
+                self.ui.packageInstallAll.hide()
+                self.ui.packageRemoveAll.hide()
                 if self._resized:
                     width, height = self.window.get_size()
                     self.window.resize(width - 150, height)
@@ -1491,6 +1510,9 @@ class YumexApplication(Controller, YumexFrontend):
                 self.ui.leftBox.show()
                 self.packages.clear()
                 if active == 'groups': # Groups
+                    self.ui.packageInstallAll.show()
+                    self.ui.packageRemoveAll.show()
+                    self.ui.packageSelectAll.hide()
                     self.setup_groups()
                     self.ui.groupVBox.show_all()
                 elif active == 'categories': # Categories

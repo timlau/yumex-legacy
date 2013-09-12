@@ -274,6 +274,32 @@ class YumexPackageBase(SelectionView):
         print " --> installed    :  ", obj.is_installed()
 
 
+    def installAll(self):
+        '''
+        Select all packages in the view
+        '''
+        for el in self.store:
+            obj = el[0]
+            if not obj.queued == obj.action and obj.action == 'i':
+                obj.queued = obj.action
+                self.queue.add(obj)
+                obj.set_select(not obj.selected)
+        self.queueView.refresh()
+        self.view.queue_draw()
+
+    def removeAll(self):
+        '''
+        Select all packages in the view
+        '''
+        for el in self.store:
+            obj = el[0]
+            if not obj.queued == obj.action and obj.action == 'r':
+                obj.queued = obj.action
+                self.queue.add(obj)
+                obj.set_select(not obj.selected)
+        self.queueView.refresh()
+        self.view.queue_draw()
+
 
     def selectAll(self):
         '''

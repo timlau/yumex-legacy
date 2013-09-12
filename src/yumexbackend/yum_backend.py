@@ -572,7 +572,7 @@ class YumexTransactionYum(YumexTransactionBase):
         rc, msgs, trans, size = self.backend.build_transaction()
         if rc == 2:
             self.frontend.debug('Dependency resolving completed without error')
-            #progress.hide()
+            progress.show(force=True)
             if self.frontend.confirm_transaction(trans, size[0]): # Let the user confirm the transaction
                 progress.show()
                 rc = self.backend.run_transaction()

@@ -531,6 +531,7 @@ class YumServer:
 
     def yum_logger(self, msg):
         ''' write an yum logger message '''
+        msg = pack(msg)
         self.write(":yum\t%s" % msg)
 
     def ended(self, state):
@@ -911,7 +912,7 @@ class YumServer:
                 repoid = po.repoid
                 pkgsize = float(po.size)
                 size = format_number(pkgsize)
-                el = (n, a, evr, repoid, size, alist)
+                el = (n, a, evr, repoid, size, [])
                 sublist.append(el)
             if pkglist:
                 out_list.append([action, sublist])

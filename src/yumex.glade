@@ -69,7 +69,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <child>
               <object class="GtkButton" id="progressCancel">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -282,7 +281,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                         <child>
                           <object class="GtkButton" id="transactionCancel">
                             <property name="label">gtk-cancel</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -297,7 +295,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                         <child>
                           <object class="GtkButton" id="transactionOK">
                             <property name="label">gtk-ok</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -367,7 +364,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <child>
               <object class="GtkButton" id="closebutton1">
                 <property name="label">gtk-close</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -575,7 +571,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <child>
               <object class="GtkButton" id="historyRefresh">
                 <property name="label">gtk-refresh</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -592,7 +587,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <child>
               <object class="GtkButton" id="historyUndo">
                 <property name="label">gtk-undo</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -609,7 +603,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <child>
               <object class="GtkButton" id="historyRedo">
                 <property name="label">gtk-redo</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -634,6 +627,16 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
       </object>
     </child>
   </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">edit-undo</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">edit-redo</property>
+  </object>
   <object class="GtkWindow" id="main">
     <property name="can_focus">False</property>
     <property name="icon_name">yumex</property>
@@ -650,7 +653,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             <property name="can_focus">False</property>
             <child>
               <object class="GtkMenuItem" id="fileMenu">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_File</property>
@@ -661,7 +663,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="fileQuit">
                         <property name="label">gtk-quit</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -676,7 +677,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             </child>
             <child>
               <object class="GtkMenuItem" id="editMenu">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Edit</property>
@@ -687,7 +687,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="editPref">
                         <property name="label">gtk-preferences</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -702,7 +701,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             </child>
             <child>
               <object class="GtkMenuItem" id="viewMenu">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_View</property>
@@ -714,7 +712,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="viewPackages">
                         <property name="label" translatable="yes">_Packages</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -727,7 +724,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="viewQueue">
                         <property name="label" translatable="yes">_Queue</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -739,7 +735,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="viewRepo">
                         <property name="label" translatable="yes">R_epositories</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -752,7 +747,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="viewHistory">
                         <property name="label" translatable="yes">_History</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -765,7 +759,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="viewOutput">
                         <property name="label" translatable="yes">_Output</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -781,7 +774,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             </child>
             <child>
               <object class="GtkMenuItem" id="profileMenu">
-                <property name="use_action_appearance">False</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Profiles</property>
                 <property name="use_underline">True</property>
@@ -791,7 +783,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="proNew">
                         <property name="label">gtk-new</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -803,7 +794,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <child>
                       <object class="GtkImageMenuItem" id="proSave">
                         <property name="label">gtk-save</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -824,7 +814,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
             </child>
             <child>
               <object class="GtkMenuItem" id="optionsMenu">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Options</property>
@@ -835,7 +824,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkCheckMenuItem" id="option_skipbroken">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Skip packages there get depsolve errors</property>
@@ -846,7 +834,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     </child>
                     <child>
                       <object class="GtkCheckMenuItem" id="option_nogpgcheck">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Don't check signatures for packages</property>
@@ -857,7 +844,6 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</property>
                     </child>
                     <child>
                       <object class="GtkCheckMenuItem" id="option_show_newest_only">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Show only the latest packages when searching
@@ -869,7 +855,6 @@ Don't show multiple version of the same package</property>
                     </child>
                     <child>
                       <object class="GtkCheckMenuItem" id="option_remove_requirement">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">When removing packages, also remove requirements
@@ -885,7 +870,6 @@ there is not used by any other packages. </property>
             </child>
             <child>
               <object class="GtkMenuItem" id="helpMenu">
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="label" translatable="yes">_Help</property>
@@ -896,7 +880,6 @@ there is not used by any other packages. </property>
                     <child>
                       <object class="GtkImageMenuItem" id="helpAbout">
                         <property name="label">gtk-about</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -1117,7 +1100,6 @@ there is not used by any other packages. </property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkToggleButton" id="searchTypeAhead">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -1165,7 +1147,6 @@ words.
                     </child>
                     <child>
                       <object class="GtkButton" id="searchOptions">
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -1201,7 +1182,6 @@ words.
                     <child>
                       <object class="GtkRadioButton" id="packageRadioUpdates">
                         <property name="label" translatable="yes">U_pdates</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1220,7 +1200,6 @@ words.
                     <child>
                       <object class="GtkRadioButton" id="packageRadioAvailable">
                         <property name="label" translatable="yes">Availa_ble</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1240,7 +1219,6 @@ words.
                     <child>
                       <object class="GtkRadioButton" id="packageRadioInstalled">
                         <property name="label" translatable="yes">_Installed</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1260,7 +1238,6 @@ words.
                     <child>
                       <object class="GtkRadioButton" id="packageRadioAll">
                         <property name="label" translatable="yes">All</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1278,7 +1255,6 @@ words.
                     <child>
                       <object class="GtkRadioButton" id="packageRadioGroups">
                         <property name="label" translatable="yes">_Groups</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1296,7 +1272,6 @@ words.
                     <child>
                       <object class="GtkRadioButton" id="packageRadioCategories">
                         <property name="label" translatable="yes">_Categories</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -1434,9 +1409,36 @@ words.
                     <property name="spacing">5</property>
                     <property name="layout_style">end</property>
                     <child>
+                      <object class="GtkButton" id="packageInstallAll">
+                        <property name="label" translatable="yes">Install All</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="image">image2</property>
+                        <signal name="clicked" handler="on_packageInstallAll_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="packageRemoveAll">
+                        <property name="label" translatable="yes">Remove All</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="image">image1</property>
+                        <signal name="clicked" handler="on_packageRemoveAll_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkButton" id="packageSelectAll">
                         <property name="label">gtk-select-all</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -1447,13 +1449,12 @@ words.
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="position">0</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="packageUndo">
                         <property name="label">gtk-undo</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -1464,13 +1465,12 @@ words.
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="position">1</property>
+                        <property name="position">3</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkButton" id="packageExecute">
                         <property name="label">gtk-apply</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
@@ -1481,7 +1481,7 @@ words.
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="position">2</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                   </object>
@@ -1529,7 +1529,6 @@ words.
             <child>
               <object class="GtkButton" id="prefOK">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1544,7 +1543,6 @@ words.
             <child>
               <object class="GtkButton" id="prefCancel">
                 <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1697,7 +1695,6 @@ words.
             <child>
               <object class="GtkButton" id="queueOpen">
                 <property name="label">gtk-open</property>
-                <property name="use_action_appearance">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
@@ -1712,7 +1709,6 @@ words.
             <child>
               <object class="GtkButton" id="queueSave">
                 <property name="label">gtk-save</property>
-                <property name="use_action_appearance">False</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
@@ -1727,7 +1723,6 @@ words.
             <child>
               <object class="GtkButton" id="queueRemove">
                 <property name="label">gtk-remove</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1744,7 +1739,6 @@ words.
             <child>
               <object class="GtkButton" id="queueExecute">
                 <property name="label">gtk-apply</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -1811,7 +1805,6 @@ words.
                 <child>
                   <object class="GtkButton" id="repoRefresh">
                     <property name="label">gtk-refresh</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -1829,7 +1822,6 @@ repositories</property>
                 <child>
                   <object class="GtkButton" id="repoUndo">
                     <property name="label">gtk-undo</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -1877,7 +1869,6 @@ repositories</property>
             <child>
               <object class="GtkButton" id="button1">
                 <property name="label">gtk-ok</property>
-                <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
