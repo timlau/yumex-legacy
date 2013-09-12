@@ -182,6 +182,7 @@ class YumServer:
         self._last_search = None
         self._last_search_result = None
         self._package_cache = {}
+        self._last_yumbase_reload = int(time.time())
         self.yumbase # init the YumBase attribute
         self.write(':started') # Let the front end know that we are up and running
 
@@ -540,6 +541,30 @@ class YumServer:
         state = pack(state)
         self.write(":end\t%s" % state)
 
+    def _reload_yumbase(self, force=False):
+        """ 
+        recreate the yumbase object. this forces to recreate all cached lists in
+        YumBase. to avoid frequent recreation, a minimum time interval is used.
+
+        it should be safe to call this in a locked state, since the lock is a
+        persistent file (YumBase stores no additional locking info)
+
+        @param force: force recreating the object
+        """
+        time_now = int(time.time())
+        if time_now - self._last_yumbase_reload > 60 or force: # min reload interval
+            self._last_yumbase_reload = time_now
+            # get enabled repos
+            enabled_repos = []
+            for repo in self.yumbase.repos.repos:
+                r = self.yumbase.repos.getRepo(repo)
+                if r.enabled:
+                    enabled_repos.append(r.id)
+            self.enabled_repos = enabled_repos
+            self._yumbase = None # force reinitialization of YumBase
+            return True
+        return False
+            
 
     #@catchYumException
     def get_packages(self, narrow, dupes, disable_cache):
@@ -550,6 +575,10 @@ class YumServer:
         if narrow:
             show_dupes = (dupes == 'True')
             if not narrow in self._package_cache or disable_cache == 'True':
+                if disable_cache == 'True': #download newest repo data
+                    if self._reload_yumbase():
+                        self.yumbase.cleanExpireCache() # force searching for updates
+
                 self.info(PACKAGE_LOAD_MSG[narrow])
                 ygh = self.yumbase.doPackageLists(pkgnarrow=narrow, showdups=show_dupes)
                 self._package_cache[narrow] = getattr(ygh, narrow)
