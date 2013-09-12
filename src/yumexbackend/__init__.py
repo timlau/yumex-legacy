@@ -457,10 +457,16 @@ class YumHistoryPackage:
     # helper funtion to non string pack/unpack parameter to be transfer over the stdout pipe
 def pack(value):
     '''  Pickle and base64 encode an python object'''
-    return base64.b64encode(pickle.dumps(value))
+    try:
+        return base64.b64encode(pickle.dumps(value))
+    except:
+        return None
 
 def unpack(value):
     '''  base64 decode and unpickle an python object'''
-    return pickle.loads(base64.b64decode(value))
+    try:
+        return pickle.loads(base64.b64decode(value))
+    except:
+        return None
 
 
