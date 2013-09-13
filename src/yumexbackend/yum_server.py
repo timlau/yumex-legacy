@@ -556,13 +556,7 @@ class YumServer:
         time_now = int(time.time())
         if time_now - self._last_yumbase_reload > 60 or force: # min reload interval
             self._last_yumbase_reload = time_now
-            # get enabled repos
-            enabled_repos = []
-            for repo in self.yumbase.repos.repos:
-                r = self.yumbase.repos.getRepo(repo)
-                if r.enabled:
-                    enabled_repos.append(r.id)
-            self.enabled_repos = enabled_repos
+            self.enabled_repos = map(lambda r: r.id, self.yumbase.repos.listEnabled())
             self._yumbase = None # force reinitialization of YumBase
             # restore the set-option commands
             for k,v in self._applied_set_options.iteritems():
