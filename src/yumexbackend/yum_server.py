@@ -1534,7 +1534,7 @@ class YumexRPMCallback(RPMBaseCallback):
                 return
             matches.append(po)
 
-        for txmbr in self.base.tsInfo.matchNaevr(name=pkgname):
+        for txmbr in self.base.yumbase.tsInfo.matchNaevr(name=pkgname):
             if txmbr.ts_state not in ts_states:
                 continue
             _cond_add(txmbr.po)
