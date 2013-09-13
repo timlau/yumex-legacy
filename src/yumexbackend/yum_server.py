@@ -172,7 +172,6 @@ class YumServer:
         self.enabled_repos = enabled_repos
         logginglevels.setLoggingApp('yumex')
         self.dnlCallback = YumexDownloadCallback(self)
-        self.dsCallback = DepSolveProgressCallBack(ayum=self)
         self.offline = offline
         self.debuglevel = debuglevel
         self.plugins = plugins
@@ -212,6 +211,7 @@ class YumServer:
             # make some dummy options,args for yum plugins
             (options, args) = parser.parse_args()
             yumbase.plugins.setCmdLine(options, args)
+            yumbase.dsCallback = DepSolveProgressCallBack(ayum=yumbase)
             # Setup repos
             self._setup_repos(self.enabled_repos)
             self._disable_multi_download() # disable parallel file download
