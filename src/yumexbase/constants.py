@@ -90,6 +90,7 @@ ICON_TRAY_ERROR = PIXMAPS_PATH + '/tray-error.png'
 ICON_TRAY_NO_UPDATES = PIXMAPS_PATH + '/tray-no-updates.png'
 ICON_TRAY_UPDATES = PIXMAPS_PATH + '/tray-updates.png'
 ICON_TRAY_WORKING = PIXMAPS_PATH + '/tray-working.png'
+ICON_TRAY_INFO = PIXMAPS_PATH + '/tray-info.png'
 
 # NOTE: The package filter radio buttons in the top of the package page
 PKG_FILTERS_STRINGS = (_('updates'), _('available'), _('installed'))
