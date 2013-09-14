@@ -240,10 +240,14 @@ class YumexApplication(Controller, YumexFrontend):
         self.last_search_text = ""
         self._last_search_filter = None
         self.refresh_on_show = False
+        self.window.connect('delete_event', self.delete_event)
+
+        # update checking
         self.update_timer_id = -1
         self.update_timestamp = UpdateTimestamp()
+        self.next_update = 0
+        self.last_timestamp = 0
         self._exit_program = False
-        self.window.connect('delete_event', self.delete_event)
 
 
     @property
@@ -452,7 +456,8 @@ class YumexApplication(Controller, YumexFrontend):
         # setup repo view
         self.repos = YumexRepoView(self.ui.repoView)
         # setup transaction confirmation dialog
-        self.transactionConfirm = TransactionConfirmation(self.ui, self.get_progress())
+        self.transactionConfirm = TransactionConfirmation(self.ui,
+                self.get_progress(), self.status_icon)
         # setup yumex log handler
         self.log_handler = doLoggerSetup(self.output, YUMEX_LOG, logfmt='%(asctime)s : %(message)s')
         # Set saved windows size and separator position
@@ -576,22 +581,36 @@ class YumexApplication(Controller, YumexFrontend):
 
             self.debug("Starting update timer with a delay of {0} min (time_diff={1})"
                     .format(delay, time_diff))
-            self.update_timer_id = gobject.timeout_add_seconds(60*delay+1,
+            self.next_update = delay
+            self.last_timestamp = int(time.time())
+            self.update_timer_id = gobject.timeout_add_seconds(1,
                     self.update_timeout)
         return False
 
     def update_timeout(self):
-        self.debug("update timer timeout")
 
+        self.next_update = self.next_update - 1
         self.update_timer_id = -1
         progress = self.get_progress()
-        if progress.is_active() or self.window.get_property('visible'):
-            # do not check for updates now: retry in a few sec
-            self.update_timer_id = gobject.timeout_add_seconds(20,
-                    self.update_timeout)
+        if self.next_update < 0:
+            if progress.is_active() or self.window.get_property('visible'):
+                # do not check for updates now: retry in a few sec
+                self.update_timer_id = gobject.timeout_add_seconds(20,
+                        self.update_timeout)
+            else:
+                # check for updates: this will automatically restart the timer
+                self.check_for_updates()
         else:
-            # check for updates: this will automatically restart the timer
-            self.check_for_updates()
+            cur_timestamp = int(time.time())
+            if cur_timestamp - self.last_timestamp > 60*2:
+                # this can happen on hibernation/suspend or when the system time
+                # changes
+                self.debug("Time changed: restarting update timer")
+                self.start_update_timer()
+            else:
+                self.update_timer_id = gobject.timeout_add_seconds(60,
+                        self.update_timeout)
+            self.last_timestamp = cur_timestamp
 
         return False
 
@@ -858,8 +877,8 @@ class YumexApplication(Controller, YumexFrontend):
                         okDialog(self.window, _("Installation of local packages completed"))
                     rc = True
                 else:
-                    self.window.show()
                     if self.settings.exit_action == 'ask':
+                        self.window.show()
                         msg = _("Transaction completed successfully")
                         msg += _("\n\nDo you want to exit Yum Extender ?")
                         rc = questionDialog(self.window, msg) # Ask if the user want to Quit
@@ -1524,6 +1543,8 @@ class YumexApplication(Controller, YumexFrontend):
         self.status_icon.set_is_working(True)
         pkgs,label = self.get_packages('updates', True)
         self.status_icon.set_is_working(False)
+        progress = self.get_progress()
+        progress.hide() #the download could have triggered the progress to be shown
         return len(pkgs)
 
     def on_categoryContent_cursor_changed(self, widget):

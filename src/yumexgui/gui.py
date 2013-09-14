@@ -527,6 +527,7 @@ class CompletedEntry(gtk.Entry):
 class StatusIcon:
     rel_font_size = 0.7
     is_working = 0
+    need_input = False
     update_count = -2
 
     popup_menu = None
@@ -539,6 +540,7 @@ class StatusIcon:
         self.image_no_update= ICON_TRAY_NO_UPDATES
         self.image_updates  = ICON_TRAY_UPDATES
         self.image_error    = ICON_TRAY_ERROR
+        self.image_info    = ICON_TRAY_INFO
 
         self.statusicon = gtk.StatusIcon()
         self.init_popup_menu()
@@ -572,7 +574,11 @@ class StatusIcon:
         return self.statusicon
 
     def update_tray_icon(self):
-        if self.is_working > 0:
+        if self.need_input:
+            self.statusicon.set_tooltip_text("Yum Extender: Need user input")
+            pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_info)
+            self.set_popup_menu_sensitivity(False)
+        elif self.is_working > 0:
             self.statusicon.set_tooltip_text("Yum Extender: Working")
             pixbuf = gtk.gdk.pixbuf_new_from_file(self.image_checking)
             self.set_popup_menu_sensitivity(False)
@@ -645,6 +651,12 @@ class StatusIcon:
             self.is_working = self.is_working+1
         else:
             self.is_working = self.is_working-1
+        self.update_tray_icon()
+    
+    def need_user_input(self, need_input=True):
+        """ call this when a user interacton/input is needed """
+        
+        self.need_input = need_input
         self.update_tray_icon()
 
         
