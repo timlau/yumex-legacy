@@ -1147,10 +1147,10 @@ class YumServer:
         keys = unpack(args[0])
         filters = unpack(args[1])
         show_newest_only = unpack(args[2])
-        if keys != self._last_search:
-            self._last_search = keys
+        if (keys,filters) != self._last_search:
+            self._last_search = (keys, filters)
             pkgs = {}
-            for found in self.yumbase.searchGenerator(filters, keys, showdups=True, keys=True):
+            for found in self.yumbase.searchGenerator(filters, keys, showdups=True, keys=True, searchtags=False):
                 pkg = found[0]
                 fkeys = found[1]
                 if not len(fkeys) == len(keys): # skip the result if not all keys matches

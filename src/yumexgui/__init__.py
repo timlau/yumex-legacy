@@ -1269,8 +1269,18 @@ class YumexApplication(Controller, YumexFrontend):
 
 
     def on_searchOptions_clicked(self, widget=None, event=None):
+        '''
+        Callback for the search option button
+        :param widget:
+        :param event:
+        '''
+        old_filters = self.search_options.get_filters()
         self.search_options.run()
-        self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
+        new_filters = self.search_options.get_filters()
+        if new_filters != old_filters:
+            self.last_search_text = None
+            self.on_packageSearch_activate()
+            self.window.set_focus(self.ui.packageSearch) # Default focus on search entry
 
     def on_packageSearch_changed(self, widget=None, event=None):
         '''
