@@ -1318,6 +1318,7 @@ class YumServer:
             for yht in yhts:
                 self._show_history_item(yht)
             self.ended(True)
+            self.yumbase.history.close()
         else:
             self.ended(False)
 
@@ -1330,6 +1331,7 @@ class YumServer:
             for yht in yhts:
                 self._show_history_item(yht)
             self.ended(True)
+            self.yumbase.history.close()
         else:
             self.ended(False)
 
@@ -1343,6 +1345,7 @@ class YumServer:
             for pkg in yhp:
                 self._show_history_package(pkg)
         self.ended(True)
+        self.yumbase.history.close()
 
     def history_undo(self, args):
         '''
@@ -1359,6 +1362,7 @@ class YumServer:
             self.ended(True)
         else:
             self.ended(False)
+        self.yumbase.history.close()
 
     def history_redo(self, args):
         '''
@@ -1372,6 +1376,7 @@ class YumServer:
             self.ended(True)
         else:
             self.ended(False)
+        self.yumbase.history.close()
 
     def parse_command(self, cmd, args):
         ''' parse the incomming commands and do the actions '''
