@@ -1024,6 +1024,7 @@ class YumexApplication(Controller, YumexFrontend):
         if not self.history_is_loaded or force:
 
             self.debug("Getting History Information - BEGIN")
+            self.start_root_backend() # we need to be root for this
             tids = self.backend.get_history()
             progress = self.get_progress()
             if limit == None:
@@ -1048,6 +1049,7 @@ class YumexApplication(Controller, YumexFrontend):
 
     def search_history(self, pattern):
         self.debug("Searching History Information - BEGIN")
+        self.start_root_backend() # we need to be root for this
         tids = self.backend.search_history(pattern)
         progress = self.get_progress()
         if tids:
