@@ -1,3 +1,218 @@
+2013-09-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.12
+
+2013-09-21  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: YumexServer: close the history
+	after a history command  by default YumBase keeps the history
+	database open (and locked) such that after viewing the history, yum
+	install xy failed with 	sqlite3.OperationalError: database is locked
+
+
+2013-09-21  Beat Küng <beat-kueng@gmx.net>
+
+	Merge remote-tracking branch 'tim/master'
+
+2013-09-21  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/__init__.py: fix: make history work: we need a root
+	backend to retrieve the history
+
+2013-09-20  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: search
+	again when user change search fields and disable search on pkgtags
+	by default
+
+2013-09-14  Tim Lauridsen <tla@rasmil.dk>
+
+	Merge pull request #10 from bkueng/update_checking  Update
+	checking working
+
+2013-09-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: fix YumexRPMCallback: use yumbase
+	attribute
+
+2013-09-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: fix: set dsCallback properly
+
+2013-09-13  Beat Küng <beat-kueng@gmx.net>
+
+	Merge branch 'master' into update_checking
+
+2013-09-13  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: YumServer: simplify creation of
+	list of enabled repos
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: add gtk.gdk import
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Set program icon in windows and task
+	switcher
+
+2013-09-12  Beat Küng <beat-kueng@gmx.net>
+
+	Merge branch 'master' into update_checking  Conflicts:
+	src/yumexgui/__init__.py
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.py: Check is yumex is already started, we dont want 2
+	running copies
+
+2013-09-12  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/__init__.py: show the main window after a transaction
+	only if 'do you want to exit?' is shown
+
+2013-09-12  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: save and restore applied options
+	when recreating YumBase
+
+2013-09-12  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: recreate YumBase when searching
+	for updates to update the cache  this also introduces a minimum
+	interval of 60 seconds for recreating YumBase, to avoid frequent
+	recreation (usually a search for updates is followed by a search of
+	obsoletes which both would trigger a recreation of YumBase)
+
+2013-09-12  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_server.py: refactor YumServer: make YumBase
+	an attribute  this *should* not change any behaviour. makes it
+	possible to recreate the YumBase object (to recreate cached lists)
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: Dont show a error dialog, if backend is
+	not running, when we close the application (rhbz #996901))
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py: IOError, dont have an err attribute, so
+	don't try to get it (rhbz #823315)
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumex.glade, src/yumexgui/__init__.py, src/yumexgui/views.py: 
+	Added InstallAll & RemoveAll Button to install/remove all packages
+	in a given group
+
+2013-09-12  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/__init__.py: catch expections in pack/unpack
+
+2013-09-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py: make the backend-launcher more error
+	proff
+
+2013-09-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: fix:  local variable 'alist'
+	referenced before assignment, when all packages is skipped in a
+	transaction (RHBZ #906237)
+
+2013-09-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/network.py: Fix missing # in comment
+
+2013-09-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/network.py: catch and ignore all exception, when
+	checking network state from networkmanager (rhbz #954998)
+
+2013-09-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: don't get full package list, when
+	starting backend in root mode (save time)
+
+2013-09-11  Beat Küng <beat-kueng@gmx.net>
+
+	* gfx/tray-info.png, src/yumexbase/constants.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py,
+	src/yumexgui/gui.py: status icon: add a new state & icon: 'need user
+	input', used to confirm transactions
+
+2013-09-11  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/__init__.py: updating: set timer timeout to 1 min &
+	check time difference  this allows for detection of
+	suspend/hibernation & resume
+
+2013-09-11  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/__init__.py,
+	src/yumexgui/dialogs.py: Make sure that confirmation dialog i always
+	shown, even if main window is non visible
+
+2013-09-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py: 
+	pack the yum messages when sending from backend to frontend, so we
+	don't get utf8 conversion error on non english locale messages (rhbz
+	# 882527 and others)
+
+2013-09-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py, src/yumexgui/dialogs.py: make
+	sure transaction confirmation is shown when running yumex -X install
+	some-name.rpm
+
+2013-09-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: fix 'yumex install' make yumex crash,
+	when trying to start the root backend
+
+2013-09-06  Tim Lauridsen <tla@rasmil.dk>
+
+	Merge pull request #7 from bkueng/update_checking  Update
+	checking
+
+2013-09-05  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbase/conf.py: change default config: don't ask to exit
+	yumex after a transaction
+
+2013-09-05  Beat Küng <beat-kueng@gmx.net>
+
+	* src/guihelpers/__init__.py, src/yumexbase/conf.py,
+	src/yumexgui/__init__.py, src/yumexgui/dialogs.py: add 'close to
+	hide window' option & improve closing behaviour of progress window
+
+2013-09-05  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexgui/dialogs.py: progress dialog: ignore the close button
+
+
+2013-09-05  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py: get_packages: add a parameter to
+	disable backend package cache (used to search for updates)
+
+2013-09-05  Beat Küng <beat-kueng@gmx.net>
+
+	* src/yumexbackend/yum_backend.py, src/yumexbackend/yum_client.py,
+	src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: locking:
+	aquire & release the yum lock for each backend operation  the old
+	behaviour was to keep the lock during the whole runtime of the
+	backend. this made it impossible to run yumex and at the same time
+	install something with yum via command line
+
+2013-08-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2013-08-26  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.11
