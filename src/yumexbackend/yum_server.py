@@ -371,11 +371,11 @@ class YumServer:
     def write(self, msg):
         ''' write an message to stdout, to be read by the client'''
         try:
+            if msg == "die":
+                f = open('/does/not/exist', 'r')
             msg.replace("\n", ";")
             sys.stdout.write("%s\n" % msg)
             # just a test killer to generate an io error and check it is handled correct
-            if msg == "die":
-                f = open('/does/not/exist', 'r')
         except:
             # stdout is broken, we can't do much to tell the frontend
             # so write the exception to an dump file and quit the backend
@@ -390,7 +390,7 @@ class YumServer:
             except:
                 pass
             finally:
-                sys.exit(4) # end with error code 4
+                sys.exit(5) # end with error code 5
 
 
     def _get_recent(self, po):

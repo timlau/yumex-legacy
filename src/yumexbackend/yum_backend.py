@@ -139,6 +139,11 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         """ Exitcode from backend"""
         self.frontend.exitcode(code)
 
+    def launcher_quit(self):
+        """ Exitcode from backend"""
+        err = "laucher-exit"
+        msg = "launcher-exit"
+        self.frontend.handle_error(err, msg)
 
     def debug(self, msg, name=None):
         """ debug message """

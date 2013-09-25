@@ -103,6 +103,10 @@ class YumClientBase:
         """ Exitcode from backend"""
         raise NotImplementedError()
 
+    def launcher_quit(self):
+        """ Exitcode from backend"""
+        raise NotImplementedError()
+
     def _yum_rpm(self, value):
         """ yum rpm action progress message """
         (action, package, percent, ts_current, ts_total) = unpack(value)
@@ -336,6 +340,13 @@ class YumClientBase:
                 self._timeout()
                 continue
         # Client is not running any more
+        # read messages in buffer and execute commands
+        theend =  self.child.read().split("\n")
+        for line in theend:
+            cmd, args = self._parse_command(line)
+            if cmd:
+                self._check_for_message(cmd, args)
+        self.child.close()
         exitrc = self.child.exitstatus
         # default error
         args = ['backend-not-running', pack(_('Backend not running as expected \n\nYum Extender will terminate\n   --> exit code : %s') % exitrc)]
@@ -383,6 +394,8 @@ class YumClientBase:
             self.lock_msg(args[0], args[1])
         elif cmd == ':exitcode':
             self.exitcode(args[0])
+        elif cmd == '&exit':
+            self.launcher_quit()
         else:
             return False # not a message
         return True
@@ -693,7 +706,6 @@ class YumClient(YumClientBase):
 
     def backend_die(self):
         self._send_command('die',[])
-        return self._get_return_code()
 
     def add_transaction(self, ident, action):
         '''

@@ -3,28 +3,28 @@
 from subprocess import call
 import sys
 from yumexbackend import unpack
-
+exit_code = 0
 
 def parse_command(cmd, param):
     if cmd == "#run":
         parameters = unpack(param)
-        print ":debug\tLAUNCHER - Starting : %s" % parameters
+        write(":debug\tLAUNCHER - Starting : %s" % parameters)
         rc = run(parameters)
     elif cmd == "#testrun":
-        print ":debug\ttest running : %s" % param
+        write(":debug\ttest running : %s" % param)
         run(param)
         rc = True
     elif cmd == "#exit":
         rc = False
     else:
-        print ":error\tunknown launcher command : %s" % cmd
+        write(":error\tunknown launcher command : %s" % cmd)
         rc = False
     return rc
 
 
 def dispatcher():
-    print ":debug\tLAUNCHER: Ready for commands"
-    print '#ready'
+    write(":debug\tLAUNCHER: Ready for commands")
+    write('#ready')
     try:
         line = sys.stdin.readline().strip('\n')
         if not line or line.startswith('#exit'):
@@ -32,32 +32,47 @@ def dispatcher():
         cmd, param = line.split('\t',2) # Dont blow up if more than 2 x \t instring
         rc = parse_command(cmd, param)
     except IOError, e:
-        print ":error\tFatal error in backend launcher (can't read from sys.stdin)"
-        print ":error\texception : %s %s " % ("", e.msg)
+        write(":error\tFatal error in backend launcher (can't read from sys.stdin)")
+        write(":error\texception : %s %s " % ("", e.msg))
         rc = False
     except:
-        print ":error\tFatal error in backend launcher"
+        write(":error\tFatal error in backend launcher")
         err, msg = (e.err, e.msg)
-        print ":error\texception : %s %s " % (err, msg)
+        write(":error\texception : %s %s " % (err, msg))
         rc = False
     return rc
 
+def write(msg):
+    ''' make a safe writer, the dont blow up if sys.stdout is broken'''
+    try:
+        print >> sys.stdout, msg
+    except:
+        sys.exit(5)
+    
 def run(parameters):
     try:
+        global exit_code
         retcode = call(parameters, shell=True)
-        print ":exitcode\t"+str(retcode)
-        rc = True
+        exit_code = retcode
+        write(":exitcode\t"+str(retcode))
+        if retcode == 0: # Normal exit keep launcher running
+            rc = True
+        else: # abnormal exit, quit the launcher
+            rc = False
+    except SystemExit, e: # triggered if sys.exit(x) is called
+        sys.exit(e)            
     except BaseException,e:
-        print ":error\texception : %s %s " % (str(e), str(e.args))
+        write(":error\texception : %s %s " % (str(e), str(e.args)))
         rc = False
     return rc
 
 if __name__ == "__main__":
     loop = True
-    print "#started"
+    write("#started")
     while loop:
         loop = False
         rc = dispatcher()
         loop = rc
-    print ":debug\tLAUNCHER : Terminating"
-    print '&exit'
+    write(":debug\tLAUNCHER : Terminating")
+    write('&exit')
+    sys.exit(exit_code)

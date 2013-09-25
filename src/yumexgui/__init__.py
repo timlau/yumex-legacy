@@ -312,6 +312,10 @@ class YumexApplication(Controller, YumexFrontend):
                 longtext = _("Backend could not be closed")
                 longtext += '\n\n'
                 longtext += msg
+            elif err == 'laucher-exit':
+                text = _("Backend Launcher ended unexpected")
+                longtext = ""
+                return
             else:
                 text = _("Fatal Error : ") + err
                 longtext = msg
