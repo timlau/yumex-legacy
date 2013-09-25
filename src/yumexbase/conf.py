@@ -157,6 +157,7 @@ class YumexOptions:
         parser.add_option("", "--nogpgcheck",
                         action="store_true", dest="no_gpg_check", default=self.settings.no_gpg_check,
                         help="Run yum transaction without checking gpg signatures on packages")
+        parser.add_option("", "--test-die", action="store_true", dest="test_die", default=False)
 
 
         return parser.parse_args()

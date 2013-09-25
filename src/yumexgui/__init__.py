@@ -1212,10 +1212,13 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         Menu : Help -> About
         '''
-        self.ui.About.run()
-        self.ui.About.hide()
-        #okDialog(self.window, "This function has not been implemented yet")
-        self.debug("Help -> About")
+        if self.cfg.cmd_options.test_die:
+            self.backend.backend_die()
+        else:
+            self.ui.About.run()
+            self.ui.About.hide()
+            #okDialog(self.window, "This function has not been implemented yet")
+            self.debug("Help -> About")
 
 
 # Options

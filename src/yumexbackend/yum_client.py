@@ -691,6 +691,10 @@ class YumClient(YumClientBase):
         else:
             return (None, None)
 
+    def backend_die(self):
+        self._send_command('die',[])
+        return self._get_return_code()
+
     def add_transaction(self, ident, action):
         '''
 

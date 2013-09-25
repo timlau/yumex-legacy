@@ -28,6 +28,7 @@ import traceback
 from optparse import OptionParser
 import types
 import time
+from datetime import datetime
 
 from yum.packageSack import packagesNewestByNameArch
 from yum.update_md import UpdateMetadata
@@ -361,15 +362,36 @@ class YumServer:
         '''
         Exit the yum backend
         '''
-        self.info(_("Closing rpm db and releasing yum lock  "))
         self.yumbase.closeRpmDB()
-        self.ended(True)
+        if returncode == 0: # only write on normal exit
+            self.info(_("Closing rpm db and releasing yum lock  "))
+            self.ended(True)
         sys.exit(returncode)
 
     def write(self, msg):
         ''' write an message to stdout, to be read by the client'''
-        msg.replace("\n", ";")
-        sys.stdout.write("%s\n" % msg)
+        try:
+            msg.replace("\n", ";")
+            sys.stdout.write("%s\n" % msg)
+            # just a test killer to generate an io error and check it is handled correct
+            if msg == "die":
+                f = open('/does/not/exist', 'r')
+        except:
+            # stdout is broken, we can't do much to tell the frontend
+            # so write the exception to an dump file and quit the backend
+            try:
+                errmsg = traceback.format_exc()
+                ct = datetime.now().strftime("%Y%m%d-%H%M") # get YYYYMMDD-hhmm
+                dumpfile = "/usr/tmp/yumex-dump-%s.txt" % ct
+                fh = open(dumpfile, "w")
+                print >> fh, "Exception in write : %s\n\n" % msg
+                print >> fh, errmsg
+                fh.close()
+            except:
+                pass
+            finally:
+                sys.exit(4) # end with error code 4
+
 
     def _get_recent(self, po):
         '''
@@ -544,7 +566,7 @@ class YumServer:
         self.write(":end\t%s" % state)
 
     def _reload_yumbase(self, force=False):
-        """ 
+        """
         recreate the yumbase object. this forces to recreate all cached lists in
         YumBase. to avoid frequent recreation, a minimum time interval is used.
 
@@ -564,7 +586,7 @@ class YumServer:
 
             return True
         return False
-            
+
 
     #@catchYumException
     def get_packages(self, narrow, dupes, disable_cache):
@@ -1442,6 +1464,8 @@ class YumServer:
                 self.get_available_downgrades(args)
             elif cmd == 'get-dependencies':
                 self.get_dependencies(args)
+            elif cmd == 'die':
+                self.write('die')
             else:
                 self.error('Unknown command : %s' % cmd)
         finally:
@@ -1469,9 +1493,11 @@ class YumServer:
             self.write(":fatal\t%s\t%s" % ('repo-error', pmsg))
             self.ended(True)
             self.quit(2)
+        except SystemExit, e: # triggered if sys.exit(x) is called
+            sys.exit(e)
         except:
             errmsg = traceback.format_exc()
-            #print errmsg
+            print errmsg
             self.write(":exception\t%s" % pack(errmsg))
             self.ended(True)
             self.quit(3)
