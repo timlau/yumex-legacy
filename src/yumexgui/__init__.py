@@ -1400,23 +1400,23 @@ class YumexApplication(Controller, YumexFrontend):
         :param treeview:
         :param event:
         '''
-        if event.button == 3: # Right Click
-           x = int(event.x)
-           y = int(event.y)
-           t = event.time
-           pthinfo = treeview.get_path_at_pos(x, y)
-           if pthinfo is not None:
-               path, col, cellx, celly = pthinfo
-               treeview.grab_focus()
-               treeview.set_cursor(path, col, 0)
-               store = treeview.get_model()
-               iterator = store.get_iter(path)
-               pkg = store.get_value(iterator, 0)
-               if not pkg.is_installed() or pkg.queued: # Only open popup menu for installed packages
-                   return
-               popup = self.get_package_popup(pkg, path)
-               popup.popup(None, None, None, event.button, t)
-           return True
+        if event.button == 3:  # Right Click
+            x = int(event.x)
+            y = int(event.y)
+            t = event.time
+            pthinfo = treeview.get_path_at_pos(x, y)
+            if pthinfo is not None:
+                path, col, cellx, celly = pthinfo
+                treeview.grab_focus()
+                treeview.set_cursor(path, col, 0)
+                store = treeview.get_model()
+                iterator = store.get_iter(path)
+                pkg = store.get_value(iterator, 0)
+                if not pkg.is_installed() or pkg.queued:  # Only open popup menu for installed packages
+                    return
+                popup = self.get_package_popup(pkg, path)
+                popup.popup(None, None, None, event.button, t)
+            return True
 
     def on_packageInstallAll_clicked(self, widget=None, event=None):
         '''
