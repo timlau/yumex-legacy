@@ -28,6 +28,8 @@ import traceback
 from optparse import OptionParser
 import types
 import time
+import pprint
+
 from datetime import datetime
 
 from yum.packageSack import packagesNewestByNameArch

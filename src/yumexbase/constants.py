@@ -229,4 +229,10 @@ SEARCH_KEYS_VALUES = {
 
 SEARCH_KEYS_ORDER = ['name', 'summary', 'description', 'arch']
 
-
+# backend error messages
+BACKEND_ERRMSG = {
+  5 : _("The Yum Extender backend failed because it could not exchange information\n"
+        "with the frontend (gui)\n\n"
+        "check /usr/tmp/yumex-dump-<date>-<time>.log for details\n\n"
+        "Try to restart Yum Extender and retry your actions")
+}

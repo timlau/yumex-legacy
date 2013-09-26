@@ -349,7 +349,12 @@ class YumClientBase:
         self.child.close()
         exitrc = self.child.exitstatus
         # default error
-        args = ['backend-not-running', pack(_('Backend not running as expected \n\nYum Extender will terminate\n   --> exit code : %s') % exitrc)]
+        if exitrc in BACKEND_ERRMSG:
+            msg = BACKEND_ERRMSG[exitrc]
+        else:
+            msg = _('Backend not running as expected \n\nYum Extender will terminate\n   --> exit code : %s\n') % exitrc
+            
+        args = ['backend-not-running', pack(msg)]
         #polkit releated errors
         if self.using_polkit:
             if exitrc == 127:

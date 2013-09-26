@@ -314,7 +314,8 @@ class YumexApplication(Controller, YumexFrontend):
                 longtext += msg
             elif err == 'laucher-exit':
                 text = _("Backend Launcher ended unexpected")
-                longtext = ""
+                longtext = msg
+                self.error(text)
                 return
             else:
                 text = _("Fatal Error : ") + err
@@ -324,8 +325,8 @@ class YumexApplication(Controller, YumexFrontend):
                 dialog = ErrorDialog(self.ui, self.window, title, text, longtext, modal=True)
                 dialog.run()
                 dialog.destroy()
-            self.error(text)
-            self.error(longtext)
+            #self.error(text)
+            #self.error(longtext)
             if quit_pgm:
                 self.main_quit()
         except:
