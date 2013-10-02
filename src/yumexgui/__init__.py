@@ -548,14 +548,21 @@ class YumexApplication(Controller, YumexFrontend):
             self.refresh_on_show = False
             if self.ui.packageRadioUpdates.get_active():
                 self.ui.packageRadioUpdates.clicked()
+                
+    def set_backend_session_option(self):
+        '''
+        Set the current state of the session based options to the backend
+        '''
+        self.on_option_nogpgcheck_toggled()
+        self.on_option_skipbroken_toggled()
+        self.on_option_remove_requirement_toggled()
 
     def start_root_backend(self):
         self.backend.setup(offline=self.is_offline, repos=self.current_repos,
                 need_root=True)
         progress = self.get_progress()
-        options = self._get_options()
-        self._set_options(options)
-        self.backend.set_option('clean_requirements_on_remove', self.settings.remove_requirements)
+        # make sure the session based option is set in the backend
+        self.set_backend_session_option()
         # we need to refresh the package lists in the backend, so we get the available updates
         pkgs,label = self.get_packages('updates')
         progress.hide()
@@ -1228,18 +1235,19 @@ class YumexApplication(Controller, YumexFrontend):
 
 # Options
 
-    def on_option_nogpgcheck_toggled(self, widget=None, event=None):
-        self.backend.set_option('gpgcheck', not widget.get_active(), on_repos=True)
+
+    def on_option_nogpgcheck_toggled(self, widget=None, event=None):        
+        self.backend.set_option('gpgcheck', not self.ui.option_nogpgcheck.get_active(), on_repos=True)
 
     def on_option_skipbroken_toggled(self, widget=None, event=None):
-        self.backend.set_option('skip_broken', widget.get_active())
+        self.backend.set_option('skip_broken',self.ui.option_skipbroken.get_active())
 
     def on_option_show_newest_only_toggled(self, widget=None, event=None):
         self.settings.show_newest_only = widget.get_active()
 
     def on_option_remove_requirement_toggled(self, widget=None, event=None):
-        self.backend.set_option('clean_requirements_on_remove', widget.get_active())
-        self.settings.remove_requirement = widget.get_active()
+        self.backend.set_option('clean_requirements_on_remove', self.ui.option_remove_requirement.get_active())
+        self.settings.remove_requirement = self.ui.option_remove_requirement.get_active()
 
     def on_viewPackages_activate(self, widget=None, event=None):
         '''
