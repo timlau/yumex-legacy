@@ -50,7 +50,7 @@ install:
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
 get-builddeps:
-	yum install perl-TimeDate python-devel gettext intltool rpmdevtools transifex-client
+	@sudo yum install perl-TimeDate python-devel gettext intltool rpmdevtools transifex-client
 
 archive:
 	@rm -rf ${PKGNAME}-${VERSION}.tar.gz
@@ -129,6 +129,15 @@ transifex-push:
 	make -C po yumex.pot
 	tx push -s
 	@echo "You can now git commit -a -m 'Transfix push, yum.pot update'"
+	
+test-inst:
+	@$(MAKE) test-release
+	sudo yum install ~/rpmbuild/RPMS/noarch/${PKGNAME}-${NEW_VER}*.rpm
+
+test-reinst:
+	@$(MAKE) test-release
+	sudo yum reinstall ~/rpmbuild/RPMS/noarch/${PKGNAME}-${NEW_VER}*.rpm
+	
 		
 FORCE:
     
