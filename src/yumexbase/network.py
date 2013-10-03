@@ -89,6 +89,7 @@ class NetworkCheckNetworkManager(NetworkCheckBase):
         except: # Catch all exceptions
             # Could not get the state from NetworkManager
             # It might not be running
+            e = sys.exc_info()            
             print str(e)
             return False
 
