@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  3.0.12
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -21,7 +21,7 @@ BuildRequires: intltool
 Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
 Requires: pycairo
-Requires: pexpect
+Requires: python-pexpect
 Requires: python-iniparse
 Requires: dbus-python
 Requires: udisks
@@ -84,6 +84,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
+* Mon Oct 07 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.13-2
+- changed requirement pexpect to python-pexpect
 * Sat Sep 22 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.13-1
 - bumped version to 3.0.12
 * Mon Aug 26 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.11-1
