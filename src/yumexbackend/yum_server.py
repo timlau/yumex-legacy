@@ -101,6 +101,25 @@ class _YumPreBaseConf:
         self.syslog_facility = None
         self.syslog_device = '/dev/log'
         self.localpkg_gpgcheck = False
+        
+class YumexYumBase(yum.YumBase):
+    """
+    We need a custom YumBase class, so we can overload the _askForGPGKeyImport method
+    so we can ask the user for import of a missing GPG key.
+    """
+    
+    def __init__(self, base):
+        yum.YumBase.__init__(self)
+        self.base = base
+        
+    def _askForGPGKeyImport(self, po, userid, hexkeyid):
+        '''
+        Ask for GPGKeyImport
+        
+        call _askForGPGKeyImport in the parent class
+        '''
+        return self.base._askForGPGKeyImport( po, userid, hexkeyid)
+        
 
 class YumServer:
     """
@@ -191,7 +210,7 @@ class YumServer:
     @property
     def yumbase(self):
         if not self._yumbase:
-            yumbase = yum.YumBase()
+            yumbase = YumexYumBase(self)
             self._yumbase = yumbase
             yumbase.mediagrabber = self.mediaGrabber
             parser = OptionParser()
