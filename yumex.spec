@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.12
-Release:  2%{?dist}
+Version:  3.0.13
+Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -84,9 +84,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
-* Mon Oct 07 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.13-2
+* Wed Oct 16 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.13-1
+- bumped version to 3.0.13
+* Mon Oct 07 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.12-2
 - changed requirement pexpect to python-pexpect
-* Sat Sep 22 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.13-1
+* Sat Sep 22 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.12-1
 - bumped version to 3.0.12
 * Mon Aug 26 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.11-1
 - bumped version to 3.0.11
