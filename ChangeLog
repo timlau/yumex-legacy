@@ -1,3 +1,74 @@
+2013-10-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.13
+
+2013-10-16  Tim Lauridsen <timlau@fedoraproject.org>
+
+	Merge branch 'master' of github.com:timlau/yumex
+
+2013-10-10  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py: fix the GPG import user
+	confirmation, so it works again
+
+2013-10-07  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* yumex.spec: Changed requirement pexpect to python-pexpect
+
+2013-10-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/network.py: fix issue network check exception
+	handler (rhbz #1015039
+
+2013-10-03  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py: IOError dont have a e.msg (rhbz #1012508
+
+
+2013-10-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* Makefile: Add test-inst & test-reinst Makefile targets
+
+2013-10-02  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: fix session based option, dont get set
+	in root backend (rhbz #1014412)
+
+2013-09-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_server.py, src/yumexgui/__init__.py: fixed
+	wrong indent and unused import
+
+2013-09-26  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/constants.py, src/yumexgui/__init__.py: Better error
+	message when backend returns exitcode 5 (IOError)
+
+2013-09-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/backend-launcher.py, src/yumexbackend/yum_backend.py,
+	src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexgui/__init__.py: - Make the backend launcher handler errors better and dont blow up -
+	get the right return code from yum backend to frontend
+
+2013-09-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_client.py, src/yumexbackend/yum_server.py,
+	src/yumexbase/conf.py, src/yumexgui/__init__.py: added a test-die
+	command line option to generate an io error in the backend to see
+	how it is handled in the frontend  start yumex --test-die  and Help
+	-> About will trigger a IOError in write in the backend
+
+2013-09-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbackend/yum_backend.py: remove error in some unused code
+
+
+2013-09-22  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2013-09-22  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.12
