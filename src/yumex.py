@@ -36,7 +36,7 @@ def check_yumex_is_running():
     ps.wait()
     cnt = 0
     for line in output.split('\n'):
-        if '/usr/bin/yumex' in line or 'yumex.py' in line:
+        if ' /usr/bin/yumex' in line or 'yumex.py' in line:
             cnt += 1
     return cnt > 1
 
