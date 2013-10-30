@@ -358,10 +358,11 @@ class YumClientBase:
         #polkit releated errors
         if self.using_polkit:
             if exitrc == 127:
-                args = ['backend-not-running', pack(_('Could not get polkit autherisation to start backend \n\nYum Extender will terminate'))]
+                args = ['polkit-not-autherized', pack(_('Could not get polkit autherisation to start backend \n\nYum Extender will terminate'))]
             elif exitrc == 126:
-                args = ['backend-not-running', pack(_('User has cancelled polkit autherisation\n\nYum Extender will terminate'))]
+                args = ['polkit-user-cancel', pack(_('User has cancelled polkit autherisation\n\nYum Extender will terminate'))]
         self.fatal(args)
+        return None,None
 
     def _check_for_message(self, cmd, args):
         '''

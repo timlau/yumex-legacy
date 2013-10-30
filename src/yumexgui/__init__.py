@@ -317,6 +317,10 @@ class YumexApplication(Controller, YumexFrontend):
                 longtext = msg
                 self.error(text)
                 return
+            elif err == 'polkit-user-cancel':
+                text = _('User canceled autherization dialog')
+                longtext = _("Operation is aborted")
+                quit_pgm = False
             else:
                 text = _("Fatal Error : ") + err
                 longtext = msg
