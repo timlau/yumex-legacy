@@ -48,7 +48,7 @@ install:
 	@rm -f $(MISCDIR)/yumex-local.desktop
 	intltool-merge -d -u $(PODIR) $(MISCDIR)/yumex-local.desktop.in $(MISCDIR)/yumex-local.desktop
 	install -m644 $(MISCDIR)/yumex-local.desktop $(DESTDIR)/usr/share/applications/.
-	install -m644 $(MISCDIR)/yumex-appdata.xml $(DESTDIR)/usr/share/appdata/yumex.appdata.xml
+	install -m644 $(MISCDIR)/yumex.appdata.xml $(DESTDIR)/usr/share/appdata/yumex.appdata.xml
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
 get-builddeps:
