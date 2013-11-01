@@ -82,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace)  %{_sysconfdir}/yumex.conf
 %{_datadir}/polkit-1/actions/dk.yumex.backend.policy
 %{_datadir}/applications/*.desktop
+%{_datadir}/appdata/*.xml
 
 %changelog
 * Wed Oct 16 2013 Tim Lauridsen <timlau@fedoraproject.org> 3.0.13-1

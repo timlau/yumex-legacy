@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2013 Tim Lauridsen <timlau@fedoraproject.org> -->
+<application>
+ <id type="desktop">yumex.desktop</id>
+ <licence>GPLv2+</licence>
+ <name>Yum Extender</name>
+ <summary>Graphical package manager</summary>
+ <description>
+  <p>
+   Yum Extender is a gui for package management, it will allow you to search and browse for packages to install, remove & update on your computer.<BR/>
+   It is designed to give you full control over the packages on your computer and to be used by all users.
+  </p>
+  <p>Features:</p>
+  <ul>
+   <li>Browse packages available for installation or update</li>
+   <li>Browse packages installed on your computer</li>
+   <li>Search packages by name, summary, description</li>
+   <li>Watch the history of package action on your sytem</li>
+   <li>Browse and install/remove package groups</li>
+   <li>Browse packages by different categories like Size, Repository</li>
+   <li>Control want package repositories there is enabled for current session</li>
+  </ul>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="1004" height="626">http://timlau.fedorapeople.org/files/pics/yumex/yumex-main.png</screenshot>
+ </screenshots>
+ <url type="homepage">http://www.yumex.dk</url>
+ <updatecontact>Tim Lauridsen <timlau@fedoraproject.org></updatecontact>
+</application>
