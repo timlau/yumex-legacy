@@ -17,7 +17,7 @@
    <li>Watch the history of package action on your sytem</li>
    <li>Browse and install/remove package groups</li>
    <li>Browse packages by Size, Repository</li>
-   <li>Control want package repositories there is enabled for current session</li>
+   <li>Control what package repositories are enabled for the current session</li>   
   </ul>
  </description>
  <screenshots>
