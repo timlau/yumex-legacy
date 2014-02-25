@@ -298,8 +298,6 @@ class Progress(YumexProgressBase):
         '''
         Show the progress dialog
         '''
-        if not self._active: self.status_icon.set_is_working(True)
-        self._active = True
         _is_visible = self.dialog.get_property('visible')
         if force: # If force the make sure the dialog is shown
             if not _is_visible:
@@ -308,6 +306,8 @@ class Progress(YumexProgressBase):
                 self.dialog.queue_draw()
         elif not self.parent.get_property('visible'): return
 
+        if not self._active: self.status_icon.set_is_working(True)
+        self._active = True
         busyCursor(self.parent, True)
         self.reset()
         self.dialog.show()
@@ -330,11 +330,11 @@ class Progress(YumexProgressBase):
         '''
         Hide the progress dialog
         '''
-        if self._active: self.status_icon.set_is_working(False)
-        self._active = False
         #normalCursor(self.parent)
         self.dialog.hide()
         self.set_pulse(False)
+        if self._active: self.status_icon.set_is_working(False)
+        self._active = False
         normalCursor(self.parent)
 
     def show_tasks(self):
