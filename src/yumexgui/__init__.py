@@ -319,8 +319,8 @@ class YumexApplication(Controller, YumexFrontend):
                 return
             elif err == 'polkit-user-cancel':
                 text = _('User canceled autherization dialog')
-                longtext = _("Operation is aborted")
-                quit_pgm = False
+                longtext = _("Operation is aborted\nYum Extender will exit")
+                quit_pgm = True
             else:
                 text = _("Fatal Error : ") + err
                 longtext = msg
@@ -562,14 +562,17 @@ class YumexApplication(Controller, YumexFrontend):
         self.on_option_remove_requirement_toggled()
 
     def start_root_backend(self):
-        self.backend.setup(offline=self.is_offline, repos=self.current_repos,
+        rc  = self.backend.setup(offline=self.is_offline, repos=self.current_repos,
                 need_root=True)
-        progress = self.get_progress()
-        # make sure the session based option is set in the backend
-        self.set_backend_session_option()
-        # we need to refresh the package lists in the backend, so we get the available updates
-        pkgs,label = self.get_packages('updates')
-        progress.hide()
+        if rc:
+            progress = self.get_progress()
+            # make sure the session based option is set in the backend
+            self.set_backend_session_option()
+            # we need to refresh the package lists in the backend, so we get the available updates
+            pkgs,label = self.get_packages('updates')
+            progress.hide()
+        return rc
+    
 
     def startup_init_update_timer(self):
         """ start the update timer with a delayed startup
@@ -861,7 +864,9 @@ class YumexApplication(Controller, YumexFrontend):
         '''
         rc = False
         try:
-            self.start_root_backend() # we need to be root for this
+            got_root = self.start_root_backend() # we need to be root for this
+            if not got_root:
+                return
             self.notebook.set_active("output")
             progress = self.get_progress()
             progress.set_pulse(True)
