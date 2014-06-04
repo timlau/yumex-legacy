@@ -1,3 +1,22 @@
+2014-06-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.15
+
+2014-06-04  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: only set gpgcheck for yum repos, when
+	"No gpg check" is enabled.  (RHBug : 1089408)
+
+2014-03-19  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* src/yumexgui/__init__.py: check if we got the root backend started
+	before going on. Dont hang if user press cancel on the authorization
+	dialog, just exit af dialog is shown (rhbz #1076454)
+
+2014-02-25  Tim Lauridsen <timlau@fedoraproject.org>
+
+	* ChangeLog: updated ChangeLog
+
 2014-02-25  Tim Lauridsen <timlau@fedoraproject.org>
 
 	* src/yumexbase/constants.py, yumex.spec: bumped version to 3.0.14
