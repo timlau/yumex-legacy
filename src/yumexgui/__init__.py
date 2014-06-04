@@ -552,7 +552,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.refresh_on_show = False
             if self.ui.packageRadioUpdates.get_active():
                 self.ui.packageRadioUpdates.clicked()
-                
+
     def set_backend_session_option(self):
         '''
         Set the current state of the session based options to the backend
@@ -572,7 +572,7 @@ class YumexApplication(Controller, YumexFrontend):
             pkgs,label = self.get_packages('updates')
             progress.hide()
         return rc
-    
+
 
     def startup_init_update_timer(self):
         """ start the update timer with a delayed startup
@@ -1245,8 +1245,11 @@ class YumexApplication(Controller, YumexFrontend):
 # Options
 
 
-    def on_option_nogpgcheck_toggled(self, widget=None, event=None):        
-        self.backend.set_option('gpgcheck', not self.ui.option_nogpgcheck.get_active(), on_repos=True)
+    def on_option_nogpgcheck_toggled(self, widget=None, event=None):
+        # only set gpgcheck if the nogpgcheck option is set
+        # else we will use the default values
+        if self.ui.option_nogpgcheck.get_active():
+            self.backend.set_option('gpgcheck', False, on_repos=True)
 
     def on_option_skipbroken_toggled(self, widget=None, event=None):
         self.backend.set_option('skip_broken',self.ui.option_skipbroken.get_active())
