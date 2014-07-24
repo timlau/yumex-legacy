@@ -342,7 +342,7 @@ class YumexBackendYum(YumexBackendBase, YumClient):
         ''' Setup the backend'''
         if self.yum_backend_is_running: # Check if backend is already running
             if self._running_as_root == need_root or self._running_as_root:
-                return
+                return True
             self.debug('Restarting backend as root')
             self.reset() # stop the running backend
             self._close() # stop the running launcher process
