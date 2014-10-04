@@ -963,6 +963,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.populate_package_cache(repos=repos, show_dupes=self.show_dupes) # repopulate the package cache
             self.groups_is_loaded = False
             self.history_is_loaded = False
+            self.packageInfo.pkg = None
 #            self.setup_groups()
 #            self.setup_history(limit=self.settings.history_limit)
             self.notebook.set_active("package")     # show the package page
