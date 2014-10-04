@@ -282,7 +282,7 @@ class YumexApplication(Controller, YumexFrontend):
         # setup
         try:
             self.setup_gui()
-            self.backend.setup(need_root=False)
+            self.backend.setup(need_root=True)
             gtk.main()
         except YumexBackendFatalError, e:
             self.handle_error(e.err, e.msg)
@@ -498,7 +498,7 @@ class YumexApplication(Controller, YumexFrontend):
             self.populate_package_cache()
             self.notebook.set_active("package")
         else:
-            self.backend.setup(repos=self.current_repos, need_root=False)
+            self.backend.setup(repos=self.current_repos, need_root=True)
             self.notebook.set_active("repo")
         self._setup_options()
         # setup repository view
@@ -827,7 +827,7 @@ class YumexApplication(Controller, YumexFrontend):
         progress = self.get_progress()
         progress.set_pulse(True)
         self.debug("Getting package lists - BEGIN")
-        self.backend.setup(self.is_offline, repos, need_root=False)
+        self.backend.setup(self.is_offline, repos, need_root=True)
         self.debug("Getting package lists - END")
         progress.set_pulse(False)
         progress.hide()
@@ -1502,7 +1502,7 @@ class YumexApplication(Controller, YumexFrontend):
                 if search_text == '': # This is not a search
                     self._last_filter = widget
                     self.debug('START: Getting %s packages' % active)
-                    self.backend.setup(need_root=False)
+                    self.backend.setup(need_root=True)
                     progress = self.get_progress()
                     progress.set_pulse(True)
                     cur_filter = active
