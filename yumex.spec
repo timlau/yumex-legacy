@@ -24,7 +24,6 @@ Requires: pycairo
 Requires: python-pexpect
 Requires: python-iniparse
 Requires: dbus-python
-Requires: udisks
 Requires: python-kitchen
 Requires: urlgrabber
 Requires: polkit
