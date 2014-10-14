@@ -1,0 +1,6 @@
+polkit.addRule(function(action, subject) { 
+    if (action.id == "dk.yumex.backend.pkexec.run" && 
+        subject.isInGroup("yumex")) { 
+        return polkit.Result.YES; 
+    } 
+}); 

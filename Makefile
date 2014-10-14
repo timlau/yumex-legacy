@@ -30,6 +30,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/bin
 	mkdir -p $(DESTDIR)/etc
 	mkdir -p $(DESTDIR)/usr/share/polkit-1/actions/
+	mkdir -p $(DESTDIR)/usr/share/polkit-1/rules.d/
 	install -m644 COPYING $(DESTDIR)/usr/share/yumex/.
 	install -m644 $(PIXDIR)/*.png $(DESTDIR)/usr/share/pixmaps/yumex/.
 	install -m644 $(PIXDIR)/*.gif $(DESTDIR)/usr/share/pixmaps/yumex/.
@@ -49,6 +50,7 @@ install:
 	intltool-merge -d -u $(PODIR) $(MISCDIR)/yumex-local.desktop.in $(MISCDIR)/yumex-local.desktop
 	install -m644 $(MISCDIR)/yumex-local.desktop $(DESTDIR)/usr/share/applications/.
 	install -m644 $(MISCDIR)/yumex.appdata.xml $(DESTDIR)/usr/share/appdata/yumex.appdata.xml
+	install -m644 $(MISCDIR)/50-dk.yumex.backend.pkexec.run.rules  $(DESTDIR)/usr/share/polkit-1/rules.d/.
 	for d in $(SUBDIRS); do make DESTDIR=`cd $(DESTDIR); pwd` -C $$d install; [ $$? = 0 ] || exit 1; done
 
 get-builddeps:

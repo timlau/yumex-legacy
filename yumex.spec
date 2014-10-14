@@ -2,7 +2,7 @@
 
 Name:     yumex
 Version:  3.0.16
-Release:  1%{?dist}
+Release:  2%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -28,6 +28,7 @@ Requires: python-kitchen
 Requires: urlgrabber
 Requires: polkit
 Requires: pyxdg
+Requires(pre): shadow-utils
 
 %description
 Graphical User Interface for Yum.
@@ -52,11 +53,15 @@ install -m644 src/yumex.glade.el6 $RPM_BUILD_ROOT/%{_datadir}/%{name}/yumex.glad
 
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}-local.desktop
+
     
 # this is a doc file; removing from installed tree
 rm $RPM_BUILD_ROOT%{_datadir}/yumex/COPYING
 
 %find_lang %name
+
+%pre
+getent group yumex >/dev/null || groupadd -r yumex
 
 %post
 update-desktop-database %{_datadir}/applications &> /dev/null || :
@@ -82,8 +87,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/polkit-1/actions/dk.yumex.backend.policy
 %{_datadir}/applications/*.desktop
 %{_datadir}/appdata/*.xml
+%{_datadir}/polkit-1/rules.d/*.rules
 
 %changelog
+* Tue Oct 14 2014 Tim Lauridsen <timlau@fedoraproject.org> 3.0.16-2
+- create yumex group
+- added shadow-utils requirement (pre)
+- added PolicyKit rule
 * Sun Oct 5 2014 Tim Lauridsen <timlau@fedoraproject.org> 3.0.16-1
 - bumped version to 3.0.16
 - removed udisks requirement
