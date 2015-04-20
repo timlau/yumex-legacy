@@ -925,7 +925,7 @@ class YumexApplication(Controller, YumexFrontend):
         self.ui.option_nogpgcheck.set_active(self.settings.no_gpg_check)
         self.ui.option_skipbroken.set_active(self.settings.skip_broken)
         self.ui.option_show_newest_only.set_active(self.settings.show_newest_only)
-        self.ui.option_remove_requirement.set_active(self.settings.remove_requirements)
+        self.ui.option_remove_requirement.set_active(self.settings.cleanup_requirements)
 
 
 
@@ -1260,7 +1260,7 @@ class YumexApplication(Controller, YumexFrontend):
 
     def on_option_remove_requirement_toggled(self, widget=None, event=None):
         self.backend.set_option('clean_requirements_on_remove', self.ui.option_remove_requirement.get_active())
-        self.settings.remove_requirement = self.ui.option_remove_requirement.get_active()
+        self.settings.cleanup_requirement = self.ui.option_remove_requirement.get_active()
 
     def on_viewPackages_activate(self, widget=None, event=None):
         '''

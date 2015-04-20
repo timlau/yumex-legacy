@@ -68,7 +68,7 @@ class YumexConf(BaseConfig):
     skip_broken = BoolOption(False)
     no_gpg_check = BoolOption(False)
     show_newest_only= BoolOption(True)
-    remove_requirements= BoolOption(False)
+    cleanup_requirements= BoolOption(False)
     exit_action = SelectionOption('reload',['ask', 'exit', 'reload'])
 
 

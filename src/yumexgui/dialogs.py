@@ -551,7 +551,7 @@ class Preferences:
         self._add_option(PrefBoolean, vbox, 'skip_broken', _('Skip Broken is active by default'))
         self._add_option(PrefBoolean, vbox, 'no_gpg_check', _('No GPG Check is active by default'))
         self._add_option(PrefBoolean, vbox, 'show_newest_only', _('Show Newest Only is active by default'))
-        self._add_option(PrefBoolean, vbox, 'remove_requirements', _('Clean Unused Requirements is active by default'))
+        self._add_option(PrefBoolean, vbox, 'cleanup_requirements', _('Clean Unused Requirements is active by default'))
         vbox.show_all()
 
     def _check_for_updates_clicked(self, widget):
