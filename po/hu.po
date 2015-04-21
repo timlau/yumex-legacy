@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# dabzse <dr.dabzse@gmail.com>, 2015
 # Tim Lauridsen <tla@rasmil.dk>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-01 14:47+0100\n"
-"PO-Revision-Date: 2013-11-20 09:32+0000\n"
+"POT-Creation-Date: 2015-04-21 06:33+0200\n"
+"PO-Revision-Date: 2015-04-21 04:35+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/yumex/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: ../src/yumexbase/network.py:83
 #, python-format
 msgid "network interface %s is connected"
-msgstr ""
+msgstr "hálózati csatoló %s csatlakozik"
 
 #. NOTE: The package filter radio buttons in the top of the package page
 #: ../src/yumexbase/constants.py:96
@@ -41,7 +42,7 @@ msgstr "telepített"
 #: ../src/yumexbase/constants.py:116
 #, python-format
 msgid "Downloading repository information for the %s repository"
-msgstr ""
+msgstr "Tárolóinformáció letöltése a(z) %s tárolóhoz"
 
 #: ../src/yumexbase/constants.py:117 ../src/yumexbase/constants.py:118
 #, python-format
@@ -104,81 +105,81 @@ msgstr "90+ nap"
 
 #: ../src/yumexbase/constants.py:165
 msgid "Getting all packages"
-msgstr ""
+msgstr "Minden csomag lekérése"
 
 #: ../src/yumexbase/constants.py:166
 msgid "Getting installed packages"
-msgstr ""
+msgstr "Telepített csomagok lekérése"
 
 #: ../src/yumexbase/constants.py:167
 msgid "Getting available packages"
-msgstr ""
+msgstr "Elérhető csomagok lekérése"
 
 #: ../src/yumexbase/constants.py:168
 msgid "Getting available updates"
-msgstr ""
+msgstr "Frissítési csomagok lekérése"
 
 #: ../src/yumexbase/constants.py:169
 msgid "Getting available obsoletes"
-msgstr ""
+msgstr "Elavult csomagok lekérése"
 
 #: ../src/yumexbase/constants.py:174
 #, python-format
 msgid "%s is updated"
-msgstr ""
+msgstr "%s frissítve"
 
 #: ../src/yumexbase/constants.py:175
 #, python-format
 msgid "%s is erased"
-msgstr ""
+msgstr "%s törölve"
 
 #: ../src/yumexbase/constants.py:176 ../src/yumexbase/constants.py:177
 #: ../src/yumexbase/constants.py:179
 #, python-format
 msgid "%s is installed"
-msgstr ""
+msgstr "%s telepítve"
 
 #: ../src/yumexbase/constants.py:178
 #, python-format
 msgid "%s is obsoleted"
-msgstr ""
+msgstr "%s elavult"
 
 #: ../src/yumexbase/constants.py:180
 #, python-format
 msgid "%s is cleanup"
-msgstr ""
+msgstr "%s tisztítva"
 
 #: ../src/yumexbase/constants.py:191
 msgid "Updated packages"
-msgstr ""
+msgstr "Frissített csomagok"
 
 #: ../src/yumexbase/constants.py:192
 msgid "Downgraded packages"
-msgstr ""
+msgstr "Leminősített csomagok"
 
 #: ../src/yumexbase/constants.py:193
 msgid "Obsoleting packages"
-msgstr ""
+msgstr "Csomagok butítása"
 
 #: ../src/yumexbase/constants.py:194
 msgid "Obsoleted packages"
-msgstr ""
+msgstr "Elavult csomagok"
 
 #: ../src/yumexbase/constants.py:195
 msgid "Erased packages"
-msgstr ""
+msgstr "Törölt csomagok"
 
 #: ../src/yumexbase/constants.py:196 ../src/yumexbase/constants.py:197
 msgid "Installed packages"
-msgstr ""
+msgstr "Telepített csomagok"
 
 #: ../src/yumexbase/constants.py:198
 msgid "Installed for dependencies"
-msgstr ""
+msgstr "Telepített függőségek"
 
 #: ../src/yumexbase/constants.py:199
 msgid "Reinstalled packages"
-msgstr ""
+msgstr "Újratelepített csomagok"
 
 #: ../src/yumexbase/constants.py:225 ../src/yumexgui/views.py:904
 #: ../src/yumexgui/dialogs.py:722
@@ -193,7 +194,7 @@ msgstr "Összegzés"
 
 #: ../src/yumexbase/constants.py:227 ../src/yumexgui/gui.py:393
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #: ../src/yumexbase/constants.py:228 ../src/yumexgui/dialogs.py:723
 msgid "Arch"
@@ -218,16 +219,16 @@ msgstr "Csomaginformációk lekérése"
 #: ../src/yumexbackend/yum_backend.py:203
 #, python-format
 msgid "Unknown metadata type (%s) for %s"
-msgstr ""
+msgstr "Ismeretlen metaadat-típus (%s) ehhez :: %s"
 
 #: ../src/yumexbackend/yum_backend.py:206
 #, python-format
 msgid "Repo Metadata for %s"
-msgstr ""
+msgstr "Tároló metaadat ehhez :: %s"
 
 #: ../src/yumexbackend/yum_backend.py:210
 msgid "Building rpms from deltarpm"
-msgstr ""
+msgstr "RPM építése a deltarpm-ből"
 
 #: ../src/yumexbackend/yum_backend.py:226 ../src/yumexgui/dialogs.py:269
 msgid "Downloading Packages"
@@ -248,7 +249,7 @@ msgstr "RPM tranzakció végrehajtása"
 
 #: ../src/yumexbackend/yum_backend.py:251
 msgid "Yum is locked: waiting for release"
-msgstr ""
+msgstr "A Yum zárolva van : felszabadulásra vár"
 
 #: ../src/yumexbackend/yum_backend.py:263
 #, python-format
@@ -289,7 +290,7 @@ msgstr "yum háttérrendszer-folyamat kész"
 #: ../src/yumexbackend/yum_backend.py:397
 #, python-format
 msgid "%i packages returned"
-msgstr ""
+msgstr "%i csomag visszatérve"
 
 #: ../src/yumexbackend/yum_backend.py:574 ../src/yumexgui/dialogs.py:268
 msgid "Resolving Dependencies"
@@ -339,12 +340,12 @@ msgid ""
 "User has cancelled polkit autherisation\n"
 "\n"
 "Yum Extender will terminate"
-msgstr ""
+msgstr "A felhasználó megszakította a hitelesítést\n\nYum Extender ki fog lépni"
 
 #: ../src/yumexbackend/yum_server.py:191
 #, python-format
 msgid "Using %s for yum configuration"
-msgstr ""
+msgstr "%s használata a yum beállításához"
 
 #. Not local disable it
 #. No, disable it
@@ -373,12 +374,12 @@ msgstr "Várjon  10 másodpercet és próbálja meg újból !!!"
 #. yumRepo will catch this
 #: ../src/yumexbackend/yum_server.py:354
 msgid "The disc was not inserted"
-msgstr ""
+msgstr "A lemez nem volt behelyezve"
 
 #. only write on normal exit
 #: ../src/yumexbackend/yum_server.py:387
 msgid "Closing rpm db and releasing yum lock  "
-msgstr ""
+msgstr "rpm db bezárása és yum zároló felszabítása"
 
 #: ../src/yumexbackend/yum_server.py:916
 msgid "Installing"
@@ -391,7 +392,7 @@ msgstr "Hiba a yum tranzakcióban : %s"
 
 #: ../src/yumexbackend/yum_server.py:973
 msgid "Exception in run_transaction"
-msgstr ""
+msgstr "Kivétel itt :: run_transaction"
 
 #: ../src/yumexbackend/yum_server.py:1012
 #, python-format
@@ -415,7 +416,7 @@ msgstr "A(z) %s tároló tartósan letiltva"
 #: ../src/yumexbackend/yum_server.py:1275
 #, python-format
 msgid "Setting Yum Option %s = %s"
-msgstr ""
+msgstr "Yum opciók beállítása %s = %s"
 
 #: ../src/yumexbackend/yum_server.py:1338
 msgid "Cleaned metadata from local cache"
@@ -435,7 +436,7 @@ msgstr "Minden megtisztítva a helyi gyorsítótárból"
 
 #: ../src/yumexbackend/yum_server.py:1779
 msgid "Rebuild from deltarpms completed"
-msgstr ""
+msgstr "Építés a deltarpm-ből befejezve"
 
 #: ../src/yumexbackend/yum_server.py:1781
 #, python-format
@@ -496,7 +497,7 @@ msgstr "Csomagok"
 #: ../src/yumexgui/views.py:844
 #, python-format
 msgid "<b>Downgrade to</b> %s "
-msgstr ""
+msgstr "<b>Leminősítés erre</b> %s"
 
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:857 ../src/yumexgui/views.py:903
@@ -511,7 +512,7 @@ msgstr "Fájlnév"
 #. Setup reponame & repofile column's
 #: ../src/yumexgui/views.py:1037
 msgid "Search Keys"
-msgstr ""
+msgstr "Keresési kulcsok"
 
 #: ../src/yumexgui/views.py:1268
 msgid "Categories"
@@ -551,7 +552,7 @@ msgstr "Megpróbálhatja elindítani a 'yumex -n'-t a parancssorból\n"
 
 #: ../src/yumexgui/__init__.py:306
 msgid "and deselecting the repositories causing problems\n"
-msgstr ""
+msgstr "és a tárolók kikapcsolása hibákat okozott\n"
 
 #: ../src/yumexgui/__init__.py:307
 msgid "and try again.\n"
@@ -571,10 +572,12 @@ msgstr ""
 
 #: ../src/yumexgui/__init__.py:321
 msgid "User canceled autherization dialog"
-msgstr ""
+msgstr "A felhasználó megszakította a párbeszédablak hitelesítését"
 
 #: ../src/yumexgui/__init__.py:322
-msgid "Operation is aborted"
+msgid ""
+"Operation is aborted\n"
+"Yum Extender will exit"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:325
@@ -583,11 +586,11 @@ msgstr "Végzetes hiba:"
 
 #: ../src/yumexgui/__init__.py:409
 msgid "Available Updates"
-msgstr ""
+msgstr "Elérhető frissítések"
 
 #: ../src/yumexgui/__init__.py:411
 msgid "Search for packages"
-msgstr ""
+msgstr "Csomagok keresése"
 
 #: ../src/yumexgui/__init__.py:415
 msgid "Perform actions on packages"
@@ -633,7 +636,7 @@ msgstr "Nem csatlakozik a hálózathoz"
 msgid ""
 "Not connected to a network.\n"
 "Do you want to continue "
-msgstr ""
+msgstr "Nincs internetkapcsolat.\nBiztosan folytatja?"
 
 #: ../src/yumexgui/__init__.py:489
 msgid "network connection state check is disabled"
@@ -649,157 +652,157 @@ msgstr "Kapcsolódva a hálózathoz"
 
 #: ../src/yumexgui/__init__.py:540
 msgid "Nothing to do"
-msgstr ""
+msgstr "Nincs mit tenni"
 
-#: ../src/yumexgui/__init__.py:740
+#: ../src/yumexgui/__init__.py:743
 msgid "Enable Permanently"
 msgstr "Tartósan engedélyez"
 
-#: ../src/yumexgui/__init__.py:744
+#: ../src/yumexgui/__init__.py:747
 msgid "Disable Permanently"
 msgstr "Tartósan tilt"
 
-#: ../src/yumexgui/__init__.py:747
+#: ../src/yumexgui/__init__.py:750
 msgid "Clean Metadata"
 msgstr "Metaadatok tisztítása"
 
-#: ../src/yumexgui/__init__.py:748
+#: ../src/yumexgui/__init__.py:751
 msgid "Clean Packages"
 msgstr "Csomagok tisztítása"
 
-#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/__init__.py:752
 msgid "Clean DbCache"
 msgstr "Adatbázis-gyorsítótár tisztítása"
 
-#: ../src/yumexgui/__init__.py:750
+#: ../src/yumexgui/__init__.py:753
 msgid "Clean All"
 msgstr "Összes tisztítása"
 
-#: ../src/yumexgui/__init__.py:763
+#: ../src/yumexgui/__init__.py:766
 msgid "Reinstall Package"
-msgstr ""
+msgstr "Csomag újratelepítése"
 
-#: ../src/yumexgui/__init__.py:770
+#: ../src/yumexgui/__init__.py:773
 msgid "Downgrade Package"
-msgstr ""
+msgstr "Csomag lebutítása"
 
-#: ../src/yumexgui/__init__.py:780
+#: ../src/yumexgui/__init__.py:783
 msgid "By Repositories"
 msgstr "Tároló szerint"
 
-#: ../src/yumexgui/__init__.py:781
+#: ../src/yumexgui/__init__.py:784
 msgid "By Size"
 msgstr "Méret szerint"
 
-#: ../src/yumexgui/__init__.py:806 ../src/yumexgui/__init__.py:807
+#: ../src/yumexgui/__init__.py:809 ../src/yumexgui/__init__.py:810
 msgid "Getting Group information"
 msgstr "Csoportinformációk lekérése"
 
-#: ../src/yumexgui/__init__.py:843
+#: ../src/yumexgui/__init__.py:846
 msgid "The pending action queue is empty"
 msgstr "A folyamatban lévő intézkedések várólistája üres"
 
-#: ../src/yumexgui/__init__.py:869
+#: ../src/yumexgui/__init__.py:874
 msgid "Installing local Packages"
-msgstr ""
+msgstr "Helyi csomagok telepítése"
 
-#: ../src/yumexgui/__init__.py:871
+#: ../src/yumexgui/__init__.py:876
 msgid "Processing pending actions"
 msgstr "Függő műveletek végrehajtása"
 
-#: ../src/yumexgui/__init__.py:872
+#: ../src/yumexgui/__init__.py:877
 msgid "Preparing the transaction"
 msgstr "Tranzakció előkészítése"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:889 ../src/yumexgui/__init__.py:898
+#: ../src/yumexgui/__init__.py:894 ../src/yumexgui/__init__.py:903
 msgid "Transaction completed successfully"
 msgstr "A kibontás sikeresen befejeződött"
 
-#: ../src/yumexgui/__init__.py:893
+#: ../src/yumexgui/__init__.py:898
 msgid "Installation of local packages completed"
-msgstr ""
+msgstr "Helyi csomagok telepítése befejezve"
 
-#: ../src/yumexgui/__init__.py:899
+#: ../src/yumexgui/__init__.py:904
 msgid ""
 "\n"
 "\n"
 "Do you want to exit Yum Extender ?"
-msgstr "\n\nSzeretné, hogy kilépjen Yum Extender?"
+msgstr "\n\nSzeretné, hogy kilépjen a Yum Extender?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:909
+#: ../src/yumexgui/__init__.py:914
 msgid "Transaction Aborted by User"
 msgstr "A folyamat megszakítva a felhasználó által"
 
-#: ../src/yumexgui/__init__.py:912
+#: ../src/yumexgui/__init__.py:917
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "A folyamat befejezve hibákkal, nézze meg a kimenetet a részletekért"
 
-#: ../src/yumexgui/__init__.py:1005
+#: ../src/yumexgui/__init__.py:1011
 msgid "<unset>"
 msgstr "<nincs beállítva>"
 
-#: ../src/yumexgui/__init__.py:1006
+#: ../src/yumexgui/__init__.py:1012
 msgid "System"
 msgstr "Rendszer"
 
-#: ../src/yumexgui/__init__.py:1050
+#: ../src/yumexgui/__init__.py:1056
 msgid "Getting History Information"
 msgstr "Előzményadatok lekérése…"
 
-#: ../src/yumexgui/__init__.py:1052
+#: ../src/yumexgui/__init__.py:1058
 msgid "Getting Latest History Information"
 msgstr "Legutolsó előzményadatok lekérése"
 
-#: ../src/yumexgui/__init__.py:1054
+#: ../src/yumexgui/__init__.py:1060
 msgid "Getting All History Information"
 msgstr "Összes előzményadat lekérése"
 
-#: ../src/yumexgui/__init__.py:1060 ../src/yumexgui/__init__.py:1079
+#: ../src/yumexgui/__init__.py:1066 ../src/yumexgui/__init__.py:1085
 msgid "History Disabled"
-msgstr ""
+msgstr "Előzmény letiltva"
 
-#: ../src/yumexgui/__init__.py:1073 ../src/yumexgui/__init__.py:1074
+#: ../src/yumexgui/__init__.py:1079 ../src/yumexgui/__init__.py:1080
 msgid "Searching History Information"
-msgstr ""
+msgstr "Előzményinformációk keresése"
 
-#: ../src/yumexgui/__init__.py:1119
+#: ../src/yumexgui/__init__.py:1125
 msgid "Transaction Performed with"
-msgstr ""
+msgstr "Lebonyolítása teljesítve ezzel"
 
-#: ../src/yumexgui/__init__.py:1122
+#: ../src/yumexgui/__init__.py:1128
 msgid "Skipped packages"
-msgstr ""
+msgstr "Mellőzött csomagok"
 
-#: ../src/yumexgui/__init__.py:1147 ../src/yumexgui/__init__.py:1148
+#: ../src/yumexgui/__init__.py:1153 ../src/yumexgui/__init__.py:1154
 msgid "Adding Packages to view"
-msgstr ""
+msgstr "Csomagok hozzáadása megtekintéshez"
 
-#: ../src/yumexgui/__init__.py:1152
+#: ../src/yumexgui/__init__.py:1158
 #, python-format
 msgid "Added %i Packages to view"
-msgstr ""
+msgstr "%i csomag hozzáadva megtekintéshez"
 
-#: ../src/yumexgui/__init__.py:1591
+#: ../src/yumexgui/__init__.py:1600
 msgid "Getting Category Packages"
-msgstr ""
+msgstr "Elérhető Kategória csomagok"
 
-#: ../src/yumexgui/__init__.py:1688
+#: ../src/yumexgui/__init__.py:1697
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Kiszeretné tisztítani a(z) %s-t a yum gyorsítótárból"
 
-#: ../src/yumexgui/__init__.py:1758
+#: ../src/yumexgui/__init__.py:1767
 #, python-format
 msgid "Executing : %s %s"
-msgstr ""
+msgstr "Végrehajtás :: %s %s"
 
-#: ../src/yumexgui/__init__.py:1759
+#: ../src/yumexgui/__init__.py:1768
 msgid "Processing Queue Command"
-msgstr ""
+msgstr "Sorba állított parancs feldolgozása"
 
 #: ../src/yumexgui/dialogs.py:438
 msgid "Working !!!"
@@ -815,47 +818,47 @@ msgstr "Csomagok betöltése indításkor"
 
 #: ../src/yumexgui/dialogs.py:537
 msgid "Start hidden"
-msgstr ""
+msgstr "Indítás rejtve"
 
 #: ../src/yumexgui/dialogs.py:538
 msgid "Close button hides the window"
-msgstr ""
+msgstr "A bezárás gomb elrejti az ablakot"
 
 #: ../src/yumexgui/dialogs.py:539
 msgid "Autocheck for updates"
-msgstr ""
+msgstr "Frissítések automatikus keresése"
 
 #: ../src/yumexgui/dialogs.py:541
 msgid "Update check interval (in minutes)"
-msgstr ""
+msgstr "Frissítés-ellenőrzési időköz (percekben)"
 
 #: ../src/yumexgui/dialogs.py:543
 msgid "Startup delay before checking for updates (in seconds)"
-msgstr ""
+msgstr "Indítása késleltetés a frissítések keresésekor (másodpercekben)"
 
 #: ../src/yumexgui/dialogs.py:549
 msgid "Use sortable columns in package view (slower)"
-msgstr ""
+msgstr "Rendezett oszlopok használata a csomag nézetben (lassú)"
 
 #: ../src/yumexgui/dialogs.py:550
 msgid "Typeahead search is active by default"
-msgstr ""
+msgstr "Előregépelt keresés, alapértelmezetten aktív"
 
 #: ../src/yumexgui/dialogs.py:551
 msgid "Skip Broken is active by default"
-msgstr ""
+msgstr "Törött mellőzése, alapértelmezetten aktív"
 
 #: ../src/yumexgui/dialogs.py:552
 msgid "No GPG Check is active by default"
-msgstr ""
+msgstr "Nincs GPG ellenőrzés, alapértelmezetten aktív"
 
 #: ../src/yumexgui/dialogs.py:553
 msgid "Show Newest Only is active by default"
-msgstr ""
+msgstr "Csak a legújabb megjelenítése, alapértelmezetten aktív"
 
 #: ../src/yumexgui/dialogs.py:554
 msgid "Clean Unused Requirements is active by default"
-msgstr ""
+msgstr "Nem használt függőségek törlése, alapértelmezetten aktív"
 
 #: ../src/yumexgui/dialogs.py:567
 msgid "Debug Mode"
@@ -908,7 +911,7 @@ msgstr "Csomag leírás"
 
 #: ../src/yumexgui/gui.py:217
 msgid "Update information"
-msgstr ""
+msgstr "Frissítési információ"
 
 #: ../src/yumexgui/gui.py:219
 msgid "Package Changelog"
@@ -920,15 +923,15 @@ msgstr "Csomag fájl-lista"
 
 #: ../src/yumexgui/gui.py:223
 msgid "Package Dependencies"
-msgstr ""
+msgstr "Csomag függősége(i)"
 
 #: ../src/yumexgui/gui.py:313
 msgid "No Update information"
-msgstr ""
+msgstr "Nincs frissítési információ"
 
 #: ../src/yumexgui/gui.py:345
 msgid "Project URL : "
-msgstr ""
+msgstr "Projekt URL :"
 
 #: ../src/yumexgui/gui.py:352
 msgid "Release"
@@ -948,44 +951,44 @@ msgstr "Kiadva"
 
 #: ../src/yumexgui/gui.py:553
 msgid "Quit"
-msgstr ""
+msgstr "Kilépés"
 
 #: ../src/yumexgui/gui.py:556
 msgid "Search for Updates"
-msgstr ""
+msgstr "Frissítések keresése"
 
 #: ../src/yumexgui/gui.py:589 ../misc/yumex.desktop.in.h:1
 msgid "Yum Extender"
-msgstr ""
+msgstr "Yum Extender"
 
 #: ../src/yumexgui/gui.py:592
 msgid "Yum Extender: Error"
-msgstr ""
+msgstr "Yum Extender: Hiba"
 
 #: ../src/yumexgui/gui.py:595
 msgid "Yum Extender: No Updates"
-msgstr ""
+msgstr "Yum Extender: Nincsenek frissítések"
 
 #: ../src/yumexgui/gui.py:598
 #, python-format
 msgid "Yum Extender: %s Updates available"
-msgstr ""
+msgstr "Yum Extender: %s frissítés elérhető"
 
 #: ../misc/yumex.desktop.in.h:2
 msgid "Install, update and remove applications"
-msgstr ""
+msgstr "Alkalmazások telepítése, frissítése és eltávolítása"
 
 #: ../misc/yumex.desktop.in.h:3
 msgid "Software Installer"
-msgstr ""
+msgstr "Szoftver telepítő"
 
 #: ../misc/yumex-local.desktop.in.h:1
 msgid "Yumex Package Installer"
-msgstr ""
+msgstr "Yumex csomagtelepítő"
 
 #: ../misc/yumex-local.desktop.in.h:2
 msgid "Install local packages on system"
-msgstr ""
+msgstr "Helyi csomagok telepítése a rendszerről"
 
 #: ../misc/dk.yumex.backend.policy.in.h:1
 msgid "Run Yum Extender backend"
@@ -994,116 +997,116 @@ msgstr ""
 #: ../misc/dk.yumex.backend.policy.in.h:2
 msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
-msgstr ""
+msgstr "Hitelesítés szükséges, hogy a Yum Extender kezelje a rendszeren lévő csomagokat"
 
-#: ../src/yumex.glade.el6.h:1 ../src/yumex.glade.h:1
+#: ../src/yumex.glade.el6.h:1 ../src/yumex.glade.h:22
 msgid "<span size=\"x-large\">Working ....</span>\n"
 msgstr "<span size=\"-xlarge\">Dolgozom ....</span>\n"
 
-#: ../src/yumex.glade.el6.h:3 ../src/yumex.glade.h:3
+#: ../src/yumex.glade.el6.h:3 ../src/yumex.glade.h:24
 msgid "Error"
 msgstr "Hiba"
 
-#: ../src/yumex.glade.el6.h:4 ../src/yumex.glade.h:4
+#: ../src/yumex.glade.el6.h:4 ../src/yumex.glade.h:25
 msgid "Type package names to search for"
-msgstr ""
+msgstr "Csomag nevének gépelése a kereséshez"
 
-#: ../src/yumex.glade.el6.h:5 ../src/yumex.glade.h:6
+#: ../src/yumex.glade.el6.h:5 ../src/yumex.glade.h:27
 msgid "Get all History elements"
 msgstr "Az össze előzményi elem beszerzése"
 
-#: ../src/yumex.glade.el6.h:6 ../src/yumex.glade.h:7
+#: ../src/yumex.glade.el6.h:6 ../src/yumex.glade.h:28
 msgid "Undo a history transaction"
-msgstr ""
+msgstr "Előző lebonyolítás visszavonása"
 
-#: ../src/yumex.glade.el6.h:7 ../src/yumex.glade.h:8
+#: ../src/yumex.glade.el6.h:7 ../src/yumex.glade.h:29
 msgid "Redo a history transaction"
-msgstr ""
+msgstr "Előző lebonyolítás újbóli végrehajtása"
 
-#: ../src/yumex.glade.el6.h:8 ../src/yumex.glade.h:9
+#: ../src/yumex.glade.el6.h:8 ../src/yumex.glade.h:1
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/yumex.glade.el6.h:9 ../src/yumex.glade.h:10
+#: ../src/yumex.glade.el6.h:9 ../src/yumex.glade.h:2
 msgid "_Edit"
 msgstr "_Szerkesztés"
 
-#: ../src/yumex.glade.el6.h:10 ../src/yumex.glade.h:11
+#: ../src/yumex.glade.el6.h:10 ../src/yumex.glade.h:3
 msgid "_View"
 msgstr "_Nézet"
 
-#: ../src/yumex.glade.el6.h:11 ../src/yumex.glade.h:12
+#: ../src/yumex.glade.el6.h:11 ../src/yumex.glade.h:4
 msgid "_Packages"
 msgstr "_Csomagok"
 
-#: ../src/yumex.glade.el6.h:12 ../src/yumex.glade.h:13
+#: ../src/yumex.glade.el6.h:12 ../src/yumex.glade.h:5
 msgid "_Queue"
 msgstr "_Sorbanállás"
 
-#: ../src/yumex.glade.el6.h:13 ../src/yumex.glade.h:14
+#: ../src/yumex.glade.el6.h:13 ../src/yumex.glade.h:6
 msgid "R_epositories"
 msgstr "Tá_rolók"
 
-#: ../src/yumex.glade.el6.h:14 ../src/yumex.glade.h:15
+#: ../src/yumex.glade.el6.h:14 ../src/yumex.glade.h:7
 msgid "_History"
 msgstr "_Előzmények"
 
-#: ../src/yumex.glade.el6.h:15 ../src/yumex.glade.h:16
+#: ../src/yumex.glade.el6.h:15 ../src/yumex.glade.h:8
 msgid "_Output"
 msgstr "_Kimenet"
 
-#: ../src/yumex.glade.el6.h:16 ../src/yumex.glade.h:17
+#: ../src/yumex.glade.el6.h:16 ../src/yumex.glade.h:9
 msgid "_Profiles"
 msgstr "_Profilok"
 
-#: ../src/yumex.glade.el6.h:17 ../src/yumex.glade.h:18
+#: ../src/yumex.glade.el6.h:17 ../src/yumex.glade.h:10
 msgid "_Options"
 msgstr "_Opciók"
 
-#: ../src/yumex.glade.el6.h:18 ../src/yumex.glade.h:19
+#: ../src/yumex.glade.el6.h:18 ../src/yumex.glade.h:11
 msgid "Skip packages there get depsolve errors"
 msgstr "Azok a csomagok kihagyása, amelyek függőségi hibákat okoztak"
 
-#: ../src/yumex.glade.el6.h:19 ../src/yumex.glade.h:20
+#: ../src/yumex.glade.el6.h:19 ../src/yumex.glade.h:12
 msgid "Skip Broken"
 msgstr "Törött kihagyása"
 
-#: ../src/yumex.glade.el6.h:20 ../src/yumex.glade.h:21
+#: ../src/yumex.glade.el6.h:20 ../src/yumex.glade.h:13
 msgid "Don't check signatures for packages"
-msgstr ""
+msgstr "Ne ellenőrizze a csomagok aláírását"
 
-#: ../src/yumex.glade.el6.h:21 ../src/yumex.glade.h:22
+#: ../src/yumex.glade.el6.h:21 ../src/yumex.glade.h:14
 msgid "no GPG Check"
 msgstr "GPG ellenőrzés kihagyása"
 
-#: ../src/yumex.glade.el6.h:22 ../src/yumex.glade.h:23
+#: ../src/yumex.glade.el6.h:22 ../src/yumex.glade.h:15
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
-msgstr ""
+msgstr "Csak a legújabb csomagok megjelenítése kereséskor\nUgyanazon csomag több változata ne jelenjen meg"
 
-#: ../src/yumex.glade.el6.h:24 ../src/yumex.glade.h:25
+#: ../src/yumex.glade.el6.h:24 ../src/yumex.glade.h:17
 msgid "Show Newest Only"
-msgstr ""
+msgstr "Csak az újak megjelenítése"
 
-#: ../src/yumex.glade.el6.h:25 ../src/yumex.glade.h:29
+#: ../src/yumex.glade.el6.h:25 ../src/yumex.glade.h:21
 msgid "_Help"
 msgstr "_Súgó"
 
 #: ../src/yumex.glade.el6.h:26 ../src/yumex.glade.h:30
 msgid "Typeahead search on/off"
-msgstr ""
+msgstr "Előregépelt keresés be/ki"
 
 #: ../src/yumex.glade.el6.h:27 ../src/yumex.glade.h:31
 msgid ""
 "Type search words separated by spaces\n"
 "to find packages containing the search\n"
 "words.\n"
-msgstr ""
+msgstr "Írjon szavakat szóközökkel elválasztva\nés találja meg a csomagokat amelyek\ntartalmazzák a keresőszavakat.\n"
 
 #: ../src/yumex.glade.el6.h:31 ../src/yumex.glade.h:35
 msgid "Search Options"
-msgstr ""
+msgstr "Keresési opciók"
 
 #: ../src/yumex.glade.el6.h:32 ../src/yumex.glade.h:36
 msgid "U_pdates"
@@ -1193,26 +1196,26 @@ msgstr "A tároló kiválasztásának visszavonása"
 
 #: ../src/yumex.glade.el6.h:54 ../src/yumex.glade.h:60
 msgid "Testing Stuff"
-msgstr ""
+msgstr "Anyag ellenőrzése"
 
-#: ../src/yumex.glade.h:5
-msgid "Undo the current search"
-msgstr ""
-
-#: ../src/yumex.glade.h:26
+#: ../src/yumex.glade.h:18
 msgid ""
 "When removing packages, also remove requirements\n"
 "there is not used by any other packages. "
-msgstr ""
+msgstr "Csomageltávolításkor a többi csomag által nem használt\nfüggőségek eltávolítása."
 
-#: ../src/yumex.glade.h:28
+#: ../src/yumex.glade.h:20
 msgid "Clean Unused Requirements"
-msgstr ""
+msgstr "Nem használt függőségek eltávolítása"
+
+#: ../src/yumex.glade.h:26
+msgid "Undo the current search"
+msgstr "Jelenlegi keresés visszavonása"
 
 #: ../src/yumex.glade.h:48
 msgid "Install All"
-msgstr ""
+msgstr "Mind telepítése"
 
 #: ../src/yumex.glade.h:49
 msgid "Remove All"
-msgstr ""
+msgstr "Mind eltávolítása"

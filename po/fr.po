@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-01 14:47+0100\n"
-"PO-Revision-Date: 2013-11-28 18:58+0000\n"
-"Last-Translator: dominique bribanick <chepioq@gmail.com>\n"
+"POT-Creation-Date: 2015-04-21 06:33+0200\n"
+"PO-Revision-Date: 2015-04-21 04:35+0000\n"
+"Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/yumex/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -576,8 +576,10 @@ msgid "User canceled autherization dialog"
 msgstr "L'utilisateur a annulé le dialogue d’autorisation"
 
 #: ../src/yumexgui/__init__.py:322
-msgid "Operation is aborted"
-msgstr "L'opération est annulée"
+msgid ""
+"Operation is aborted\n"
+"Yum Extender will exit"
+msgstr ""
 
 #: ../src/yumexgui/__init__.py:325
 msgid "Fatal Error : "
@@ -653,76 +655,76 @@ msgstr "Connecté à un réseau"
 msgid "Nothing to do"
 msgstr "Rien à faire"
 
-#: ../src/yumexgui/__init__.py:740
+#: ../src/yumexgui/__init__.py:743
 msgid "Enable Permanently"
 msgstr "Activer en permanence"
 
-#: ../src/yumexgui/__init__.py:744
+#: ../src/yumexgui/__init__.py:747
 msgid "Disable Permanently"
 msgstr "Désactiver en permanence"
 
-#: ../src/yumexgui/__init__.py:747
+#: ../src/yumexgui/__init__.py:750
 msgid "Clean Metadata"
 msgstr "Nettoyer les métadonnées"
 
-#: ../src/yumexgui/__init__.py:748
+#: ../src/yumexgui/__init__.py:751
 msgid "Clean Packages"
 msgstr "Nettoyer les paquets"
 
-#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/__init__.py:752
 msgid "Clean DbCache"
 msgstr "Nettoyer le dbcache"
 
-#: ../src/yumexgui/__init__.py:750
+#: ../src/yumexgui/__init__.py:753
 msgid "Clean All"
 msgstr "Nettoyer tout"
 
-#: ../src/yumexgui/__init__.py:763
+#: ../src/yumexgui/__init__.py:766
 msgid "Reinstall Package"
 msgstr "Réinstaller le paquet"
 
-#: ../src/yumexgui/__init__.py:770
+#: ../src/yumexgui/__init__.py:773
 msgid "Downgrade Package"
 msgstr "Déclasser le paquet"
 
-#: ../src/yumexgui/__init__.py:780
+#: ../src/yumexgui/__init__.py:783
 msgid "By Repositories"
 msgstr "Par dépôts"
 
-#: ../src/yumexgui/__init__.py:781
+#: ../src/yumexgui/__init__.py:784
 msgid "By Size"
 msgstr "Par taille"
 
-#: ../src/yumexgui/__init__.py:806 ../src/yumexgui/__init__.py:807
+#: ../src/yumexgui/__init__.py:809 ../src/yumexgui/__init__.py:810
 msgid "Getting Group information"
 msgstr "Obtention des informations sur les groupes"
 
-#: ../src/yumexgui/__init__.py:843
+#: ../src/yumexgui/__init__.py:846
 msgid "The pending action queue is empty"
 msgstr "La file d'attente des actions est vide"
 
-#: ../src/yumexgui/__init__.py:869
+#: ../src/yumexgui/__init__.py:874
 msgid "Installing local Packages"
 msgstr "Installation des paquets locaux"
 
-#: ../src/yumexgui/__init__.py:871
+#: ../src/yumexgui/__init__.py:876
 msgid "Processing pending actions"
 msgstr "Traitement des actions en attente"
 
-#: ../src/yumexgui/__init__.py:872
+#: ../src/yumexgui/__init__.py:877
 msgid "Preparing the transaction"
 msgstr "Préparation de la transaction"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:889 ../src/yumexgui/__init__.py:898
+#: ../src/yumexgui/__init__.py:894 ../src/yumexgui/__init__.py:903
 msgid "Transaction completed successfully"
 msgstr "Transaction complètement réussie"
 
-#: ../src/yumexgui/__init__.py:893
+#: ../src/yumexgui/__init__.py:898
 msgid "Installation of local packages completed"
 msgstr "Installation des paquets locaux terminée"
 
-#: ../src/yumexgui/__init__.py:899
+#: ../src/yumexgui/__init__.py:904
 msgid ""
 "\n"
 "\n"
@@ -730,76 +732,76 @@ msgid ""
 msgstr "\n\nVoulez-vous quitter Yum Extender ?"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:909
+#: ../src/yumexgui/__init__.py:914
 msgid "Transaction Aborted by User"
 msgstr "Transaction annulée par l'utilisateur"
 
-#: ../src/yumexgui/__init__.py:912
+#: ../src/yumexgui/__init__.py:917
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "Transaction terminée avec des erreurs, \nconsultez la sortie pour les détails"
 
-#: ../src/yumexgui/__init__.py:1005
+#: ../src/yumexgui/__init__.py:1011
 msgid "<unset>"
 msgstr "<indéfini>"
 
-#: ../src/yumexgui/__init__.py:1006
+#: ../src/yumexgui/__init__.py:1012
 msgid "System"
 msgstr "Système"
 
-#: ../src/yumexgui/__init__.py:1050
+#: ../src/yumexgui/__init__.py:1056
 msgid "Getting History Information"
 msgstr "Obtention de l'historique"
 
-#: ../src/yumexgui/__init__.py:1052
+#: ../src/yumexgui/__init__.py:1058
 msgid "Getting Latest History Information"
 msgstr "Obtention du dernier historique"
 
-#: ../src/yumexgui/__init__.py:1054
+#: ../src/yumexgui/__init__.py:1060
 msgid "Getting All History Information"
 msgstr "Obtention de tous les historiques"
 
-#: ../src/yumexgui/__init__.py:1060 ../src/yumexgui/__init__.py:1079
+#: ../src/yumexgui/__init__.py:1066 ../src/yumexgui/__init__.py:1085
 msgid "History Disabled"
 msgstr "Historique désactivé"
 
-#: ../src/yumexgui/__init__.py:1073 ../src/yumexgui/__init__.py:1074
+#: ../src/yumexgui/__init__.py:1079 ../src/yumexgui/__init__.py:1080
 msgid "Searching History Information"
 msgstr "Recherche dans l'historique"
 
-#: ../src/yumexgui/__init__.py:1119
+#: ../src/yumexgui/__init__.py:1125
 msgid "Transaction Performed with"
 msgstr "Transaction effectuée avec"
 
-#: ../src/yumexgui/__init__.py:1122
+#: ../src/yumexgui/__init__.py:1128
 msgid "Skipped packages"
 msgstr "Paquets ignorés"
 
-#: ../src/yumexgui/__init__.py:1147 ../src/yumexgui/__init__.py:1148
+#: ../src/yumexgui/__init__.py:1153 ../src/yumexgui/__init__.py:1154
 msgid "Adding Packages to view"
 msgstr "Ajout des paquets à la vue"
 
-#: ../src/yumexgui/__init__.py:1152
+#: ../src/yumexgui/__init__.py:1158
 #, python-format
 msgid "Added %i Packages to view"
 msgstr "Ajout de %i paquets à la vue"
 
-#: ../src/yumexgui/__init__.py:1591
+#: ../src/yumexgui/__init__.py:1600
 msgid "Getting Category Packages"
 msgstr "Obtention des paquets de la catégorie"
 
-#: ../src/yumexgui/__init__.py:1688
+#: ../src/yumexgui/__init__.py:1697
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "Voulez-vous nettoyer %s depuis le cache local"
 
-#: ../src/yumexgui/__init__.py:1758
+#: ../src/yumexgui/__init__.py:1767
 #, python-format
 msgid "Executing : %s %s"
 msgstr "Exécution : %s %s"
 
-#: ../src/yumexgui/__init__.py:1759
+#: ../src/yumexgui/__init__.py:1768
 msgid "Processing Queue Command"
 msgstr "Traitement des actions en attente"
 
@@ -998,97 +1000,97 @@ msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Une authentification est demandée par Yum Extender pour gérer les paquets sur le système"
 
-#: ../src/yumex.glade.el6.h:1 ../src/yumex.glade.h:1
+#: ../src/yumex.glade.el6.h:1 ../src/yumex.glade.h:22
 msgid "<span size=\"x-large\">Working ....</span>\n"
 msgstr "<span size=\"x-large\">En cours…</span>\n"
 
-#: ../src/yumex.glade.el6.h:3 ../src/yumex.glade.h:3
+#: ../src/yumex.glade.el6.h:3 ../src/yumex.glade.h:24
 msgid "Error"
 msgstr "Erreur"
 
-#: ../src/yumex.glade.el6.h:4 ../src/yumex.glade.h:4
+#: ../src/yumex.glade.el6.h:4 ../src/yumex.glade.h:25
 msgid "Type package names to search for"
 msgstr "Saisir le nom des paquets à rechercher"
 
-#: ../src/yumex.glade.el6.h:5 ../src/yumex.glade.h:6
+#: ../src/yumex.glade.el6.h:5 ../src/yumex.glade.h:27
 msgid "Get all History elements"
 msgstr "Obtenir tous les éléments de l'historique"
 
-#: ../src/yumex.glade.el6.h:6 ../src/yumex.glade.h:7
+#: ../src/yumex.glade.el6.h:6 ../src/yumex.glade.h:28
 msgid "Undo a history transaction"
 msgstr "Défaire une transaction de l'historique"
 
-#: ../src/yumex.glade.el6.h:7 ../src/yumex.glade.h:8
+#: ../src/yumex.glade.el6.h:7 ../src/yumex.glade.h:29
 msgid "Redo a history transaction"
 msgstr "Rejouer une transaction de l'historique"
 
-#: ../src/yumex.glade.el6.h:8 ../src/yumex.glade.h:9
+#: ../src/yumex.glade.el6.h:8 ../src/yumex.glade.h:1
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/yumex.glade.el6.h:9 ../src/yumex.glade.h:10
+#: ../src/yumex.glade.el6.h:9 ../src/yumex.glade.h:2
 msgid "_Edit"
 msgstr "Modifi_er"
 
-#: ../src/yumex.glade.el6.h:10 ../src/yumex.glade.h:11
+#: ../src/yumex.glade.el6.h:10 ../src/yumex.glade.h:3
 msgid "_View"
 msgstr "_Vue"
 
-#: ../src/yumex.glade.el6.h:11 ../src/yumex.glade.h:12
+#: ../src/yumex.glade.el6.h:11 ../src/yumex.glade.h:4
 msgid "_Packages"
 msgstr "_Paquets"
 
-#: ../src/yumex.glade.el6.h:12 ../src/yumex.glade.h:13
+#: ../src/yumex.glade.el6.h:12 ../src/yumex.glade.h:5
 msgid "_Queue"
 msgstr "File d'a_ttente"
 
-#: ../src/yumex.glade.el6.h:13 ../src/yumex.glade.h:14
+#: ../src/yumex.glade.el6.h:13 ../src/yumex.glade.h:6
 msgid "R_epositories"
 msgstr "_Dépôt"
 
-#: ../src/yumex.glade.el6.h:14 ../src/yumex.glade.h:15
+#: ../src/yumex.glade.el6.h:14 ../src/yumex.glade.h:7
 msgid "_History"
 msgstr "_Historique"
 
-#: ../src/yumex.glade.el6.h:15 ../src/yumex.glade.h:16
+#: ../src/yumex.glade.el6.h:15 ../src/yumex.glade.h:8
 msgid "_Output"
 msgstr "_Sortie"
 
-#: ../src/yumex.glade.el6.h:16 ../src/yumex.glade.h:17
+#: ../src/yumex.glade.el6.h:16 ../src/yumex.glade.h:9
 msgid "_Profiles"
 msgstr "_Profils"
 
-#: ../src/yumex.glade.el6.h:17 ../src/yumex.glade.h:18
+#: ../src/yumex.glade.el6.h:17 ../src/yumex.glade.h:10
 msgid "_Options"
 msgstr "_Options"
 
-#: ../src/yumex.glade.el6.h:18 ../src/yumex.glade.h:19
+#: ../src/yumex.glade.el6.h:18 ../src/yumex.glade.h:11
 msgid "Skip packages there get depsolve errors"
 msgstr "Passer les paquets causant des erreurs de résolution de dépendances"
 
-#: ../src/yumex.glade.el6.h:19 ../src/yumex.glade.h:20
+#: ../src/yumex.glade.el6.h:19 ../src/yumex.glade.h:12
 msgid "Skip Broken"
 msgstr "Passer les dépendances cassées"
 
-#: ../src/yumex.glade.el6.h:20 ../src/yumex.glade.h:21
+#: ../src/yumex.glade.el6.h:20 ../src/yumex.glade.h:13
 msgid "Don't check signatures for packages"
 msgstr "Ne pas vérifier les signatures des paquets"
 
-#: ../src/yumex.glade.el6.h:21 ../src/yumex.glade.h:22
+#: ../src/yumex.glade.el6.h:21 ../src/yumex.glade.h:14
 msgid "no GPG Check"
 msgstr "pas de vérification GPG"
 
-#: ../src/yumex.glade.el6.h:22 ../src/yumex.glade.h:23
+#: ../src/yumex.glade.el6.h:22 ../src/yumex.glade.h:15
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
 msgstr "N'afficher que les derniers paquets lors de la recherche\nNe pas afficher plusieurs versions d'un même paquet"
 
-#: ../src/yumex.glade.el6.h:24 ../src/yumex.glade.h:25
+#: ../src/yumex.glade.el6.h:24 ../src/yumex.glade.h:17
 msgid "Show Newest Only"
 msgstr "N'afficher que le plus récent"
 
-#: ../src/yumex.glade.el6.h:25 ../src/yumex.glade.h:29
+#: ../src/yumex.glade.el6.h:25 ../src/yumex.glade.h:21
 msgid "_Help"
 msgstr "_Aide"
 
@@ -1197,19 +1199,19 @@ msgstr "Défaire les modifications de sélection de dépôts"
 msgid "Testing Stuff"
 msgstr "Test de commande"
 
-#: ../src/yumex.glade.h:5
-msgid "Undo the current search"
-msgstr "Effacer la recherche en cours"
-
-#: ../src/yumex.glade.h:26
+#: ../src/yumex.glade.h:18
 msgid ""
 "When removing packages, also remove requirements\n"
 "there is not used by any other packages. "
 msgstr "Lors de la suppression de paquets, supprimer aussi les\ndépendances non requises par d'autres paquets."
 
-#: ../src/yumex.glade.h:28
+#: ../src/yumex.glade.h:20
 msgid "Clean Unused Requirements"
 msgstr "Nettoyer les dépendances inutiles"
+
+#: ../src/yumex.glade.h:26
+msgid "Undo the current search"
+msgstr "Effacer la recherche en cours"
 
 #: ../src/yumex.glade.h:48
 msgid "Install All"

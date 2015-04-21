@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yum Extender\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-01 14:47+0100\n"
-"PO-Revision-Date: 2013-11-20 09:32+0000\n"
+"POT-Creation-Date: 2015-04-21 06:33+0200\n"
+"PO-Revision-Date: 2015-04-21 04:35+0000\n"
 "Last-Translator: Tim Lauridsen <tla@rasmil.dk>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/yumex/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -577,7 +577,9 @@ msgid "User canceled autherization dialog"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:322
-msgid "Operation is aborted"
+msgid ""
+"Operation is aborted\n"
+"Yum Extender will exit"
 msgstr ""
 
 #: ../src/yumexgui/__init__.py:325
@@ -654,76 +656,76 @@ msgstr "已連線到網路"
 msgid "Nothing to do"
 msgstr "沒有任務"
 
-#: ../src/yumexgui/__init__.py:740
+#: ../src/yumexgui/__init__.py:743
 msgid "Enable Permanently"
 msgstr "永久啟用"
 
-#: ../src/yumexgui/__init__.py:744
+#: ../src/yumexgui/__init__.py:747
 msgid "Disable Permanently"
 msgstr "永久停用"
 
-#: ../src/yumexgui/__init__.py:747
+#: ../src/yumexgui/__init__.py:750
 msgid "Clean Metadata"
 msgstr "清除後設資料"
 
-#: ../src/yumexgui/__init__.py:748
+#: ../src/yumexgui/__init__.py:751
 msgid "Clean Packages"
 msgstr "清除套件"
 
-#: ../src/yumexgui/__init__.py:749
+#: ../src/yumexgui/__init__.py:752
 msgid "Clean DbCache"
 msgstr "清除資料庫快取"
 
-#: ../src/yumexgui/__init__.py:750
+#: ../src/yumexgui/__init__.py:753
 msgid "Clean All"
 msgstr "清除全部"
 
-#: ../src/yumexgui/__init__.py:763
+#: ../src/yumexgui/__init__.py:766
 msgid "Reinstall Package"
 msgstr "重新安裝套件"
 
-#: ../src/yumexgui/__init__.py:770
+#: ../src/yumexgui/__init__.py:773
 msgid "Downgrade Package"
 msgstr "降級套件"
 
-#: ../src/yumexgui/__init__.py:780
+#: ../src/yumexgui/__init__.py:783
 msgid "By Repositories"
 msgstr "依套件庫"
 
-#: ../src/yumexgui/__init__.py:781
+#: ../src/yumexgui/__init__.py:784
 msgid "By Size"
 msgstr "依大小"
 
-#: ../src/yumexgui/__init__.py:806 ../src/yumexgui/__init__.py:807
+#: ../src/yumexgui/__init__.py:809 ../src/yumexgui/__init__.py:810
 msgid "Getting Group information"
 msgstr "提取群組資訊"
 
-#: ../src/yumexgui/__init__.py:843
+#: ../src/yumexgui/__init__.py:846
 msgid "The pending action queue is empty"
 msgstr "擱置動作佇列是空的"
 
-#: ../src/yumexgui/__init__.py:869
+#: ../src/yumexgui/__init__.py:874
 msgid "Installing local Packages"
 msgstr "安裝本地套件"
 
-#: ../src/yumexgui/__init__.py:871
+#: ../src/yumexgui/__init__.py:876
 msgid "Processing pending actions"
 msgstr "處理擱置動作"
 
-#: ../src/yumexgui/__init__.py:872
+#: ../src/yumexgui/__init__.py:877
 msgid "Preparing the transaction"
 msgstr "準備異動作業"
 
 #. Transaction ok
-#: ../src/yumexgui/__init__.py:889 ../src/yumexgui/__init__.py:898
+#: ../src/yumexgui/__init__.py:894 ../src/yumexgui/__init__.py:903
 msgid "Transaction completed successfully"
 msgstr "異動作業已完成"
 
-#: ../src/yumexgui/__init__.py:893
+#: ../src/yumexgui/__init__.py:898
 msgid "Installation of local packages completed"
 msgstr "已完成本地套件的安裝"
 
-#: ../src/yumexgui/__init__.py:899
+#: ../src/yumexgui/__init__.py:904
 msgid ""
 "\n"
 "\n"
@@ -731,76 +733,76 @@ msgid ""
 msgstr "\n\n您要離開 Yum Extender 嗎？"
 
 #. Aborted by user
-#: ../src/yumexgui/__init__.py:909
+#: ../src/yumexgui/__init__.py:914
 msgid "Transaction Aborted by User"
 msgstr "使用者放棄異動作業"
 
-#: ../src/yumexgui/__init__.py:912
+#: ../src/yumexgui/__init__.py:917
 msgid ""
 "Transaction completed with errors,\n"
 " check output page for details"
 msgstr "異動作業已完成但發生錯誤，\n請檢查輸出頁面以瞭解細節"
 
-#: ../src/yumexgui/__init__.py:1005
+#: ../src/yumexgui/__init__.py:1011
 msgid "<unset>"
 msgstr "<未設>"
 
-#: ../src/yumexgui/__init__.py:1006
+#: ../src/yumexgui/__init__.py:1012
 msgid "System"
 msgstr "系統"
 
-#: ../src/yumexgui/__init__.py:1050
+#: ../src/yumexgui/__init__.py:1056
 msgid "Getting History Information"
 msgstr "提取歷史資訊"
 
-#: ../src/yumexgui/__init__.py:1052
+#: ../src/yumexgui/__init__.py:1058
 msgid "Getting Latest History Information"
 msgstr "提取最近的歷史資訊"
 
-#: ../src/yumexgui/__init__.py:1054
+#: ../src/yumexgui/__init__.py:1060
 msgid "Getting All History Information"
 msgstr "提取所有歷史資訊"
 
-#: ../src/yumexgui/__init__.py:1060 ../src/yumexgui/__init__.py:1079
+#: ../src/yumexgui/__init__.py:1066 ../src/yumexgui/__init__.py:1085
 msgid "History Disabled"
 msgstr "歷史記錄已停用"
 
-#: ../src/yumexgui/__init__.py:1073 ../src/yumexgui/__init__.py:1074
+#: ../src/yumexgui/__init__.py:1079 ../src/yumexgui/__init__.py:1080
 msgid "Searching History Information"
 msgstr "搜尋歷史資訊"
 
-#: ../src/yumexgui/__init__.py:1119
+#: ../src/yumexgui/__init__.py:1125
 msgid "Transaction Performed with"
 msgstr "異動作業已施行於"
 
-#: ../src/yumexgui/__init__.py:1122
+#: ../src/yumexgui/__init__.py:1128
 msgid "Skipped packages"
 msgstr "已略過套件"
 
-#: ../src/yumexgui/__init__.py:1147 ../src/yumexgui/__init__.py:1148
+#: ../src/yumexgui/__init__.py:1153 ../src/yumexgui/__init__.py:1154
 msgid "Adding Packages to view"
 msgstr "加入套件到檢視"
 
-#: ../src/yumexgui/__init__.py:1152
+#: ../src/yumexgui/__init__.py:1158
 #, python-format
 msgid "Added %i Packages to view"
 msgstr "已加入 %i 個套件到檢視"
 
-#: ../src/yumexgui/__init__.py:1591
+#: ../src/yumexgui/__init__.py:1600
 msgid "Getting Category Packages"
 msgstr "提取類別套件"
 
-#: ../src/yumexgui/__init__.py:1688
+#: ../src/yumexgui/__init__.py:1697
 #, python-format
 msgid "Do you want to clean %s from the yum cache"
 msgstr "您要從 yum 快取中清除 %s "
 
-#: ../src/yumexgui/__init__.py:1758
+#: ../src/yumexgui/__init__.py:1767
 #, python-format
 msgid "Executing : %s %s"
 msgstr "執行：%s %s"
 
-#: ../src/yumexgui/__init__.py:1759
+#: ../src/yumexgui/__init__.py:1768
 msgid "Processing Queue Command"
 msgstr "處理佇列命令"
 
@@ -999,97 +1001,97 @@ msgid ""
 "Authentication is required for Yum Extender to handle packages on the system"
 msgstr "Yum Extender 要求驗證以處理系統中的套件"
 
-#: ../src/yumex.glade.el6.h:1 ../src/yumex.glade.h:1
+#: ../src/yumex.glade.el6.h:1 ../src/yumex.glade.h:22
 msgid "<span size=\"x-large\">Working ....</span>\n"
 msgstr "<span size=\"x-large\">作用中 ....</span>\n"
 
-#: ../src/yumex.glade.el6.h:3 ../src/yumex.glade.h:3
+#: ../src/yumex.glade.el6.h:3 ../src/yumex.glade.h:24
 msgid "Error"
 msgstr "錯誤"
 
-#: ../src/yumex.glade.el6.h:4 ../src/yumex.glade.h:4
+#: ../src/yumex.glade.el6.h:4 ../src/yumex.glade.h:25
 msgid "Type package names to search for"
 msgstr "輸入套件名稱以搜尋"
 
-#: ../src/yumex.glade.el6.h:5 ../src/yumex.glade.h:6
+#: ../src/yumex.glade.el6.h:5 ../src/yumex.glade.h:27
 msgid "Get all History elements"
 msgstr "提取所有歷史元件"
 
-#: ../src/yumex.glade.el6.h:6 ../src/yumex.glade.h:7
+#: ../src/yumex.glade.el6.h:6 ../src/yumex.glade.h:28
 msgid "Undo a history transaction"
 msgstr "復原某個歷史異動作業"
 
-#: ../src/yumex.glade.el6.h:7 ../src/yumex.glade.h:8
+#: ../src/yumex.glade.el6.h:7 ../src/yumex.glade.h:29
 msgid "Redo a history transaction"
 msgstr "重做某個歷史異動作業"
 
-#: ../src/yumex.glade.el6.h:8 ../src/yumex.glade.h:9
+#: ../src/yumex.glade.el6.h:8 ../src/yumex.glade.h:1
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../src/yumex.glade.el6.h:9 ../src/yumex.glade.h:10
+#: ../src/yumex.glade.el6.h:9 ../src/yumex.glade.h:2
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/yumex.glade.el6.h:10 ../src/yumex.glade.h:11
+#: ../src/yumex.glade.el6.h:10 ../src/yumex.glade.h:3
 msgid "_View"
 msgstr "檢視(_V)"
 
-#: ../src/yumex.glade.el6.h:11 ../src/yumex.glade.h:12
+#: ../src/yumex.glade.el6.h:11 ../src/yumex.glade.h:4
 msgid "_Packages"
 msgstr "套件(_P)"
 
-#: ../src/yumex.glade.el6.h:12 ../src/yumex.glade.h:13
+#: ../src/yumex.glade.el6.h:12 ../src/yumex.glade.h:5
 msgid "_Queue"
 msgstr "佇列(_Q)"
 
-#: ../src/yumex.glade.el6.h:13 ../src/yumex.glade.h:14
+#: ../src/yumex.glade.el6.h:13 ../src/yumex.glade.h:6
 msgid "R_epositories"
 msgstr "套件庫(_E)"
 
-#: ../src/yumex.glade.el6.h:14 ../src/yumex.glade.h:15
+#: ../src/yumex.glade.el6.h:14 ../src/yumex.glade.h:7
 msgid "_History"
 msgstr "歷史(_H)"
 
-#: ../src/yumex.glade.el6.h:15 ../src/yumex.glade.h:16
+#: ../src/yumex.glade.el6.h:15 ../src/yumex.glade.h:8
 msgid "_Output"
 msgstr "輸出(_O)"
 
-#: ../src/yumex.glade.el6.h:16 ../src/yumex.glade.h:17
+#: ../src/yumex.glade.el6.h:16 ../src/yumex.glade.h:9
 msgid "_Profiles"
 msgstr "設定組合(_P)"
 
-#: ../src/yumex.glade.el6.h:17 ../src/yumex.glade.h:18
+#: ../src/yumex.glade.el6.h:17 ../src/yumex.glade.h:10
 msgid "_Options"
 msgstr "選項(_O)"
 
-#: ../src/yumex.glade.el6.h:18 ../src/yumex.glade.h:19
+#: ../src/yumex.glade.el6.h:18 ../src/yumex.glade.h:11
 msgid "Skip packages there get depsolve errors"
 msgstr "跳過提取相依性解析時發生錯誤的套件"
 
-#: ../src/yumex.glade.el6.h:19 ../src/yumex.glade.h:20
+#: ../src/yumex.glade.el6.h:19 ../src/yumex.glade.h:12
 msgid "Skip Broken"
 msgstr "跳過不完整的"
 
-#: ../src/yumex.glade.el6.h:20 ../src/yumex.glade.h:21
+#: ../src/yumex.glade.el6.h:20 ../src/yumex.glade.h:13
 msgid "Don't check signatures for packages"
 msgstr "不檢查套件簽名"
 
-#: ../src/yumex.glade.el6.h:21 ../src/yumex.glade.h:22
+#: ../src/yumex.glade.el6.h:21 ../src/yumex.glade.h:14
 msgid "no GPG Check"
 msgstr "沒有 GPG 檢查"
 
-#: ../src/yumex.glade.el6.h:22 ../src/yumex.glade.h:23
+#: ../src/yumex.glade.el6.h:22 ../src/yumex.glade.h:15
 msgid ""
 "Show only the latest packages when searching\n"
 "Don't show multiple version of the same package"
 msgstr "只顯示搜尋時最新的套件\n不顯示相同套件的多重版本"
 
-#: ../src/yumex.glade.el6.h:24 ../src/yumex.glade.h:25
+#: ../src/yumex.glade.el6.h:24 ../src/yumex.glade.h:17
 msgid "Show Newest Only"
 msgstr "只顯示最新的"
 
-#: ../src/yumex.glade.el6.h:25 ../src/yumex.glade.h:29
+#: ../src/yumex.glade.el6.h:25 ../src/yumex.glade.h:21
 msgid "_Help"
 msgstr "求助(_H)"
 
@@ -1198,19 +1200,19 @@ msgstr "復原套件庫選擇變更"
 msgid "Testing Stuff"
 msgstr "測試部分"
 
-#: ../src/yumex.glade.h:5
-msgid "Undo the current search"
-msgstr "復原目前的搜尋"
-
-#: ../src/yumex.glade.h:26
+#: ../src/yumex.glade.h:18
 msgid ""
 "When removing packages, also remove requirements\n"
 "there is not used by any other packages. "
 msgstr "移除套件時，同時移除那些\n未被其他套件所使用的依存需求。 "
 
-#: ../src/yumex.glade.h:28
+#: ../src/yumex.glade.h:20
 msgid "Clean Unused Requirements"
 msgstr "清除未使用的依存套件"
+
+#: ../src/yumex.glade.h:26
+msgid "Undo the current search"
+msgstr "復原目前的搜尋"
 
 #: ../src/yumex.glade.h:48
 msgid "Install All"
