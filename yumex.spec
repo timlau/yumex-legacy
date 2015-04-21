@@ -1,8 +1,8 @@
 %{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
 Name:     yumex
-Version:  3.0.16
-Release:  2%{?dist}
+Version:  3.0.17
+Release:  1%{?dist}
 Summary:  Yum Extender graphical package management tool
 
 Group:    Applications/System
@@ -21,7 +21,8 @@ BuildRequires: intltool
 Requires: yum >= 3.2.23
 Requires: pygtk2 >= 2.14
 Requires: pycairo
-Requires: python-pexpect
+%{?fedora:Requires: python-pexpect}
+%{?rhel:Requires: pexpect}
 Requires: python-iniparse
 Requires: dbus-python
 Requires: python-kitchen
@@ -90,6 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/polkit-1/rules.d/*.rules
 
 %changelog
+* Tue Apr 21 2015 Tim Lauridsen <timlau@fedoraproject.org> 3.0.17-1
+- bumped release
+- add rhel/fedora specific requirement of pexpect/python-pexpect
 * Tue Oct 14 2014 Tim Lauridsen <timlau@fedoraproject.org> 3.0.16-2
 - create yumex group
 - added shadow-utils requirement (pre)
