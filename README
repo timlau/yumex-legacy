@@ -3,3 +3,9 @@ Yum Extender
 
 Yum Extender aka yumex is a GTK based GUI for the yum package manager
 
+yumex is in a frozen state, only very critical bugs will be fixed.
+new features will only be added in 
+
+https://github.com/timlau/yumex-dnf
+
+
